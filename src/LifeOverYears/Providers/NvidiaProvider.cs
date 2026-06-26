@@ -227,3 +227,4 @@ public sealed class NvidiaProvider : INvidiaProvider
         [property: JsonPropertyName("terrain")]   string?       Terrain,
         [property: JsonPropertyName("utilities")] List<string>? Utilities);
 }
+// 
