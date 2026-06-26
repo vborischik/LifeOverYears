@@ -1,6 +1,4 @@
-задача push into repo https://github.com/vborischik/LifeOverYears/tree/main/docs
 
-это 
 # Pipeline
 
 ## Purpose
