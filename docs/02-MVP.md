@@ -2,23 +2,21 @@
 
 ## Purpose
 
-The purpose of the MVP is to validate the complete production pipeline from a single input photograph to a publishable short-form video.
+The MVP validates the complete end-to-end workflow of LifeOverYears.
 
-The MVP is intended to prove that the architecture, data model, and AI workflow can consistently produce engaging historical content.
+The goal is not automation at scale. The goal is to prove that a single modern photograph can be transformed into multiple historically inspired scenes and finally into a publishable short-form video.
 
 ---
 
 # Success Criteria
 
-Given one modern photograph, the system automatically produces:
+Given one modern photograph and one or more target years, the system produces:
 
 - SceneDNA
-- AI Prompt
-- Historical Image
+- Prompt
+- Historical Images
 - Short Video
 - Caption
-
-The result should require only minimal manual review before publishing.
 
 ---
 
@@ -26,29 +24,29 @@ The result should require only minimal manual review before publishing.
 
 ## Input
 
-- One modern photograph
-- Target year (for example: 1975)
+- Modern photograph
+- Target years (1975, 1985, 1995, 2005, 2015, 2025)
 
 ## Output
 
-- AI generated historical image
+- One generated image for each requested year
 - Vertical video
 - Caption
-- Ready-to-publish assets
 
 ---
 
 # MVP Pipeline
 
-Input Image
-→ Location Discovery
-→ Scene Analysis
-→ SceneDNA
+Input Photo
+→ SceneDNA Builder
 → Prompt Generation
-→ Image Generation
-→ Quality Validation
+→ Historical Image Generation (1975 / 1985 / 1995 / 2005 / 2015 / 2025)
 → Video Composition
 → Caption Generation
+
+SceneDNA is generated once.
+
+The same SceneDNA is reused for every requested historical era.
 
 ---
 
@@ -65,13 +63,13 @@ Input Image
 
 # Excluded From MVP
 
+- Quality Validation
 - Database
-- Distributed workers
-- Queue system
-- Multi-user support
-- Plugin architecture
-- Automatic publishing
-- Comment analysis
+- Distributed Workers
+- Queue System
+- Plugin Architecture
+- Automatic Publishing
+- Comment Analysis
 - Analytics
 - Billing
 
@@ -82,22 +80,23 @@ Input Image
 The operator is responsible for:
 
 - Selecting the input photo
-- Reviewing the generated image
-- Choosing the final result
-- Publishing to social platforms
+- Selecting target years
+- Reviewing generated images
+- Selecting the final images
+- Publishing to social media
 
 ---
 
 # Design Principles
 
-1. Simplicity over completeness.
-2. One working pipeline before optimization.
-3. Structured data before prompt engineering.
-4. Manual validation before automation.
-5. Replaceable AI providers.
+1. Build one complete pipeline before optimizing it.
+2. SceneDNA is the central domain model.
+3. AI populates SceneDNA rather than defining it.
+4. One SceneDNA can generate multiple historical eras.
+5. Keep the MVP simple and highly iterative.
 
 ---
 
 # Deliverable
 
-The MVP is complete when one command can transform a single photograph into a historically inspired video package ready for publication.
+The MVP is complete when one command can generate a complete historical video package from a single modern photograph using a reusable SceneDNA and one or more target historical years.
