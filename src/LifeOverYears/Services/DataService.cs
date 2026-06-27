@@ -41,4 +41,11 @@ public sealed class DataService : IDataService
         await _fs.EnsureDirectoryExistsAsync(Path.GetDirectoryName(path)!);
         await _json.SerializeFileAsync(sceneDna, path);
     }
+
+    public async Task<string> LoadPromptAsync(string name)
+    {
+        var path = Path.Combine("data", "prompts", $"{name}.txt");
+        _logger.LogInformation("Loading prompt {Name} from {Path}", name, path);
+        return await _fs.ReadAllTextAsync(path);
+    }
 }
