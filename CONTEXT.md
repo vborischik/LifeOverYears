@@ -14,25 +14,28 @@ Pipeline: Modern Photo → SceneDNA → Prompt → Historical Images → Video �
 - Single solution, single project with folders (not separate projects)
 - Solution file: `LifeOverYears.slnx`
 - Project path: `src/LifeOverYears/`
-- Config: `appsettings.json`
+- Config: `appsettings.json` (gitignored)
 
 ---
 
-## Architecture — 3 Layers + Entry Point
+## Architecture — 4 Layers + Entry Point
 
 ```
 Console (Program.cs)
     ↓
-Services  — business logic + interfaces (decides which provider to use)
+Services         — business logic + orchestration (never touch HTTP)
     ↓
-Providers — raw API connectors, no business logic
+Domain Providers — know one model/workflow, build requests, parse responses
     ↓
-Models    — data structures only, no logic, no dependencies
+Transport Providers — pure HTTP/process connectors, no business logic
+    ↓
+Models           — data structures only, no logic, no dependencies
 ```
 
 ### Dependency Rules
 - Models → no dependencies
-- Providers → Models
+- Transport Providers → Models
+- Domain Providers → Models + Transport Provider interfaces
 - Services → Models + Provider interfaces (never concrete classes)
 - Console → everything (composition root)
 
@@ -57,6 +60,11 @@ src/LifeOverYears/
 │   │   ├── IFfmpegProvider.cs
 │   │   ├── ITelegramProvider.cs
 │   │   ├── IDropboxProvider.cs
+│   │   ├── IFileSystemProvider.cs
+│   │   ├── IJsonProvider.cs
+│   │   ├── IVisionProvider.cs
+│   │   ├── IImageProvider.cs
+│   │   ├── IDataService.cs
 │   │   ├── IVisionService.cs
 │   │   ├── IPromptService.cs
 │   │   ├── IImageService.cs
@@ -65,45 +73,74 @@ src/LifeOverYears/
 │   │   ├── IPublicationService.cs
 │   │   └── IStorageService.cs
 │   ├── VisionService.cs
-│   ├── PromptService.cs
-│   ├── ImageService.cs
-│   ├── VideoService.cs
-│   ├── CaptionService.cs
-│   ├── PublicationService.cs
-│   ├── StorageService.cs
+│   ├── DataService.cs
+│   ├── SceneDnaValidator.cs
+│   ├── PromptService.cs       ← stub
+│   ├── ImageService.cs        ← stub
+│   ├── VideoService.cs        ← stub
+│   ├── CaptionService.cs      ← stub
+│   ├── PublicationService.cs  ← stub
+│   ├── StorageService.cs      ← stub
 │   └── Pipeline.cs
 ├── Providers/
 │   ├── NvidiaProvider.cs
 │   ├── XaiProvider.cs
 │   ├── FfmpegProvider.cs
 │   ├── TelegramProvider.cs
-│   └── DropboxProvider.cs
+│   ├── DropboxProvider.cs
+│   ├── FileSystemProvider.cs
+│   ├── JsonProvider.cs
+│   ├── VisionProvider.cs
+│   └── ImageProvider.cs
+├── data/
+│   ├── prompts/
+│   │   └── vision.txt
+│   ├── eras/
+│   │   └── {year}.json
+│   └── scenes/
+│       └── {id}.json
 ├── Program.cs
 └── appsettings.json
 ```
 
 ---
 
-## Providers
+## Transport Providers
+
+Pure connectors. No model knowledge. No business logic.
 
 | Provider | Responsibility | API |
 |----------|---------------|-----|
-| NvidiaProvider | Vision (photo → SceneDNA) + Image generation | NVIDIA NIM |
-| XaiProvider | Text completion (prompts, captions) | xAI API |
-| FfmpegProvider | Video composition from images | Local FFmpeg |
-| TelegramProvider | Publish video to Telegram channel | Telegram Bot API |
-| DropboxProvider | Upload/download files | Dropbox API |
+| NvidiaProvider | PostAsync(url, body) + PollAsync(url) with Bearer auth | NVIDIA NIM |
+| XaiProvider | CompleteAsync(prompt) — chat completions | xAI API |
+| FfmpegProvider | ComposeAsync(images) — ffmpeg CLI process | Local FFmpeg |
+| TelegramProvider | SendVideoAsync(video, caption) — multipart upload | Telegram Bot API |
+| DropboxProvider | UploadAsync / DownloadAsync — file storage | Dropbox API v2 |
+| FileSystemProvider | ReadAllText / WriteAllText / Exists / List / Delete | System.IO |
+| JsonProvider | Serialize\<T\> / Deserialize\<T\> / TryDeserialize\<T\> | System.Text.Json |
 
-### NVIDIA Models
-- Vision: `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning`
-- Image generation: `black-forest-labs/flux.2-klein-4b`
+---
 
-### Provider Swap Table
+## Domain Providers
+
+Know one AI model or workflow. Build request bodies, parse responses, return domain objects.
+
+| Provider | Model | Output |
+|----------|-------|--------|
+| VisionProvider | nvidia/nemotron-3-nano-omni-30b-a3b-reasoning | SceneDna |
+| ImageProvider | black-forest-labs/flux-dev | HistoricalImage |
+
+VisionProvider also implements `EnrichAsync(photoPath, current, missingFields)` — re-analyzes when SceneDna is incomplete.
+
+---
+
+## Provider Swap Table
+
 | Service | Today | Tomorrow |
 |---------|-------|----------|
-| VisionService | NvidiaProvider | XaiProvider |
+| VisionService | VisionProvider → NvidiaProvider | XaiVisionProvider |
 | PromptService | XaiProvider | ? |
-| ImageService | NvidiaProvider | ? |
+| ImageService | ImageProvider → NvidiaProvider | ? |
 | VideoService | FfmpegProvider | RunwayProvider |
 | CaptionService | XaiProvider | ? |
 | PublicationService | TelegramProvider | InstagramProvider |
@@ -135,49 +172,61 @@ Publication(Id, VideoId, CaptionId, Platform, Url, PublishedAt)
 
 ---
 
-## EraProfile Storage
-
-Stored as JSON files, read by year:
+## VisionService Flow
 
 ```
-data/eras/1955.json
-data/eras/1975.json
-data/eras/1985.json
-data/eras/1995.json
-data/eras/2005.json
-data/eras/2015.json
+photoPath
+    │
+    ├─ DataService.LoadPromptAsync("vision")       → data/prompts/vision.txt
+    ├─ VisionProvider.AnalyzeImageAsync(...)        → SceneDna
+    ├─ SceneDnaValidator.Validate(sceneDna)         → missing fields list
+    ├─ if missing: VisionProvider.EnrichAsync(...)  → corrected SceneDna
+    └─ DataService.SaveSceneDnaAsync(sceneDna)      → data/scenes/{id}.json
+```
+
+---
+
+## Data Files
+
+```
+data/prompts/{name}.txt    plain text prompts, loaded at runtime
+data/eras/{year}.json      EraProfile for a given year
+data/scenes/{id}.json      SceneDna persisted after analysis
 ```
 
 ---
 
 ## Current Status
 
-| Layer | Status |
-|-------|--------|
+| Component | Status |
+|-----------|--------|
 | Models | ✅ Done |
-| Provider Interfaces | ✅ Done |
-| Providers | ✅ Done |
-| Service Interfaces | ⚠️ Files exist but empty |
-| Services | ⚠️ Files exist but empty |
-| Pipeline | ⚠️ Empty |
-| Program.cs | ⚠️ Empty |
-| appsettings.json | ⚠️ Empty |
+| Transport Providers | ✅ Done |
+| Domain Providers | ✅ Done (VisionProvider + ImageProvider) |
+| Service Interfaces | ✅ Done |
+| VisionService | ✅ Done (analyze → validate → enrich → save) |
+| DataService | ✅ Done |
+| SceneDnaValidator | ✅ Done |
+| Pipeline | ✅ Step 1 done |
+| Program.cs | ⚠️ Not wired up |
+| Other Services | ⚠️ Empty stubs |
 
 ---
 
 ## Next Step
 
-Fill Service Interfaces (IVisionService, IPromptService, IImageService, IVideoService, ICaptionService, IPublicationService, IStorageService)
+Wire up Program.cs, then implement PromptService (Step 2)
 
 ---
 
 ## Key Decisions Made
 
+- 4-layer architecture: transport providers are pure connectors, domain providers know one model
 - Folders not separate projects for MVP (can migrate in ~15 min when needed)
-- SceneDNA is immutable after population
-- AI populates SceneDNA from a modern photo
-- EraProfiles are JSON data files, not code
+- SceneDNA is immutable after population (id + createdAt preserved on enrich)
+- AI populates SceneDNA from a modern photo; validator catches default fallback values
+- EraProfiles and prompts are JSON/text data files, not code
 - Instagram, TikTok, YouTube excluded from MVP (Telegram only)
 - No database in MVP
-- No validation, queues, or billing in MVP
-- appsettings.json for config (API keys etc.)
+- No DI framework — manual wiring in Program.cs
+- appsettings.json gitignored; secrets via environment variables (NVIDIA_API_KEY)
