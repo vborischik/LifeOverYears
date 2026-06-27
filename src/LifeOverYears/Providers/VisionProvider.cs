@@ -13,7 +13,7 @@ public sealed class VisionProvider : IVisionProvider
     private readonly ILogger<VisionProvider> _logger;
 
     private const string Url   = "https://ai.api.nvidia.com/v1/chat/completions";
-    private const string Model = "meta/llama-3.2-90b-vision-instruct";
+    private const string Model = "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning";  // ← новая модель
 
     private static readonly JsonSerializerOptions JsonOpts = new() { PropertyNameCaseInsensitive = true };
 
@@ -31,26 +31,11 @@ public sealed class VisionProvider : IVisionProvider
         var ext = Path.GetExtension(photoPath).TrimStart('.').ToLower();
         var mimeType = ext is "png" ? "image/png" : "image/jpeg";
 
-        var systemPrompt = """
-            You are a scene analysis AI. Analyze the street photo and return ONLY a JSON object matching this schema:
-            {
-              "camera": { "height": string, "direction": string, "fov": number },
-              "geometry": {
-                "roads": [string],
-                "sidewalks": bool,
-                "buildings": [{ "type": string, "position": string }]
-              },
-              "environment": { "terrain": string, "utilities": [string] },
-              "immutable_elements": [string]
-            }
-            """;
-
-        var body = new
+        var body = new                                          // ← убрали system prompt
         {
             model = Model,
             messages = new object[]
             {
-                new { role = "system", content = systemPrompt },
                 new
                 {
                     role = "user",
@@ -62,7 +47,10 @@ public sealed class VisionProvider : IVisionProvider
                 }
             },
             max_tokens = 1024,
-            temperature = 0.1
+            temperature = 0.2,                                  // ← instruct mode
+            top_k = 1,                                          // ← instruct mode
+            response_format = new { type = "json_object" },     // ← чистый JSON
+            chat_template_kwargs = new { enable_thinking = false } // ← без reasoning
         };
 
         var json = await _nvidia.PostAsync(Url, body);
@@ -77,15 +65,11 @@ public sealed class VisionProvider : IVisionProvider
         return ParseSceneDna(text);
     }
 
-    private static SceneDna ParseSceneDna(string text)
+    private static SceneDna ParseSceneDna(string text)         // ← убрали strip markdown
     {
-        var json = text.Trim();
-        if (json.StartsWith("```")) json = json[(json.IndexOf('\n') + 1)..];
-        if (json.EndsWith("```"))   json = json[..json.LastIndexOf("```")].TrimEnd();
-
         try
         {
-            var dto = JsonSerializer.Deserialize<SceneDnaDto>(json, JsonOpts);
+            var dto = JsonSerializer.Deserialize<SceneDnaDto>(text, JsonOpts);
 
             var camera = new Camera(
                 Height:    dto?.Camera?.Height    ?? "eye-level",
@@ -125,6 +109,7 @@ public sealed class VisionProvider : IVisionProvider
         }
     }
 
+    // DTOs без изменений
     private record SceneDnaDto(
         [property: JsonPropertyName("camera")]             CameraDto?      Camera,
         [property: JsonPropertyName("geometry")]           GeometryDto?    Geometry,
