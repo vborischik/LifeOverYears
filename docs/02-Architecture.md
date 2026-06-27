@@ -2,11 +2,11 @@
 
 ## Overview
 
-LifeOverYears is built around a three-layer architecture that separates data structures, business logic, and raw API connectors.
+LifeOverYears is built around a four-layer architecture that separates entry point, business logic, domain-specific AI connectors, and raw transport connectors.
 
 The architecture is designed to remain stable as AI providers evolve.
 
-Swapping a provider requires changing only the relevant Service implementation, leaving everything else untouched.
+Swapping a transport provider requires changing only the relevant Domain Provider. Swapping a model requires changing only the Domain Provider that knows it. Services never touch HTTP.
 
 ---
 
@@ -15,43 +15,63 @@ Swapping a provider requires changing only the relevant Service implementation, 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                           Console                               │
-│              Entry point. Wires everything together.            │
+│         Entry point. Reads env vars, args, wires everything.    │
 └───────────┬─────────────────────────────────────────────────────┘
             │
             ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                          Services                               │
 │                                                                 │
-│   Interfaces          Implementations        Pipeline           │
-│   ─────────────       ───────────────        ────────           │
-│   IVisionService  →   VisionService          Step 1             │
-│   IPromptService  →   PromptService          Step 2             │
-│   IImageService   →   ImageService           Step 3             │
-│   IVideoService   →   VideoService           Step 4             │
-│   ICaptionService →   CaptionService         Step 5             │
-│   IPublishService →   PublicationService     Step 6             │
-│   IStorageService →   StorageService                            │
+│   Interfaces            Implementations        Utilities        │
+│   ──────────────        ────────────────       ─────────        │
+│   IVisionService    →   VisionService          Pipeline         │
+│   IPromptService    →   PromptService          SceneDnaValidator│
+│   IImageService     →   ImageService           DataService      │
+│   IVideoService     →   VideoService                            │
+│   ICaptionService   →   CaptionService                          │
+│   IPublicationService→  PublicationService                      │
+│   IStorageService   →   StorageService                          │
+│   IDataService      →   DataService                             │
 │                                                                 │
+│   Never touch HTTP. Depend on interfaces only.                  │
 └───────────┬─────────────────────────────────────────────────────┘
             │
             ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                          Providers                              │
+│                      Domain Providers                           │
 │                                                                 │
-│   XaiProvider        NvidiaProvider      FfmpegProvider         │
-│   TelegramProvider   DropboxProvider                            │
+│   VisionProvider   — knows nvidia vision model, builds request, │
+│                      parses SceneDna from response              │
+│   ImageProvider    — knows nvidia flux model, handles polling,  │
+│                      parses HistoricalImage from response       │
 │                                                                 │
-│   Raw API connectors. No business logic.                        │
+│   Know endpoints, model names, request/response shapes.         │
+│   Depend on transport providers via interfaces.                 │
+└───────────┬─────────────────────────────────────────────────────┘
+            │
+            ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    Transport Providers                          │
+│                                                                 │
+│   NvidiaProvider    raw HTTP: PostAsync, PollAsync              │
+│   XaiProvider       raw HTTP: chat completions                  │
+│   FfmpegProvider    local process: ffmpeg CLI                   │
+│   TelegramProvider  raw HTTP: Telegram Bot API                  │
+│   DropboxProvider   raw HTTP: Dropbox API v2                    │
+│   FileSystemProvider  File.ReadAll / WriteAll / Directory       │
+│   JsonProvider      JsonSerializer wrapper, generic             │
+│                                                                 │
+│   Pure connectors. No business logic. No model knowledge.       │
 └───────────┬─────────────────────────────────────────────────────┘
             │
             ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                           Models                                │
 │                                                                 │
-│   SceneDNA   EraProfile   BrandProfile   Prompt                 │
-│   HistoricalImage   Video   Caption   Publication               │
+│   SceneDna   EraProfile   Prompt   HistoricalImage              │
+│   Video   Caption   Publication                                 │
 │                                                                 │
-│   No logic. No dependencies.                                    │
+│   Records with init-only properties. No logic. No dependencies. │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -59,14 +79,11 @@ Swapping a provider requires changing only the relevant Service implementation, 
 
 ## Project Structure
 
-For the MVP all layers live as folders inside a single console project.
-
 ```
-LifeOverYears/
+src/LifeOverYears/
 ├── Models/
-│   ├── SceneDNA.cs
+│   ├── SceneDna.cs
 │   ├── EraProfile.cs
-│   ├── BrandProfile.cs
 │   ├── Prompt.cs
 │   ├── HistoricalImage.cs
 │   ├── Video.cs
@@ -76,12 +93,22 @@ LifeOverYears/
 ├── Services/
 │   ├── Interfaces/
 │   │   ├── IVisionService.cs
+│   │   ├── IVisionProvider.cs
+│   │   ├── IImageProvider.cs
 │   │   ├── IPromptService.cs
 │   │   ├── IImageService.cs
 │   │   ├── IVideoService.cs
 │   │   ├── ICaptionService.cs
 │   │   ├── IPublicationService.cs
-│   │   └── IStorageService.cs
+│   │   ├── IStorageService.cs
+│   │   ├── IDataService.cs
+│   │   ├── INvidiaProvider.cs
+│   │   ├── IXaiProvider.cs
+│   │   ├── IFfmpegProvider.cs
+│   │   ├── ITelegramProvider.cs
+│   │   ├── IDropboxProvider.cs
+│   │   ├── IFileSystemProvider.cs
+│   │   └── IJsonProvider.cs
 │   ├── VisionService.cs
 │   ├── PromptService.cs
 │   ├── ImageService.cs
@@ -89,176 +116,167 @@ LifeOverYears/
 │   ├── CaptionService.cs
 │   ├── PublicationService.cs
 │   ├── StorageService.cs
+│   ├── DataService.cs
+│   ├── SceneDnaValidator.cs
 │   └── Pipeline.cs
 │
 ├── Providers/
-│   ├── XaiProvider.cs
 │   ├── NvidiaProvider.cs
+│   ├── XaiProvider.cs
 │   ├── FfmpegProvider.cs
 │   ├── TelegramProvider.cs
-│   └── DropboxProvider.cs
+│   ├── DropboxProvider.cs
+│   ├── FileSystemProvider.cs
+│   ├── JsonProvider.cs
+│   ├── VisionProvider.cs
+│   └── ImageProvider.cs
+│
+├── data/
+│   ├── prompts/
+│   │   └── vision.txt
+│   ├── eras/
+│   │   └── {year}.json
+│   └── scenes/
+│       └── {id}.json
 │
 └── Program.cs
 ```
-
-When the project grows, each folder becomes a separate project in the solution. This migration takes approximately 15 minutes per layer.
 
 ---
 
 ## Dependency Rules
 
 ```
-Models    →  no dependencies
-Providers →  Models
-Services  →  Models, Providers (via interfaces only)
-Console   →  all layers
+Models            →  no dependencies
+Transport Providers →  Models
+Domain Providers  →  Models, Transport Providers (via interfaces)
+Services          →  Models, Domain + Transport Providers (via interfaces)
+Console           →  all layers
 ```
 
-Providers never reference Services.
+Transport Providers never reference Services or Domain Providers.
 
-Services depend on interfaces, not on concrete Provider classes.
+Domain Providers never reference Services.
 
-Console is the only place where Services and Providers are connected.
+Services depend on interfaces, never on concrete classes.
+
+Console is the only composition root.
 
 ---
 
 ## Models
 
-Defines all domain objects.
-
-No logic. No dependencies.
+Records with init-only properties. No logic. No dependencies.
 
 ```
-SceneDNA        immutable structural description of a scene
-EraProfile      historical characteristics of a period
-BrandProfile    visual identity of a brand in a period
-Prompt          instructions for image generation
+SceneDna        immutable structural description of a scene
+EraProfile      historical characteristics of a time period
+Prompt          text instructions for image generation
 HistoricalImage one generated historical reconstruction
-Video           rendered animation from historical images
-Caption         title, description, hashtags
-Publication     published content on a platform
+Video           rendered animation from a sequence of images
+Caption         title, description, hashtags for a post
+Publication     published content record with platform URL
 ```
 
 ---
 
-## Providers
+## Domain Providers
 
-Raw connectors to external systems.
-
-No business logic. No decision making.
-
-Depends only on Models.
+Know one AI model or workflow. Build request bodies, parse responses, map to domain objects.
 
 ```
-XaiProvider       raw xAI API calls
-NvidiaProvider    raw NVIDIA API calls
-FfmpegProvider    local FFmpeg process execution
-TelegramProvider  Telegram Bot API calls
-DropboxProvider   Dropbox API calls
+VisionProvider   nvidia/nemotron-3-nano-omni-30b — analyzes photos, returns SceneDna
+ImageProvider    black-forest-labs/flux-dev — generates images, returns HistoricalImage
+```
+
+---
+
+## Transport Providers
+
+Pure connectors. Know nothing about domain objects or business logic.
+
+```
+NvidiaProvider    PostAsync(url, body) / PollAsync(url) — Bearer auth HTTP
+XaiProvider       CompleteAsync(prompt) — xAI chat completions
+FfmpegProvider    ComposeAsync(images) — ffmpeg CLI process
+TelegramProvider  SendVideoAsync(video, caption) — multipart upload
+DropboxProvider   UploadAsync / DownloadAsync — Dropbox API v2
+FileSystemProvider  ReadAllText / WriteAllText / List / Exists / Delete
+JsonProvider      Serialize<T> / Deserialize<T> / TryDeserialize<T>
 ```
 
 ---
 
 ## Services
 
-Business logic and pipeline orchestration.
-
-Depends on Models and Provider interfaces.
-
-Never references concrete Provider classes directly.
-
-Decides which Provider to use for each task.
+Business logic and pipeline orchestration. Never reference concrete Provider classes.
 
 ```
-VisionService      today → NvidiaProvider,    tomorrow → XaiProvider
-PromptService      today → XaiProvider,       tomorrow → ?
-ImageService       today → NvidiaProvider,    tomorrow → ?
-VideoService       today → FfmpegProvider,    tomorrow → RunwayProvider
-CaptionService     today → XaiProvider,       tomorrow → ?
-PublicationService today → TelegramProvider,  tomorrow → InstagramProvider
-StorageService     today → DropboxProvider,   tomorrow → S3Provider
+VisionService      analyze → validate → enrich → save SceneDna
+PromptService      build era-specific generation prompts
+ImageService       generate historical images per era
+VideoService       compose images into video
+CaptionService     generate title, description, hashtags
+PublicationService publish to Telegram
+StorageService     persist files to Dropbox
+DataService        load/save domain objects from data/ directory
 
 Pipeline           orchestrates all steps in order
+SceneDnaValidator  validates SceneDna completeness, returns missing fields
 ```
+
+---
+
+## VisionService Flow
+
+```
+photoPath
+    │
+    ├─ DataService.LoadPromptAsync("vision")  → prompt text from data/prompts/vision.txt
+    │
+    ├─ VisionProvider.AnalyzeImageAsync(photoPath, prompt)  → SceneDna
+    │
+    ├─ SceneDnaValidator.Validate(sceneDna)  → missing fields list
+    │
+    ├─ if missing.Count > 0:
+    │     └─ VisionProvider.EnrichAsync(photoPath, sceneDna, missing)  → corrected SceneDna
+    │           └─ SceneDnaValidator.Validate(enriched)  → log remaining gaps
+    │
+    └─ DataService.SaveSceneDnaAsync(sceneDna)  → data/scenes/{id}.json
+```
+
+---
+
+## Data Files
+
+```
+data/prompts/{name}.txt     plain text prompts loaded at runtime
+data/eras/{year}.json       EraProfile for a given year
+data/scenes/{id}.json       SceneDna persisted after analysis
+```
+
+Prompts and EraProfiles are data, not code. They can be updated without recompiling.
 
 ---
 
 ## Swapping a Provider
 
-To replace the Vision provider from NVIDIA to xAI:
+To replace the vision model from NVIDIA to xAI:
 
-1. Open `VisionService.cs`
-2. Change the internal provider call
-3. Nothing else changes
-
-Console, Pipeline, Models, and all other Services remain untouched.
-
----
-
-## EraProfile Storage
-
-EraProfiles are stored as JSON files.
-
-The pipeline reads them from disk by year.
-
-```
-data/
-  eras/
-    1955.json
-    1975.json
-    1985.json
-    1995.json
-    2005.json
-    2015.json
-```
-
----
-
-## SceneDNA Format
-
-SceneDNA is populated by VisionService from a modern photograph.
-
-SceneDNA is immutable after population.
-
-Stored as JSON for reuse across multiple Eras.
-
-```json
-{
-  "id": "scene_001",
-  "camera": {
-    "height": "street_level",
-    "direction": "north",
-    "fov": "wide"
-  },
-  "geometry": {
-    "roads": ["two_lane_highway"],
-    "sidewalks": true,
-    "buildings": [
-      { "type": "one_story_commercial", "position": "left" },
-      { "type": "canopy", "position": "center" }
-    ]
-  },
-  "environment": {
-    "terrain": "flat",
-    "utilities": ["power_lines"]
-  },
-  "immutable": [
-    "building_footprint",
-    "road_layout",
-    "utility_poles"
-  ]
-}
-```
+1. Create `XaiVisionProvider.cs` implementing `IVisionProvider`
+2. Wire it in `Program.cs` instead of `VisionProvider`
+3. Nothing else changes — `VisionService`, `Pipeline`, `Models` are untouched
 
 ---
 
 ## Design Principles
 
-- Models have no dependencies.
-- Providers depend only on Models.
-- Services depend on interfaces, never on concrete Providers.
+- Models have no dependencies and no logic.
+- Transport providers are pure connectors — no model knowledge, no parsing.
+- Domain providers know exactly one model or workflow.
+- Services never touch HTTP or file paths directly.
+- Services depend on interfaces, never on concrete classes.
 - Console is the only composition root.
-- Swapping a provider touches only the relevant Service.
-- EraProfiles are data files, not code.
-- SceneDNA is immutable after population.
+- Prompts and EraProfiles are data files, not code.
+- SceneDna is immutable after population.
 - Layers are folders today, separate projects tomorrow.
