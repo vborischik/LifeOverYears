@@ -65,7 +65,57 @@ public sealed class VisionProvider : IVisionProvider
         return ParseSceneDna(text);
     }
 
-    private static SceneDna ParseSceneDna(string text)         // ← убрали strip markdown
+    public async Task<SceneDna> EnrichAsync(string photoPath, SceneDna current, IReadOnlyList<string> missingFields)
+    {
+        _logger.LogInformation("Enriching SceneDna {Id}, missing: {Fields}", current.Id, string.Join(", ", missingFields));
+
+        var b64 = Convert.ToBase64String(await File.ReadAllBytesAsync(photoPath));
+        var ext = Path.GetExtension(photoPath).TrimStart('.').ToLower();
+        var mimeType = ext is "png" ? "image/png" : "image/jpeg";
+
+        var currentJson = JsonSerializer.Serialize(current, JsonOpts);
+        var fieldsList  = string.Join(", ", missingFields);
+        var enrichPrompt = $"""
+            The following fields are missing or have default values: {fieldsList}.
+            Current SceneDna: {currentJson}
+            Analyze the photo again and return ONLY the corrected JSON with all fields filled in.
+            """;
+
+        var body = new
+        {
+            model = Model,
+            messages = new object[]
+            {
+                new
+                {
+                    role = "user",
+                    content = new object[]
+                    {
+                        new { type = "text", text = enrichPrompt },
+                        new { type = "image_url", image_url = new { url = $"data:{mimeType};base64,{b64}" } }
+                    }
+                }
+            },
+            max_tokens = 1024,
+            temperature = 0.2,
+            top_k = 1,
+            response_format = new { type = "json_object" },
+            chat_template_kwargs = new { enable_thinking = false }
+        };
+
+        var json = await _nvidia.PostAsync(Url, body);
+        var text = JsonDocument.Parse(json)
+            .RootElement
+            .GetProperty("choices")[0]
+            .GetProperty("message")
+            .GetProperty("content")
+            .GetString() ?? "{}";
+
+        var enriched = ParseSceneDna(text);
+        return enriched with { Id = current.Id, CreatedAt = current.CreatedAt };
+    }
+
+    private static SceneDna ParseSceneDna(string text)
     {
         try
         {

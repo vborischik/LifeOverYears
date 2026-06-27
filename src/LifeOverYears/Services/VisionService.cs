@@ -23,8 +23,18 @@ public sealed class VisionService : IVisionService
 
         var prompt = await _data.LoadPromptAsync("vision");
         var sceneDna = await _vision.AnalyzeImageAsync(photoPath, prompt);
-        await _data.SaveSceneDnaAsync(sceneDna);
 
+        var missing = SceneDnaValidator.Validate(sceneDna);
+        if (missing.Count > 0)
+        {
+            _logger.LogWarning("SceneDna incomplete, missing: {Fields}", string.Join(", ", missing));
+            sceneDna = await _vision.EnrichAsync(photoPath, sceneDna, missing);
+            missing = SceneDnaValidator.Validate(sceneDna);
+            _logger.LogInformation("After enrichment, still missing: {Fields}",
+                missing.Count > 0 ? string.Join(", ", missing) : "none");
+        }
+
+        await _data.SaveSceneDnaAsync(sceneDna);
         _logger.LogInformation("SceneDna saved: {Id}", sceneDna.Id);
         return sceneDna;
     }
