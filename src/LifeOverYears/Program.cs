@@ -8,20 +8,27 @@ if (args.Length == 0)
     return 1;
 }
 
-var photoPath = args[0];
-var apiKey = Environment.GetEnvironmentVariable("NVIDIA_API_KEY")
+var photoPath   = args[0];
+var nvidiaKey   = Environment.GetEnvironmentVariable("NVIDIA_API_KEY")
     ?? throw new InvalidOperationException("NVIDIA_API_KEY environment variable is not set");
+var xaiKey      = Environment.GetEnvironmentVariable("XAI_API_KEY")
+    ?? throw new InvalidOperationException("XAI_API_KEY environment variable is not set");
 
 using var loggerFactory = LoggerFactory.Create(b => b.AddConsole().SetMinimumLevel(LogLevel.Debug));
 
-var http           = new HttpClient();
-var nvidia         = new NvidiaProvider(http, apiKey, loggerFactory.CreateLogger<NvidiaProvider>());
-var visionProvider = new VisionProvider(nvidia, loggerFactory.CreateLogger<VisionProvider>());
 var fs             = new FileSystemProvider(loggerFactory.CreateLogger<FileSystemProvider>());
 var json           = new JsonProvider();
 var data           = new DataService(fs, json, loggerFactory.CreateLogger<DataService>());
+
+var nvidia         = new NvidiaProvider(new HttpClient(), nvidiaKey, loggerFactory.CreateLogger<NvidiaProvider>());
+var xai            = new XaiProvider(new HttpClient(), xaiKey, loggerFactory.CreateLogger<XaiProvider>());
+
+var visionProvider = new VisionProvider(nvidia, loggerFactory.CreateLogger<VisionProvider>());
 var vision         = new VisionService(visionProvider, data, loggerFactory.CreateLogger<VisionService>());
-var pipeline       = new Pipeline(vision, loggerFactory.CreateLogger<Pipeline>());
+
+var prompt         = new PromptService(xai, data, loggerFactory.CreateLogger<PromptService>());
+
+var pipeline       = new Pipeline(vision, prompt, data, loggerFactory.CreateLogger<Pipeline>());
 
 await pipeline.RunAsync(photoPath);
 return 0;
