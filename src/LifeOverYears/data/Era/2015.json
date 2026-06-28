@@ -1,0 +1,208 @@
+{
+  "year": 2015,
+  "label": "Mid-2010s America",
+  "description": "Smartphone era fully arrived. Crossovers replacing sedans and SUVs. LED everything. Retail apocalypse beginning. Blockbuster gone.",
+
+  "transportation": {
+    "cars": {
+      "dominant_makes": ["Toyota", "Honda", "Ford", "Chevrolet", "Nissan", "Hyundai", "Kia", "Subaru"],
+      "specific_models": [
+        "2012-2017 Toyota Camry — sharper creased mid-size sedan",
+        "2013-2017 Honda Accord — clean modern lines",
+        "2013-2019 Ford Fusion — Aston-Martin-style grille, sleek",
+        "2011-2016 Honda CR-V — rounded compact crossover",
+        "2013-2018 Toyota RAV4 — angular compact crossover",
+        "2015-2020 Ford Edge — mid-size crossover, bold grille",
+        "2014-2019 Nissan Rogue — popular compact crossover",
+        "2010-2016 Chevrolet Equinox — mid-size crossover",
+        "2015-2023 Ford F-150 — aluminum body, blocky modern",
+        "2014-2018 Chevrolet Silverado — squared modern grille",
+        "2012-2015 Honda Civic — compact, angular",
+        "2011-2016 Kia Optima — stylish mid-size, sporty",
+        "2013-2018 Hyundai Santa Fe — fluidic sculpture styling",
+        "2015-2020 Chevrolet Colorado — mid-size pickup revived",
+        "2014-2021 Subaru Outback — rugged wagon crossover"
+      ],
+      "body_styles": ["crossover SUV", "mid-size sedan", "compact crossover", "pickup truck", "minivan"],
+      "visual_characteristics": [
+        "sleek aerodynamic shapes",
+        "LED daytime running lights standard",
+        "large angular grilles",
+        "sharp character lines on body panels",
+        "larger wheels 17 to 19 inch",
+        "projector and LED headlights",
+        "blacked-out trim and chrome accents mixed",
+        "backup cameras standard"
+      ],
+      "colors": ["white", "silver", "black", "gray", "dark red", "blue", "pearl white"],
+      "absent": ["chrome bumpers", "boxy 1990s shapes", "vinyl roofs", "pop-up headlights", "full-width LED light bars"]
+    },
+    "trucks": {
+      "dominant_makes": ["Ford F-150", "Chevrolet Silverado", "Ram 1500", "Toyota Tacoma", "GMC Sierra"],
+      "specific_models": [
+        "2015-2020 Ford F-150 — aluminum body, C-clamp headlights",
+        "2009-2018 Ram 1500 — crosshair grille, refined",
+        "2016-2023 Toyota Tacoma — aggressive modern mid-size"
+      ],
+      "visual_characteristics": [
+        "crew cab dominant",
+        "aluminum body Ford F-150",
+        "large grilles with LED accents",
+        "20 to 22 inch wheels common",
+        "lifted suspension on some trims"
+      ]
+    },
+    "suv": {
+      "models": [
+        "2011-2016 Honda CR-V — best-selling compact crossover",
+        "2013-2018 Toyota RAV4 — angular crossover",
+        "2014-2019 Nissan Rogue — rounded crossover"
+      ],
+      "visual_characteristics": [
+        "unibody crossover construction dominant",
+        "car-like proportions",
+        "LED lighting signatures",
+        "roof rails standard"
+      ]
+    },
+    "fuel": {
+      "average_price_per_gallon": "$2.45",
+      "context": "Prices dropped sharply from 2014 due to oil oversupply, crossovers replacing large SUVs"
+    }
+  },
+
+  "architecture": {
+    "commercial": {
+      "styles": ["mixed-use", "lifestyle center", "modern minimalist", "renovated big box"],
+      "materials": ["metal panels", "glass curtain wall", "stone veneer", "EIFS stucco", "fiber cement"],
+      "characteristics": [
+        "modern flat clean facades",
+        "large glass storefronts",
+        "LED accent lighting on buildings",
+        "renovated or vacant big box stores",
+        "monument signs with LED displays",
+        "minimalist signage trend beginning"
+      ]
+    },
+    "gas_stations": {
+      "characteristics": [
+        "large modern canopies with LED lighting",
+        "convenience store with modern branding",
+        "pay-at-pump with color screens and ads",
+        "LED price signs digital",
+        "EV charging stations rare but appearing",
+        "card skimmer warnings on pumps"
+      ]
+    }
+  },
+
+  "business": {
+    "active_brands": [
+      "Shell", "BP", "Exxon", "Mobil", "Chevron", "Speedway", "Wawa", "QuikTrip",
+      "Walmart", "Target", "Costco", "Sears closing stores", "Kmart closing stores",
+      "McDonald's", "Burger King", "Wendy's", "Taco Bell", "Subway", "Starbucks", "Chipotle", "Five Guys", "Panera",
+      "Kroger", "Publix", "Whole Foods", "Trader Joe's", "Aldi",
+      "Best Buy", "GameStop", "RadioShack closing",
+      "Home Depot", "Lowe's",
+      "Walgreens", "CVS", "7-Eleven",
+      "AT&T", "Verizon", "T-Mobile"
+    ],
+    "absent_brands": [
+      "Blockbuster Video", "Circuit City", "Borders", "Hollywood Video",
+      "widespread Amazon physical stores"
+    ],
+    "signage": {
+      "characteristics": [
+        "LED illuminated channel letters",
+        "full color digital price signs at gas stations",
+        "digital menu boards at drive-throughs",
+        "minimalist flat brand logos",
+        "LED message boards",
+        "vacant storefront signs from closures"
+      ],
+      "typography_style": "minimalist flat sans-serif, simplified modern logos"
+    }
+  },
+
+  "infrastructure": {
+    "roads": {
+      "markings": ["yellow center line", "white edge lines", "high-visibility crosswalks", "bike lane markings appearing"],
+      "materials": ["asphalt", "concrete"],
+      "characteristics": [
+        "well maintained roads",
+        "LED traffic signals standard",
+        "variable message signs on highways common",
+        "bike lanes appearing in cities",
+        "roundabouts increasing"
+      ]
+    },
+    "traffic_signs": {
+      "style": "MUTCD 2009 edition",
+      "characteristics": [
+        "green highway signs with Highway Gothic font",
+        "high intensity prismatic sheeting",
+        "LED traffic signals standard",
+        "pedestrian countdown signals standard"
+      ]
+    },
+    "street_furniture": {
+      "items": [
+        "modern metal trash and recycling receptacles",
+        "concrete and composite utility poles",
+        "pay phones nearly gone",
+        "modern bus shelters with digital displays in cities",
+        "multi-space parking kiosks replacing meters"
+      ]
+    },
+    "utilities": {
+      "characteristics": [
+        "overhead power lines common, undergrounding in new developments",
+        "fiber optic lines on poles",
+        "transformer boxes on poles and ground level",
+        "cellular antennas on rooftops and towers",
+        "small cell nodes appearing"
+      ]
+    }
+  },
+
+  "society": {
+    "fashion": {
+      "men": ["skinny jeans", "slim-fit plaid shirts", "beards", "henley shirts", "boat shoes"],
+      "women": ["yoga pants and leggings", "infinity scarves", "ankle boots", "high-waisted skinny jeans", "statement necklaces"],
+      "colors": ["coral", "mint green", "navy", "gray", "white", "blush pink"]
+    },
+    "advertising": {
+      "style": "digital photography, social media influenced, clean minimal layouts",
+      "media": ["digital billboards", "backlit displays", "vinyl banners", "QR codes appearing"]
+    }
+  },
+
+  "environment": {
+    "vegetation": {
+      "characteristics": [
+        "drought-tolerant landscaping appearing",
+        "parking lot trees in islands",
+        "ornamental grasses and native plantings",
+        "bioswales and rain gardens in new developments"
+      ]
+    },
+    "lighting": {
+      "street_lights": "LED conversions widespread — bright white light replacing orange sodium",
+      "commercial": "LED lighting standard inside and out",
+      "signs": "full color LED digital displays, LED channel letters"
+    }
+  },
+
+  "photography": {
+    "film_stock": "digital — DSLR or smartphone camera",
+    "color_characteristics": [
+      "high saturation",
+      "high dynamic range processing",
+      "sharp detail",
+      "cool to neutral white balance",
+      "HDR look common"
+    ],
+    "grain": "clean, minimal noise",
+    "style": "sharp digital, vivid colors, smartphone HDR aesthetic, social media ready"
+  }
+}

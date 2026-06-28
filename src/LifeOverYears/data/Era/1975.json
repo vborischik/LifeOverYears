@@ -1,0 +1,187 @@
+{
+  "year": 1975,
+  "label": "Mid-1970s America",
+  "description": "Post-Vietnam, oil crisis era. Suburban sprawl at peak. American cars dominated. Brands were bold and simple.",
+
+  "transportation": {
+    "cars": {
+      "dominant_makes": ["Chevrolet", "Ford", "Dodge", "Plymouth", "Buick", "Oldsmobile", "Pontiac"],
+      "specific_models": [
+        "1973-1977 Chevrolet Caprice Classic — full-size, chrome bumpers, vinyl roof",
+        "1973-1979 Ford LTD — full-size sedan, wide body, bench seat",
+        "1974-1978 Dodge Monaco — large chrome grille, two-tone paint",
+        "1971-1976 Buick LeSabre — pillarless hardtop, whitewall tires",
+        "1973-1977 Oldsmobile Delta 88 — full-size, opera windows",
+        "1971-1976 Chevrolet Impala — full-size, chrome rear bumper",
+        "1970-1977 Ford Maverick — compact, simple lines",
+        "1971-1976 Plymouth Fury — full-size, vinyl roof common",
+        "1973-1977 Pontiac Catalina — full-size, chrome trim heavy",
+        "1975-1979 Chevrolet Monza — small hatchback, rare but present"
+      ],
+      "body_styles": ["full-size sedan", "station wagon", "hardtop coupe", "pickup truck"],
+      "visual_characteristics": [
+        "long and wide body proportions",
+        "chrome bumpers front and rear",
+        "vinyl rooftops on most sedans",
+        "bench seats visible through windows",
+        "large rectangular tail lights",
+        "whitewall tires on nicer models",
+        "hood ornaments",
+        "two-tone paint schemes",
+        "opera windows on coupes"
+      ],
+      "colors": ["avocado green", "harvest gold", "burnt orange", "dark brown", "tan", "powder blue", "maroon"],
+      "absent": ["minivans", "SUVs", "Japanese imports common", "plastic bumpers", "hatchbacks dominant", "front-wheel drive"]
+    },
+    "trucks": {
+      "dominant_makes": ["Ford F-Series", "Chevrolet C/K", "Dodge D-Series"],
+      "specific_models": [
+        "1973-1979 Ford F-100 — square body, chrome grille",
+        "1973-1980 Chevrolet C10 — square body, chrome bumper",
+        "1972-1980 Dodge D100 — angular cab, simple grille"
+      ],
+      "visual_characteristics": [
+        "chrome grilles",
+        "step-side bed common",
+        "single cab only",
+        "no extended cabs",
+        "chrome bumpers front and rear"
+      ]
+    },
+    "fuel": {
+      "average_price_per_gallon": "$0.57",
+      "context": "Post-1973 oil embargo, prices had risen sharply from $0.36 in 1972"
+    }
+  },
+
+  "architecture": {
+    "commercial": {
+      "styles": ["flat roof strip mall", "mansard roof facade", "exposed brick", "concrete block"],
+      "materials": ["brick", "concrete block", "wood paneling", "aluminum cladding"],
+      "characteristics": [
+        "low single-story buildings",
+        "large plate glass storefronts",
+        "overhanging flat canopies",
+        "simple rectangular forms",
+        "mansard rooflines becoming popular",
+        "parking lots directly in front of stores"
+      ]
+    },
+    "gas_stations": {
+      "characteristics": [
+        "open service bays",
+        "full service attendants still common",
+        "mechanical price signs with changeable numbers",
+        "gravity-style pump nozzles",
+        "island canopies with brand colors",
+        "oil cans displayed outside"
+      ]
+    }
+  },
+
+  "business": {
+    "active_brands": [
+      "Shell", "Texaco", "Gulf", "Mobil", "Exxon", "Standard Oil",
+      "Kmart", "Sears", "JCPenney", "Woolworth",
+      "McDonald's", "Burger King", "Kentucky Fried Chicken", "Dairy Queen",
+      "A&P", "Safeway", "Kroger",
+      "RadioShack", "Western Auto"
+    ],
+    "absent_brands": [
+      "Walmart Supercenter", "Target", "Starbucks", "Home Depot",
+      "Blockbuster", "Best Buy", "Costco", "Amazon",
+      "Wendy's widespread", "Taco Bell widespread"
+    ],
+    "signage": {
+      "characteristics": [
+        "backlit plastic channel letters",
+        "neon signs common",
+        "hand-painted lettering on windows",
+        "large pylon signs on poles",
+        "simple bold typography",
+        "limited color palettes per sign",
+        "mechanical price boards at gas stations"
+      ],
+      "typography_style": "bold sans-serif, slab serif, occasional script"
+    }
+  },
+
+  "infrastructure": {
+    "roads": {
+      "markings": ["yellow center line", "white edge lines", "no rumble strips", "painted crosswalks"],
+      "materials": ["asphalt", "concrete in older areas"],
+      "characteristics": [
+        "wider lanes than modern standard",
+        "fewer traffic control devices",
+        "no electronic signage",
+        "painted curbs common"
+      ]
+    },
+    "traffic_signs": {
+      "style": "MUTCD 1971 edition",
+      "characteristics": [
+        "green highway signs with white lettering",
+        "older style stop signs smaller than modern",
+        "yellow warning signs common",
+        "no LED signals"
+      ]
+    },
+    "street_furniture": {
+      "items": [
+        "metal trash cans with dome lids",
+        "wooden utility poles with glass insulators",
+        "pay phones in metal booths",
+        "metal bus stop benches",
+        "parking meters individual post style"
+      ]
+    },
+    "utilities": {
+      "characteristics": [
+        "overhead power lines everywhere",
+        "wooden utility poles standard",
+        "no fiber optic infrastructure",
+        "large transformer boxes on poles"
+      ]
+    }
+  },
+
+  "society": {
+    "fashion": {
+      "men": ["wide lapels", "bell bottoms", "polyester suits", "plaid patterns", "turtlenecks"],
+      "women": ["midi skirts", "wide leg pants", "earth tones", "peasant blouses"],
+      "colors": ["avocado", "harvest gold", "burnt orange", "brown", "tan", "rust"]
+    },
+    "advertising": {
+      "style": "bold graphic, hand-illustrated elements, limited photography in signage",
+      "media": ["billboard", "painted wall murals", "window posters", "hanging banners"]
+    }
+  },
+
+  "environment": {
+    "vegetation": {
+      "characteristics": [
+        "mature elm trees still present before Dutch elm disease peak",
+        "ornamental shrubs along storefronts",
+        "unmaintained grass strips common",
+        "no drought-resistant landscaping"
+      ]
+    },
+    "lighting": {
+      "street_lights": "mercury vapor or early sodium vapor — bluish-white or orange glow",
+      "commercial": "fluorescent interior lighting visible through storefronts",
+      "signs": "neon and backlit plastic"
+    }
+  },
+
+  "photography": {
+    "film_stock": "Kodachrome 64 or Ektachrome",
+    "color_characteristics": [
+      "slightly warm tones",
+      "moderate saturation",
+      "soft shadows",
+      "slightly faded yellows and blues"
+    ],
+    "grain": "visible fine grain",
+    "style": "documentary, slightly desaturated, natural light"
+  }
+}

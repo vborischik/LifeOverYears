@@ -1,0 +1,203 @@
+{
+  "year": 2005,
+  "label": "Mid-2000s America",
+  "description": "Post-9/11 era. SUVs and trucks at peak size. Flip phones everywhere, smartphones not yet. Big box retail dominant. Strip malls aging.",
+
+  "transportation": {
+    "cars": {
+      "dominant_makes": ["Ford", "Chevrolet", "Toyota", "Honda", "Nissan", "Dodge", "Chrysler", "Pontiac"],
+      "specific_models": [
+        "2000-2007 Ford Taurus — rounded, aging fleet-look sedan",
+        "2002-2006 Toyota Camry — smooth conservative mid-size",
+        "2003-2007 Honda Accord — clean lines, sharper than 1990s",
+        "2005-2010 Chevrolet Cobalt — compact economy sedan",
+        "2004-2008 Chrysler 300 — bold boxy retro chrome grille",
+        "2005-2010 Ford Mustang — retro muscle revival",
+        "2003-2007 Nissan Altima — sporty mid-size",
+        "2001-2007 Toyota Highlander — early crossover",
+        "2002-2009 Chevrolet TrailBlazer — mid-size SUV boxy",
+        "2004-2012 Chevrolet Colorado — mid-size pickup",
+        "2003-2008 Honda Pilot — boxy three-row SUV",
+        "2000-2006 Chevrolet Tahoe — full-size SUV peak era",
+        "2004-2008 Pontiac Grand Prix — sporty sedan plastic cladding",
+        "2001-2005 Honda Civic — rounded compact, very common",
+        "2005-2010 Jeep Grand Cherokee — rounded modern SUV"
+      ],
+      "body_styles": ["mid-size sedan", "full-size SUV", "minivan", "crossover beginning", "pickup truck"],
+      "visual_characteristics": [
+        "smooth rounded body shapes",
+        "larger headlight clusters",
+        "body color bumpers integrated",
+        "chrome accents returning on grilles",
+        "larger wheels 16 to 18 inch",
+        "projector headlights on premium models",
+        "side body cladding fading"
+      ],
+      "colors": ["silver", "black", "white", "dark blue", "gray", "dark red", "gold"],
+      "absent": ["large touchscreens", "LED daytime running lights", "backup cameras standard", "electric vehicles common", "full LED tail lights"]
+    },
+    "trucks": {
+      "dominant_makes": ["Ford F-150", "Chevrolet Silverado", "Dodge Ram", "Toyota Tundra", "GMC Sierra"],
+      "specific_models": [
+        "2004-2008 Ford F-150 — bigger, bolder grille",
+        "1999-2006 Chevrolet Silverado — squared modern look",
+        "2002-2008 Dodge Ram — big rig grille evolved"
+      ],
+      "visual_characteristics": [
+        "crew cab now common",
+        "larger and taller proportions",
+        "chrome grilles and bumpers",
+        "20 inch wheels on premium trims"
+      ]
+    },
+    "suv": {
+      "models": [
+        "2000-2006 Ford Expedition — full-size, boxy",
+        "2003-2009 Toyota 4Runner — rugged mid-size",
+        "2000-2006 Chevrolet Tahoe — full-size peak era"
+      ],
+      "visual_characteristics": [
+        "peak size full-size SUVs",
+        "body on frame still common",
+        "chrome trim packages",
+        "roof racks standard"
+      ]
+    },
+    "fuel": {
+      "average_price_per_gallon": "$2.30",
+      "context": "Rising prices, Hurricane Katrina spike in late 2005, SUV size at peak"
+    }
+  },
+
+  "architecture": {
+    "commercial": {
+      "styles": ["lifestyle center", "big box retail", "power center", "mixed-use"],
+      "materials": ["EIFS stucco", "brick veneer", "metal panels", "concrete tilt-up", "stone veneer accents"],
+      "characteristics": [
+        "large big box anchor stores",
+        "faux-traditional facade details",
+        "covered walkways at lifestyle centers",
+        "aging 1980s strip malls",
+        "large LED-lit pylon signs",
+        "decorative cornices and parapets"
+      ]
+    },
+    "gas_stations": {
+      "characteristics": [
+        "large multi-island canopies",
+        "convenience store always attached",
+        "credit card readers at pump standard",
+        "LED price signs common",
+        "pay-at-pump screens with small displays",
+        "branded canopy lighting"
+      ]
+    }
+  },
+
+  "business": {
+    "active_brands": [
+      "Shell", "BP", "Exxon", "Mobil", "Chevron", "Citgo", "Sunoco",
+      "Walmart", "Target", "Kmart", "Sears", "Costco",
+      "McDonald's", "Burger King", "Wendy's", "Taco Bell", "Subway", "Starbucks", "Chipotle",
+      "Kroger", "Safeway", "Publix", "Whole Foods",
+      "Blockbuster Video", "Best Buy", "Circuit City", "RadioShack",
+      "Home Depot", "Lowe's", "Bed Bath & Beyond",
+      "7-Eleven", "Walgreens", "CVS"
+    ],
+    "absent_brands": [
+      "Amazon retail stores", "Five Guys widespread", "smartphone carrier stores",
+      "vaping shops", "Tesla showrooms"
+    ],
+    "signage": {
+      "characteristics": [
+        "internally lit channel letters standard",
+        "LED price signs at gas stations",
+        "large illuminated box signs",
+        "electronic message boards common",
+        "drive-through digital menu boards beginning",
+        "monument signs at lifestyle centers"
+      ],
+      "typography_style": "clean corporate sans-serif, polished brand identities"
+    }
+  },
+
+  "infrastructure": {
+    "roads": {
+      "markings": ["yellow center line", "white edge lines", "turn arrows", "reflective crosswalks"],
+      "materials": ["asphalt", "concrete"],
+      "characteristics": [
+        "well maintained roads",
+        "more advanced traffic signals",
+        "early variable message signs on highways",
+        "raised pavement markers standard"
+      ]
+    },
+    "traffic_signs": {
+      "style": "MUTCD 2003 edition",
+      "characteristics": [
+        "green highway signs with Clearview or Highway Gothic font",
+        "high intensity prismatic sheeting",
+        "LED traffic signals beginning to replace incandescent",
+        "pedestrian countdown signals appearing"
+      ]
+    },
+    "street_furniture": {
+      "items": [
+        "plastic and metal trash receptacles",
+        "wooden and concrete utility poles",
+        "pay phones declining, fewer present",
+        "bus shelters with backlit advertising",
+        "parking meters individual and early multi-space"
+      ]
+    },
+    "utilities": {
+      "characteristics": [
+        "overhead power lines standard",
+        "cable and fiber lines on poles appearing",
+        "transformer boxes on poles",
+        "small satellite dishes on homes common",
+        "early cellular towers visible"
+      ]
+    }
+  },
+
+  "society": {
+    "fashion": {
+      "men": ["baggy jeans", "graphic tees", "trucker hats", "frosted tips hair", "cargo shorts"],
+      "women": ["low-rise jeans", "trucker hats", "velour tracksuits", "layered tank tops", "chunky highlights"],
+      "colors": ["denim", "pink", "white", "black", "metallic accents", "pastels"]
+    },
+    "advertising": {
+      "style": "glossy digital photography, polished corporate brand imagery",
+      "media": ["billboard", "backlit bus shelters", "early digital billboards rare", "vinyl banners"]
+    }
+  },
+
+  "environment": {
+    "vegetation": {
+      "characteristics": [
+        "professionally landscaped commercial sites",
+        "parking lot trees in concrete islands",
+        "ornamental grasses and mulch beds",
+        "irrigated maintained lawns"
+      ]
+    },
+    "lighting": {
+      "street_lights": "high pressure sodium — orange glow, early LED conversions rare",
+      "commercial": "fluorescent standard, LED accent lighting beginning",
+      "signs": "LED price signs, backlit plastic channel letters"
+    }
+  },
+
+  "photography": {
+    "film_stock": "early digital camera or Kodak/Fuji consumer film",
+    "color_characteristics": [
+      "neutral tones",
+      "good saturation",
+      "slightly soft early digital look",
+      "accurate color rendering"
+    ],
+    "grain": "low grain, early digital noise in shadows",
+    "style": "transitional film-to-digital, daylight snapshot, slightly soft focus"
+  }
+}

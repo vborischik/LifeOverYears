@@ -1,0 +1,185 @@
+{
+  "year": 1985,
+  "label": "Mid-1980s America",
+  "description": "Reagan era prosperity. Japanese imports arrived. MTV culture. Neon and bold graphics everywhere. Self-service gas standard.",
+
+  "transportation": {
+    "cars": {
+      "dominant_makes": ["Chevrolet", "Ford", "Dodge", "Toyota", "Honda", "Nissan", "Buick", "Oldsmobile"],
+      "specific_models": [
+        "1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan",
+        "1986-1991 Ford Taurus — aerodynamic, rounded, revolutionary look",
+        "1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline",
+        "1983-1987 Honda Accord — clean lines, pop-up headlights",
+        "1984-1987 Toyota Corolla — boxy compact, reliable look",
+        "1982-1992 Chevrolet Camaro — wedge-shaped sporty coupe",
+        "1986-1989 Nissan Sentra — small economy boxy sedan",
+        "1980-1985 Cadillac Seville — sharp formal lines, bustleback",
+        "1984-1990 Dodge Caravan — first minivan, boxy",
+        "1983-1988 Ford Thunderbird — aero coupe, rounded"
+      ],
+      "body_styles": ["front-wheel drive compact sedan", "hatchback", "station wagon", "pickup truck", "early minivan"],
+      "visual_characteristics": [
+        "boxy rectangular body proportions",
+        "plastic bumpers replacing chrome",
+        "flush headlights and pop-up headlights",
+        "smaller overall footprint than 1970s",
+        "vinyl interiors still standard",
+        "smaller trunk proportions",
+        "aerodynamic styling beginning with Taurus"
+      ],
+      "colors": ["silver", "light blue", "burgundy", "white", "beige", "red", "charcoal gray"],
+      "absent": ["SUVs common", "crossovers", "modern rounded aerodynamic shapes", "large chrome bumpers", "LED lights"]
+    },
+    "trucks": {
+      "dominant_makes": ["Ford F-Series", "Chevrolet S-10", "Toyota Pickup", "Dodge Ram"],
+      "specific_models": [
+        "1980-1986 Ford F-150 — square body, dual headlights",
+        "1982-1993 Chevrolet S-10 — compact pickup, square",
+        "1984-1988 Toyota Pickup — small, boxy, popular import"
+      ],
+      "visual_characteristics": [
+        "compact pickups growing in popularity",
+        "plastic front fascias appearing",
+        "step-side and fleetside beds",
+        "single cab standard"
+      ]
+    },
+    "fuel": {
+      "average_price_per_gallon": "$1.12",
+      "context": "Prices dropped from early 1980s peak, self-service now dominant"
+    }
+  },
+
+  "architecture": {
+    "commercial": {
+      "styles": ["strip mall", "mansard roof", "mirrored glass facade", "concrete tilt-up"],
+      "materials": ["brick", "concrete block", "mirrored glass panels", "metal cladding", "stucco"],
+      "characteristics": [
+        "low single-story strip malls dominant",
+        "mirrored glass panels on newer buildings",
+        "large illuminated signage",
+        "wider parking lots",
+        "drive-through lanes appearing",
+        "awnings with bold stripe patterns"
+      ]
+    },
+    "gas_stations": {
+      "characteristics": [
+        "self-service standard, full service rare",
+        "electronic digital price signs replacing mechanical",
+        "canopy designs more angular",
+        "convenience store attached becoming common",
+        "credit card readers not yet at pump",
+        "squeegee buckets at islands"
+      ]
+    }
+  },
+
+  "business": {
+    "active_brands": [
+      "Shell", "Texaco", "Mobil", "Exxon", "Chevron",
+      "Kmart", "Sears", "JCPenney", "Woolworth", "Service Merchandise",
+      "McDonald's", "Burger King", "Wendy's", "Pizza Hut", "Taco Bell",
+      "Kroger", "Safeway", "Winn-Dixie",
+      "RadioShack", "Blockbuster Video", "Circuit City",
+      "7-Eleven", "Hardee's"
+    ],
+    "absent_brands": [
+      "Starbucks", "Home Depot large format", "Costco", "Amazon",
+      "Best Buy", "Target Supercenter", "Walmart Supercenter"
+    ],
+    "signage": {
+      "characteristics": [
+        "neon signs widespread",
+        "bold primary colors with high contrast",
+        "electronic marquee signs appearing",
+        "backlit plastic channel letters standard",
+        "stripe patterns on awnings",
+        "large logo signs on pylons",
+        "digital price displays at gas stations"
+      ],
+      "typography_style": "bold geometric sans-serif, early computer-influenced fonts"
+    }
+  },
+
+  "infrastructure": {
+    "roads": {
+      "markings": ["yellow center line", "white edge lines", "painted crosswalks", "turn lane arrows"],
+      "materials": ["asphalt", "concrete"],
+      "characteristics": [
+        "improved lane markings vs 1970s",
+        "more traffic signals",
+        "no electronic variable message signs",
+        "raised pavement markers appearing"
+      ]
+    },
+    "traffic_signs": {
+      "style": "MUTCD 1978 edition",
+      "characteristics": [
+        "green highway signs with white lettering",
+        "high intensity reflective sheeting",
+        "no LED signals",
+        "larger stop signs than 1975"
+      ]
+    },
+    "street_furniture": {
+      "items": [
+        "metal trash cans",
+        "wooden utility poles",
+        "pay phones — standalone booths and wall mounted",
+        "metal bus stop shelters with advertising panels",
+        "parking meters individual post style"
+      ]
+    },
+    "utilities": {
+      "characteristics": [
+        "overhead power lines standard",
+        "wooden utility poles",
+        "cable TV lines added to poles",
+        "no fiber optic",
+        "large transformer boxes on poles"
+      ]
+    }
+  },
+
+  "society": {
+    "fashion": {
+      "men": ["polo shirts with collars up", "acid wash jeans", "windbreakers", "shoulder pads in blazers"],
+      "women": ["big permed hair", "shoulder pads", "leg warmers", "bright neon colors", "high-waisted jeans"],
+      "colors": ["neon pink", "electric blue", "purple", "teal", "white", "black"]
+    },
+    "advertising": {
+      "style": "high contrast, bold colors, geometric shapes, early computer graphics influence",
+      "media": ["billboard", "backlit bus shelter panels", "window posters", "neon signs"]
+    }
+  },
+
+  "environment": {
+    "vegetation": {
+      "characteristics": [
+        "manicured shrubs along storefronts",
+        "parking lot islands with young trees",
+        "grass strips maintained",
+        "ornamental grasses beginning to appear"
+      ]
+    },
+    "lighting": {
+      "street_lights": "high pressure sodium vapor — distinctive orange glow",
+      "commercial": "fluorescent lighting standard inside stores",
+      "signs": "neon and backlit plastic dominant, early LED not yet present"
+    }
+  },
+
+  "photography": {
+    "film_stock": "Kodacolor VR 200 or Fujicolor 100",
+    "color_characteristics": [
+      "slightly cool tones compared to 1970s",
+      "higher saturation",
+      "sharper contrast",
+      "vivid primary colors"
+    ],
+    "grain": "moderate grain, cleaner than 1975",
+    "style": "slightly oversaturated, bright daylight, commercial feel"
+  }
+}
