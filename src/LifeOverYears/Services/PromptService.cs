@@ -7,13 +7,13 @@ namespace LifeOverYears.Services;
 
 public sealed class PromptService : IPromptService
 {
-    private readonly IXaiProvider _xai;
+    private readonly IPromptProvider _promptProvider;
     private readonly IDataService _data;
     private readonly ILogger<PromptService> _logger;
 
-    public PromptService(IXaiProvider xai, IDataService data, ILogger<PromptService> logger)
+    public PromptService(IPromptProvider promptProvider, IDataService data, ILogger<PromptService> logger)
     {
-        _xai = xai;
+        _promptProvider = promptProvider;
         _data = data;
         _logger = logger;
     }
@@ -24,7 +24,7 @@ public sealed class PromptService : IPromptService
 
         var template = await _data.LoadPromptAsync("prompt-builder");
         var context  = BuildContext(sceneDna, eraProfile);
-        var text     = await _xai.CompleteAsync(template + "\n\n" + context);
+        var text     = await _promptProvider.GeneratePromptAsync(template + "\n\n" + context);
 
         return new Prompt(
             Id:         Guid.NewGuid().ToString(),

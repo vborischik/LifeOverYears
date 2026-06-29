@@ -22,9 +22,9 @@ public sealed class Pipeline
         _logger = logger;
     }
 
-    public async Task RunAsync(string photoPath)
+    public async Task RunAsync(string photoPath, int year)
     {
-        _logger.LogInformation("Pipeline started for: {PhotoPath}", photoPath);
+        _logger.LogInformation("Pipeline started for: {PhotoPath}, year: {Year}", photoPath, year);
 
         // Step 1 — SceneDna
         var sceneDna = await _vision.AnalyzeAsync(photoPath);
@@ -34,11 +34,12 @@ public sealed class Pipeline
             sceneDna.Geometry.Buildings.Count);
 
         // Step 2 — Prompt
-        var eraProfile = await _data.LoadEraProfileAsync(1985);
+        var eraProfile = await _data.LoadEraProfileAsync(year);
         var prompt = await _prompt.BuildAsync(sceneDna, eraProfile);
-        _logger.LogInformation("Step 2 complete — Prompt: id={Id} year={Year} length={Length}",
+        _logger.LogInformation("Step 2 complete — Prompt: id={Id} year={Year} length={Length}\n{Text}",
             prompt.Id,
             prompt.Year,
-            prompt.Text.Length);
+            prompt.Text.Length,
+            prompt.Text);
     }
 }
