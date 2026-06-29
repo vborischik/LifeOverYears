@@ -1,21 +1,24 @@
 using Autofac;
 using LifeOverYears;
 using LifeOverYears.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 static async Task<int> RunAsync(string[] args)
 {
-    var nvidiaKey = Environment.GetEnvironmentVariable("NVIDIA_API_KEY")
-        ?? throw new InvalidOperationException("NVIDIA_API_KEY environment variable is not set");
-
-    var photoPath = ResolvePhotoPath(args);
-    var year      = args.Length >= 2 ? int.Parse(args[1]) : 1985;
+    var configuration = new ConfigurationBuilder()
+        .SetBasePath(Directory.GetCurrentDirectory())
+        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
+        .Build();
 
     using var loggerFactory = LoggerFactory.Create(b => b.AddConsole().SetMinimumLevel(LogLevel.Debug));
 
     var builder = new ContainerBuilder();
-    builder.RegisterModule(new AppModule(loggerFactory, nvidiaKey));
+    builder.RegisterModule(new AppModule(configuration, loggerFactory));
     await using var container = builder.Build();
+
+    var photoPath = ResolvePhotoPath(args);
+    var year      = args.Length >= 2 ? int.Parse(args[1]) : 1985;
 
     try
     {
@@ -36,7 +39,7 @@ static string ResolvePhotoPath(string[] args)
     if (args.Length >= 1)
         return args[0];
 
-    var testImageDir = Path.Combine(AppContext.BaseDirectory, "testImage");
+    var testImageDir = Path.Combine(Directory.GetCurrentDirectory(), "testImage");
     if (Directory.Exists(testImageDir))
     {
         var first = Directory.EnumerateFiles(testImageDir, "*.jpg")

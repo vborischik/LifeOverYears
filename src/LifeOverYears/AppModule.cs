@@ -2,23 +2,27 @@ using Autofac;
 using LifeOverYears.Providers;
 using LifeOverYears.Services;
 using LifeOverYears.Services.Interfaces;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace LifeOverYears;
 
 public sealed class AppModule : Module
 {
+    private readonly IConfiguration _configuration;
     private readonly ILoggerFactory _loggerFactory;
-    private readonly string _nvidiaKey;
 
-    public AppModule(ILoggerFactory loggerFactory, string nvidiaKey)
+    public AppModule(IConfiguration configuration, ILoggerFactory loggerFactory)
     {
+        _configuration = configuration;
         _loggerFactory = loggerFactory;
-        _nvidiaKey     = nvidiaKey;
     }
 
     protected override void Load(ContainerBuilder builder)
     {
+        var nvidiaKey = _configuration["Nvidia:ApiKey"]
+            ?? throw new InvalidOperationException("Nvidia:ApiKey is not configured in appsettings.json");
+
         builder.RegisterInstance(new FileSystemProvider(_loggerFactory.CreateLogger<FileSystemProvider>()))
                .As<IFileSystemProvider>().SingleInstance();
 
@@ -31,7 +35,7 @@ public sealed class AppModule : Module
                     _loggerFactory.CreateLogger<DataService>()))
                .As<IDataService>().SingleInstance();
 
-        builder.RegisterInstance(new NvidiaProvider(new HttpClient(), _nvidiaKey, _loggerFactory.CreateLogger<NvidiaProvider>()))
+        builder.RegisterInstance(new NvidiaProvider(new HttpClient(), nvidiaKey, _loggerFactory.CreateLogger<NvidiaProvider>()))
                .As<INvidiaProvider>().SingleInstance();
 
         builder.Register(_ => new VisionProvider(_.Resolve<INvidiaProvider>(), _loggerFactory.CreateLogger<VisionProvider>()))
