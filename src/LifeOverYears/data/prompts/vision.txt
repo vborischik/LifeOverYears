@@ -9,21 +9,47 @@ Fill every field based on what you observe in the image. Use the exact schema be
     "fov": 90
   },
   "geometry": {
-    "roads": ["<road type or name if visible>"],
+    "roads": [
+      {
+        "type": "<residential|arterial|highway|alley>",
+        "lanes": 1,
+        "markings": ["<center line|edge line|turn arrow|crosswalk|none>"],
+        "surface": "<asphalt|concrete|brick|gravel>"
+      }
+    ],
     "sidewalks": false,
+    "curbs": false,
+    "driveways": ["<left|right|center>"],
+    "parking": "<on-street|lot|none>",
     "buildings": [
-      { "type": "<residential|commercial|industrial|mixed>", "position": "<left|right|center|background>" }
+      {
+        "type": "<residential|commercial|industrial|mixed>",
+        "position": "<left|right|center|background>",
+        "stories": 1,
+        "materials": ["<brick|concrete|stucco|wood|glass|metal>"],
+        "roof": "<flat|pitched|mansard|shed>",
+        "setback": "<at-street|shallow|deep>"
+      }
     ]
   },
   "environment": {
     "terrain": "<urban|suburban|rural|industrial>",
-    "utilities": ["<power lines|fire hydrant|street lamp|mailbox|bench|...>"]
+    "trees": [
+      {
+        "position": "<left|right|center|background>",
+        "size": "<small|medium|large>",
+        "type": "<deciduous|conifer|palm|unknown>"
+      }
+    ],
+    "utilities": ["<power lines|utility poles|fire hydrant|street lamp|mailbox|bench|bus stop|pay phone|trash can>"],
+    "landscape": ["<grass strip|planter|hedge|flower bed|mulch|bare soil|none>"]
   },
-  "immutable_elements": ["<permanent landmarks: bridge, church, river, mountain, etc.>"]
+  "immutable_elements": ["<permanent landmarks: bridge, church, river, mountain, water tower, etc.>"]
 }
 
 Rules:
 - Return ONLY the JSON object, starting with { and ending with }
 - Do not wrap in code fences or add any prose
 - Arrays may be empty [] if nothing is visible
-- sidewalks is boolean: true if visible, false if not
+- sidewalks and curbs are boolean: true if visible, false if not
+- Be specific — prefer detailed observations over generic labels

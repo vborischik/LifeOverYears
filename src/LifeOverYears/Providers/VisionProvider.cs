@@ -12,8 +12,8 @@ public sealed class VisionProvider : IVisionProvider
     private readonly INvidiaProvider _nvidia;
     private readonly ILogger<VisionProvider> _logger;
 
-    private const string Url   = "https://ai.api.nvidia.com/v1/chat/completions";
-    private const string Model = "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning";  // ← новая модель
+    private const string Url   = "https://integrate.api.nvidia.com/v1/chat/completions";
+    private const string Model = "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning";
 
     private static readonly JsonSerializerOptions JsonOpts = new() { PropertyNameCaseInsensitive = true };
 
@@ -31,7 +31,7 @@ public sealed class VisionProvider : IVisionProvider
         var ext = Path.GetExtension(photoPath).TrimStart('.').ToLower();
         var mimeType = ext is "png" ? "image/png" : "image/jpeg";
 
-        var body = new                                          // ← убрали system prompt
+        var body = new
         {
             model = Model,
             messages = new object[]
@@ -46,21 +46,16 @@ public sealed class VisionProvider : IVisionProvider
                     }
                 }
             },
-            max_tokens = 1024,
-            temperature = 0.2,                                  // ← instruct mode
-            top_k = 1,                                          // ← instruct mode
-            response_format = new { type = "json_object" },     // ← чистый JSON
-            chat_template_kwargs = new { enable_thinking = false } // ← без reasoning
+            temperature          = 0.6,
+            top_p                = 0.95,
+            max_tokens           = 65536,
+            chat_template_kwargs = new { enable_thinking = false },
+            reasoning_budget     = 0
         };
 
         var json = await _nvidia.PostAsync(Url, body);
 
-        var text = JsonDocument.Parse(json)
-            .RootElement
-            .GetProperty("choices")[0]
-            .GetProperty("message")
-            .GetProperty("content")
-            .GetString() ?? "{}";
+        var text = ExtractContent(json);
 
         return ParseSceneDna(text);
     }
@@ -96,23 +91,35 @@ public sealed class VisionProvider : IVisionProvider
                     }
                 }
             },
-            max_tokens = 1024,
-            temperature = 0.2,
-            top_k = 1,
-            response_format = new { type = "json_object" },
-            chat_template_kwargs = new { enable_thinking = false }
+            temperature          = 0.6,
+            top_p                = 0.95,
+            max_tokens           = 65536,
+            chat_template_kwargs = new { enable_thinking = false },
+            reasoning_budget     = 0
         };
 
         var json = await _nvidia.PostAsync(Url, body);
-        var text = JsonDocument.Parse(json)
-            .RootElement
-            .GetProperty("choices")[0]
-            .GetProperty("message")
-            .GetProperty("content")
-            .GetString() ?? "{}";
+        var text = ExtractContent(json);
 
         var enriched = ParseSceneDna(text);
         return enriched with { Id = current.Id, CreatedAt = current.CreatedAt };
+    }
+
+    private static string ExtractContent(string json)
+    {
+        var msg = JsonDocument.Parse(json)
+            .RootElement
+            .GetProperty("choices")[0]
+            .GetProperty("message");
+
+        // content is null when model is in thinking mode — fall back to reasoning_content
+        if (msg.TryGetProperty("content", out var content) && content.ValueKind != JsonValueKind.Null)
+            return content.GetString() ?? "{}";
+
+        if (msg.TryGetProperty("reasoning_content", out var rc) && rc.ValueKind != JsonValueKind.Null)
+            return rc.GetString() ?? "{}";
+
+        return "{}";
     }
 
     private static SceneDna ParseSceneDna(string text)

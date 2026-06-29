@@ -1,0 +1,32 @@
+{
+  "Id": "81df35a5-63ca-45dd-84a2-8f64d47e5e69",
+  "CreatedAt": "2026-06-29T04:31:18.2718960\u002B00:00",
+  "Camera": {
+    "Height": "eye-level",
+    "Direction": "facade",
+    "Fov": 90
+  },
+  "Geometry": {
+    "Roads": [
+      "road"
+    ],
+    "Sidewalks": true,
+    "Buildings": [
+      {
+        "Type": "commercial",
+        "Position": "left"
+      },
+      {
+        "Type": "commercial",
+        "Position": "center"
+      }
+    ]
+  },
+  "Environment": {
+    "Terrain": "suburban",
+    "Utilities": [
+      "street lamp"
+    ]
+  },
+  "ImmutableElements": []
+}

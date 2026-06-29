@@ -4,10 +4,13 @@ using LifeOverYears.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-static async Task<int> RunAsync(string[] args)
+var projectRoot = FindProjectRoot();
+Directory.SetCurrentDirectory(projectRoot);
+
+static async Task<int> RunAsync(string[] args, string projectRoot)
 {
     var configuration = new ConfigurationBuilder()
-        .SetBasePath(Directory.GetCurrentDirectory())
+        .SetBasePath(projectRoot)
         .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
         .Build();
 
@@ -17,10 +20,10 @@ static async Task<int> RunAsync(string[] args)
     builder.RegisterModule(new AppModule(configuration, loggerFactory));
     await using var container = builder.Build();
 
-    var photoPath = ResolvePhotoPath(args);
+    var photoPath = ResolvePhotoPath(args, projectRoot);
     var years     = args.Length >= 2
         ? args.Skip(1).Select(int.Parse).ToList()
-        : new List<int> { 1985 };
+        : new List<int> { 1975 };
 
     try
     {
@@ -36,12 +39,12 @@ static async Task<int> RunAsync(string[] args)
     }
 }
 
-static string ResolvePhotoPath(string[] args)
+static string ResolvePhotoPath(string[] args, string projectRoot)
 {
     if (args.Length >= 1)
         return args[0];
 
-    var testImageDir = Path.Combine(Directory.GetCurrentDirectory(), "testImage");
+    var testImageDir = Path.Combine(projectRoot, "testImage");
     if (Directory.Exists(testImageDir))
     {
         var first = Directory.EnumerateFiles(testImageDir, "*.jpg")
@@ -53,7 +56,19 @@ static string ResolvePhotoPath(string[] args)
             return first;
     }
 
-    throw new InvalidOperationException("No photo path provided and no images found in testImage/");
+    throw new InvalidOperationException($"No photo path provided and no images found in {testImageDir}");
 }
 
-return await RunAsync(args);
+static string FindProjectRoot()
+{
+    var dir = new DirectoryInfo(AppContext.BaseDirectory);
+    while (dir is not null)
+    {
+        if (dir.GetFiles("*.csproj").Length > 0)
+            return dir.FullName;
+        dir = dir.Parent;
+    }
+    throw new InvalidOperationException("Could not locate project root: no .csproj file found walking up from " + AppContext.BaseDirectory);
+}
+
+return await RunAsync(args, projectRoot);
