@@ -3,7 +3,6 @@ using System.Text.Json.Serialization;
 using LifeOverYears.Models;
 using LifeOverYears.Services.Interfaces;
 using Microsoft.Extensions.Logging;
-using SceneEnvironment = LifeOverYears.Models.Environment;
 
 namespace LifeOverYears.Providers;
 
@@ -164,7 +163,7 @@ public sealed class VisionProvider : IVisionProvider
                 .Select(t => new Tree(t.Position ?? "unknown", t.Size ?? "medium", t.Type ?? "unknown"))
                 .ToList();
 
-            var environment = new SceneEnvironment(
+            var environment = new Environment(
                 Terrain:   dto?.Environment?.Terrain   ?? "urban",
                 Trees:     trees,
                 Utilities: dto?.Environment?.Utilities ?? [],
@@ -187,7 +186,7 @@ public sealed class VisionProvider : IVisionProvider
                 SceneType:         "unknown",
                 Camera:            new Camera("eye-level", "street", 90),
                 Geometry:          new Geometry([], false, false, [], "none", []),
-                Environment:       new SceneEnvironment("urban", [], [], []),
+                Environment:       new Environment("urban", [], [], []),
                 ImmutableElements: []);
         }
     }
