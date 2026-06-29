@@ -11,6 +11,7 @@ public record Environment(string Terrain, IReadOnlyList<string> Utilities);
 public record SceneDna(
     string Id,
     string CreatedAt,
+    string SceneType,
     Camera Camera,
     Geometry Geometry,
     Environment Environment,

@@ -149,6 +149,7 @@ public sealed class VisionProvider : IVisionProvider
             return new SceneDna(
                 Id:                Guid.NewGuid().ToString(),
                 CreatedAt:         DateTimeOffset.UtcNow.ToString("o"),
+                SceneType:         dto?.SceneType ?? "unknown",
                 Camera:            camera,
                 Geometry:          geometry,
                 Environment:       environment,
@@ -159,6 +160,7 @@ public sealed class VisionProvider : IVisionProvider
             return new SceneDna(
                 Id:                Guid.NewGuid().ToString(),
                 CreatedAt:         DateTimeOffset.UtcNow.ToString("o"),
+                SceneType:         "unknown",
                 Camera:            new Camera("eye-level", "street", 90),
                 Geometry:          new Geometry([], false, []),
                 Environment:       new SceneEnvironment("urban", []),
@@ -168,6 +170,7 @@ public sealed class VisionProvider : IVisionProvider
 
     // DTOs без изменений
     private record SceneDnaDto(
+        [property: JsonPropertyName("scene_type")]         string?         SceneType,
         [property: JsonPropertyName("camera")]             CameraDto?      Camera,
         [property: JsonPropertyName("geometry")]           GeometryDto?    Geometry,
         [property: JsonPropertyName("environment")]        EnvironmentDto? Environment,
