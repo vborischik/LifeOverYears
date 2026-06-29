@@ -39,6 +39,7 @@ public sealed class PromptService : IPromptService
         var sb = new StringBuilder();
 
         sb.AppendLine("=== SCENE (SceneDna) ===");
+        sb.AppendLine($"Scene type: {s.SceneType}");
         sb.AppendLine($"Camera: height={s.Camera.Height}, direction={s.Camera.Direction}, fov={s.Camera.Fov}");
         sb.AppendLine($"Roads: {Join(s.Geometry.Roads)}");
         sb.AppendLine($"Sidewalks: {s.Geometry.Sidewalks}");
@@ -46,6 +47,15 @@ public sealed class PromptService : IPromptService
         sb.AppendLine($"Terrain: {s.Environment.Terrain}");
         sb.AppendLine($"Utilities: {Join(s.Environment.Utilities)}");
         sb.AppendLine($"Immutable elements: {Join(s.ImmutableElements)}");
+
+        var trees = s.Environment.Trees ?? [];
+        if (trees.Count > 0)
+        {
+            sb.AppendLine();
+            sb.AppendLine("--- TREES ---");
+            foreach (var t in trees)
+                sb.AppendLine($"{t.Type} tree, {t.Size}, position: {t.Position}");
+        }
 
         sb.AppendLine();
         sb.AppendLine($"=== ERA: {e.Year} — {e.Label} ===");
@@ -68,9 +78,12 @@ public sealed class PromptService : IPromptService
         sb.AppendLine($"Materials: {Join(e.Architecture.Commercial.Materials)}");
         sb.AppendLine($"Characteristics: {Join(e.Architecture.Commercial.Characteristics)}");
 
-        sb.AppendLine();
-        sb.AppendLine("--- GAS STATIONS ---");
-        sb.AppendLine(Join(e.Architecture.GasStations.Characteristics));
+        if (s.SceneType == "gas_station")
+        {
+            sb.AppendLine();
+            sb.AppendLine("--- GAS STATIONS ---");
+            sb.AppendLine(Join(e.Architecture.GasStations.Characteristics));
+        }
 
         sb.AppendLine();
         sb.AppendLine("--- BUSINESS ---");

@@ -17,3 +17,13 @@ Rules:
 - Include lighting conditions from environment.lighting.
 - Think like a cinematographer setting a period-accurate scene for a feature film.
 - Format for flux: dense noun phrases and comma-separated descriptors.
+
+TREE EVOLUTION RULES:
+Tree positions are fixed — same location across all eras.
+Tree species stays the same across all eras.
+Tree size regresses proportionally based on target year:
+- 2025 large  -> 2015 medium -> 2005 small   -> 1995 sapling -> 1985 absent  -> 1975 absent
+- 2025 medium -> 2015 small  -> 2005 sapling -> 1995 absent  -> 1985 absent  -> 1975 absent
+- 2025 small  -> 2015 sapling -> 2005 absent  -> 1995 absent  -> 1985 absent  -> 1975 absent
+- 2025 absent -> earlier eras may show mature trees that were later removed
+Apply this rule to every tree entry from SceneDNA when building the prompt.

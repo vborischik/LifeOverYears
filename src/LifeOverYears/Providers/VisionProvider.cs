@@ -102,7 +102,8 @@ public sealed class VisionProvider : IVisionProvider
         var text = ExtractContent(json);
 
         var enriched = ParseSceneDna(text);
-        return enriched with { Id = current.Id, CreatedAt = current.CreatedAt };
+        var sceneType = missingFields.Contains("scene_type") ? enriched.SceneType : current.SceneType;
+        return enriched with { Id = current.Id, CreatedAt = current.CreatedAt, SceneType = sceneType };
     }
 
     private static string ExtractContent(string json)
@@ -142,8 +143,13 @@ public sealed class VisionProvider : IVisionProvider
                 Sidewalks: dto?.Geometry?.Sidewalks ?? false,
                 Buildings: buildings);
 
+            var trees = (dto?.Environment?.Trees ?? [])
+                .Select(t => new Tree(t.Position ?? "unknown", t.Size ?? "medium", t.Type ?? "unknown"))
+                .ToList();
+
             var environment = new SceneEnvironment(
                 Terrain:   dto?.Environment?.Terrain   ?? "urban",
+                Trees:     trees,
                 Utilities: dto?.Environment?.Utilities ?? []);
 
             return new SceneDna(
@@ -152,7 +158,8 @@ public sealed class VisionProvider : IVisionProvider
                 Camera:            camera,
                 Geometry:          geometry,
                 Environment:       environment,
-                ImmutableElements: dto?.ImmutableElements ?? []);
+                ImmutableElements: dto?.ImmutableElements ?? [],
+                SceneType:         dto?.SceneType ?? "unknown");
         }
         catch
         {
@@ -161,13 +168,14 @@ public sealed class VisionProvider : IVisionProvider
                 CreatedAt:         DateTimeOffset.UtcNow.ToString("o"),
                 Camera:            new Camera("eye-level", "street", 90),
                 Geometry:          new Geometry([], false, []),
-                Environment:       new SceneEnvironment("urban", []),
+                Environment:       new SceneEnvironment("urban", null, []),
                 ImmutableElements: []);
         }
     }
 
     // DTOs без изменений
     private record SceneDnaDto(
+        [property: JsonPropertyName("scene_type")]         string?         SceneType,
         [property: JsonPropertyName("camera")]             CameraDto?      Camera,
         [property: JsonPropertyName("geometry")]           GeometryDto?    Geometry,
         [property: JsonPropertyName("environment")]        EnvironmentDto? Environment,
@@ -187,7 +195,13 @@ public sealed class VisionProvider : IVisionProvider
         [property: JsonPropertyName("type")]     string? Type,
         [property: JsonPropertyName("position")] string? Position);
 
+    private record TreeDto(
+        [property: JsonPropertyName("position")] string? Position,
+        [property: JsonPropertyName("size")]     string? Size,
+        [property: JsonPropertyName("type")]     string? Type);
+
     private record EnvironmentDto(
         [property: JsonPropertyName("terrain")]   string?       Terrain,
-        [property: JsonPropertyName("utilities")] List<string>? Utilities);
+        [property: JsonPropertyName("trees")]     List<TreeDto>? Trees,
+        [property: JsonPropertyName("utilities")] List<string>?  Utilities);
 }

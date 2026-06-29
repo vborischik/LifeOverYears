@@ -8,6 +8,7 @@ public static class SceneDnaValidator
     {
         var missing = new List<string>();
 
+        if (s.SceneType == "unknown")         missing.Add("scene_type");
         if (s.Geometry.Roads.Count == 0)     missing.Add("geometry.roads");
         if (s.Geometry.Buildings.Count == 0) missing.Add("geometry.buildings");
 
