@@ -101,7 +101,7 @@ public sealed class VisionProvider : IVisionProvider
         var json = await _nvidia.PostAsync(Url, body);
         var text = ExtractContent(json);
 
-        var enriched = ParseSceneDna(text);
+        var enriched  = ParseSceneDna(text);
         var sceneType = missingFields.Contains("scene_type") ? enriched.SceneType : current.SceneType;
         return enriched with { Id = current.Id, CreatedAt = current.CreatedAt, SceneType = sceneType };
     }
@@ -134,13 +134,30 @@ public sealed class VisionProvider : IVisionProvider
                 Direction: dto?.Camera?.Direction ?? "street",
                 Fov:       dto?.Camera?.Fov       ?? 90);
 
+            var roads = (dto?.Geometry?.Roads ?? [])
+                .Select(r => new Road(
+                    r.Type    ?? "residential",
+                    r.Lanes   ?? 1,
+                    r.Markings ?? [],
+                    r.Surface  ?? "asphalt"))
+                .ToList();
+
             var buildings = (dto?.Geometry?.Buildings ?? [])
-                .Select(b => new Building(b.Type ?? "unknown", b.Position ?? "unknown"))
+                .Select(b => new Building(
+                    b.Type      ?? "unknown",
+                    b.Position  ?? "unknown",
+                    b.Stories   ?? 1,
+                    b.Materials ?? [],
+                    b.Roof      ?? "flat",
+                    b.Setback   ?? "at-street"))
                 .ToList();
 
             var geometry = new Geometry(
-                Roads:     dto?.Geometry?.Roads     ?? [],
+                Roads:     roads,
                 Sidewalks: dto?.Geometry?.Sidewalks ?? false,
+                Curbs:     dto?.Geometry?.Curbs     ?? false,
+                Driveways: dto?.Geometry?.Driveways ?? [],
+                Parking:   dto?.Geometry?.Parking   ?? "none",
                 Buildings: buildings);
 
             var trees = (dto?.Environment?.Trees ?? [])
@@ -150,30 +167,31 @@ public sealed class VisionProvider : IVisionProvider
             var environment = new SceneEnvironment(
                 Terrain:   dto?.Environment?.Terrain   ?? "urban",
                 Trees:     trees,
-                Utilities: dto?.Environment?.Utilities ?? []);
+                Utilities: dto?.Environment?.Utilities ?? [],
+                Landscape: dto?.Environment?.Landscape ?? []);
 
             return new SceneDna(
                 Id:                Guid.NewGuid().ToString(),
                 CreatedAt:         DateTimeOffset.UtcNow.ToString("o"),
+                SceneType:         dto?.SceneType ?? "unknown",
                 Camera:            camera,
                 Geometry:          geometry,
                 Environment:       environment,
-                ImmutableElements: dto?.ImmutableElements ?? [],
-                SceneType:         dto?.SceneType ?? "unknown");
+                ImmutableElements: dto?.ImmutableElements ?? []);
         }
         catch
         {
             return new SceneDna(
                 Id:                Guid.NewGuid().ToString(),
                 CreatedAt:         DateTimeOffset.UtcNow.ToString("o"),
+                SceneType:         "unknown",
                 Camera:            new Camera("eye-level", "street", 90),
-                Geometry:          new Geometry([], false, []),
-                Environment:       new SceneEnvironment("urban", null, []),
+                Geometry:          new Geometry([], false, false, [], "none", []),
+                Environment:       new SceneEnvironment("urban", [], [], []),
                 ImmutableElements: []);
         }
     }
 
-    // DTOs без изменений
     private record SceneDnaDto(
         [property: JsonPropertyName("scene_type")]         string?         SceneType,
         [property: JsonPropertyName("camera")]             CameraDto?      Camera,
@@ -186,14 +204,27 @@ public sealed class VisionProvider : IVisionProvider
         [property: JsonPropertyName("direction")] string? Direction,
         [property: JsonPropertyName("fov")]       int?    Fov);
 
+    private record RoadDto(
+        [property: JsonPropertyName("type")]     string?       Type,
+        [property: JsonPropertyName("lanes")]    int?          Lanes,
+        [property: JsonPropertyName("markings")] List<string>? Markings,
+        [property: JsonPropertyName("surface")]  string?       Surface);
+
     private record GeometryDto(
-        [property: JsonPropertyName("roads")]     List<string>?      Roads,
+        [property: JsonPropertyName("roads")]     List<RoadDto>?     Roads,
         [property: JsonPropertyName("sidewalks")] bool               Sidewalks,
+        [property: JsonPropertyName("curbs")]     bool               Curbs,
+        [property: JsonPropertyName("driveways")] List<string>?      Driveways,
+        [property: JsonPropertyName("parking")]   string?            Parking,
         [property: JsonPropertyName("buildings")] List<BuildingDto>? Buildings);
 
     private record BuildingDto(
-        [property: JsonPropertyName("type")]     string? Type,
-        [property: JsonPropertyName("position")] string? Position);
+        [property: JsonPropertyName("type")]      string?       Type,
+        [property: JsonPropertyName("position")]  string?       Position,
+        [property: JsonPropertyName("stories")]   int?          Stories,
+        [property: JsonPropertyName("materials")] List<string>? Materials,
+        [property: JsonPropertyName("roof")]      string?       Roof,
+        [property: JsonPropertyName("setback")]   string?       Setback);
 
     private record TreeDto(
         [property: JsonPropertyName("position")] string? Position,
@@ -201,7 +232,8 @@ public sealed class VisionProvider : IVisionProvider
         [property: JsonPropertyName("type")]     string? Type);
 
     private record EnvironmentDto(
-        [property: JsonPropertyName("terrain")]   string?       Terrain,
+        [property: JsonPropertyName("terrain")]   string?        Terrain,
         [property: JsonPropertyName("trees")]     List<TreeDto>? Trees,
-        [property: JsonPropertyName("utilities")] List<string>?  Utilities);
+        [property: JsonPropertyName("utilities")] List<string>?  Utilities,
+        [property: JsonPropertyName("landscape")] List<string>?  Landscape);
 }
