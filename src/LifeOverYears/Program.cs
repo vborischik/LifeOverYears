@@ -1,32 +1,54 @@
-using LifeOverYears.Providers;
+using Autofac;
+using LifeOverYears;
 using LifeOverYears.Services;
-using Microsoft.Extensions.Logging; 
+using Microsoft.Extensions.Logging;
 
-if (args.Length < 2)
+static async Task<int> RunAsync(string[] args)
 {
-    Console.Error.WriteLine("Usage: LifeOverYears <photoPath> <year>");
-    return 1;
+    var nvidiaKey = Environment.GetEnvironmentVariable("NVIDIA_API_KEY")
+        ?? throw new InvalidOperationException("NVIDIA_API_KEY environment variable is not set");
+
+    var photoPath = ResolvePhotoPath(args);
+    var year      = args.Length >= 2 ? int.Parse(args[1]) : 1985;
+
+    using var loggerFactory = LoggerFactory.Create(b => b.AddConsole().SetMinimumLevel(LogLevel.Debug));
+
+    var builder = new ContainerBuilder();
+    builder.RegisterModule(new AppModule(loggerFactory, nvidiaKey));
+    await using var container = builder.Build();
+
+    try
+    {
+        var pipeline = container.Resolve<Pipeline>();
+        await pipeline.RunAsync(photoPath, year);
+        return 0;
+    }
+    catch (Exception ex)
+    {
+        var logger = loggerFactory.CreateLogger("Program");
+        logger.LogError(ex, "Pipeline failed");
+        return 1;
+    }
 }
 
-var photoPath = args[0];
-var year      = int.Parse(args[1]);
-var nvidiaKey = Environment.GetEnvironmentVariable("NVIDIA_API_KEY")
-    ?? throw new InvalidOperationException("NVIDIA_API_KEY environment variable is not set");
+static string ResolvePhotoPath(string[] args)
+{
+    if (args.Length >= 1)
+        return args[0];
 
-using var loggerFactory = LoggerFactory.Create(b => b.AddConsole().SetMinimumLevel(LogLevel.Debug));
+    var testImageDir = Path.Combine(AppContext.BaseDirectory, "testImage");
+    if (Directory.Exists(testImageDir))
+    {
+        var first = Directory.EnumerateFiles(testImageDir, "*.jpg")
+            .Concat(Directory.EnumerateFiles(testImageDir, "*.jpeg"))
+            .Concat(Directory.EnumerateFiles(testImageDir, "*.png"))
+            .FirstOrDefault();
 
-var fs    = new FileSystemProvider(loggerFactory.CreateLogger<FileSystemProvider>());
-var json  = new JsonProvider();
-var data  = new DataService(fs, json, loggerFactory.CreateLogger<DataService>());
+        if (first is not null)
+            return first;
+    }
 
-var nvidia          = new NvidiaProvider(new HttpClient(), nvidiaKey, loggerFactory.CreateLogger<NvidiaProvider>());
-var visionProvider  = new VisionProvider(nvidia, loggerFactory.CreateLogger<VisionProvider>());
-var promptProvider  = new PromptProvider(nvidia, loggerFactory.CreateLogger<PromptProvider>());
+    throw new InvalidOperationException("No photo path provided and no images found in testImage/");
+}
 
-var vision  = new VisionService(visionProvider, data, loggerFactory.CreateLogger<VisionService>());
-var prompt  = new PromptService(promptProvider, data, loggerFactory.CreateLogger<PromptService>());
-
-var pipeline = new Pipeline(vision, prompt, data, loggerFactory.CreateLogger<Pipeline>());
-
-await pipeline.RunAsync(photoPath, year);
-return 0;
+return await RunAsync(args);
