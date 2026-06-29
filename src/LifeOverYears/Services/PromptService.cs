@@ -41,19 +41,20 @@ public sealed class PromptService : IPromptService
         sb.AppendLine("=== SCENE (SceneDna) ===");
         sb.AppendLine($"Scene type: {s.SceneType}");
         sb.AppendLine($"Camera: height={s.Camera.Height}, direction={s.Camera.Direction}, fov={s.Camera.Fov}");
-        sb.AppendLine($"Roads: {Join(s.Geometry.Roads)}");
-        sb.AppendLine($"Sidewalks: {s.Geometry.Sidewalks}");
-        sb.AppendLine($"Buildings: {string.Join(", ", s.Geometry.Buildings.Select(b => $"{b.Type} ({b.Position})"))}");
+        sb.AppendLine($"Roads: {string.Join(", ", s.Geometry.Roads.Select(r => $"{r.Type} {r.Lanes}-lane {r.Surface}"))}");
+        sb.AppendLine($"Sidewalks: {s.Geometry.Sidewalks}, Curbs: {s.Geometry.Curbs}");
+        sb.AppendLine($"Driveways: {Join(s.Geometry.Driveways)}, Parking: {s.Geometry.Parking}");
+        sb.AppendLine($"Buildings: {string.Join(", ", s.Geometry.Buildings.Select(b => $"{b.Type} ({b.Position}), {b.Stories}fl, {b.Roof} roof, {b.Setback}"))}");
         sb.AppendLine($"Terrain: {s.Environment.Terrain}");
         sb.AppendLine($"Utilities: {Join(s.Environment.Utilities)}");
+        sb.AppendLine($"Landscape: {Join(s.Environment.Landscape)}");
         sb.AppendLine($"Immutable elements: {Join(s.ImmutableElements)}");
 
-        var trees = s.Environment.Trees ?? [];
-        if (trees.Count > 0)
+        if (s.Environment.Trees.Count > 0)
         {
             sb.AppendLine();
             sb.AppendLine("--- TREES ---");
-            foreach (var t in trees)
+            foreach (var t in s.Environment.Trees)
                 sb.AppendLine($"{t.Type} tree, {t.Size}, position: {t.Position}");
         }
 
