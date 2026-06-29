@@ -18,12 +18,14 @@ static async Task<int> RunAsync(string[] args)
     await using var container = builder.Build();
 
     var photoPath = ResolvePhotoPath(args);
-    var year      = args.Length >= 2 ? int.Parse(args[1]) : 1985;
+    var years     = args.Length >= 2
+        ? args.Skip(1).Select(int.Parse).ToList()
+        : new List<int> { 1985 };
 
     try
     {
         var pipeline = container.Resolve<Pipeline>();
-        await pipeline.RunAsync(photoPath, year);
+        await pipeline.RunAsync(photoPath, years);
         return 0;
     }
     catch (Exception ex)
