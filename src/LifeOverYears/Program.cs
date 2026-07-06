@@ -1,6 +1,7 @@
 using Autofac;
 using LifeOverYears;
 using LifeOverYears.Services;
+using LifeOverYears.Services.Interfaces; // TODO: remove smoke test
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -9,16 +10,37 @@ Directory.SetCurrentDirectory(projectRoot);
 
 static async Task<int> RunAsync(string[] args, string projectRoot)
 {
-    var configuration = new ConfigurationBuilder()
+    // TODO: remove smoke test
+    bool isSmokeTest = args.Contains("--smoke-prompts");
+
+    var configBuilder = new ConfigurationBuilder()
         .SetBasePath(projectRoot)
-        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
-        .Build();
+        .AddJsonFile("appsettings.json", optional: isSmokeTest, reloadOnChange: false);
+
+    // TODO: remove smoke test
+    if (isSmokeTest)
+        configBuilder.AddInMemoryCollection(new[]
+        {
+            new KeyValuePair<string, string?>("Nvidia:ApiKey", "smoke-test-dummy")
+        });
+
+    var configuration = configBuilder.Build();
 
     using var loggerFactory = LoggerFactory.Create(b => b.AddConsole().SetMinimumLevel(LogLevel.Debug));
 
     var builder = new ContainerBuilder();
     builder.RegisterModule(new AppModule(configuration, loggerFactory));
     await using var container = builder.Build();
+
+    // TODO: remove smoke test
+    if (isSmokeTest)
+    {
+        var promptService = container.Resolve<IPromptService>();
+        var dataService   = container.Resolve<IDataService>();
+        return await PromptSmokeTest.RunAsync(
+            promptService, dataService,
+            loggerFactory.CreateLogger("SmokeTest"));
+    }
 
     var photoPath = ResolvePhotoPath(args, projectRoot);
     var years     = args.Length >= 2
