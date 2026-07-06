@@ -12,7 +12,8 @@ public record EraProfile(
     [property: JsonPropertyName("infrastructure")] Infrastructure Infrastructure,
     [property: JsonPropertyName("society")]        Society Society,
     [property: JsonPropertyName("environment")]    EraEnvironment Environment,
-    [property: JsonPropertyName("photography")]    Photography Photography);
+    [property: JsonPropertyName("photography")]    Photography Photography,
+    [property: JsonPropertyName("scene_content")]  IReadOnlyDictionary<string, SceneContent>? SceneContent = null);
 
 // ── Transportation ────────────────────────────────────────────────────────────
 
@@ -122,4 +123,20 @@ public record Photography(
     [property: JsonPropertyName("film_stock")]            string FilmStock,
     [property: JsonPropertyName("color_characteristics")] IReadOnlyList<string> ColorCharacteristics,
     [property: JsonPropertyName("grain")]                 string Grain,
-    [property: JsonPropertyName("style")]                 string Style);
+    [property: JsonPropertyName("style")]                 string Style,
+    [property: JsonPropertyName("color_mode")]            string? ColorMode = null);
+
+// ── Scene content ─────────────────────────────────────────────────────────────
+
+public record CountRange(
+    [property: JsonPropertyName("min")] int Min,
+    [property: JsonPropertyName("max")] int Max);
+
+public record SceneContent(
+    [property: JsonPropertyName("narrative")]         string Narrative,
+    [property: JsonPropertyName("storefronts")]       IReadOnlyList<string> Storefronts,
+    [property: JsonPropertyName("window_signs")]      IReadOnlyList<string> WindowSigns,
+    [property: JsonPropertyName("people")]            CountRange People,
+    [property: JsonPropertyName("people_activities")] IReadOnlyList<string> PeopleActivities,
+    [property: JsonPropertyName("vehicles")]          CountRange Vehicles,
+    [property: JsonPropertyName("extras")]            IReadOnlyList<string> Extras);

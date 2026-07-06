@@ -41,13 +41,10 @@ public sealed class AppModule : Module
         builder.Register(_ => new VisionProvider(_.Resolve<INvidiaProvider>(), _loggerFactory.CreateLogger<VisionProvider>()))
                .As<IVisionProvider>().SingleInstance();
 
-        builder.Register(_ => new PromptProvider(_.Resolve<INvidiaProvider>(), _loggerFactory.CreateLogger<PromptProvider>()))
-               .As<IPromptProvider>().SingleInstance();
-
         builder.Register(_ => new VisionService(_.Resolve<IVisionProvider>(), _.Resolve<IDataService>(), _loggerFactory.CreateLogger<VisionService>()))
                .As<IVisionService>().SingleInstance();
 
-        builder.Register(_ => new PromptService(_.Resolve<IPromptProvider>(), _.Resolve<IDataService>(), _loggerFactory.CreateLogger<PromptService>()))
+        builder.Register(_ => new PromptService(_.Resolve<IDataService>(), _loggerFactory.CreateLogger<PromptService>()))
                .As<IPromptService>().SingleInstance();
 
         builder.Register(_ => new Pipeline(_.Resolve<IVisionService>(), _.Resolve<IPromptService>(), _.Resolve<IDataService>(), _loggerFactory.CreateLogger<Pipeline>()))

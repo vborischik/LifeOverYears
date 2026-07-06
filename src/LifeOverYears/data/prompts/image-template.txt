@@ -1,0 +1,43 @@
+IMAGE EDITING TASK — NOT TEXT-TO-IMAGE
+
+CRITICAL: Generate ONE SINGLE continuous photograph. NOT a collage, NOT a grid,
+NOT a triptych, NOT multiple panels, NOT a photo strip, NOT split frames. One
+camera, one moment, one uninterrupted scene filling the entire canvas edge to
+edge.
+
+Use the uploaded photo as the exact base composition. Remove all modern
+businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+{PRESERVE_BLOCK}
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+{SCENE_BLOCK}
+
+{PEOPLE_BLOCK}
+
+{VEHICLES_BLOCK}
+
+{ENVIRONMENT_BLOCK}
+
+{STYLE_BLOCK}
+
+PRIVACY
+Blur all faces and license plates.
+
+TEXT OVERLAY — STRICT
+- Exactly ONE instance of the text "{YEAR}" in the entire image, at bottom-center
+- Font style: bold, geometric sans-serif (Helvetica/Futura-like), ALL digits
+  equal weight, no serifs, no decorative or script style
+- Color: solid pure white (#FFFFFF), fully opaque, NO outline, NO shadow, NO
+  gradient, NO 3D effect
+- Size: digits approximately 1/10 of the image height
+- Position: horizontally centered, baseline approximately 5% above the bottom edge
+- Do not stylize, do not vary, do not repeat the year anywhere else
+
+{REJECT_BLOCK}

@@ -5,4 +5,5 @@ public record Prompt(
     string SceneDnaId,
     int Year,
     string Text,
+    IReadOnlyList<string> SelectedVehicles,
     string CreatedAt);

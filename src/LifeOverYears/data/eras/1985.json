@@ -180,6 +180,156 @@
       "vivid primary colors"
     ],
     "grain": "moderate grain, cleaner than 1975",
-    "style": "slightly oversaturated, bright daylight, commercial feel"
+    "style": "slightly oversaturated, bright daylight, commercial feel",
+    "color_mode": "color"
+  },
+
+  "scene_content": {
+    "downtown_street": {
+      "narrative": "A 1985 main street in transition — neon and backlit plastic overtaking hand-painted signs, a first small video rental shop among the old local stores.",
+      "storefronts": [
+        "small newly opened video rental shop with a 'VIDEO CASSETTE RENTALS — VHS & BETA' backlit sign",
+        "the same local diner, now with a backlit sign and 'HOT COFFEE 45¢' in the window",
+        "barber shop with its spinning barber pole, unchanged",
+        "electronics store with a red 'RADIOSHACK' style logo sign",
+        "record store with 'CASSETTES — LPs' in neon-accented window lettering",
+        "video arcade with a 'GAMES 25¢' neon sign and posters in the window",
+        "drug store modernized with backlit plastic channel letters reading 'PHARMACY'",
+        "hair salon with a neon script 'STYLES' sign"
+      ],
+      "window_signs": [
+        "VHS OVERNIGHT RENTAL $2.99",
+        "CASSETTE TAPES $7.99",
+        "PERM SPECIAL $25",
+        "2 SLICES $1.50",
+        "SALE 25% OFF"
+      ],
+      "people": { "min": 10, "max": 15 },
+      "people_activities": [
+        "a teenager carrying a boombox on his shoulder",
+        "a woman with big permed hair and shoulder pads window-shopping",
+        "two kids comparing rental boxes outside the video shop",
+        "a businessman in a boxy suit walking briskly with a briefcase",
+        "a man in a windbreaker reading a newspaper by the corner",
+        "a shopkeeper arranging a sidewalk sale rack",
+        "a jogger in a bright tracksuit and headband passing through",
+        "a kid locking a BMX bike to a signpost",
+        "a woman using the wall-mounted payphone"
+      ],
+      "vehicles": { "min": 4, "max": 6 },
+      "extras": [
+        "a wall-mounted payphone with a steel-cord handset and phone book shelf",
+        "the painted ghost-sign wall ad now noticeably fading, colors washing out",
+        "movie posters taped inside the video shop windows",
+        "a coin-operated newspaper vending box on the corner"
+      ]
+    },
+    "gas_station": {
+      "narrative": "A 1985 self-service gas station — digital price sign newly installed, a small convenience store where the second service bay used to be.",
+      "storefronts": [
+        "flat canopy over two pump islands with angular 1980s brand striping",
+        "electronic digital price sign on the road pole, replacing mechanical numerals",
+        "self-service pumps with early digital readouts",
+        "small attached convenience store with beer and cigarette ads in the window",
+        "ice freezer chest with an 'ICE $1' decal by the store door",
+        "propane tank exchange cage beside the building",
+        "one remaining service bay with a 'STATE INSPECTION' sign"
+      ],
+      "window_signs": [
+        "SELF SERVE — PAY INSIDE",
+        "CIGARETTES $1.10 PACK",
+        "MOTOR OIL 99¢ QT",
+        "FREE COFFEE WITH FILL-UP",
+        "HOT DOGS 2 FOR $1"
+      ],
+      "people": { "min": 4, "max": 7 },
+      "people_activities": [
+        "a driver self-serving at the pump",
+        "a customer walking into the store counting bills",
+        "a clerk visible at the register through the store window",
+        "a man checking his oil with the hood up at the edge of the lot",
+        "a woman squeegeeing her windshield at the island",
+        "a teenager filling a bike tire at the air hose",
+        "a driver waiting in his car for a free pump"
+      ],
+      "vehicles": { "min": 3, "max": 4 },
+      "extras": [
+        "squeegee buckets at the pump islands",
+        "a display rack of windshield-washer fluid jugs",
+        "an 'AIR & WATER' sign at the lot corner"
+      ]
+    },
+    "strip_mall": {
+      "narrative": "A 1985 strip mall at its peak — striped awnings, neon accents, every unit leased and the lot busy.",
+      "storefronts": [
+        "video rental store with a bold backlit 'VIDEO RENTALS — VHS' sign and movie posters",
+        "tanning salon with a neon palm-tree window sign",
+        "pizza parlor with a red-and-green striped awning and a neon 'PIZZA' sign",
+        "one-hour photo shop with a 'FILM DEVELOPING — 1 HOUR' sign",
+        "electronics store with a red 'RADIOSHACK' style sign",
+        "card and gift shop with gold script lettering",
+        "aerobics studio with 'AEROBICS' in neon script",
+        "nail salon with airbrushed window art"
+      ],
+      "window_signs": [
+        "VHS RENTALS 99¢ TUESDAYS",
+        "TAN — 10 SESSIONS $25",
+        "2 SLICES + SODA $1.99",
+        "CASSETTES 3 FOR $10",
+        "NAILS $12"
+      ],
+      "people": { "min": 8, "max": 12 },
+      "people_activities": [
+        "a woman pushing a cart to a boxy sedan",
+        "teenagers clustered outside the video store",
+        "a mother with two kids heading into the gift shop",
+        "a man carrying stacked pizza boxes to his car",
+        "a woman in leg warmers entering the aerobics studio",
+        "a man loading an electronics box into a hatchback",
+        "a customer at the photo counter visible through the glass",
+        "a skateboarder rolling along the covered walkway"
+      ],
+      "vehicles": { "min": 5, "max": 7 },
+      "extras": [
+        "a bank of wall-mounted payphones near the anchor store",
+        "a cart corral in the parking lot",
+        "coin-operated newspaper boxes by the walkway",
+        "striped awnings casting bold shadows on the walkway"
+      ]
+    },
+    "default": {
+      "narrative": "An ordinary 1985 American commercial street — bold primary-color signage, boxy cars, the first franchise logos among local shops.",
+      "storefronts": [
+        "local diner with a backlit sign and 'HOT COFFEE 45¢' in the window",
+        "barber shop with its spinning barber pole",
+        "small video rental shop with a 'VHS RENTALS' backlit sign",
+        "pharmacy with backlit plastic channel letters",
+        "electronics store with a red logo sign",
+        "pizza shop with a neon 'PIZZA' window sign"
+      ],
+      "window_signs": [
+        "SALE 25% OFF",
+        "VHS OVERNIGHT RENTAL $2.99",
+        "PERM SPECIAL $25",
+        "2 SLICES $1.50"
+      ],
+      "people": { "min": 8, "max": 12 },
+      "people_activities": [
+        "a woman with permed hair and shoulder pads window-shopping",
+        "a businessman in a boxy suit with a briefcase",
+        "a teenager with a boombox on his shoulder",
+        "a shopkeeper arranging a sidewalk rack",
+        "kids on BMX bikes by the curb",
+        "a jogger in a bright tracksuit",
+        "a woman using a wall-mounted payphone",
+        "a couple leaving the diner"
+      ],
+      "vehicles": { "min": 4, "max": 6 },
+      "extras": [
+        "a wall-mounted payphone",
+        "the painted ghost-sign wall ad, fading",
+        "a coin-operated newspaper box"
+      ]
+    }
   }
 }

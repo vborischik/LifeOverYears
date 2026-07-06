@@ -48,4 +48,12 @@ public sealed class DataService : IDataService
         _logger.LogInformation("Loading prompt {Name} from {Path}", name, path);
         return await _fs.ReadAllTextAsync(path);
     }
+
+    public async Task SavePromptAsync(Prompt prompt)
+    {
+        var path = Path.Combine("output", "prompts", prompt.SceneDnaId, $"{prompt.Year}.json");
+        _logger.LogInformation("Saving Prompt {Id} for year {Year} to {Path}", prompt.Id, prompt.Year, path);
+        await _fs.EnsureDirectoryExistsAsync(Path.GetDirectoryName(path)!);
+        await _json.SerializeFileAsync(prompt, path);
+    }
 }

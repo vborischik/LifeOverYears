@@ -1,0 +1,78 @@
+{
+  "Id": "1e75a01e-7bbc-47cc-95e0-dae524019cd8",
+  "CreatedAt": "2026-06-29T04:57:21.2926660\u002B00:00",
+  "Camera": {
+    "Height": "eye-level",
+    "Direction": "street",
+    "Fov": 90
+  },
+  "Geometry": {
+    "Roads": [
+      {
+        "Type": "arterial",
+        "Lanes": 1,
+        "Markings": [
+          "center line",
+          "edge line"
+        ],
+        "Surface": "concrete"
+      }
+    ],
+    "Sidewalks": false,
+    "Curbs": false,
+    "Buildings": [
+      {
+        "Type": "commercial",
+        "Position": "left",
+        "Stories": 1,
+        "Materials": [
+          "stucco",
+          "glass",
+          "brick"
+        ],
+        "Roof": "flat",
+        "Setback": "shallow"
+      },
+      {
+        "Type": "commercial",
+        "Position": "center",
+        "Stories": 1,
+        "Materials": [
+          "brick",
+          "concrete"
+        ],
+        "Roof": "flat",
+        "Setback": "deep"
+      }
+    ],
+    "Driveways": [
+      "right"
+    ],
+    "Parking": "lot"
+  },
+  "Environment": {
+    "Terrain": "suburban",
+    "Utilities": [
+      "street lamp",
+      "power lines"
+    ],
+    "Trees": [
+      {
+        "Position": "left",
+        "Size": "medium",
+        "Type": "deciduous"
+      },
+      {
+        "Position": "background",
+        "Size": "medium",
+        "Type": "deciduous"
+      }
+    ],
+    "Landscape": [
+      "grass strip",
+      "hedge",
+      "flower bed"
+    ]
+  },
+  "ImmutableElements": []
+}

@@ -203,6 +203,150 @@
       "HDR look common"
     ],
     "grain": "clean, minimal noise",
-    "style": "sharp digital, vivid colors, smartphone HDR aesthetic, social media ready"
+    "style": "sharp digital, vivid colors, smartphone HDR aesthetic, social media ready",
+    "color_mode": "color"
+  },
+
+  "scene_content": {
+    "downtown_street": {
+      "narrative": "A 2015 main street mid-revival — the video store replaced by a phone repair shop, third-wave coffee and a vape shop, smartphones in every hand.",
+      "storefronts": [
+        "the old video store space now a phone repair shop with an 'iPHONE & TABLET REPAIR' LED sign",
+        "the same diner, retro-styled, with 'COFFEE $2.25' chalked on a menu board",
+        "barber shop with its spinning barber pole, now billed as a 'classic barbershop'",
+        "third-wave coffee shop with a minimalist logo and Edison bulbs visible inside",
+        "vape shop with a bright 'VAPE — E-CIGS' LED window sign",
+        "yoga studio with frosted glass and a lowercase sans-serif logo",
+        "craft beer taproom with a hand-drawn chalkboard sidewalk sign",
+        "boutique with a reclaimed-wood facade and minimalist lettering"
+      ],
+      "window_signs": [
+        "CRAFT LATTE $4.50",
+        "SCREEN REPAIR FROM $49",
+        "YOGA — FIRST CLASS FREE",
+        "HAPPY HOUR 4-6 — PINTS $4",
+        "BUY ONE GET ONE 50% OFF"
+      ],
+      "people": { "min": 10, "max": 15 },
+      "people_activities": [
+        "several people looking down at smartphones as they walk",
+        "a bearded man in a slim plaid shirt photographing his coffee",
+        "a woman in yoga pants carrying a rolled mat",
+        "a couple taking a selfie in front of the painted mural",
+        "a cyclist with a messenger bag riding in the bike lane",
+        "a dog leashed outside the coffee shop, its owner visible inside",
+        "sidewalk diners at small cafe tables under string lights",
+        "a barista delivering drinks to an outdoor table",
+        "a man in a henley checking a fitness band"
+      ],
+      "vehicles": { "min": 4, "max": 6 },
+      "extras": [
+        "the old ghost-sign wall repainted as a colorful mural",
+        "a bike corral at the curb",
+        "string lights zigzagging over the sidewalk seating",
+        "chalkboard sandwich-board signs outside the cafes"
+      ]
+    },
+    "gas_station": {
+      "narrative": "A 2015 station — LED-lit canopy, digital price sign, video ads playing on every pump screen, and a big convenience store.",
+      "storefronts": [
+        "modern canopy with white LED lighting",
+        "full-color digital price sign on the road pole",
+        "pumps with color screens playing ads",
+        "large convenience store with fresh-coffee branding in the windows",
+        "red DVD-rental kiosk outside the store entrance",
+        "air and vacuum island at the lot edge",
+        "ice merchandiser by the door"
+      ],
+      "window_signs": [
+        "ANY SIZE COFFEE $1",
+        "2 ENERGY DRINKS $5",
+        "UNLIMITED CAR WASH $19.99/MO",
+        "E-CIG STARTER KITS",
+        "ATM INSIDE"
+      ],
+      "people": { "min": 4, "max": 7 },
+      "people_activities": [
+        "a driver self-serving at the pump",
+        "a customer watching the pump screen ads while fueling",
+        "a woman scrolling her smartphone while leaning on her crossover",
+        "a man returning a disc at the DVD kiosk",
+        "a clerk stacking windshield-washer fluid by the door",
+        "a driver vacuuming his car at the vacuum island"
+      ],
+      "vehicles": { "min": 3, "max": 4 },
+      "extras": [
+        "card-skimmer warning stickers on the pumps",
+        "combined trash-and-squeegee stations between the pumps",
+        "a lone EV charging spot painted green at the lot edge"
+      ]
+    },
+    "strip_mall": {
+      "narrative": "A 2015 strip mall in the retail apocalypse — vacant units between a vape shop, a dollar store, and a low-cost gym.",
+      "storefronts": [
+        "former video store unit now a vape shop with an LED 'VAPE' sign",
+        "dollar store anchor with bright green-and-yellow signage",
+        "phone repair store with a 'WE FIX PHONES' sign",
+        "24-hour budget gym in a former retail unit with purple-and-yellow branding",
+        "Mexican taqueria with a hand-painted mural sign",
+        "nail salon with a neon 'OPEN' LED sign",
+        "thrift store with donation bins outside",
+        "two vacant storefronts with 'FOR LEASE' banners and papered-over glass"
+      ],
+      "window_signs": [
+        "SCREEN REPAIR $49",
+        "TACO TUESDAY — 3 FOR $5",
+        "GYM MEMBERSHIP $10/MO",
+        "70% OFF CLEARANCE",
+        "EVERYTHING A DOLLAR"
+      ],
+      "people": { "min": 8, "max": 12 },
+      "people_activities": [
+        "a shopper scrolling a phone under the canopy",
+        "a gym-goer with a duffel bag heading to the gym",
+        "a family loading dollar-store bags into a crossover",
+        "a man vaping outside the vape shop",
+        "a woman carrying takeout containers to her car",
+        "a delivery driver carrying packages to a storefront"
+      ],
+      "vehicles": { "min": 5, "max": 7 },
+      "extras": [
+        "a mostly empty cart corral",
+        "a 'NOW LEASING' banner on the facade",
+        "cracked, patched parking lot with faded stripes"
+      ]
+    },
+    "default": {
+      "narrative": "An ordinary 2015 American commercial street — LED signs, crossovers at the curb, smartphones out everywhere.",
+      "storefronts": [
+        "local diner with 'COFFEE $2.25' on a chalkboard menu",
+        "barber shop with a spinning barber pole",
+        "phone repair shop in a former video store space",
+        "third-wave coffee shop with a minimalist logo",
+        "vape shop with an LED window sign",
+        "yoga studio with frosted glass"
+      ],
+      "window_signs": [
+        "CRAFT LATTE $4.50",
+        "SCREEN REPAIR FROM $49",
+        "FIRST CLASS FREE",
+        "BUY ONE GET ONE 50% OFF"
+      ],
+      "people": { "min": 8, "max": 12 },
+      "people_activities": [
+        "several people looking at smartphones as they walk",
+        "a woman in yoga pants with a rolled mat",
+        "a cyclist in the bike lane",
+        "a dog tied up outside the coffee shop",
+        "a couple taking a selfie",
+        "a barista serving a sidewalk table"
+      ],
+      "vehicles": { "min": 4, "max": 6 },
+      "extras": [
+        "the old ghost-sign wall repainted as a mural",
+        "a bike corral at the curb",
+        "chalkboard sandwich-board signs"
+      ]
+    }
   }
 }

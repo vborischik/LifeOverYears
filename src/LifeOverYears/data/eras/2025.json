@@ -207,6 +207,150 @@
       "AI-enhanced color and sharpness"
     ],
     "grain": "very clean, minimal to no noise",
-    "style": "ultra sharp computational photography, vivid HDR, smartphone social media aesthetic"
+    "style": "ultra sharp computational photography, vivid HDR, smartphone social media aesthetic",
+    "color_mode": "color"
+  },
+
+  "scene_content": {
+    "downtown_street": {
+      "narrative": "A 2025 main street — minimalist flat-logo storefronts, QR codes on the glass, EVs at the curb, delivery culture in plain view.",
+      "storefronts": [
+        "the old video store space now a specialty coffee bar with a minimalist flat logo",
+        "the same diner, still going, 'COFFEE $3.50' shown on a small digital menu screen in the window",
+        "barber shop with its spinning barber pole — six decades on",
+        "boba tea shop with pastel minimalist branding and a QR-code ordering decal",
+        "nail and lash studio with a pink LED script sign",
+        "delivery-only ghost kitchen storefront with pickup shelves visible through the glass",
+        "boutique fitness studio with black-and-white minimalist branding",
+        "plant and gift shop with a hand-lettered kraft-paper window display"
+      ],
+      "window_signs": [
+        "OAT MILK LATTE $6.50",
+        "ORDER AHEAD — SCAN THE QR CODE",
+        "LASHES FROM $79",
+        "BOBA — BUY ONE GET ONE FRIDAYS",
+        "NOW HIRING — APPLY ONLINE"
+      ],
+      "people": { "min": 10, "max": 15 },
+      "people_activities": [
+        "a delivery courier with an insulated backpack picking up an order",
+        "a woman in athleisure carrying a boba tea",
+        "several people looking at smartphones as they walk",
+        "a person gliding past on an electric scooter",
+        "a couple filming a vertical video on a phone gimbal",
+        "sidewalk diners in a parklet dining structure",
+        "a barista handing an order to a rideshare driver at the curb",
+        "a man in an oversized tee and chunky sneakers walking a small dog",
+        "an older couple reading the diner's digital menu in the window"
+      ],
+      "vehicles": { "min": 4, "max": 6 },
+      "extras": [
+        "the ghost-sign wall now a commissioned mural with bold flat graphics",
+        "a shared e-scooter and e-bike dock at the curb",
+        "a parklet outdoor dining structure occupying two parking spaces",
+        "a stack of delivery packages waiting at a shop door"
+      ]
+    },
+    "gas_station": {
+      "narrative": "A 2025 fuel stop — LED canopy, full-color digital price sign, EV chargers beside the pumps, and a convenience store selling fresh food.",
+      "storefronts": [
+        "modern canopy with bright white LED lighting",
+        "full-color digital price sign on the road pole",
+        "pay-at-pump screens playing video ads",
+        "EV fast-charging stalls alongside the gas pumps",
+        "large convenience store with 'FRESH FOOD — MADE TO ORDER' branding",
+        "drive-through coffee lane attached to the store",
+        "free air and vacuum station at the lot edge"
+      ],
+      "window_signs": [
+        "COLD BREW $3.99",
+        "EV FAST CHARGE — 30 MIN",
+        "MEMBERS SAVE 10¢/GAL",
+        "HOT PIZZA SLICES $2.99",
+        "SCAN & GO — SKIP THE LINE"
+      ],
+      "people": { "min": 4, "max": 7 },
+      "people_activities": [
+        "a driver self-serving at the pump",
+        "an EV owner plugged in at the charging stall, looking at a phone",
+        "a delivery van driver walking out with a coffee",
+        "a customer tapping a phone to pay at the pump",
+        "a clerk restocking the grab-and-go cooler behind the glass",
+        "a driver watching the ad screen while fueling"
+      ],
+      "vehicles": { "min": 3, "max": 4 },
+      "extras": [
+        "green-painted EV charging spot markings",
+        "digital menu screens glowing in the store windows",
+        "stacked bags of ice and firewood outside"
+      ]
+    },
+    "strip_mall": {
+      "narrative": "A 2025 strip mall rebuilt around services and food — nail studios, phone stores, and pickup-driven restaurants where retail used to be.",
+      "storefronts": [
+        "former big retail unit converted to a trampoline park and gym with a bold flat logo",
+        "boba tea franchise with pastel signage and QR decals on the glass",
+        "nail and spa studio with an LED script sign",
+        "wireless carrier store with a backlit white interior",
+        "vape and smoke shop with LED window signs",
+        "dollar store anchor with green signage",
+        "urgent care clinic with red-and-white minimal branding",
+        "delivery ghost kitchen with 'DRIVER PICKUP ONLY' parking signs"
+      ],
+      "window_signs": [
+        "FULL SET FROM $45",
+        "SWITCH & SAVE — 3 LINES $90",
+        "FREE TRIAL CLASS",
+        "EVERYTHING $1.25",
+        "ORDER ON THE APP"
+      ],
+      "people": { "min": 8, "max": 12 },
+      "people_activities": [
+        "a courier loading insulated delivery bags into a hatchback",
+        "a woman in athleisure carrying a yoga mat",
+        "a man scrolling his phone outside the nail studio",
+        "a family heading into the trampoline park",
+        "a person carrying a tray of boba teas to a car",
+        "a curbside-pickup attendant bringing bags to a parked SUV"
+      ],
+      "vehicles": { "min": 5, "max": 7 },
+      "extras": [
+        "'CURBSIDE PICKUP' signed parking spots",
+        "a pair of EV chargers at the corner of the lot",
+        "an e-scooter parked by the walkway"
+      ]
+    },
+    "default": {
+      "narrative": "An ordinary 2025 American commercial street — flat minimalist logos, QR codes, EVs and delivery drivers.",
+      "storefronts": [
+        "local diner with 'COFFEE $3.50' on a digital menu screen",
+        "barber shop with a spinning barber pole",
+        "specialty coffee bar in a former video store space",
+        "boba tea shop with pastel branding",
+        "nail and lash studio with an LED script sign",
+        "ghost kitchen storefront with pickup shelves"
+      ],
+      "window_signs": [
+        "OAT MILK LATTE $6.50",
+        "SCAN QR TO ORDER",
+        "NOW HIRING — APPLY ONLINE",
+        "LASHES FROM $79"
+      ],
+      "people": { "min": 8, "max": 12 },
+      "people_activities": [
+        "a delivery courier with an insulated backpack",
+        "several people looking at smartphones",
+        "a person on an electric scooter",
+        "a woman in athleisure with a boba tea",
+        "a couple filming a vertical video",
+        "a rideshare driver picking up an order at the curb"
+      ],
+      "vehicles": { "min": 4, "max": 6 },
+      "extras": [
+        "a mural where the old ghost-sign used to be",
+        "an e-scooter dock at the curb",
+        "packages stacked by a shop door"
+      ]
+    }
   }
 }

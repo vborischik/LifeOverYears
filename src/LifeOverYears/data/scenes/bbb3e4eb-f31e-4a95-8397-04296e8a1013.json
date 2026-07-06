@@ -1,0 +1,24 @@
+{
+  "Id": "bbb3e4eb-f31e-4a95-8397-04296e8a1013",
+  "CreatedAt": "2026-06-29T04:52:11.0125730\u002B00:00",
+  "Camera": {
+    "Height": "eye-level",
+    "Direction": "street",
+    "Fov": 90
+  },
+  "Geometry": {
+    "Roads": [],
+    "Sidewalks": false,
+    "Curbs": false,
+    "Buildings": [],
+    "Driveways": [],
+    "Parking": "none"
+  },
+  "Environment": {
+    "Terrain": "urban",
+    "Utilities": [],
+    "Trees": [],
+    "Landscape": []
+  },
+  "ImmutableElements": []
+}

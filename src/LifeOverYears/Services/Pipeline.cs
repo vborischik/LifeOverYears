@@ -34,11 +34,14 @@ public sealed class Pipeline
             sceneDna.Environment.Terrain,
             sceneDna.Geometry.Buildings.Count);
 
-        // Step 2 — Prompt per year
+        // Step 2 — Prompt per year (one GenerationContext shared across all years:
+        // guarantees no car model repeats between the images of the same scene)
+        var context = new GenerationContext { Random = new Random() };
         foreach (var year in years)
         {
             var eraProfile = await _data.LoadEraProfileAsync(year);
-            var prompt = await _prompt.BuildAsync(sceneDna, eraProfile);
+            var prompt = await _prompt.BuildAsync(sceneDna, eraProfile, context);
+            await _data.SavePromptAsync(prompt);
             _logger.LogInformation("Step 2 complete — Prompt: id={Id} year={Year} length={Length}\n{Text}",
                 prompt.Id,
                 prompt.Year,

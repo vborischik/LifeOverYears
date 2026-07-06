@@ -182,6 +182,163 @@
       "slightly faded yellows and blues"
     ],
     "grain": "visible fine grain",
-    "style": "documentary, slightly desaturated, natural light"
+    "style": "documentary, slightly desaturated, natural light",
+    "color_mode": "black_and_white"
+  },
+
+  "scene_content": {
+    "downtown_street": {
+      "narrative": "A working small-town main street in 1975 — locally owned shops with hand-painted and neon signs, a five & dime, and not a single modern chain in sight.",
+      "storefronts": [
+        "corner drug store with a hand-painted 'REXALL DRUGS' style sign and a small neon 'PRESCRIPTIONS' sign in the window",
+        "'BEN FRANKLIN' five & dime with red-and-white lettering",
+        "local diner with a hand-lettered 'HOT COFFEE 25¢' sign in the window",
+        "barber shop with a spinning red-white-and-blue barber pole by the door",
+        "hardware store with 'PAINT — GLASS — KEYS' painted on the display window",
+        "shoe repair shop with a small 'SHOE REPAIR — WHILE U WAIT' sign",
+        "appliance store window displaying console televisions with a 'COLOR TV' placard",
+        "women's dress shop with gold-leaf window lettering"
+      ],
+      "window_signs": [
+        "SALE — 3 for $1",
+        "ICE CREAM CONES 15¢",
+        "HAIRCUT $2.50",
+        "SHIRTS 2 FOR $5",
+        "MILK 69¢ HALF GALLON",
+        "TV REPAIR — FREE ESTIMATES"
+      ],
+      "people": { "min": 10, "max": 15 },
+      "people_activities": [
+        "a woman in a midi skirt window-shopping at the five & dime",
+        "two men in wide-lapel jackets talking outside the diner",
+        "a shopkeeper in an apron sweeping the sidewalk",
+        "a mother holding a child's hand walking past the drug store",
+        "an older man reading a folded newspaper on a bench",
+        "a delivery man carrying stacked boxes into a storefront",
+        "a teenager leaning on a bicycle near the curb",
+        "a barber visible through the shop window cutting hair",
+        "a couple leaving the diner, the man holding the door",
+        "a mail carrier with a leather bag making rounds"
+      ],
+      "vehicles": { "min": 4, "max": 6 },
+      "extras": [
+        "2-3 bicycles leaned against a storefront wall",
+        "a glass-and-aluminum telephone booth on the corner",
+        "a painted ghost-sign wall advertisement on brick, weathered but still clearly readable",
+        "a wooden newspaper rack with stacked local papers by the diner door"
+      ]
+    },
+    "gas_station": {
+      "narrative": "A full-service neighborhood gas station in 1975 — uniformed attendants pump the gas, check the oil, and wipe the windshield.",
+      "storefronts": [
+        "tall roadside pole sign in the style of Phillips 66, Texaco, Conoco, Sinclair, or a generic independent brand",
+        "mechanical analog pumps with rotating numeral dials and glass-and-chrome detailing",
+        "porcelain-enamel brand signs on the building fascia",
+        "open service bay with a car raised on the lift inside",
+        "oil-can rack stacked with quart cans beside the pump island",
+        "chest-style soda vending machine by the office door",
+        "'FREE MAPS' and trading-stamp decals on the office window",
+        "tire display rack near the service bay"
+      ],
+      "window_signs": [
+        "MECHANIC ON DUTY",
+        "TUNE-UP SPECIAL $19.95",
+        "MOTOR OIL 55¢ QT",
+        "FLATS FIXED $2",
+        "WE HONOR BANKAMERICARD"
+      ],
+      "people": { "min": 4, "max": 7 },
+      "people_activities": [
+        "a uniformed attendant actively fueling a vehicle at the pump",
+        "a second attendant wiping a customer's windshield",
+        "a mechanic in coveralls rolling a tire toward the service bay",
+        "a driver waiting behind the wheel while the attendant works",
+        "a customer paying the attendant cash through the car window",
+        "a mechanic leaning under the open hood of a car by the bay",
+        "a kid buying a bottle of soda from the machine",
+        "the station owner standing in the office doorway with a clipboard"
+      ],
+      "vehicles": { "min": 3, "max": 4 },
+      "extras": [
+        "an air hose with a driveway service bell line across the apron",
+        "a stack of used tires beside the service bay",
+        "a water can and towel bucket on the pump island",
+        "a 'FREE AIR' sign next to the air pump"
+      ]
+    },
+    "strip_mall": {
+      "narrative": "A brand-new mid-1970s strip mall — one low row of shops under a mansard-shingle canopy, fronted by an open parking lot.",
+      "storefronts": [
+        "fabric and craft store with backlit plastic channel letters",
+        "small 'A&P' style grocery with stacked shopping carts by the door",
+        "laundromat with an 'OPEN 24 HOURS' sign and washers visible through the plate glass",
+        "family pharmacy with a backlit 'DRUGS — SUNDRIES' sign",
+        "record shop with 'HI-FI — STEREO — 8-TRACK TAPES' window lettering",
+        "soft-serve ice cream stand at the end cap with a cone-shaped sign",
+        "'TRUE VALUE' style hardware store with a red sign",
+        "beauty salon with 'PERMS — SETS — WIGS' hand-lettered on the glass"
+      ],
+      "window_signs": [
+        "GRAND OPENING",
+        "8-TRACK TAPES $4.99",
+        "WASH 35¢ — DRY 10¢",
+        "BACK TO SCHOOL — JEANS $6",
+        "COLD POP 20¢"
+      ],
+      "people": { "min": 8, "max": 12 },
+      "people_activities": [
+        "a woman pushing a shopping cart across the parking lot",
+        "a man loading paper grocery bags into a car trunk",
+        "two teenagers sharing soft-serve cones by the end cap",
+        "a mother herding two kids toward the pharmacy",
+        "a shopper browsing the record store window",
+        "a workman in uniform carrying a toolbox to his truck",
+        "a woman carrying a laundry basket under the canopy",
+        "an elderly couple walking slowly along the covered walkway"
+      ],
+      "vehicles": { "min": 5, "max": 7 },
+      "extras": [
+        "a coin-operated kiddie ride by a storefront door",
+        "a row of nested shopping carts near the grocery entrance",
+        "a telephone booth at the edge of the parking lot",
+        "painted white parking stall lines, slightly faded"
+      ]
+    },
+    "default": {
+      "narrative": "An ordinary American commercial street in 1975 — modest local businesses, bold simple signage, wide quiet pavement.",
+      "storefronts": [
+        "corner grocery with hand-painted produce prices on butcher paper in the window",
+        "drug store with a hand-painted sign and a neon 'PRESCRIPTIONS' sign in the window",
+        "local diner with a hand-lettered 'HOT COFFEE 25¢' sign",
+        "barber shop with a spinning barber pole",
+        "auto parts store with a red-and-white 'WESTERN AUTO' style sign",
+        "small bank branch with bronze letters and a round clock sign",
+        "five & dime with red 'BEN FRANKLIN' style lettering"
+      ],
+      "window_signs": [
+        "SALE — 3 for $1",
+        "SHOES $8.88",
+        "MALTS 30¢",
+        "PERMANENTS $10",
+        "TV REPAIR — FREE ESTIMATES"
+      ],
+      "people": { "min": 8, "max": 12 },
+      "people_activities": [
+        "a shopkeeper in an apron sweeping the sidewalk",
+        "a woman in a midi skirt window-shopping",
+        "an older man reading a newspaper on a bench",
+        "kids riding bicycles along the street edge",
+        "a delivery man wheeling a hand truck of boxes",
+        "a couple walking slowly past the storefronts",
+        "a mail carrier making rounds with a leather bag",
+        "a man in a polyester suit checking his watch at the bus stop"
+      ],
+      "vehicles": { "min": 4, "max": 6 },
+      "extras": [
+        "a glass telephone booth on the corner",
+        "a painted ghost-sign wall advertisement, weathered but readable",
+        "bicycles leaned against a storefront"
+      ]
+    }
   }
 }

@@ -195,6 +195,154 @@
       "accurate skin tones"
     ],
     "grain": "fine grain, cleaner than 1985",
-    "style": "snapshot documentary, natural daylight, consumer point-and-shoot feel"
+    "style": "snapshot documentary, natural daylight, consumer point-and-shoot feel",
+    "color_mode": "color"
+  },
+
+  "scene_content": {
+    "downtown_street": {
+      "narrative": "A 1995 main street — the video rental store at its absolute peak, a computer shop newly arrived, chain logos displacing the last hand-painted signs.",
+      "storefronts": [
+        "video rental store at its peak with a big backlit 'VIDEO RENTALS — NEW RELEASES' sign and a 'BE KIND, REWIND' sticker on the door",
+        "pizza and sub shop with a '2 SLICES + SODA $2.99' sign in the window",
+        "the same local diner, sign aging, 'HOT COFFEE 75¢' in the window",
+        "computer shop with a 'PENTIUM PCs — INTERNET SOFTWARE' banner",
+        "barber shop with its spinning barber pole, unchanged",
+        "music store with a 'CDs — CASSETTES' channel-letter sign",
+        "pager and cellular store with a neon 'PAGERS — BEEPERS' sign",
+        "coffee-and-bagel cafe with a chalkboard sandwich board"
+      ],
+      "window_signs": [
+        "CDs $9.99",
+        "VHS 3-DAY RENTAL $1.99",
+        "SUB COMBO $3.99",
+        "HAIRCUT $8",
+        "FREE INTERNET TRIAL — 30 DAYS",
+        "PAGERS $19.99"
+      ],
+      "people": { "min": 10, "max": 15 },
+      "people_activities": [
+        "a teenager in a flannel shirt browsing the video store's new releases wall, visible through the glass",
+        "a man in baggy jeans carrying a stack of rented VHS tapes",
+        "a woman talking on the wall-mounted payphone",
+        "a group of teens in grunge flannel outside the music store",
+        "a businessman talking on a large early cell phone",
+        "a mother pushing a stroller past the diner",
+        "a clerk taping a sale poster inside a shop window",
+        "two kids on a bench trading collectible cards",
+        "a man walking a dog past the computer shop"
+      ],
+      "vehicles": { "min": 4, "max": 6 },
+      "extras": [
+        "a wall-mounted payphone or payphone booth — REQUIRED, must be clearly visible",
+        "the old painted ghost-sign now almost fully faded, barely legible",
+        "movie release posters plastered in the video store windows",
+        "a cluster of coin-operated newspaper boxes on the corner"
+      ]
+    },
+    "gas_station": {
+      "narrative": "A 1995 self-serve station — wide canopy over multiple islands, attached convenience store, the first pay-at-pump card readers.",
+      "storefronts": [
+        "wide flat canopy spanning multiple pump islands with a brand color band",
+        "road pole sign with early-LED price digits",
+        "self-serve pumps, some fitted with new credit-card readers",
+        "attached convenience store with lottery and cigarette ads in the glass",
+        "ice merchandiser and stacked firewood bundles outside the store",
+        "automatic car wash bay at the back of the lot",
+        "air and water station at the lot edge"
+      ],
+      "window_signs": [
+        "PAY AT PUMP — NEW!",
+        "32oz FOUNTAIN DRINK 89¢",
+        "CIGARETTES $1.89 PACK",
+        "CAR WASH $4 WITH FILL-UP",
+        "2 HOT DOGS $2"
+      ],
+      "people": { "min": 4, "max": 7 },
+      "people_activities": [
+        "a driver self-serving at the pump",
+        "a woman swiping a card at the new pay-at-pump reader",
+        "a man walking out of the store with a soda and a bag of chips",
+        "a clerk restocking the ice merchandiser",
+        "a driver checking tire pressure at the air station",
+        "a parent and kid walking into the store"
+      ],
+      "vehicles": { "min": 3, "max": 4 },
+      "extras": [
+        "squeegee buckets at the pump islands",
+        "a hand-written 'PUMP 3 OUT OF ORDER' sign taped to one pump",
+        "stacked cases of soda on a pallet outside the store"
+      ]
+    },
+    "strip_mall": {
+      "narrative": "A 1995 strip mall past its prime but still busy — big backlit box signs, a video store anchor, the first vacant units appearing.",
+      "storefronts": [
+        "video rental anchor at its peak with a huge backlit 'VIDEO — NEW RELEASES' sign",
+        "Chinese takeout with a 'LUNCH SPECIAL $3.95' menu taped to the glass",
+        "dollar store with a yellow 'EVERYTHING 99¢' banner",
+        "used video game store with a 'WE BUY & SELL GAMES' sign",
+        "pager and cellular store with a neon 'PAGERS' sign",
+        "nail salon with a neon 'NAILS' sign",
+        "tax and insurance office with vertical blinds in the window",
+        "one vacant unit with soaped windows and a 'FOR LEASE' sign"
+      ],
+      "window_signs": [
+        "VHS RENTAL $1.99",
+        "EVERYTHING 99¢",
+        "GENERAL TSO'S COMBO $4.25",
+        "FREE PAGER ACTIVATION",
+        "GOING OUT OF BUSINESS — 50% OFF"
+      ],
+      "people": { "min": 8, "max": 12 },
+      "people_activities": [
+        "a family loading takeout bags into a minivan",
+        "teenagers comparing game cartridges through the store window",
+        "a woman pushing a cart of dollar-store bags",
+        "a man carrying a stack of rented videotapes to his car",
+        "two teens skateboarding along the curb",
+        "a woman leaving the nail salon waving her nails dry",
+        "a clerk on a break by the service door"
+      ],
+      "vehicles": { "min": 5, "max": 7 },
+      "extras": [
+        "a wall-mounted payphone bank near the anchor store",
+        "a cart corral with a few stray carts",
+        "a grand-opening banner strung across the dollar store",
+        "faded parking stall stripes"
+      ]
+    },
+    "default": {
+      "narrative": "An ordinary 1995 American commercial street — backlit box signs, rounded cars, the video store era at full strength.",
+      "storefronts": [
+        "local diner with 'HOT COFFEE 75¢' in the window",
+        "barber shop with its spinning barber pole",
+        "video rental store with a backlit 'VIDEO RENTALS' sign and a 'BE KIND, REWIND' sticker",
+        "computer shop with a 'PENTIUM PCs' window banner",
+        "music store with a 'CDs — CASSETTES' sign",
+        "pizza and sub shop with combo deal posters"
+      ],
+      "window_signs": [
+        "CDs $9.99",
+        "VHS 3-DAY RENTAL $1.99",
+        "SUB COMBO $3.99",
+        "HAIRCUT $8"
+      ],
+      "people": { "min": 8, "max": 12 },
+      "people_activities": [
+        "a teenager in flannel carrying rented VHS tapes",
+        "a woman talking on a wall-mounted payphone",
+        "a mother pushing a stroller",
+        "a man walking a dog",
+        "a clerk taping a poster inside a window",
+        "two kids on a bench trading cards",
+        "a businessman with a large early cell phone"
+      ],
+      "vehicles": { "min": 4, "max": 6 },
+      "extras": [
+        "a wall-mounted payphone",
+        "the old ghost-sign almost fully faded",
+        "coin-operated newspaper boxes"
+      ]
+    }
   }
 }

@@ -4,5 +4,5 @@ namespace LifeOverYears.Services.Interfaces;
 
 public interface IPromptService
 {
-    Task<Prompt> BuildAsync(SceneDna sceneDna, EraProfile eraProfile);
+    Task<Prompt> BuildAsync(SceneDna sceneDna, EraProfile eraProfile, GenerationContext context);
 }

@@ -198,6 +198,150 @@
       "accurate color rendering"
     ],
     "grain": "low grain, early digital noise in shadows",
-    "style": "transitional film-to-digital, daylight snapshot, slightly soft focus"
+    "style": "transitional film-to-digital, daylight snapshot, slightly soft focus",
+    "color_mode": "color"
+  },
+
+  "scene_content": {
+    "downtown_street": {
+      "narrative": "A 2005 main street — cellular stores and chain coffee arriving, the video store in its final days, flip phones in every hand.",
+      "storefronts": [
+        "the video rental store closing down — 'EVERYTHING MUST GO — ALL MOVIES $3' banner across the window",
+        "the same diner with a refreshed awning and a 'COFFEE $1.25' vinyl decal on the glass",
+        "barber shop with its spinning barber pole, unchanged",
+        "cellular phone store with 'FREE PHONE WITH 2-YEAR PLAN' posters",
+        "espresso cafe with a chalkboard menu and a round-logo awning",
+        "video game store with a 'USED GAMES' sign and a midnight-release poster",
+        "tanning salon with an airbrushed sun mural on the window",
+        "bank branch modernized with internally lit channel letters"
+      ],
+      "window_signs": [
+        "DVDs $14.99",
+        "LATTE $2.95",
+        "EVERYTHING MUST GO — 50-70% OFF",
+        "TANNING — 1 MONTH UNLIMITED $29",
+        "RINGTONES $1.99"
+      ],
+      "people": { "min": 10, "max": 15 },
+      "people_activities": [
+        "a teenager texting on a flip phone with both thumbs",
+        "a woman in low-rise jeans talking on a flip phone",
+        "a man in cargo shorts and a trucker hat carrying shopping bags",
+        "two kids weaving down the sidewalk on razor scooters",
+        "a businessman with a Bluetooth earpiece gesturing as he walks",
+        "a shopper digging through the closing video store's sidewalk bargain bins",
+        "a barista handing an iced drink to a customer at the cafe door",
+        "a mother pushing a jogging stroller",
+        "a man loading a flat-screen TV box into an SUV"
+      ],
+      "vehicles": { "min": 4, "max": 6 },
+      "extras": [
+        "the ghost-sign reduced to a faint trace of paint on the brick",
+        "a single scuffed payphone covered in stickers, rarely used",
+        "a bike rack with a couple of mountain bikes",
+        "a sandwich-board sign for the espresso cafe"
+      ]
+    },
+    "gas_station": {
+      "narrative": "A 2005 gas station — big multi-island canopy, card readers at every pump, LED price sign, and a convenience store doing most of the business.",
+      "storefronts": [
+        "wide multi-island canopy with branded fascia lighting",
+        "tall pole sign with LED price digits",
+        "pumps with card readers and small pay-at-pump screens",
+        "large convenience store with energy-drink and phone-card ads in the glass",
+        "stacked cases of bottled water and charcoal bags outside the store",
+        "automated car wash tunnel beside the lot",
+        "coin-operated air machine near the back of the lot"
+      ],
+      "window_signs": [
+        "ENERGY DRINKS 2 FOR $4",
+        "PHONE CARDS SOLD HERE",
+        "CAR WASH $6",
+        "ANY SIZE FOUNTAIN DRINK 99¢",
+        "CIGARETTES $3.75 PACK"
+      ],
+      "people": { "min": 4, "max": 7 },
+      "people_activities": [
+        "a driver self-serving at the pump",
+        "a woman inserting her card at the pump reader",
+        "a man talking on a flip phone while leaning against his SUV as it fuels",
+        "a clerk restocking the window display inside",
+        "a customer walking out with a coffee cup",
+        "a teenager filling tires at the coin-operated air machine"
+      ],
+      "vehicles": { "min": 3, "max": 4 },
+      "extras": [
+        "'NO SMOKING — TURN OFF ENGINE' decals on each pump",
+        "trash cans with paper-towel dispensers between the pumps",
+        "a propane exchange cage by the storefront"
+      ]
+    },
+    "strip_mall": {
+      "narrative": "An aging 2005 strip mall — national franchises mixed with struggling locals, the video store on its last legs.",
+      "storefronts": [
+        "video rental store with 'STORE CLOSING — EVERYTHING MUST GO' banners",
+        "cellular store with carrier logos and 'FREE FLIP PHONE' posters",
+        "sandwich franchise with backlit menu photos in the window",
+        "dollar store anchor with yellow 'EVERYTHING $1' signage",
+        "check-cashing store with a neon 'FAST CASH' sign",
+        "hair salon with a 'WALK-INS WELCOME' sign",
+        "video game store with a midnight-release poster in the window",
+        "tax preparation office with a green square logo"
+      ],
+      "window_signs": [
+        "DVD BLOWOUT — 4 FOR $10",
+        "FOOTLONG COMBO $5.99",
+        "NAIL FILL $18",
+        "NO CREDIT? NO PROBLEM!",
+        "RINGTONES $1.99"
+      ],
+      "people": { "min": 8, "max": 12 },
+      "people_activities": [
+        "a man loading shopping bags into an SUV's tailgate",
+        "teenagers gathered outside the game store",
+        "a woman texting on a flip phone under the canopy",
+        "a customer leaving the sandwich shop with a to-go bag",
+        "an employee dragging a clearance rack onto the walkway",
+        "a couple browsing the closing video store's bargain bins"
+      ],
+      "vehicles": { "min": 5, "max": 7 },
+      "extras": [
+        "a 'STORE CLOSING' A-frame sign on the walkway",
+        "a cart corral in the lot",
+        "light poles with faded banner ads"
+      ]
+    },
+    "default": {
+      "narrative": "An ordinary 2005 American commercial street — corporate channel-letter signs, flip phones, SUVs at the curb.",
+      "storefronts": [
+        "local diner with a 'COFFEE $1.25' vinyl decal on the glass",
+        "barber shop with a spinning barber pole",
+        "video rental store with 'EVERYTHING MUST GO' closing banners",
+        "cellular phone store with contract posters",
+        "espresso cafe with a chalkboard menu",
+        "nail salon with an LED 'OPEN' sign"
+      ],
+      "window_signs": [
+        "DVDs $14.99",
+        "LATTE $2.95",
+        "RINGTONES $1.99",
+        "TANNING $29/MONTH"
+      ],
+      "people": { "min": 8, "max": 12 },
+      "people_activities": [
+        "a teenager texting on a flip phone",
+        "a man with a Bluetooth earpiece",
+        "a woman carrying an iced coffee",
+        "kids on razor scooters",
+        "a shopper with big-box store bags",
+        "a mother pushing a jogging stroller"
+      ],
+      "vehicles": { "min": 4, "max": 6 },
+      "extras": [
+        "a faint trace of the old ghost-sign on the brick",
+        "a single scuffed payphone",
+        "a bike rack"
+      ]
+    }
   }
 }
