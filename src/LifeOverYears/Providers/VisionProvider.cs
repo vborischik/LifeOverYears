@@ -3,7 +3,6 @@ using System.Text.Json.Serialization;
 using LifeOverYears.Models;
 using LifeOverYears.Services.Interfaces;
 using Microsoft.Extensions.Logging;
-using SceneEnvironment = LifeOverYears.Models.Environment;
 
 namespace LifeOverYears.Providers;
 
@@ -99,14 +98,9 @@ public sealed class VisionProvider : IVisionProvider
         var json = await _nvidia.PostAsync(Url, body);
         var text = ExtractContent(json);
 
-<<<<<<< HEAD
-        var enriched  = ParseSceneDna(text);
+        var enriched  = ParseSceneDna(text, _logger);
         var sceneType = missingFields.Contains("scene_type") ? enriched.SceneType : current.SceneType;
         return enriched with { Id = current.Id, CreatedAt = current.CreatedAt, SceneType = sceneType };
-=======
-        var enriched = ParseSceneDna(text, _logger);
-        return enriched with { Id = current.Id, CreatedAt = current.CreatedAt };
->>>>>>> 3f9e103 (changed whole logoc)
     }
 
     private static string ExtractContent(string json)
@@ -144,47 +138,26 @@ public sealed class VisionProvider : IVisionProvider
 
             var roads = (dto?.Geometry?.Roads ?? [])
                 .Select(r => new Road(
-<<<<<<< HEAD
-                    r.Type    ?? "residential",
-                    r.Lanes   ?? 1,
-                    r.Markings ?? [],
-                    r.Surface  ?? "asphalt"))
-=======
                     Type:     r.Type     ?? "unknown",
                     Lanes:    r.Lanes    ?? 1,
                     Markings: r.Markings ?? [],
                     Surface:  r.Surface  ?? "asphalt"))
->>>>>>> 3f9e103 (changed whole logoc)
                 .ToList();
 
             var buildings = (dto?.Geometry?.Buildings ?? [])
                 .Select(b => new Building(
-<<<<<<< HEAD
-                    b.Type      ?? "unknown",
-                    b.Position  ?? "unknown",
-                    b.Stories   ?? 1,
-                    b.Materials ?? [],
-                    b.Roof      ?? "flat",
-                    b.Setback   ?? "at-street"))
-=======
                     Type:      b.Type      ?? "unknown",
                     Position:  b.Position  ?? "unknown",
                     Stories:   b.Stories   ?? 1,
                     Materials: b.Materials ?? [],
                     Roof:      b.Roof      ?? "unknown",
                     Setback:   b.Setback   ?? "unknown"))
->>>>>>> 3f9e103 (changed whole logoc)
                 .ToList();
 
             var geometry = new Geometry(
                 Roads:     roads,
                 Sidewalks: dto?.Geometry?.Sidewalks ?? false,
                 Curbs:     dto?.Geometry?.Curbs     ?? false,
-<<<<<<< HEAD
-                Driveways: dto?.Geometry?.Driveways ?? [],
-                Parking:   dto?.Geometry?.Parking   ?? "none",
-                Buildings: buildings);
-=======
                 Buildings: buildings,
                 Driveways: dto?.Geometry?.Driveways ?? [],
                 Parking:   dto?.Geometry?.Parking   ?? "none");
@@ -195,21 +168,11 @@ public sealed class VisionProvider : IVisionProvider
                     Size:     t.Size     ?? "unknown",
                     Type:     t.Type     ?? "unknown"))
                 .ToList();
->>>>>>> 3f9e103 (changed whole logoc)
 
-            var trees = (dto?.Environment?.Trees ?? [])
-                .Select(t => new Tree(t.Position ?? "unknown", t.Size ?? "medium", t.Type ?? "unknown"))
-                .ToList();
-
-            var environment = new SceneEnvironment(
+            var environment = new Environment(
                 Terrain:   dto?.Environment?.Terrain   ?? "urban",
-<<<<<<< HEAD
-                Trees:     trees,
-                Utilities: dto?.Environment?.Utilities ?? [],
-=======
                 Utilities: dto?.Environment?.Utilities ?? [],
                 Trees:     trees,
->>>>>>> 3f9e103 (changed whole logoc)
                 Landscape: dto?.Environment?.Landscape ?? []);
 
             return new SceneDna(
@@ -229,12 +192,8 @@ public sealed class VisionProvider : IVisionProvider
                 CreatedAt:         DateTimeOffset.UtcNow.ToString("o"),
                 SceneType:         "unknown",
                 Camera:            new Camera("eye-level", "street", 90),
-<<<<<<< HEAD
-                Geometry:          new Geometry([], false, false, [], "none", []),
-=======
                 Geometry:          new Geometry([], false, false, [], [], "none"),
->>>>>>> 3f9e103 (changed whole logoc)
-                Environment:       new SceneEnvironment("urban", [], [], []),
+                Environment:       new Environment("urban", [], [], []),
                 ImmutableElements: []);
         }
     }
@@ -261,21 +220,9 @@ public sealed class VisionProvider : IVisionProvider
         [property: JsonPropertyName("roads")]     List<RoadDto>?     Roads,
         [property: JsonPropertyName("sidewalks")] bool               Sidewalks,
         [property: JsonPropertyName("curbs")]     bool               Curbs,
-<<<<<<< HEAD
-        [property: JsonPropertyName("driveways")] List<string>?      Driveways,
-        [property: JsonPropertyName("parking")]   string?            Parking,
-        [property: JsonPropertyName("buildings")] List<BuildingDto>? Buildings);
-=======
         [property: JsonPropertyName("buildings")] List<BuildingDto>? Buildings,
         [property: JsonPropertyName("driveways")] List<string>?      Driveways,
         [property: JsonPropertyName("parking")]   string?            Parking);
-
-    private record RoadDto(
-        [property: JsonPropertyName("type")]     string?       Type,
-        [property: JsonPropertyName("lanes")]    int?          Lanes,
-        [property: JsonPropertyName("markings")] List<string>? Markings,
-        [property: JsonPropertyName("surface")]  string?       Surface);
->>>>>>> 3f9e103 (changed whole logoc)
 
     private record BuildingDto(
         [property: JsonPropertyName("type")]      string?       Type,
@@ -284,7 +231,6 @@ public sealed class VisionProvider : IVisionProvider
         [property: JsonPropertyName("materials")] List<string>? Materials,
         [property: JsonPropertyName("roof")]      string?       Roof,
         [property: JsonPropertyName("setback")]   string?       Setback);
-<<<<<<< HEAD
 
     private record TreeDto(
         [property: JsonPropertyName("position")] string? Position,
@@ -293,20 +239,7 @@ public sealed class VisionProvider : IVisionProvider
 
     private record EnvironmentDto(
         [property: JsonPropertyName("terrain")]   string?        Terrain,
-        [property: JsonPropertyName("trees")]     List<TreeDto>? Trees,
         [property: JsonPropertyName("utilities")] List<string>?  Utilities,
-        [property: JsonPropertyName("landscape")] List<string>?  Landscape);
-=======
-
-    private record EnvironmentDto(
-        [property: JsonPropertyName("terrain")]   string?       Terrain,
-        [property: JsonPropertyName("utilities")] List<string>? Utilities,
         [property: JsonPropertyName("trees")]     List<TreeDto>? Trees,
-        [property: JsonPropertyName("landscape")] List<string>? Landscape);
-
-    private record TreeDto(
-        [property: JsonPropertyName("position")] string? Position,
-        [property: JsonPropertyName("size")]     string? Size,
-        [property: JsonPropertyName("type")]     string? Type);
->>>>>>> 3f9e103 (changed whole logoc)
+        [property: JsonPropertyName("landscape")] List<string>?  Landscape);
 }

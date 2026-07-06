@@ -83,34 +83,11 @@ public sealed class PromptService : IPromptService
         return sb.ToString();
     }
 
-<<<<<<< HEAD
-        sb.AppendLine("=== SCENE (SceneDna) ===");
-        sb.AppendLine($"Scene type: {s.SceneType}");
-        sb.AppendLine($"Camera: height={s.Camera.Height}, direction={s.Camera.Direction}, fov={s.Camera.Fov}");
-        sb.AppendLine($"Roads: {string.Join(", ", s.Geometry.Roads.Select(r => $"{r.Type} {r.Lanes}-lane {r.Surface}"))}");
-        sb.AppendLine($"Sidewalks: {s.Geometry.Sidewalks}, Curbs: {s.Geometry.Curbs}");
-        sb.AppendLine($"Driveways: {Join(s.Geometry.Driveways)}, Parking: {s.Geometry.Parking}");
-        sb.AppendLine($"Buildings: {string.Join(", ", s.Geometry.Buildings.Select(b => $"{b.Type} ({b.Position}), {b.Stories}fl, {b.Roof} roof, {b.Setback}"))}");
-        sb.AppendLine($"Terrain: {s.Environment.Terrain}");
-        sb.AppendLine($"Utilities: {Join(s.Environment.Utilities)}");
-        sb.AppendLine($"Landscape: {Join(s.Environment.Landscape)}");
-        sb.AppendLine($"Immutable elements: {Join(s.ImmutableElements)}");
-
-        if (s.Environment.Trees.Count > 0)
-        {
-            sb.AppendLine();
-            sb.AppendLine("--- TREES ---");
-            foreach (var t in s.Environment.Trees)
-                sb.AppendLine($"{t.Type} tree, {t.Size}, position: {t.Position}");
-        }
-
-=======
     private static string BuildSceneBlock(EraProfile era, SceneContent? content, string sceneType, Random rng)
     {
         var sb = new StringBuilder();
         sb.AppendLine($"TRANSFORM TO {era.Year}");
         sb.AppendLine(content is null ? era.Description : $"{era.Description} {content.Narrative}");
->>>>>>> 3f9e103 (changed whole logoc)
         sb.AppendLine();
         sb.AppendLine("STOREFRONTS & PERIOD SIGNAGE");
 
@@ -134,58 +111,6 @@ public sealed class PromptService : IPromptService
         sb.AppendLine($"Signage typography: {era.Business.Signage.TypographyStyle}.");
         sb.Append("Only include as many businesses as naturally fit the actual building frontage in the source. All signage modest and local in scale, not cluttered.");
 
-<<<<<<< HEAD
-        sb.AppendLine();
-        sb.AppendLine("--- ARCHITECTURE (Commercial) ---");
-        sb.AppendLine($"Styles: {Join(e.Architecture.Commercial.Styles)}");
-        sb.AppendLine($"Materials: {Join(e.Architecture.Commercial.Materials)}");
-        sb.AppendLine($"Characteristics: {Join(e.Architecture.Commercial.Characteristics)}");
-
-        if (s.SceneType == "gas_station")
-        {
-            sb.AppendLine();
-            sb.AppendLine("--- GAS STATIONS ---");
-            sb.AppendLine(Join(e.Architecture.GasStations.Characteristics));
-        }
-
-        sb.AppendLine();
-        sb.AppendLine("--- BUSINESS ---");
-        sb.AppendLine($"Active brands: {Join(e.Business.ActiveBrands)}");
-        sb.AppendLine($"Absent brands: {Join(e.Business.AbsentBrands)}");
-        sb.AppendLine($"Signage: {Join(e.Business.Signage.Characteristics)}");
-        sb.AppendLine($"Typography: {e.Business.Signage.TypographyStyle}");
-
-        sb.AppendLine();
-        sb.AppendLine("--- INFRASTRUCTURE ---");
-        sb.AppendLine($"Road markings: {Join(e.Infrastructure.Roads.Markings)}");
-        sb.AppendLine($"Road materials: {Join(e.Infrastructure.Roads.Materials)}");
-        sb.AppendLine($"Road characteristics: {Join(e.Infrastructure.Roads.Characteristics)}");
-        sb.AppendLine($"Traffic signs: {e.Infrastructure.TrafficSigns.Style} — {Join(e.Infrastructure.TrafficSigns.Characteristics)}");
-        sb.AppendLine($"Street furniture: {Join(e.Infrastructure.StreetFurniture.Items)}");
-        sb.AppendLine($"Utilities: {Join(e.Infrastructure.Utilities.Characteristics)}");
-
-        sb.AppendLine();
-        sb.AppendLine("--- SOCIETY ---");
-        sb.AppendLine($"Men fashion: {Join(e.Society.Fashion.Men)}");
-        sb.AppendLine($"Women fashion: {Join(e.Society.Fashion.Women)}");
-        sb.AppendLine($"Fashion colors: {Join(e.Society.Fashion.Colors)}");
-        sb.AppendLine($"Advertising: {e.Society.Advertising.Style}");
-        sb.AppendLine($"Ad media: {Join(e.Society.Advertising.Media)}");
-
-        sb.AppendLine();
-        sb.AppendLine("--- ENVIRONMENT ---");
-        sb.AppendLine($"Street lights: {e.Environment.Lighting.StreetLights}");
-        sb.AppendLine($"Commercial lighting: {e.Environment.Lighting.Commercial}");
-        sb.AppendLine($"Signs lighting: {e.Environment.Lighting.Signs}");
-        sb.AppendLine($"Vegetation: {Join(e.Environment.Vegetation.Characteristics)}");
-
-        sb.AppendLine();
-        sb.AppendLine("--- PHOTOGRAPHY ---");
-        sb.AppendLine($"Film stock: {e.Photography.FilmStock}");
-        sb.AppendLine($"Color: {Join(e.Photography.ColorCharacteristics)}");
-        sb.AppendLine($"Grain: {e.Photography.Grain}");
-        sb.AppendLine($"Style: {e.Photography.Style}");
-=======
         if (sceneType == "gas_station")
         {
             sb.AppendLine();
@@ -195,7 +120,6 @@ public sealed class PromptService : IPromptService
                 sb.AppendLine($"- {item}");
             sb.Append($"- price sign showing gas around {era.Transportation.Fuel.AveragePricePerGallon}");
         }
->>>>>>> 3f9e103 (changed whole logoc)
 
         return sb.ToString();
     }
