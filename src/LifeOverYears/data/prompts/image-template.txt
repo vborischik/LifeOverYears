@@ -30,14 +30,4 @@ the source geometry.
 PRIVACY
 Blur all faces and license plates.
 
-TEXT OVERLAY — STRICT
-- Exactly ONE instance of the text "{YEAR}" in the entire image, at bottom-center
-- Font style: bold, geometric sans-serif (Helvetica/Futura-like), ALL digits
-  equal weight, no serifs, no decorative or script style
-- Color: solid pure white (#FFFFFF), fully opaque, NO outline, NO shadow, NO
-  gradient, NO 3D effect
-- Size: digits approximately 1/10 of the image height
-- Position: horizontally centered, baseline approximately 5% above the bottom edge
-- Do not stylize, do not vary, do not repeat the year anywhere else
-
 {REJECT_BLOCK}

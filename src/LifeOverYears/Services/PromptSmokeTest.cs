@@ -568,14 +568,11 @@ public static class PromptSmokeTest
         {
             foreach (var (year, prompt) in run)
             {
-                // Year in TEXT OVERLAY section (appears as "1975" quoted)
-                int idx = prompt.Text.IndexOf("TEXT OVERLAY", StringComparison.Ordinal);
-                if (idx < 0)
-                    errs.Add($"{label}/{year}: TEXT OVERLAY section not found");
-                else if (!prompt.Text[idx..].Contains($"\"{year}\""))
-                    errs.Add($"{label}/{year}: year '{year}' not found in TEXT OVERLAY section");
+                // TEXT OVERLAY section is now removed — year is applied by a later overlay step
+                if (prompt.Text.Contains("TEXT OVERLAY"))
+                    errs.Add($"{label}/{year}: unexpected 'TEXT OVERLAY' section still present");
 
-                // Year in VEHICLES block ("no vehicle newer than 1975")
+                // Year still anchors the VEHICLES block ("no vehicle newer than 1975")
                 if (!prompt.Text.Contains($"no vehicle newer than {year}"))
                     errs.Add($"{label}/{year}: 'no vehicle newer than {year}' not found");
             }
@@ -586,8 +583,8 @@ public static class PromptSmokeTest
         Check(dtRun1,  "downtown_street/run1");
         Check(dtRun2,  "downtown_street/run2");
 
-        f.Add(("C10", "Year appears in TEXT OVERLAY section (quoted) and VEHICLES block",
-            errs.Count == 0, errs.Count == 0 ? "Year anchors correct in all prompts" : Join(errs)));
+        f.Add(("C10", "No TEXT OVERLAY section remains; year still anchors the VEHICLES block",
+            errs.Count == 0, errs.Count == 0 ? "Overlay removed and vehicle year anchors correct" : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────

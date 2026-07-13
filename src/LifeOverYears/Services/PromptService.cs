@@ -44,8 +44,7 @@ public sealed class PromptService : IPromptService
             .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year))
             .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year, rng))
             .Replace("{STYLE_BLOCK}",       BuildStyleBlock(eraProfile.Photography))
-            .Replace("{REJECT_BLOCK}",      BuildRejectBlock(eraProfile, year, peopleCount, vehicleCount))
-            .Replace("{YEAR}",              year.ToString());
+            .Replace("{REJECT_BLOCK}",      BuildRejectBlock(eraProfile, year, peopleCount, vehicleCount));
 
         return new Prompt(
             Id:               Guid.NewGuid().ToString(),
@@ -198,8 +197,7 @@ public sealed class PromptService : IPromptService
         sb.AppendLine("TREES");
         foreach (var tree in scene.Environment.Trees)
             sb.AppendLine($"- {tree.Type} tree at {tree.Position}: {DescribeTreeSize(year)}");
-        sb.Append("Tree positions and species NEVER change across eras.");
-        return sb.ToString();
+        return sb.ToString().TrimEnd();
     }
 
     private static string DescribeTreeSize(int year) => (2025 - year) switch
@@ -241,7 +239,7 @@ public sealed class PromptService : IPromptService
             .Select(item => $"no {item}");
 
         return $"REJECT IF: the output is a collage, grid, triptych, photo strip, split panels, " +
-               $"or contains ANY visible frame divisions; the year \"{year}\" appears more than once; " +
+               $"or contains ANY visible frame divisions; " +
                $"more than {peopleCount} people; more than {vehicleCount} vehicles; " +
                $"any vehicle newer than {year} or not from the listed models; " +
                $"altered building footprint, roofline, or street alignment; {colorRule} " +
