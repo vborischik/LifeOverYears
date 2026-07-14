@@ -122,13 +122,17 @@ public sealed class VisionProvider : IVisionProvider
         try
         {
             var clean = text.Trim();
-            if (clean.StartsWith("```"))
-            {
-                var start = clean.IndexOf('{');
-                var end   = clean.LastIndexOf('}');
-                if (start >= 0 && end > start)
-                    clean = clean[start..(end + 1)];
-            }
+
+            // Reasoning models may emit a <think>...</think> block before the answer.
+            var thinkEnd = clean.LastIndexOf("</think>", StringComparison.OrdinalIgnoreCase);
+            if (thinkEnd >= 0)
+                clean = clean[(thinkEnd + "</think>".Length)..];
+
+            // Keep only the JSON object, dropping code fences or surrounding prose.
+            var start = clean.IndexOf('{');
+            var end   = clean.LastIndexOf('}');
+            if (start >= 0 && end > start)
+                clean = clean[start..(end + 1)];
 
             var dto = JsonSerializer.Deserialize<SceneDnaDto>(clean, JsonOpts);
 
