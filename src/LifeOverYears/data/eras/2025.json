@@ -30,7 +30,7 @@
         "two-tone roof options",
         "digital displays visible through windshield"
       ],
-      "colors": ["white", "gray", "black", "silver", "blue", "dark green", "matte finishes appearing"],
+      "colors": ["white", "gray", "black", "silver", "blue", "dark green"],
       "absent": ["chrome bumpers", "vinyl roofs", "boxy 1990s shapes", "incandescent tail lights", "pop-up headlights"]
     },
     "trucks": {
@@ -204,7 +204,7 @@
       "narrative": "A 2025 main street — minimalist flat-logo storefronts, QR codes on the glass, delivery culture in plain view.",
       "storefronts": [
         "the old video store space now a specialty coffee bar with a minimalist flat logo",
-        "the same diner, still going, 'COFFEE $3.50' shown on a small digital menu screen in the window",
+        "{DINER_NAME} with 'COFFEE $3.50' shown on a small digital menu screen in the window",
         "barber shop with its spinning barber pole — six decades on",
         "boba tea shop with pastel minimalist branding and a QR-code ordering decal",
         "nail and lash studio with a pink LED script sign",
@@ -306,7 +306,7 @@
     "default": {
       "narrative": "An ordinary 2025 American commercial street — flat minimalist logos, QR codes and delivery drivers.",
       "storefronts": [
-        "local diner with 'COFFEE $3.50' on a digital menu screen",
+        "{DINER_NAME} with 'COFFEE $3.50' on a digital menu screen",
         "barber shop with a spinning barber pole",
         "specialty coffee bar in a former video store space",
         "boba tea shop with pastel branding",

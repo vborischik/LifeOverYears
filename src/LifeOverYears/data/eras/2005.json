@@ -118,7 +118,7 @@
         "drive-through digital menu boards beginning",
         "monument signs at lifestyle centers"
       ],
-      "typography_style": "clean corporate sans-serif, polished brand identities"
+      "typography_style": "clean sans-serif, polished brand identities"
     }
   },
 
@@ -207,13 +207,13 @@
       "narrative": "A 2005 main street — cellular stores and chain coffee arriving, the video store in its final days, flip phones in every hand.",
       "storefronts": [
         "the video rental store closing down — 'EVERYTHING MUST GO — ALL MOVIES $3' banner across the window",
-        "the same diner with a refreshed awning and a 'COFFEE $1.25' vinyl decal on the glass",
+        "{DINER_NAME} with a refreshed awning and a 'COFFEE $1.25' vinyl decal on the glass",
         "barber shop with its spinning barber pole, unchanged",
         "cellular phone store with 'FREE PHONE WITH 2-YEAR PLAN' posters",
         "espresso cafe with a chalkboard menu and a round-logo awning",
         "video game store with a 'USED GAMES' sign and a midnight-release poster",
         "tanning salon with an airbrushed sun mural on the window",
-        "bank branch modernized with internally lit channel letters"
+        "FIRST STATE BANK branch with internally lit channel letters"
       ],
       "window_signs": [
         "DVDs $14.99",
@@ -312,9 +312,9 @@
       ]
     },
     "default": {
-      "narrative": "An ordinary 2005 American commercial street — corporate channel-letter signs, flip phones, SUVs at the curb.",
+      "narrative": "An ordinary 2005 American commercial street — channel-letter signs, flip phones, SUVs at the curb.",
       "storefronts": [
-        "local diner with a 'COFFEE $1.25' vinyl decal on the glass",
+        "{DINER_NAME} with a 'COFFEE $1.25' vinyl decal on the glass",
         "barber shop with a spinning barber pole",
         "video rental store with 'EVERYTHING MUST GO' closing banners",
         "cellular phone store with contract posters",

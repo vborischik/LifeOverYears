@@ -35,15 +35,19 @@ public sealed class PromptService : IPromptService
         var peopleCount  = rng.Next(peopleRange.Min, peopleRange.Max + 1);
         var vehicleCount = rng.Next(vehicleRange.Min, vehicleRange.Max + 1);
 
-        var vehicles = PickVehicles(eraProfile, context, vehicleCount, _logger);
+        var vehicles  = PickVehicles(eraProfile, context, vehicleCount, _logger);
+        var placement = context.NextPlacement(vehicles.Count);
 
         var text = template
             .Replace("{PRESERVE_BLOCK}",    BuildPreserveBlock(sceneDna))
             .Replace("{SCENE_BLOCK}",       BuildSceneBlock(eraProfile, sceneContent, sceneType, rng))
             .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, rng))
-            .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year))
+            .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement))
             .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year))
-            .Replace("{STYLE_BLOCK}",       BuildStyleBlock(eraProfile.Photography));
+            .Replace("{STYLE_BLOCK}",       BuildStyleBlock(eraProfile.Photography))
+            // Scene content refers to the recurring diner by token so the same name
+            // persists across every era of a run; resolve it last.
+            .Replace("{DINER_NAME}",        context.DinerName);
 
         return new Prompt(
             Id:               Guid.NewGuid().ToString(),
@@ -67,7 +71,11 @@ public sealed class PromptService : IPromptService
     {
         var sb = new StringBuilder();
         sb.AppendLine("PRESERVE (must match source exactly)");
-        sb.AppendLine($"- camera: {s.Camera.Height}, facing {s.Camera.Direction}, fov {s.Camera.Fov}");
+        // Some SceneDna directions already read "…-facing"; avoid "facing street-facing".
+        var facingClause = s.Camera.Direction.Contains("facing", StringComparison.OrdinalIgnoreCase)
+            ? s.Camera.Direction
+            : $"facing {s.Camera.Direction}";
+        sb.AppendLine($"- camera: {s.Camera.Height}, {facingClause}, fov {s.Camera.Fov}");
         foreach (var r in s.Geometry.Roads)
             sb.AppendLine($"- {r.Type} road, {r.Lanes}-lane, {r.Surface}");
         sb.AppendLine($"- sidewalks {(s.Geometry.Sidewalks ? "present" : "absent")}, curbs {(s.Geometry.Curbs ? "present" : "absent")}");
@@ -194,7 +202,8 @@ public sealed class PromptService : IPromptService
                 sb.AppendLine($"- main sign: an independent station sign in the style of {brands[rng.Next(brands.Count)]}");
         }
 
-        sb.Append($"Typography: {era.Business.Signage.TypographyStyle}.");
+        sb.AppendLine($"Typography: {era.Business.Signage.TypographyStyle}.");
+        sb.Append("Sign text is only what appears in quotes — do not turn other words from this prompt into signage.");
         return sb.ToString();
     }
 
@@ -215,6 +224,7 @@ public sealed class PromptService : IPromptService
         if (era.Photography.ColorMode != "black_and_white")
             sb.Append($" Fashion palette: {Join(fashion.Colors.Take(3).ToList())}.");
         sb.Append(" No posing or eye contact.");
+        sb.Append(" All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.");
         return sb.ToString();
     }
 
@@ -269,14 +279,15 @@ public sealed class PromptService : IPromptService
         return result;
     }
 
-    private static string BuildVehiclesBlock(IReadOnlyList<(string Model, string? Color)> vehicles, int year)
+    private static string BuildVehiclesBlock(IReadOnlyList<(string Model, string? Color)> vehicles, int year, string placement)
     {
         var sb = new StringBuilder();
         sb.AppendLine("VEHICLES");
         sb.AppendLine($"EXACTLY {vehicles.Count} period vehicles, all different:");
         foreach (var (model, color) in vehicles)
             sb.AppendLine(color is null ? $"- {model}" : $"- {model} — {color}");
-        sb.Append($"Parked with gaps; optionally 1 driving; no vehicle newer than {year}.");
+        sb.AppendLine($"Parked with gaps; no vehicle newer than {year}.");
+        sb.Append($"PLACEMENT: {placement}. No vehicle in the same spot as any other era.");
         return sb.ToString();
     }
 
@@ -291,6 +302,7 @@ public sealed class PromptService : IPromptService
         sb.AppendLine("TREES");
         foreach (var tree in scene.Environment.Trees)
             sb.AppendLine($"- {tree.Type} tree at {tree.Position}: {DescribeTreeSize(tree.Size, year)}");
+        sb.Append("Tree sizes MUST follow this specification even where they differ from the source photo.");
         return sb.ToString().TrimEnd();
     }
 
