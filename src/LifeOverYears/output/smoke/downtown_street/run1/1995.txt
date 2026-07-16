@@ -1,0 +1,58 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. Remove all modern
+businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- two-story brick commercial building at left block face, 2 stories
+- single-story retail building at center block face, 1 story
+- corner mixed-use building at right corner, 3 stories
+- immutable elements: cast iron storefront columns on left building, recessed corner entrance on right building, brick alley mid-block
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 1995
+Clinton era prosperity. A 1995 main street — the video rental store at its absolute peak, a computer shop newly arrived, chain logos displacing the last hand-painted signs.
+
+PERIOD DETAILS
+- pizza and sub shop with a '2 SLICES + SODA $2.99' sign in the window
+- the same local diner, sign aging, 'HOT COFFEE 75¢' in the window
+- video rental store at its peak with a big backlit 'VIDEO RENTALS — NEW RELEASES' sign and a 'BE KIND, REWIND' sticker on the door
+Typography: clean geometric sans-serif, early digital influence.
+
+PEOPLE
+EXACTLY 10 people, spread out with empty areas.
+- a businessman talking on a large early cell phone
+- two kids on a bench trading collectible cards
+Clothing: men in baggy jeans, grunge style; women in high-waisted mom jeans, slip dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact.
+
+VEHICLES
+EXACTLY 5 period vehicles, all different:
+- 1995-1999 Chevrolet Cavalier — compact, rounded — hunter green
+- 1995-2004 Toyota Tacoma — compact, rounded — white
+- 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size — burgundy
+- 1992-1996 Ford F-150 — rounded aero body — navy blue
+- 1992-1996 Toyota Camry — rounded, understated — teal
+Parked with gaps; optionally 1 driving; no vehicle newer than 1995.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, turn lane arrows
+- utilities: overhead power lines standard, cable TV and early phone data lines on poles
+
+TREES
+- oak tree at sidewalk left near corner: established tree, modest canopy
+- maple tree at sidewalk center in front of retail: very young sapling
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — Kodak Gold 200 or Fujifilm Superia 200 look.
+Color: neutral to slightly warm tones. Grain: fine grain, cleaner than 1985.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

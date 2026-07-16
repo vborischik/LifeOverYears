@@ -1,0 +1,57 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. Remove all modern
+businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- gas station canopy building at center lot over pump islands, 1 story
+- service station office building at rear right corner, 1 story
+- open service bay building at rear left corner, 1 story
+- immutable elements: canopy with four corner support posts, pump island with eight dispensers, north and south driveway aprons
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 1985
+Reagan era prosperity. A 1985 self-service gas station — digital price sign newly installed, a small convenience store where the second service bay used to be.
+
+PERIOD DETAILS
+- squeegee buckets at islands
+- canopy designs more angular
+- price sign showing gas around $1.12
+Typography: bold geometric sans-serif, early computer-influenced fonts.
+
+PEOPLE
+EXACTLY 6 people, spread out with empty areas.
+- a clerk visible at the register through the store window
+- a driver self-serving at the pump
+Clothing: men in acid wash jeans, shoulder pads in blazers; women in high-waisted jeans, bright neon colors. Fashion palette: neon pink, electric blue, purple. No posing or eye contact.
+
+VEHICLES
+EXACTLY 3 period vehicles, all different:
+- 1982-1992 Chevrolet Camaro — wedge-shaped sporty coupe — silver
+- 1984-1990 Dodge Caravan — first minivan, boxy — white
+- 1984-1987 Toyota Corolla — boxy compact, reliable look — burgundy
+Parked with gaps; optionally 1 driving; no vehicle newer than 1985.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, painted crosswalks
+- utilities: overhead power lines standard, wooden utility poles
+
+TREES
+- cottonwood tree at northeast corner of lot: very young sapling
+- elm tree at sidewalk edge left of entrance: very young sapling
+- cedar tree at back fence line: young tree, thin trunk
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — Kodacolor VR 200 or Fujicolor 100 look.
+Color: slightly cool tones compared to 1970s. Grain: moderate grain, cleaner than 1975.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

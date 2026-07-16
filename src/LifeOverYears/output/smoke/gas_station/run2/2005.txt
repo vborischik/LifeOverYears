@@ -1,0 +1,57 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. Remove all modern
+businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- gas station canopy building at center lot over pump islands, 1 story
+- service station office building at rear right corner, 1 story
+- open service bay building at rear left corner, 1 story
+- immutable elements: canopy with four corner support posts, pump island with eight dispensers, north and south driveway aprons
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 2005
+Post-9/11 era. A 2005 gas station — big multi-island canopy, card readers at every pump, LED price sign, and a convenience store doing most of the business.
+
+PERIOD DETAILS
+- stacked cases of bottled water and charcoal bags outside the store
+- wide multi-island canopy with branded fascia lighting
+- price sign showing gas around $2.30
+Typography: clean corporate sans-serif, polished brand identities.
+
+PEOPLE
+EXACTLY 7 people, spread out with empty areas.
+- a customer walking out with a coffee cup
+- a driver self-serving at the pump
+Clothing: men in baggy jeans, trucker hats; women in trucker hats, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact.
+
+VEHICLES
+EXACTLY 3 period vehicles, all different:
+- 2000-2007 Ford Taurus — rounded, aging fleet-look sedan — gold
+- 2003-2008 Honda Pilot — boxy three-row SUV — white
+- 2004-2008 Ford F-150 — bigger, bolder grille — gray
+Parked with gaps; optionally 1 driving; no vehicle newer than 2005.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, turn arrows
+- utilities: overhead power lines standard, cable and fiber lines on poles appearing
+
+TREES
+- cottonwood tree at northeast corner of lot: young tree, thin trunk
+- elm tree at sidewalk edge left of entrance: very young sapling
+- cedar tree at back fence line: maturing tree
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — early digital camera or Kodak/Fuji consumer film look.
+Color: neutral tones. Grain: low grain, early digital noise in shadows.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

@@ -1,0 +1,58 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. Remove all modern
+businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- two-story brick commercial building at left block face, 2 stories
+- single-story retail building at center block face, 1 story
+- corner mixed-use building at right corner, 3 stories
+- immutable elements: cast iron storefront columns on left building, recessed corner entrance on right building, brick alley mid-block
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 2015
+Smartphone era fully arrived. A 2015 main street mid-revival — the video store replaced by a phone repair shop, third-wave coffee and a vape shop, smartphones in every hand.
+
+PERIOD DETAILS
+- the same diner, retro-styled, with 'COFFEE $2.25' chalked on a menu board
+- vape shop with a bright 'VAPE — E-CIGS' LED window sign
+- craft beer taproom with a hand-drawn chalkboard sidewalk sign
+Typography: minimalist flat sans-serif, simplified modern logos.
+
+PEOPLE
+EXACTLY 11 people, spread out with empty areas.
+- a woman in yoga pants carrying a rolled mat
+- a barista delivering drinks to an outdoor table
+Clothing: men in boat shoes, beards; women in yoga pants and leggings, high-waisted skinny jeans. Fashion palette: coral, mint green, navy. No posing or eye contact.
+
+VEHICLES
+EXACTLY 5 period vehicles, all different:
+- 2016-2023 Toyota Tacoma — aggressive modern mid-size — black
+- 2013-2018 Hyundai Santa Fe — fluidic sculpture styling — blue
+- 2014-2021 Subaru Outback — rugged wagon crossover — pearl white
+- 2014-2018 Chevrolet Silverado — squared modern grille — dark red
+- 2015-2020 Chevrolet Colorado — mid-size pickup revived — gray
+Parked with gaps; optionally 1 driving; no vehicle newer than 2015.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, high-visibility crosswalks
+- utilities: overhead power lines common, undergrounding in new developments, fiber optic lines on poles
+
+TREES
+- oak tree at sidewalk left near corner: mature tree, full canopy
+- maple tree at sidewalk center in front of retail: established tree, modest canopy
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — digital — DSLR or smartphone camera look.
+Color: high saturation. Grain: clean, minimal noise.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

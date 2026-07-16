@@ -1,0 +1,57 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. Remove all modern
+businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- gas station canopy building at center lot over pump islands, 1 story
+- service station office building at rear right corner, 1 story
+- open service bay building at rear left corner, 1 story
+- immutable elements: canopy with four corner support posts, pump island with eight dispensers, north and south driveway aprons
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 1975
+Post-Vietnam, oil crisis era. A full-service neighborhood gas station in 1975 — uniformed attendants pump the gas, check the oil, and wipe the windshield.
+
+PERIOD DETAILS
+- oil-can rack stacked with quart cans beside the pump island
+- tall roadside pole sign in the style of Phillips 66, Texaco, Conoco, Sinclair, or a generic independent brand
+- price sign showing gas around $0.57
+Typography: bold sans-serif, slab serif, occasional script.
+
+PEOPLE
+EXACTLY 4 people, spread out with empty areas.
+- a mechanic leaning under the open hood of a car by the bay
+- a customer paying the attendant cash through the car window
+Clothing: men in polyester suits, turtlenecks; women in midi skirts, peasant blouses. No posing or eye contact.
+
+VEHICLES
+EXACTLY 3 period vehicles, all different:
+- 1973-1980 Chevrolet C10 — square body, chrome bumper
+- 1971-1976 Chevrolet Impala — full-size, chrome rear bumper
+- 1975-1979 Chevrolet Monza — small hatchback, rare but present
+Parked with gaps; optionally 1 driving; no vehicle newer than 1975.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, no rumble strips
+- utilities: overhead power lines everywhere, wooden utility poles standard
+
+TREES
+- cottonwood tree at northeast corner of lot: very young sapling
+- elm tree at sidewalk edge left of entrance: very young sapling
+- cedar tree at back fence line: very young sapling
+
+PHOTOGRAPHIC STYLE
+STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.
+Grain: visible fine grain. Style: documentary, natural light.
+Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.
+
+PRIVACY
+Blur all faces and license plates.

@@ -1,9 +1,4 @@
-IMAGE EDITING TASK — NOT TEXT-TO-IMAGE
-
-CRITICAL: Generate ONE SINGLE continuous photograph. NOT a collage, NOT a grid,
-NOT a triptych, NOT multiple panels, NOT a photo strip, NOT split frames. One
-camera, one moment, one uninterrupted scene filling the entire canvas edge to
-edge.
+One single continuous photograph — no panels, grids, or split frames.
 
 Use the uploaded photo as the exact base composition. Remove all modern
 businesses, logos, brands, storefront names, banners, advertisements, and
@@ -29,5 +24,3 @@ the source geometry.
 
 PRIVACY
 Blur all faces and license plates.
-
-{REJECT_BLOCK}

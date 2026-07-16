@@ -1,0 +1,57 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. Remove all modern
+businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- gas station canopy building at center lot over pump islands, 1 story
+- service station office building at rear right corner, 1 story
+- open service bay building at rear left corner, 1 story
+- immutable elements: canopy with four corner support posts, pump island with eight dispensers, north and south driveway aprons
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 2015
+Smartphone era fully arrived. A 2015 station — LED-lit canopy, digital price sign, video ads playing on every pump screen, and a big convenience store.
+
+PERIOD DETAILS
+- large convenience store with fresh-coffee branding in the windows
+- modern canopy with white LED lighting
+- price sign showing gas around $2.45
+Typography: minimalist flat sans-serif, simplified modern logos.
+
+PEOPLE
+EXACTLY 4 people, spread out with empty areas.
+- a customer watching the pump screen ads while fueling
+- a driver self-serving at the pump
+Clothing: men in skinny jeans, henley shirts; women in high-waisted skinny jeans, statement necklaces. Fashion palette: coral, mint green, navy. No posing or eye contact.
+
+VEHICLES
+EXACTLY 3 period vehicles, all different:
+- 2013-2018 Toyota RAV4 — angular compact crossover — silver
+- 2014-2021 Subaru Outback — rugged wagon crossover — dark red
+- 2015-2020 Ford Edge — mid-size crossover, bold grille — white
+Parked with gaps; optionally 1 driving; no vehicle newer than 2015.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, high-visibility crosswalks
+- utilities: overhead power lines common, undergrounding in new developments, fiber optic lines on poles
+
+TREES
+- cottonwood tree at northeast corner of lot: established tree, modest canopy
+- elm tree at sidewalk edge left of entrance: very young sapling
+- cedar tree at back fence line: mature tree, full canopy
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — digital — DSLR or smartphone camera look.
+Color: high saturation. Grain: clean, minimal noise.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

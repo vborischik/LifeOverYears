@@ -1,0 +1,57 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. Remove all modern
+businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- two-story brick commercial building at left block face, 2 stories
+- single-story retail building at center block face, 1 story
+- corner mixed-use building at right corner, 3 stories
+- immutable elements: cast iron storefront columns on left building, recessed corner entrance on right building, brick alley mid-block
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 1975
+Post-Vietnam, oil crisis era. A working small-town main street in 1975 — locally owned shops with hand-painted and neon signs, a five & dime, and not a single modern chain in sight.
+
+PERIOD DETAILS
+- local diner with a hand-lettered 'HOT COFFEE 25¢' sign in the window
+- hardware store with 'PAINT — GLASS — KEYS' painted on the display window
+- corner drug store with a hand-painted 'REXALL DRUGS' style sign and a small neon 'PRESCRIPTIONS' sign in the window
+Typography: bold sans-serif, slab serif, occasional script.
+
+PEOPLE
+EXACTLY 11 people, spread out with empty areas.
+- an older man reading a folded newspaper on a bench
+- a woman in a midi skirt window-shopping at the five & dime
+Clothing: men in bell bottoms, wide lapels; women in wide leg pants, peasant blouses. No posing or eye contact.
+
+VEHICLES
+EXACTLY 4 period vehicles, all different:
+- 1973-1980 Chevrolet C10 — square body, chrome bumper
+- 1971-1976 Chevrolet Impala — full-size, chrome rear bumper
+- 1975-1979 Chevrolet Monza — small hatchback, rare but present
+- 1971-1976 Plymouth Fury — full-size, vinyl roof common
+Parked with gaps; optionally 1 driving; no vehicle newer than 1975.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, no rumble strips
+- utilities: overhead power lines everywhere, wooden utility poles standard
+
+TREES
+- oak tree at sidewalk left near corner: very young sapling
+- maple tree at sidewalk center in front of retail: very young sapling
+
+PHOTOGRAPHIC STYLE
+STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.
+Grain: visible fine grain. Style: documentary, natural light.
+Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.
+
+PRIVACY
+Blur all faces and license plates.

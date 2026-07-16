@@ -1,0 +1,54 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. Remove all modern
+businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- industrial warehouse building at background, 1 story
+- immutable elements: loading dock on east wall
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 1985
+Reagan era prosperity. An ordinary 1985 American commercial street — bold primary-color signage, boxy cars, the first franchise logos among local shops.
+
+PERIOD DETAILS
+- local diner with a backlit sign and 'HOT COFFEE 45¢' in the window
+- pharmacy with backlit plastic channel letters
+- small video rental shop with a 'VHS RENTALS' backlit sign
+Typography: bold geometric sans-serif, early computer-influenced fonts.
+
+PEOPLE
+EXACTLY 11 people, spread out with empty areas.
+- a businessman in a boxy suit with a briefcase
+- a shopkeeper arranging a sidewalk rack
+Clothing: men in polo shirts with collars up, acid wash jeans; women in big permed hair, high-waisted jeans. Fashion palette: neon pink, electric blue, purple. No posing or eye contact.
+
+VEHICLES
+EXACTLY 4 period vehicles, all different:
+- 1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan — light blue
+- 1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline — beige
+- 1986-1989 Nissan Sentra — small economy boxy sedan — silver
+- 1984-1990 Dodge Caravan — first minivan, boxy — charcoal gray
+Parked with gaps; optionally 1 driving; no vehicle newer than 1985.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, painted crosswalks
+- utilities: overhead power lines standard, wooden utility poles
+
+TREES
+- pine tree at fence line east: very young sapling
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — Kodacolor VR 200 or Fujicolor 100 look.
+Color: slightly cool tones compared to 1970s. Grain: moderate grain, cleaner than 1975.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

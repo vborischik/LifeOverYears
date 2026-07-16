@@ -1,0 +1,58 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. Remove all modern
+businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- gas station canopy building at center lot over pump islands, 1 story
+- service station office building at rear right corner, 1 story
+- open service bay building at rear left corner, 1 story
+- immutable elements: canopy with four corner support posts, pump island with eight dispensers, north and south driveway aprons
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 1995
+Clinton era prosperity. A 1995 self-serve station — wide canopy over multiple islands, attached convenience store, the first pay-at-pump card readers.
+
+PERIOD DETAILS
+- self-service only standard
+- credit card readers at pump beginning
+- price sign showing gas around $1.15
+Typography: clean geometric sans-serif, early digital influence.
+
+PEOPLE
+EXACTLY 7 people, spread out with empty areas.
+- a driver self-serving at the pump
+- a driver checking tire pressure at the air station
+Clothing: men in baggy jeans, flannel shirts; women in floral dresses, chokers. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact.
+
+VEHICLES
+EXACTLY 4 period vehicles, all different:
+- 1994-1997 Honda Accord — smooth rounded sedan — teal
+- 1995-1999 Chevrolet Cavalier — compact, rounded — silver
+- 1995-2004 Toyota Tacoma — compact, rounded — white
+- 1994-2001 Dodge Ram — big rig style grille, bold — navy blue
+Parked with gaps; optionally 1 driving; no vehicle newer than 1995.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, turn lane arrows
+- utilities: overhead power lines standard, cable TV and early phone data lines on poles
+
+TREES
+- cottonwood tree at northeast corner of lot: very young sapling
+- elm tree at sidewalk edge left of entrance: very young sapling
+- cedar tree at back fence line: established tree, modest canopy
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — Kodak Gold 200 or Fujifilm Superia 200 look.
+Color: neutral to slightly warm tones. Grain: fine grain, cleaner than 1985.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

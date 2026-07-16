@@ -42,9 +42,8 @@ public sealed class PromptService : IPromptService
             .Replace("{SCENE_BLOCK}",       BuildSceneBlock(eraProfile, sceneContent, sceneType, rng))
             .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, rng))
             .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year))
-            .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year, rng))
-            .Replace("{STYLE_BLOCK}",       BuildStyleBlock(eraProfile.Photography))
-            .Replace("{REJECT_BLOCK}",      BuildRejectBlock(eraProfile, year, peopleCount, vehicleCount));
+            .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year))
+            .Replace("{STYLE_BLOCK}",       BuildStyleBlock(eraProfile.Photography));
 
         return new Prompt(
             Id:               Guid.NewGuid().ToString(),
@@ -68,58 +67,111 @@ public sealed class PromptService : IPromptService
     {
         var sb = new StringBuilder();
         sb.AppendLine("PRESERVE (must match source exactly)");
-        sb.AppendLine($"- camera: {s.Camera.Height}, facing {s.Camera.Direction}, fov {s.Camera.Fov}");
-        foreach (var r in s.Geometry.Roads)
-            sb.AppendLine($"- {r.Type} road, {r.Lanes}-lane, {r.Surface}");
-        sb.AppendLine($"- sidewalks {(s.Geometry.Sidewalks ? "present" : "absent")}, curbs {(s.Geometry.Curbs ? "present" : "absent")}");
-        sb.AppendLine($"- driveways: {Join(s.Geometry.Driveways)}; parking: {s.Geometry.Parking}");
         foreach (var b in s.Geometry.Buildings)
-            sb.AppendLine($"- {b.Type} building at {b.Position}, {b.Stories} stories, {Join(b.Materials)}, {b.Roof} roof, {b.Setback} setback");
-        sb.AppendLine($"- utilities: {Join(s.Environment.Utilities)}");
-        sb.AppendLine($"- landscape: {Join(s.Environment.Landscape)}");
-        sb.AppendLine($"- immutable elements: {Join(s.ImmutableElements)}");
-        sb.Append("The location must remain instantly recognizable as the same place. Do not redesign, relocate, or reinterpret any structure.");
+            sb.AppendLine($"- {b.Type} building at {b.Position}, {b.Stories} {(b.Stories == 1 ? "story" : "stories")}");
+        var immutable = CleanImmutableElements(s.ImmutableElements);
+        if (immutable.Count > 0)
+            sb.AppendLine($"- immutable elements: {string.Join(", ", immutable)}");
+        sb.Append("Keep this location instantly recognizable.");
         return sb.ToString();
+    }
+
+    // Vision output sometimes embeds its own label ("permanent landmarks: none") inside
+    // an element — strip it so the PRESERVE line carries a single label, and drop
+    // none/empty values entirely.
+    private static List<string> CleanImmutableElements(IReadOnlyList<string> elements)
+    {
+        const string prefix = "permanent landmarks:";
+        return elements
+            .Select(e =>
+            {
+                var v = e.Trim();
+                if (v.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+                    v = v[prefix.Length..].Trim();
+                return v;
+            })
+            .Where(v => v.Length > 0 && !v.Equals("none", StringComparison.OrdinalIgnoreCase))
+            .ToList();
+    }
+
+    // Concepts that overlap between scene_content storefronts and era gas station
+    // characteristics — at most one sampled line per concept.
+    private static readonly string[] DetailConcepts =
+    {
+        "price sign", "service bay", "pump", "canopy", "oil can", "convenience store", "vending", "tire"
+    };
+
+    private static string TruncateToSentences(string text, int maxSentences)
+    {
+        var sentences = text.Split('.', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        if (sentences.Length <= maxSentences)
+            return text;
+        return string.Join(". ", sentences.Take(maxSentences)) + ".";
+    }
+
+    private static string? ConceptOf(string item)
+    {
+        var normalized = item.Replace("-", " ").ToLowerInvariant();
+        return DetailConcepts.FirstOrDefault(normalized.Contains);
     }
 
     private static string BuildSceneBlock(EraProfile era, SceneContent? content, string sceneType, Random rng)
     {
         var sb = new StringBuilder();
         sb.AppendLine($"TRANSFORM TO {era.Year}");
-        sb.AppendLine(content is null ? era.Description : $"{era.Description} {content.Narrative}");
+        var intro = TruncateToSentences(era.Description, 1);
+        sb.AppendLine(content is null ? intro : $"{intro} {content.Narrative}");
         sb.AppendLine();
-        sb.AppendLine("STOREFRONTS & PERIOD SIGNAGE");
+        sb.AppendLine("PERIOD DETAILS");
 
-        if (content is null)
+        var isGasStation = sceneType == "gas_station";
+        var pool = new List<string>();
+        if (content is not null)
+            pool.AddRange(content.Storefronts);
+        else
         {
-            foreach (var item in era.Architecture.Commercial.Characteristics)
-                sb.AppendLine($"- {item}");
-            foreach (var item in era.Business.Signage.Characteristics)
-                sb.AppendLine($"- {item}");
+            pool.AddRange(era.Architecture.Commercial.Characteristics);
+            pool.AddRange(era.Business.Signage.Characteristics);
+        }
+        if (isGasStation)
+            pool.AddRange(era.Architecture.GasStations.Characteristics);
+
+        var usedConcepts = new HashSet<string>();
+        var picks        = new List<string>();
+        var target       = 3;
+
+        // The fuel price line below is the gas station's price anchor.
+        if (isGasStation)
+        {
+            usedConcepts.Add("price sign");
+            target--;
         }
         else
         {
-            foreach (var item in Sample(content.Storefronts, rng.Next(3, 6), rng))
-                sb.AppendLine($"- {item}");
-            foreach (var item in Sample(content.WindowSigns, rng.Next(2, 4), rng))
-                sb.AppendLine($"- window sign: \"{item}\"");
-            foreach (var item in content.Extras)
-                sb.AppendLine($"- {item}");
+            // Always anchor the era with a period price where the pool offers one.
+            foreach (var item in pool.Where(i => i.Contains('¢') || i.Contains('$')).Take(2))
+            {
+                picks.Add(item);
+                var concept = ConceptOf(item);
+                if (concept is not null) usedConcepts.Add(concept);
+            }
         }
 
-        sb.AppendLine($"Signage typography: {era.Business.Signage.TypographyStyle}.");
-        sb.Append("Only include as many businesses as naturally fit the actual building frontage in the source. All signage modest and local in scale, not cluttered.");
-
-        if (sceneType == "gas_station")
+        foreach (var item in Sample(pool, pool.Count, rng))
         {
-            sb.AppendLine();
-            sb.AppendLine();
-            sb.AppendLine("GAS STATION DETAILS");
-            foreach (var item in era.Architecture.GasStations.Characteristics)
-                sb.AppendLine($"- {item}");
-            sb.Append($"- price sign showing gas around {era.Transportation.Fuel.AveragePricePerGallon}");
+            if (picks.Count >= target) break;
+            if (picks.Contains(item)) continue;
+            var concept = ConceptOf(item);
+            if (concept is not null && !usedConcepts.Add(concept)) continue;
+            picks.Add(item);
         }
 
+        foreach (var item in picks)
+            sb.AppendLine($"- {item}");
+        if (isGasStation)
+            sb.AppendLine($"- price sign showing gas around {era.Transportation.Fuel.AveragePricePerGallon}");
+
+        sb.Append($"Typography: {era.Business.Signage.TypographyStyle}.");
         return sb.ToString();
     }
 
@@ -127,21 +179,23 @@ public sealed class PromptService : IPromptService
     {
         var sb = new StringBuilder();
         sb.AppendLine("PEOPLE");
-        sb.AppendLine($"EXACTLY {peopleCount} people TOTAL in the entire frame, no more. Distributed naturally with clear open space between groups; parts of the scene remain OPEN and empty — emptiness is natural and required.");
+        sb.AppendLine($"EXACTLY {peopleCount} people, spread out with empty areas.");
 
         if (content is not null)
-            foreach (var activity in Sample(content.PeopleActivities, rng.Next(4, 7), rng))
+            foreach (var activity in Sample(content.PeopleActivities, 2, rng))
                 sb.AppendLine($"- {activity}");
 
         var fashion = era.Society.Fashion;
-        var men     = Sample(fashion.Men, 3, rng);
-        var women   = Sample(fashion.Women, 3, rng);
-        sb.AppendLine($"Clothing: men in {string.Join(", ", men)}; women in {string.Join(", ", women)}. Fashion palette: {Join(fashion.Colors)}.");
-        sb.Append("No posing, no eye contact with camera.");
+        var men     = Sample(fashion.Men, 2, rng);
+        var women   = Sample(fashion.Women, 2, rng);
+        sb.Append($"Clothing: men in {string.Join(", ", men)}; women in {string.Join(", ", women)}.");
+        if (era.Photography.ColorMode != "black_and_white")
+            sb.Append($" Fashion palette: {Join(fashion.Colors.Take(3).ToList())}.");
+        sb.Append(" No posing or eye contact.");
         return sb.ToString();
     }
 
-    private static List<(string Model, string Color)> PickVehicles(
+    private static List<(string Model, string? Color)> PickVehicles(
         EraProfile era, GenerationContext context, int vehicleCount, ILogger logger)
     {
         var cars     = era.Transportation.Cars;
@@ -156,58 +210,77 @@ public sealed class PromptService : IPromptService
             pool = pool.Concat(fullPool.Except(pool)).ToList();
         }
 
-        var rng    = context.Random;
-        var picks  = Sample(pool, vehicleCount, rng);
-        var result = new List<(string, string)>();
+        var rng        = context.Random;
+        var picks      = Sample(pool, vehicleCount, rng);
+        var monochrome = era.Photography.ColorMode == "black_and_white";
+        var usedColors = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var result     = new List<(string, string?)>();
         foreach (var model in picks)
         {
             context.UsedCarModels.Add(model);
-            var color = cars.Colors.Count > 0
-                ? cars.Colors[rng.Next(cars.Colors.Count)]
-                : "period-correct color";
+            string? color = null;
+            if (!monochrome)
+            {
+                var available = cars.Colors.Where(c => !usedColors.Contains(c)).ToList();
+                color = available.Count > 0
+                    ? available[rng.Next(available.Count)]
+                    : "period-correct color";
+                usedColors.Add(color);
+            }
             result.Add((model, color));
         }
         return result;
     }
 
-    private static string BuildVehiclesBlock(IReadOnlyList<(string Model, string Color)> vehicles, int year)
+    private static string BuildVehiclesBlock(IReadOnlyList<(string Model, string? Color)> vehicles, int year)
     {
         var sb = new StringBuilder();
         sb.AppendLine("VEHICLES");
-        sb.AppendLine($"EXACTLY {vehicles.Count} period vehicles total, each a DIFFERENT make/model:");
+        sb.AppendLine($"EXACTLY {vehicles.Count} period vehicles, all different:");
         foreach (var (model, color) in vehicles)
-            sb.AppendLine($"- {model} — {color}");
-        sb.Append($"Parked along the curb with EMPTY spaces between some of them — not wall-to-wall cars; optionally 1 vehicle driving; no vehicle newer than {year}; these exact models only.");
+            sb.AppendLine(color is null ? $"- {model}" : $"- {model} — {color}");
+        sb.Append($"Parked with gaps; optionally 1 driving; no vehicle newer than {year}.");
         return sb.ToString();
     }
 
-    private static string BuildEnvironmentBlock(SceneDna scene, EraProfile era, int year, Random rng)
+    private static string BuildEnvironmentBlock(SceneDna scene, EraProfile era, int year)
     {
         var infra = era.Infrastructure;
         var sb = new StringBuilder();
-        sb.AppendLine("ENVIRONMENT & STREET DETAIL");
-        sb.AppendLine($"- road markings: {Join(infra.Roads.Markings)}");
-        sb.AppendLine($"- road materials: {Join(infra.Roads.Materials)}");
-        foreach (var item in Sample(infra.StreetFurniture.Items, rng.Next(3, 5), rng))
-            sb.AppendLine($"- {item}");
-        sb.AppendLine($"- utilities: {Join(infra.Utilities.Characteristics)}");
-        sb.AppendLine($"- lighting: street — {era.Environment.Lighting.StreetLights}; commercial — {era.Environment.Lighting.Commercial}; signs — {era.Environment.Lighting.Signs}");
-        sb.AppendLine($"- vegetation: {Join(era.Environment.Vegetation.Characteristics)}");
+        sb.AppendLine("ENVIRONMENT");
+        sb.AppendLine($"- road markings: {Join(infra.Roads.Markings.Take(3).ToList())}");
+        sb.AppendLine($"- utilities: {Join(infra.Utilities.Characteristics.Take(2).ToList())}");
         sb.AppendLine();
         sb.AppendLine("TREES");
         foreach (var tree in scene.Environment.Trees)
-            sb.AppendLine($"- {tree.Type} tree at {tree.Position}: {DescribeTreeSize(year)}");
+            sb.AppendLine($"- {tree.Type} tree at {tree.Position}: {DescribeTreeSize(tree.Size, year)}");
         return sb.ToString().TrimEnd();
     }
 
-    private static string DescribeTreeSize(int year) => (2025 - year) switch
+    private static readonly string[] TreeLadder =
     {
-        >= 40 => "very young sapling, recently planted",
-        >= 30 => "young and small",
-        >= 20 => "noticeably smaller and slimmer than in the source photo",
-        >= 10 => "slightly smaller than in the source photo",
-        _     => "same size as in the source photo"
+        "very young sapling",
+        "young tree, thin trunk",
+        "established tree, modest canopy",
+        "maturing tree",
+        "mature tree, full canopy",
+        "mature tree, large canopy"
     };
+
+    // Sizes scale relative to the size recorded in SceneDna: a tree that is already
+    // young in the 2025 source stays small in every earlier era.
+    private static string DescribeTreeSize(string size, int year)
+    {
+        var sourceIndex = size.ToLowerInvariant() switch
+        {
+            "large"  => 5,
+            "medium" => 3,
+            "small"  => 1,
+            _        => 3
+        };
+        var stepsBack = (2025 - year) / 10;
+        return TreeLadder[Math.Max(0, sourceIndex - stepsBack)];
+    }
 
     private static string BuildStyleBlock(Photography photo)
     {
@@ -215,35 +288,27 @@ public sealed class PromptService : IPromptService
         sb.AppendLine("PHOTOGRAPHIC STYLE");
         if (photo.ColorMode == "black_and_white")
         {
-            sb.AppendLine("STRICTLY BLACK AND WHITE — a true monochrome archival photograph, zero color anywhere in the image.");
-            sb.AppendLine($"Grain: {photo.Grain}. Style: {photo.Style}.");
-            sb.Append("Photorealistic, like a preserved frame from a local newspaper's photo archive; slight softness typical of period lenses — not digitally sharp.");
+            sb.AppendLine("STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.");
+            sb.AppendLine($"Grain: {photo.Grain}. Style: {StripSaturationWording(photo.Style)}.");
+            sb.Append("Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.");
         }
         else
         {
-            sb.AppendLine($"COLOR photograph — styled as if shot on {photo.FilmStock}.");
-            sb.AppendLine($"Color: {Join(photo.ColorCharacteristics)}. Grain: {photo.Grain}. Style: {photo.Style}.");
-            sb.Append("Photorealistic — NOT black-and-white, NOT digitally clean, no HDR.");
+            sb.AppendLine($"COLOR photograph — {photo.FilmStock} look.");
+            sb.AppendLine($"Color: {Join(photo.ColorCharacteristics.Take(1).ToList())}. Grain: {photo.Grain}.");
+            sb.Append("Photorealistic — NOT black-and-white, no HDR.");
         }
         return sb.ToString();
     }
 
-    private static string BuildRejectBlock(EraProfile era, int year, int peopleCount, int vehicleCount)
+    // A monochrome prompt must never mention saturation — image models take it as a
+    // color-grading hint and drift back into color.
+    private static string StripSaturationWording(string style)
     {
-        var colorRule = era.Photography.ColorMode == "black_and_white"
-            ? "any color in the image;"
-            : "black-and-white rendering;";
-
-        var absent = era.Transportation.Cars.Absent.Take(3)
-            .Concat(era.Business.AbsentBrands.Take(3))
-            .Select(item => $"no {item}");
-
-        return $"REJECT IF: the output is a collage, grid, triptych, photo strip, split panels, " +
-               $"or contains ANY visible frame divisions; " +
-               $"more than {peopleCount} people; more than {vehicleCount} vehicles; " +
-               $"any vehicle newer than {year} or not from the listed models; " +
-               $"altered building footprint, roofline, or street alignment; {colorRule} " +
-               $"modern signage, vehicles, or clothing; {string.Join("; ", absent)}.";
+        var parts = style.Split(',')
+            .Select(p => p.Trim())
+            .Where(p => p.Length > 0 && !p.Contains("saturat", StringComparison.OrdinalIgnoreCase));
+        return string.Join(", ", parts);
     }
 
     private static List<string> Sample(IEnumerable<string> pool, int count, Random rng) =>

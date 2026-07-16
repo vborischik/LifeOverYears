@@ -1,0 +1,57 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. Remove all modern
+businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- gas station canopy building at center lot over pump islands, 1 story
+- service station office building at rear right corner, 1 story
+- open service bay building at rear left corner, 1 story
+- immutable elements: canopy with four corner support posts, pump island with eight dispensers, north and south driveway aprons
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 2025
+Post-pandemic era. A 2025 fuel stop — LED canopy, full-color digital price sign, EV chargers beside the pumps, and a convenience store selling fresh food.
+
+PERIOD DETAILS
+- free air and vacuum station at the lot edge
+- EV charging stalls added alongside pumps
+- price sign showing gas around $3.40
+Typography: minimalist geometric sans-serif, heavily simplified flat logos.
+
+PEOPLE
+EXACTLY 7 people, spread out with empty areas.
+- an EV owner plugged in at the charging stall, looking at a phone
+- a driver watching the ad screen while fueling
+Clothing: men in wide-leg pants, chunky sneakers; women in athleisure, chunky dad sneakers. Fashion palette: sage green, beige, cream. No posing or eye contact.
+
+VEHICLES
+EXACTLY 3 period vehicles, all different:
+- 2021-2025 Ford F-150 — full-width LED bar, bold — white
+- 2022-2025 Ford F-150 Lightning — electric pickup, light bar front — matte finishes appearing
+- 2020-2025 Tesla Model 3 — minimalist, no grille, flush handles — silver
+Parked with gaps; optionally 1 driving; no vehicle newer than 2025.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, high-visibility crosswalks
+- utilities: overhead lines in older areas, underground in new developments, fiber optic widespread
+
+TREES
+- cottonwood tree at northeast corner of lot: maturing tree
+- elm tree at sidewalk edge left of entrance: young tree, thin trunk
+- cedar tree at back fence line: mature tree, large canopy
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — digital — smartphone or mirrorless camera look.
+Color: high saturation. Grain: very clean, minimal to no noise.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

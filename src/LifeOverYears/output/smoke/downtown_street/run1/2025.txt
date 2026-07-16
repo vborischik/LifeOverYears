@@ -1,0 +1,59 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. Remove all modern
+businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- two-story brick commercial building at left block face, 2 stories
+- single-story retail building at center block face, 1 story
+- corner mixed-use building at right corner, 3 stories
+- immutable elements: cast iron storefront columns on left building, recessed corner entrance on right building, brick alley mid-block
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 2025
+Post-pandemic era. A 2025 main street — minimalist flat-logo storefronts, QR codes on the glass, EVs at the curb, delivery culture in plain view.
+
+PERIOD DETAILS
+- the same diner, still going, 'COFFEE $3.50' shown on a small digital menu screen in the window
+- plant and gift shop with a hand-lettered kraft-paper window display
+- boba tea shop with pastel minimalist branding and a QR-code ordering decal
+Typography: minimalist geometric sans-serif, heavily simplified flat logos.
+
+PEOPLE
+EXACTLY 11 people, spread out with empty areas.
+- several people looking at smartphones as they walk
+- sidewalk diners in a parklet dining structure
+Clothing: men in wide-leg pants, oversized fit tees; women in athleisure, crop tops. Fashion palette: sage green, beige, cream. No posing or eye contact.
+
+VEHICLES
+EXACTLY 6 period vehicles, all different:
+- 2021-2025 Ford F-150 — full-width LED bar, bold — black
+- 2024-2025 Tesla Cybertruck — angular stainless steel, unmistakable — matte finishes appearing
+- 2022-2025 Ford F-150 Lightning — electric pickup, light bar front — dark green
+- 2021-2025 Ford Bronco — retro boxy off-roader — blue
+- 2023-2025 Honda Accord — clean minimalist refresh — white
+- 2022-2025 Chevrolet Silverado — refreshed bold grille — gray
+Parked with gaps; optionally 1 driving; no vehicle newer than 2025.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, high-visibility crosswalks
+- utilities: overhead lines in older areas, underground in new developments, fiber optic widespread
+
+TREES
+- oak tree at sidewalk left near corner: mature tree, large canopy
+- maple tree at sidewalk center in front of retail: maturing tree
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — digital — smartphone or mirrorless camera look.
+Color: high saturation. Grain: very clean, minimal to no noise.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

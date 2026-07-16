@@ -1,0 +1,57 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. Remove all modern
+businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- two-story brick commercial building at left block face, 2 stories
+- single-story retail building at center block face, 1 story
+- corner mixed-use building at right corner, 3 stories
+- immutable elements: cast iron storefront columns on left building, recessed corner entrance on right building, brick alley mid-block
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 1975
+Post-Vietnam, oil crisis era. A working small-town main street in 1975 — locally owned shops with hand-painted and neon signs, a five & dime, and not a single modern chain in sight.
+
+PERIOD DETAILS
+- local diner with a hand-lettered 'HOT COFFEE 25¢' sign in the window
+- women's dress shop with gold-leaf window lettering
+- appliance store window displaying console televisions with a 'COLOR TV' placard
+Typography: bold sans-serif, slab serif, occasional script.
+
+PEOPLE
+EXACTLY 14 people, spread out with empty areas.
+- a mother holding a child's hand walking past the drug store
+- a delivery man carrying stacked boxes into a storefront
+Clothing: men in turtlenecks, wide lapels; women in peasant blouses, midi skirts. No posing or eye contact.
+
+VEHICLES
+EXACTLY 4 period vehicles, all different:
+- 1973-1977 Chevrolet Caprice Classic — full-size, chrome bumpers, vinyl roof
+- 1974-1978 Dodge Monaco — large chrome grille, two-tone paint
+- 1970-1977 Ford Maverick — compact, simple lines
+- 1973-1977 Pontiac Catalina — full-size, chrome trim heavy
+Parked with gaps; optionally 1 driving; no vehicle newer than 1975.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, no rumble strips
+- utilities: overhead power lines everywhere, wooden utility poles standard
+
+TREES
+- oak tree at sidewalk left near corner: very young sapling
+- maple tree at sidewalk center in front of retail: very young sapling
+
+PHOTOGRAPHIC STYLE
+STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.
+Grain: visible fine grain. Style: documentary, natural light.
+Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.
+
+PRIVACY
+Blur all faces and license plates.

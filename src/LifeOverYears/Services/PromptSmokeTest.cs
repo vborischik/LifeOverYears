@@ -18,7 +18,7 @@ public static class PromptSmokeTest
     private static readonly string[] Placeholders =
     {
         "{YEAR}", "{PRESERVE_BLOCK}", "{SCENE_BLOCK}", "{PEOPLE_BLOCK}",
-        "{VEHICLES_BLOCK}", "{ENVIRONMENT_BLOCK}", "{STYLE_BLOCK}", "{REJECT_BLOCK}"
+        "{VEHICLES_BLOCK}", "{ENVIRONMENT_BLOCK}", "{STYLE_BLOCK}"
     };
 
     // Expected coffee-price substring in downtown_street storefronts per era (C8)
@@ -83,6 +83,9 @@ public static class PromptSmokeTest
         DoC8 (gasRun1, gasRun2, dtRun1, dtRun2, eras,         findings);
         DoC9 (gasRun1, gasScene, dtRun1, downtownScene,       findings);
         DoC10(gasRun1, gasRun2, dtRun1, dtRun2,               findings);
+        DoC11(gasRun1, gasRun2, dtRun1, dtRun2, unknownPrompt, findings);
+        DoC12(gasRun1, gasRun2, dtRun1, dtRun2, eras,         findings);
+        DoC13(gasRun1, gasRun2, dtRun1, dtRun2, eras,         findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -381,7 +384,7 @@ public static class PromptSmokeTest
                 if (actual < sc.Vehicles.Min || actual > sc.Vehicles.Max)
                     errs.Add($"{label}/{year}: count={actual} outside [{sc.Vehicles.Min},{sc.Vehicles.Max}]");
 
-                int linesInText = prompt.SelectedVehicles.Count(m => prompt.Text.Contains($"- {m} —"));
+                int linesInText = prompt.SelectedVehicles.Count(m => prompt.Text.Contains($"- {m}"));
                 if (linesInText != actual)
                     errs.Add($"{label}/{year}: VEHICLES section has {linesInText} model lines, SelectedVehicles.Count={actual}");
             }
@@ -444,10 +447,10 @@ public static class PromptSmokeTest
         {
             if (!run[1975].Text.Contains("very young sapling"))
                 errs.Add($"{label}/1975: missing 'very young sapling'");
-            if (!run[2005].Text.Contains("noticeably smaller") && !run[2005].Text.Contains("slightly smaller"))
-                errs.Add($"{label}/2005: missing 'noticeably smaller' or 'slightly smaller'");
-            if (!run[2025].Text.Contains("same size as in the source photo"))
-                errs.Add($"{label}/2025: missing 'same size as in the source photo'");
+            if (!run[2005].Text.Contains("maturing tree"))
+                errs.Add($"{label}/2005: missing 'maturing tree'");
+            if (!run[2025].Text.Contains("mature tree, large canopy"))
+                errs.Add($"{label}/2025: missing 'mature tree, large canopy'");
         }
 
         CheckLadder(gasRun1, "gas_station/run1");
@@ -463,7 +466,29 @@ public static class PromptSmokeTest
                         errs.Add($"{label}/{year}: missing tree '{expected}'");
         }
 
-        f.Add(("C6", "Tree size ladder (1975/2005/2025) and tree position+species in all prompts",
+        // A mature (large) source tree must render a distinct size label in all six eras
+        var matureTree = scene.Environment.Trees.FirstOrDefault(t =>
+            t.Size.Equals("large", StringComparison.OrdinalIgnoreCase));
+        if (matureTree is not null)
+        {
+            var linePrefix = $"- {matureTree.Type} tree at {matureTree.Position}: ";
+            foreach (var (run, label) in new[] { (gasRun1, "gas_station/run1"), (gasRun2, "gas_station/run2") })
+            {
+                var labels = new List<string>();
+                foreach (var (year, prompt) in run)
+                {
+                    var line = prompt.Text.Split('\n').FirstOrDefault(l => l.StartsWith(linePrefix));
+                    if (line is null)
+                        errs.Add($"{label}/{year}: no size label line for mature tree '{matureTree.Type}'");
+                    else
+                        labels.Add(line[linePrefix.Length..].Trim());
+                }
+                if (labels.Distinct().Count() != labels.Count)
+                    errs.Add($"{label}: mature tree size labels not distinct across years: {string.Join(" | ", labels)}");
+            }
+        }
+
+        f.Add(("C6", "Tree size ladder (distinct per era for mature trees, size-relative) and tree position+species in all prompts",
             errs.Count == 0, errs.Count == 0 ? "Tree ladder and positions correct" : Join(errs)));
     }
 
@@ -478,8 +503,6 @@ public static class PromptSmokeTest
         {
             if (!run[1975].Text.Contains("STRICTLY BLACK AND WHITE"))
                 errs.Add($"{label}/1975: missing 'STRICTLY BLACK AND WHITE'");
-            if (!run[1975].Text.Contains("any color in the image"))
-                errs.Add($"{label}/1975 REJECT: missing 'any color in the image'");
 
             foreach (var year in Years.Where(y => y != 1975))
             {
@@ -487,8 +510,6 @@ public static class PromptSmokeTest
                     errs.Add($"{label}/{year}: missing 'COLOR photograph'");
                 if (run[year].Text.Contains("STRICTLY BLACK AND WHITE"))
                     errs.Add($"{label}/{year}: unexpected 'STRICTLY BLACK AND WHITE'");
-                if (!run[year].Text.Contains("black-and-white rendering"))
-                    errs.Add($"{label}/{year} REJECT: missing 'black-and-white rendering'");
             }
         }
 
@@ -497,7 +518,7 @@ public static class PromptSmokeTest
         Check(dtRun1,  "downtown_street/run1");
         Check(dtRun2,  "downtown_street/run2");
 
-        f.Add(("C7", "1975=B&W (STRICTLY BLACK AND WHITE / any color); 1985-2025=COLOR photograph / black-and-white rendering",
+        f.Add(("C7", "1975=B&W (STRICTLY BLACK AND WHITE); 1985-2025=COLOR photograph",
             errs.Count == 0, errs.Count == 0 ? "Color mode correct in all prompts" : Join(errs)));
     }
 
@@ -585,6 +606,111 @@ public static class PromptSmokeTest
 
         f.Add(("C10", "No TEXT OVERLAY section remains; year still anchors the VEHICLES block",
             errs.Count == 0, errs.Count == 0 ? "Overlay removed and vehicle year anchors correct" : Join(errs)));
+    }
+
+    private static void DoC11(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Prompt unknownPrompt,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+        var all  = new[]
+        {
+            (gasRun1, "gas/run1"), (gasRun2, "gas/run2"),
+            (dtRun1, "downtown/run1"), (dtRun2, "downtown/run2")
+        };
+
+        int WordCount(string text) =>
+            text.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries).Length;
+
+        foreach (var (run, label) in all)
+            foreach (var (year, prompt) in run)
+            {
+                int words = WordCount(prompt.Text);
+                if (words >= 500)
+                    errs.Add($"{label}/{year}: {words} words (limit 500)");
+            }
+        int unknownWords = WordCount(unknownPrompt.Text);
+        if (unknownWords >= 500)
+            errs.Add($"unknown/1985: {unknownWords} words (limit 500)");
+
+        f.Add(("C11", "Every prompt is under 500 words",
+            errs.Count == 0, errs.Count == 0 ? "All prompts under 500 words" : Join(errs)));
+    }
+
+    private static void DoC12(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Dictionary<int, EraProfile> eras,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+        var runs = new[]
+        {
+            (gasRun1, "gas/run1"), (gasRun2, "gas/run2"),
+            (dtRun1, "downtown/run1"), (dtRun2, "downtown/run2")
+        };
+
+        foreach (var (year, era) in eras.Where(e => e.Value.Photography.ColorMode == "black_and_white"))
+        {
+            foreach (var (run, label) in runs)
+            {
+                var text = run[year].Text;
+                foreach (var color in era.Transportation.Cars.Colors)
+                    if (System.Text.RegularExpressions.Regex.IsMatch(
+                            text, $@"\b{System.Text.RegularExpressions.Regex.Escape(color)}\b",
+                            System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                        errs.Add($"{label}/{year}: vehicle color '{color}' present in B&W prompt");
+                if (text.Contains("Fashion palette"))
+                    errs.Add($"{label}/{year}: 'Fashion palette' present in B&W prompt");
+                if (text.Contains("desaturated", StringComparison.OrdinalIgnoreCase))
+                    errs.Add($"{label}/{year}: 'desaturated' present in B&W prompt");
+            }
+        }
+
+        f.Add(("C12", "B&W prompts contain no vehicle pool colors, no 'Fashion palette', no 'desaturated'",
+            errs.Count == 0, errs.Count == 0 ? "B&W prompts are color-free" : Join(errs)));
+    }
+
+    private static void DoC13(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Dictionary<int, EraProfile> eras,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+        var runs = new[]
+        {
+            (gasRun1, "gas/run1"), (gasRun2, "gas/run2"),
+            (dtRun1, "downtown/run1"), (dtRun2, "downtown/run2")
+        };
+
+        foreach (var (run, label) in runs)
+            foreach (var (year, prompt) in run)
+            {
+                if (eras[year].Photography.ColorMode == "black_and_white") continue;
+
+                var colors = new List<string>();
+                foreach (var model in prompt.SelectedVehicles)
+                {
+                    var prefix = $"- {model} — ";
+                    var line   = prompt.Text.Split('\n').FirstOrDefault(l => l.StartsWith(prefix));
+                    if (line is null)
+                    {
+                        errs.Add($"{label}/{year}: no color assigned for '{model}'");
+                        continue;
+                    }
+                    colors.Add(line[prefix.Length..].Trim());
+                }
+                var dupes = colors.GroupBy(c => c, StringComparer.OrdinalIgnoreCase)
+                                  .Where(g => g.Count() > 1).Select(g => g.Key).ToList();
+                if (dupes.Any())
+                    errs.Add($"{label}/{year}: duplicate vehicle colors: {string.Join(", ", dupes)}");
+            }
+
+        f.Add(("C13", "Color eras: every vehicle has a color and no color repeats within one prompt",
+            errs.Count == 0, errs.Count == 0 ? "All vehicle colors unique per prompt" : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────
