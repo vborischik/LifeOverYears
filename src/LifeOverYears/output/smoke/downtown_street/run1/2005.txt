@@ -5,9 +5,15 @@ businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- two-story brick commercial building at left block face, 2 stories
-- single-story retail building at center block face, 1 story
-- corner mixed-use building at right corner, 3 stories
+- camera: eye-level, facing street-facing, fov 80
+- main street road, 2-lane, asphalt
+- sidewalks present, curbs present
+- driveways: alley entrance mid-block; parking: parallel street parking both sides
+- two-story brick commercial building at left block face, 2 stories, red brick, cast iron storefront columns, flat parapet roof, at sidewalk setback
+- single-story retail building at center block face, 1 story, brick, plate glass storefront, flat with low parapet roof, at sidewalk setback
+- corner mixed-use building at right corner, 3 stories, brick, stone trim cornice, flat roof, at sidewalk setback
+- utilities: overhead power and telephone lines, wooden utility poles every 50 feet
+- landscape: concrete sidewalks, brick pavers at crosswalks, small planted tree pits
 - immutable elements: cast iron storefront columns on left building, recessed corner entrance on right building, brick alley mid-block
 Keep this location instantly recognizable.
 
@@ -23,23 +29,21 @@ Post-9/11 era. A 2005 main street — cellular stores and chain coffee arriving,
 PERIOD DETAILS
 - the video rental store closing down — 'EVERYTHING MUST GO — ALL MOVIES $3' banner across the window
 - the same diner with a refreshed awning and a 'COFFEE $1.25' vinyl decal on the glass
-- cellular phone store with 'FREE PHONE WITH 2-YEAR PLAN' posters
+- espresso cafe with a chalkboard menu and a round-logo awning
 Typography: clean corporate sans-serif, polished brand identities.
 
 PEOPLE
-EXACTLY 11 people, spread out with empty areas.
-- a man loading a flat-screen TV box into an SUV
+EXACTLY 14 people, spread out with empty areas.
+- a man in cargo shorts and a trucker hat carrying shopping bags
 - a mother pushing a jogging stroller
-Clothing: men in baggy jeans, frosted tips hair; women in trucker hats, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact.
+Clothing: men in cargo shorts, trucker hats; women in low-rise jeans, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact.
 
 VEHICLES
-EXACTLY 6 period vehicles, all different:
-- 2002-2006 Toyota Camry — smooth conservative mid-size — gold
-- 2004-2008 Ford F-150 — bigger, bolder grille — gray
-- 2003-2007 Honda Accord — clean lines, sharper than 1990s — silver
-- 2005-2010 Jeep Grand Cherokee — rounded modern SUV — dark red
-- 2004-2008 Pontiac Grand Prix — sporty sedan plastic cladding — black
-- 1999-2006 Chevrolet Silverado — squared modern look — white
+EXACTLY 4 period vehicles, all different:
+- 2002-2006 Toyota Camry — smooth conservative mid-size — dark red
+- 2000-2007 Ford Taurus — rounded, aging fleet-look sedan — gold
+- 2002-2009 Chevrolet TrailBlazer — mid-size SUV boxy — dark blue
+- 2004-2008 Pontiac Grand Prix — sporty sedan plastic cladding — gray
 Parked with gaps; optionally 1 driving; no vehicle newer than 2005.
 
 ENVIRONMENT

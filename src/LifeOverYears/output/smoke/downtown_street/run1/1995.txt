@@ -5,9 +5,15 @@ businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- two-story brick commercial building at left block face, 2 stories
-- single-story retail building at center block face, 1 story
-- corner mixed-use building at right corner, 3 stories
+- camera: eye-level, facing street-facing, fov 80
+- main street road, 2-lane, asphalt
+- sidewalks present, curbs present
+- driveways: alley entrance mid-block; parking: parallel street parking both sides
+- two-story brick commercial building at left block face, 2 stories, red brick, cast iron storefront columns, flat parapet roof, at sidewalk setback
+- single-story retail building at center block face, 1 story, brick, plate glass storefront, flat with low parapet roof, at sidewalk setback
+- corner mixed-use building at right corner, 3 stories, brick, stone trim cornice, flat roof, at sidewalk setback
+- utilities: overhead power and telephone lines, wooden utility poles every 50 feet
+- landscape: concrete sidewalks, brick pavers at crosswalks, small planted tree pits
 - immutable elements: cast iron storefront columns on left building, recessed corner entrance on right building, brick alley mid-block
 Keep this location instantly recognizable.
 
@@ -23,22 +29,23 @@ Clinton era prosperity. A 1995 main street — the video rental store at its abs
 PERIOD DETAILS
 - pizza and sub shop with a '2 SLICES + SODA $2.99' sign in the window
 - the same local diner, sign aging, 'HOT COFFEE 75¢' in the window
-- video rental store at its peak with a big backlit 'VIDEO RENTALS — NEW RELEASES' sign and a 'BE KIND, REWIND' sticker on the door
+- music store with a 'CDs — CASSETTES' channel-letter sign
 Typography: clean geometric sans-serif, early digital influence.
 
 PEOPLE
-EXACTLY 10 people, spread out with empty areas.
+EXACTLY 14 people, spread out with empty areas.
+- a woman talking on the wall-mounted payphone
 - a businessman talking on a large early cell phone
-- two kids on a bench trading collectible cards
-Clothing: men in baggy jeans, grunge style; women in high-waisted mom jeans, slip dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact.
+Clothing: men in flannel shirts, grunge style; women in high-waisted mom jeans, chokers. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact.
 
 VEHICLES
-EXACTLY 5 period vehicles, all different:
-- 1995-1999 Chevrolet Cavalier — compact, rounded — hunter green
-- 1995-2004 Toyota Tacoma — compact, rounded — white
-- 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size — burgundy
-- 1992-1996 Ford F-150 — rounded aero body — navy blue
-- 1992-1996 Toyota Camry — rounded, understated — teal
+EXACTLY 6 period vehicles, all different:
+- 1993-2002 Pontiac Firebird — sleek pointed sports coupe — navy blue
+- 1993-1998 Jeep Grand Cherokee — early SUV, boxy-rounded — teal
+- 1994-2001 Dodge Ram — big rig style grille, bold — black
+- 1995-2004 Toyota Tacoma — compact, rounded — silver
+- 1991-1996 Buick Roadmaster — large rounded wagon and sedan — hunter green
+- 1992-1996 Ford F-150 — rounded aero body — white
 Parked with gaps; optionally 1 driving; no vehicle newer than 1995.
 
 ENVIRONMENT

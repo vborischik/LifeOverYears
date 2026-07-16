@@ -5,9 +5,15 @@ businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- gas station canopy building at center lot over pump islands, 1 story
-- service station office building at rear right corner, 1 story
-- open service bay building at rear left corner, 1 story
+- camera: eye-level, facing street-facing, fov 75
+- commercial arterial road, 4-lane, asphalt
+- sidewalks present, curbs present
+- driveways: north driveway apron, south driveway apron; parking: open asphalt apron surrounding pump islands
+- gas station canopy building at center lot over pump islands, 1 story, steel frame, corrugated metal fascia, flat roof, 30 feet from road setback
+- service station office building at rear right corner, 1 story, concrete block, brick veneer, flat parapet roof, at parking apron setback
+- open service bay building at rear left corner, 1 story, concrete block, gabled metal roof, at parking apron setback
+- utilities: overhead power lines on wooden poles, transformer on northeast corner pole
+- landscape: flat asphalt apron, painted concrete curbing, narrow grass strip at road edge
 - immutable elements: canopy with four corner support posts, pump island with eight dispensers, north and south driveway aprons
 Keep this location instantly recognizable.
 
@@ -21,16 +27,17 @@ TRANSFORM TO 1975
 Post-Vietnam, oil crisis era. A full-service neighborhood gas station in 1975 — uniformed attendants pump the gas, check the oil, and wipe the windshield.
 
 PERIOD DETAILS
-- porcelain-enamel brand signs on the building fascia
-- gravity-style pump nozzles
+- full service attendants still common
+- chest-style soda vending machine by the office door
 - price sign showing gas around $0.57
+- main sign: an independent station sign in the style of Texaco
 Typography: bold sans-serif, slab serif, occasional script.
 
 PEOPLE
 EXACTLY 6 people, spread out with empty areas.
-- a customer paying the attendant cash through the car window
-- a driver waiting behind the wheel while the attendant works
-Clothing: men in wide lapels, turtlenecks; women in wide leg pants, earth tones. No posing or eye contact.
+- a uniformed attendant actively fueling a vehicle at the pump
+- a second attendant wiping a customer's windshield
+Clothing: men in polyester suits, bell bottoms; women in midi skirts, wide leg pants. No posing or eye contact.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:

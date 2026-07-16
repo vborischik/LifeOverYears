@@ -5,9 +5,15 @@ businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- two-story brick commercial building at left block face, 2 stories
-- single-story retail building at center block face, 1 story
-- corner mixed-use building at right corner, 3 stories
+- camera: eye-level, facing street-facing, fov 80
+- main street road, 2-lane, asphalt
+- sidewalks present, curbs present
+- driveways: alley entrance mid-block; parking: parallel street parking both sides
+- two-story brick commercial building at left block face, 2 stories, red brick, cast iron storefront columns, flat parapet roof, at sidewalk setback
+- single-story retail building at center block face, 1 story, brick, plate glass storefront, flat with low parapet roof, at sidewalk setback
+- corner mixed-use building at right corner, 3 stories, brick, stone trim cornice, flat roof, at sidewalk setback
+- utilities: overhead power and telephone lines, wooden utility poles every 50 feet
+- landscape: concrete sidewalks, brick pavers at crosswalks, small planted tree pits
 - immutable elements: cast iron storefront columns on left building, recessed corner entrance on right building, brick alley mid-block
 Keep this location instantly recognizable.
 
@@ -22,15 +28,15 @@ Post-Vietnam, oil crisis era. A working small-town main street in 1975 — local
 
 PERIOD DETAILS
 - local diner with a hand-lettered 'HOT COFFEE 25¢' sign in the window
-- women's dress shop with gold-leaf window lettering
-- appliance store window displaying console televisions with a 'COLOR TV' placard
+- shoe repair shop with a small 'SHOE REPAIR — WHILE U WAIT' sign
+- corner drug store with a hand-painted 'REXALL DRUGS' style sign and a small neon 'PRESCRIPTIONS' sign in the window
 Typography: bold sans-serif, slab serif, occasional script.
 
 PEOPLE
 EXACTLY 14 people, spread out with empty areas.
-- a mother holding a child's hand walking past the drug store
-- a delivery man carrying stacked boxes into a storefront
-Clothing: men in turtlenecks, wide lapels; women in peasant blouses, midi skirts. No posing or eye contact.
+- two men in wide-lapel jackets talking outside the diner
+- a barber visible through the shop window cutting hair
+Clothing: men in bell bottoms, polyester suits; women in earth tones, wide leg pants. No posing or eye contact.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:

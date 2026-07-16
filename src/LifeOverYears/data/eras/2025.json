@@ -1,33 +1,29 @@
 {
   "year": 2025,
   "label": "Mid-2020s America",
-  "description": "Post-pandemic era. EVs mainstream. Retail apocalypse mature — many vacant big boxes. Delivery culture. LED and screens everywhere. Minimalist branding.",
+  "description": "Post-pandemic era. Retail apocalypse mature — many vacant big boxes. Delivery culture. LED and screens everywhere. Minimalist branding.",
 
   "transportation": {
     "cars": {
-      "dominant_makes": ["Toyota", "Honda", "Ford", "Chevrolet", "Tesla", "Hyundai", "Kia", "Subaru"],
+      "dominant_makes": ["Toyota", "Honda", "Ford", "Chevrolet", "Hyundai", "Kia", "Subaru"],
       "specific_models": [
-        "2018-2024 Toyota Camry — aggressive mesh grille, sporty sedan",
+        "2021-2025 Toyota Camry — sleek sedan, aggressive front fascia",
         "2023-2025 Honda Accord — clean minimalist refresh",
-        "2020-2025 Tesla Model 3 — minimalist, no grille, flush handles",
-        "2020-2025 Tesla Model Y — crossover, closed front, sleek",
         "2019-2025 Toyota RAV4 — boxy rugged crossover, very common",
         "2017-2025 Honda CR-V — rounded best-selling crossover",
         "2021-2025 Ford Bronco — retro boxy off-roader",
         "2021-2025 Ford F-150 — refreshed, full-width LED bar options",
-        "2022-2025 Ford F-150 Lightning — electric pickup, light bar front",
-        "2024-2025 Tesla Cybertruck — angular stainless steel, unmistakable",
         "2020-2025 Hyundai Tucson — sharp parametric grille design",
         "2021-2025 Kia Telluride — boxy upscale three-row SUV",
         "2019-2025 Subaru Outback — rugged wagon crossover",
         "2022-2025 Chevrolet Silverado — refreshed bold grille",
-        "2021-2025 Ford Mustang Mach-E — electric crossover, sleek"
+        "2021-2025 Nissan Rogue — squared-off crossover, floating roofline",
+        "2019-2025 Chevrolet Equinox — rounded compact crossover"
       ],
-      "body_styles": ["crossover SUV", "electric vehicle", "pickup truck", "compact crossover", "sedan declining"],
+      "body_styles": ["crossover SUV", "pickup truck", "compact crossover", "sedan declining"],
       "visual_characteristics": [
         "smooth aerodynamic shapes",
         "full-width LED light bars front and rear",
-        "large closed grilles on EVs",
         "flush door handles",
         "large 18 to 20 inch wheels standard",
         "minimalist body surfacing",
@@ -38,15 +34,14 @@
       "absent": ["chrome bumpers", "vinyl roofs", "boxy 1990s shapes", "incandescent tail lights", "pop-up headlights"]
     },
     "trucks": {
-      "dominant_makes": ["Ford F-150", "Chevrolet Silverado", "Ram 1500", "Tesla Cybertruck", "Ford F-150 Lightning"],
+      "dominant_makes": ["Ford F-150", "Chevrolet Silverado", "Ram 1500"],
       "specific_models": [
         "2021-2025 Ford F-150 — full-width LED bar, bold",
-        "2024-2025 Tesla Cybertruck — angular stainless, polarizing",
-        "2019-2025 Ram 1500 — large crosshair-evolved grille"
+        "2022-2025 Toyota Tundra — massive grille, muscular stance",
+        "2019-2025 Ram 1500 — crew cab pickup, large grille"
       ],
       "visual_characteristics": [
         "crew cab dominant",
-        "electric pickups appearing",
         "massive grilles with LED signatures",
         "22 inch wheels common",
         "lifted trucks common"
@@ -55,19 +50,18 @@
     "suv": {
       "models": [
         "2019-2025 Toyota RAV4 — boxy rugged crossover",
-        "2020-2025 Tesla Model Y — electric crossover, mainstream",
+        "2020-2025 Hyundai Tucson — sharp parametric grille",
         "2021-2025 Ford Bronco — retro boxy off-roader"
       ],
       "visual_characteristics": [
         "crossover dominant",
-        "electric crossovers mainstream",
         "full-width LED light bars",
         "minimalist clean surfaces"
       ]
     },
     "fuel": {
       "average_price_per_gallon": "$3.40",
-      "context": "EV charging stations widespread, gas prices volatile, EVs roughly 8 percent of new sales"
+      "context": "gas prices volatile, pay-at-pump standard everywhere"
     }
   },
 
@@ -81,25 +75,23 @@
         "vacant former big box stores common",
         "ghost signs from closed retailers",
         "digital display signage",
-        "outdoor dining structures from pandemic era",
-        "EV charging canopies in parking lots"
+        "outdoor dining structures from pandemic era"
       ]
     },
     "gas_stations": {
       "characteristics": [
         "modern LED canopies",
         "large convenience stores with fresh food",
-        "EV charging stalls added alongside pumps",
         "full color digital price signs",
-        "pay-at-pump screens with video ads",
-        "Tesla Supercharger stations standalone"
+        "pay-at-pump screens with video ads"
       ]
     }
   },
 
   "business": {
+    "gas_brands": ["Shell", "Marathon", "Casey's", "QuikTrip", "Chevron"],
     "active_brands": [
-      "Shell", "BP", "Exxon", "Chevron", "Mobil", "Speedway", "Wawa", "QuikTrip", "Buc-ee's", "Tesla Supercharger",
+      "Shell", "BP", "Exxon", "Chevron", "Mobil", "Speedway", "Wawa", "QuikTrip", "Buc-ee's",
       "Walmart", "Target", "Costco", "Amazon Fresh",
       "McDonald's", "Burger King", "Wendy's", "Chick-fil-A", "Starbucks", "Chipotle", "Raising Cane's", "Crumbl",
       "Kroger", "Publix", "Whole Foods", "Trader Joe's", "Aldi",
@@ -133,8 +125,7 @@
         "LED traffic signals standard",
         "smart traffic systems in cities",
         "variable message signs common",
-        "roundabouts widespread",
-        "EV charging signage on highways"
+        "roundabouts widespread"
       ]
     },
     "traffic_signs": {
@@ -143,8 +134,7 @@
         "green highway signs with Highway Gothic font",
         "high intensity prismatic sheeting",
         "LED traffic signals standard",
-        "pedestrian countdown signals standard",
-        "EV charging directional signs"
+        "pedestrian countdown signals standard"
       ]
     },
     "street_furniture": {
@@ -162,8 +152,7 @@
         "fiber optic widespread",
         "5G small cell nodes on poles",
         "ground level and pole transformers",
-        "rooftop solar panels common",
-        "EV charging infrastructure visible"
+        "rooftop solar panels common"
       ]
     }
   },
@@ -171,7 +160,7 @@
   "society": {
     "fashion": {
       "men": ["oversized fit tees", "wide-leg pants", "chunky sneakers", "bucket hats", "techwear"],
-      "women": ["high-waisted wide-leg jeans", "oversized blazers", "athleisure", "crop tops", "chunky dad sneakers"],
+      "women": ["high-waisted wide-leg jeans", "oversized blazers", "athleisure", "leggings and oversized hoodies", "chunky dad sneakers"],
       "colors": ["sage green", "beige", "cream", "earth tones", "black", "muted pastels"]
     },
     "advertising": {
@@ -212,7 +201,7 @@
 
   "scene_content": {
     "downtown_street": {
-      "narrative": "A 2025 main street — minimalist flat-logo storefronts, QR codes on the glass, EVs at the curb, delivery culture in plain view.",
+      "narrative": "A 2025 main street — minimalist flat-logo storefronts, QR codes on the glass, delivery culture in plain view.",
       "storefronts": [
         "the old video store space now a specialty coffee bar with a minimalist flat logo",
         "the same diner, still going, 'COFFEE $3.50' shown on a small digital menu screen in the window",
@@ -235,7 +224,7 @@
         "a delivery courier with an insulated backpack picking up an order",
         "a woman in athleisure carrying a boba tea",
         "several people looking at smartphones as they walk",
-        "a person gliding past on an electric scooter",
+        "a person gliding past on a kick scooter",
         "a couple filming a vertical video on a phone gimbal",
         "sidewalk diners in a parklet dining structure",
         "a barista handing an order to a rideshare driver at the curb",
@@ -251,19 +240,17 @@
       ]
     },
     "gas_station": {
-      "narrative": "A 2025 fuel stop — LED canopy, full-color digital price sign, EV chargers beside the pumps, and a convenience store selling fresh food.",
+      "narrative": "A 2025 fuel stop — LED canopy, full-color digital price sign, and a convenience store selling fresh food.",
       "storefronts": [
         "modern canopy with bright white LED lighting",
         "full-color digital price sign on the road pole",
         "pay-at-pump screens playing video ads",
-        "EV fast-charging stalls alongside the gas pumps",
         "large convenience store with 'FRESH FOOD — MADE TO ORDER' branding",
         "drive-through coffee lane attached to the store",
         "free air and vacuum station at the lot edge"
       ],
       "window_signs": [
         "COLD BREW $3.99",
-        "EV FAST CHARGE — 30 MIN",
         "MEMBERS SAVE 10¢/GAL",
         "HOT PIZZA SLICES $2.99",
         "SCAN & GO — SKIP THE LINE"
@@ -271,7 +258,6 @@
       "people": { "min": 4, "max": 7 },
       "people_activities": [
         "a driver self-serving at the pump",
-        "an EV owner plugged in at the charging stall, looking at a phone",
         "a delivery van driver walking out with a coffee",
         "a customer tapping a phone to pay at the pump",
         "a clerk restocking the grab-and-go cooler behind the glass",
@@ -279,7 +265,6 @@
       ],
       "vehicles": { "min": 3, "max": 4 },
       "extras": [
-        "green-painted EV charging spot markings",
         "digital menu screens glowing in the store windows",
         "stacked bags of ice and firewood outside"
       ]
@@ -315,12 +300,11 @@
       "vehicles": { "min": 5, "max": 7 },
       "extras": [
         "'CURBSIDE PICKUP' signed parking spots",
-        "a pair of EV chargers at the corner of the lot",
         "an e-scooter parked by the walkway"
       ]
     },
     "default": {
-      "narrative": "An ordinary 2025 American commercial street — flat minimalist logos, QR codes, EVs and delivery drivers.",
+      "narrative": "An ordinary 2025 American commercial street — flat minimalist logos, QR codes and delivery drivers.",
       "storefronts": [
         "local diner with 'COFFEE $3.50' on a digital menu screen",
         "barber shop with a spinning barber pole",
@@ -339,7 +323,7 @@
       "people_activities": [
         "a delivery courier with an insulated backpack",
         "several people looking at smartphones",
-        "a person on an electric scooter",
+        "a person on a kick scooter",
         "a woman in athleisure with a boba tea",
         "a couple filming a vertical video",
         "a rideshare driver picking up an order at the curb"

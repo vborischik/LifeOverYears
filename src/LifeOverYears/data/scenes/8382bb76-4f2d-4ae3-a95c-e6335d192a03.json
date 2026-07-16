@@ -1,0 +1,73 @@
+{
+  "Id": "8382bb76-4f2d-4ae3-a95c-e6335d192a03",
+  "CreatedAt": "2026-07-16T04:31:05.1635120\u002B00:00",
+  "SceneType": "gas_station",
+  "Camera": {
+    "Height": "eye-level",
+    "Direction": "intersection",
+    "Fov": 90
+  },
+  "Geometry": {
+    "Roads": [
+      {
+        "Type": "residential",
+        "Lanes": 1,
+        "Markings": [
+          "edge line",
+          "center line"
+        ],
+        "Surface": "concrete"
+      }
+    ],
+    "Sidewalks": true,
+    "Curbs": true,
+    "Buildings": [
+      {
+        "Type": "commercial",
+        "Position": "center",
+        "Stories": 1,
+        "Materials": [
+          "stucco",
+          "glass",
+          "metal"
+        ],
+        "Roof": "flat",
+        "Setback": "at-street"
+      }
+    ],
+    "Driveways": [
+      "left",
+      "center"
+    ],
+    "Parking": "lot"
+  },
+  "Environment": {
+    "Terrain": "suburban",
+    "Utilities": [
+      "street lamp",
+      "power lines",
+      "fire hydrant"
+    ],
+    "Trees": [
+      {
+        "Position": "left",
+        "Size": "medium",
+        "Type": "deciduous"
+      },
+      {
+        "Position": "background",
+        "Size": "medium",
+        "Type": "deciduous"
+      }
+    ],
+    "Landscape": [
+      "grass strip",
+      "hedge",
+      "flower bed",
+      "mulch"
+    ]
+  },
+  "ImmutableElements": [
+    "water tower"
+  ]
+}

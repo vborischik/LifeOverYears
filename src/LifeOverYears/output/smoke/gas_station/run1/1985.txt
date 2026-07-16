@@ -5,9 +5,15 @@ businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- gas station canopy building at center lot over pump islands, 1 story
-- service station office building at rear right corner, 1 story
-- open service bay building at rear left corner, 1 story
+- camera: eye-level, facing street-facing, fov 75
+- commercial arterial road, 4-lane, asphalt
+- sidewalks present, curbs present
+- driveways: north driveway apron, south driveway apron; parking: open asphalt apron surrounding pump islands
+- gas station canopy building at center lot over pump islands, 1 story, steel frame, corrugated metal fascia, flat roof, 30 feet from road setback
+- service station office building at rear right corner, 1 story, concrete block, brick veneer, flat parapet roof, at parking apron setback
+- open service bay building at rear left corner, 1 story, concrete block, gabled metal roof, at parking apron setback
+- utilities: overhead power lines on wooden poles, transformer on northeast corner pole
+- landscape: flat asphalt apron, painted concrete curbing, narrow grass strip at road edge
 - immutable elements: canopy with four corner support posts, pump island with eight dispensers, north and south driveway aprons
 Keep this location instantly recognizable.
 
@@ -21,22 +27,23 @@ TRANSFORM TO 1985
 Reagan era prosperity. A 1985 self-service gas station — digital price sign newly installed, a small convenience store where the second service bay used to be.
 
 PERIOD DETAILS
-- squeegee buckets at islands
-- canopy designs more angular
+- propane tank exchange cage beside the building
+- credit card readers not yet at pump
 - price sign showing gas around $1.12
+- main sign: an independent station sign in the style of Shell
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 
 PEOPLE
-EXACTLY 6 people, spread out with empty areas.
+EXACTLY 4 people, spread out with empty areas.
 - a clerk visible at the register through the store window
-- a driver self-serving at the pump
-Clothing: men in acid wash jeans, shoulder pads in blazers; women in high-waisted jeans, bright neon colors. Fashion palette: neon pink, electric blue, purple. No posing or eye contact.
+- a customer walking into the store counting bills
+Clothing: men in shoulder pads in blazers, acid wash jeans; women in bright neon colors, high-waisted jeans. Fashion palette: neon pink, electric blue, purple. No posing or eye contact.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 1982-1992 Chevrolet Camaro — wedge-shaped sporty coupe — silver
-- 1984-1990 Dodge Caravan — first minivan, boxy — white
-- 1984-1987 Toyota Corolla — boxy compact, reliable look — burgundy
+- 1982-1993 Chevrolet S-10 — compact pickup, square — white
+- 1986-1989 Nissan Sentra — small economy boxy sedan — red
+- 1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline — burgundy
 Parked with gaps; optionally 1 driving; no vehicle newer than 1985.
 
 ENVIRONMENT

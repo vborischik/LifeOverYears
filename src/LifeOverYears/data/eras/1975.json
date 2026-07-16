@@ -80,6 +80,7 @@
   },
 
   "business": {
+    "gas_brands": ["Texaco", "Gulf", "Phillips 66", "Sinclair", "Standard"],
     "active_brands": [
       "Shell", "Texaco", "Gulf", "Mobil", "Exxon", "Standard Oil",
       "Kmart", "Sears", "JCPenney", "Woolworth",

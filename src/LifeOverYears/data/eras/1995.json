@@ -91,6 +91,7 @@
   },
 
   "business": {
+    "gas_brands": ["Shell", "Amoco", "Texaco", "BP", "Citgo"],
     "active_brands": [
       "Shell", "Mobil", "Exxon", "BP", "Chevron", "Citgo",
       "Walmart", "Kmart", "Target", "Sears",

@@ -77,6 +77,7 @@
   },
 
   "business": {
+    "gas_brands": ["Texaco", "Shell", "Amoco", "Mobil", "Citgo"],
     "active_brands": [
       "Shell", "Texaco", "Mobil", "Exxon", "Chevron",
       "Kmart", "Sears", "JCPenney", "Woolworth", "Service Merchandise",

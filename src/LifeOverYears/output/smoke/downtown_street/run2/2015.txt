@@ -5,9 +5,15 @@ businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- two-story brick commercial building at left block face, 2 stories
-- single-story retail building at center block face, 1 story
-- corner mixed-use building at right corner, 3 stories
+- camera: eye-level, facing street-facing, fov 80
+- main street road, 2-lane, asphalt
+- sidewalks present, curbs present
+- driveways: alley entrance mid-block; parking: parallel street parking both sides
+- two-story brick commercial building at left block face, 2 stories, red brick, cast iron storefront columns, flat parapet roof, at sidewalk setback
+- single-story retail building at center block face, 1 story, brick, plate glass storefront, flat with low parapet roof, at sidewalk setback
+- corner mixed-use building at right corner, 3 stories, brick, stone trim cornice, flat roof, at sidewalk setback
+- utilities: overhead power and telephone lines, wooden utility poles every 50 feet
+- landscape: concrete sidewalks, brick pavers at crosswalks, small planted tree pits
 - immutable elements: cast iron storefront columns on left building, recessed corner entrance on right building, brick alley mid-block
 Keep this location instantly recognizable.
 
@@ -23,21 +29,23 @@ Smartphone era fully arrived. A 2015 main street mid-revival — the video store
 PERIOD DETAILS
 - the same diner, retro-styled, with 'COFFEE $2.25' chalked on a menu board
 - boutique with a reclaimed-wood facade and minimalist lettering
-- craft beer taproom with a hand-drawn chalkboard sidewalk sign
+- third-wave coffee shop with a minimalist logo and Edison bulbs visible inside
 Typography: minimalist flat sans-serif, simplified modern logos.
 
 PEOPLE
-EXACTLY 10 people, spread out with empty areas.
-- a woman in yoga pants carrying a rolled mat
-- a cyclist with a messenger bag riding in the bike lane
-Clothing: men in boat shoes, skinny jeans; women in statement necklaces, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact.
+EXACTLY 14 people, spread out with empty areas.
+- a barista delivering drinks to an outdoor table
+- a man in a henley checking a fitness band
+Clothing: men in slim-fit plaid shirts, henley shirts; women in yoga pants and leggings, ankle boots. Fashion palette: coral, mint green, navy. No posing or eye contact.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2013-2019 Ford Fusion — Aston-Martin-style grille, sleek — blue
-- 2014-2019 Nissan Rogue — popular compact crossover — black
-- 2013-2018 Hyundai Santa Fe — fluidic sculpture styling — silver
-- 2015-2020 Chevrolet Colorado — mid-size pickup revived — pearl white
+EXACTLY 6 period vehicles, all different:
+- 2013-2019 Ford Fusion — Aston-Martin-style grille, sleek — gray
+- 2009-2018 Ram 1500 — crosshair grille, refined — silver
+- 2015-2020 Ford Edge — mid-size crossover, bold grille — dark red
+- 2013-2018 Hyundai Santa Fe — fluidic sculpture styling — blue
+- 2012-2015 Honda Civic — compact, angular — black
+- 2013-2018 Toyota RAV4 — angular compact crossover — white
 Parked with gaps; optionally 1 driving; no vehicle newer than 2015.
 
 ENVIRONMENT

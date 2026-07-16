@@ -86,6 +86,7 @@ public static class PromptSmokeTest
         DoC11(gasRun1, gasRun2, dtRun1, dtRun2, unknownPrompt, findings);
         DoC12(gasRun1, gasRun2, dtRun1, dtRun2, eras,         findings);
         DoC13(gasRun1, gasRun2, dtRun1, dtRun2, eras,         findings);
+        DoC14(gasRun1, gasRun2,                               findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -621,8 +622,11 @@ public static class PromptSmokeTest
             (dtRun1, "downtown/run1"), (dtRun2, "downtown/run2")
         };
 
+        // Words = whitespace tokens containing at least one letter or digit;
+        // bullet dashes and em-dashes are punctuation, not words.
         int WordCount(string text) =>
-            text.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries).Length;
+            text.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries)
+                .Count(t => t.Any(char.IsLetterOrDigit));
 
         foreach (var (run, label) in all)
             foreach (var (year, prompt) in run)
@@ -711,6 +715,27 @@ public static class PromptSmokeTest
 
         f.Add(("C13", "Color eras: every vehicle has a color and no color repeats within one prompt",
             errs.Count == 0, errs.Count == 0 ? "All vehicle colors unique per prompt" : Join(errs)));
+    }
+
+    private static void DoC14(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+
+        foreach (var (run, label) in new[] { (gasRun1, "gas/run1"), (gasRun2, "gas/run2") })
+        {
+            var text = run[2025].Text;
+            // \bEVs?\b (case-sensitive) so lowercase words like "eye-level" don't false-match
+            if (System.Text.RegularExpressions.Regex.IsMatch(text, @"\bEVs?\b"))
+                errs.Add($"{label}/2025: contains 'EV'");
+            foreach (var term in new[] { "electric", "charger", "Lightning" })
+                if (text.Contains(term, StringComparison.OrdinalIgnoreCase))
+                    errs.Add($"{label}/2025: contains '{term}'");
+        }
+
+        f.Add(("C14", "Gas station 2025 prompt has no EV/electric/charger/Lightning content",
+            errs.Count == 0, errs.Count == 0 ? "2025 gas prompts are fully de-electrified" : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────

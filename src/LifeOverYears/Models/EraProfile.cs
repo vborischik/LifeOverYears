@@ -58,7 +58,8 @@ public record GasStations(
 public record Business(
     [property: JsonPropertyName("active_brands")] IReadOnlyList<string> ActiveBrands,
     [property: JsonPropertyName("absent_brands")] IReadOnlyList<string> AbsentBrands,
-    [property: JsonPropertyName("signage")]       Signage Signage);
+    [property: JsonPropertyName("signage")]       Signage Signage,
+    [property: JsonPropertyName("gas_brands")]    IReadOnlyList<string>? GasBrands = null);
 
 public record Signage(
     [property: JsonPropertyName("characteristics")]  IReadOnlyList<string> Characteristics,

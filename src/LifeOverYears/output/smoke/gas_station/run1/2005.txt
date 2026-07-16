@@ -5,9 +5,15 @@ businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- gas station canopy building at center lot over pump islands, 1 story
-- service station office building at rear right corner, 1 story
-- open service bay building at rear left corner, 1 story
+- camera: eye-level, facing street-facing, fov 75
+- commercial arterial road, 4-lane, asphalt
+- sidewalks present, curbs present
+- driveways: north driveway apron, south driveway apron; parking: open asphalt apron surrounding pump islands
+- gas station canopy building at center lot over pump islands, 1 story, steel frame, corrugated metal fascia, flat roof, 30 feet from road setback
+- service station office building at rear right corner, 1 story, concrete block, brick veneer, flat parapet roof, at parking apron setback
+- open service bay building at rear left corner, 1 story, concrete block, gabled metal roof, at parking apron setback
+- utilities: overhead power lines on wooden poles, transformer on northeast corner pole
+- landscape: flat asphalt apron, painted concrete curbing, narrow grass strip at road edge
 - immutable elements: canopy with four corner support posts, pump island with eight dispensers, north and south driveway aprons
 Keep this location instantly recognizable.
 
@@ -21,23 +27,23 @@ TRANSFORM TO 2005
 Post-9/11 era. A 2005 gas station — big multi-island canopy, card readers at every pump, LED price sign, and a convenience store doing most of the business.
 
 PERIOD DETAILS
-- pay-at-pump screens with small displays
-- branded canopy lighting
+- pumps with card readers and small pay-at-pump screens
+- large multi-island canopies
 - price sign showing gas around $2.30
+- main sign: an independent station sign in the style of Shell
 Typography: clean corporate sans-serif, polished brand identities.
 
 PEOPLE
-EXACTLY 4 people, spread out with empty areas.
-- a teenager filling tires at the coin-operated air machine
-- a customer walking out with a coffee cup
-Clothing: men in frosted tips hair, cargo shorts; women in low-rise jeans, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact.
+EXACTLY 6 people, spread out with empty areas.
+- a driver self-serving at the pump
+- a clerk restocking the window display inside
+Clothing: men in trucker hats, frosted tips hair; women in chunky highlights, velour tracksuits. Fashion palette: denim, pink, white. No posing or eye contact.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2002-2009 Chevrolet TrailBlazer — mid-size SUV boxy — dark blue
-- 2001-2005 Honda Civic — rounded compact, very common — dark red
-- 2001-2007 Toyota Highlander — early crossover — silver
-- 2004-2008 Ford F-150 — bigger, bolder grille — gray
+EXACTLY 3 period vehicles, all different:
+- 2000-2007 Ford Taurus — rounded, aging fleet-look sedan — gray
+- 2005-2010 Ford Mustang — retro muscle revival — black
+- 2002-2008 Dodge Ram — big rig grille evolved — dark red
 Parked with gaps; optionally 1 driving; no vehicle newer than 2005.
 
 ENVIRONMENT

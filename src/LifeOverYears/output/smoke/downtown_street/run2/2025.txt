@@ -5,9 +5,15 @@ businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- two-story brick commercial building at left block face, 2 stories
-- single-story retail building at center block face, 1 story
-- corner mixed-use building at right corner, 3 stories
+- camera: eye-level, facing street-facing, fov 80
+- main street road, 2-lane, asphalt
+- sidewalks present, curbs present
+- driveways: alley entrance mid-block; parking: parallel street parking both sides
+- two-story brick commercial building at left block face, 2 stories, red brick, cast iron storefront columns, flat parapet roof, at sidewalk setback
+- single-story retail building at center block face, 1 story, brick, plate glass storefront, flat with low parapet roof, at sidewalk setback
+- corner mixed-use building at right corner, 3 stories, brick, stone trim cornice, flat roof, at sidewalk setback
+- utilities: overhead power and telephone lines, wooden utility poles every 50 feet
+- landscape: concrete sidewalks, brick pavers at crosswalks, small planted tree pits
 - immutable elements: cast iron storefront columns on left building, recessed corner entrance on right building, brick alley mid-block
 Keep this location instantly recognizable.
 
@@ -18,28 +24,28 @@ extension of one photograph, not additional panels. Do not stretch or distort
 the source geometry.
 
 TRANSFORM TO 2025
-Post-pandemic era. A 2025 main street — minimalist flat-logo storefronts, QR codes on the glass, EVs at the curb, delivery culture in plain view.
+Post-pandemic era. A 2025 main street — minimalist flat-logo storefronts, QR codes on the glass, delivery culture in plain view.
 
 PERIOD DETAILS
 - the same diner, still going, 'COFFEE $3.50' shown on a small digital menu screen in the window
-- delivery-only ghost kitchen storefront with pickup shelves visible through the glass
-- boba tea shop with pastel minimalist branding and a QR-code ordering decal
+- the old video store space now a specialty coffee bar with a minimalist flat logo
+- boutique fitness studio with black-and-white minimalist branding
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 
 PEOPLE
-EXACTLY 13 people, spread out with empty areas.
+EXACTLY 10 people, spread out with empty areas.
 - several people looking at smartphones as they walk
 - a woman in athleisure carrying a boba tea
-Clothing: men in bucket hats, techwear; women in athleisure, chunky dad sneakers. Fashion palette: sage green, beige, cream. No posing or eye contact.
+Clothing: men in bucket hats, techwear; women in high-waisted wide-leg jeans, chunky dad sneakers. Fashion palette: sage green, beige, cream. No posing or eye contact.
 
 VEHICLES
 EXACTLY 6 period vehicles, all different:
-- 2017-2025 Honda CR-V — rounded best-selling crossover — gray
-- 2024-2025 Tesla Cybertruck — angular stainless, polarizing — dark green
-- 2019-2025 Ram 1500 — large crosshair-evolved grille — white
-- 2022-2025 Ford F-150 Lightning — electric pickup, light bar front — silver
-- 2022-2025 Chevrolet Silverado — refreshed bold grille — blue
-- 2021-2025 Kia Telluride — boxy upscale three-row SUV — matte finishes appearing
+- 2021-2025 Nissan Rogue — squared-off crossover, floating roofline — white
+- 2020-2025 Hyundai Tucson — sharp parametric grille design — black
+- 2019-2025 Chevrolet Equinox — rounded compact crossover — silver
+- 2021-2025 Kia Telluride — boxy upscale three-row SUV — dark green
+- 2017-2025 Honda CR-V — rounded best-selling crossover — matte finishes appearing
+- 2021-2025 Toyota Camry — sleek sedan, aggressive front fascia — blue
 Parked with gaps; optionally 1 driving; no vehicle newer than 2025.
 
 ENVIRONMENT

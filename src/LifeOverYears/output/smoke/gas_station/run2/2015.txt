@@ -5,9 +5,15 @@ businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- gas station canopy building at center lot over pump islands, 1 story
-- service station office building at rear right corner, 1 story
-- open service bay building at rear left corner, 1 story
+- camera: eye-level, facing street-facing, fov 75
+- commercial arterial road, 4-lane, asphalt
+- sidewalks present, curbs present
+- driveways: north driveway apron, south driveway apron; parking: open asphalt apron surrounding pump islands
+- gas station canopy building at center lot over pump islands, 1 story, steel frame, corrugated metal fascia, flat roof, 30 feet from road setback
+- service station office building at rear right corner, 1 story, concrete block, brick veneer, flat parapet roof, at parking apron setback
+- open service bay building at rear left corner, 1 story, concrete block, gabled metal roof, at parking apron setback
+- utilities: overhead power lines on wooden poles, transformer on northeast corner pole
+- landscape: flat asphalt apron, painted concrete curbing, narrow grass strip at road edge
 - immutable elements: canopy with four corner support posts, pump island with eight dispensers, north and south driveway aprons
 Keep this location instantly recognizable.
 
@@ -21,22 +27,23 @@ TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 station — LED-lit canopy, digital price sign, video ads playing on every pump screen, and a big convenience store.
 
 PERIOD DETAILS
+- pay-at-pump with color screens and ads
 - large convenience store with fresh-coffee branding in the windows
-- modern canopy with white LED lighting
 - price sign showing gas around $2.45
+- main sign: an independent station sign in the style of Marathon
 Typography: minimalist flat sans-serif, simplified modern logos.
 
 PEOPLE
-EXACTLY 4 people, spread out with empty areas.
+EXACTLY 7 people, spread out with empty areas.
 - a customer watching the pump screen ads while fueling
-- a driver self-serving at the pump
-Clothing: men in skinny jeans, henley shirts; women in high-waisted skinny jeans, statement necklaces. Fashion palette: coral, mint green, navy. No posing or eye contact.
+- a driver vacuuming his car at the vacuum island
+Clothing: men in boat shoes, slim-fit plaid shirts; women in high-waisted skinny jeans, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 2013-2018 Toyota RAV4 — angular compact crossover — silver
-- 2014-2021 Subaru Outback — rugged wagon crossover — dark red
-- 2015-2020 Ford Edge — mid-size crossover, bold grille — white
+- 2015-2020 Ford Edge — mid-size crossover, bold grille — gray
+- 2014-2021 Subaru Outback — rugged wagon crossover — pearl white
+- 2013-2019 Ford Fusion — Aston-Martin-style grille, sleek — blue
 Parked with gaps; optionally 1 driving; no vehicle newer than 2015.
 
 ENVIRONMENT

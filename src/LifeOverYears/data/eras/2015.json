@@ -90,13 +90,13 @@
         "convenience store with modern branding",
         "pay-at-pump with color screens and ads",
         "LED price signs digital",
-        "EV charging stations rare but appearing",
         "card skimmer warnings on pumps"
       ]
     }
   },
 
   "business": {
+    "gas_brands": ["Shell", "BP", "Chevron", "Marathon", "Casey's"],
     "active_brands": [
       "Shell", "BP", "Exxon", "Mobil", "Chevron", "Speedway", "Wawa", "QuikTrip",
       "Walmart", "Target", "Costco", "Sears closing stores", "Kmart closing stores",
@@ -276,8 +276,7 @@
       "vehicles": { "min": 3, "max": 4 },
       "extras": [
         "card-skimmer warning stickers on the pumps",
-        "combined trash-and-squeegee stations between the pumps",
-        "a lone EV charging spot painted green at the lot edge"
+        "combined trash-and-squeegee stations between the pumps"
       ]
     },
     "strip_mall": {

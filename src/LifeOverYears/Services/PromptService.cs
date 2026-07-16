@@ -67,8 +67,25 @@ public sealed class PromptService : IPromptService
     {
         var sb = new StringBuilder();
         sb.AppendLine("PRESERVE (must match source exactly)");
+        sb.AppendLine($"- camera: {s.Camera.Height}, facing {s.Camera.Direction}, fov {s.Camera.Fov}");
+        foreach (var r in s.Geometry.Roads)
+            sb.AppendLine($"- {r.Type} road, {r.Lanes}-lane, {r.Surface}");
+        sb.AppendLine($"- sidewalks {(s.Geometry.Sidewalks ? "present" : "absent")}, curbs {(s.Geometry.Curbs ? "present" : "absent")}");
+        if (s.Geometry.Driveways.Count > 0 || !string.IsNullOrWhiteSpace(s.Geometry.Parking))
+        {
+            var parts = new List<string>();
+            if (s.Geometry.Driveways.Count > 0)
+                parts.Add($"driveways: {string.Join(", ", s.Geometry.Driveways)}");
+            if (!string.IsNullOrWhiteSpace(s.Geometry.Parking))
+                parts.Add($"parking: {s.Geometry.Parking}");
+            sb.AppendLine($"- {string.Join("; ", parts)}");
+        }
         foreach (var b in s.Geometry.Buildings)
-            sb.AppendLine($"- {b.Type} building at {b.Position}, {b.Stories} {(b.Stories == 1 ? "story" : "stories")}");
+            sb.AppendLine($"- {b.Type} building at {b.Position}, {b.Stories} {(b.Stories == 1 ? "story" : "stories")}, {Join(b.Materials)}, {b.Roof} roof, {b.Setback} setback");
+        if (s.Environment.Utilities.Count > 0)
+            sb.AppendLine($"- utilities: {string.Join(", ", s.Environment.Utilities)}");
+        if (s.Environment.Landscape.Count > 0)
+            sb.AppendLine($"- landscape: {string.Join(", ", s.Environment.Landscape)}");
         var immutable = CleanImmutableElements(s.ImmutableElements);
         if (immutable.Count > 0)
             sb.AppendLine($"- immutable elements: {string.Join(", ", immutable)}");
@@ -98,7 +115,7 @@ public sealed class PromptService : IPromptService
     // characteristics — at most one sampled line per concept.
     private static readonly string[] DetailConcepts =
     {
-        "price sign", "service bay", "pump", "canopy", "oil can", "convenience store", "vending", "tire"
+        "price sign", "pole sign", "service bay", "pump", "canopy", "oil can", "convenience store", "vending", "tire"
     };
 
     private static string TruncateToSentences(string text, int maxSentences)
@@ -140,10 +157,11 @@ public sealed class PromptService : IPromptService
         var picks        = new List<string>();
         var target       = 3;
 
-        // The fuel price line below is the gas station's price anchor.
+        // The fuel price and main sign lines below cover these concepts.
         if (isGasStation)
         {
             usedConcepts.Add("price sign");
+            usedConcepts.Add("pole sign");
             target--;
         }
         else
@@ -169,7 +187,12 @@ public sealed class PromptService : IPromptService
         foreach (var item in picks)
             sb.AppendLine($"- {item}");
         if (isGasStation)
+        {
             sb.AppendLine($"- price sign showing gas around {era.Transportation.Fuel.AveragePricePerGallon}");
+            var brands = era.Business.GasBrands;
+            if (brands is { Count: > 0 })
+                sb.AppendLine($"- main sign: an independent station sign in the style of {brands[rng.Next(brands.Count)]}");
+        }
 
         sb.Append($"Typography: {era.Business.Signage.TypographyStyle}.");
         return sb.ToString();
@@ -200,24 +223,38 @@ public sealed class PromptService : IPromptService
     {
         var cars     = era.Transportation.Cars;
         var fullPool = cars.SpecificModels.Concat(era.Transportation.Trucks.SpecificModels).Distinct().ToList();
-        var pool     = fullPool.Where(m => !context.UsedCarModels.Contains(m)).ToList();
+        var pool     = fullPool.Where(m => !context.IsCarModelUsed(m)).ToList();
 
         if (pool.Count < vehicleCount)
-        {
             logger.LogWarning(
                 "Vehicle pool exhausted for year {Year}: {Unused} unused of {Total}, need {Count} — topping up from full list",
                 era.Year, pool.Count, fullPool.Count, vehicleCount);
-            pool = pool.Concat(fullPool.Except(pool)).ToList();
-        }
 
         var rng        = context.Random;
-        var picks      = Sample(pool, vehicleCount, rng);
         var monochrome = era.Photography.ColorMode == "black_and_white";
         var usedColors = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        var result     = new List<(string, string?)>();
+        var pickedBases = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var picks      = new List<string>();
+
+        foreach (var model in Sample(pool, pool.Count, rng))
+        {
+            if (picks.Count >= vehicleCount) break;
+            if (!context.TryUseCarModel(model)) continue;
+            pickedBases.Add(GenerationContext.BaseModelName(model));
+            picks.Add(model);
+        }
+        // Top up from the full list when the unused pool ran dry, still keeping
+        // base model names unique within this prompt.
+        foreach (var model in Sample(fullPool, fullPool.Count, rng))
+        {
+            if (picks.Count >= vehicleCount) break;
+            if (!pickedBases.Add(GenerationContext.BaseModelName(model))) continue;
+            picks.Add(model);
+        }
+
+        var result = new List<(string, string?)>();
         foreach (var model in picks)
         {
-            context.UsedCarModels.Add(model);
             string? color = null;
             if (!monochrome)
             {
