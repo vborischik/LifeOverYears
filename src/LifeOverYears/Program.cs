@@ -1,5 +1,6 @@
 using Autofac;
 using LifeOverYears;
+using LifeOverYears.Providers;
 using LifeOverYears.Services;
 using LifeOverYears.Services.Interfaces; // TODO: remove smoke test
 using Microsoft.Extensions.Configuration;
@@ -10,6 +11,16 @@ Directory.SetCurrentDirectory(projectRoot);
 
 static async Task<int> RunAsync(string[] args, string projectRoot)
 {
+    // TODO: remove smoke test
+    // Fully isolated: no appsettings, no DI container, no vision/prompts.
+    if (args.Contains("--smoke-video"))
+    {
+        using var videoLoggerFactory = LoggerFactory.Create(b => b.AddConsole().SetMinimumLevel(LogLevel.Debug));
+        var ffmpegProvider = new FfmpegProvider(videoLoggerFactory.CreateLogger<FfmpegProvider>());
+        var videoService   = new VideoService(ffmpegProvider, videoLoggerFactory.CreateLogger<VideoService>());
+        return await VideoSmokeTest.RunAsync(videoService, videoLoggerFactory.CreateLogger("VideoSmokeTest"));
+    }
+
     // TODO: remove smoke test
     bool isSmokeTest = args.Contains("--smoke-prompts");
 
