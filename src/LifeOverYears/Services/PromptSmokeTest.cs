@@ -87,6 +87,11 @@ public static class PromptSmokeTest
         DoC12(gasRun1, gasRun2, dtRun1, dtRun2, eras,         findings);
         DoC13(gasRun1, gasRun2, dtRun1, dtRun2, eras,         findings);
         DoC14(gasRun1, gasRun2,                               findings);
+        DoC15(gasRun1, gasRun2, dtRun1, dtRun2, unknownPrompt, findings);
+        DoC16(gasRun1, gasRun2, dtRun1, dtRun2, unknownPrompt, findings);
+        DoC17(eras,                                           findings);
+        DoC18(gasRun1, gasRun2, dtRun1, dtRun2, unknownPrompt, findings);
+        DoC19(gasRun1, gasRun2, dtRun1, dtRun2,               findings);
         DoC20(gasRun1, gasRun2, dtRun1, dtRun2, eras,         findings);
         DoC21(gasRun1, gasRun2, dtRun1, dtRun2, eras,         findings);
 
@@ -740,6 +745,68 @@ public static class PromptSmokeTest
             errs.Count == 0, errs.Count == 0 ? "2025 gas prompts are fully de-electrified" : Join(errs)));
     }
 
+    private static IEnumerable<(int Year, Prompt Prompt, string Label)> AllPrompts(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Prompt? unknownPrompt = null)
+    {
+        foreach (var (run, label) in new[]
+        {
+            (gasRun1, "gas/run1"), (gasRun2, "gas/run2"),
+            (dtRun1, "downtown/run1"), (dtRun2, "downtown/run2")
+        })
+            foreach (var (year, prompt) in run)
+                yield return (year, prompt, label);
+        if (unknownPrompt is not null)
+            yield return (1985, unknownPrompt, "unknown/run1");
+    }
+
+    // Empty-base populate header and the pedestrian sidewalk rule in every prompt.
+    private static void DoC15(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Prompt unknownPrompt,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+        const string populate = "populate it with the people and vehicles specified below";
+        const string sidewalk = "the driving lanes stay empty of pedestrians";
+
+        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, unknownPrompt))
+        {
+            if (!prompt.Text.Contains(populate))
+                errs.Add($"{label}/{year}: missing populate-empty-base header");
+            if (!prompt.Text.Contains(sidewalk))
+                errs.Add($"{label}/{year}: missing sidewalk rule");
+        }
+
+        f.Add(("C15", "Every prompt contains the populate-empty-base header and the sidewalk rule",
+            errs.Count == 0, errs.Count == 0 ? "Populate header and sidewalk rule present everywhere" : Join(errs)));
+    }
+
+    // Any prompt that has a TREES section must carry the tree-size override line.
+    private static void DoC16(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Prompt unknownPrompt,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+        const string overrideLine = "Tree sizes MUST follow this specification";
+
+        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, unknownPrompt))
+        {
+            if (!prompt.Text.Contains("TREES")) continue;
+            if (!prompt.Text.Contains(overrideLine))
+                errs.Add($"{label}/{year}: TREES section without tree-size override line");
+        }
+
+        f.Add(("C16", "Every prompt with a TREES section contains the tree-size override line",
+            errs.Count == 0, errs.Count == 0 ? "Tree-size override present in all TREES sections" : Join(errs)));
+    }
+
+    // Data validation: no specific_models entry post-dates its era.
+    private static void DoC17(
     private static SceneContent? ContentFor(Dictionary<int, EraProfile> eras, int year, string sceneType)
     {
         var era = eras[year];
@@ -764,6 +831,35 @@ public static class PromptSmokeTest
         List<(string, string, bool, string)> f)
     {
         var errs = new List<string>();
+
+        foreach (var (year, era) in eras)
+        {
+            var models = era.Transportation.Cars.SpecificModels
+                .Concat(era.Transportation.Trucks.SpecificModels);
+            foreach (var model in models)
+            {
+                var m = System.Text.RegularExpressions.Regex.Match(model, @"^\s*(\d{4})");
+                if (!m.Success)
+                {
+                    errs.Add($"{year}: no start year in '{model}'");
+                    continue;
+                }
+                var start = int.Parse(m.Groups[1].Value);
+                if (start > year)
+                    errs.Add($"{year}: '{model}' starts {start} > era {year}");
+            }
+        }
+
+        f.Add(("C17", "Every specific_models entry (cars+trucks) starts on or before its era year",
+            errs.Count == 0, errs.Count == 0 ? "All model year ranges are era-valid" : Join(errs)));
+    }
+
+    // PLACEMENT present in every prompt; within a run no pattern repeats unless the
+    // relevant pool (sized by vehicle count) is exhausted.
+    private static void DoC18(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Prompt unknownPrompt,
         var runs = new[]
         {
             (gasRun1, "gas_station", "gas/run1"), (gasRun2, "gas_station", "gas/run2"),
@@ -796,6 +892,90 @@ public static class PromptSmokeTest
     {
         var errs = new List<string>();
 
+        // Presence in every prompt (including the unknown fallback).
+        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, unknownPrompt))
+            if (PlacementLine(prompt) is null)
+                errs.Add($"{label}/{year}: no PLACEMENT line");
+
+        // Per-run pattern de-duplication, evaluated per placement pool.
+        void CheckRun(Dictionary<int, Prompt> run, string label)
+        {
+            var entries = run.Values
+                .Select(p => (Count: p.SelectedVehicles.Count, Line: PlacementLine(p)))
+                .Where(e => e.Line is not null)
+                .ToList();
+
+            foreach (var poolTag in new[] { "34", "56" })
+            {
+                var group = entries
+                    .Where(e => (poolTag == "34") == (e.Count <= 4))
+                    .Select(e => e.Line!)
+                    .ToList();
+                if (group.Count == 0) continue;
+
+                int poolSize = GenerationContext.PlacementPoolFor(poolTag == "34" ? 4 : 5).Count;
+                int expected = Math.Min(group.Count, poolSize);
+                int distinct = group.Distinct().Count();
+                if (distinct != expected)
+                    errs.Add($"{label} pool{poolTag}: {distinct} distinct of {group.Count} (expected {expected}, poolSize {poolSize})");
+            }
+        }
+
+        CheckRun(gasRun1, "gas/run1");
+        CheckRun(gasRun2, "gas/run2");
+        CheckRun(dtRun1,  "downtown/run1");
+        CheckRun(dtRun2,  "downtown/run2");
+
+        f.Add(("C18", "Every prompt has a PLACEMENT line; no repeated pattern per run unless the pool is exhausted",
+            errs.Count == 0, errs.Count == 0 ? "Placement present and de-duplicated per pool" : Join(errs)));
+    }
+
+    private static string? PlacementLine(Prompt prompt) =>
+        prompt.Text.Split('\n').FirstOrDefault(l => l.StartsWith("PLACEMENT:"))?.Trim();
+
+    // No descriptive-adjective-as-signage leaks; {DINER_NAME} resolved and stable per run.
+    private static void DoC19(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+        // 'aging'/'corporate' within two words before a business type reads as a sign.
+        var adjacency = new System.Text.RegularExpressions.Regex(
+            @"\b(aging|corporate)\b(?:\s+\S+){0,2}\s+(diner|bank|store|shop|market|pharmacy|cafe|salon|grocery|hardware|bakery|deli)\b",
+            System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2))
+        {
+            var text = prompt.Text;
+            if (text.Contains("the same local diner", StringComparison.OrdinalIgnoreCase) ||
+                text.Contains("the same diner", StringComparison.OrdinalIgnoreCase))
+                errs.Add($"{label}/{year}: generic 'the same diner' reference");
+            if (text.Contains("{DINER_NAME}"))
+                errs.Add($"{label}/{year}: unresolved {{DINER_NAME}} token");
+            var adj = adjacency.Match(text);
+            if (adj.Success)
+                errs.Add($"{label}/{year}: descriptive adjective adjacent to business type ('{adj.Value.Trim()}')");
+        }
+
+        // Within a run the resolved diner name must be identical wherever it appears.
+        void CheckName(Dictionary<int, Prompt> run, string label)
+        {
+            var names = run.Values
+                .SelectMany(p => GenerationContext.DinerNames.Where(n => p.Text.Contains(n)))
+                .Distinct()
+                .ToList();
+            if (names.Count > 1)
+                errs.Add($"{label}: diner name differs across eras: {string.Join(", ", names)}");
+        }
+
+        CheckName(gasRun1, "gas/run1");
+        CheckName(gasRun2, "gas/run2");
+        CheckName(dtRun1,  "downtown/run1");
+        CheckName(dtRun2,  "downtown/run2");
+
+        f.Add(("C19", "No descriptive-as-signage leaks; {DINER_NAME} resolved and identical across a run",
+            errs.Count == 0, errs.Count == 0 ? "Business names clean and diner name stable" : Join(errs)));
         void Check(Dictionary<int, Prompt> run1, Dictionary<int, Prompt> run2, string sceneType, string label)
         {
             int differing = 0;

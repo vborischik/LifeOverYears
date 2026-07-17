@@ -18,12 +18,12 @@
       "dominant_makes": ["Chevrolet", "Ford", "Dodge", "Toyota", "Honda", "Nissan", "Buick", "Oldsmobile"],
       "specific_models": [
         "1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan",
-        "1986-1991 Ford Taurus — aerodynamic, rounded, revolutionary look",
+        "1981-1985 Dodge Aries — K-car, boxy economy sedan",
         "1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline",
         "1983-1987 Honda Accord — clean lines, pop-up headlights",
         "1984-1987 Toyota Corolla — boxy compact, reliable look",
         "1982-1992 Chevrolet Camaro — wedge-shaped sporty coupe",
-        "1986-1989 Nissan Sentra — small economy boxy sedan",
+        "1982-1986 Nissan Sentra — small economy boxy sedan",
         "1980-1985 Cadillac Seville — sharp formal lines, bustleback",
         "1984-1990 Dodge Caravan — first minivan, boxy",
         "1983-1988 Ford Thunderbird — aero coupe, rounded",
@@ -215,12 +215,12 @@
       "narrative": "A 1985 main street in transition — neon and backlit plastic overtaking hand-painted signs, a first small video rental shop among the old local stores.",
       "storefronts": [
         "small newly opened video rental shop with a 'VIDEO CASSETTE RENTALS — VHS & BETA' backlit sign",
-        "the same local diner, now with a backlit sign and 'HOT COFFEE 45¢' in the window",
+        "{DINER_NAME} with a backlit sign and 'HOT COFFEE 45¢' in the window",
         "barber shop with its spinning barber pole, unchanged",
         "electronics store with a red 'RADIOSHACK' style logo sign",
         "record store with 'CASSETTES — LPs' in neon-accented window lettering",
         "video arcade with a 'GAMES 25¢' neon sign and posters in the window",
-        "drug store modernized with backlit plastic channel letters reading 'PHARMACY'",
+        "corner drug store with backlit plastic channel letters reading 'PHARMACY'",
         "hair salon with a neon script 'STYLES' sign"
       ],
       "window_signs": [
@@ -334,7 +334,7 @@
     "default": {
       "narrative": "An ordinary 1985 American commercial street — bold primary-color signage, boxy cars, the first franchise logos among local shops.",
       "storefronts": [
-        "local diner with a backlit sign and 'HOT COFFEE 45¢' in the window",
+        "{DINER_NAME} with a backlit sign and 'HOT COFFEE 45¢' in the window",
         "barber shop with its spinning barber pole",
         "small video rental shop with a 'VHS RENTALS' backlit sign",
         "pharmacy with backlit plastic channel letters",

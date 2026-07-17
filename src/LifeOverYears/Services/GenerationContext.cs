@@ -14,6 +14,58 @@ public sealed class GenerationContext
 
     public bool TryUseCarModel(string model) => UsedCarModels.Add(BaseModelName(model));
 
+    // ── Business names ────────────────────────────────────────────────────────
+    // Descriptive words next to a business type leak onto signs ("the same local
+    // diner, sign aging" rendered a sign reading "Aging Local DINER"), so scene
+    // content references the diner by a proper {DINER_NAME} token instead. One name
+    // is drawn per context (per scene run) and reused across all six eras.
+    public static readonly IReadOnlyList<string> DinerNames = new[]
+    {
+        "MARY'S DINER", "MAIN STREET DINER", "STAR DINER", "TOWN DINER",
+        "RED ROBIN DINER", "BLUE PLATE DINER"
+    };
+
+    private string? _dinerName;
+    public string DinerName => _dinerName ??= DinerNames[Random.Next(DinerNames.Count)];
+
+    // ── Vehicle placement patterns ────────────────────────────────────────────
+    // Simple patterns only: manual tests showed the model reliably follows
+    // side-of-street and drive direction, but ignores complex choreography, so
+    // nothing here references parking manoeuvres or wheel angles. One pattern is
+    // sampled per era; a per-run HashSet keeps eras from repeating a pattern until
+    // the relevant pool is exhausted.
+    public static readonly IReadOnlyList<string> PlacementPatterns34 = new[]
+    {
+        "the first two parked on the LEFT side; the rest parked on the RIGHT side",
+        "the first two parked on the RIGHT side; one parked on the left near the corner; the last one driving toward the camera in the far lane",
+        "all parked on the RIGHT side with gaps; the first one driving away from the camera in the near lane",
+        "the first two parked on the LEFT side; the last one driving away from the camera"
+    };
+
+    public static readonly IReadOnlyList<string> PlacementPatterns56 = new[]
+    {
+        "three parked on the LEFT side; the rest parked on the RIGHT side; the last one driving toward the camera in the far lane",
+        "three parked on the RIGHT side; one parked on the left near the corner; the last one driving away from the camera in the near lane",
+        "two parked on each side with gaps; the last one driving toward the camera"
+    };
+
+    // Pool selected by vehicle count: 3-4 vehicles → the smaller-arrangement pool.
+    public static IReadOnlyList<string> PlacementPoolFor(int vehicleCount) =>
+        vehicleCount <= 4 ? PlacementPatterns34 : PlacementPatterns56;
+
+    private readonly HashSet<string> _usedPlacements = new();
+
+    public string NextPlacement(int vehicleCount)
+    {
+        var pool      = PlacementPoolFor(vehicleCount);
+        var available = pool.Where(p => !_usedPlacements.Contains(p)).ToList();
+        if (available.Count == 0)          // pool exhausted this run — reuse is allowed
+            available = pool.ToList();
+        var pick = available[Random.Next(available.Count)];
+        _usedPlacements.Add(pick);
+        return pick;
+    }
+
     // "2022-2025 Ford F-150 Lightning — electric pickup" -> "ford f-150"
     // (drop the descriptor, the year range, and trim/variant words after the
     // first model token, keeping make + first model token)

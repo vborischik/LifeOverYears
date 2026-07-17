@@ -1,0 +1,11 @@
+Edit this photograph. Remove ALL people and ALL vehicles — cars, trucks,
+bicycles, anything parked or driving. The street, parking spaces, and
+sidewalks become completely empty.
+
+Everything else stays pixel-identical to the source: buildings, storefronts,
+signs, road surface and markings, sidewalks, curbs, utility poles and wires,
+trees, sky, lighting, framing, camera angle. Do not move, resize, or redraw
+any structure. Where a removed person or vehicle covered the background,
+reconstruct the pavement, wall, or storefront behind it naturally.
+
+Keep the original aspect ratio. This is a cleanup edit, not a new image.

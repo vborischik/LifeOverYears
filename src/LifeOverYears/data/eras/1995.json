@@ -228,7 +228,7 @@
       "storefronts": [
         "video rental store at its peak with a big backlit 'VIDEO RENTALS — NEW RELEASES' sign and a 'BE KIND, REWIND' sticker on the door",
         "pizza and sub shop with a '2 SLICES + SODA $2.99' sign in the window",
-        "the same local diner, sign aging, 'HOT COFFEE 75¢' in the window",
+        "{DINER_NAME} with 'HOT COFFEE 75¢' in the window",
         "computer shop with a 'PENTIUM PCs — INTERNET SOFTWARE' banner",
         "barber shop with its spinning barber pole, unchanged",
         "music store with a 'CDs — CASSETTES' channel-letter sign",
@@ -345,7 +345,7 @@
     "default": {
       "narrative": "An ordinary 1995 American commercial street — backlit box signs, rounded cars, the video store era at full strength.",
       "storefronts": [
-        "local diner with 'HOT COFFEE 75¢' in the window",
+        "{DINER_NAME} with 'HOT COFFEE 75¢' in the window",
         "barber shop with its spinning barber pole",
         "video rental store with a backlit 'VIDEO RENTALS' sign and a 'BE KIND, REWIND' sticker",
         "computer shop with a 'PENTIUM PCs' window banner",

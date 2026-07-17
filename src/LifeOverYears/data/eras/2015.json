@@ -61,7 +61,7 @@
       "specific_models": [
         "2015-2020 Ford F-150 — aluminum body, C-clamp headlights",
         "2009-2018 Ram 1500 — crosshair grille, refined",
-        "2016-2023 Toyota Tacoma — aggressive modern mid-size"
+        "2005-2015 Toyota Tacoma — capable mid-size pickup"
       ],
       "visual_characteristics": [
         "crew cab dominant",
@@ -230,7 +230,7 @@
       "narrative": "A 2015 main street mid-revival — the video store replaced by a phone repair shop, third-wave coffee and a vape shop, smartphones in every hand.",
       "storefronts": [
         "the old video store space now a phone repair shop with an 'iPHONE & TABLET REPAIR' LED sign",
-        "the same diner, retro-styled, with 'COFFEE $2.25' chalked on a menu board",
+        "{DINER_NAME} with 'COFFEE $2.25' chalked on a menu board",
         "barber shop with its spinning barber pole, now billed as a 'classic barbershop'",
         "third-wave coffee shop with a minimalist logo and Edison bulbs visible inside",
         "vape shop with a bright 'VAPE — E-CIGS' LED window sign",
@@ -346,7 +346,7 @@
     "default": {
       "narrative": "An ordinary 2015 American commercial street — LED signs, crossovers at the curb, smartphones out everywhere.",
       "storefronts": [
-        "local diner with 'COFFEE $2.25' on a chalkboard menu",
+        "{DINER_NAME} with 'COFFEE $2.25' on a chalkboard menu",
         "barber shop with a spinning barber pole",
         "phone repair shop in a former video store space",
         "third-wave coffee shop with a minimalist logo",

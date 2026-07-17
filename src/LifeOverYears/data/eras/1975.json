@@ -232,7 +232,7 @@
       "storefronts": [
         "corner drug store with a hand-painted 'REXALL DRUGS' style sign and a small neon 'PRESCRIPTIONS' sign in the window",
         "'BEN FRANKLIN' five & dime with red-and-white lettering",
-        "local diner with a hand-lettered 'HOT COFFEE 25¢' sign in the window",
+        "{DINER_NAME} with a hand-lettered 'HOT COFFEE 25¢' sign in the window",
         "barber shop with a spinning red-white-and-blue barber pole by the door",
         "hardware store with 'PAINT — GLASS — KEYS' painted on the display window",
         "shoe repair shop with a small 'SHOE REPAIR — WHILE U WAIT' sign",
@@ -356,7 +356,7 @@
       "storefronts": [
         "corner grocery with hand-painted produce prices on butcher paper in the window",
         "drug store with a hand-painted sign and a neon 'PRESCRIPTIONS' sign in the window",
-        "local diner with a hand-lettered 'HOT COFFEE 25¢' sign",
+        "{DINER_NAME} with a hand-lettered 'HOT COFFEE 25¢' sign",
         "barber shop with a spinning barber pole",
         "auto parts store with a red-and-white 'WESTERN AUTO' style sign",
         "small bank branch with bronze letters and a round clock sign",
