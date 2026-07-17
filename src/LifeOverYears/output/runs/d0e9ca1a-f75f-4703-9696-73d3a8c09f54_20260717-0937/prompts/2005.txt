@@ -1,0 +1,71 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- camera: eye-level, facing intersection, fov 90
+- residential road, 1-lane, concrete
+- sidewalks absent, curbs absent
+- driveways: center; parking: lot
+- commercial building at left, 1 story, stucco, brick, glass, metal, flat roof, shallow setback
+- commercial building at center, 1 story, brick, stucco, metal, flat roof, shallow setback
+- utilities: street lamp, power lines, fire hydrant
+- landscape: grass strip, hedge, flower bed, mulch
+- immutable elements: water tower
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 2005
+Post-9/11 era. A 2005 gas station — big multi-island canopy, card readers at every pump, LED price sign, and a convenience store doing most of the business.
+
+PERIOD DETAILS
+- large convenience store with energy-drink and phone-card ads in the glass
+- wide multi-island canopy with branded fascia lighting
+- price sign showing gas around $2.30
+- main sign: an independent station sign in the style of Marathon
+- window signs: 'CIGARETTES $3.75 PACK', 'CAR WASH $6'
+- a free real-estate flyer box by the door
+- ribbon magnets on the door of the service office
+Typography: clean sans-serif, polished brand identities.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+
+PEOPLE
+EXACTLY 4 people, spread out with empty areas.
+- a teenager filling tires at the coin-operated air machine
+- a driver self-serving at the pump
+- a woman walking a small dog in a sweater
+Clothing: men in baggy jeans, cargo shorts; women in layered tank tops, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+
+VEHICLES
+EXACTLY 3 period vehicles, all different:
+- 2002-2008 Dodge Ram — big rig grille evolved — dark blue
+- 2002-2006 Toyota Camry — smooth conservative mid-size — gold
+- 2003-2007 Nissan Altima — sporty mid-size — white
+Parked with gaps; no vehicle newer than 2005.
+PLACEMENT: the first two parked on the LEFT side; the last one driving away from the camera. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, turn arrows
+- utilities: overhead power lines standard, cable and fiber lines on poles appearing
+
+TREES
+- deciduous tree at left: very young sapling
+- deciduous tree at background: young tree, thin trunk
+- deciduous tree at right: young tree, thin trunk
+Tree sizes MUST follow this specification even where they differ from the source photo.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — early digital camera or Kodak/Fuji consumer film look.
+Color: neutral tones. Grain: low grain, early digital noise in shadows.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

@@ -42,6 +42,10 @@ static async Task<int> RunAsync(string[] args, string projectRoot)
             loggerFactory.CreateLogger("SmokeTest"));
     }
 
+    // 'run <photoPath> [years...]' — the mode keyword is optional for now
+    if (args.Length >= 1 && args[0] == "run")
+        args = args.Skip(1).ToArray();
+
     var photoPath = ResolvePhotoPath(args, projectRoot);
     var years     = args.Length >= 2
         ? args.Skip(1).Select(int.Parse).ToList()
@@ -50,8 +54,7 @@ static async Task<int> RunAsync(string[] args, string projectRoot)
     try
     {
         var pipeline = container.Resolve<Pipeline>();
-        await pipeline.RunAsync(photoPath, years);
-        return 0;
+        return await pipeline.RunAsync(photoPath, years);
     }
     catch (Exception ex)
     {

@@ -1,0 +1,70 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- camera: eye-level, facing intersection, fov 90
+- residential road, 1-lane, concrete
+- sidewalks absent, curbs absent
+- driveways: center; parking: lot
+- commercial building at left, 1 story, stucco, glass, brick, flat roof, at-street setback
+- commercial building at center, 1 story, stucco, brick, glass, flat roof, at-street setback
+- utilities: street lamp
+- landscape: grass strip, hedge, flower bed
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 1995
+Clinton era prosperity. A 1995 self-serve station — wide canopy over multiple islands, attached convenience store, the first pay-at-pump card readers.
+
+PERIOD DETAILS
+- air and water station at the lot edge
+- ice merchandiser and stacked firewood bundles outside the store
+- price sign showing gas around $1.15
+- main sign: an independent station sign in the style of BP
+- window signs: 'CAR WASH $4 WITH FILL-UP', '2 HOT DOGS $2'
+- a wire rack of free auto-trader papers by the door
+- squeegee buckets at the pump islands
+Typography: clean geometric sans-serif, early digital influence.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+
+PEOPLE
+EXACTLY 6 people, spread out with empty areas.
+- a woman swiping a card at the new pay-at-pump reader
+- a clerk restocking the ice merchandiser
+- a paperboy with a canvas bag on a bike
+Clothing: men in grunge style, backwards caps; women in floral dresses, slip dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+
+VEHICLES
+EXACTLY 3 period vehicles, all different:
+- 1991-1996 Ford Escort — small rounded economy car — navy blue
+- 1990-1994 Chevrolet Lumina — rounded mid-size sedan — teal
+- 1995-1999 Dodge Neon — small rounded economy, friendly face — black
+Parked with gaps; no vehicle newer than 1995.
+PLACEMENT: the first two parked on the LEFT side; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, turn lane arrows
+- utilities: overhead power lines standard, cable TV and early phone data lines on poles
+
+TREES
+- deciduous tree at left: very young sapling
+- deciduous tree at background: very young sapling
+- deciduous tree at right: very young sapling
+Tree sizes MUST follow this specification even where they differ from the source photo.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — Kodak Gold 200 or Fujifilm Superia 200 look.
+Color: neutral to slightly warm tones. Grain: fine grain, cleaner than 1985.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

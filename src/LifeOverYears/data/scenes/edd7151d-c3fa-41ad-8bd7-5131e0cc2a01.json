@@ -1,0 +1,83 @@
+{
+  "Id": "edd7151d-c3fa-41ad-8bd7-5131e0cc2a01",
+  "CreatedAt": "2026-07-17T14:45:14.4916560\u002B00:00",
+  "SceneType": "gas_station",
+  "Camera": {
+    "Height": "eye-level",
+    "Direction": "intersection",
+    "Fov": 90
+  },
+  "Geometry": {
+    "Roads": [
+      {
+        "Type": "residential",
+        "Lanes": 1,
+        "Markings": [
+          "edge line"
+        ],
+        "Surface": "concrete"
+      }
+    ],
+    "Sidewalks": false,
+    "Curbs": false,
+    "Buildings": [
+      {
+        "Type": "commercial",
+        "Position": "left",
+        "Stories": 1,
+        "Materials": [
+          "stucco",
+          "glass",
+          "brick"
+        ],
+        "Roof": "flat",
+        "Setback": "at-street"
+      },
+      {
+        "Type": "commercial",
+        "Position": "center",
+        "Stories": 1,
+        "Materials": [
+          "stucco",
+          "brick",
+          "glass"
+        ],
+        "Roof": "flat",
+        "Setback": "at-street"
+      }
+    ],
+    "Driveways": [
+      "center"
+    ],
+    "Parking": "lot"
+  },
+  "Environment": {
+    "Terrain": "suburban",
+    "Utilities": [
+      "street lamp"
+    ],
+    "Trees": [
+      {
+        "Position": "left",
+        "Size": "small",
+        "Type": "deciduous"
+      },
+      {
+        "Position": "background",
+        "Size": "medium",
+        "Type": "deciduous"
+      },
+      {
+        "Position": "right",
+        "Size": "medium",
+        "Type": "deciduous"
+      }
+    ],
+    "Landscape": [
+      "grass strip",
+      "hedge",
+      "flower bed"
+    ]
+  },
+  "ImmutableElements": []
+}

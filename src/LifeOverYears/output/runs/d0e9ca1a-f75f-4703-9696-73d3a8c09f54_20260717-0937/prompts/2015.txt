@@ -1,0 +1,71 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- camera: eye-level, facing intersection, fov 90
+- residential road, 1-lane, concrete
+- sidewalks absent, curbs absent
+- driveways: center; parking: lot
+- commercial building at left, 1 story, stucco, brick, glass, metal, flat roof, shallow setback
+- commercial building at center, 1 story, brick, stucco, metal, flat roof, shallow setback
+- utilities: street lamp, power lines, fire hydrant
+- landscape: grass strip, hedge, flower bed, mulch
+- immutable elements: water tower
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 2015
+Smartphone era fully arrived. A 2015 station — LED-lit canopy, digital price sign, video ads playing on every pump screen, and a big convenience store.
+
+PERIOD DETAILS
+- red DVD-rental kiosk outside the store entrance
+- card skimmer warnings on pumps
+- price sign showing gas around $2.45
+- main sign: an independent station sign in the style of Casey's
+- window signs: '2 ENERGY DRINKS $5', 'ATM INSIDE'
+- a chalkboard A-frame sign advertising the coffee bar
+- card-skimmer warning stickers on the pumps
+Typography: minimalist flat sans-serif, simplified modern logos.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+
+PEOPLE
+EXACTLY 5 people, spread out with empty areas.
+- a man returning a disc at the DVD kiosk
+- a driver self-serving at the pump
+- a man in skinny jeans taking a selfie
+Clothing: men in beards, skinny jeans; women in ankle boots, statement necklaces. Fashion palette: coral, mint green, navy. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+
+VEHICLES
+EXACTLY 3 period vehicles, all different:
+- 2010-2016 Chevrolet Equinox — mid-size crossover — dark red
+- 2015-2020 Ford Edge — mid-size crossover, bold grille — white
+- 2011-2016 Kia Optima — stylish mid-size, sporty — pearl white
+Parked with gaps; no vehicle newer than 2015.
+PLACEMENT: the first two parked on the LEFT side; the last one driving away from the camera. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, high-visibility crosswalks
+- utilities: overhead power lines common, undergrounding in new developments, fiber optic lines on poles
+
+TREES
+- deciduous tree at left: very young sapling
+- deciduous tree at background: established tree, modest canopy
+- deciduous tree at right: established tree, modest canopy
+Tree sizes MUST follow this specification even where they differ from the source photo.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — digital — DSLR or smartphone camera look.
+Color: high saturation. Grain: clean, minimal noise.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

@@ -47,7 +47,27 @@ public sealed class AppModule : Module
         builder.Register(_ => new PromptService(_.Resolve<IDataService>(), _loggerFactory.CreateLogger<PromptService>()))
                .As<IPromptService>().SingleInstance();
 
-        builder.Register(_ => new Pipeline(_.Resolve<IVisionService>(), _.Resolve<IPromptService>(), _.Resolve<IDataService>(), _loggerFactory.CreateLogger<Pipeline>()))
+        builder.RegisterInstance(new RunService(_loggerFactory.CreateLogger<RunService>()))
+               .As<IRunService>().SingleInstance();
+
+        // TODO: replace with OpenAiImageProvider once Step 3 goes live
+        builder.RegisterInstance(new StubImageProvider(_loggerFactory.CreateLogger<StubImageProvider>()))
+               .As<IImageGenerationProvider>().SingleInstance();
+
+        builder.RegisterInstance(new FfmpegProvider(_loggerFactory.CreateLogger<FfmpegProvider>()))
+               .As<IFfmpegProvider>().SingleInstance();
+
+        builder.Register(_ => new VideoService(_.Resolve<IFfmpegProvider>(), _loggerFactory.CreateLogger<VideoService>()))
+               .As<IVideoService>().SingleInstance();
+
+        builder.Register(_ => new Pipeline(
+                    _.Resolve<IVisionService>(),
+                    _.Resolve<IPromptService>(),
+                    _.Resolve<IDataService>(),
+                    _.Resolve<IRunService>(),
+                    _.Resolve<IImageGenerationProvider>(),
+                    _.Resolve<IVideoService>(),
+                    _loggerFactory.CreateLogger<Pipeline>()))
                .SingleInstance();
     }
 }

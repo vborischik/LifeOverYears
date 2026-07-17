@@ -1,0 +1,90 @@
+{
+  "Id": "d0e9ca1a-f75f-4703-9696-73d3a8c09f54",
+  "CreatedAt": "2026-07-17T14:37:27.6477800\u002B00:00",
+  "SceneType": "gas_station",
+  "Camera": {
+    "Height": "eye-level",
+    "Direction": "intersection",
+    "Fov": 90
+  },
+  "Geometry": {
+    "Roads": [
+      {
+        "Type": "residential",
+        "Lanes": 1,
+        "Markings": [
+          "edge line",
+          "none"
+        ],
+        "Surface": "concrete"
+      }
+    ],
+    "Sidewalks": false,
+    "Curbs": false,
+    "Buildings": [
+      {
+        "Type": "commercial",
+        "Position": "left",
+        "Stories": 1,
+        "Materials": [
+          "stucco",
+          "brick",
+          "glass",
+          "metal"
+        ],
+        "Roof": "flat",
+        "Setback": "shallow"
+      },
+      {
+        "Type": "commercial",
+        "Position": "center",
+        "Stories": 1,
+        "Materials": [
+          "brick",
+          "stucco",
+          "metal"
+        ],
+        "Roof": "flat",
+        "Setback": "shallow"
+      }
+    ],
+    "Driveways": [
+      "center"
+    ],
+    "Parking": "lot"
+  },
+  "Environment": {
+    "Terrain": "suburban",
+    "Utilities": [
+      "street lamp",
+      "power lines",
+      "fire hydrant"
+    ],
+    "Trees": [
+      {
+        "Position": "left",
+        "Size": "small",
+        "Type": "deciduous"
+      },
+      {
+        "Position": "background",
+        "Size": "medium",
+        "Type": "deciduous"
+      },
+      {
+        "Position": "right",
+        "Size": "medium",
+        "Type": "deciduous"
+      }
+    ],
+    "Landscape": [
+      "grass strip",
+      "hedge",
+      "flower bed",
+      "mulch"
+    ]
+  },
+  "ImmutableElements": [
+    "water tower"
+  ]
+}

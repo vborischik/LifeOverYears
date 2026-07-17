@@ -1,0 +1,72 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- camera: eye-level, facing intersection, fov 90
+- residential road, 1-lane, concrete
+- sidewalks absent, curbs absent
+- driveways: center; parking: lot
+- commercial building at left, 1 story, stucco, brick, glass, metal, flat roof, shallow setback
+- commercial building at center, 1 story, brick, stucco, metal, flat roof, shallow setback
+- utilities: street lamp, power lines, fire hydrant
+- landscape: grass strip, hedge, flower bed, mulch
+- immutable elements: water tower
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 1975
+Post-Vietnam, oil crisis era. A full-service neighborhood gas station in 1975 — uniformed attendants pump the gas, check the oil, and wipe the windshield.
+
+PERIOD DETAILS
+- chest-style soda vending machine by the office door
+- tire display rack near the service bay
+- price sign showing gas around $0.57
+- main sign: an independent station sign in the style of Gulf
+- window signs: 'TUNE-UP SPECIAL $19.95', 'MECHANIC ON DUTY'
+- a 'FREE AIR' sign next to the air pump
+- a bicycle leaning against a utility pole
+Typography: bold sans-serif, slab serif, occasional script.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+
+PEOPLE
+EXACTLY 7 people, spread out with empty areas.
+- a mechanic leaning under the open hood of a car by the bay
+- a driver waiting behind the wheel while the attendant works
+- an elderly couple walking arm in arm
+Clothing: men in polyester suits, plaid patterns; women in peasant blouses, earth tones. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+
+VEHICLES
+EXACTLY 4 period vehicles, all different:
+- 1973-1979 Ford LTD — full-size sedan, wide body, bench seat
+- 1973-1977 Oldsmobile Delta 88 — full-size, opera windows
+- 1975-1983 Volkswagen Rabbit — small boxy hatchback, new for 1975
+- 1968-1978 Toyota Corona — compact sedan, simple lines
+Parked with gaps; no vehicle newer than 1975.
+PLACEMENT: all parked on the RIGHT side with gaps; the first one driving away from the camera in the near lane. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, no rumble strips
+- utilities: overhead power lines everywhere, wooden utility poles standard
+
+TREES
+- deciduous tree at left: very young sapling
+- deciduous tree at background: very young sapling
+- deciduous tree at right: very young sapling
+Tree sizes MUST follow this specification even where they differ from the source photo.
+
+PHOTOGRAPHIC STYLE
+STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.
+Grain: visible fine grain. Style: documentary, natural light.
+Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.
+
+PRIVACY
+Blur all faces and license plates.
