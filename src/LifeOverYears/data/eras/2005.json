@@ -21,7 +21,15 @@
         "2000-2006 Chevrolet Tahoe — full-size SUV peak era",
         "2004-2008 Pontiac Grand Prix — sporty sedan plastic cladding",
         "2001-2005 Honda Civic — rounded compact, very common",
-        "2005-2010 Jeep Grand Cherokee — rounded modern SUV"
+        "2005-2010 Jeep Grand Cherokee — rounded modern SUV",
+        "2003-2008 Toyota Corolla — conservative compact sedan",
+        "2000-2005 Ford Focus — European-styled compact",
+        "1998-2005 Volkswagen New Beetle — retro bubble shape",
+        "2001-2007 Dodge Grand Caravan — family minivan, rounded",
+        "2004-2010 Toyota Sienna — large rounded minivan",
+        "2001-2007 Ford Escape — compact boxy SUV",
+        "2002-2007 Jeep Liberty — round-headlight compact SUV",
+        "2003-2009 Hummer H2 — massive military-styled SUV"
       ],
       "body_styles": ["mid-size sedan", "full-size SUV", "minivan", "crossover beginning", "pickup truck"],
       "visual_characteristics": [
@@ -41,7 +49,8 @@
       "specific_models": [
         "2004-2008 Ford F-150 — bigger, bolder grille",
         "1999-2006 Chevrolet Silverado — squared modern look",
-        "2002-2008 Dodge Ram — big rig grille evolved"
+        "2002-2008 Dodge Ram — big rig grille evolved",
+        "1998-2004 Nissan Frontier — compact pickup"
       ],
       "visual_characteristics": [
         "crew cab now common",

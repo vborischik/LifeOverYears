@@ -27,23 +27,24 @@ TRANSFORM TO 2025
 Post-pandemic era. A 2025 fuel stop — LED canopy, full-color digital price sign, and a convenience store selling fresh food.
 
 PERIOD DETAILS
-- modern LED canopies
-- large convenience store with 'FRESH FOOD — MADE TO ORDER' branding
+- free air and vacuum station at the lot edge
+- pay-at-pump screens playing video ads
 - price sign showing gas around $3.40
-- main sign: an independent station sign in the style of Marathon
+- main sign: an independent station sign in the style of Casey's
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 
 PEOPLE
-EXACTLY 4 people, spread out with empty areas.
+EXACTLY 5 people, spread out with empty areas.
 - a customer tapping a phone to pay at the pump
-- a delivery van driver walking out with a coffee
-Clothing: men in oversized fit tees, bucket hats; women in chunky dad sneakers, oversized blazers. Fashion palette: sage green, beige, cream. No posing or eye contact.
+- a driver self-serving at the pump
+Clothing: men in wide-leg pants, oversized fit tees; women in athleisure, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact.
 
 VEHICLES
-EXACTLY 3 period vehicles, all different:
-- 2021-2025 Ford F-150 — refreshed, full-width LED bar options — matte finishes appearing
-- 2021-2025 Kia Telluride — boxy upscale three-row SUV — black
-- 2020-2025 Hyundai Tucson — sharp parametric grille design — blue
+EXACTLY 4 period vehicles, all different:
+- 2017-2025 Honda CR-V — rounded best-selling crossover — gray
+- 2022-2025 Honda Civic — clean mature compact — white
+- 2019-2025 Chevrolet Equinox — rounded compact crossover — silver
+- 2021-2025 Kia Carnival — boxy SUV-styled minivan — black
 Parked with gaps; optionally 1 driving; no vehicle newer than 2025.
 
 ENVIRONMENT

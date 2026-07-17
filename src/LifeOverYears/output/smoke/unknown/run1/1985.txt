@@ -26,22 +26,22 @@ Reagan era prosperity. An ordinary 1985 American commercial street — bold prim
 
 PERIOD DETAILS
 - local diner with a backlit sign and 'HOT COFFEE 45¢' in the window
-- pizza shop with a neon 'PIZZA' window sign
-- barber shop with its spinning barber pole
+- electronics store with a red logo sign
+- small video rental shop with a 'VHS RENTALS' backlit sign
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 
 PEOPLE
 EXACTLY 11 people, spread out with empty areas.
-- a jogger in a bright tracksuit
 - a woman using a wall-mounted payphone
-Clothing: men in acid wash jeans, windbreakers; women in bright neon colors, leg warmers. Fashion palette: neon pink, electric blue, purple. No posing or eye contact.
+- a shopkeeper arranging a sidewalk rack
+Clothing: men in acid wash jeans, polo shirts with collars up; women in bright neon colors, high-waisted jeans. Fashion palette: neon pink, electric blue, purple. No posing or eye contact.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
-- 1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan — light blue
-- 1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline — charcoal gray
-- 1986-1989 Nissan Sentra — small economy boxy sedan — beige
-- 1984-1990 Dodge Caravan — first minivan, boxy — white
+- 1980-1985 Buick LeSabre — boxy full-size, chrome trim — light blue
+- 1980-1986 Ford F-150 — square body, dual headlights — silver
+- 1982-1985 Toyota Celica — angular sporty coupe, pop-up lights — white
+- 1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan — beige
 Parked with gaps; optionally 1 driving; no vehicle newer than 1985.
 
 ENVIRONMENT

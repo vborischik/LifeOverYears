@@ -34,17 +34,17 @@ Typography: bold geometric sans-serif, early computer-influenced fonts.
 
 PEOPLE
 EXACTLY 11 people, spread out with empty areas.
-- a kid locking a BMX bike to a signpost
+- a jogger in a bright tracksuit and headband passing through
 - a teenager carrying a boombox on his shoulder
-Clothing: men in shoulder pads in blazers, polo shirts with collars up; women in shoulder pads, leg warmers. Fashion palette: neon pink, electric blue, purple. No posing or eye contact.
+Clothing: men in acid wash jeans, shoulder pads in blazers; women in big permed hair, leg warmers. Fashion palette: neon pink, electric blue, purple. No posing or eye contact.
 
 VEHICLES
 EXACTLY 5 period vehicles, all different:
-- 1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline — red
-- 1982-1992 Chevrolet Camaro — wedge-shaped sporty coupe — light blue
-- 1984-1990 Dodge Caravan — first minivan, boxy — white
-- 1984-1988 Toyota Pickup — small, boxy, popular import — beige
-- 1983-1988 Ford Thunderbird — aero coupe, rounded — burgundy
+- 1982-1985 Toyota Celica — angular sporty coupe, pop-up lights — silver
+- 1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline — light blue
+- 1982-1992 Chevrolet Camaro — wedge-shaped sporty coupe — burgundy
+- 1984-1990 Dodge Caravan — first minivan, boxy — charcoal gray
+- 1983-1985 Nissan Maxima — boxy import sedan — red
 Parked with gaps; optionally 1 driving; no vehicle newer than 1985.
 
 ENVIRONMENT

@@ -18,7 +18,17 @@
         "2019-2025 Subaru Outback — rugged wagon crossover",
         "2022-2025 Chevrolet Silverado — refreshed bold grille",
         "2021-2025 Nissan Rogue — squared-off crossover, floating roofline",
-        "2019-2025 Chevrolet Equinox — rounded compact crossover"
+        "2019-2025 Chevrolet Equinox — rounded compact crossover",
+        "2022-2025 Honda Civic — clean mature compact",
+        "2019-2025 Toyota Corolla — sharp-nosed compact",
+        "2021-2025 Jeep Grand Cherokee — upscale chrome-accent SUV",
+        "2023-2025 Kia Sportage — futuristic boomerang lights",
+        "2022-2025 Nissan Pathfinder — squared-off three-row SUV",
+        "2021-2025 Chevrolet Tahoe — huge full-size SUV",
+        "2019-2025 Subaru Forester — practical boxy crossover",
+        "2024-2025 Toyota Grand Highlander — large family crossover",
+        "2021-2025 Kia Carnival — boxy SUV-styled minivan",
+        "2021-2025 Chrysler Pacifica — sleek minivan, thin lights"
       ],
       "body_styles": ["crossover SUV", "pickup truck", "compact crossover", "sedan declining"],
       "visual_characteristics": [
@@ -38,7 +48,9 @@
       "specific_models": [
         "2021-2025 Ford F-150 — full-width LED bar, bold",
         "2022-2025 Toyota Tundra — massive grille, muscular stance",
-        "2019-2025 Ram 1500 — crew cab pickup, large grille"
+        "2019-2025 Ram 1500 — crew cab pickup, large grille",
+        "2022-2025 Ford Maverick — small unibody pickup",
+        "2019-2025 GMC Sierra — chrome-heavy full-size pickup"
       ],
       "visual_characteristics": [
         "crew cab dominant",

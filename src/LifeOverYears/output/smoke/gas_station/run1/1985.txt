@@ -27,24 +27,24 @@ TRANSFORM TO 1985
 Reagan era prosperity. A 1985 self-service gas station — digital price sign newly installed, a small convenience store where the second service bay used to be.
 
 PERIOD DETAILS
-- credit card readers not yet at pump
+- small attached convenience store with beer and cigarette ads in the window
 - ice freezer chest with an 'ICE $1' decal by the store door
 - price sign showing gas around $1.12
-- main sign: an independent station sign in the style of Shell
+- main sign: an independent station sign in the style of Citgo
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 
 PEOPLE
 EXACTLY 5 people, spread out with empty areas.
-- a clerk visible at the register through the store window
-- a customer walking into the store counting bills
-Clothing: men in shoulder pads in blazers, windbreakers; women in big permed hair, bright neon colors. Fashion palette: neon pink, electric blue, purple. No posing or eye contact.
+- a man checking his oil with the hood up at the edge of the lot
+- a teenager filling a bike tire at the air hose
+Clothing: men in acid wash jeans, windbreakers; women in high-waisted jeans, shoulder pads. Fashion palette: neon pink, electric blue, purple. No posing or eye contact.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
-- 1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan — light blue
-- 1983-1987 Honda Accord — clean lines, pop-up headlights — burgundy
-- 1980-1985 Cadillac Seville — sharp formal lines, bustleback — silver
-- 1980-1986 Ford F-150 — square body, dual headlights — white
+- 1980-1985 Buick LeSabre — boxy full-size, chrome trim — burgundy
+- 1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan — beige
+- 1983-1987 Honda Accord — clean lines, pop-up headlights — white
+- 1980-1989 Lincoln Town Car — long boxy luxury sedan — silver
 Parked with gaps; optionally 1 driving; no vehicle newer than 1985.
 
 ENVIRONMENT

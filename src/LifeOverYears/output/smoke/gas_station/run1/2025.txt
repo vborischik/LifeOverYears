@@ -27,24 +27,24 @@ TRANSFORM TO 2025
 Post-pandemic era. A 2025 fuel stop — LED canopy, full-color digital price sign, and a convenience store selling fresh food.
 
 PERIOD DETAILS
-- modern canopy with bright white LED lighting
-- large convenience stores with fresh food
+- pay-at-pump screens with video ads
+- large convenience store with 'FRESH FOOD — MADE TO ORDER' branding
 - price sign showing gas around $3.40
-- main sign: an independent station sign in the style of Marathon
+- main sign: an independent station sign in the style of Casey's
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 
 PEOPLE
-EXACTLY 4 people, spread out with empty areas.
-- a clerk restocking the grab-and-go cooler behind the glass
+EXACTLY 5 people, spread out with empty areas.
 - a driver self-serving at the pump
-Clothing: men in bucket hats, oversized fit tees; women in chunky dad sneakers, high-waisted wide-leg jeans. Fashion palette: sage green, beige, cream. No posing or eye contact.
+- a customer tapping a phone to pay at the pump
+Clothing: men in bucket hats, techwear; women in athleisure, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
-- 2019-2025 Chevrolet Equinox — rounded compact crossover — white
-- 2021-2025 Nissan Rogue — squared-off crossover, floating roofline — dark green
-- 2019-2025 Ram 1500 — crew cab pickup, large grille — matte finishes appearing
-- 2020-2025 Hyundai Tucson — sharp parametric grille design — blue
+- 2019-2025 Subaru Outback — rugged wagon crossover — black
+- 2021-2025 Kia Telluride — boxy upscale three-row SUV — blue
+- 2020-2025 Hyundai Tucson — sharp parametric grille design — gray
+- 2022-2025 Nissan Pathfinder — squared-off three-row SUV — white
 Parked with gaps; optionally 1 driving; no vehicle newer than 2025.
 
 ENVIRONMENT
