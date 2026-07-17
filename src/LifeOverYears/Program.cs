@@ -15,10 +15,13 @@ static async Task<int> RunAsync(string[] args, string projectRoot)
     // Fully isolated: no appsettings, no DI container, no vision/prompts.
     if (args.Contains("--smoke-video"))
     {
-        using var videoLoggerFactory = LoggerFactory.Create(b => b.AddConsole().SetMinimumLevel(LogLevel.Debug));
+        var logCapture = new CapturingLoggerProvider();
+        using var videoLoggerFactory = LoggerFactory.Create(b =>
+            b.AddConsole().AddProvider(logCapture).SetMinimumLevel(LogLevel.Debug));
         var ffmpegProvider = new FfmpegProvider(videoLoggerFactory.CreateLogger<FfmpegProvider>());
         var videoService   = new VideoService(ffmpegProvider, videoLoggerFactory.CreateLogger<VideoService>());
-        return await VideoSmokeTest.RunAsync(videoService, videoLoggerFactory.CreateLogger("VideoSmokeTest"));
+        return await VideoSmokeTest.RunAsync(
+            videoService, videoLoggerFactory.CreateLogger("VideoSmokeTest"), logCapture);
     }
 
     // TODO: remove smoke test

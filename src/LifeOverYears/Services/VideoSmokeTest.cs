@@ -31,9 +31,16 @@ public static class VideoSmokeTest
     private const int ImageHeight = 1536;
     private const int ExpectedVideoWidth  = 1080;
     private const int ExpectedVideoHeight = 1920;
-    private const int SecondsPerFrame     = 3;
+    private const int HoldSeconds       = 3;
+    private const int TransitionSeconds = 2;
 
-    public static async Task<int> RunAsync(IVideoService videoService, ILogger logger)
+    // n*HoldSeconds - (n-1)*TransitionSeconds — each xfade overlap eats into
+    // the naive sum of per-frame holds. Must track FfmpegProvider's own math.
+    private static int ExpectedDurationSeconds(int frameCount) =>
+        frameCount * HoldSeconds - Math.Max(0, frameCount - 1) * TransitionSeconds;
+
+    public static async Task<int> RunAsync(
+        IVideoService videoService, ILogger logger, CapturingLoggerProvider logCapture)
     {
         logger.LogInformation("[SmokeVideo] VideoSmokeTest starting");
 
@@ -108,14 +115,27 @@ public static class VideoSmokeTest
         findings.Add(("V2", $"Video resolution == {ExpectedVideoWidth}x{ExpectedVideoHeight}",
             v2, $"actual: {probe.Width}x{probe.Height}"));
 
-        var expectedDuration = Years.Length * SecondsPerFrame;
+        var expectedDuration = ExpectedDurationSeconds(Years.Length);
         var v3 = Math.Abs(probe.Duration - expectedDuration) <= 0.5;
-        findings.Add(("V3", $"Duration is {expectedDuration}s ± 0.5s ({Years.Length} frames × {SecondsPerFrame}s)",
+        findings.Add(("V3",
+            $"Duration is {expectedDuration}s ± 0.5s ({Years.Length}×{HoldSeconds}s holds - {Years.Length - 1}×{TransitionSeconds}s xfade overlaps)",
             v3, $"actual: {probe.Duration:F2}s"));
 
         var v4 = probe.CodecName == "h264" && probe.PixFmt == "yuv420p";
         findings.Add(("V4", "codec_name == h264, pix_fmt == yuv420p",
             v4, $"actual: codec_name={probe.CodecName}, pix_fmt={probe.PixFmt}"));
+
+        // V6: confirm the xfade radial-wipe path was actually taken, not a
+        // hard-cut concat — detecting a wipe vs. a cut from pixels alone is
+        // out of scope for a smoke test, so this asserts on the ffmpeg
+        // command FfmpegProvider logged at Debug level.
+        var commandLine = logCapture.Messages.FirstOrDefault(m =>
+            m.Contains("ffmpeg command:", StringComparison.OrdinalIgnoreCase));
+        var v6 = commandLine is not null
+            && commandLine.Contains("xfade", StringComparison.OrdinalIgnoreCase)
+            && commandLine.Contains("radial", StringComparison.OrdinalIgnoreCase);
+        findings.Add(("V6", "ffmpeg command used filter_complex xfade with a radial transition (not concat)",
+            v6, commandLine is null ? "no 'ffmpeg command:' log line captured" : commandLine));
 
         await WriteReport(findings, logger);
         PrintSummary(findings);
@@ -127,8 +147,10 @@ public static class VideoSmokeTest
     {
         ("V1", "Video file exists and has non-zero size"),
         ("V2", $"Video resolution == {ExpectedVideoWidth}x{ExpectedVideoHeight}"),
-        ("V3", $"Duration is {Years.Length * SecondsPerFrame}s ± 0.5s ({Years.Length} frames × {SecondsPerFrame}s)"),
-        ("V4", "codec_name == h264, pix_fmt == yuv420p")
+        ("V3", $"Duration is {ExpectedDurationSeconds(Years.Length)}s ± 0.5s " +
+               $"({Years.Length}×{HoldSeconds}s holds - {Years.Length - 1}×{TransitionSeconds}s xfade overlaps)"),
+        ("V4", "codec_name == h264, pix_fmt == yuv420p"),
+        ("V6", "ffmpeg command used filter_complex xfade with a radial transition (not concat)")
     };
 
     private static void PrintSummary(List<(string Id, string Desc, bool Pass, string Detail)> findings)
