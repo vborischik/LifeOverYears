@@ -3,6 +3,15 @@
   "label": "Mid-2000s America",
   "description": "Post-9/11 era. SUVs and trucks at peak size. Flip phones everywhere, smartphones not yet. Big box retail dominant. Strip malls aging.",
 
+  "people_mix": [
+    "a UPS driver wheeling packages on a hand truck",
+    "a group of college kids with messenger bags",
+    "a woman walking a small dog in a sweater",
+    "a man in cargo shorts talking on a flip phone",
+    "a teen with white earbuds and an MP3 player",
+    "a couple taking photos with a digital camera"
+  ],
+
   "transportation": {
     "cars": {
       "dominant_makes": ["Ford", "Chevrolet", "Toyota", "Honda", "Nissan", "Dodge", "Chrysler", "Pontiac"],
@@ -21,7 +30,15 @@
         "2000-2006 Chevrolet Tahoe — full-size SUV peak era",
         "2004-2008 Pontiac Grand Prix — sporty sedan plastic cladding",
         "2001-2005 Honda Civic — rounded compact, very common",
-        "2005-2010 Jeep Grand Cherokee — rounded modern SUV"
+        "2005-2010 Jeep Grand Cherokee — rounded modern SUV",
+        "2003-2008 Toyota Corolla — conservative compact sedan",
+        "2000-2005 Ford Focus — European-styled compact",
+        "1998-2005 Volkswagen New Beetle — retro bubble shape",
+        "2001-2007 Dodge Grand Caravan — family minivan, rounded",
+        "2004-2010 Toyota Sienna — large rounded minivan",
+        "2001-2007 Ford Escape — compact boxy SUV",
+        "2002-2007 Jeep Liberty — round-headlight compact SUV",
+        "2003-2009 Hummer H2 — massive military-styled SUV"
       ],
       "body_styles": ["mid-size sedan", "full-size SUV", "minivan", "crossover beginning", "pickup truck"],
       "visual_characteristics": [
@@ -41,7 +58,8 @@
       "specific_models": [
         "2004-2008 Ford F-150 — bigger, bolder grille",
         "1999-2006 Chevrolet Silverado — squared modern look",
-        "2002-2008 Dodge Ram — big rig grille evolved"
+        "2002-2008 Dodge Ram — big rig grille evolved",
+        "1998-2004 Nissan Frontier — compact pickup"
       ],
       "visual_characteristics": [
         "crew cab now common",
@@ -239,7 +257,10 @@
         "the ghost-sign reduced to a faint trace of paint on the brick",
         "a single scuffed payphone covered in stickers, rarely used",
         "a bike rack with a couple of mountain bikes",
-        "a sandwich-board sign for the espresso cafe"
+        "a sandwich-board sign for the espresso cafe",
+        "a free real-estate flyer box on the corner",
+        "ribbon magnets on a lamppost",
+        "a sidewalk sandwich board with a cell-phone store promo"
       ]
     },
     "gas_station": {
@@ -273,7 +294,10 @@
       "extras": [
         "'NO SMOKING — TURN OFF ENGINE' decals on each pump",
         "trash cans with paper-towel dispensers between the pumps",
-        "a propane exchange cage by the storefront"
+        "a propane exchange cage by the storefront",
+        "a free real-estate flyer box by the door",
+        "a windshield-washer fluid display rack by the pumps",
+        "ribbon magnets on the door of the service office"
       ]
     },
     "strip_mall": {
@@ -308,7 +332,10 @@
       "extras": [
         "a 'STORE CLOSING' A-frame sign on the walkway",
         "a cart corral in the lot",
-        "light poles with faded banner ads"
+        "light poles with faded banner ads",
+        "a sidewalk sandwich board with a cell-phone store promo",
+        "a free real-estate flyer box by the walkway",
+        "ribbon magnets on a lamppost"
       ]
     },
     "default": {
@@ -340,7 +367,10 @@
       "extras": [
         "a faint trace of the old ghost-sign on the brick",
         "a single scuffed payphone",
-        "a bike rack"
+        "a bike rack",
+        "a free real-estate flyer box",
+        "ribbon magnets on a lamppost",
+        "a sandwich board with a cell-phone store promo"
       ]
     }
   }

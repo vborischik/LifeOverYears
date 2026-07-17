@@ -29,21 +29,26 @@ Reagan era prosperity. A 1985 main street in transition — neon and backlit pla
 PERIOD DETAILS
 - the same local diner, now with a backlit sign and 'HOT COFFEE 45¢' in the window
 - video arcade with a 'GAMES 25¢' neon sign and posters in the window
-- small newly opened video rental shop with a 'VIDEO CASSETTE RENTALS — VHS & BETA' backlit sign
+- drug store modernized with backlit plastic channel letters reading 'PHARMACY'
+- window signs: 'SALE 25% OFF', 'VHS OVERNIGHT RENTAL $2.99'
+- a mailbox with graffiti scratches
+- movie posters taped inside the video shop windows
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 
 PEOPLE
-EXACTLY 12 people, spread out with empty areas.
-- a businessman in a boxy suit walking briskly with a briefcase
-- a teenager carrying a boombox on his shoulder
-Clothing: men in acid wash jeans, polo shirts with collars up; women in leg warmers, shoulder pads. Fashion palette: neon pink, electric blue, purple. No posing or eye contact.
+EXACTLY 10 people, spread out with empty areas.
+- a shopkeeper arranging a sidewalk sale rack
+- two kids comparing rental boxes outside the video shop
+- an older man in a flat cap reading a paper
+Clothing: men in windbreakers, acid wash jeans; women in leg warmers, shoulder pads. Fashion palette: neon pink, electric blue, purple. No posing or eye contact.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 1984-1988 Toyota Pickup — small, boxy, popular import — charcoal gray
-- 1986-1991 Ford Taurus — aerodynamic, rounded, revolutionary look — silver
-- 1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan — white
-- 1980-1986 Ford F-150 — square body, dual headlights — burgundy
+EXACTLY 5 period vehicles, all different:
+- 1979-1985 Ford Mustang — Fox body, angular hatchback coupe — silver
+- 1978-1986 Ford Bronco — full-size boxy SUV, round headlights — charcoal gray
+- 1973-1987 Chevrolet C/K — square body pickup, dual headlights — beige
+- 1983-1985 Nissan Maxima — boxy import sedan — white
+- 1984-1989 Plymouth Voyager — boxy first-generation minivan — light blue
 Parked with gaps; optionally 1 driving; no vehicle newer than 1985.
 
 ENVIRONMENT

@@ -27,23 +27,27 @@ TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 station — LED-lit canopy, digital price sign, video ads playing on every pump screen, and a big convenience store.
 
 PERIOD DETAILS
-- pay-at-pump with color screens and ads
-- large convenience store with fresh-coffee branding in the windows
+- air and vacuum island at the lot edge
+- card skimmer warnings on pumps
 - price sign showing gas around $2.45
 - main sign: an independent station sign in the style of Marathon
+- window signs: 'UNLIMITED CAR WASH $19.99/MO', 'ATM INSIDE'
+- combined trash-and-squeegee stations between the pumps
+- an ice merchandiser and propane cage along the wall
 Typography: minimalist flat sans-serif, simplified modern logos.
 
 PEOPLE
-EXACTLY 7 people, spread out with empty areas.
-- a customer watching the pump screen ads while fueling
-- a driver vacuuming his car at the vacuum island
-Clothing: men in boat shoes, slim-fit plaid shirts; women in high-waisted skinny jeans, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact.
+EXACTLY 4 people, spread out with empty areas.
+- a clerk stacking windshield-washer fluid by the door
+- a driver self-serving at the pump
+- a dog walker with three dogs
+Clothing: men in skinny jeans, boat shoes; women in infinity scarves, high-waisted skinny jeans. Fashion palette: coral, mint green, navy. No posing or eye contact.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 2015-2020 Ford Edge — mid-size crossover, bold grille — gray
-- 2014-2021 Subaru Outback — rugged wagon crossover — pearl white
-- 2013-2019 Ford Fusion — Aston-Martin-style grille, sleek — blue
+- 2012-2015 Honda Civic — compact, angular — black
+- 2007-2017 Jeep Wrangler — boxy off-roader, round headlights — blue
+- 2014-2019 Kia Soul — boxy urban hatchback — pearl white
 Parked with gaps; optionally 1 driving; no vehicle newer than 2015.
 
 ENVIRONMENT

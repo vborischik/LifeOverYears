@@ -27,23 +27,27 @@ TRANSFORM TO 2005
 Post-9/11 era. A 2005 gas station — big multi-island canopy, card readers at every pump, LED price sign, and a convenience store doing most of the business.
 
 PERIOD DETAILS
-- large multi-island canopies
+- coin-operated air machine near the back of the lot
 - large convenience store with energy-drink and phone-card ads in the glass
 - price sign showing gas around $2.30
-- main sign: an independent station sign in the style of Chevron
+- main sign: an independent station sign in the style of ExxonMobil
+- window signs: 'CAR WASH $6', 'PHONE CARDS SOLD HERE'
+- a windshield-washer fluid display rack by the pumps
+- ribbon magnets on the door of the service office
 Typography: clean corporate sans-serif, polished brand identities.
 
 PEOPLE
 EXACTLY 4 people, spread out with empty areas.
 - a woman inserting her card at the pump reader
 - a teenager filling tires at the coin-operated air machine
-Clothing: men in baggy jeans, frosted tips hair; women in layered tank tops, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact.
+- a woman walking a small dog in a sweater
+Clothing: men in cargo shorts, graphic tees; women in velour tracksuits, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 2005-2010 Ford Mustang — retro muscle revival — black
-- 2000-2007 Ford Taurus — rounded, aging fleet-look sedan — silver
-- 2002-2006 Toyota Camry — smooth conservative mid-size — gray
+- 2004-2008 Chrysler 300 — bold boxy retro chrome grille — dark red
+- 2003-2008 Toyota Corolla — conservative compact sedan — gray
+- 2005-2010 Jeep Grand Cherokee — rounded modern SUV — gold
 Parked with gaps; optionally 1 driving; no vehicle newer than 2005.
 
 ENVIRONMENT

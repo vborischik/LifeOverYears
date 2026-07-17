@@ -3,6 +3,15 @@
   "label": "Mid-2020s America",
   "description": "Post-pandemic era. Retail apocalypse mature — many vacant big boxes. Delivery culture. LED and screens everywhere. Minimalist branding.",
 
+  "people_mix": [
+    "a delivery courier with a large insulated backpack",
+    "a retiree couple with matching walking poles",
+    "a parent and kid sharing earbuds",
+    "a remote worker with a laptop bag and a coffee",
+    "a woman filming a short vertical video on a phone",
+    "a man walking a doodle-breed dog"
+  ],
+
   "transportation": {
     "cars": {
       "dominant_makes": ["Toyota", "Honda", "Ford", "Chevrolet", "Hyundai", "Kia", "Subaru"],
@@ -18,7 +27,17 @@
         "2019-2025 Subaru Outback — rugged wagon crossover",
         "2022-2025 Chevrolet Silverado — refreshed bold grille",
         "2021-2025 Nissan Rogue — squared-off crossover, floating roofline",
-        "2019-2025 Chevrolet Equinox — rounded compact crossover"
+        "2019-2025 Chevrolet Equinox — rounded compact crossover",
+        "2022-2025 Honda Civic — clean mature compact",
+        "2019-2025 Toyota Corolla — sharp-nosed compact",
+        "2021-2025 Jeep Grand Cherokee — upscale chrome-accent SUV",
+        "2023-2025 Kia Sportage — futuristic boomerang lights",
+        "2022-2025 Nissan Pathfinder — squared-off three-row SUV",
+        "2021-2025 Chevrolet Tahoe — huge full-size SUV",
+        "2019-2025 Subaru Forester — practical boxy crossover",
+        "2024-2025 Toyota Grand Highlander — large family crossover",
+        "2021-2025 Kia Carnival — boxy SUV-styled minivan",
+        "2021-2025 Chrysler Pacifica — sleek minivan, thin lights"
       ],
       "body_styles": ["crossover SUV", "pickup truck", "compact crossover", "sedan declining"],
       "visual_characteristics": [
@@ -38,7 +57,9 @@
       "specific_models": [
         "2021-2025 Ford F-150 — full-width LED bar, bold",
         "2022-2025 Toyota Tundra — massive grille, muscular stance",
-        "2019-2025 Ram 1500 — crew cab pickup, large grille"
+        "2019-2025 Ram 1500 — crew cab pickup, large grille",
+        "2022-2025 Ford Maverick — small unibody pickup",
+        "2019-2025 GMC Sierra — chrome-heavy full-size pickup"
       ],
       "visual_characteristics": [
         "crew cab dominant",
@@ -236,7 +257,10 @@
         "the ghost-sign wall now a commissioned mural with bold flat graphics",
         "a shared e-scooter and e-bike dock at the curb",
         "a parklet outdoor dining structure occupying two parking spaces",
-        "a stack of delivery packages waiting at a shop door"
+        "a stack of delivery packages waiting at a shop door",
+        "QR-code stickers on the storefront glass",
+        "outdoor cafe barriers with planters",
+        "a kick scooter leaning by a wall"
       ]
     },
     "gas_station": {
@@ -266,7 +290,11 @@
       "vehicles": { "min": 3, "max": 4 },
       "extras": [
         "digital menu screens glowing in the store windows",
-        "stacked bags of ice and firewood outside"
+        "stacked bags of ice and firewood outside",
+        "QR-code stickers on the pump screens",
+        "stacked delivery boxes by the store door",
+        "outdoor cafe barriers with planters by the coffee lane",
+        "a kick scooter leaning by the store wall"
       ]
     },
     "strip_mall": {
@@ -300,7 +328,11 @@
       "vehicles": { "min": 5, "max": 7 },
       "extras": [
         "'CURBSIDE PICKUP' signed parking spots",
-        "an e-scooter parked by the walkway"
+        "an e-scooter parked by the walkway",
+        "stacked delivery boxes by a shop door",
+        "QR-code stickers on glass",
+        "outdoor barriers with planters along the walkway",
+        "a kick scooter leaning by a wall"
       ]
     },
     "default": {
@@ -332,7 +364,10 @@
       "extras": [
         "a mural where the old ghost-sign used to be",
         "an e-scooter dock at the curb",
-        "packages stacked by a shop door"
+        "packages stacked by a shop door",
+        "QR-code stickers on glass",
+        "outdoor cafe barriers with planters",
+        "a kick scooter leaning by a wall"
       ]
     }
   }

@@ -3,6 +3,15 @@
   "label": "Mid-2010s America",
   "description": "Smartphone era fully arrived. Crossovers replacing sedans and SUVs. LED everything. Retail apocalypse beginning. Blockbuster gone.",
 
+  "people_mix": [
+    "a young couple pushing a jogging stroller",
+    "a dog walker with three dogs",
+    "a courier carrying an insulated food delivery bag",
+    "a man in skinny jeans taking a selfie",
+    "a woman in yoga pants carrying a green smoothie",
+    "two kids on kick scooters"
+  ],
+
   "transportation": {
     "cars": {
       "dominant_makes": ["Toyota", "Honda", "Ford", "Chevrolet", "Nissan", "Hyundai", "Kia", "Subaru"],
@@ -21,7 +30,17 @@
         "2011-2016 Kia Optima — stylish mid-size, sporty",
         "2013-2018 Hyundai Santa Fe — fluidic sculpture styling",
         "2015-2020 Chevrolet Colorado — mid-size pickup revived",
-        "2014-2021 Subaru Outback — rugged wagon crossover"
+        "2014-2021 Subaru Outback — rugged wagon crossover",
+        "2011-2016 Hyundai Elantra — swoopy fluidic compact",
+        "2012-2018 Ford Focus — sharp European compact",
+        "2013-2016 Ford Escape — rounded compact crossover",
+        "2011-2017 Jeep Grand Cherokee — refined upscale SUV",
+        "2007-2017 Jeep Wrangler — boxy off-roader, round headlights",
+        "2014-2019 Kia Soul — boxy urban hatchback",
+        "2013-2016 Mazda CX-5 — flowing KODO-design crossover",
+        "2011-2017 Honda Odyssey — lightning-bolt beltline minivan",
+        "2011-2016 Chrysler Town & Country — chrome-trimmed minivan",
+        "2011-2016 Volkswagen Jetta — clean simple sedan"
       ],
       "body_styles": ["crossover SUV", "mid-size sedan", "compact crossover", "pickup truck", "minivan"],
       "visual_characteristics": [
@@ -243,7 +262,10 @@
         "the old ghost-sign wall repainted as a colorful mural",
         "a bike corral at the curb",
         "string lights zigzagging over the sidewalk seating",
-        "chalkboard sandwich-board signs outside the cafes"
+        "chalkboard sandwich-board signs outside the cafes",
+        "a modern bike-share style rack",
+        "a food truck parked mid-block",
+        "a dog water bowl outside a cafe door"
       ]
     },
     "gas_station": {
@@ -276,7 +298,11 @@
       "vehicles": { "min": 3, "max": 4 },
       "extras": [
         "card-skimmer warning stickers on the pumps",
-        "combined trash-and-squeegee stations between the pumps"
+        "combined trash-and-squeegee stations between the pumps",
+        "a chalkboard A-frame sign advertising the coffee bar",
+        "a red DVD-rental kiosk by the store entrance",
+        "an ice merchandiser and propane cage along the wall",
+        "an air-and-vacuum island at the lot edge"
       ]
     },
     "strip_mall": {
@@ -311,7 +337,10 @@
       "extras": [
         "a mostly empty cart corral",
         "a 'NOW LEASING' banner on the facade",
-        "cracked, patched parking lot with faded stripes"
+        "cracked, patched parking lot with faded stripes",
+        "a chalkboard A-frame sidewalk sign",
+        "string lights over an outdoor seating nook",
+        "a food truck parked at the lot edge"
       ]
     },
     "default": {
@@ -343,7 +372,10 @@
       "extras": [
         "the old ghost-sign wall repainted as a mural",
         "a bike corral at the curb",
-        "chalkboard sandwich-board signs"
+        "chalkboard sandwich-board signs",
+        "a modern bike-share style rack",
+        "string lights over an outdoor seating nook",
+        "a food truck parked mid-block"
       ]
     }
   }

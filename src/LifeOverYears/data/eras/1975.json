@@ -3,6 +3,16 @@
   "label": "Mid-1970s America",
   "description": "Post-Vietnam, oil crisis era. Suburban sprawl at peak. American cars dominated. Brands were bold and simple.",
 
+  "people_mix": [
+    "an elderly couple walking arm in arm",
+    "a mailman in a USPS uniform with a leather satchel",
+    "two boys with baseball gloves",
+    "a man in a work uniform on a lunch break",
+    "a woman with a headscarf carrying a paper grocery bag",
+    "a shopkeeper in an apron by his doorway",
+    "a girl walking a bicycle with a basket"
+  ],
+
   "transportation": {
     "cars": {
       "dominant_makes": ["Chevrolet", "Ford", "Dodge", "Plymouth", "Buick", "Oldsmobile", "Pontiac"],
@@ -16,7 +26,30 @@
         "1970-1977 Ford Maverick — compact, simple lines",
         "1971-1976 Plymouth Fury — full-size, vinyl roof common",
         "1973-1977 Pontiac Catalina — full-size, chrome trim heavy",
-        "1975-1979 Chevrolet Monza — small hatchback, rare but present"
+        "1975-1979 Chevrolet Monza — small hatchback, rare but present",
+        "1974-1978 Oldsmobile Cutlass Supreme — best-selling car in America, formal roofline",
+        "1975-1980 Ford Granada — compact luxury, Mercedes-inspired formal grille",
+        "1970-1976 AMC Hornet — compact, simple boxy lines",
+        "1975-1979 AMC Pacer — wide bubble-shaped compact, huge glass area",
+        "1970-1978 AMC Gremlin — short stubby hatchback rear",
+        "1968-1979 Chevrolet Nova — compact, simple three-box shape",
+        "1963-1976 Dodge Dart — compact, boxy, reliable workhorse",
+        "1971-1980 Chevrolet Vega — small subcompact hatchback/wagon",
+        "1971-1980 Ford Pinto — small subcompact, rounded nose",
+        "1968-1978 Volkswagen Beetle — rounded rear-engine economy car",
+        "1975-1983 Volkswagen Rabbit — small boxy hatchback, new for 1975",
+        "1968-1978 Toyota Corona — compact sedan, simple lines",
+        "1973-1978 Datsun 610 — compact sedan/wagon, boxy",
+        "1975-1978 Datsun 280Z — sleek fastback sports coupe",
+        "1975-1993 Volvo 240 — boxy Swedish sedan/wagon, safety-forward design",
+        "1971-1976 Buick Estate Wagon — full-size wood-paneled station wagon",
+        "1969-1978 Ford Country Squire — full-size wood-paneled station wagon",
+        "1974-1978 Ford Mustang II — smaller downsized pony car",
+        "1970-1981 Chevrolet Camaro — long hood, short deck sporty coupe",
+        "1970-1976 Pontiac Firebird Trans Am — hood scoop, spoiler, bold graphics",
+        "1974-1978 Cadillac DeVille — full-size luxury, formal roofline, chrome heavy",
+        "1972-1976 Lincoln Continental Mark IV — long hood personal luxury coupe",
+        "1974-1978 Chrysler New Yorker — full-size luxury sedan, formal lines"
       ],
       "body_styles": ["full-size sedan", "station wagon", "hardtop coupe", "pickup truck"],
       "visual_characteristics": [
@@ -38,7 +71,14 @@
       "specific_models": [
         "1973-1979 Ford F-100 — square body, chrome grille",
         "1973-1980 Chevrolet C10 — square body, chrome bumper",
-        "1972-1980 Dodge D100 — angular cab, simple grille"
+        "1972-1980 Dodge D100 — angular cab, simple grille",
+        "1973-1980 GMC Sierra — square body pickup, GMC grille badge",
+        "1971-1978 Ford Econoline — boxy full-size van, flat nose",
+        "1971-1978 Dodge Tradesman — boxy full-size van",
+        "1971-1976 Chevrolet G10 Sportvan — boxy windowed van, chrome bumper",
+        "1971-1976 Jeep Wagoneer — boxy full-size SUV, woodgrain trim optional",
+        "1974-1983 Jeep Cherokee — two-door SUV, boxy, new model",
+        "1971-1976 Chevrolet Suburban — full-size boxy wagon-SUV"
       ],
       "visual_characteristics": [
         "chrome grilles",
@@ -225,7 +265,10 @@
         "2-3 bicycles leaned against a storefront wall",
         "a glass-and-aluminum telephone booth on the corner",
         "a painted ghost-sign wall advertisement on brick, weathered but still clearly readable",
-        "a wooden newspaper rack with stacked local papers by the diner door"
+        "a wooden newspaper rack with stacked local papers by the diner door",
+        "a milk crate stack by a shop door",
+        "an American flag on a storefront bracket",
+        "a mechanical gumball machine by a doorway"
       ]
     },
     "gas_station": {
@@ -263,7 +306,9 @@
         "an air hose with a driveway service bell line across the apron",
         "a stack of used tires beside the service bay",
         "a water can and towel bucket on the pump island",
-        "a 'FREE AIR' sign next to the air pump"
+        "a 'FREE AIR' sign next to the air pump",
+        "a bicycle leaning against a utility pole",
+        "a folded newspaper stack tied with twine by the office door"
       ]
     },
     "strip_mall": {
@@ -301,7 +346,9 @@
         "a coin-operated kiddie ride by a storefront door",
         "a row of nested shopping carts near the grocery entrance",
         "a telephone booth at the edge of the parking lot",
-        "painted white parking stall lines, slightly faded"
+        "painted white parking stall lines, slightly faded",
+        "an American flag on a pole at the lot entrance",
+        "a milk crate stack by a service door"
       ]
     },
     "default": {
@@ -337,7 +384,10 @@
       "extras": [
         "a glass telephone booth on the corner",
         "a painted ghost-sign wall advertisement, weathered but readable",
-        "bicycles leaned against a storefront"
+        "bicycles leaned against a storefront",
+        "a milk crate stack by a shop door",
+        "a mechanical gumball machine by a doorway",
+        "an American flag on a storefront bracket"
       ]
     }
   }

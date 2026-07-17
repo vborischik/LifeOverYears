@@ -3,6 +3,16 @@
   "label": "Mid-1980s America",
   "description": "Reagan era prosperity. Japanese imports arrived. MTV culture. Neon and bold graphics everywhere. Self-service gas standard.",
 
+  "people_mix": [
+    "a group of teenagers in bright windbreakers",
+    "a mother with two kids in tow",
+    "a jogger in a tracksuit and headband",
+    "a businessman with a briefcase and wide tie",
+    "a kid with a boombox on his shoulder",
+    "a woman with permed hair and shoulder pads",
+    "an older man in a flat cap reading a paper"
+  ],
+
   "transportation": {
     "cars": {
       "dominant_makes": ["Chevrolet", "Ford", "Dodge", "Toyota", "Honda", "Nissan", "Buick", "Oldsmobile"],
@@ -16,7 +26,21 @@
         "1982-1986 Nissan Sentra — small economy boxy sedan",
         "1980-1985 Cadillac Seville — sharp formal lines, bustleback",
         "1984-1990 Dodge Caravan — first minivan, boxy",
-        "1983-1988 Ford Thunderbird — aero coupe, rounded"
+        "1983-1988 Ford Thunderbird — aero coupe, rounded",
+        "1977-1990 Chevrolet Caprice — boxy full-size sedan, formal lines",
+        "1978-1987 Chevrolet Monte Carlo — personal luxury coupe, long hood",
+        "1979-1985 Ford Mustang — Fox body, angular hatchback coupe",
+        "1984-1987 Honda Civic — small boxy hatchback",
+        "1981-1985 Ford Escort — small boxy economy hatchback",
+        "1980-1985 Buick LeSabre — boxy full-size, chrome trim",
+        "1980-1989 Lincoln Town Car — long boxy luxury sedan",
+        "1984-1988 Pontiac Fiero — small wedge two-seater",
+        "1984-1989 Plymouth Voyager — boxy first-generation minivan",
+        "1979-1985 Ford LTD Country Squire — full-size woodgrain wagon",
+        "1982-1985 Toyota Celica — angular sporty coupe, pop-up lights",
+        "1983-1985 Nissan Maxima — boxy import sedan",
+        "1978-1986 Ford Bronco — full-size boxy SUV, round headlights",
+        "1973-1991 Chevrolet Suburban — long boxy wagon-SUV"
       ],
       "body_styles": ["front-wheel drive compact sedan", "hatchback", "station wagon", "pickup truck", "early minivan"],
       "visual_characteristics": [
@@ -36,7 +60,9 @@
       "specific_models": [
         "1980-1986 Ford F-150 — square body, dual headlights",
         "1982-1993 Chevrolet S-10 — compact pickup, square",
-        "1984-1988 Toyota Pickup — small, boxy, popular import"
+        "1984-1988 Toyota Pickup — small, boxy, popular import",
+        "1973-1987 Chevrolet C/K — square body pickup, dual headlights",
+        "1975-1991 Ford Econoline — boxy full-size van"
       ],
       "visual_characteristics": [
         "compact pickups growing in popularity",
@@ -221,7 +247,10 @@
         "a wall-mounted payphone with a steel-cord handset and phone book shelf",
         "the painted ghost-sign wall ad now noticeably fading, colors washing out",
         "movie posters taped inside the video shop windows",
-        "a coin-operated newspaper vending box on the corner"
+        "a coin-operated newspaper vending box on the corner",
+        "a bank of coin newspaper boxes at the corner",
+        "a bike rack with BMX bikes",
+        "a mailbox with graffiti scratches"
       ]
     },
     "gas_station": {
@@ -256,7 +285,10 @@
       "extras": [
         "squeegee buckets at the pump islands",
         "a display rack of windshield-washer fluid jugs",
-        "an 'AIR & WATER' sign at the lot corner"
+        "an 'AIR & WATER' sign at the lot corner",
+        "arcade game posters taped in the store window",
+        "a BMX bike leaned by the store door",
+        "a mailbox with graffiti scratches at the lot edge"
       ]
     },
     "strip_mall": {
@@ -294,7 +326,9 @@
         "a bank of wall-mounted payphones near the anchor store",
         "a cart corral in the parking lot",
         "coin-operated newspaper boxes by the walkway",
-        "striped awnings casting bold shadows on the walkway"
+        "striped awnings casting bold shadows on the walkway",
+        "arcade game posters in the arcade window",
+        "a bike rack with BMX bikes near the walkway"
       ]
     },
     "default": {
@@ -328,7 +362,10 @@
       "extras": [
         "a wall-mounted payphone",
         "the painted ghost-sign wall ad, fading",
-        "a coin-operated newspaper box"
+        "a coin-operated newspaper box",
+        "a bike rack with BMX bikes",
+        "arcade game posters in a window",
+        "a mailbox with graffiti scratches"
       ]
     }
   }

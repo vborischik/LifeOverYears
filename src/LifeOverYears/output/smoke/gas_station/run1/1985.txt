@@ -27,23 +27,27 @@ TRANSFORM TO 1985
 Reagan era prosperity. A 1985 self-service gas station — digital price sign newly installed, a small convenience store where the second service bay used to be.
 
 PERIOD DETAILS
-- propane tank exchange cage beside the building
 - credit card readers not yet at pump
+- one remaining service bay with a 'STATE INSPECTION' sign
 - price sign showing gas around $1.12
-- main sign: an independent station sign in the style of Shell
+- main sign: an independent station sign in the style of Citgo
+- window signs: 'HOT DOGS 2 FOR $1', 'CIGARETTES $1.10 PACK'
+- an 'AIR & WATER' sign at the lot corner
+- a BMX bike leaned by the store door
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 
 PEOPLE
 EXACTLY 4 people, spread out with empty areas.
 - a clerk visible at the register through the store window
-- a customer walking into the store counting bills
-Clothing: men in shoulder pads in blazers, acid wash jeans; women in bright neon colors, high-waisted jeans. Fashion palette: neon pink, electric blue, purple. No posing or eye contact.
+- a woman squeegeeing her windshield at the island
+- a mother with two kids in tow
+Clothing: men in shoulder pads in blazers, polo shirts with collars up; women in shoulder pads, leg warmers. Fashion palette: neon pink, electric blue, purple. No posing or eye contact.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 1982-1993 Chevrolet S-10 — compact pickup, square — white
-- 1986-1989 Nissan Sentra — small economy boxy sedan — red
-- 1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline — burgundy
+- 1983-1987 Honda Accord — clean lines, pop-up headlights — red
+- 1984-1988 Pontiac Fiero — small wedge two-seater — beige
+- 1984-1987 Toyota Corolla — boxy compact, reliable look — light blue
 Parked with gaps; optionally 1 driving; no vehicle newer than 1985.
 
 ENVIRONMENT

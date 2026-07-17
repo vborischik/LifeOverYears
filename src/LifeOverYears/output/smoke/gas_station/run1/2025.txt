@@ -28,23 +28,26 @@ Post-pandemic era. A 2025 fuel stop — LED canopy, full-color digital price sig
 
 PERIOD DETAILS
 - drive-through coffee lane attached to the store
-- modern canopy with bright white LED lighting
+- free air and vacuum station at the lot edge
 - price sign showing gas around $3.40
-- main sign: an independent station sign in the style of Casey's
+- main sign: an independent station sign in the style of Chevron
+- window signs: 'MEMBERS SAVE 10¢/GAL', 'SCAN & GO — SKIP THE LINE'
+- outdoor cafe barriers with planters by the coffee lane
+- stacked delivery boxes by the store door
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 
 PEOPLE
 EXACTLY 5 people, spread out with empty areas.
+- a driver watching the ad screen while fueling
 - a delivery van driver walking out with a coffee
-- a customer tapping a phone to pay at the pump
-Clothing: men in techwear, chunky sneakers; women in athleisure, chunky dad sneakers. Fashion palette: sage green, beige, cream. No posing or eye contact.
+- a retiree couple with matching walking poles
+Clothing: men in chunky sneakers, techwear; women in leggings and oversized hoodies, chunky dad sneakers. Fashion palette: sage green, beige, cream. No posing or eye contact.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2017-2025 Honda CR-V — rounded best-selling crossover — black
-- 2021-2025 Ford Bronco — retro boxy off-roader — white
-- 2021-2025 Nissan Rogue — squared-off crossover, floating roofline — gray
-- 2019-2025 Ram 1500 — crew cab pickup, large grille — matte finishes appearing
+EXACTLY 3 period vehicles, all different:
+- 2019-2025 Chevrolet Equinox — rounded compact crossover — dark green
+- 2021-2025 Jeep Grand Cherokee — upscale chrome-accent SUV — black
+- 2022-2025 Nissan Pathfinder — squared-off three-row SUV — matte finishes appearing
 Parked with gaps; optionally 1 driving; no vehicle newer than 2025.
 
 ENVIRONMENT
