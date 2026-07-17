@@ -87,6 +87,8 @@ public static class PromptSmokeTest
         DoC12(gasRun1, gasRun2, dtRun1, dtRun2, eras,         findings);
         DoC13(gasRun1, gasRun2, dtRun1, dtRun2, eras,         findings);
         DoC14(gasRun1, gasRun2,                               findings);
+        DoC20(gasRun1, gasRun2, dtRun1, dtRun2, eras,         findings);
+        DoC21(gasRun1, gasRun2, dtRun1, dtRun2, eras,         findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -632,15 +634,15 @@ public static class PromptSmokeTest
             foreach (var (year, prompt) in run)
             {
                 int words = WordCount(prompt.Text);
-                if (words >= 500)
-                    errs.Add($"{label}/{year}: {words} words (limit 500)");
+                if (words >= 550)
+                    errs.Add($"{label}/{year}: {words} words (limit 550)");
             }
         int unknownWords = WordCount(unknownPrompt.Text);
-        if (unknownWords >= 500)
-            errs.Add($"unknown/1985: {unknownWords} words (limit 500)");
+        if (unknownWords >= 550)
+            errs.Add($"unknown/1985: {unknownWords} words (limit 550)");
 
-        f.Add(("C11", "Every prompt is under 500 words",
-            errs.Count == 0, errs.Count == 0 ? "All prompts under 500 words" : Join(errs)));
+        f.Add(("C11", "Every prompt is under 550 words (limit raised from 500 for extras/window-sign/people-mix sampling)",
+            errs.Count == 0, errs.Count == 0 ? "All prompts under 550 words" : Join(errs)));
     }
 
     private static void DoC12(
@@ -736,6 +738,87 @@ public static class PromptSmokeTest
 
         f.Add(("C14", "Gas station 2025 prompt has no EV/electric/charger/Lightning content",
             errs.Count == 0, errs.Count == 0 ? "2025 gas prompts are fully de-electrified" : Join(errs)));
+    }
+
+    private static SceneContent? ContentFor(Dictionary<int, EraProfile> eras, int year, string sceneType)
+    {
+        var era = eras[year];
+        SceneContent? sc = null;
+        if (era.SceneContent?.TryGetValue(sceneType, out sc) != true)
+            era.SceneContent?.TryGetValue("default", out sc);
+        return sc;
+    }
+
+    private static List<string> ExtrasLinesIn(string text, SceneContent sc) =>
+        sc.Extras.Select(PromptService.StripRequiredMarker)
+                 .Where(e => text.Contains($"- {e}"))
+                 .ToList();
+
+    private static readonly System.Text.RegularExpressions.Regex WindowSignsLine =
+        new(@"- window signs: '[^']+', '[^']+'");
+
+    private static void DoC20(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Dictionary<int, EraProfile> eras,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+        var runs = new[]
+        {
+            (gasRun1, "gas_station", "gas/run1"), (gasRun2, "gas_station", "gas/run2"),
+            (dtRun1, "downtown_street", "downtown/run1"), (dtRun2, "downtown_street", "downtown/run2")
+        };
+
+        foreach (var (run, sceneType, label) in runs)
+            foreach (var (year, prompt) in run)
+            {
+                var sc = ContentFor(eras, year, sceneType);
+                if (sc is null) continue;
+
+                if (!WindowSignsLine.IsMatch(prompt.Text))
+                    errs.Add($"{label}/{year}: no 'window signs:' line with two quoted signs");
+                if (ExtrasLinesIn(prompt.Text, sc).Count == 0)
+                    errs.Add($"{label}/{year}: no sampled extras line present");
+                if (eras[year].PeopleMix is { Count: > 0 } mix && !mix.Any(m => prompt.Text.Contains($"- {m}")))
+                    errs.Add($"{label}/{year}: no people_mix line present");
+            }
+
+        f.Add(("C20", "Every prompt has a two-sign 'window signs:' line, >=1 extras line, and a people_mix line",
+            errs.Count == 0, errs.Count == 0 ? "All three sampling axes present in every prompt" : Join(errs)));
+    }
+
+    private static void DoC21(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Dictionary<int, EraProfile> eras,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+
+        void Check(Dictionary<int, Prompt> run1, Dictionary<int, Prompt> run2, string sceneType, string label)
+        {
+            int differing = 0;
+            foreach (var year in Years)
+            {
+                var sc = ContentFor(eras, year, sceneType);
+                if (sc is null) continue;
+
+                string Signature(Prompt p) =>
+                    (WindowSignsLine.Match(p.Text).Value, string.Join("|", ExtrasLinesIn(p.Text, sc))).ToString();
+
+                if (Signature(run1[year]) != Signature(run2[year]))
+                    differing++;
+            }
+            if (differing < 3)
+                errs.Add($"{label}: only {differing}/6 years differ in extras/window signs (need >=3)");
+        }
+
+        Check(gasRun1, gasRun2, "gas_station",     "gas_station");
+        Check(dtRun1,  dtRun2,  "downtown_street", "downtown_street");
+
+        f.Add(("C21", "Run1 vs Run2: >=3 of 6 years differ in sampled extras or window signs",
+            errs.Count == 0, errs.Count == 0 ? "Sufficient sampling variance between seeds" : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────

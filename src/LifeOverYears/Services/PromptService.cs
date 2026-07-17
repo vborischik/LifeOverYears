@@ -118,6 +118,9 @@ public sealed class PromptService : IPromptService
         "price sign", "pole sign", "service bay", "pump", "canopy", "oil can", "convenience store", "vending", "tire"
     };
 
+    internal static string StripRequiredMarker(string item) =>
+        System.Text.RegularExpressions.Regex.Replace(item, @"\s*[—–-]\s*REQUIRED.*$", "");
+
     private static string TruncateToSentences(string text, int maxSentences)
     {
         var sentences = text.Split('.', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
@@ -194,6 +197,21 @@ public sealed class PromptService : IPromptService
                 sb.AppendLine($"- main sign: an independent station sign in the style of {brands[rng.Next(brands.Count)]}");
         }
 
+        if (content is not null)
+        {
+            var signs = Sample(content.WindowSigns, 2, rng);
+            if (signs.Count > 0)
+                sb.AppendLine($"- window signs: {string.Join(", ", signs.Select(s => $"'{s}'"))}");
+
+            // REQUIRED extras are always emitted and don't consume a sampling slot
+            var required = content.Extras.Where(e => e.Contains("REQUIRED")).ToList();
+            var optional = content.Extras.Except(required).ToList();
+            foreach (var extra in required)
+                sb.AppendLine($"- {StripRequiredMarker(extra)}");
+            foreach (var extra in Sample(optional, 2, rng))
+                sb.AppendLine($"- {extra}");
+        }
+
         sb.Append($"Typography: {era.Business.Signage.TypographyStyle}.");
         return sb.ToString();
     }
@@ -207,6 +225,9 @@ public sealed class PromptService : IPromptService
         if (content is not null)
             foreach (var activity in Sample(content.PeopleActivities, 2, rng))
                 sb.AppendLine($"- {activity}");
+
+        if (era.PeopleMix is { Count: > 0 })
+            sb.AppendLine($"- {era.PeopleMix[rng.Next(era.PeopleMix.Count)]}");
 
         var fashion = era.Society.Fashion;
         var men     = Sample(fashion.Men, 2, rng);

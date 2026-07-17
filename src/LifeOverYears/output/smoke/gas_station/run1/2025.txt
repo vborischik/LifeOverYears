@@ -27,24 +27,27 @@ TRANSFORM TO 2025
 Post-pandemic era. A 2025 fuel stop — LED canopy, full-color digital price sign, and a convenience store selling fresh food.
 
 PERIOD DETAILS
-- pay-at-pump screens with video ads
-- large convenience store with 'FRESH FOOD — MADE TO ORDER' branding
+- drive-through coffee lane attached to the store
+- free air and vacuum station at the lot edge
 - price sign showing gas around $3.40
-- main sign: an independent station sign in the style of Casey's
+- main sign: an independent station sign in the style of Chevron
+- window signs: 'MEMBERS SAVE 10¢/GAL', 'SCAN & GO — SKIP THE LINE'
+- outdoor cafe barriers with planters by the coffee lane
+- stacked delivery boxes by the store door
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 
 PEOPLE
 EXACTLY 5 people, spread out with empty areas.
-- a driver self-serving at the pump
-- a customer tapping a phone to pay at the pump
-Clothing: men in bucket hats, techwear; women in athleisure, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact.
+- a driver watching the ad screen while fueling
+- a delivery van driver walking out with a coffee
+- a retiree couple with matching walking poles
+Clothing: men in chunky sneakers, techwear; women in leggings and oversized hoodies, chunky dad sneakers. Fashion palette: sage green, beige, cream. No posing or eye contact.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2019-2025 Subaru Outback — rugged wagon crossover — black
-- 2021-2025 Kia Telluride — boxy upscale three-row SUV — blue
-- 2020-2025 Hyundai Tucson — sharp parametric grille design — gray
-- 2022-2025 Nissan Pathfinder — squared-off three-row SUV — white
+EXACTLY 3 period vehicles, all different:
+- 2019-2025 Chevrolet Equinox — rounded compact crossover — dark green
+- 2021-2025 Jeep Grand Cherokee — upscale chrome-accent SUV — black
+- 2022-2025 Nissan Pathfinder — squared-off three-row SUV — matte finishes appearing
 Parked with gaps; optionally 1 driving; no vehicle newer than 2025.
 
 ENVIRONMENT

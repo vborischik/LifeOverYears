@@ -13,7 +13,8 @@ public record EraProfile(
     [property: JsonPropertyName("society")]        Society Society,
     [property: JsonPropertyName("environment")]    EraEnvironment Environment,
     [property: JsonPropertyName("photography")]    Photography Photography,
-    [property: JsonPropertyName("scene_content")]  IReadOnlyDictionary<string, SceneContent>? SceneContent = null);
+    [property: JsonPropertyName("scene_content")]  IReadOnlyDictionary<string, SceneContent>? SceneContent = null,
+    [property: JsonPropertyName("people_mix")]     IReadOnlyList<string>? PeopleMix = null);
 
 // ── Transportation ────────────────────────────────────────────────────────────
 

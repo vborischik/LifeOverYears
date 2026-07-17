@@ -3,6 +3,16 @@
   "label": "Mid-1980s America",
   "description": "Reagan era prosperity. Japanese imports arrived. MTV culture. Neon and bold graphics everywhere. Self-service gas standard.",
 
+  "people_mix": [
+    "a group of teenagers in bright windbreakers",
+    "a mother with two kids in tow",
+    "a jogger in a tracksuit and headband",
+    "a businessman with a briefcase and wide tie",
+    "a kid with a boombox on his shoulder",
+    "a woman with permed hair and shoulder pads",
+    "an older man in a flat cap reading a paper"
+  ],
+
   "transportation": {
     "cars": {
       "dominant_makes": ["Chevrolet", "Ford", "Dodge", "Toyota", "Honda", "Nissan", "Buick", "Oldsmobile"],
@@ -237,7 +247,10 @@
         "a wall-mounted payphone with a steel-cord handset and phone book shelf",
         "the painted ghost-sign wall ad now noticeably fading, colors washing out",
         "movie posters taped inside the video shop windows",
-        "a coin-operated newspaper vending box on the corner"
+        "a coin-operated newspaper vending box on the corner",
+        "a bank of coin newspaper boxes at the corner",
+        "a bike rack with BMX bikes",
+        "a mailbox with graffiti scratches"
       ]
     },
     "gas_station": {
@@ -272,7 +285,10 @@
       "extras": [
         "squeegee buckets at the pump islands",
         "a display rack of windshield-washer fluid jugs",
-        "an 'AIR & WATER' sign at the lot corner"
+        "an 'AIR & WATER' sign at the lot corner",
+        "arcade game posters taped in the store window",
+        "a BMX bike leaned by the store door",
+        "a mailbox with graffiti scratches at the lot edge"
       ]
     },
     "strip_mall": {
@@ -310,7 +326,9 @@
         "a bank of wall-mounted payphones near the anchor store",
         "a cart corral in the parking lot",
         "coin-operated newspaper boxes by the walkway",
-        "striped awnings casting bold shadows on the walkway"
+        "striped awnings casting bold shadows on the walkway",
+        "arcade game posters in the arcade window",
+        "a bike rack with BMX bikes near the walkway"
       ]
     },
     "default": {
@@ -344,7 +362,10 @@
       "extras": [
         "a wall-mounted payphone",
         "the painted ghost-sign wall ad, fading",
-        "a coin-operated newspaper box"
+        "a coin-operated newspaper box",
+        "a bike rack with BMX bikes",
+        "arcade game posters in a window",
+        "a mailbox with graffiti scratches"
       ]
     }
   }

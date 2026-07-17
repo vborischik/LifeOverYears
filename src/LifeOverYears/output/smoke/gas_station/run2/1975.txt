@@ -31,13 +31,17 @@ PERIOD DETAILS
 - mechanical analog pumps with rotating numeral dials and glass-and-chrome detailing
 - price sign showing gas around $0.57
 - main sign: an independent station sign in the style of Standard
+- window signs: 'MOTOR OIL 55¢ QT', 'TUNE-UP SPECIAL $19.95'
+- a water can and towel bucket on the pump island
+- a stack of used tires beside the service bay
 Typography: bold sans-serif, slab serif, occasional script.
 
 PEOPLE
 EXACTLY 4 people, spread out with empty areas.
-- a mechanic in coveralls rolling a tire toward the service bay
-- a second attendant wiping a customer's windshield
-Clothing: men in plaid patterns, turtlenecks; women in peasant blouses, earth tones. No posing or eye contact.
+- a mechanic leaning under the open hood of a car by the bay
+- a uniformed attendant actively fueling a vehicle at the pump
+- a woman with a headscarf carrying a paper grocery bag
+Clothing: men in polyester suits, wide lapels; women in wide leg pants, midi skirts. No posing or eye contact.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:

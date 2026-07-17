@@ -3,6 +3,15 @@
   "label": "Mid-1990s America",
   "description": "Clinton era prosperity. Internet just arriving. SUV boom beginning. Grunge and hip-hop culture. Big box retail killing strip malls.",
 
+  "people_mix": [
+    "a dad carrying a kid on his shoulders",
+    "two women power-walking in windbreakers",
+    "a paperboy with a canvas bag on a bike",
+    "teens in baggy jeans and band tees",
+    "an office worker with a pager on his belt",
+    "a mom loading groceries into a minivan"
+  ],
+
   "transportation": {
     "cars": {
       "dominant_makes": ["Ford", "Chevrolet", "Toyota", "Honda", "Dodge", "Nissan", "Saturn", "Pontiac"],
@@ -251,7 +260,10 @@
         "a wall-mounted payphone or payphone booth — REQUIRED, must be clearly visible",
         "the old painted ghost-sign now almost fully faded, barely legible",
         "movie release posters plastered in the video store windows",
-        "a cluster of coin-operated newspaper boxes on the corner"
+        "a cluster of coin-operated newspaper boxes on the corner",
+        "a stack of free classified-ad papers in a wire rack",
+        "a bench with a local realtor ad",
+        "rollerblades leaning by a door"
       ]
     },
     "gas_station": {
@@ -285,7 +297,10 @@
       "extras": [
         "squeegee buckets at the pump islands",
         "a hand-written 'PUMP 3 OUT OF ORDER' sign taped to one pump",
-        "stacked cases of soda on a pallet outside the store"
+        "stacked cases of soda on a pallet outside the store",
+        "a wire rack of free auto-trader papers by the door",
+        "a bench with a local realtor ad by the ice machine",
+        "a payphone mounted by the store entrance"
       ]
     },
     "strip_mall": {
@@ -322,7 +337,9 @@
         "a wall-mounted payphone bank near the anchor store",
         "a cart corral with a few stray carts",
         "a grand-opening banner strung across the dollar store",
-        "faded parking stall stripes"
+        "faded parking stall stripes",
+        "rollerblades leaning by a storefront door",
+        "a stack of free classified-ad papers in a wire rack"
       ]
     },
     "default": {
@@ -355,7 +372,10 @@
       "extras": [
         "a wall-mounted payphone",
         "the old ghost-sign almost fully faded",
-        "coin-operated newspaper boxes"
+        "coin-operated newspaper boxes",
+        "a stack of free classified-ad papers in a wire rack",
+        "a bench with a local realtor ad",
+        "rollerblades leaning by a door"
       ]
     }
   }

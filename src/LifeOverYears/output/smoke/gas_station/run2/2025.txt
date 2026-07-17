@@ -27,23 +27,27 @@ TRANSFORM TO 2025
 Post-pandemic era. A 2025 fuel stop — LED canopy, full-color digital price sign, and a convenience store selling fresh food.
 
 PERIOD DETAILS
+- pay-at-pump screens with video ads
 - free air and vacuum station at the lot edge
-- pay-at-pump screens playing video ads
 - price sign showing gas around $3.40
-- main sign: an independent station sign in the style of Casey's
+- main sign: an independent station sign in the style of QuikTrip
+- window signs: 'HOT PIZZA SLICES $2.99', 'MEMBERS SAVE 10¢/GAL'
+- stacked delivery boxes by the store door
+- outdoor cafe barriers with planters by the coffee lane
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 
 PEOPLE
-EXACTLY 5 people, spread out with empty areas.
-- a customer tapping a phone to pay at the pump
+EXACTLY 6 people, spread out with empty areas.
 - a driver self-serving at the pump
-Clothing: men in wide-leg pants, oversized fit tees; women in athleisure, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact.
+- a customer tapping a phone to pay at the pump
+- a parent and kid sharing earbuds
+Clothing: men in oversized fit tees, wide-leg pants; women in chunky dad sneakers, high-waisted wide-leg jeans. Fashion palette: sage green, beige, cream. No posing or eye contact.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
-- 2017-2025 Honda CR-V — rounded best-selling crossover — gray
-- 2022-2025 Honda Civic — clean mature compact — white
-- 2019-2025 Chevrolet Equinox — rounded compact crossover — silver
+- 2022-2025 Toyota Tundra — massive grille, muscular stance — white
+- 2022-2025 Nissan Pathfinder — squared-off three-row SUV — blue
+- 2019-2025 Ram 1500 — crew cab pickup, large grille — dark green
 - 2021-2025 Kia Carnival — boxy SUV-styled minivan — black
 Parked with gaps; optionally 1 driving; no vehicle newer than 2025.
 

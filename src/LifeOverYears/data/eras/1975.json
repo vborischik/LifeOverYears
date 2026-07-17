@@ -3,6 +3,16 @@
   "label": "Mid-1970s America",
   "description": "Post-Vietnam, oil crisis era. Suburban sprawl at peak. American cars dominated. Brands were bold and simple.",
 
+  "people_mix": [
+    "an elderly couple walking arm in arm",
+    "a mailman in a USPS uniform with a leather satchel",
+    "two boys with baseball gloves",
+    "a man in a work uniform on a lunch break",
+    "a woman with a headscarf carrying a paper grocery bag",
+    "a shopkeeper in an apron by his doorway",
+    "a girl walking a bicycle with a basket"
+  ],
+
   "transportation": {
     "cars": {
       "dominant_makes": ["Chevrolet", "Ford", "Dodge", "Plymouth", "Buick", "Oldsmobile", "Pontiac"],
@@ -255,7 +265,10 @@
         "2-3 bicycles leaned against a storefront wall",
         "a glass-and-aluminum telephone booth on the corner",
         "a painted ghost-sign wall advertisement on brick, weathered but still clearly readable",
-        "a wooden newspaper rack with stacked local papers by the diner door"
+        "a wooden newspaper rack with stacked local papers by the diner door",
+        "a milk crate stack by a shop door",
+        "an American flag on a storefront bracket",
+        "a mechanical gumball machine by a doorway"
       ]
     },
     "gas_station": {
@@ -293,7 +306,9 @@
         "an air hose with a driveway service bell line across the apron",
         "a stack of used tires beside the service bay",
         "a water can and towel bucket on the pump island",
-        "a 'FREE AIR' sign next to the air pump"
+        "a 'FREE AIR' sign next to the air pump",
+        "a bicycle leaning against a utility pole",
+        "a folded newspaper stack tied with twine by the office door"
       ]
     },
     "strip_mall": {
@@ -331,7 +346,9 @@
         "a coin-operated kiddie ride by a storefront door",
         "a row of nested shopping carts near the grocery entrance",
         "a telephone booth at the edge of the parking lot",
-        "painted white parking stall lines, slightly faded"
+        "painted white parking stall lines, slightly faded",
+        "an American flag on a pole at the lot entrance",
+        "a milk crate stack by a service door"
       ]
     },
     "default": {
@@ -367,7 +384,10 @@
       "extras": [
         "a glass telephone booth on the corner",
         "a painted ghost-sign wall advertisement, weathered but readable",
-        "bicycles leaned against a storefront"
+        "bicycles leaned against a storefront",
+        "a milk crate stack by a shop door",
+        "a mechanical gumball machine by a doorway",
+        "an American flag on a storefront bracket"
       ]
     }
   }

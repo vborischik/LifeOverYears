@@ -27,24 +27,27 @@ TRANSFORM TO 1995
 Clinton era prosperity. A 1995 self-serve station — wide canopy over multiple islands, attached convenience store, the first pay-at-pump card readers.
 
 PERIOD DETAILS
-- air and water station at the lot edge
-- convenience store always attached
+- automatic car wash bay at the back of the lot
+- wide flat canopy spanning multiple pump islands with a brand color band
 - price sign showing gas around $1.15
-- main sign: an independent station sign in the style of Amoco
+- main sign: an independent station sign in the style of Shell
+- window signs: '32oz FOUNTAIN DRINK 89¢', 'CIGARETTES $1.89 PACK'
+- a bench with a local realtor ad by the ice machine
+- squeegee buckets at the pump islands
 Typography: clean geometric sans-serif, early digital influence.
 
 PEOPLE
-EXACTLY 7 people, spread out with empty areas.
-- a driver self-serving at the pump
-- a driver checking tire pressure at the air station
-Clothing: men in flannel shirts, baggy jeans; women in floral dresses, crop tops. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact.
+EXACTLY 4 people, spread out with empty areas.
+- a clerk restocking the ice merchandiser
+- a woman swiping a card at the new pay-at-pump reader
+- an office worker with a pager on his belt
+Clothing: men in flannel shirts, baggy jeans; women in high-waisted mom jeans, slip dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 1991-1995 Dodge Caravan — rounded second-gen minivan — silver
-- 1986-1997 Ford Aerostar — boxy rear-drive minivan — hunter green
-- 1995-1999 Chevrolet Cavalier — compact, rounded — navy blue
-- 1992-1997 Ford Taurus — rounded jellybean shape, oval theme — burgundy
+EXACTLY 3 period vehicles, all different:
+- 1986-1997 Ford Aerostar — boxy rear-drive minivan — burgundy
+- 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding — silver
+- 1992-1997 Ford Taurus — rounded jellybean shape, oval theme — hunter green
 Parked with gaps; optionally 1 driving; no vehicle newer than 1995.
 
 ENVIRONMENT

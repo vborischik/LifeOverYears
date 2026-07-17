@@ -27,24 +27,28 @@ TRANSFORM TO 2005
 Post-9/11 era. A 2005 gas station — big multi-island canopy, card readers at every pump, LED price sign, and a convenience store doing most of the business.
 
 PERIOD DETAILS
-- automated car wash tunnel beside the lot
-- coin-operated air machine near the back of the lot
+- credit card readers at pump standard
+- stacked cases of bottled water and charcoal bags outside the store
 - price sign showing gas around $2.30
-- main sign: an independent station sign in the style of Shell
+- main sign: an independent station sign in the style of Marathon
+- window signs: 'ANY SIZE FOUNTAIN DRINK 99¢', 'CAR WASH $6'
+- a propane exchange cage by the storefront
+- a free real-estate flyer box by the door
 Typography: clean corporate sans-serif, polished brand identities.
 
 PEOPLE
-EXACTLY 4 people, spread out with empty areas.
-- a man talking on a flip phone while leaning against his SUV as it fuels
+EXACTLY 6 people, spread out with empty areas.
+- a clerk restocking the window display inside
 - a customer walking out with a coffee cup
-Clothing: men in frosted tips hair, cargo shorts; women in chunky highlights, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact.
+- a woman walking a small dog in a sweater
+Clothing: men in frosted tips hair, baggy jeans; women in layered tank tops, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
-- 2002-2006 Toyota Camry — smooth conservative mid-size — dark blue
-- 2004-2008 Chrysler 300 — bold boxy retro chrome grille — black
-- 2005-2010 Jeep Grand Cherokee — rounded modern SUV — gold
-- 2003-2007 Nissan Altima — sporty mid-size — dark red
+- 2002-2009 Chevrolet TrailBlazer — mid-size SUV boxy — white
+- 2002-2006 Toyota Camry — smooth conservative mid-size — gray
+- 1998-2005 Volkswagen New Beetle — retro bubble shape — silver
+- 2005-2010 Ford Mustang — retro muscle revival — black
 Parked with gaps; optionally 1 driving; no vehicle newer than 2005.
 
 ENVIRONMENT
