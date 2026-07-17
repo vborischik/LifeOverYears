@@ -27,24 +27,23 @@ TRANSFORM TO 1985
 Reagan era prosperity. A 1985 self-service gas station — digital price sign newly installed, a small convenience store where the second service bay used to be.
 
 PERIOD DETAILS
-- one remaining service bay with a 'STATE INSPECTION' sign
-- small attached convenience store with beer and cigarette ads in the window
+- self-service pumps with early digital readouts
+- self-service standard, full service rare
 - price sign showing gas around $1.12
-- main sign: an independent station sign in the style of Amoco
+- main sign: an independent station sign in the style of Texaco
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 
 PEOPLE
-EXACTLY 6 people, spread out with empty areas.
-- a customer walking into the store counting bills
-- a woman squeegeeing her windshield at the island
-Clothing: men in acid wash jeans, windbreakers; women in leg warmers, high-waisted jeans. Fashion palette: neon pink, electric blue, purple. No posing or eye contact.
+EXACTLY 5 people, spread out with empty areas.
+- a man checking his oil with the hood up at the edge of the lot
+- a teenager filling a bike tire at the air hose
+Clothing: men in windbreakers, shoulder pads in blazers; women in shoulder pads, high-waisted jeans. Fashion palette: neon pink, electric blue, purple. No posing or eye contact.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 1984-1988 Toyota Pickup — small, boxy, popular import — beige
-- 1980-1985 Cadillac Seville — sharp formal lines, bustleback — silver
-- 1982-1992 Chevrolet Camaro — wedge-shaped sporty coupe — white
-- 1983-1988 Ford Thunderbird — aero coupe, rounded — burgundy
+EXACTLY 3 period vehicles, all different:
+- 1980-1985 Cadillac Seville — sharp formal lines, bustleback — red
+- 1982-1993 Chevrolet S-10 — compact pickup, square — silver
+- 1983-1987 Honda Accord — clean lines, pop-up headlights — white
 Parked with gaps; optionally 1 driving; no vehicle newer than 1985.
 
 ENVIRONMENT

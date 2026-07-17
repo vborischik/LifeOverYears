@@ -27,23 +27,23 @@ TRANSFORM TO 2005
 Post-9/11 era. A 2005 gas station — big multi-island canopy, card readers at every pump, LED price sign, and a convenience store doing most of the business.
 
 PERIOD DETAILS
-- large multi-island canopies
-- large convenience store with energy-drink and phone-card ads in the glass
+- automated car wash tunnel beside the lot
+- pumps with card readers and small pay-at-pump screens
 - price sign showing gas around $2.30
-- main sign: an independent station sign in the style of Chevron
+- main sign: an independent station sign in the style of Shell
 Typography: clean corporate sans-serif, polished brand identities.
 
 PEOPLE
-EXACTLY 4 people, spread out with empty areas.
-- a woman inserting her card at the pump reader
-- a teenager filling tires at the coin-operated air machine
-Clothing: men in baggy jeans, frosted tips hair; women in layered tank tops, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact.
+EXACTLY 6 people, spread out with empty areas.
+- a driver self-serving at the pump
+- a man talking on a flip phone while leaning against his SUV as it fuels
+Clothing: men in baggy jeans, trucker hats; women in low-rise jeans, chunky highlights. Fashion palette: denim, pink, white. No posing or eye contact.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 2005-2010 Ford Mustang — retro muscle revival — black
-- 2000-2007 Ford Taurus — rounded, aging fleet-look sedan — silver
-- 2002-2006 Toyota Camry — smooth conservative mid-size — gray
+- 1999-2006 Chevrolet Silverado — squared modern look — dark blue
+- 2004-2008 Pontiac Grand Prix — sporty sedan plastic cladding — gray
+- 2001-2005 Honda Civic — rounded compact, very common — white
 Parked with gaps; optionally 1 driving; no vehicle newer than 2005.
 
 ENVIRONMENT

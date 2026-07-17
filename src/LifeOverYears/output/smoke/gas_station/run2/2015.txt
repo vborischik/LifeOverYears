@@ -27,23 +27,23 @@ TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 station — LED-lit canopy, digital price sign, video ads playing on every pump screen, and a big convenience store.
 
 PERIOD DETAILS
-- pay-at-pump with color screens and ads
-- large convenience store with fresh-coffee branding in the windows
+- modern canopy with white LED lighting
+- pumps with color screens playing ads
 - price sign showing gas around $2.45
-- main sign: an independent station sign in the style of Marathon
+- main sign: an independent station sign in the style of Shell
 Typography: minimalist flat sans-serif, simplified modern logos.
 
 PEOPLE
 EXACTLY 7 people, spread out with empty areas.
-- a customer watching the pump screen ads while fueling
+- a man returning a disc at the DVD kiosk
 - a driver vacuuming his car at the vacuum island
-Clothing: men in boat shoes, slim-fit plaid shirts; women in high-waisted skinny jeans, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact.
+Clothing: men in skinny jeans, boat shoes; women in infinity scarves, ankle boots. Fashion palette: coral, mint green, navy. No posing or eye contact.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 2015-2020 Ford Edge — mid-size crossover, bold grille — gray
-- 2014-2021 Subaru Outback — rugged wagon crossover — pearl white
-- 2013-2019 Ford Fusion — Aston-Martin-style grille, sleek — blue
+- 2011-2016 Kia Optima — stylish mid-size, sporty — dark red
+- 2011-2016 Honda CR-V — rounded compact crossover — black
+- 2016-2023 Toyota Tacoma — aggressive modern mid-size — white
 Parked with gaps; optionally 1 driving; no vehicle newer than 2015.
 
 ENVIRONMENT

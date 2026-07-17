@@ -27,23 +27,23 @@ TRANSFORM TO 1975
 Post-Vietnam, oil crisis era. A full-service neighborhood gas station in 1975 — uniformed attendants pump the gas, check the oil, and wipe the windshield.
 
 PERIOD DETAILS
-- full service attendants still common
-- chest-style soda vending machine by the office door
+- open service bays
+- oil cans displayed outside
 - price sign showing gas around $0.57
 - main sign: an independent station sign in the style of Texaco
 Typography: bold sans-serif, slab serif, occasional script.
 
 PEOPLE
 EXACTLY 6 people, spread out with empty areas.
-- a uniformed attendant actively fueling a vehicle at the pump
-- a second attendant wiping a customer's windshield
-Clothing: men in polyester suits, bell bottoms; women in midi skirts, wide leg pants. No posing or eye contact.
+- a customer paying the attendant cash through the car window
+- a driver waiting behind the wheel while the attendant works
+Clothing: men in turtlenecks, polyester suits; women in peasant blouses, midi skirts. No posing or eye contact.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 1973-1977 Chevrolet Caprice Classic — full-size, chrome bumpers, vinyl roof
-- 1974-1978 Dodge Monaco — large chrome grille, two-tone paint
-- 1970-1977 Ford Maverick — compact, simple lines
+- 1972-1980 Dodge D100 — angular cab, simple grille
+- 1974-1983 Jeep Cherokee — two-door SUV, boxy, new model
+- 1968-1979 Chevrolet Nova — compact, simple three-box shape
 Parked with gaps; optionally 1 driving; no vehicle newer than 1975.
 
 ENVIRONMENT

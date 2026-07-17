@@ -29,21 +29,22 @@ Reagan era prosperity. A 1985 main street in transition — neon and backlit pla
 PERIOD DETAILS
 - the same local diner, now with a backlit sign and 'HOT COFFEE 45¢' in the window
 - video arcade with a 'GAMES 25¢' neon sign and posters in the window
-- small newly opened video rental shop with a 'VIDEO CASSETTE RENTALS — VHS & BETA' backlit sign
+- electronics store with a red 'RADIOSHACK' style logo sign
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 
 PEOPLE
-EXACTLY 13 people, spread out with empty areas.
-- a woman with big permed hair and shoulder pads window-shopping
+EXACTLY 11 people, spread out with empty areas.
 - a kid locking a BMX bike to a signpost
-Clothing: men in shoulder pads in blazers, windbreakers; women in big permed hair, leg warmers. Fashion palette: neon pink, electric blue, purple. No posing or eye contact.
+- a teenager carrying a boombox on his shoulder
+Clothing: men in shoulder pads in blazers, polo shirts with collars up; women in shoulder pads, leg warmers. Fashion palette: neon pink, electric blue, purple. No posing or eye contact.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 1982-1993 Chevrolet S-10 — compact pickup, square — burgundy
-- 1984-1987 Toyota Corolla — boxy compact, reliable look — beige
-- 1980-1985 Cadillac Seville — sharp formal lines, bustleback — silver
-- 1983-1988 Ford Thunderbird — aero coupe, rounded — white
+EXACTLY 5 period vehicles, all different:
+- 1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline — red
+- 1982-1992 Chevrolet Camaro — wedge-shaped sporty coupe — light blue
+- 1984-1990 Dodge Caravan — first minivan, boxy — white
+- 1984-1988 Toyota Pickup — small, boxy, popular import — beige
+- 1983-1988 Ford Thunderbird — aero coupe, rounded — burgundy
 Parked with gaps; optionally 1 driving; no vehicle newer than 1985.
 
 ENVIRONMENT

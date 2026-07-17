@@ -27,24 +27,23 @@ TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 station — LED-lit canopy, digital price sign, video ads playing on every pump screen, and a big convenience store.
 
 PERIOD DETAILS
-- ice merchandiser by the door
 - modern canopy with white LED lighting
+- large modern canopies with LED lighting
 - price sign showing gas around $2.45
-- main sign: an independent station sign in the style of Shell
+- main sign: an independent station sign in the style of Casey's
 Typography: minimalist flat sans-serif, simplified modern logos.
 
 PEOPLE
-EXACTLY 4 people, spread out with empty areas.
-- a customer watching the pump screen ads while fueling
+EXACTLY 6 people, spread out with empty areas.
+- a woman scrolling her smartphone while leaning on her crossover
 - a man returning a disc at the DVD kiosk
-Clothing: men in slim-fit plaid shirts, henley shirts; women in yoga pants and leggings, high-waisted skinny jeans. Fashion palette: coral, mint green, navy. No posing or eye contact.
+Clothing: men in boat shoes, beards; women in ankle boots, statement necklaces. Fashion palette: coral, mint green, navy. No posing or eye contact.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2015-2020 Chevrolet Colorado — mid-size pickup revived — dark red
-- 2016-2023 Toyota Tacoma — aggressive modern mid-size — gray
-- 2015-2020 Ford Edge — mid-size crossover, bold grille — silver
-- 2014-2021 Subaru Outback — rugged wagon crossover — blue
+EXACTLY 3 period vehicles, all different:
+- 2013-2019 Ford Fusion — Aston-Martin-style grille, sleek — gray
+- 2013-2018 Hyundai Santa Fe — fluidic sculpture styling — blue
+- 2015-2020 Chevrolet Colorado — mid-size pickup revived — black
 Parked with gaps; optionally 1 driving; no vehicle newer than 2015.
 
 ENVIRONMENT
