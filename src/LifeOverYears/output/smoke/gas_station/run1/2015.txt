@@ -1,11 +1,12 @@
 One single continuous photograph — no panels, grids, or split frames.
 
-Use the uploaded photo as the exact base composition. Remove all modern
-businesses, logos, brands, storefront names, banners, advertisements, and
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- camera: eye-level, facing street-facing, fov 75
+- camera: eye-level, street-facing, fov 75
 - commercial arterial road, 4-lane, asphalt
 - sidewalks present, curbs present
 - driveways: north driveway apron, south driveway apron; parking: open asphalt apron surrounding pump islands
@@ -27,29 +28,30 @@ TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 station — LED-lit canopy, digital price sign, video ads playing on every pump screen, and a big convenience store.
 
 PERIOD DETAILS
-- card skimmer warnings on pumps
-- large modern canopies with LED lighting
+- large convenience store with fresh-coffee branding in the windows
+- red DVD-rental kiosk outside the store entrance
 - price sign showing gas around $2.45
 - main sign: an independent station sign in the style of Casey's
-- window signs: 'ANY SIZE COFFEE $1', 'E-CIG STARTER KITS'
-- a chalkboard A-frame sign advertising the coffee bar
-- an ice merchandiser and propane cage along the wall
+- window signs: 'ANY SIZE COFFEE $1', 'UNLIMITED CAR WASH $19.99/MO'
+- card-skimmer warning stickers on the pumps
+- combined trash-and-squeegee stations between the pumps
 Typography: minimalist flat sans-serif, simplified modern logos.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 4 people, spread out with empty areas.
 - a customer watching the pump screen ads while fueling
-- a woman scrolling her smartphone while leaning on her crossover
-- a courier carrying an insulated food delivery bag
-Clothing: men in slim-fit plaid shirts, henley shirts; women in statement necklaces, high-waisted skinny jeans. Fashion palette: coral, mint green, navy. No posing or eye contact.
+- a man returning a disc at the DVD kiosk
+- a dog walker with three dogs
+Clothing: men in boat shoes, beards; women in yoga pants and leggings, infinity scarves. Fashion palette: coral, mint green, navy. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2013-2018 Toyota RAV4 — angular compact crossover — black
-- 2011-2016 Chrysler Town & Country — chrome-trimmed minivan — gray
-- 2011-2016 Kia Optima — stylish mid-size, sporty — blue
-- 2015-2023 Ford F-150 — aluminum body, blocky modern — white
-Parked with gaps; optionally 1 driving; no vehicle newer than 2015.
+EXACTLY 3 period vehicles, all different:
+- 2011-2016 Hyundai Elantra — swoopy fluidic compact — blue
+- 2005-2015 Toyota Tacoma — capable mid-size pickup — pearl white
+- 2013-2017 Honda Accord — clean modern lines — silver
+Parked with gaps; no vehicle newer than 2015.
+PLACEMENT: the first two parked on the RIGHT side; one parked on the left near the corner; the last one driving toward the camera in the far lane. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks
@@ -59,6 +61,7 @@ TREES
 - cottonwood tree at northeast corner of lot: established tree, modest canopy
 - elm tree at sidewalk edge left of entrance: very young sapling
 - cedar tree at back fence line: mature tree, full canopy
+Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — digital — DSLR or smartphone camera look.

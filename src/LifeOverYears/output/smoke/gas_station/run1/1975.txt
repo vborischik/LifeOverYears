@@ -1,11 +1,12 @@
 One single continuous photograph — no panels, grids, or split frames.
 
-Use the uploaded photo as the exact base composition. Remove all modern
-businesses, logos, brands, storefront names, banners, advertisements, and
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- camera: eye-level, facing street-facing, fov 75
+- camera: eye-level, street-facing, fov 75
 - commercial arterial road, 4-lane, asphalt
 - sidewalks present, curbs present
 - driveways: north driveway apron, south driveway apron; parking: open asphalt apron surrounding pump islands
@@ -27,28 +28,30 @@ TRANSFORM TO 1975
 Post-Vietnam, oil crisis era. A full-service neighborhood gas station in 1975 — uniformed attendants pump the gas, check the oil, and wipe the windshield.
 
 PERIOD DETAILS
-- open service bays
+- tire display rack near the service bay
 - oil cans displayed outside
 - price sign showing gas around $0.57
-- main sign: an independent station sign in the style of Texaco
-- window signs: 'WE HONOR BANKAMERICARD', 'FLATS FIXED $2'
+- main sign: an independent station sign in the style of Phillips 66
+- window signs: 'FLATS FIXED $2', 'MOTOR OIL 55¢ QT'
+- a stack of used tires beside the service bay
 - an air hose with a driveway service bell line across the apron
-- a water can and towel bucket on the pump island
 Typography: bold sans-serif, slab serif, occasional script.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 6 people, spread out with empty areas.
-- a mechanic leaning under the open hood of a car by the bay
-- a second attendant wiping a customer's windshield
-- an elderly couple walking arm in arm
-Clothing: men in polyester suits, plaid patterns; women in wide leg pants, peasant blouses. No posing or eye contact.
+- a customer paying the attendant cash through the car window
+- the station owner standing in the office doorway with a clipboard
+- a mailman in a USPS uniform with a leather satchel
+Clothing: men in bell bottoms, polyester suits; women in midi skirts, peasant blouses. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
 - 1972-1980 Dodge D100 — angular cab, simple grille
 - 1974-1983 Jeep Cherokee — two-door SUV, boxy, new model
 - 1968-1979 Chevrolet Nova — compact, simple three-box shape
-Parked with gaps; optionally 1 driving; no vehicle newer than 1975.
+Parked with gaps; no vehicle newer than 1975.
+PLACEMENT: the first two parked on the RIGHT side; one parked on the left near the corner; the last one driving toward the camera in the far lane. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, no rumble strips
@@ -58,6 +61,7 @@ TREES
 - cottonwood tree at northeast corner of lot: very young sapling
 - elm tree at sidewalk edge left of entrance: very young sapling
 - cedar tree at back fence line: very young sapling
+Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE
 STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.

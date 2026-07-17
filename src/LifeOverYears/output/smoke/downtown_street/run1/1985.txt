@@ -1,11 +1,12 @@
 One single continuous photograph — no panels, grids, or split frames.
 
-Use the uploaded photo as the exact base composition. Remove all modern
-businesses, logos, brands, storefront names, banners, advertisements, and
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- camera: eye-level, facing street-facing, fov 80
+- camera: eye-level, street-facing, fov 80
 - main street road, 2-lane, asphalt
 - sidewalks present, curbs present
 - driveways: alley entrance mid-block; parking: parallel street parking both sides
@@ -27,30 +28,30 @@ TRANSFORM TO 1985
 Reagan era prosperity. A 1985 main street in transition — neon and backlit plastic overtaking hand-painted signs, a first small video rental shop among the old local stores.
 
 PERIOD DETAILS
-- the same local diner, now with a backlit sign and 'HOT COFFEE 45¢' in the window
+- BLUE PLATE DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
 - video arcade with a 'GAMES 25¢' neon sign and posters in the window
-- drug store modernized with backlit plastic channel letters reading 'PHARMACY'
-- window signs: '2 SLICES $1.50', 'VHS OVERNIGHT RENTAL $2.99'
-- a bike rack with BMX bikes
-- movie posters taped inside the video shop windows
+- hair salon with a neon script 'STYLES' sign
+- window signs: 'PERM SPECIAL $25', '2 SLICES $1.50'
+- a bank of coin newspaper boxes at the corner
+- the painted ghost-sign wall ad now noticeably fading, colors washing out
 Typography: bold geometric sans-serif, early computer-influenced fonts.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 10 people, spread out with empty areas.
-- a kid locking a BMX bike to a signpost
-- a woman with big permed hair and shoulder pads window-shopping
-- a jogger in a tracksuit and headband
-Clothing: men in windbreakers, polo shirts with collars up; women in high-waisted jeans, leg warmers. Fashion palette: neon pink, electric blue, purple. No posing or eye contact.
+- a jogger in a bright tracksuit and headband passing through
+- a teenager carrying a boombox on his shoulder
+- a businessman with a briefcase and wide tie
+Clothing: men in acid wash jeans, windbreakers; women in bright neon colors, high-waisted jeans. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
-EXACTLY 6 period vehicles, all different:
-- 1986-1989 Nissan Sentra — small economy boxy sedan — white
-- 1982-1985 Toyota Celica — angular sporty coupe, pop-up lights — beige
-- 1980-1985 Cadillac Seville — sharp formal lines, bustleback — charcoal gray
-- 1986-1991 Ford Taurus — aerodynamic, rounded, revolutionary look — red
-- 1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan — burgundy
-- 1982-1993 Chevrolet S-10 — compact pickup, square — silver
-Parked with gaps; optionally 1 driving; no vehicle newer than 1985.
+EXACTLY 4 period vehicles, all different:
+- 1984-1987 Toyota Corolla — boxy compact, reliable look — charcoal gray
+- 1984-1989 Plymouth Voyager — boxy first-generation minivan — beige
+- 1982-1992 Chevrolet Camaro — wedge-shaped sporty coupe — white
+- 1973-1991 Chevrolet Suburban — long boxy wagon-SUV — light blue
+Parked with gaps; no vehicle newer than 1985.
+PLACEMENT: all parked on the RIGHT side with gaps; the first one driving away from the camera in the near lane. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, painted crosswalks
@@ -59,6 +60,7 @@ ENVIRONMENT
 TREES
 - oak tree at sidewalk left near corner: young tree, thin trunk
 - maple tree at sidewalk center in front of retail: very young sapling
+Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — Kodacolor VR 200 or Fujicolor 100 look.

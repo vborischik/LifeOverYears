@@ -1,11 +1,12 @@
 One single continuous photograph — no panels, grids, or split frames.
 
-Use the uploaded photo as the exact base composition. Remove all modern
-businesses, logos, brands, storefront names, banners, advertisements, and
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- camera: eye-level, facing street-facing, fov 80
+- camera: eye-level, street-facing, fov 80
 - main street road, 2-lane, asphalt
 - sidewalks present, curbs present
 - driveways: alley entrance mid-block; parking: parallel street parking both sides
@@ -28,28 +29,30 @@ Post-9/11 era. A 2005 main street — cellular stores and chain coffee arriving,
 
 PERIOD DETAILS
 - the video rental store closing down — 'EVERYTHING MUST GO — ALL MOVIES $3' banner across the window
-- the same diner with a refreshed awning and a 'COFFEE $1.25' vinyl decal on the glass
+- BLUE PLATE DINER with a refreshed awning and a 'COFFEE $1.25' vinyl decal on the glass
 - cellular phone store with 'FREE PHONE WITH 2-YEAR PLAN' posters
-- window signs: 'TANNING — 1 MONTH UNLIMITED $29', 'RINGTONES $1.99'
-- a sidewalk sandwich board with a cell-phone store promo
-- ribbon magnets on a lamppost
-Typography: clean corporate sans-serif, polished brand identities.
+- window signs: 'DVDs $14.99', 'LATTE $2.95'
+- a sandwich-board sign for the espresso cafe
+- a bike rack with a couple of mountain bikes
+Typography: clean sans-serif, polished brand identities.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 14 people, spread out with empty areas.
-- two kids weaving down the sidewalk on razor scooters
-- a man loading a flat-screen TV box into an SUV
-- a couple taking photos with a digital camera
-Clothing: men in baggy jeans, graphic tees; women in velour tracksuits, chunky highlights. Fashion palette: denim, pink, white. No posing or eye contact.
+EXACTLY 15 people, spread out with empty areas.
+- a teenager texting on a flip phone with both thumbs
+- a mother pushing a jogging stroller
+- a teen with white earbuds and an MP3 player
+Clothing: men in cargo shorts, baggy jeans; women in chunky highlights, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
 EXACTLY 5 period vehicles, all different:
-- 2004-2008 Pontiac Grand Prix — sporty sedan plastic cladding — gray
+- 2004-2012 Chevrolet Colorado — mid-size pickup — dark red
+- 2005-2010 Chevrolet Cobalt — compact economy sedan — black
+- 1998-2005 Volkswagen New Beetle — retro bubble shape — dark blue
 - 2003-2007 Nissan Altima — sporty mid-size — silver
-- 2004-2010 Toyota Sienna — large rounded minivan — dark red
-- 2004-2012 Chevrolet Colorado — mid-size pickup — white
-- 2001-2007 Ford Escape — compact boxy SUV — dark blue
-Parked with gaps; optionally 1 driving; no vehicle newer than 2005.
+- 2001-2007 Dodge Grand Caravan — family minivan, rounded — white
+Parked with gaps; no vehicle newer than 2005.
+PLACEMENT: three parked on the RIGHT side; one parked on the left near the corner; the last one driving away from the camera in the near lane. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn arrows
@@ -58,6 +61,7 @@ ENVIRONMENT
 TREES
 - oak tree at sidewalk left near corner: maturing tree
 - maple tree at sidewalk center in front of retail: young tree, thin trunk
+Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — early digital camera or Kodak/Fuji consumer film look.

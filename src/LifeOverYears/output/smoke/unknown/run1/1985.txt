@@ -1,7 +1,8 @@
 One single continuous photograph — no panels, grids, or split frames.
 
-Use the uploaded photo as the exact base composition. Remove all modern
-businesses, logos, brands, storefront names, banners, advertisements, and
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
@@ -25,20 +26,21 @@ TRANSFORM TO 1985
 Reagan era prosperity. An ordinary 1985 American commercial street — bold primary-color signage, boxy cars, the first franchise logos among local shops.
 
 PERIOD DETAILS
-- local diner with a backlit sign and 'HOT COFFEE 45¢' in the window
-- electronics store with a red logo sign
-- small video rental shop with a 'VHS RENTALS' backlit sign
-- window signs: '2 SLICES $1.50', 'SALE 25% OFF'
-- a coin-operated newspaper box
+- MAIN STREET DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
+- pharmacy with backlit plastic channel letters
+- barber shop with its spinning barber pole
+- window signs: 'PERM SPECIAL $25', 'VHS OVERNIGHT RENTAL $2.99'
 - the painted ghost-sign wall ad, fading
+- a wall-mounted payphone
 Typography: bold geometric sans-serif, early computer-influenced fonts.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 11 people, spread out with empty areas.
-- a jogger in a bright tracksuit
-- a couple leaving the diner
-- a businessman with a briefcase and wide tie
-Clothing: men in shoulder pads in blazers, windbreakers; women in bright neon colors, shoulder pads. Fashion palette: neon pink, electric blue, purple. No posing or eye contact.
+- kids on BMX bikes by the curb
+- a woman using a wall-mounted payphone
+- a woman with permed hair and shoulder pads
+Clothing: men in windbreakers, acid wash jeans; women in leg warmers, big permed hair. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
@@ -46,7 +48,8 @@ EXACTLY 4 period vehicles, all different:
 - 1980-1986 Ford F-150 — square body, dual headlights — silver
 - 1982-1985 Toyota Celica — angular sporty coupe, pop-up lights — white
 - 1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan — beige
-Parked with gaps; optionally 1 driving; no vehicle newer than 1985.
+Parked with gaps; no vehicle newer than 1985.
+PLACEMENT: the first two parked on the LEFT side; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, painted crosswalks
@@ -54,6 +57,7 @@ ENVIRONMENT
 
 TREES
 - pine tree at fence line east: very young sapling
+Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — Kodacolor VR 200 or Fujicolor 100 look.

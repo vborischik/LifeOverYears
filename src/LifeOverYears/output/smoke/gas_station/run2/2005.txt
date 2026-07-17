@@ -1,11 +1,12 @@
 One single continuous photograph — no panels, grids, or split frames.
 
-Use the uploaded photo as the exact base composition. Remove all modern
-businesses, logos, brands, storefront names, banners, advertisements, and
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- camera: eye-level, facing street-facing, fov 75
+- camera: eye-level, street-facing, fov 75
 - commercial arterial road, 4-lane, asphalt
 - sidewalks present, curbs present
 - driveways: north driveway apron, south driveway apron; parking: open asphalt apron surrounding pump islands
@@ -27,28 +28,31 @@ TRANSFORM TO 2005
 Post-9/11 era. A 2005 gas station — big multi-island canopy, card readers at every pump, LED price sign, and a convenience store doing most of the business.
 
 PERIOD DETAILS
-- coin-operated air machine near the back of the lot
-- large convenience store with energy-drink and phone-card ads in the glass
+- convenience store always attached
+- large multi-island canopies
 - price sign showing gas around $2.30
-- main sign: an independent station sign in the style of ExxonMobil
-- window signs: 'CAR WASH $6', 'PHONE CARDS SOLD HERE'
-- a windshield-washer fluid display rack by the pumps
+- main sign: an independent station sign in the style of Chevron
+- window signs: 'CIGARETTES $3.75 PACK', 'PHONE CARDS SOLD HERE'
+- a free real-estate flyer box by the door
 - ribbon magnets on the door of the service office
-Typography: clean corporate sans-serif, polished brand identities.
+Typography: clean sans-serif, polished brand identities.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 4 people, spread out with empty areas.
-- a woman inserting her card at the pump reader
-- a teenager filling tires at the coin-operated air machine
+- a clerk restocking the window display inside
+- a driver self-serving at the pump
 - a woman walking a small dog in a sweater
-Clothing: men in cargo shorts, graphic tees; women in velour tracksuits, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact.
+Clothing: men in trucker hats, cargo shorts; women in chunky highlights, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
-EXACTLY 3 period vehicles, all different:
-- 2004-2008 Chrysler 300 — bold boxy retro chrome grille — dark red
-- 2003-2008 Toyota Corolla — conservative compact sedan — gray
-- 2005-2010 Jeep Grand Cherokee — rounded modern SUV — gold
-Parked with gaps; optionally 1 driving; no vehicle newer than 2005.
+EXACTLY 4 period vehicles, all different:
+- 2003-2009 Hummer H2 — massive military-styled SUV — black
+- 2004-2012 Chevrolet Colorado — mid-size pickup — gray
+- 1998-2004 Nissan Frontier — compact pickup — gold
+- 2002-2009 Chevrolet TrailBlazer — mid-size SUV boxy — silver
+Parked with gaps; no vehicle newer than 2005.
+PLACEMENT: the first two parked on the LEFT side; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn arrows
@@ -58,6 +62,7 @@ TREES
 - cottonwood tree at northeast corner of lot: young tree, thin trunk
 - elm tree at sidewalk edge left of entrance: very young sapling
 - cedar tree at back fence line: maturing tree
+Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — early digital camera or Kodak/Fuji consumer film look.

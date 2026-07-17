@@ -45,7 +45,7 @@ static async Task<int> RunAsync(string[] args, string projectRoot)
     var photoPath = ResolvePhotoPath(args, projectRoot);
     var years     = args.Length >= 2
         ? args.Skip(1).Select(int.Parse).ToList()
-        : new List<int> { 1975 };
+        : new List<int> { 1975,1985,1995,2005,2015,2025 };
 
     try
     {

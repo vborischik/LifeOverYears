@@ -639,15 +639,15 @@ public static class PromptSmokeTest
             foreach (var (year, prompt) in run)
             {
                 int words = WordCount(prompt.Text);
-                if (words >= 550)
-                    errs.Add($"{label}/{year}: {words} words (limit 550)");
+                if (words >= 650)
+                    errs.Add($"{label}/{year}: {words} words (limit 650)");
             }
         int unknownWords = WordCount(unknownPrompt.Text);
-        if (unknownWords >= 550)
-            errs.Add($"unknown/1985: {unknownWords} words (limit 550)");
+        if (unknownWords >= 650)
+            errs.Add($"unknown/1985: {unknownWords} words (limit 650)");
 
-        f.Add(("C11", "Every prompt is under 550 words (limit raised from 500 for extras/window-sign/people-mix sampling)",
-            errs.Count == 0, errs.Count == 0 ? "All prompts under 550 words" : Join(errs)));
+        f.Add(("C11", "Every prompt is under 650 words (limit raised from 550 for placement, sidewalk-rule, and tree-override lines)",
+            errs.Count == 0, errs.Count == 0 ? "All prompts under 650 words" : Join(errs)));
     }
 
     private static void DoC12(
@@ -807,26 +807,6 @@ public static class PromptSmokeTest
 
     // Data validation: no specific_models entry post-dates its era.
     private static void DoC17(
-    private static SceneContent? ContentFor(Dictionary<int, EraProfile> eras, int year, string sceneType)
-    {
-        var era = eras[year];
-        SceneContent? sc = null;
-        if (era.SceneContent?.TryGetValue(sceneType, out sc) != true)
-            era.SceneContent?.TryGetValue("default", out sc);
-        return sc;
-    }
-
-    private static List<string> ExtrasLinesIn(string text, SceneContent sc) =>
-        sc.Extras.Select(PromptService.StripRequiredMarker)
-                 .Where(e => text.Contains($"- {e}"))
-                 .ToList();
-
-    private static readonly System.Text.RegularExpressions.Regex WindowSignsLine =
-        new(@"- window signs: '[^']+', '[^']+'");
-
-    private static void DoC20(
-        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
-        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, EraProfile> eras,
         List<(string, string, bool, string)> f)
     {
@@ -854,12 +834,32 @@ public static class PromptSmokeTest
             errs.Count == 0, errs.Count == 0 ? "All model year ranges are era-valid" : Join(errs)));
     }
 
-    // PLACEMENT present in every prompt; within a run no pattern repeats unless the
-    // relevant pool (sized by vehicle count) is exhausted.
-    private static void DoC18(
+    private static SceneContent? ContentFor(Dictionary<int, EraProfile> eras, int year, string sceneType)
+    {
+        var era = eras[year];
+        SceneContent? sc = null;
+        if (era.SceneContent?.TryGetValue(sceneType, out sc) != true)
+            era.SceneContent?.TryGetValue("default", out sc);
+        return sc;
+    }
+
+    private static List<string> ExtrasLinesIn(string text, SceneContent sc) =>
+        sc.Extras.Select(PromptService.StripRequiredMarker)
+                 .Where(e => text.Contains($"- {e}"))
+                 .ToList();
+
+    private static readonly System.Text.RegularExpressions.Regex WindowSignsLine =
+        new(@"- window signs: '[^']+', '[^']+'");
+
+    // Window signs, sampled extras, and people_mix present in every prompt.
+    private static void DoC20(
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
-        Prompt unknownPrompt,
+        Dictionary<int, EraProfile> eras,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+
         var runs = new[]
         {
             (gasRun1, "gas_station", "gas/run1"), (gasRun2, "gas_station", "gas/run2"),
@@ -884,10 +884,12 @@ public static class PromptSmokeTest
             errs.Count == 0, errs.Count == 0 ? "All three sampling axes present in every prompt" : Join(errs)));
     }
 
-    private static void DoC21(
+    // PLACEMENT present in every prompt; within a run no pattern repeats unless the
+    // relevant pool (sized by vehicle count) is exhausted.
+    private static void DoC18(
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
-        Dictionary<int, EraProfile> eras,
+        Prompt unknownPrompt,
         List<(string, string, bool, string)> f)
     {
         var errs = new List<string>();
@@ -976,6 +978,17 @@ public static class PromptSmokeTest
 
         f.Add(("C19", "No descriptive-as-signage leaks; {DINER_NAME} resolved and identical across a run",
             errs.Count == 0, errs.Count == 0 ? "Business names clean and diner name stable" : Join(errs)));
+    }
+
+    // Run-to-run sampling variance in extras / window signs.
+    private static void DoC21(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Dictionary<int, EraProfile> eras,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+
         void Check(Dictionary<int, Prompt> run1, Dictionary<int, Prompt> run2, string sceneType, string label)
         {
             int differing = 0;

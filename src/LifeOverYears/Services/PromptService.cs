@@ -205,8 +205,6 @@ public sealed class PromptService : IPromptService
                 sb.AppendLine($"- main sign: an independent station sign in the style of {brands[rng.Next(brands.Count)]}");
         }
 
-        sb.AppendLine($"Typography: {era.Business.Signage.TypographyStyle}.");
-        sb.Append("Sign text is only what appears in quotes — do not turn other words from this prompt into signage.");
         if (content is not null)
         {
             var signs = Sample(content.WindowSigns, 2, rng);
@@ -222,7 +220,8 @@ public sealed class PromptService : IPromptService
                 sb.AppendLine($"- {extra}");
         }
 
-        sb.Append($"Typography: {era.Business.Signage.TypographyStyle}.");
+        sb.AppendLine($"Typography: {era.Business.Signage.TypographyStyle}.");
+        sb.Append("Sign text is only what appears in quotes — do not turn other words from this prompt into signage.");
         return sb.ToString();
     }
 

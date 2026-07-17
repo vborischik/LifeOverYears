@@ -1,11 +1,12 @@
 One single continuous photograph — no panels, grids, or split frames.
 
-Use the uploaded photo as the exact base composition. Remove all modern
-businesses, logos, brands, storefront names, banners, advertisements, and
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- camera: eye-level, facing street-facing, fov 80
+- camera: eye-level, street-facing, fov 80
 - main street road, 2-lane, asphalt
 - sidewalks present, curbs present
 - driveways: alley entrance mid-block; parking: parallel street parking both sides
@@ -27,20 +28,21 @@ TRANSFORM TO 1975
 Post-Vietnam, oil crisis era. A working small-town main street in 1975 — locally owned shops with hand-painted and neon signs, a five & dime, and not a single modern chain in sight.
 
 PERIOD DETAILS
-- local diner with a hand-lettered 'HOT COFFEE 25¢' sign in the window
-- women's dress shop with gold-leaf window lettering
-- 'BEN FRANKLIN' five & dime with red-and-white lettering
-- window signs: 'HAIRCUT $2.50', 'SHIRTS 2 FOR $5'
-- a wooden newspaper rack with stacked local papers by the diner door
+- STAR DINER with a hand-lettered 'HOT COFFEE 25¢' sign in the window
+- appliance store window displaying console televisions with a 'COLOR TV' placard
+- corner drug store with a hand-painted 'REXALL DRUGS' style sign and a small neon 'PRESCRIPTIONS' sign in the window
+- window signs: 'ICE CREAM CONES 15¢', 'HAIRCUT $2.50'
 - a painted ghost-sign wall advertisement on brick, weathered but still clearly readable
+- a glass-and-aluminum telephone booth on the corner
 Typography: bold sans-serif, slab serif, occasional script.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 11 people, spread out with empty areas.
-- a delivery man carrying stacked boxes into a storefront
 - a mail carrier with a leather bag making rounds
-- an elderly couple walking arm in arm
-Clothing: men in bell bottoms, wide lapels; women in midi skirts, peasant blouses. No posing or eye contact.
+- an older man reading a folded newspaper on a bench
+- two boys with baseball gloves
+Clothing: men in turtlenecks, wide lapels; women in peasant blouses, earth tones. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
@@ -48,7 +50,8 @@ EXACTLY 4 period vehicles, all different:
 - 1975-1979 AMC Pacer — wide bubble-shaped compact, huge glass area
 - 1975-1980 Ford Granada — compact luxury, Mercedes-inspired formal grille
 - 1971-1976 Jeep Wagoneer — boxy full-size SUV, woodgrain trim optional
-Parked with gaps; optionally 1 driving; no vehicle newer than 1975.
+Parked with gaps; no vehicle newer than 1975.
+PLACEMENT: all parked on the RIGHT side with gaps; the first one driving away from the camera in the near lane. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, no rumble strips
@@ -57,6 +60,7 @@ ENVIRONMENT
 TREES
 - oak tree at sidewalk left near corner: very young sapling
 - maple tree at sidewalk center in front of retail: very young sapling
+Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE
 STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.

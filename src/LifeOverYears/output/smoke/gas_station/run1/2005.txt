@@ -1,11 +1,12 @@
 One single continuous photograph — no panels, grids, or split frames.
 
-Use the uploaded photo as the exact base composition. Remove all modern
-businesses, logos, brands, storefront names, banners, advertisements, and
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- camera: eye-level, facing street-facing, fov 75
+- camera: eye-level, street-facing, fov 75
 - commercial arterial road, 4-lane, asphalt
 - sidewalks present, curbs present
 - driveways: north driveway apron, south driveway apron; parking: open asphalt apron surrounding pump islands
@@ -28,28 +29,29 @@ Post-9/11 era. A 2005 gas station — big multi-island canopy, card readers at e
 
 PERIOD DETAILS
 - credit card readers at pump standard
-- stacked cases of bottled water and charcoal bags outside the store
+- convenience store always attached
 - price sign showing gas around $2.30
-- main sign: an independent station sign in the style of Marathon
-- window signs: 'ANY SIZE FOUNTAIN DRINK 99¢', 'CAR WASH $6'
+- main sign: an independent station sign in the style of Shell
+- window signs: 'CIGARETTES $3.75 PACK', 'ENERGY DRINKS 2 FOR $4'
+- trash cans with paper-towel dispensers between the pumps
 - a propane exchange cage by the storefront
-- a free real-estate flyer box by the door
-Typography: clean corporate sans-serif, polished brand identities.
+Typography: clean sans-serif, polished brand identities.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 6 people, spread out with empty areas.
-- a clerk restocking the window display inside
+- a man talking on a flip phone while leaning against his SUV as it fuels
 - a customer walking out with a coffee cup
 - a woman walking a small dog in a sweater
-Clothing: men in frosted tips hair, baggy jeans; women in layered tank tops, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact.
+Clothing: men in baggy jeans, trucker hats; women in trucker hats, chunky highlights. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2002-2009 Chevrolet TrailBlazer — mid-size SUV boxy — white
-- 2002-2006 Toyota Camry — smooth conservative mid-size — gray
-- 1998-2005 Volkswagen New Beetle — retro bubble shape — silver
-- 2005-2010 Ford Mustang — retro muscle revival — black
-Parked with gaps; optionally 1 driving; no vehicle newer than 2005.
+EXACTLY 3 period vehicles, all different:
+- 2000-2007 Ford Taurus — rounded, aging fleet-look sedan — dark blue
+- 1999-2006 Chevrolet Silverado — squared modern look — dark red
+- 2001-2007 Toyota Highlander — early crossover — gold
+Parked with gaps; no vehicle newer than 2005.
+PLACEMENT: the first two parked on the LEFT side; the last one driving away from the camera. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn arrows
@@ -59,6 +61,7 @@ TREES
 - cottonwood tree at northeast corner of lot: young tree, thin trunk
 - elm tree at sidewalk edge left of entrance: very young sapling
 - cedar tree at back fence line: maturing tree
+Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — early digital camera or Kodak/Fuji consumer film look.

@@ -1,11 +1,12 @@
 One single continuous photograph — no panels, grids, or split frames.
 
-Use the uploaded photo as the exact base composition. Remove all modern
-businesses, logos, brands, storefront names, banners, advertisements, and
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- camera: eye-level, facing street-facing, fov 80
+- camera: eye-level, street-facing, fov 80
 - main street road, 2-lane, asphalt
 - sidewalks present, curbs present
 - driveways: alley entrance mid-block; parking: parallel street parking both sides
@@ -27,20 +28,21 @@ TRANSFORM TO 1975
 Post-Vietnam, oil crisis era. A working small-town main street in 1975 — locally owned shops with hand-painted and neon signs, a five & dime, and not a single modern chain in sight.
 
 PERIOD DETAILS
-- local diner with a hand-lettered 'HOT COFFEE 25¢' sign in the window
-- hardware store with 'PAINT — GLASS — KEYS' painted on the display window
+- BLUE PLATE DINER with a hand-lettered 'HOT COFFEE 25¢' sign in the window
+- women's dress shop with gold-leaf window lettering
 - barber shop with a spinning red-white-and-blue barber pole by the door
-- window signs: 'SALE — 3 for $1', 'TV REPAIR — FREE ESTIMATES'
-- 2-3 bicycles leaned against a storefront wall
-- an American flag on a storefront bracket
+- window signs: 'TV REPAIR — FREE ESTIMATES', 'MILK 69¢ HALF GALLON'
+- a milk crate stack by a shop door
+- a wooden newspaper rack with stacked local papers by the diner door
 Typography: bold sans-serif, slab serif, occasional script.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 14 people, spread out with empty areas.
-- a teenager leaning on a bicycle near the curb
-- two men in wide-lapel jackets talking outside the diner
-- an elderly couple walking arm in arm
-Clothing: men in polyester suits, plaid patterns; women in midi skirts, wide leg pants. No posing or eye contact.
+- a mail carrier with a leather bag making rounds
+- a delivery man carrying stacked boxes into a storefront
+- two boys with baseball gloves
+Clothing: men in bell bottoms, turtlenecks; women in peasant blouses, midi skirts. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
@@ -48,7 +50,8 @@ EXACTLY 4 period vehicles, all different:
 - 1974-1983 Jeep Cherokee — two-door SUV, boxy, new model
 - 1968-1979 Chevrolet Nova — compact, simple three-box shape
 - 1972-1976 Lincoln Continental Mark IV — long hood personal luxury coupe
-Parked with gaps; optionally 1 driving; no vehicle newer than 1975.
+Parked with gaps; no vehicle newer than 1975.
+PLACEMENT: the first two parked on the RIGHT side; one parked on the left near the corner; the last one driving toward the camera in the far lane. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, no rumble strips
@@ -57,6 +60,7 @@ ENVIRONMENT
 TREES
 - oak tree at sidewalk left near corner: very young sapling
 - maple tree at sidewalk center in front of retail: very young sapling
+Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE
 STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.

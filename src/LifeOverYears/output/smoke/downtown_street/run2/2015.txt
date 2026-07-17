@@ -1,11 +1,12 @@
 One single continuous photograph — no panels, grids, or split frames.
 
-Use the uploaded photo as the exact base composition. Remove all modern
-businesses, logos, brands, storefront names, banners, advertisements, and
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- camera: eye-level, facing street-facing, fov 80
+- camera: eye-level, street-facing, fov 80
 - main street road, 2-lane, asphalt
 - sidewalks present, curbs present
 - driveways: alley entrance mid-block; parking: parallel street parking both sides
@@ -27,28 +28,31 @@ TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 main street mid-revival — the video store replaced by a phone repair shop, third-wave coffee and a vape shop, smartphones in every hand.
 
 PERIOD DETAILS
-- the same diner, retro-styled, with 'COFFEE $2.25' chalked on a menu board
-- third-wave coffee shop with a minimalist logo and Edison bulbs visible inside
+- STAR DINER with 'COFFEE $2.25' chalked on a menu board
 - barber shop with its spinning barber pole, now billed as a 'classic barbershop'
-- window signs: 'HAPPY HOUR 4-6 — PINTS $4', 'BUY ONE GET ONE 50% OFF'
-- string lights zigzagging over the sidewalk seating
-- the old ghost-sign wall repainted as a colorful mural
+- the old video store space now a phone repair shop with an 'iPHONE & TABLET REPAIR' LED sign
+- window signs: 'BUY ONE GET ONE 50% OFF', 'CRAFT LATTE $4.50'
+- chalkboard sandwich-board signs outside the cafes
+- a bike corral at the curb
 Typography: minimalist flat sans-serif, simplified modern logos.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 12 people, spread out with empty areas.
-- a dog leashed outside the coffee shop, its owner visible inside
-- a bearded man in a slim plaid shirt photographing his coffee
-- a dog walker with three dogs
-Clothing: men in beards, boat shoes; women in high-waisted skinny jeans, statement necklaces. Fashion palette: coral, mint green, navy. No posing or eye contact.
+EXACTLY 11 people, spread out with empty areas.
+- a man in a henley checking a fitness band
+- a barista delivering drinks to an outdoor table
+- a courier carrying an insulated food delivery bag
+Clothing: men in boat shoes, beards; women in infinity scarves, ankle boots. Fashion palette: coral, mint green, navy. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2011-2017 Honda Odyssey — lightning-bolt beltline minivan — white
-- 2013-2019 Ford Fusion — Aston-Martin-style grille, sleek — gray
-- 2013-2016 Ford Escape — rounded compact crossover — blue
-- 2015-2020 Chevrolet Colorado — mid-size pickup revived — black
-Parked with gaps; optionally 1 driving; no vehicle newer than 2015.
+EXACTLY 5 period vehicles, all different:
+- 2014-2018 Chevrolet Silverado — squared modern grille — black
+- 2007-2017 Jeep Wrangler — boxy off-roader, round headlights — blue
+- 2014-2019 Kia Soul — boxy urban hatchback — pearl white
+- 2015-2020 Ford Edge — mid-size crossover, bold grille — dark red
+- 2015-2020 Ford F-150 — aluminum body, C-clamp headlights — white
+Parked with gaps; no vehicle newer than 2015.
+PLACEMENT: three parked on the LEFT side; the rest parked on the RIGHT side; the last one driving toward the camera in the far lane. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks
@@ -57,6 +61,7 @@ ENVIRONMENT
 TREES
 - oak tree at sidewalk left near corner: mature tree, full canopy
 - maple tree at sidewalk center in front of retail: established tree, modest canopy
+Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — digital — DSLR or smartphone camera look.

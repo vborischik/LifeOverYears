@@ -1,11 +1,12 @@
 One single continuous photograph — no panels, grids, or split frames.
 
-Use the uploaded photo as the exact base composition. Remove all modern
-businesses, logos, brands, storefront names, banners, advertisements, and
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- camera: eye-level, facing street-facing, fov 75
+- camera: eye-level, street-facing, fov 75
 - commercial arterial road, 4-lane, asphalt
 - sidewalks present, curbs present
 - driveways: north driveway apron, south driveway apron; parking: open asphalt apron surrounding pump islands
@@ -28,27 +29,29 @@ Clinton era prosperity. A 1995 self-serve station — wide canopy over multiple 
 
 PERIOD DETAILS
 - automatic car wash bay at the back of the lot
-- wide flat canopy spanning multiple pump islands with a brand color band
+- self-serve pumps, some fitted with new credit-card readers
 - price sign showing gas around $1.15
-- main sign: an independent station sign in the style of Shell
-- window signs: '32oz FOUNTAIN DRINK 89¢', 'CIGARETTES $1.89 PACK'
-- a bench with a local realtor ad by the ice machine
-- squeegee buckets at the pump islands
+- main sign: an independent station sign in the style of Amoco
+- window signs: 'CAR WASH $4 WITH FILL-UP', '32oz FOUNTAIN DRINK 89¢'
+- a wire rack of free auto-trader papers by the door
+- a hand-written 'PUMP 3 OUT OF ORDER' sign taped to one pump
 Typography: clean geometric sans-serif, early digital influence.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 4 people, spread out with empty areas.
-- a clerk restocking the ice merchandiser
+EXACTLY 5 people, spread out with empty areas.
 - a woman swiping a card at the new pay-at-pump reader
-- an office worker with a pager on his belt
-Clothing: men in flannel shirts, baggy jeans; women in high-waisted mom jeans, slip dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact.
+- a man walking out of the store with a soda and a bag of chips
+- two women power-walking in windbreakers
+Clothing: men in grunge style, backwards caps; women in floral dresses, crop tops. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 1986-1997 Ford Aerostar — boxy rear-drive minivan — burgundy
-- 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding — silver
-- 1992-1997 Ford Taurus — rounded jellybean shape, oval theme — hunter green
-Parked with gaps; optionally 1 driving; no vehicle newer than 1995.
+- 1992-1996 Ford F-150 — rounded aero body — burgundy
+- 1993-1997 Ford Ranger — compact pickup, straight lines — navy blue
+- 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding — teal
+Parked with gaps; no vehicle newer than 1995.
+PLACEMENT: all parked on the RIGHT side with gaps; the first one driving away from the camera in the near lane. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn lane arrows
@@ -58,6 +61,7 @@ TREES
 - cottonwood tree at northeast corner of lot: very young sapling
 - elm tree at sidewalk edge left of entrance: very young sapling
 - cedar tree at back fence line: established tree, modest canopy
+Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — Kodak Gold 200 or Fujifilm Superia 200 look.

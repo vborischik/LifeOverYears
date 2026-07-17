@@ -1,11 +1,12 @@
 One single continuous photograph — no panels, grids, or split frames.
 
-Use the uploaded photo as the exact base composition. Remove all modern
-businesses, logos, brands, storefront names, banners, advertisements, and
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- camera: eye-level, facing street-facing, fov 80
+- camera: eye-level, street-facing, fov 80
 - main street road, 2-lane, asphalt
 - sidewalks present, curbs present
 - driveways: alley entrance mid-block; parking: parallel street parking both sides
@@ -28,29 +29,31 @@ Clinton era prosperity. A 1995 main street — the video rental store at its abs
 
 PERIOD DETAILS
 - pizza and sub shop with a '2 SLICES + SODA $2.99' sign in the window
-- the same local diner, sign aging, 'HOT COFFEE 75¢' in the window
-- pager and cellular store with a neon 'PAGERS — BEEPERS' sign
-- window signs: 'PAGERS $19.99', 'VHS 3-DAY RENTAL $1.99'
+- STAR DINER with 'HOT COFFEE 75¢' in the window
+- computer shop with a 'PENTIUM PCs — INTERNET SOFTWARE' banner
+- window signs: 'VHS 3-DAY RENTAL $1.99', 'HAIRCUT $8'
 - a wall-mounted payphone or payphone booth
+- the old painted ghost-sign now almost fully faded, barely legible
 - a bench with a local realtor ad
-- movie release posters plastered in the video store windows
 Typography: clean geometric sans-serif, early digital influence.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 13 people, spread out with empty areas.
+EXACTLY 10 people, spread out with empty areas.
+- a group of teens in grunge flannel outside the music store
 - two kids on a bench trading collectible cards
-- a businessman talking on a large early cell phone
-- teens in baggy jeans and band tees
-Clothing: men in windbreakers, baggy jeans; women in crop tops, high-waisted mom jeans. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact.
+- a dad carrying a kid on his shoulders
+Clothing: men in baggy jeans, backwards caps; women in high-waisted mom jeans, chokers. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
 EXACTLY 5 period vehicles, all different:
-- 1993-1998 Jeep Grand Cherokee — early SUV, boxy-rounded — teal
-- 1992-1996 Ford F-150 — rounded aero body — black
-- 1994-2001 Dodge Ram — big rig style grille, bold — navy blue
-- 1992-1997 Ford Taurus — rounded jellybean shape, oval theme — hunter green
-- 1993-1997 Toyota Corolla — rounded compact sedan — silver
-Parked with gaps; optionally 1 driving; no vehicle newer than 1995.
+- 1995-2004 Toyota Tacoma — compact, rounded — teal
+- 1995-1999 Chevrolet Cavalier — compact, rounded — navy blue
+- 1991-1995 Dodge Caravan — rounded second-gen minivan — white
+- 1986-1997 Ford Aerostar — boxy rear-drive minivan — burgundy
+- 1992-1995 Honda Civic — small rounded coupe and sedan — black
+Parked with gaps; no vehicle newer than 1995.
+PLACEMENT: two parked on each side with gaps; the last one driving toward the camera. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn lane arrows
@@ -59,6 +62,7 @@ ENVIRONMENT
 TREES
 - oak tree at sidewalk left near corner: established tree, modest canopy
 - maple tree at sidewalk center in front of retail: very young sapling
+Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — Kodak Gold 200 or Fujifilm Superia 200 look.

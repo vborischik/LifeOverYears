@@ -1,11 +1,12 @@
 One single continuous photograph — no panels, grids, or split frames.
 
-Use the uploaded photo as the exact base composition. Remove all modern
-businesses, logos, brands, storefront names, banners, advertisements, and
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- camera: eye-level, facing street-facing, fov 80
+- camera: eye-level, street-facing, fov 80
 - main street road, 2-lane, asphalt
 - sidewalks present, curbs present
 - driveways: alley entrance mid-block; parking: parallel street parking both sides
@@ -28,28 +29,30 @@ Clinton era prosperity. A 1995 main street — the video rental store at its abs
 
 PERIOD DETAILS
 - pizza and sub shop with a '2 SLICES + SODA $2.99' sign in the window
-- the same local diner, sign aging, 'HOT COFFEE 75¢' in the window
-- pager and cellular store with a neon 'PAGERS — BEEPERS' sign
-- window signs: 'FREE INTERNET TRIAL — 30 DAYS', 'VHS 3-DAY RENTAL $1.99'
+- BLUE PLATE DINER with 'HOT COFFEE 75¢' in the window
+- barber shop with its spinning barber pole, unchanged
+- window signs: 'SUB COMBO $3.99', 'FREE INTERNET TRIAL — 30 DAYS'
 - a wall-mounted payphone or payphone booth
 - the old painted ghost-sign now almost fully faded, barely legible
-- a cluster of coin-operated newspaper boxes on the corner
+- a bench with a local realtor ad
 Typography: clean geometric sans-serif, early digital influence.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 10 people, spread out with empty areas.
-- a businessman talking on a large early cell phone
-- a teenager in a flannel shirt browsing the video store's new releases wall, visible through the glass
-- a paperboy with a canvas bag on a bike
-Clothing: men in windbreakers, backwards caps; women in slip dresses, high-waisted mom jeans. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact.
+EXACTLY 11 people, spread out with empty areas.
+- a woman talking on the wall-mounted payphone
+- two kids on a bench trading collectible cards
+- a mom loading groceries into a minivan
+Clothing: men in baggy jeans, grunge style; women in floral dresses, crop tops. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
-- 1994-2001 Dodge Ram — big rig style grille, bold — silver
-- 1992-1996 Toyota Camry — rounded, understated — white
-- 1994-1998 Ford Mustang — rounded SN95 pony car — teal
-- 1995-1999 Dodge Neon — small rounded economy, friendly face — black
-Parked with gaps; optionally 1 driving; no vehicle newer than 1995.
+- 1992-1996 Ford F-150 — rounded aero body — silver
+- 1992-1997 Ford Taurus — rounded jellybean shape, oval theme — teal
+- 1991-1996 Ford Escort — small rounded economy car — black
+- 1992-1996 Toyota Camry — rounded, understated — hunter green
+Parked with gaps; no vehicle newer than 1995.
+PLACEMENT: the first two parked on the LEFT side; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn lane arrows
@@ -58,6 +61,7 @@ ENVIRONMENT
 TREES
 - oak tree at sidewalk left near corner: established tree, modest canopy
 - maple tree at sidewalk center in front of retail: very young sapling
+Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — Kodak Gold 200 or Fujifilm Superia 200 look.

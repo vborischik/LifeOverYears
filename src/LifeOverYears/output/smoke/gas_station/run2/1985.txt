@@ -1,11 +1,12 @@
 One single continuous photograph — no panels, grids, or split frames.
 
-Use the uploaded photo as the exact base composition. Remove all modern
-businesses, logos, brands, storefront names, banners, advertisements, and
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- camera: eye-level, facing street-facing, fov 75
+- camera: eye-level, street-facing, fov 75
 - commercial arterial road, 4-lane, asphalt
 - sidewalks present, curbs present
 - driveways: north driveway apron, south driveway apron; parking: open asphalt apron surrounding pump islands
@@ -27,28 +28,30 @@ TRANSFORM TO 1985
 Reagan era prosperity. A 1985 self-service gas station — digital price sign newly installed, a small convenience store where the second service bay used to be.
 
 PERIOD DETAILS
-- ice freezer chest with an 'ICE $1' decal by the store door
-- propane tank exchange cage beside the building
+- credit card readers not yet at pump
+- canopy designs more angular
 - price sign showing gas around $1.12
 - main sign: an independent station sign in the style of Mobil
-- window signs: 'HOT DOGS 2 FOR $1', 'SELF SERVE — PAY INSIDE'
-- a mailbox with graffiti scratches at the lot edge
+- window signs: 'HOT DOGS 2 FOR $1', 'FREE COFFEE WITH FILL-UP'
 - an 'AIR & WATER' sign at the lot corner
+- a BMX bike leaned by the store door
 Typography: bold geometric sans-serif, early computer-influenced fonts.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 5 people, spread out with empty areas.
+EXACTLY 6 people, spread out with empty areas.
+- a man checking his oil with the hood up at the edge of the lot
 - a driver waiting in his car for a free pump
-- a customer walking into the store counting bills
-- a woman with permed hair and shoulder pads
-Clothing: men in windbreakers, acid wash jeans; women in bright neon colors, shoulder pads. Fashion palette: neon pink, electric blue, purple. No posing or eye contact.
+- a group of teenagers in bright windbreakers
+Clothing: men in polo shirts with collars up, windbreakers; women in big permed hair, bright neon colors. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 1983-1988 Ford Thunderbird — aero coupe, rounded — beige
-- 1979-1985 Ford LTD Country Squire — full-size woodgrain wagon — silver
-- 1980-1986 Ford F-150 — square body, dual headlights — burgundy
-Parked with gaps; optionally 1 driving; no vehicle newer than 1985.
+- 1980-1985 Cadillac Seville — sharp formal lines, bustleback — burgundy
+- 1984-1988 Pontiac Fiero — small wedge two-seater — red
+- 1978-1986 Ford Bronco — full-size boxy SUV, round headlights — white
+Parked with gaps; no vehicle newer than 1985.
+PLACEMENT: the first two parked on the RIGHT side; one parked on the left near the corner; the last one driving toward the camera in the far lane. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, painted crosswalks
@@ -58,6 +61,7 @@ TREES
 - cottonwood tree at northeast corner of lot: very young sapling
 - elm tree at sidewalk edge left of entrance: very young sapling
 - cedar tree at back fence line: young tree, thin trunk
+Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — Kodacolor VR 200 or Fujicolor 100 look.

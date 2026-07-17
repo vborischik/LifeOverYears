@@ -1,11 +1,12 @@
 One single continuous photograph — no panels, grids, or split frames.
 
-Use the uploaded photo as the exact base composition. Remove all modern
-businesses, logos, brands, storefront names, banners, advertisements, and
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- camera: eye-level, facing street-facing, fov 80
+- camera: eye-level, street-facing, fov 80
 - main street road, 2-lane, asphalt
 - sidewalks present, curbs present
 - driveways: alley entrance mid-block; parking: parallel street parking both sides
@@ -27,28 +28,30 @@ TRANSFORM TO 2025
 Post-pandemic era. A 2025 main street — minimalist flat-logo storefronts, QR codes on the glass, delivery culture in plain view.
 
 PERIOD DETAILS
-- the same diner, still going, 'COFFEE $3.50' shown on a small digital menu screen in the window
+- BLUE PLATE DINER with 'COFFEE $3.50' shown on a small digital menu screen in the window
 - boutique fitness studio with black-and-white minimalist branding
 - plant and gift shop with a hand-lettered kraft-paper window display
 - window signs: 'BOBA — BUY ONE GET ONE FRIDAYS', 'OAT MILK LATTE $6.50'
 - a shared e-scooter and e-bike dock at the curb
 - a stack of delivery packages waiting at a shop door
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 13 people, spread out with empty areas.
 - a man in an oversized tee and chunky sneakers walking a small dog
 - a woman in athleisure carrying a boba tea
 - a woman filming a short vertical video on a phone
-Clothing: men in wide-leg pants, bucket hats; women in athleisure, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact.
+Clothing: men in wide-leg pants, bucket hats; women in athleisure, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
-- 2022-2025 Nissan Pathfinder — squared-off three-row SUV — blue
-- 2019-2025 Subaru Forester — practical boxy crossover — white
-- 2021-2025 Kia Carnival — boxy SUV-styled minivan — matte finishes appearing
-- 2019-2025 GMC Sierra — chrome-heavy full-size pickup — dark green
-Parked with gaps; optionally 1 driving; no vehicle newer than 2025.
+- 2023-2025 Kia Sportage — futuristic boomerang lights — gray
+- 2021-2025 Chevrolet Tahoe — huge full-size SUV — silver
+- 2024-2025 Toyota Grand Highlander — large family crossover — white
+- 2021-2025 Ford Bronco — retro boxy off-roader — dark green
+Parked with gaps; no vehicle newer than 2025.
+PLACEMENT: the first two parked on the LEFT side; the last one driving away from the camera. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks
@@ -57,6 +60,7 @@ ENVIRONMENT
 TREES
 - oak tree at sidewalk left near corner: mature tree, large canopy
 - maple tree at sidewalk center in front of retail: maturing tree
+Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — digital — smartphone or mirrorless camera look.

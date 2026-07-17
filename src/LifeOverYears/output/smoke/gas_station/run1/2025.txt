@@ -1,11 +1,12 @@
 One single continuous photograph — no panels, grids, or split frames.
 
-Use the uploaded photo as the exact base composition. Remove all modern
-businesses, logos, brands, storefront names, banners, advertisements, and
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- camera: eye-level, facing street-facing, fov 75
+- camera: eye-level, street-facing, fov 75
 - commercial arterial road, 4-lane, asphalt
 - sidewalks present, curbs present
 - driveways: north driveway apron, south driveway apron; parking: open asphalt apron surrounding pump islands
@@ -27,28 +28,31 @@ TRANSFORM TO 2025
 Post-pandemic era. A 2025 fuel stop — LED canopy, full-color digital price sign, and a convenience store selling fresh food.
 
 PERIOD DETAILS
+- large convenience stores with fresh food
 - drive-through coffee lane attached to the store
-- free air and vacuum station at the lot edge
 - price sign showing gas around $3.40
-- main sign: an independent station sign in the style of Chevron
-- window signs: 'MEMBERS SAVE 10¢/GAL', 'SCAN & GO — SKIP THE LINE'
-- outdoor cafe barriers with planters by the coffee lane
+- main sign: an independent station sign in the style of Casey's
+- window signs: 'SCAN & GO — SKIP THE LINE', 'COLD BREW $3.99'
 - stacked delivery boxes by the store door
+- digital menu screens glowing in the store windows
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 5 people, spread out with empty areas.
+- a clerk restocking the grab-and-go cooler behind the glass
 - a driver watching the ad screen while fueling
-- a delivery van driver walking out with a coffee
 - a retiree couple with matching walking poles
-Clothing: men in chunky sneakers, techwear; women in leggings and oversized hoodies, chunky dad sneakers. Fashion palette: sage green, beige, cream. No posing or eye contact.
+Clothing: men in oversized fit tees, wide-leg pants; women in chunky dad sneakers, high-waisted wide-leg jeans. Fashion palette: sage green, beige, cream. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
-EXACTLY 3 period vehicles, all different:
-- 2019-2025 Chevrolet Equinox — rounded compact crossover — dark green
-- 2021-2025 Jeep Grand Cherokee — upscale chrome-accent SUV — black
-- 2022-2025 Nissan Pathfinder — squared-off three-row SUV — matte finishes appearing
-Parked with gaps; optionally 1 driving; no vehicle newer than 2025.
+EXACTLY 4 period vehicles, all different:
+- 2021-2025 Toyota Camry — sleek sedan, aggressive front fascia — gray
+- 2017-2025 Honda CR-V — rounded best-selling crossover — dark green
+- 2020-2025 Hyundai Tucson — sharp parametric grille design — silver
+- 2019-2025 Toyota Corolla — sharp-nosed compact — white
+Parked with gaps; no vehicle newer than 2025.
+PLACEMENT: the first two parked on the LEFT side; the last one driving away from the camera. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks
@@ -58,6 +62,7 @@ TREES
 - cottonwood tree at northeast corner of lot: maturing tree
 - elm tree at sidewalk edge left of entrance: young tree, thin trunk
 - cedar tree at back fence line: mature tree, large canopy
+Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — digital — smartphone or mirrorless camera look.

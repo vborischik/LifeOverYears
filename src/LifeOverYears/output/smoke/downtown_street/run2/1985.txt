@@ -1,11 +1,12 @@
 One single continuous photograph — no panels, grids, or split frames.
 
-Use the uploaded photo as the exact base composition. Remove all modern
-businesses, logos, brands, storefront names, banners, advertisements, and
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
 signage visible in the source image.
 
 PRESERVE (must match source exactly)
-- camera: eye-level, facing street-facing, fov 80
+- camera: eye-level, street-facing, fov 80
 - main street road, 2-lane, asphalt
 - sidewalks present, curbs present
 - driveways: alley entrance mid-block; parking: parallel street parking both sides
@@ -27,29 +28,30 @@ TRANSFORM TO 1985
 Reagan era prosperity. A 1985 main street in transition — neon and backlit plastic overtaking hand-painted signs, a first small video rental shop among the old local stores.
 
 PERIOD DETAILS
-- the same local diner, now with a backlit sign and 'HOT COFFEE 45¢' in the window
+- STAR DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
 - video arcade with a 'GAMES 25¢' neon sign and posters in the window
-- drug store modernized with backlit plastic channel letters reading 'PHARMACY'
-- window signs: 'SALE 25% OFF', 'VHS OVERNIGHT RENTAL $2.99'
+- electronics store with a red 'RADIOSHACK' style logo sign
+- window signs: '2 SLICES $1.50', 'PERM SPECIAL $25'
 - a mailbox with graffiti scratches
-- movie posters taped inside the video shop windows
+- a bank of coin newspaper boxes at the corner
 Typography: bold geometric sans-serif, early computer-influenced fonts.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 10 people, spread out with empty areas.
-- a shopkeeper arranging a sidewalk sale rack
-- two kids comparing rental boxes outside the video shop
-- an older man in a flat cap reading a paper
-Clothing: men in windbreakers, acid wash jeans; women in leg warmers, shoulder pads. Fashion palette: neon pink, electric blue, purple. No posing or eye contact.
+EXACTLY 11 people, spread out with empty areas.
+- a businessman in a boxy suit walking briskly with a briefcase
+- a teenager carrying a boombox on his shoulder
+- a businessman with a briefcase and wide tie
+Clothing: men in polo shirts with collars up, shoulder pads in blazers; women in big permed hair, shoulder pads. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
-EXACTLY 5 period vehicles, all different:
-- 1979-1985 Ford Mustang — Fox body, angular hatchback coupe — silver
-- 1978-1986 Ford Bronco — full-size boxy SUV, round headlights — charcoal gray
-- 1973-1987 Chevrolet C/K — square body pickup, dual headlights — beige
-- 1983-1985 Nissan Maxima — boxy import sedan — white
-- 1984-1989 Plymouth Voyager — boxy first-generation minivan — light blue
-Parked with gaps; optionally 1 driving; no vehicle newer than 1985.
+EXACTLY 4 period vehicles, all different:
+- 1977-1990 Chevrolet Caprice — boxy full-size sedan, formal lines — red
+- 1982-1985 Toyota Celica — angular sporty coupe, pop-up lights — beige
+- 1982-1993 Chevrolet S-10 — compact pickup, square — silver
+- 1979-1985 Ford LTD Country Squire — full-size woodgrain wagon — burgundy
+Parked with gaps; no vehicle newer than 1985.
+PLACEMENT: the first two parked on the LEFT side; the last one driving away from the camera. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, painted crosswalks
@@ -58,6 +60,7 @@ ENVIRONMENT
 TREES
 - oak tree at sidewalk left near corner: young tree, thin trunk
 - maple tree at sidewalk center in front of retail: very young sapling
+Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — Kodacolor VR 200 or Fujicolor 100 look.
