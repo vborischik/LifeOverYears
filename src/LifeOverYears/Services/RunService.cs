@@ -20,10 +20,12 @@ public sealed class RunService : IRunService
 
         var prompts = Path.Combine(root, "prompts");
         var images  = Path.Combine(root, "images");
+        var stamped = Path.Combine(root, "stamped");
         var video   = Path.Combine(root, "video");
 
         Directory.CreateDirectory(prompts);
         Directory.CreateDirectory(images);
+        Directory.CreateDirectory(stamped);
         Directory.CreateDirectory(video);
 
         var sourcePath = Path.Combine(root, "source.png");
@@ -32,6 +34,6 @@ public sealed class RunService : IRunService
             await src.CopyToAsync(dst);
 
         _logger.LogInformation("Run folder created: {Root} (source: {Source})", root, sourcePhotoPath);
-        return new RunFolder(root, prompts, images, video, sourcePath);
+        return new RunFolder(root, prompts, images, stamped, video, sourcePath);
     }
 }

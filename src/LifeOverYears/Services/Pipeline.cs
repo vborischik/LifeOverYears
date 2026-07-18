@@ -11,6 +11,7 @@ public sealed class Pipeline
     private readonly IDataService _data;
     private readonly IRunService _runService;
     private readonly IImageGenerationProvider _images;
+    private readonly IYearOverlayService _overlay;
     private readonly IVideoService _video;
     private readonly ILogger<Pipeline> _logger;
 
@@ -20,6 +21,7 @@ public sealed class Pipeline
         IDataService data,
         IRunService runService,
         IImageGenerationProvider images,
+        IYearOverlayService overlay,
         IVideoService video,
         ILogger<Pipeline> logger)
     {
@@ -28,6 +30,7 @@ public sealed class Pipeline
         _data = data;
         _runService = runService;
         _images = images;
+        _overlay = overlay;
         _video = video;
         _logger = logger;
     }
@@ -74,26 +77,16 @@ public sealed class Pipeline
                 baseCleanPath, prompts[year].Text, year,
                 Path.Combine(run.ImagesDir, $"{year}.png"))));
 
-        var missing = await CompletionWatcher.WaitForImagesAsync(
-            run.ImagesDir, years, generation, _logger);
+        // Step 3c — overlay years onto the stamped set, then assemble the video.
+        // years here is exactly the caller's requested list, threaded through
+        // unchanged from the watcher to the overlay to the composed video.
+        var (missing, video) = await VideoAssemblyRunner.RunAsync(
+            _overlay, _video, run.ImagesDir, run.StampedDir,
+            Path.Combine(run.VideoDir, "timeline.mp4"), years, generation, _logger);
         if (missing.Count > 0)
             return 1;
-        await generation;
         _logger.LogInformation("Step 3b complete — all {Count} era images present", years.Count);
 
-        // Step 4 — assemble timeline video
-        var images = years
-            .OrderBy(y => y)
-            .Select(y => new HistoricalImage(
-                Id:        Guid.NewGuid().ToString(),
-                PromptId:  prompts[y].Id,
-                Year:      y,
-                FilePath:  Path.Combine(run.ImagesDir, $"{y}.png"),
-                Provider:  "stub", // TODO: replace with OpenAiImageProvider
-                CreatedAt: DateTimeOffset.UtcNow.ToString("o")))
-            .ToList();
-
-        var video = await _video.ComposeAsync(images, Path.Combine(run.VideoDir, "timeline.mp4"));
         if (video is null)
             _logger.LogWarning("Pipeline finished without video (assembly skipped): {Root}", run.Root);
         else

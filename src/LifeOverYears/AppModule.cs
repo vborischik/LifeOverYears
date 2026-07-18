@@ -54,6 +54,9 @@ public sealed class AppModule : Module
         builder.RegisterInstance(new StubImageProvider(_loggerFactory.CreateLogger<StubImageProvider>()))
                .As<IImageGenerationProvider>().SingleInstance();
 
+        builder.RegisterInstance(new YearOverlayService(_loggerFactory.CreateLogger<YearOverlayService>()))
+               .As<IYearOverlayService>().SingleInstance();
+
         builder.RegisterInstance(new FfmpegProvider(_loggerFactory.CreateLogger<FfmpegProvider>()))
                .As<IFfmpegProvider>().SingleInstance();
 
@@ -66,6 +69,7 @@ public sealed class AppModule : Module
                     _.Resolve<IDataService>(),
                     _.Resolve<IRunService>(),
                     _.Resolve<IImageGenerationProvider>(),
+                    _.Resolve<IYearOverlayService>(),
                     _.Resolve<IVideoService>(),
                     _loggerFactory.CreateLogger<Pipeline>()))
                .SingleInstance();

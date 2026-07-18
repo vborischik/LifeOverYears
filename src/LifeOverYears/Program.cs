@@ -20,9 +20,17 @@ static async Task<int> RunAsync(string[] args, string projectRoot)
             b.AddConsole().AddProvider(logCapture).SetMinimumLevel(LogLevel.Debug));
         var ffmpegProvider = new FfmpegProvider(videoLoggerFactory.CreateLogger<FfmpegProvider>());
         var videoService   = new VideoService(ffmpegProvider, videoLoggerFactory.CreateLogger<VideoService>());
+        var overlayService = new YearOverlayService(videoLoggerFactory.CreateLogger<YearOverlayService>());
         return await VideoSmokeTest.RunAsync(
-            videoService, videoLoggerFactory.CreateLogger("VideoSmokeTest"), logCapture);
+            videoService, overlayService, videoLoggerFactory.CreateLogger("VideoSmokeTest"), logCapture);
     }
+
+    // 'assemble <folderPath> [years...]' — manual testing only: no vision, no
+    // prompts, no image provider call. Points overlay+assembly at images that
+    // are already sitting in {folderPath}/images/. Isolated like --smoke-video:
+    // no appsettings, no DI container.
+    if (args.Length >= 1 && args[0] == "assemble")
+        return await RunAssembleAsync(args.Skip(1).ToArray());
 
     // TODO: remove smoke test
     bool isSmokeTest = args.Contains("--smoke-prompts");
@@ -76,6 +84,57 @@ static async Task<int> RunAsync(string[] args, string projectRoot)
         logger.LogError(ex, "Pipeline failed");
         return 1;
     }
+}
+
+static async Task<int> RunAssembleAsync(string[] args)
+{
+    if (args.Length < 1)
+        throw new InvalidOperationException("assemble requires a folder path: assemble <folderPath> [years...]");
+
+    var folderPath = args[0];
+    // Default six standard years applies ONLY at this CLI boundary — once
+    // parsed, `years` is threaded through unchanged to the watcher, overlay,
+    // and video assembly, exactly the list requested (or exactly the default).
+    var years = args.Length >= 2
+        ? args.Skip(1).Select(int.Parse).ToList()
+        : new List<int> { 1975, 1985, 1995, 2005, 2015, 2025 };
+
+    var imagesDir  = Path.Combine(folderPath, "images");
+    var stampedDir = Path.Combine(folderPath, "stamped");
+    var videoDir   = Path.Combine(folderPath, "video");
+    Directory.CreateDirectory(imagesDir);
+    Directory.CreateDirectory(stampedDir);
+    Directory.CreateDirectory(videoDir);
+
+    using var loggerFactory = LoggerFactory.Create(b => b.AddConsole().SetMinimumLevel(LogLevel.Debug));
+    var logger = loggerFactory.CreateLogger("Assemble");
+
+    var ffmpegProvider = new FfmpegProvider(loggerFactory.CreateLogger<FfmpegProvider>());
+    var videoService   = new VideoService(ffmpegProvider, loggerFactory.CreateLogger<VideoService>());
+    var overlayService = new YearOverlayService(loggerFactory.CreateLogger<YearOverlayService>());
+
+    logger.LogInformation("Assemble: folder={Folder} years={Years}", folderPath, string.Join(", ", years));
+
+    // No generation task — images are expected to already be on disk.
+    var (missing, video) = await VideoAssemblyRunner.RunAsync(
+        overlayService, videoService, imagesDir, stampedDir,
+        Path.Combine(videoDir, "timeline.mp4"), years, Task.CompletedTask, logger);
+
+    if (missing.Count > 0)
+    {
+        logger.LogError("assemble: still missing images for years {Years} — see {ImagesDir}",
+            string.Join(", ", missing), imagesDir);
+        return 1;
+    }
+
+    if (video is null)
+    {
+        logger.LogWarning("assemble finished without video (assembly skipped)");
+        return 1;
+    }
+
+    logger.LogInformation("assemble complete — video: {Path}", video.FilePath);
+    return 0;
 }
 
 static string ResolvePhotoPath(string[] args, string projectRoot)

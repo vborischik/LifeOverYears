@@ -12,10 +12,12 @@ namespace LifeOverYears.Services;
 // TODO: remove smoke test
 // Isolated ffmpeg smoke test: validates video assembly only. Generates its
 // own test images via ffmpeg's lavfi color source (no vision, no prompts,
-// no API keys), then exercises the real IVideoService/FfmpegProvider path.
+// no API keys), then exercises the real overlay + IVideoService/FfmpegProvider
+// path via the same VideoAssemblyRunner the Pipeline and 'assemble' CLI use.
 public static class VideoSmokeTest
 {
     private static readonly int[] Years = { 1975, 1985, 1995, 2005, 2015, 2025 };
+    private static readonly int[] PartialYears = { 1985, 2015 };
 
     private static readonly Dictionary<int, string> Colors = new()
     {
@@ -40,14 +42,16 @@ public static class VideoSmokeTest
         frameCount * HoldSeconds - Math.Max(0, frameCount - 1) * TransitionSeconds;
 
     public static async Task<int> RunAsync(
-        IVideoService videoService, ILogger logger, CapturingLoggerProvider logCapture)
+        IVideoService videoService, IYearOverlayService overlay, ILogger logger, CapturingLoggerProvider logCapture)
     {
         logger.LogInformation("[SmokeVideo] VideoSmokeTest starting");
 
         var findings = new List<(string Id, string Desc, bool Pass, string Detail)>();
-        var imagesDir  = Path.Combine("output", "smoke-video", "images");
-        var videoDir   = Path.Combine("output", "smoke-video", "video");
-        var outputPath = Path.Combine(videoDir, "timeline.mp4");
+        var root        = Path.Combine("output", "smoke-video");
+        var imagesDir   = Path.Combine(root, "images");
+        var stampedDir  = Path.Combine(root, "stamped");
+        var videoDir    = Path.Combine(root, "video");
+        var outputPath  = Path.Combine(videoDir, "timeline.mp4");
         Directory.CreateDirectory(imagesDir);
         Directory.CreateDirectory(videoDir);
 
@@ -56,10 +60,10 @@ public static class VideoSmokeTest
         var ffprobeOk = await BinaryAvailable("ffprobe", logger);
         if (!ffmpegOk || !ffprobeOk)
         {
-            var missing = string.Join(", ", new[] { !ffmpegOk ? "ffmpeg" : null, !ffprobeOk ? "ffprobe" : null }
+            var missingBinaries = string.Join(", ", new[] { !ffmpegOk ? "ffmpeg" : null, !ffprobeOk ? "ffprobe" : null }
                 .Where(m => m is not null));
             findings.Add(("V5", "ffmpeg and ffprobe binaries found in PATH",
-                false, $"ffmpeg not found in PATH — missing: {missing}"));
+                false, $"ffmpeg not found in PATH — missing: {missingBinaries}"));
             foreach (var (id, desc) in SkippedChecks())
                 findings.Add((id, desc, false, "skipped — ffmpeg not found in PATH"));
 
@@ -70,39 +74,57 @@ public static class VideoSmokeTest
         findings.Add(("V5", "ffmpeg and ffprobe binaries found in PATH",
             true, "Both binaries responded to -version"));
 
-        // Generate 6 visually distinct test frames.
+        // Generate 6 visually distinct test frames (un-stamped source).
         foreach (var year in Years)
             await GenerateTestImageAsync(year, Path.Combine(imagesDir, $"{year}.png"), logger);
 
-        var images = Years
-            .Select(y => new HistoricalImage(
-                Id:        Guid.NewGuid().ToString(),
-                PromptId:  "smoke-video",
-                Year:      y,
-                FilePath:  Path.Combine(imagesDir, $"{y}.png"),
-                Provider:  "smoke-video",
-                CreatedAt: DateTimeOffset.UtcNow.ToString("o")))
-            .OrderBy(i => i.Year)
-            .ToList();
+        // Exercise the real production tail: watch -> overlay -> compose,
+        // via the same VideoAssemblyRunner Pipeline and 'assemble' use.
+        // Images already exist, so there's no generation task to await.
+        var (mainMissing, video) = await VideoAssemblyRunner.RunAsync(
+            overlay, videoService, imagesDir, stampedDir, outputPath, Years, Task.CompletedTask, logger);
 
-        Video? video = null;
-        try
+        // O1 — stamped/{year}.png exists for every year, same dimensions as source.
+        var o1Errors = new List<string>();
+        foreach (var year in Years)
         {
-            video = await videoService.ComposeAsync(images, outputPath);
+            var stampedPath = Path.Combine(stampedDir, $"{year}.png");
+            if (!File.Exists(stampedPath))
+            {
+                o1Errors.Add($"{year}: stamped file missing");
+                continue;
+            }
+            var sourceDim  = await FfprobeDimensionsAsync(Path.Combine(imagesDir, $"{year}.png"));
+            var stampedDim = await FfprobeDimensionsAsync(stampedPath);
+            if (sourceDim != stampedDim)
+                o1Errors.Add($"{year}: dimensions changed {sourceDim} -> {stampedDim}");
         }
-        catch (Exception ex)
+        findings.Add(("O1", "stamped/{year}.png exists for every test year, same dimensions as source",
+            o1Errors.Count == 0, o1Errors.Count == 0 ? "All stamped images present with matching dimensions" : string.Join("; ", o1Errors)));
+
+        // O2 — stamping actually changed the file (bar + text drawn onto it).
+        var o2Errors = new List<string>();
+        foreach (var year in Years)
         {
-            logger.LogError(ex, "[SmokeVideo] video composition threw");
+            var sourcePath  = Path.Combine(imagesDir, $"{year}.png");
+            var stampedPath = Path.Combine(stampedDir, $"{year}.png");
+            if (!File.Exists(stampedPath)) continue; // already reported by O1
+            var sourceLen  = new FileInfo(sourcePath).Length;
+            var stampedLen = new FileInfo(stampedPath).Length;
+            if (sourceLen == stampedLen)
+                o2Errors.Add($"{year}: stamped size ({stampedLen}b) == source size ({sourceLen}b)");
         }
+        findings.Add(("O2", "stamped output file size differs from the un-stamped source",
+            o2Errors.Count == 0, o2Errors.Count == 0 ? "All stamped files differ in size from their source" : string.Join("; ", o2Errors)));
 
         var fileInfo = File.Exists(outputPath) ? new FileInfo(outputPath) : null;
-        var v1 = video is not null && fileInfo is { Length: > 0 };
+        var v1 = mainMissing.Count == 0 && video is not null && fileInfo is { Length: > 0 };
         findings.Add(("V1", "Video file exists and has non-zero size",
             v1, v1 ? $"{fileInfo!.Length} bytes at {outputPath}" : "file missing or empty (composition failed)"));
 
         if (!v1)
         {
-            foreach (var (id, desc) in SkippedChecks().Where(c => c.Id != "V1"))
+            foreach (var (id, desc) in SkippedChecks().Where(c => c.Id is not ("O1" or "O2" or "V1")))
                 findings.Add((id, desc, false, "skipped — video file not produced"));
             await WriteReport(findings, logger);
             PrintSummary(findings);
@@ -137,6 +159,50 @@ public static class VideoSmokeTest
         findings.Add(("V6", "ffmpeg command used filter_complex xfade with a radial transition (not concat)",
             v6, commandLine is null ? "no 'ffmpeg command:' log line captured" : commandLine));
 
+        // O3 — a PARTIAL year list must only wait for, stamp, and assemble
+        // exactly those years, leaving the rest of the images/ folder alone.
+        var o3Errors = new List<string>();
+        var partialStampedDir = Path.Combine(root, "partial-stamped");
+        var partialVideoPath  = Path.Combine(root, "partial-video", "timeline.mp4");
+        if (Directory.Exists(partialStampedDir))
+            Directory.Delete(partialStampedDir, recursive: true);
+        Directory.CreateDirectory(Path.GetDirectoryName(partialVideoPath)!);
+
+        var (partialMissing, partialVideo) = await VideoAssemblyRunner.RunAsync(
+            overlay, videoService, imagesDir, partialStampedDir, partialVideoPath,
+            PartialYears, Task.CompletedTask, logger);
+
+        if (partialMissing.Count > 0)
+            o3Errors.Add($"watcher reported missing years for a partial request: {string.Join(", ", partialMissing)}");
+        if (partialVideo is null)
+            o3Errors.Add("partial video composition failed");
+
+        var stampedNames = Directory.Exists(partialStampedDir)
+            ? Directory.GetFiles(partialStampedDir, "*.png")
+                .Select(f => Path.GetFileNameWithoutExtension(f)!)
+                .ToHashSet()
+            : new HashSet<string>();
+        var expectedNames = PartialYears.Select(y => y.ToString()).ToHashSet();
+        if (!stampedNames.SetEquals(expectedNames))
+            o3Errors.Add($"partial-stamped/ contains [{string.Join(", ", stampedNames)}], expected exactly [{string.Join(", ", expectedNames)}]");
+
+        var partialDuration = 0.0;
+        if (partialVideo is not null && File.Exists(partialVideoPath))
+        {
+            var partialProbe = await FfprobeAsync(partialVideoPath);
+            partialDuration = partialProbe.Duration;
+            var expectedPartialDuration = ExpectedDurationSeconds(PartialYears.Length);
+            if (Math.Abs(partialDuration - expectedPartialDuration) > 0.5)
+                o3Errors.Add($"partial video duration {partialDuration:F2}s not within 0.5s of expected {expectedPartialDuration}s");
+        }
+
+        findings.Add(("O3",
+            $"Partial year list [{string.Join(", ", PartialYears)}] only waits for/stamps those years and produces a {PartialYears.Length}-frame video",
+            o3Errors.Count == 0,
+            o3Errors.Count == 0
+                ? $"stamped exactly [{string.Join(", ", stampedNames)}]; duration {partialDuration:F2}s"
+                : string.Join("; ", o3Errors)));
+
         await WriteReport(findings, logger);
         PrintSummary(findings);
 
@@ -145,12 +211,15 @@ public static class VideoSmokeTest
 
     private static IEnumerable<(string Id, string Desc)> SkippedChecks() => new[]
     {
+        ("O1", "stamped/{year}.png exists for every test year, same dimensions as source"),
+        ("O2", "stamped output file size differs from the un-stamped source"),
         ("V1", "Video file exists and has non-zero size"),
         ("V2", $"Video resolution == {ExpectedVideoWidth}x{ExpectedVideoHeight}"),
         ("V3", $"Duration is {ExpectedDurationSeconds(Years.Length)}s ± 0.5s " +
                $"({Years.Length}×{HoldSeconds}s holds - {Years.Length - 1}×{TransitionSeconds}s xfade overlaps)"),
         ("V4", "codec_name == h264, pix_fmt == yuv420p"),
-        ("V6", "ffmpeg command used filter_complex xfade with a radial transition (not concat)")
+        ("V6", "ffmpeg command used filter_complex xfade with a radial transition (not concat)"),
+        ("O3", $"Partial year list [{string.Join(", ", PartialYears)}] only waits for/stamps those years and produces a {PartialYears.Length}-frame video")
     };
 
     private static void PrintSummary(List<(string Id, string Desc, bool Pass, string Detail)> findings)
@@ -210,6 +279,18 @@ public static class VideoSmokeTest
             CodecName: stream.GetProperty("codec_name").GetString() ?? "",
             PixFmt:    stream.GetProperty("pix_fmt").GetString() ?? "",
             Duration:  double.Parse(format.GetProperty("duration").GetString() ?? "0"));
+    }
+
+    private static async Task<(int Width, int Height)> FfprobeDimensionsAsync(string path)
+    {
+        var args = $"-v error -select_streams v:0 -show_entries stream=width,height -of json \"{path}\"";
+        var (exitCode, stderr, stdout) = await RunProcessAsync("ffprobe", args);
+        if (exitCode != 0)
+            throw new InvalidOperationException($"ffprobe exited with code {exitCode}: {stderr}");
+
+        using var doc = JsonDocument.Parse(stdout);
+        var stream = doc.RootElement.GetProperty("streams")[0];
+        return (stream.GetProperty("width").GetInt32(), stream.GetProperty("height").GetInt32());
     }
 
     // ── Process helpers ──────────────────────────────────────────────────────

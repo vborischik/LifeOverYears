@@ -1,0 +1,70 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- camera: eye-level, facing intersection, fov 90
+- residential road, 1-lane, concrete
+- sidewalks present, curbs present
+- driveways: right, center; parking: lot
+- commercial building at left, 1 story, stucco, glass, metal, flat roof, shallow setback
+- commercial building at center, 1 story, brick, concrete, flat roof, deep setback
+- utilities: street lamp
+- landscape: grass strip, hedge, flower bed, mulch
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 1975
+Post-Vietnam, oil crisis era. A full-service neighborhood gas station in 1975 — uniformed attendants pump the gas, check the oil, and wipe the windshield.
+
+PERIOD DETAILS
+- porcelain-enamel brand signs on the building fascia
+- mechanical analog pumps with rotating numeral dials and glass-and-chrome detailing
+- price sign showing gas around $0.57
+- main sign: an independent station sign in the style of Sinclair
+- window signs: 'MOTOR OIL 55¢ QT', 'FLATS FIXED $2'
+- a stack of used tires beside the service bay
+- a folded newspaper stack tied with twine by the office door
+Typography: bold sans-serif, slab serif, occasional script.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+
+PEOPLE
+EXACTLY 4 people, spread out with empty areas.
+- the station owner standing in the office doorway with a clipboard
+- a mechanic in coveralls rolling a tire toward the service bay
+- a shopkeeper in an apron by his doorway
+Clothing: men in plaid patterns, bell bottoms; women in peasant blouses, earth tones. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+
+VEHICLES
+EXACTLY 3 period vehicles, all different:
+- 1970-1981 Chevrolet Camaro — long hood, short deck sporty coupe
+- 1971-1978 Ford Econoline — boxy full-size van, flat nose
+- 1971-1976 Chevrolet Impala — full-size, chrome rear bumper
+Parked with gaps; no vehicle newer than 1975.
+PLACEMENT: the first two parked on the LEFT side; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, no rumble strips
+- utilities: overhead power lines everywhere, wooden utility poles standard
+
+TREES
+- deciduous tree at left: very young sapling
+- deciduous tree at background: very young sapling
+- deciduous tree at right: very young sapling
+Tree sizes MUST follow this specification even where they differ from the source photo.
+
+PHOTOGRAPHIC STYLE
+STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.
+Grain: visible fine grain. Style: documentary, natural light.
+Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.
+
+PRIVACY
+Blur all faces and license plates.
