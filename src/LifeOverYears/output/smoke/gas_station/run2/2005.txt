@@ -27,32 +27,33 @@ the source geometry.
 TRANSFORM TO 2005
 Post-9/11 era. A 2005 gas station — big multi-island canopy, card readers at every pump, LED price sign, and a convenience store doing most of the business.
 
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
+
 PERIOD DETAILS
-- convenience store always attached
-- large multi-island canopies
+- automated car wash tunnel beside the lot
+- stacked cases of bottled water and charcoal bags outside the store
 - price sign showing gas around $2.30
-- main sign: an independent station sign in the style of Chevron
-- window signs: 'CIGARETTES $3.75 PACK', 'PHONE CARDS SOLD HERE'
+- main sign: an independent station sign in the style of ExxonMobil
+- window signs: 'PHONE CARDS SOLD HERE', 'ENERGY DRINKS 2 FOR $4'
 - a free real-estate flyer box by the door
-- ribbon magnets on the door of the service office
+- 'NO SMOKING — TURN OFF ENGINE' decals on each pump
 Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 4 people, spread out with empty areas.
-- a clerk restocking the window display inside
+EXACTLY 5 people, spread out with empty areas.
 - a driver self-serving at the pump
-- a woman walking a small dog in a sweater
-Clothing: men in trucker hats, cargo shorts; women in chunky highlights, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+- a clerk restocking the window display inside
+- a group of college kids with messenger bags
+Clothing: men in trucker hats, graphic tees; women in trucker hats, velour tracksuits. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2003-2009 Hummer H2 — massive military-styled SUV — black
-- 2004-2012 Chevrolet Colorado — mid-size pickup — gray
-- 1998-2004 Nissan Frontier — compact pickup — gold
-- 2002-2009 Chevrolet TrailBlazer — mid-size SUV boxy — silver
+EXACTLY 3 period vehicles, all different:
+- 2004-2010 Toyota Sienna — large rounded minivan — silver
+- 2003-2007 Nissan Altima — sporty mid-size — gold
+- 2004-2008 Ford F-150 — bigger, bolder grille — gray
 Parked with gaps; no vehicle newer than 2005.
-PLACEMENT: the first two parked on the LEFT side; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
+PLACEMENT: the first two parked on the RIGHT side; one parked on the left near the corner; the last one driving toward the camera in the far lane. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn arrows

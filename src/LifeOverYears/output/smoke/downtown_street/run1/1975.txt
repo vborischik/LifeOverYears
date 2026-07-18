@@ -28,21 +28,21 @@ TRANSFORM TO 1975
 Post-Vietnam, oil crisis era. A working small-town main street in 1975 — locally owned shops with hand-painted and neon signs, a five & dime, and not a single modern chain in sight.
 
 PERIOD DETAILS
-- BLUE PLATE DINER with a hand-lettered 'HOT COFFEE 25¢' sign in the window
-- women's dress shop with gold-leaf window lettering
-- barber shop with a spinning red-white-and-blue barber pole by the door
-- window signs: 'TV REPAIR — FREE ESTIMATES', 'MILK 69¢ HALF GALLON'
-- a milk crate stack by a shop door
+- MARY'S DINER with a hand-lettered 'HOT COFFEE 25¢' sign in the window
+- appliance store window displaying console televisions with a 'COLOR TV' placard
+- 'BEN FRANKLIN' five & dime with red-and-white lettering
+- window signs: 'MILK 69¢ HALF GALLON', 'SHIRTS 2 FOR $5'
 - a wooden newspaper rack with stacked local papers by the diner door
+- a painted ghost-sign wall advertisement on brick, weathered but still clearly readable
 Typography: bold sans-serif, slab serif, occasional script.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 14 people, spread out with empty areas.
-- a mail carrier with a leather bag making rounds
-- a delivery man carrying stacked boxes into a storefront
-- two boys with baseball gloves
-Clothing: men in bell bottoms, turtlenecks; women in peasant blouses, midi skirts. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+- a couple leaving the diner, the man holding the door
+- an older man reading a folded newspaper on a bench
+- a girl walking a bicycle with a basket
+Clothing: men in wide lapels, plaid patterns; women in earth tones, wide leg pants. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:

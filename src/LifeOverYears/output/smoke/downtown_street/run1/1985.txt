@@ -28,28 +28,28 @@ TRANSFORM TO 1985
 Reagan era prosperity. A 1985 main street in transition — neon and backlit plastic overtaking hand-painted signs, a first small video rental shop among the old local stores.
 
 PERIOD DETAILS
-- BLUE PLATE DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
+- MARY'S DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
 - video arcade with a 'GAMES 25¢' neon sign and posters in the window
-- hair salon with a neon script 'STYLES' sign
-- window signs: 'PERM SPECIAL $25', '2 SLICES $1.50'
-- a bank of coin newspaper boxes at the corner
-- the painted ghost-sign wall ad now noticeably fading, colors washing out
+- electronics store with a red 'RADIOSHACK' style logo sign
+- window signs: 'VHS OVERNIGHT RENTAL $2.99', 'CASSETTE TAPES $7.99'
+- a bike rack with BMX bikes
+- movie posters taped inside the video shop windows
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 10 people, spread out with empty areas.
-- a jogger in a bright tracksuit and headband passing through
+- a man in a windbreaker reading a newspaper by the corner
 - a teenager carrying a boombox on his shoulder
-- a businessman with a briefcase and wide tie
-Clothing: men in acid wash jeans, windbreakers; women in bright neon colors, high-waisted jeans. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+- a mother with two kids in tow
+Clothing: men in shoulder pads in blazers, polo shirts with collars up; women in shoulder pads, leg warmers. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
-- 1984-1987 Toyota Corolla — boxy compact, reliable look — charcoal gray
-- 1984-1989 Plymouth Voyager — boxy first-generation minivan — beige
-- 1982-1992 Chevrolet Camaro — wedge-shaped sporty coupe — white
-- 1973-1991 Chevrolet Suburban — long boxy wagon-SUV — light blue
+- 1983-1987 Honda Accord — clean lines, pop-up headlights — red
+- 1984-1988 Pontiac Fiero — small wedge two-seater — beige
+- 1984-1987 Toyota Corolla — boxy compact, reliable look — light blue
+- 1978-1986 Ford Bronco — full-size boxy SUV, round headlights — burgundy
 Parked with gaps; no vehicle newer than 1985.
 PLACEMENT: all parked on the RIGHT side with gaps; the first one driving away from the camera in the near lane. No vehicle in the same spot as any other era.
 

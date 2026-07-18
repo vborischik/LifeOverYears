@@ -28,31 +28,32 @@ TRANSFORM TO 2025
 Post-pandemic era. A 2025 main street — minimalist flat-logo storefronts, QR codes on the glass, delivery culture in plain view.
 
 PERIOD DETAILS
-- STAR DINER with 'COFFEE $3.50' shown on a small digital menu screen in the window
+- MAIN STREET DINER with 'COFFEE $3.50' shown on a small digital menu screen in the window
 - delivery-only ghost kitchen storefront with pickup shelves visible through the glass
-- nail and lash studio with a pink LED script sign
-- window signs: 'ORDER AHEAD — SCAN THE QR CODE', 'OAT MILK LATTE $6.50'
-- a shared e-scooter and e-bike dock at the curb
-- a parklet outdoor dining structure occupying two parking spaces
+- the old video store space now a specialty coffee bar with a minimalist flat logo
+- window signs: 'LASHES FROM $79', 'BOBA — BUY ONE GET ONE FRIDAYS'
+- a kick scooter leaning by a wall
+- the ghost-sign wall now a commissioned mural with bold flat graphics
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 11 people, spread out with empty areas.
-- a person gliding past on a kick scooter
-- a couple filming a vertical video on a phone gimbal
-- a woman filming a short vertical video on a phone
-Clothing: men in techwear, chunky sneakers; women in chunky dad sneakers, athleisure. Fashion palette: sage green, beige, cream. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+EXACTLY 13 people, spread out with empty areas.
+- an older couple reading the diner's digital menu in the window
+- a delivery courier with an insulated backpack picking up an order
+- a remote worker with a laptop bag and a coffee
+Clothing: men in oversized fit tees, bucket hats; women in high-waisted wide-leg jeans, oversized blazers. Fashion palette: sage green, beige, cream. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
-EXACTLY 5 period vehicles, all different:
-- 2021-2025 Kia Carnival — boxy SUV-styled minivan — blue
-- 2021-2025 Jeep Grand Cherokee — upscale chrome-accent SUV — gray
-- 2021-2025 Chrysler Pacifica — sleek minivan, thin lights — black
-- 2019-2025 Subaru Forester — practical boxy crossover — silver
-- 2019-2025 Ram 1500 — crew cab pickup, large grille — dark green
+EXACTLY 6 period vehicles, all different:
+- 2019-2025 Subaru Forester — practical boxy crossover — black
+- 2022-2025 Chevrolet Silverado — refreshed bold grille — silver
+- 2024-2025 Toyota Grand Highlander — large family crossover — dark green
+- 2022-2025 Nissan Pathfinder — squared-off three-row SUV — gray
+- 2019-2025 GMC Sierra — chrome-heavy full-size pickup — blue
+- 2021-2025 Chrysler Pacifica — sleek minivan, thin lights — white
 Parked with gaps; no vehicle newer than 2025.
-PLACEMENT: three parked on the RIGHT side; one parked on the left near the corner; the last one driving away from the camera in the near lane. No vehicle in the same spot as any other era.
+PLACEMENT: two parked on each side with gaps; the last one driving toward the camera. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks

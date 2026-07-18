@@ -26,21 +26,21 @@ TRANSFORM TO 1985
 Reagan era prosperity. An ordinary 1985 American commercial street — bold primary-color signage, boxy cars, the first franchise logos among local shops.
 
 PERIOD DETAILS
-- MAIN STREET DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
-- pharmacy with backlit plastic channel letters
-- barber shop with its spinning barber pole
-- window signs: 'PERM SPECIAL $25', 'VHS OVERNIGHT RENTAL $2.99'
-- the painted ghost-sign wall ad, fading
+- RED ROBIN DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
+- small video rental shop with a 'VHS RENTALS' backlit sign
+- electronics store with a red logo sign
+- window signs: 'VHS OVERNIGHT RENTAL $2.99', '2 SLICES $1.50'
 - a wall-mounted payphone
+- a bike rack with BMX bikes
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 11 people, spread out with empty areas.
-- kids on BMX bikes by the curb
-- a woman using a wall-mounted payphone
-- a woman with permed hair and shoulder pads
-Clothing: men in windbreakers, acid wash jeans; women in leg warmers, big permed hair. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+- a shopkeeper arranging a sidewalk rack
+- a jogger in a bright tracksuit
+- a businessman with a briefcase and wide tie
+Clothing: men in acid wash jeans, polo shirts with collars up; women in shoulder pads, high-waisted jeans. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:

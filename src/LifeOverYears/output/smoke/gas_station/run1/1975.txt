@@ -27,23 +27,25 @@ the source geometry.
 TRANSFORM TO 1975
 Post-Vietnam, oil crisis era. A full-service neighborhood gas station in 1975 — uniformed attendants pump the gas, check the oil, and wipe the windshield.
 
+CONDITION: new — recently built appearance, pristine surfaces, new signage
+
 PERIOD DETAILS
-- tire display rack near the service bay
-- oil cans displayed outside
+- 'FREE MAPS' and trading-stamp decals on the office window
+- island canopies with brand colors
 - price sign showing gas around $0.57
-- main sign: an independent station sign in the style of Phillips 66
-- window signs: 'FLATS FIXED $2', 'MOTOR OIL 55¢ QT'
-- a stack of used tires beside the service bay
+- main sign: an independent station sign in the style of Gulf
+- window signs: 'MOTOR OIL 55¢ QT', 'TUNE-UP SPECIAL $19.95'
+- a folded newspaper stack tied with twine by the office door
 - an air hose with a driveway service bell line across the apron
 Typography: bold sans-serif, slab serif, occasional script.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 6 people, spread out with empty areas.
-- a customer paying the attendant cash through the car window
-- the station owner standing in the office doorway with a clipboard
+- a driver waiting behind the wheel while the attendant works
+- a kid buying a bottle of soda from the machine
 - a mailman in a USPS uniform with a leather satchel
-Clothing: men in bell bottoms, polyester suits; women in midi skirts, peasant blouses. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+Clothing: men in wide lapels, turtlenecks; women in earth tones, wide leg pants. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:

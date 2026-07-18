@@ -27,32 +27,33 @@ the source geometry.
 TRANSFORM TO 1995
 Clinton era prosperity. A 1995 self-serve station — wide canopy over multiple islands, attached convenience store, the first pay-at-pump card readers.
 
+CONDITION: new — recently built appearance, pristine surfaces, new signage
+
 PERIOD DETAILS
-- ice merchandiser and stacked firewood bundles outside the store
-- convenience store always attached
+- self-serve pumps, some fitted with new credit-card readers
+- self-service only standard
 - price sign showing gas around $1.15
-- main sign: an independent station sign in the style of Texaco
-- window signs: '2 HOT DOGS $2', '32oz FOUNTAIN DRINK 89¢'
-- a payphone mounted by the store entrance
+- main sign: an independent station sign in the style of Amoco
+- window signs: 'CIGARETTES $1.89 PACK', 'CAR WASH $4 WITH FILL-UP'
 - a wire rack of free auto-trader papers by the door
+- a payphone mounted by the store entrance
 Typography: clean geometric sans-serif, early digital influence.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 6 people, spread out with empty areas.
+- a clerk restocking the ice merchandiser
 - a parent and kid walking into the store
-- a woman swiping a card at the new pay-at-pump reader
-- a paperboy with a canvas bag on a bike
-Clothing: men in backwards caps, flannel shirts; women in high-waisted mom jeans, floral dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+- teens in baggy jeans and band tees
+Clothing: men in grunge style, windbreakers; women in slip dresses, chokers. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 1990-1997 Mazda Miata — tiny rounded roadster, pop-up lights — navy blue
-- 1994-1997 Honda Accord — smooth rounded sedan — black
-- 1990-1994 Chevrolet Lumina — rounded mid-size sedan — hunter green
-- 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding — teal
+EXACTLY 3 period vehicles, all different:
+- 1991-1996 Ford Escort — small rounded economy car — hunter green
+- 1988-1998 Chevrolet C/K 1500 — softly squared pickup — teal
+- 1992-1995 Honda Civic — small rounded coupe and sedan — navy blue
 Parked with gaps; no vehicle newer than 1995.
-PLACEMENT: the first two parked on the LEFT side; the last one driving away from the camera. No vehicle in the same spot as any other era.
+PLACEMENT: the first two parked on the LEFT side; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn lane arrows

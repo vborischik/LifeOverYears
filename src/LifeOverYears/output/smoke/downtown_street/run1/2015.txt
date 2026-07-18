@@ -28,30 +28,31 @@ TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 main street mid-revival — the video store replaced by a phone repair shop, third-wave coffee and a vape shop, smartphones in every hand.
 
 PERIOD DETAILS
-- BLUE PLATE DINER with 'COFFEE $2.25' chalked on a menu board
+- MARY'S DINER with 'COFFEE $2.25' chalked on a menu board
+- craft beer taproom with a hand-drawn chalkboard sidewalk sign
 - boutique with a reclaimed-wood facade and minimalist lettering
-- vape shop with a bright 'VAPE — E-CIGS' LED window sign
-- window signs: 'BUY ONE GET ONE 50% OFF', 'SCREEN REPAIR FROM $49'
-- the old ghost-sign wall repainted as a colorful mural
-- string lights zigzagging over the sidewalk seating
+- window signs: 'SCREEN REPAIR FROM $49', 'BUY ONE GET ONE 50% OFF'
+- chalkboard sandwich-board signs outside the cafes
+- a food truck parked mid-block
 Typography: minimalist flat sans-serif, simplified modern logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 15 people, spread out with empty areas.
-- a barista delivering drinks to an outdoor table
-- a woman in yoga pants carrying a rolled mat
-- a woman in yoga pants carrying a green smoothie
-Clothing: men in boat shoes, skinny jeans; women in infinity scarves, statement necklaces. Fashion palette: coral, mint green, navy. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+- a bearded man in a slim plaid shirt photographing his coffee
+- a man in a henley checking a fitness band
+- a man in skinny jeans taking a selfie
+Clothing: men in skinny jeans, henley shirts; women in high-waisted skinny jeans, statement necklaces. Fashion palette: coral, mint green, navy. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2013-2018 Toyota RAV4 — angular compact crossover — white
-- 2009-2018 Ram 1500 — crosshair grille, refined — gray
-- 2013-2018 Hyundai Santa Fe — fluidic sculpture styling — dark red
-- 2014-2018 Chevrolet Silverado — squared modern grille — black
+EXACTLY 5 period vehicles, all different:
+- 2013-2019 Ford Fusion — Aston-Martin-style grille, sleek — gray
+- 2011-2017 Honda Odyssey — lightning-bolt beltline minivan — blue
+- 2014-2018 Chevrolet Silverado — squared modern grille — white
+- 2014-2019 Nissan Rogue — popular compact crossover — dark red
+- 2012-2015 Honda Civic — compact, angular — pearl white
 Parked with gaps; no vehicle newer than 2015.
-PLACEMENT: the first two parked on the LEFT side; the last one driving away from the camera. No vehicle in the same spot as any other era.
+PLACEMENT: three parked on the RIGHT side; one parked on the left near the corner; the last one driving away from the camera in the near lane. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks

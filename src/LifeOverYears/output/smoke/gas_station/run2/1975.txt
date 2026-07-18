@@ -27,23 +27,25 @@ the source geometry.
 TRANSFORM TO 1975
 Post-Vietnam, oil crisis era. A full-service neighborhood gas station in 1975 — uniformed attendants pump the gas, check the oil, and wipe the windshield.
 
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+
 PERIOD DETAILS
-- full service attendants still common
-- 'FREE MAPS' and trading-stamp decals on the office window
+- open service bays
+- chest-style soda vending machine by the office door
 - price sign showing gas around $0.57
-- main sign: an independent station sign in the style of Sinclair
-- window signs: 'TUNE-UP SPECIAL $19.95', 'MECHANIC ON DUTY'
+- main sign: an independent station sign in the style of Phillips 66
+- window signs: 'MECHANIC ON DUTY', 'MOTOR OIL 55¢ QT'
+- a bicycle leaning against a utility pole
 - a folded newspaper stack tied with twine by the office door
-- a stack of used tires beside the service bay
 Typography: bold sans-serif, slab serif, occasional script.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 4 people, spread out with empty areas.
-- a customer paying the attendant cash through the car window
-- a kid buying a bottle of soda from the machine
-- two boys with baseball gloves
-Clothing: men in bell bottoms, turtlenecks; women in midi skirts, earth tones. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+- a driver waiting behind the wheel while the attendant works
+- a mechanic leaning under the open hood of a car by the bay
+- a woman with a headscarf carrying a paper grocery bag
+Clothing: men in turtlenecks, wide lapels; women in peasant blouses, wide leg pants. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
