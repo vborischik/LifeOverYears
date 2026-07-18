@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using LifeOverYears.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 
@@ -34,39 +33,9 @@ public sealed class StubImageProvider : IImageGenerationProvider
             year, delay, prompt.Length);
         await Task.Delay(delay);
 
-        if (!await TryStampYearAsync(basePath, year, outputPath))
-            File.Copy(basePath, outputPath, overwrite: true);
-
+        // Year stamping is YearOverlayService's job, applied by
+        // VideoAssemblyRunner into stamped/ after the watcher completes.
+        File.Copy(basePath, outputPath, overwrite: true);
         _logger.LogInformation("[Stub] {Year} complete: {Output}", year, outputPath);
-    }
-
-    // Best-effort year stamp via ffmpeg drawtext so assembled video frames are
-    // visually distinguishable; falls back to a plain copy when unavailable.
-    private async Task<bool> TryStampYearAsync(string basePath, int year, string outputPath)
-    {
-        try
-        {
-            var filter = $"drawtext=text='{year}':fontcolor=white:fontsize=h/8:" +
-                         "box=1:boxcolor=black@0.6:boxborderw=24:" +
-                         "x=(w-text_w)/2:y=h-text_h-h/10";
-            var psi = new ProcessStartInfo("ffmpeg",
-                $"-y -i \"{basePath}\" -vf \"{filter}\" \"{outputPath}\"")
-            {
-                RedirectStandardError  = true,
-                RedirectStandardOutput = true,
-                UseShellExecute        = false,
-                CreateNoWindow         = true
-            };
-
-            using var process = Process.Start(psi);
-            if (process is null) return false;
-            await process.WaitForExitAsync();
-            return process.ExitCode == 0 && File.Exists(outputPath);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogDebug("[Stub] year stamp unavailable ({Reason}), copying instead", ex.Message);
-            return false;
-        }
     }
 }

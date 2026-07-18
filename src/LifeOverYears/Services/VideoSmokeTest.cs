@@ -33,13 +33,13 @@ public static class VideoSmokeTest
     private const int ImageHeight = 1536;
     private const int ExpectedVideoWidth  = 1080;
     private const int ExpectedVideoHeight = 1920;
-    private const int HoldSeconds       = 3;
-    private const int TransitionSeconds = 2;
 
-    // n*HoldSeconds - (n-1)*TransitionSeconds — each xfade overlap eats into
-    // the naive sum of per-frame holds. Must track FfmpegProvider's own math.
-    private static int ExpectedDurationSeconds(int frameCount) =>
-        frameCount * HoldSeconds - Math.Max(0, frameCount - 1) * TransitionSeconds;
+    // FfmpegProvider computes per-frame hold dynamically so the xfade chain
+    // always sums to a fixed 12s total, regardless of frame count. Must track
+    // FfmpegProvider.TargetTotalSeconds.
+    private const int TargetTotalSeconds = 12;
+
+    private static int ExpectedDurationSeconds(int frameCount) => TargetTotalSeconds;
 
     public static async Task<int> RunAsync(
         IVideoService videoService, IYearOverlayService overlay, ILogger logger, CapturingLoggerProvider logCapture)
@@ -140,7 +140,7 @@ public static class VideoSmokeTest
         var expectedDuration = ExpectedDurationSeconds(Years.Length);
         var v3 = Math.Abs(probe.Duration - expectedDuration) <= 0.5;
         findings.Add(("V3",
-            $"Duration is {expectedDuration}s ± 0.5s ({Years.Length}×{HoldSeconds}s holds - {Years.Length - 1}×{TransitionSeconds}s xfade overlaps)",
+            $"Duration is {expectedDuration}s ± 0.5s (fixed target; per-frame hold computed dynamically for {Years.Length} frames)",
             v3, $"actual: {probe.Duration:F2}s"));
 
         var v4 = probe.CodecName == "h264" && probe.PixFmt == "yuv420p";
@@ -216,7 +216,7 @@ public static class VideoSmokeTest
         ("V1", "Video file exists and has non-zero size"),
         ("V2", $"Video resolution == {ExpectedVideoWidth}x{ExpectedVideoHeight}"),
         ("V3", $"Duration is {ExpectedDurationSeconds(Years.Length)}s ± 0.5s " +
-               $"({Years.Length}×{HoldSeconds}s holds - {Years.Length - 1}×{TransitionSeconds}s xfade overlaps)"),
+               $"(fixed target; per-frame hold computed dynamically for {Years.Length} frames)"),
         ("V4", "codec_name == h264, pix_fmt == yuv420p"),
         ("V6", "ffmpeg command used filter_complex xfade with a radial transition (not concat)"),
         ("O3", $"Partial year list [{string.Join(", ", PartialYears)}] only waits for/stamps those years and produces a {PartialYears.Length}-frame video")

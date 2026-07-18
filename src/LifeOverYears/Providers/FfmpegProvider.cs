@@ -8,9 +8,9 @@ namespace LifeOverYears.Providers;
 
 public sealed class FfmpegProvider : IFfmpegProvider
 {
-    private const int HoldSeconds       = 3;
-    private const int TransitionSeconds = 2;
-    private const string TransitionType = "radial";
+    private const int TargetTotalSeconds = 12;
+    private const int TransitionSeconds  = 2;
+    private const string TransitionType  = "radial";
 
     private readonly ILogger<FfmpegProvider> _logger;
     private readonly string _ffmpegPath;
@@ -36,12 +36,18 @@ public sealed class FfmpegProvider : IFfmpegProvider
             return null;
         }
 
-        var args = BuildArgs(images, outputPath);
+        // Hold each still long enough that the xfade overlaps eat back down to
+        // exactly TargetTotalSeconds: n*hold - (n-1)*transition = target.
+        // n=1 degenerates naturally: hold = target, no transitions.
+        var n = images.Count;
+        var holdSeconds = (TargetTotalSeconds + (n - 1) * TransitionSeconds) / (double)n;
+
+        var args = BuildArgs(images, outputPath, holdSeconds);
         _logger.LogDebug("ffmpeg command: {Args}", args);
 
-        // n*HoldSeconds - (n-1)*TransitionSeconds, per the xfade chaining math below.
-        var expectedDuration = images.Count * HoldSeconds - Math.Max(0, images.Count - 1) * TransitionSeconds;
-        _logger.LogInformation("Expected output duration: {Duration}s for {Count} frames", expectedDuration, images.Count);
+        var expectedDuration = n * holdSeconds - Math.Max(0, n - 1) * TransitionSeconds;
+        _logger.LogInformation("Expected output duration: {Duration:0.##}s for {Count} frames (hold {Hold:0.####}s each)",
+            expectedDuration, n, holdSeconds);
 
         try
         {
@@ -64,17 +70,21 @@ public sealed class FfmpegProvider : IFfmpegProvider
             CreatedAt: DateTimeOffset.UtcNow.ToString("o"));
     }
 
-    // Builds an xfade chain: each image is a HoldSeconds still-image clip,
+    // Builds an xfade chain: each image is a holdSeconds still-image clip,
     // normalized to 1080x1920/yuv420p/30fps, then chained pairwise with
     // radial-wipe crossfades. Offset for transition i (0-based, i=0..n-2)
-    // is (i+1) * (HoldSeconds - TransitionSeconds) — the point, measured
+    // is (i+1) * (holdSeconds - TransitionSeconds) — the point, measured
     // from the start of the running merged stream, where the next clip's
     // hold has consumed everything except the upcoming overlap.
-    private static string BuildArgs(IReadOnlyList<HistoricalImage> images, string outputPath)
+    // holdSeconds is computed per call by ComposeAsync so the chain always
+    // sums to TargetTotalSeconds regardless of frame count.
+    private static string BuildArgs(IReadOnlyList<HistoricalImage> images, string outputPath, double holdSeconds)
     {
+        var hold = holdSeconds.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture);
+
         var sb = new StringBuilder("-y ");
         foreach (var img in images)
-            sb.Append($"-loop 1 -t {HoldSeconds} -i \"{Path.GetFullPath(img.FilePath)}\" ");
+            sb.Append($"-loop 1 -t {hold} -i \"{Path.GetFullPath(img.FilePath)}\" ");
 
         var filter = new StringBuilder();
         for (var i = 0; i < images.Count; i++)
@@ -92,7 +102,8 @@ public sealed class FfmpegProvider : IFfmpegProvider
             var prevLabel = "v0";
             for (var i = 1; i < images.Count; i++)
             {
-                var offset = i * (HoldSeconds - TransitionSeconds);
+                var offset = (i * (holdSeconds - TransitionSeconds))
+                    .ToString("0.####", System.Globalization.CultureInfo.InvariantCulture);
                 var stageLabel = i == images.Count - 1 ? "outv" : $"x{i}";
                 filter.Append(
                     $"[{prevLabel}][v{i}]xfade=transition={TransitionType}:duration={TransitionSeconds}:offset={offset}[{stageLabel}];");
