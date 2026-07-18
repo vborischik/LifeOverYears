@@ -34,7 +34,7 @@ public sealed class YearOverlayService : IYearOverlayService
         var barTop    = image.Height - barHeight;
         var barRect   = new RectangularPolygon(0, barTop, image.Width, barHeight);
 
-        var font = ResolveFont(barHeight * 0.6f);
+        var font = ResolveFont(barHeight * 0.69f);
         var text = year.ToString();
         var textSize = TextMeasurer.MeasureSize(text, new TextOptions(font));
         var textOrigin = new PointF(

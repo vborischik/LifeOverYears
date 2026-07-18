@@ -8,9 +8,34 @@ namespace LifeOverYears.Providers;
 
 public sealed class FfmpegProvider : IFfmpegProvider
 {
-    private const int TargetTotalSeconds = 12;
-    private const int TransitionSeconds  = 2;
-    private const string TransitionType  = "radial";
+    public const int TargetTotalSeconds = 16;
+    public const int TransitionSeconds  = 2;
+    private const string TransitionType = "radial";
+
+    // Middle frames (all except first and last) carry a transition on BOTH
+    // sides, so their 'pure' viewing time is hold - 2*TransitionSeconds. If
+    // that goes non-positive, consecutive xfades overlap each other in the
+    // merged timeline and the sequence reads as rushed/jumbled.
+    public const double MinPureSecondsPerMiddleFrame = 0.3;
+
+    // Shared timeline math — VideoSmokeTest derives its duration expectations
+    // from this same method so test and provider cannot drift apart.
+    public static (double HoldSeconds, double TotalSeconds, bool Adjusted) PlanTimeline(int n)
+    {
+        // n*hold - (n-1)*transition = target; n=1 degenerates naturally:
+        // hold = target, no transitions.
+        var holdSeconds = (TargetTotalSeconds + (n - 1) * TransitionSeconds) / (double)n;
+
+        // Guard: with n > 2 at least one middle frame exists; keep its pure
+        // viewing time positive by extending the total instead of overlapping.
+        var minRequiredHold = 2 * TransitionSeconds + MinPureSecondsPerMiddleFrame;
+        var adjusted = n > 2 && holdSeconds < minRequiredHold;
+        if (adjusted)
+            holdSeconds = minRequiredHold;
+
+        var totalSeconds = n * holdSeconds - Math.Max(0, n - 1) * TransitionSeconds;
+        return (holdSeconds, totalSeconds, adjusted);
+    }
 
     private readonly ILogger<FfmpegProvider> _logger;
     private readonly string _ffmpegPath;
@@ -36,16 +61,22 @@ public sealed class FfmpegProvider : IFfmpegProvider
             return null;
         }
 
-        // Hold each still long enough that the xfade overlaps eat back down to
-        // exactly TargetTotalSeconds: n*hold - (n-1)*transition = target.
-        // n=1 degenerates naturally: hold = target, no transitions.
         var n = images.Count;
-        var holdSeconds = (TargetTotalSeconds + (n - 1) * TransitionSeconds) / (double)n;
+        var (holdSeconds, expectedDuration, adjusted) = PlanTimeline(n);
+        if (adjusted)
+        {
+            var minRequiredHold = 2 * TransitionSeconds + MinPureSecondsPerMiddleFrame;
+            _logger.LogWarning(
+                "Requested {Target}s total would overlap transitions for middle frames " +
+                "(hold {Hold:0.##}s < required {MinRequired:0.##}s) — extending to {Adjusted:0.##}s instead",
+                TargetTotalSeconds,
+                (TargetTotalSeconds + (n - 1) * TransitionSeconds) / (double)n,
+                minRequiredHold, expectedDuration);
+        }
 
         var args = BuildArgs(images, outputPath, holdSeconds);
         _logger.LogDebug("ffmpeg command: {Args}", args);
 
-        var expectedDuration = n * holdSeconds - Math.Max(0, n - 1) * TransitionSeconds;
         _logger.LogInformation("Expected output duration: {Duration:0.##}s for {Count} frames (hold {Hold:0.####}s each)",
             expectedDuration, n, holdSeconds);
 

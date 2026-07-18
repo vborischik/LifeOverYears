@@ -34,12 +34,11 @@ public static class VideoSmokeTest
     private const int ExpectedVideoWidth  = 1080;
     private const int ExpectedVideoHeight = 1920;
 
-    // FfmpegProvider computes per-frame hold dynamically so the xfade chain
-    // always sums to a fixed 12s total, regardless of frame count. Must track
-    // FfmpegProvider.TargetTotalSeconds.
-    private const int TargetTotalSeconds = 12;
-
-    private static int ExpectedDurationSeconds(int frameCount) => TargetTotalSeconds;
+    // Duration expectations are derived from FfmpegProvider.PlanTimeline —
+    // the exact method the provider itself uses (including the middle-frame
+    // overlap guard) — so test and provider cannot drift apart.
+    private static double ExpectedDurationSeconds(int frameCount) =>
+        Providers.FfmpegProvider.PlanTimeline(frameCount).TotalSeconds;
 
     public static async Task<int> RunAsync(
         IVideoService videoService, IYearOverlayService overlay, ILogger logger, CapturingLoggerProvider logCapture)
@@ -81,8 +80,10 @@ public static class VideoSmokeTest
         // Exercise the real production tail: watch -> overlay -> compose,
         // via the same VideoAssemblyRunner Pipeline and 'assemble' use.
         // Images already exist, so there's no generation task to await.
+        var messagesBeforeFull = logCapture.Messages.Count;
         var (mainMissing, video) = await VideoAssemblyRunner.RunAsync(
             overlay, videoService, imagesDir, stampedDir, outputPath, Years, Task.CompletedTask, logger);
+        var messagesAfterFull = logCapture.Messages.Count;
 
         // O1 — stamped/{year}.png exists for every year, same dimensions as source.
         var o1Errors = new List<string>();
@@ -168,6 +169,7 @@ public static class VideoSmokeTest
             Directory.Delete(partialStampedDir, recursive: true);
         Directory.CreateDirectory(Path.GetDirectoryName(partialVideoPath)!);
 
+        var messagesBeforePartial = logCapture.Messages.Count;
         var (partialMissing, partialVideo) = await VideoAssemblyRunner.RunAsync(
             overlay, videoService, imagesDir, partialStampedDir, partialVideoPath,
             PartialYears, Task.CompletedTask, logger);
@@ -203,6 +205,35 @@ public static class VideoSmokeTest
                 ? $"stamped exactly [{string.Join(", ", stampedNames)}]; duration {partialDuration:F2}s"
                 : string.Join("; ", o3Errors)));
 
+        // O4 — the middle-frame overlap guard fires exactly when PlanTimeline
+        // says it should. n<=2 has no middle frames, so it must never warn;
+        // the full run must warn iff its plan was adjusted. (With the current
+        // 16s target and 6 frames, hold 4.33s >= required 4.3s, so neither
+        // run warns — the assertion is against the shared plan, not a
+        // hardcoded expectation, so it stays correct if the constants change.)
+        const string overlapWarningMarker = "would overlap transitions";
+        var allMessages = logCapture.Messages;
+        var fullWarned = allMessages
+            .Skip(messagesBeforeFull).Take(messagesAfterFull - messagesBeforeFull)
+            .Any(m => m.Contains(overlapWarningMarker, StringComparison.OrdinalIgnoreCase));
+        var partialWarned = allMessages
+            .Skip(messagesBeforePartial)
+            .Any(m => m.Contains(overlapWarningMarker, StringComparison.OrdinalIgnoreCase));
+
+        var expectFullWarn = Providers.FfmpegProvider.PlanTimeline(Years.Length).Adjusted;
+        var o4Errors = new List<string>();
+        if (partialWarned)
+            o4Errors.Add($"overlap warning logged for n={PartialYears.Length} (no middle frames — guard must not fire)");
+        if (fullWarned != expectFullWarn)
+            o4Errors.Add($"n={Years.Length}: warning logged={fullWarned}, but plan Adjusted={expectFullWarn}");
+
+        findings.Add(("O4",
+            $"Overlap guard fires exactly per PlanTimeline: never for n={PartialYears.Length}, and for n={Years.Length} iff the plan was adjusted",
+            o4Errors.Count == 0,
+            o4Errors.Count == 0
+                ? $"n={Years.Length} warned={fullWarned} (plan adjusted={expectFullWarn}); n={PartialYears.Length} warned={partialWarned}"
+                : string.Join("; ", o4Errors)));
+
         await WriteReport(findings, logger);
         PrintSummary(findings);
 
@@ -219,7 +250,8 @@ public static class VideoSmokeTest
                $"(fixed target; per-frame hold computed dynamically for {Years.Length} frames)"),
         ("V4", "codec_name == h264, pix_fmt == yuv420p"),
         ("V6", "ffmpeg command used filter_complex xfade with a radial transition (not concat)"),
-        ("O3", $"Partial year list [{string.Join(", ", PartialYears)}] only waits for/stamps those years and produces a {PartialYears.Length}-frame video")
+        ("O3", $"Partial year list [{string.Join(", ", PartialYears)}] only waits for/stamps those years and produces a {PartialYears.Length}-frame video"),
+        ("O4", $"Overlap guard fires exactly per PlanTimeline: never for n={PartialYears.Length}, and for n={Years.Length} iff the plan was adjusted")
     };
 
     private static void PrintSummary(List<(string Id, string Desc, bool Pass, string Detail)> findings)
