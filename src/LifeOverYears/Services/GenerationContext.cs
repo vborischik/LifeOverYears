@@ -28,6 +28,21 @@ public sealed class GenerationContext
     private string? _dinerName;
     public string DinerName => _dinerName ??= DinerNames[Random.Next(DinerNames.Count)];
 
+    // ── Scene condition ───────────────────────────────────────────────────────
+    // One condition is sampled per era from that era's allowed list (a shared
+    // context spans all six eras, so this is re-sampled on each BuildAsync call
+    // and reflects the most recently built era). Falls back to "thriving" when an
+    // era declares no allowed conditions.
+    public string SceneCondition { get; private set; } = "thriving";
+
+    public string PickSceneCondition(IReadOnlyList<string>? allowed)
+    {
+        SceneCondition = allowed is { Count: > 0 }
+            ? allowed[Random.Next(allowed.Count)]
+            : "thriving";
+        return SceneCondition;
+    }
+
     // ── Vehicle placement patterns ────────────────────────────────────────────
     // Simple patterns only: manual tests showed the model reliably follows
     // side-of-street and drive direction, but ignores complex choreography, so
