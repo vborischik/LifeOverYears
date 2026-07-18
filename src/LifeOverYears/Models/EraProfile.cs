@@ -14,7 +14,8 @@ public record EraProfile(
     [property: JsonPropertyName("environment")]    EraEnvironment Environment,
     [property: JsonPropertyName("photography")]    Photography Photography,
     [property: JsonPropertyName("scene_content")]  IReadOnlyDictionary<string, SceneContent>? SceneContent = null,
-    [property: JsonPropertyName("people_mix")]     IReadOnlyList<string>? PeopleMix = null);
+    [property: JsonPropertyName("people_mix")]     IReadOnlyList<string>? PeopleMix = null,
+    [property: JsonPropertyName("allowed_scene_conditions")] IReadOnlyList<string>? AllowedSceneConditions = null);
 
 // ── Transportation ────────────────────────────────────────────────────────────
 

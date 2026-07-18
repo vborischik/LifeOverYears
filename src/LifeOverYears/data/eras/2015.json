@@ -3,6 +3,8 @@
   "label": "Mid-2010s America",
   "description": "Smartphone era fully arrived. Crossovers replacing sedans and SUVs. LED everything. Retail apocalypse beginning. Blockbuster gone.",
 
+  "allowed_scene_conditions": ["thriving", "declining", "abandoned", "restored"],
+
   "people_mix": [
     "a young couple pushing a jogging stroller",
     "a dog walker with three dogs",

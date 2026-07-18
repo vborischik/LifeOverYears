@@ -6,4 +6,5 @@ public record Prompt(
     int Year,
     string Text,
     IReadOnlyList<string> SelectedVehicles,
-    string CreatedAt);
+    string CreatedAt,
+    string SceneCondition = "thriving");

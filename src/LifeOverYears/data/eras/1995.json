@@ -3,6 +3,8 @@
   "label": "Mid-1990s America",
   "description": "Clinton era prosperity. Internet just arriving. SUV boom beginning. Grunge and hip-hop culture. Big box retail killing strip malls.",
 
+  "allowed_scene_conditions": ["thriving", "busy", "new"],
+
   "people_mix": [
     "a dad carrying a kid on his shoulders",
     "two women power-walking in windbreakers",

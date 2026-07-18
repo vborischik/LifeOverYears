@@ -3,6 +3,8 @@
   "label": "Mid-2000s America",
   "description": "Post-9/11 era. SUVs and trucks at peak size. Flip phones everywhere, smartphones not yet. Big box retail dominant. Strip malls aging.",
 
+  "allowed_scene_conditions": ["thriving", "busy", "declining"],
+
   "people_mix": [
     "a UPS driver wheeling packages on a hand truck",
     "a group of college kids with messenger bags",

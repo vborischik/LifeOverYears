@@ -3,6 +3,8 @@
   "label": "Mid-2020s America",
   "description": "Post-pandemic era. Retail apocalypse mature — many vacant big boxes. Delivery culture. LED and screens everywhere. Minimalist branding.",
 
+  "allowed_scene_conditions": ["thriving", "declining", "abandoned", "restored"],
+
   "people_mix": [
     "a delivery courier with a large insulated backpack",
     "a retiree couple with matching walking poles",

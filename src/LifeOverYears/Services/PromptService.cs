@@ -37,10 +37,13 @@ public sealed class PromptService : IPromptService
 
         var vehicles  = PickVehicles(eraProfile, context, vehicleCount, _logger);
         var placement = context.NextPlacement(vehicles.Count);
+        var condition = context.PickSceneCondition(eraProfile.AllowedSceneConditions);
+        _logger.LogInformation("Scene condition for SceneDna {Id}, year {Year}: {Condition}",
+            sceneDna.Id, year, condition);
 
         var text = template
             .Replace("{PRESERVE_BLOCK}",    BuildPreserveBlock(sceneDna))
-            .Replace("{SCENE_BLOCK}",       BuildSceneBlock(eraProfile, sceneContent, sceneType, rng))
+            .Replace("{SCENE_BLOCK}",       BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, rng))
             .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, rng))
             .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement))
             .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year))
@@ -55,7 +58,8 @@ public sealed class PromptService : IPromptService
             Year:             year,
             Text:             text,
             SelectedVehicles: vehicles.Select(v => v.Model).ToList(),
-            CreatedAt:        DateTimeOffset.UtcNow.ToString("o"));
+            CreatedAt:        DateTimeOffset.UtcNow.ToString("o"),
+            SceneCondition:   condition);
     }
 
     private static SceneContent? ResolveSceneContent(EraProfile era, string sceneType)
@@ -143,16 +147,39 @@ public sealed class PromptService : IPromptService
         return DetailConcepts.FirstOrDefault(normalized.Contains);
     }
 
-    private static string BuildSceneBlock(EraProfile era, SceneContent? content, string sceneType, Random rng)
+    // Short appearance/upkeep descriptor per sampled scene condition. Affects how
+    // the place looks, never its geometry (kept out of the PRESERVE block).
+    private static string ConditionDescriptor(string condition) => condition switch
+    {
+        "thriving"  => "well-maintained, freshly painted, active business, clean lot",
+        "busy"      => "customers present, high activity, all pumps in use",
+        "new"       => "recently built appearance, pristine surfaces, new signage",
+        "declining" => "faded paint, minor wear, aging signage, sparse activity",
+        "abandoned" => "closed business, boarded windows, weeds through pavement cracks, weathered surfaces",
+        "restored"  => "renovated appearance, modern updates on original structure",
+        _           => "well-maintained, freshly painted, active business, clean lot"
+    };
+
+    private static string BuildSceneBlock(EraProfile era, SceneContent? content, string sceneType, string condition, Random rng)
     {
         var sb = new StringBuilder();
         sb.AppendLine($"TRANSFORM TO {era.Year}");
         var intro = TruncateToSentences(era.Description, 1);
         sb.AppendLine(content is null ? intro : $"{intro} {content.Narrative}");
+
+        var isGasStation = sceneType == "gas_station";
+
+        // Scene atmosphere — condition affects appearance/upkeep only, never the
+        // physical geometry in the PRESERVE block. Gas stations only for now.
+        if (isGasStation)
+        {
+            sb.AppendLine();
+            sb.AppendLine($"CONDITION: {condition} — {ConditionDescriptor(condition)}");
+        }
+
         sb.AppendLine();
         sb.AppendLine("PERIOD DETAILS");
 
-        var isGasStation = sceneType == "gas_station";
         var pool = new List<string>();
         if (content is not null)
             pool.AddRange(content.Storefronts);

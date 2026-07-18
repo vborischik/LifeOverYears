@@ -3,6 +3,8 @@
   "label": "Mid-1970s America",
   "description": "Post-Vietnam, oil crisis era. Suburban sprawl at peak. American cars dominated. Brands were bold and simple.",
 
+  "allowed_scene_conditions": ["thriving", "busy", "new"],
+
   "people_mix": [
     "an elderly couple walking arm in arm",
     "a mailman in a USPS uniform with a leather satchel",

@@ -3,6 +3,8 @@
   "label": "Mid-1980s America",
   "description": "Reagan era prosperity. Japanese imports arrived. MTV culture. Neon and bold graphics everywhere. Self-service gas standard.",
 
+  "allowed_scene_conditions": ["thriving", "busy", "new"],
+
   "people_mix": [
     "a group of teenagers in bright windbreakers",
     "a mother with two kids in tow",
