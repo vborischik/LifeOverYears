@@ -29,29 +29,30 @@ Post-9/11 era. A 2005 main street — cellular stores and chain coffee arriving,
 
 PERIOD DETAILS
 - the video rental store closing down — 'EVERYTHING MUST GO — ALL MOVIES $3' banner across the window
-- STAR DINER with a refreshed awning and a 'COFFEE $1.25' vinyl decal on the glass
-- espresso cafe with a chalkboard menu and a round-logo awning
-- window signs: 'EVERYTHING MUST GO — 50-70% OFF', 'LATTE $2.95'
-- a single scuffed payphone covered in stickers, rarely used
+- MAIN STREET DINER with a refreshed awning and a 'COFFEE $1.25' vinyl decal on the glass
+- FIRST STATE BANK branch with internally lit channel letters
+- window signs: 'TANNING — 1 MONTH UNLIMITED $29', 'EVERYTHING MUST GO — 50-70% OFF'
 - the ghost-sign reduced to a faint trace of paint on the brick
+- ribbon magnets on a lamppost
 Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 13 people, spread out with empty areas.
-- a businessman with a Bluetooth earpiece gesturing as he walks
+EXACTLY 11 people, spread out with empty areas.
+- a woman in low-rise jeans talking on a flip phone
 - a man loading a flat-screen TV box into an SUV
-- a woman walking a small dog in a sweater
-Clothing: men in cargo shorts, graphic tees; women in velour tracksuits, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+- a man in cargo shorts talking on a flip phone
+Clothing: men in graphic tees, baggy jeans; women in velour tracksuits, chunky highlights. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2005-2010 Ford Mustang — retro muscle revival — dark red
-- 2000-2005 Ford Focus — European-styled compact — gray
-- 2003-2008 Toyota Corolla — conservative compact sedan — gold
-- 2001-2007 Dodge Grand Caravan — family minivan, rounded — dark blue
+EXACTLY 5 period vehicles, all different:
+- 2005-2010 Chevrolet Cobalt — compact economy sedan — dark red
+- 2005-2010 Jeep Grand Cherokee — rounded modern SUV — gold
+- 2001-2005 Honda Civic — rounded compact, very common — gray
+- 2000-2005 Ford Focus — European-styled compact — dark blue
+- 2003-2008 Honda Pilot — boxy three-row SUV — silver
 Parked with gaps; no vehicle newer than 2005.
-PLACEMENT: the first two parked on the RIGHT side; one parked on the left near the corner; the last one driving toward the camera in the far lane. No vehicle in the same spot as any other era.
+PLACEMENT: three parked on the LEFT side; the rest parked on the RIGHT side; the last one driving toward the camera in the far lane. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn arrows

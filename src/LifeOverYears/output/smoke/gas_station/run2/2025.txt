@@ -27,6 +27,8 @@ the source geometry.
 TRANSFORM TO 2025
 Post-pandemic era. A 2025 fuel stop — LED canopy, full-color digital price sign, and a convenience store selling fresh food.
 
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
+
 PERIOD DETAILS
 - free air and vacuum station at the lot edge
 - modern LED canopies
@@ -39,7 +41,7 @@ Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 7 people, spread out with empty areas.
+EXACTLY 5 people, spread out with empty areas.
 - a driver watching the ad screen while fueling
 - a customer tapping a phone to pay at the pump
 - a woman filming a short vertical video on a phone
@@ -47,11 +49,11 @@ Clothing: men in bucket hats, techwear; women in leggings and oversized hoodies,
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 2022-2025 Chevrolet Silverado — refreshed bold grille — white
-- 2019-2025 Toyota RAV4 — boxy rugged crossover, very common — blue
-- 2019-2025 GMC Sierra — chrome-heavy full-size pickup — silver
+- 2020-2025 Hyundai Tucson — sharp parametric grille design — black
+- 2021-2025 Kia Telluride — boxy upscale three-row SUV — white
+- 2017-2025 Honda CR-V — rounded best-selling crossover — dark green
 Parked with gaps; no vehicle newer than 2025.
-PLACEMENT: the first two parked on the RIGHT side; one parked on the left near the corner; the last one driving toward the camera in the far lane. No vehicle in the same spot as any other era.
+PLACEMENT: all parked on the RIGHT side with gaps; the first one driving away from the camera in the near lane. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks

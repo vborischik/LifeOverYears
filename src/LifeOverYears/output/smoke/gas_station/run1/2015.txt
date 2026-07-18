@@ -27,31 +27,34 @@ the source geometry.
 TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 station — LED-lit canopy, digital price sign, video ads playing on every pump screen, and a big convenience store.
 
+CONDITION: abandoned — closed business, boarded windows, weeds through pavement cracks, weathered surfaces
+
 PERIOD DETAILS
-- large convenience store with fresh-coffee branding in the windows
+- pay-at-pump with color screens and ads
 - red DVD-rental kiosk outside the store entrance
 - price sign showing gas around $2.45
-- main sign: an independent station sign in the style of Casey's
-- window signs: 'ANY SIZE COFFEE $1', 'UNLIMITED CAR WASH $19.99/MO'
+- main sign: an independent station sign in the style of BP
+- window signs: 'E-CIG STARTER KITS', '2 ENERGY DRINKS $5'
 - card-skimmer warning stickers on the pumps
-- combined trash-and-squeegee stations between the pumps
+- an air-and-vacuum island at the lot edge
 Typography: minimalist flat sans-serif, simplified modern logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 4 people, spread out with empty areas.
-- a customer watching the pump screen ads while fueling
+EXACTLY 5 people, spread out with empty areas.
+- a woman scrolling her smartphone while leaning on her crossover
 - a man returning a disc at the DVD kiosk
 - a dog walker with three dogs
-Clothing: men in boat shoes, beards; women in yoga pants and leggings, infinity scarves. Fashion palette: coral, mint green, navy. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+Clothing: men in henley shirts, slim-fit plaid shirts; women in yoga pants and leggings, ankle boots. Fashion palette: coral, mint green, navy. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
-EXACTLY 3 period vehicles, all different:
-- 2011-2016 Hyundai Elantra — swoopy fluidic compact — blue
-- 2005-2015 Toyota Tacoma — capable mid-size pickup — pearl white
-- 2013-2017 Honda Accord — clean modern lines — silver
+EXACTLY 4 period vehicles, all different:
+- 2010-2016 Chevrolet Equinox — mid-size crossover — white
+- 2007-2017 Jeep Wrangler — boxy off-roader, round headlights — silver
+- 2014-2021 Subaru Outback — rugged wagon crossover — pearl white
+- 2015-2020 Ford F-150 — aluminum body, C-clamp headlights — gray
 Parked with gaps; no vehicle newer than 2015.
-PLACEMENT: the first two parked on the RIGHT side; one parked on the left near the corner; the last one driving toward the camera in the far lane. No vehicle in the same spot as any other era.
+PLACEMENT: all parked on the RIGHT side with gaps; the first one driving away from the camera in the near lane. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks

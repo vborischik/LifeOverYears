@@ -27,32 +27,33 @@ the source geometry.
 TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 station — LED-lit canopy, digital price sign, video ads playing on every pump screen, and a big convenience store.
 
+CONDITION: abandoned — closed business, boarded windows, weeds through pavement cracks, weathered surfaces
+
 PERIOD DETAILS
-- red DVD-rental kiosk outside the store entrance
-- modern canopy with white LED lighting
+- pumps with color screens playing ads
+- ice merchandiser by the door
 - price sign showing gas around $2.45
-- main sign: an independent station sign in the style of Marathon
-- window signs: 'ATM INSIDE', 'ANY SIZE COFFEE $1'
-- a chalkboard A-frame sign advertising the coffee bar
-- combined trash-and-squeegee stations between the pumps
+- main sign: an independent station sign in the style of Casey's
+- window signs: 'ATM INSIDE', 'UNLIMITED CAR WASH $19.99/MO'
+- card-skimmer warning stickers on the pumps
+- an ice merchandiser and propane cage along the wall
 Typography: minimalist flat sans-serif, simplified modern logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 5 people, spread out with empty areas.
-- a woman scrolling her smartphone while leaning on her crossover
+EXACTLY 4 people, spread out with empty areas.
 - a driver self-serving at the pump
-- a man in skinny jeans taking a selfie
-Clothing: men in slim-fit plaid shirts, beards; women in statement necklaces, ankle boots. Fashion palette: coral, mint green, navy. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+- a woman scrolling her smartphone while leaning on her crossover
+- a dog walker with three dogs
+Clothing: men in skinny jeans, boat shoes; women in ankle boots, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2013-2019 Ford Fusion — Aston-Martin-style grille, sleek — pearl white
-- 2012-2015 Honda Civic — compact, angular — black
-- 2011-2016 Kia Optima — stylish mid-size, sporty — dark red
-- 2013-2016 Mazda CX-5 — flowing KODO-design crossover — gray
+EXACTLY 3 period vehicles, all different:
+- 2014-2019 Nissan Rogue — popular compact crossover — blue
+- 2010-2016 Chevrolet Equinox — mid-size crossover — gray
+- 2011-2017 Jeep Grand Cherokee — refined upscale SUV — pearl white
 Parked with gaps; no vehicle newer than 2015.
-PLACEMENT: the first two parked on the LEFT side; the last one driving away from the camera. No vehicle in the same spot as any other era.
+PLACEMENT: the first two parked on the RIGHT side; one parked on the left near the corner; the last one driving toward the camera in the far lane. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks

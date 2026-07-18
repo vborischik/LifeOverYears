@@ -27,31 +27,33 @@ the source geometry.
 TRANSFORM TO 1985
 Reagan era prosperity. A 1985 self-service gas station — digital price sign newly installed, a small convenience store where the second service bay used to be.
 
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+
 PERIOD DETAILS
-- credit card readers not yet at pump
 - canopy designs more angular
+- flat canopy over two pump islands with angular 1980s brand striping
 - price sign showing gas around $1.12
-- main sign: an independent station sign in the style of Mobil
-- window signs: 'HOT DOGS 2 FOR $1', 'FREE COFFEE WITH FILL-UP'
+- main sign: an independent station sign in the style of Texaco
+- window signs: 'MOTOR OIL 99¢ QT', 'CIGARETTES $1.10 PACK'
+- squeegee buckets at the pump islands
 - an 'AIR & WATER' sign at the lot corner
-- a BMX bike leaned by the store door
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 6 people, spread out with empty areas.
-- a man checking his oil with the hood up at the edge of the lot
-- a driver waiting in his car for a free pump
-- a group of teenagers in bright windbreakers
-Clothing: men in polo shirts with collars up, windbreakers; women in big permed hair, bright neon colors. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+EXACTLY 5 people, spread out with empty areas.
+- a teenager filling a bike tire at the air hose
+- a customer walking into the store counting bills
+- a woman with permed hair and shoulder pads
+Clothing: men in windbreakers, polo shirts with collars up; women in shoulder pads, bright neon colors. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 1980-1985 Cadillac Seville — sharp formal lines, bustleback — burgundy
-- 1984-1988 Pontiac Fiero — small wedge two-seater — red
-- 1978-1986 Ford Bronco — full-size boxy SUV, round headlights — white
+- 1982-1986 Nissan Sentra — small economy boxy sedan — red
+- 1980-1989 Lincoln Town Car — long boxy luxury sedan — burgundy
+- 1983-1985 Nissan Maxima — boxy import sedan — white
 Parked with gaps; no vehicle newer than 1985.
-PLACEMENT: the first two parked on the RIGHT side; one parked on the left near the corner; the last one driving toward the camera in the far lane. No vehicle in the same spot as any other era.
+PLACEMENT: the first two parked on the LEFT side; the last one driving away from the camera. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, painted crosswalks

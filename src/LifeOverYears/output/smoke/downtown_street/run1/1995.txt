@@ -29,30 +29,30 @@ Clinton era prosperity. A 1995 main street — the video rental store at its abs
 
 PERIOD DETAILS
 - pizza and sub shop with a '2 SLICES + SODA $2.99' sign in the window
-- BLUE PLATE DINER with 'HOT COFFEE 75¢' in the window
-- barber shop with its spinning barber pole, unchanged
-- window signs: 'SUB COMBO $3.99', 'FREE INTERNET TRIAL — 30 DAYS'
+- MARY'S DINER with 'HOT COFFEE 75¢' in the window
+- music store with a 'CDs — CASSETTES' channel-letter sign
+- window signs: 'CDs $9.99', 'SUB COMBO $3.99'
 - a wall-mounted payphone or payphone booth
-- the old painted ghost-sign now almost fully faded, barely legible
+- a cluster of coin-operated newspaper boxes on the corner
 - a bench with a local realtor ad
 Typography: clean geometric sans-serif, early digital influence.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 11 people, spread out with empty areas.
-- a woman talking on the wall-mounted payphone
-- two kids on a bench trading collectible cards
-- a mom loading groceries into a minivan
-Clothing: men in baggy jeans, grunge style; women in floral dresses, crop tops. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+- a teenager in a flannel shirt browsing the video store's new releases wall, visible through the glass
+- a mother pushing a stroller past the diner
+- two women power-walking in windbreakers
+Clothing: men in flannel shirts, backwards caps; women in chokers, crop tops. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
-- 1992-1996 Ford F-150 — rounded aero body — silver
-- 1992-1997 Ford Taurus — rounded jellybean shape, oval theme — teal
-- 1991-1996 Ford Escort — small rounded economy car — black
-- 1992-1996 Toyota Camry — rounded, understated — hunter green
+- 1986-1997 Ford Aerostar — boxy rear-drive minivan — burgundy
+- 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding — silver
+- 1992-1997 Ford Taurus — rounded jellybean shape, oval theme — hunter green
+- 1990-1994 Chevrolet Lumina — rounded mid-size sedan — teal
 Parked with gaps; no vehicle newer than 1995.
-PLACEMENT: the first two parked on the LEFT side; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
+PLACEMENT: the first two parked on the LEFT side; the last one driving away from the camera. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn lane arrows
