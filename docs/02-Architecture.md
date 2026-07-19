@@ -27,8 +27,8 @@ Swapping a transport provider requires changing only the relevant Domain Provide
 │   IVisionService    →   VisionService          Pipeline         │
 │   IPromptService    →   PromptService          SceneDnaValidator│
 │   IImageService     →   ImageService           DataService      │
-│   IVideoService     →   VideoService                            │
-│   ICaptionService   →   CaptionService                          │
+│   IVideoService     →   VideoService           GenerationContext│
+│   ICaptionService   →   CaptionService         PromptSmokeTest  │
 │   IPublicationService→  PublicationService                      │
 │   IStorageService   →   StorageService                          │
 │   IDataService      →   DataService                             │
@@ -42,8 +42,9 @@ Swapping a transport provider requires changing only the relevant Domain Provide
 │                                                                 │
 │   VisionProvider   — knows nvidia vision model, builds request, │
 │                      parses SceneDna from response              │
-│   ImageProvider    — knows nvidia flux model, handles polling,  │
-│                      parses HistoricalImage from response       │
+│   ImageProvider    — targets OpenAI GPT Image 1.5 (provider     │
+│                      implementation pending), parses            │
+│                      HistoricalImage from response              │
 │                                                                 │
 │   Know endpoints, model names, request/response shapes.         │
 │   Depend on transport providers via interfaces.                 │
@@ -88,7 +89,8 @@ src/LifeOverYears/
 │   ├── HistoricalImage.cs
 │   ├── Video.cs
 │   ├── Caption.cs
-│   └── Publication.cs
+│   ├── Publication.cs
+│   └── RunFolder.cs
 │
 ├── Services/
 │   ├── Interfaces/
@@ -102,6 +104,10 @@ src/LifeOverYears/
 │   │   ├── IPublicationService.cs
 │   │   ├── IStorageService.cs
 │   │   ├── IDataService.cs
+│   │   ├── IRunService.cs
+│   │   ├── IYearOverlayService.cs
+│   │   ├── IImageGenerationProvider.cs
+│   │   ├── IPromptProvider.cs
 │   │   ├── INvidiaProvider.cs
 │   │   ├── IXaiProvider.cs
 │   │   ├── IFfmpegProvider.cs
@@ -118,6 +124,12 @@ src/LifeOverYears/
 │   ├── StorageService.cs
 │   ├── DataService.cs
 │   ├── SceneDnaValidator.cs
+│   ├── GenerationContext.cs
+│   ├── PromptSmokeTest.cs
+│   ├── VideoSmokeTest.cs
+│   ├── RunService.cs
+│   ├── YearOverlayService.cs
+│   ├── VideoAssemblyRunner.cs
 │   └── Pipeline.cs
 │
 ├── Providers/
@@ -129,13 +141,17 @@ src/LifeOverYears/
 │   ├── FileSystemProvider.cs
 │   ├── JsonProvider.cs
 │   ├── VisionProvider.cs
-│   └── ImageProvider.cs
+│   ├── ImageProvider.cs
+│   ├── PromptProvider.cs
+│   └── StubImageProvider.cs
 │
 ├── data/
 │   ├── prompts/
 │   │   └── vision.txt
 │   ├── eras/
 │   │   └── {year}.json
+│   ├── brands/
+│   │   └── gas-brands.txt
 │   └── scenes/
 │       └── {id}.json
 │
@@ -186,7 +202,7 @@ Know one AI model or workflow. Build request bodies, parse responses, map to dom
 
 ```
 VisionProvider   nvidia/nemotron-3-nano-omni-30b — analyzes photos, returns SceneDna
-ImageProvider    black-forest-labs/flux-dev — generates images, returns HistoricalImage
+ImageProvider    OpenAI GPT Image 1.5 (target model; provider implementation pending) — generates images, returns HistoricalImage
 ```
 
 ---
@@ -213,7 +229,7 @@ Business logic and pipeline orchestration. Never reference concrete Provider cla
 
 ```
 VisionService      analyze → validate → enrich → save SceneDna
-PromptService      build era-specific generation prompts
+PromptService      build era-specific generation prompts (programmatic assembly, no AI call)
 ImageService       generate historical images per era
 VideoService       compose images into video
 CaptionService     generate title, description, hashtags
@@ -223,6 +239,13 @@ DataService        load/save domain objects from data/ directory
 
 Pipeline           orchestrates all steps in order
 SceneDnaValidator  validates SceneDna completeness, returns missing fields
+GenerationContext  per-run sampling state: seeded Random, cross-era vehicle
+                   dedup, placement pattern dedup, diner name, scene condition
+RunService         run folder management (output/{run} layout)
+YearOverlayService stamps each generated image with its era year
+VideoAssemblyRunner shared pipeline tail: wait for images → stamp → compose
+PromptSmokeTest    --smoke-prompts harness: checks C1–C23 over generated prompts
+VideoSmokeTest     --smoke-video harness for the ffmpeg assembly path
 ```
 
 ---
@@ -250,12 +273,15 @@ photoPath
 ## Data Files
 
 ```
-data/prompts/{name}.txt     plain text prompts loaded at runtime
-data/eras/{year}.json       EraProfile for a given year
-data/scenes/{id}.json       SceneDna persisted after analysis
+data/prompts/{name}.txt       plain text prompts loaded at runtime
+data/eras/{year}.json         EraProfile for a given year
+data/brands/gas-brands.txt    gas station brands, one per line: Name|fromYear|toYear
+data/scenes/{id}.json         SceneDna persisted after analysis
 ```
 
-Prompts and EraProfiles are data, not code. They can be updated without recompiling.
+Era JSONs include `scene_content` (per scene_type: people/vehicles ranges, narrative, storefronts, window_signs, extras, people_activities), `color_mode`, `allowed_scene_conditions`, and `gas_brands` (fallback only — the primary brand source is `data/brands/gas-brands.txt`, filtered by era year).
+
+Prompts, EraProfiles, and brand lists are data, not code. They can be updated without recompiling.
 
 ---
 

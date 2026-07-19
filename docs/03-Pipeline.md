@@ -36,10 +36,10 @@ Modern Photo
       ▼  Step 1 — VisionService → VisionProvider → NvidiaProvider
 SceneDna
       │
-      ▼  Step 2 — PromptService → XaiProvider
+      ▼  Step 2 — PromptService (programmatic assembly, no AI call)
 Prompt
       │
-      ▼  Step 3 — ImageService → ImageProvider → NvidiaProvider
+      ▼  Step 3 — ImageService → ImageProvider → OpenAI GPT Image 1.5
 Historical Images
       │
       ▼  Step 4 — VideoService → FfmpegProvider
@@ -87,19 +87,37 @@ Extracts the permanent structural characteristics of the scene from a modern pho
 
 ---
 
-## Step 2 — Prompt (planned)
+## Step 2 — Prompt ✅ implemented
 
-Builds era-specific image generation prompts by combining SceneDna geometry with EraProfile visual characteristics.
+Builds era-specific image generation prompts by combining SceneDna geometry with EraProfile visual characteristics. Assembly is fully programmatic C# — no LLM call.
 
-**Input:** `SceneDna` + `EraProfile`  
-**Output:** `Prompt` (one per era year)
+**Input:** `SceneDna` + `EraProfile` + `GenerationContext`  
+**Output:** `Prompt` (one per era year), saved to `output/prompts/{sceneDnaId}/{year}.json`
 
 ```
 1. DataService.LoadEraProfileAsync(year)
-2. PromptService.BuildAsync(sceneDna, eraProfile)
-        → XaiProvider.CompleteAsync(combinedContext)
-        → returns structured Prompt
+2. PromptService.BuildAsync(sceneDna, eraProfile, context)
+        → DataService.LoadPromptAsync("image-template")
+        → resolves scene_content by SceneDna.SceneType,
+          falling back to the "default" key
+        → samples via GenerationContext:
+             seeded Random shared across the run
+             cross-era vehicle dedup (UsedCarModels HashSet)
+             placement pattern dedup per run
+             per-run DinerName (stable across all eras)
+             per-era SceneCondition — gas stations only
+        → builds PRESERVE / SCENE / PEOPLE / VEHICLES /
+          ENVIRONMENT / STYLE blocks into the template
+        → resolves gas brand from data/brands/gas-brands.txt
+          filtered by era year (era JSON gas_brands is fallback)
+3. DataService.SavePromptAsync(prompt)
 ```
+
+Conditions (`thriving` / `busy` / `new` / `declining` / `abandoned` / `restored`) are a gas-station-only concept: `abandoned` forces zero people and vehicles, `declining` clamps counts to sparse activity. Other scene types always use their base scene_content ranges.
+
+### Smoke Tests
+
+`dotnet run -- --smoke-prompts` executes `PromptSmokeTest` with checks C1–C23 (placeholder resolution, vehicle dedup, seed variance, tree ladder, color mode, price anchors, PRESERVE fidelity, prompt length ≤ 4850 chars, condition isolation) and writes a markdown report to `output/smoke/report.md`.
 
 ---
 
@@ -110,28 +128,35 @@ Generates photorealistic historical reconstructions for each era year.
 **Input:** `Prompt`  
 **Output:** `HistoricalImage` saved to `output/images/{year}/{promptId}.png`
 
+Target model: **OpenAI GPT Image 1.5** — decision confirmed by direct image testing (`OpenAiImageProvider` not yet written).
+
 ```
 1. ImageProvider.GenerateImageAsync(prompt)
-        → POST to black-forest-labs/flux-dev
-        → polls until complete (202 → poll loop)
+        → POST to OpenAI GPT Image 1.5
         → saves PNG, returns HistoricalImage
 ```
 
 ---
 
-## Step 4 — Video (planned)
+## Step 4 — Video ✅ implemented
 
 Composes historical images into an animated video transition across eras.
 
 **Input:** `IReadOnlyList<HistoricalImage>`  
-**Output:** `Video` saved to `output/videos/{id}.mp4`
+**Output:** `Video` saved via `VideoAssemblyRunner`
 
 ```
-1. FfmpegProvider.ComposeAsync(images)
-        → writes concat list file
-        → runs ffmpeg: scale 1920×1080, libx264, 30fps, 3s per frame
-        → returns Video
+1. VideoAssemblyRunner.RunAsync(...)
+        → waits for exactly the requested years' images
+        → YearOverlayService stamps each image with its year
+        → VideoService.ComposeAsync(stampedImages, outputPath)
+             → FfmpegProvider: ffmpeg filter graph with xfade
+               radial-wipe transitions between eras, with a
+               duration guard against overlapping mid-sequence
+               transitions
 ```
+
+Used by both `Pipeline` (after real generation) and the `assemble` CLI mode, which runs against a folder of images already on disk. `dotnet run -- --smoke-video` executes `VideoSmokeTest`.
 
 ---
 
