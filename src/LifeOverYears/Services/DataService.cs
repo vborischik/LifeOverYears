@@ -49,6 +49,32 @@ public sealed class DataService : IDataService
         return await _fs.ReadAllTextAsync(path);
     }
 
+    public async Task<IReadOnlyList<(string Name, int From, int To)>> LoadGasBrandsAsync()
+    {
+        var path = Path.Combine("data", "brands", "gas-brands.txt");
+        _logger.LogInformation("Loading gas brands from {Path}", path);
+        var text = await _fs.ReadAllTextAsync(path);
+
+        var brands = new List<(string Name, int From, int To)>();
+        foreach (var line in text.Split('\n'))
+        {
+            var trimmed = line.Trim();
+            if (trimmed.Length == 0)
+                continue;
+            var parts = trimmed.Split('|');
+            if (parts.Length != 3
+                || string.IsNullOrWhiteSpace(parts[0])
+                || !int.TryParse(parts[1], out var from)
+                || !int.TryParse(parts[2], out var to))
+            {
+                _logger.LogWarning("Skipping malformed gas brand line: {Line}", trimmed);
+                continue;
+            }
+            brands.Add((parts[0].Trim(), from, to));
+        }
+        return brands;
+    }
+
     public async Task SavePromptAsync(Prompt prompt)
     {
         var path = Path.Combine("output", "prompts", prompt.SceneDnaId, $"{prompt.Year}.json");

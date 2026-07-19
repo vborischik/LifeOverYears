@@ -30,22 +30,39 @@ public sealed class PromptService : IPromptService
             _logger.LogWarning("No scene_content in era {Year} for scene type '{SceneType}' — building generic scene block",
                 year, sceneType);
 
+        var isGasStation = sceneType == "gas_station";
+
+        var condition = context.PickSceneCondition(eraProfile.AllowedSceneConditions);
+        _logger.LogInformation("Scene condition for SceneDna {Id}, year {Year}: {Condition}",
+            sceneDna.Id, year, condition);
+
         var peopleRange  = sceneContent?.People   ?? new CountRange(10, 15);
         var vehicleRange = sceneContent?.Vehicles ?? new CountRange(4, 6);
         var peopleCount  = rng.Next(peopleRange.Min, peopleRange.Max + 1);
         var vehicleCount = rng.Next(vehicleRange.Min, vehicleRange.Max + 1);
 
+        // Condition dictates activity level: an abandoned place is deserted,
+        // a declining one only sparsely visited.
+        if (condition == "abandoned")
+        {
+            peopleCount  = 0;
+            vehicleCount = 0;
+        }
+        else if (condition == "declining")
+        {
+            peopleCount  = rng.Next(2, 5);
+            vehicleCount = rng.Next(1, 3);
+        }
+
         var vehicles  = PickVehicles(eraProfile, context, vehicleCount, _logger);
         var placement = context.NextPlacement(vehicles.Count);
-        var condition = context.PickSceneCondition(eraProfile.AllowedSceneConditions);
-        _logger.LogInformation("Scene condition for SceneDna {Id}, year {Year}: {Condition}",
-            sceneDna.Id, year, condition);
+        var brand     = isGasStation ? await ResolveGasBrandAsync(year, rng) : null;
 
         var text = template
             .Replace("{PRESERVE_BLOCK}",    BuildPreserveBlock(sceneDna))
-            .Replace("{SCENE_BLOCK}",       BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, rng))
-            .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, rng))
-            .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement))
+            .Replace("{SCENE_BLOCK}",       BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, brand, rng))
+            .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, rng))
+            .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation))
             .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year))
             .Replace("{STYLE_BLOCK}",       BuildStyleBlock(eraProfile.Photography))
             // Scene content refers to the recurring diner by token so the same name
@@ -60,6 +77,25 @@ public sealed class PromptService : IPromptService
             SelectedVehicles: vehicles.Select(v => v.Model).ToList(),
             CreatedAt:        DateTimeOffset.UtcNow.ToString("o"),
             SceneCondition:   condition);
+    }
+
+    // Era-appropriate brand from data/brands/gas-brands.txt; null falls back to the
+    // era JSON gas_brands list inside BuildSceneBlock.
+    private async Task<string?> ResolveGasBrandAsync(int year, Random rng)
+    {
+        try
+        {
+            var brands   = await _data.LoadGasBrandsAsync();
+            var eligible = brands.Where(b => b.From <= year && year <= b.To).ToList();
+            if (eligible.Count > 0)
+                return eligible[rng.Next(eligible.Count)].Name;
+            _logger.LogWarning("No gas brand matches year {Year} — falling back to era JSON gas_brands", year);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Could not load gas brands file — falling back to era JSON gas_brands");
+        }
+        return null;
     }
 
     private static SceneContent? ResolveSceneContent(EraProfile era, string sceneType)
@@ -160,7 +196,7 @@ public sealed class PromptService : IPromptService
         _           => "well-maintained, freshly painted, active business, clean lot"
     };
 
-    private static string BuildSceneBlock(EraProfile era, SceneContent? content, string sceneType, string condition, Random rng)
+    private static string BuildSceneBlock(EraProfile era, SceneContent? content, string sceneType, string condition, string? brand, Random rng)
     {
         var sb = new StringBuilder();
         sb.AppendLine($"TRANSFORM TO {era.Year}");
@@ -227,9 +263,16 @@ public sealed class PromptService : IPromptService
         if (isGasStation)
         {
             sb.AppendLine($"- price sign showing gas around {era.Transportation.Fuel.AveragePricePerGallon}");
-            var brands = era.Business.GasBrands;
-            if (brands is { Count: > 0 })
-                sb.AppendLine($"- main sign: an independent station sign in the style of {brands[rng.Next(brands.Count)]}");
+            if (brand is not null)
+            {
+                sb.AppendLine($"- main sign: \"{brand}\" branded gas station — {brand} pole sign with price display and {brand} colors on the canopy fascia");
+            }
+            else
+            {
+                var brands = era.Business.GasBrands;
+                if (brands is { Count: > 0 })
+                    sb.AppendLine($"- main sign: an independent station sign in the style of {brands[rng.Next(brands.Count)]}");
+            }
         }
 
         if (content is not null)
@@ -252,10 +295,15 @@ public sealed class PromptService : IPromptService
         return sb.ToString();
     }
 
-    private static string BuildPeopleBlock(EraProfile era, SceneContent? content, int peopleCount, Random rng)
+    private static string BuildPeopleBlock(EraProfile era, SceneContent? content, int peopleCount, bool isGasStation, Random rng)
     {
         var sb = new StringBuilder();
         sb.AppendLine("PEOPLE");
+        if (peopleCount == 0)
+        {
+            sb.Append("NO people anywhere — the place is completely deserted.");
+            return sb.ToString();
+        }
         sb.AppendLine($"EXACTLY {peopleCount} people, spread out with empty areas.");
 
         if (content is not null)
@@ -273,6 +321,8 @@ public sealed class PromptService : IPromptService
             sb.Append($" Fashion palette: {Join(fashion.Colors.Take(3).ToList())}.");
         sb.Append(" No posing or eye contact.");
         sb.Append(" All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.");
+        if (isGasStation)
+            sb.Append(" Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.");
         return sb.ToString();
     }
 
@@ -327,14 +377,21 @@ public sealed class PromptService : IPromptService
         return result;
     }
 
-    private static string BuildVehiclesBlock(IReadOnlyList<(string Model, string? Color)> vehicles, int year, string placement)
+    private static string BuildVehiclesBlock(IReadOnlyList<(string Model, string? Color)> vehicles, int year, string placement, bool isGasStation)
     {
         var sb = new StringBuilder();
         sb.AppendLine("VEHICLES");
+        if (vehicles.Count == 0)
+        {
+            sb.Append("NO vehicles anywhere — empty lot, no parked or moving cars.");
+            return sb.ToString();
+        }
         sb.AppendLine($"EXACTLY {vehicles.Count} period vehicles, all different:");
         foreach (var (model, color) in vehicles)
             sb.AppendLine(color is null ? $"- {model}" : $"- {model} — {color}");
         sb.AppendLine($"Parked with gaps; no vehicle newer than {year}.");
+        if (isGasStation)
+            sb.AppendLine("One of these vehicles is parked at the pump island with its driver standing beside it refueling.");
         sb.Append($"PLACEMENT: {placement}. No vehicle in the same spot as any other era.");
         return sb.ToString();
     }
