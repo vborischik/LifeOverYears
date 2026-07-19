@@ -28,21 +28,21 @@ TRANSFORM TO 1975
 Post-Vietnam, oil crisis era. A working small-town main street in 1975 — locally owned shops with hand-painted and neon signs, a five & dime, and not a single modern chain in sight.
 
 PERIOD DETAILS
-- MARY'S DINER with a hand-lettered 'HOT COFFEE 25¢' sign in the window
-- appliance store window displaying console televisions with a 'COLOR TV' placard
-- 'BEN FRANKLIN' five & dime with red-and-white lettering
-- window signs: 'MILK 69¢ HALF GALLON', 'SHIRTS 2 FOR $5'
+- BLUE PLATE DINER with a hand-lettered 'HOT COFFEE 25¢' sign in the window
+- women's dress shop with gold-leaf window lettering
+- barber shop with a spinning red-white-and-blue barber pole by the door
+- window signs: 'TV REPAIR — FREE ESTIMATES', 'MILK 69¢ HALF GALLON'
+- a milk crate stack by a shop door
 - a wooden newspaper rack with stacked local papers by the diner door
-- a painted ghost-sign wall advertisement on brick, weathered but still clearly readable
 Typography: bold sans-serif, slab serif, occasional script.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 14 people, spread out with empty areas.
-- a couple leaving the diner, the man holding the door
-- an older man reading a folded newspaper on a bench
-- a girl walking a bicycle with a basket
-Clothing: men in wide lapels, plaid patterns; women in earth tones, wide leg pants. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+- a mail carrier with a leather bag making rounds
+- a delivery man carrying stacked boxes into a storefront
+- two boys with baseball gloves
+Clothing: men in bell bottoms, turtlenecks; women in peasant blouses, midi skirts. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
@@ -51,7 +51,8 @@ EXACTLY 4 period vehicles, all different:
 - 1968-1979 Chevrolet Nova — compact, simple three-box shape
 - 1972-1976 Lincoln Continental Mark IV — long hood personal luxury coupe
 Parked with gaps; no vehicle newer than 1975.
-PLACEMENT: the first two parked on the RIGHT side; one parked on the left near the corner; the last one driving toward the camera in the far lane. No vehicle in the same spot as any other era.
+All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, no rumble strips

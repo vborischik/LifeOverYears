@@ -30,31 +30,33 @@ Post-pandemic era. A 2025 fuel stop — LED canopy, full-color digital price sig
 CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
-- pay-at-pump screens with video ads
-- free air and vacuum station at the lot edge
+- large convenience stores with fresh food
+- drive-through coffee lane attached to the store
 - price sign showing gas around $3.40
-- main sign: an independent station sign in the style of Marathon
-- window signs: 'COLD BREW $3.99', 'HOT PIZZA SLICES $2.99'
-- stacked delivery boxes by the store door
+- main sign: "Marathon" branded gas station — Marathon pole sign with price display and Marathon colors on the canopy fascia
+- window signs: 'SCAN & GO — SKIP THE LINE', 'MEMBERS SAVE 10¢/GAL'
+- QR-code stickers on the pump screens
 - digital menu screens glowing in the store windows
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 6 people, spread out with empty areas.
-- a customer tapping a phone to pay at the pump
-- a driver watching the ad screen while fueling
-- a man walking a doodle-breed dog
-Clothing: men in oversized fit tees, wide-leg pants; women in oversized blazers, chunky dad sneakers. Fashion palette: sage green, beige, cream. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+- a delivery van driver walking out with a coffee
+- a clerk restocking the grab-and-go cooler behind the glass
+- a delivery courier with a large insulated backpack
+Clothing: men in oversized fit tees, wide-leg pants; women in chunky dad sneakers, high-waisted wide-leg jeans. Fashion palette: sage green, beige, cream. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
-- 2023-2025 Honda Accord — clean minimalist refresh — gray
-- 2020-2025 Hyundai Tucson — sharp parametric grille design — silver
-- 2023-2025 Kia Sportage — futuristic boomerang lights — blue
-- 2022-2025 Toyota Tundra — massive grille, muscular stance — black
+- 2017-2025 Honda CR-V — rounded best-selling crossover — blue
+- 2021-2025 Kia Telluride — boxy upscale three-row SUV — black
+- 2021-2025 Jeep Grand Cherokee — upscale chrome-accent SUV — white
+- 2021-2025 Chrysler Pacifica — sleek minivan, thin lights — gray
 Parked with gaps; no vehicle newer than 2025.
-PLACEMENT: the first two parked on the LEFT side; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
+All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+One of these vehicles is parked at the pump island with its driver standing beside it refueling.
+PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks

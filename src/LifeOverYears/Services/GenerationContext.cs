@@ -44,24 +44,24 @@ public sealed class GenerationContext
     }
 
     // ── Vehicle placement patterns ────────────────────────────────────────────
-    // Simple patterns only: manual tests showed the model reliably follows
-    // side-of-street and drive direction, but ignores complex choreography, so
-    // nothing here references parking manoeuvres or wheel angles. One pattern is
-    // sampled per era; a per-run HashSet keeps eras from repeating a pattern until
-    // the relevant pool is exhausted.
+    // Parked vehicles only: driving cars and per-vehicle orientation were removed
+    // after testing — the image model handles a single global traffic rule better
+    // than choreography, and moving cars were the main source of wrong-way
+    // vehicles. One pattern is sampled per era; a per-run HashSet keeps eras from
+    // repeating a pattern until the relevant pool is exhausted.
     public static readonly IReadOnlyList<string> PlacementPatterns34 = new[]
     {
-        "the first two parked on the LEFT side; the rest parked on the RIGHT side",
-        "the first two parked on the RIGHT side; one parked on the left near the corner; the last one driving toward the camera in the far lane",
-        "all parked on the RIGHT side with gaps; the first one driving away from the camera in the near lane",
-        "the first two parked on the LEFT side; the last one driving away from the camera"
+        "all parked on the RIGHT side of the street with gaps between them",
+        "all parked on the LEFT side of the street with gaps between them",
+        "the first two parked on the RIGHT side; the rest parked on the LEFT side",
+        "the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side"
     };
 
     public static readonly IReadOnlyList<string> PlacementPatterns56 = new[]
     {
-        "three parked on the LEFT side; the rest parked on the RIGHT side; the last one driving toward the camera in the far lane",
-        "three parked on the RIGHT side; one parked on the left near the corner; the last one driving away from the camera in the near lane",
-        "two parked on each side with gaps; the last one driving toward the camera"
+        "all parked on the RIGHT side of the street with gaps between them",
+        "three parked on the RIGHT side; the rest parked on the LEFT side",
+        "two parked on the LEFT side; the rest parked on the RIGHT side with gaps"
     };
 
     // Pool selected by vehicle count: 3-4 vehicles → the smaller-arrangement pool.

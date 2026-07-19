@@ -27,34 +27,33 @@ the source geometry.
 TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 station — LED-lit canopy, digital price sign, video ads playing on every pump screen, and a big convenience store.
 
-CONDITION: abandoned — closed business, boarded windows, weeds through pavement cracks, weathered surfaces
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- pay-at-pump with color screens and ads
-- red DVD-rental kiosk outside the store entrance
+- air and vacuum island at the lot edge
+- large modern canopies with LED lighting
 - price sign showing gas around $2.45
-- main sign: an independent station sign in the style of BP
-- window signs: 'E-CIG STARTER KITS', '2 ENERGY DRINKS $5'
+- main sign: "Wawa" branded gas station — Wawa pole sign with price display and Wawa colors on the canopy fascia
+- window signs: '2 ENERGY DRINKS $5', 'E-CIG STARTER KITS'
 - card-skimmer warning stickers on the pumps
-- an air-and-vacuum island at the lot edge
+- a chalkboard A-frame sign advertising the coffee bar
 Typography: minimalist flat sans-serif, simplified modern logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 5 people, spread out with empty areas.
-- a woman scrolling her smartphone while leaning on her crossover
-- a man returning a disc at the DVD kiosk
+EXACTLY 4 people, spread out with empty areas.
+- a clerk stacking windshield-washer fluid by the door
+- a driver vacuuming his car at the vacuum island
 - a dog walker with three dogs
-Clothing: men in henley shirts, slim-fit plaid shirts; women in yoga pants and leggings, ankle boots. Fashion palette: coral, mint green, navy. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+Clothing: men in slim-fit plaid shirts, skinny jeans; women in yoga pants and leggings, ankle boots. Fashion palette: coral, mint green, navy. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2010-2016 Chevrolet Equinox — mid-size crossover — white
-- 2007-2017 Jeep Wrangler — boxy off-roader, round headlights — silver
-- 2014-2021 Subaru Outback — rugged wagon crossover — pearl white
-- 2015-2020 Ford F-150 — aluminum body, C-clamp headlights — gray
+EXACTLY 1 period vehicles, all different:
+- 2015-2020 Ford Edge — mid-size crossover, bold grille — pearl white
 Parked with gaps; no vehicle newer than 2015.
-PLACEMENT: all parked on the RIGHT side with gaps; the first one driving away from the camera in the near lane. No vehicle in the same spot as any other era.
+All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+One of these vehicles is parked at the pump island with its driver standing beside it refueling.
+PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks

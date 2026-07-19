@@ -27,33 +27,34 @@ the source geometry.
 TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 station — LED-lit canopy, digital price sign, video ads playing on every pump screen, and a big convenience store.
 
-CONDITION: abandoned — closed business, boarded windows, weeds through pavement cracks, weathered surfaces
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- pumps with color screens playing ads
+- red DVD-rental kiosk outside the store entrance
 - ice merchandiser by the door
 - price sign showing gas around $2.45
-- main sign: an independent station sign in the style of Casey's
-- window signs: 'ATM INSIDE', 'UNLIMITED CAR WASH $19.99/MO'
+- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
+- window signs: '2 ENERGY DRINKS $5', 'ANY SIZE COFFEE $1'
+- a chalkboard A-frame sign advertising the coffee bar
 - card-skimmer warning stickers on the pumps
-- an ice merchandiser and propane cage along the wall
 Typography: minimalist flat sans-serif, simplified modern logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 4 people, spread out with empty areas.
-- a driver self-serving at the pump
 - a woman scrolling her smartphone while leaning on her crossover
-- a dog walker with three dogs
-Clothing: men in skinny jeans, boat shoes; women in ankle boots, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+- a man returning a disc at the DVD kiosk
+- a woman in yoga pants carrying a green smoothie
+Clothing: men in henley shirts, slim-fit plaid shirts; women in ankle boots, infinity scarves. Fashion palette: coral, mint green, navy. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 3 period vehicles, all different:
-- 2014-2019 Nissan Rogue — popular compact crossover — blue
-- 2010-2016 Chevrolet Equinox — mid-size crossover — gray
-- 2011-2017 Jeep Grand Cherokee — refined upscale SUV — pearl white
+EXACTLY 2 period vehicles, all different:
+- 2013-2019 Ford Fusion — Aston-Martin-style grille, sleek — dark red
+- 2011-2016 Honda CR-V — rounded compact crossover — silver
 Parked with gaps; no vehicle newer than 2015.
-PLACEMENT: the first two parked on the RIGHT side; one parked on the left near the corner; the last one driving toward the camera in the far lane. No vehicle in the same spot as any other era.
+All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+One of these vehicles is parked at the pump island with its driver standing beside it refueling.
+PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks

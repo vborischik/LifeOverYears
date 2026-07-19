@@ -27,34 +27,36 @@ the source geometry.
 TRANSFORM TO 1995
 Clinton era prosperity. A 1995 self-serve station — wide canopy over multiple islands, attached convenience store, the first pay-at-pump card readers.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: busy — customers present, high activity, all pumps in use
 
 PERIOD DETAILS
 - attached convenience store with lottery and cigarette ads in the glass
 - automatic car wash bay at the back of the lot
 - price sign showing gas around $1.15
-- main sign: an independent station sign in the style of Shell
-- window signs: '2 HOT DOGS $2', 'CIGARETTES $1.89 PACK'
-- a wire rack of free auto-trader papers by the door
+- main sign: "Mobil" branded gas station — Mobil pole sign with price display and Mobil colors on the canopy fascia
+- window signs: 'PAY AT PUMP — NEW!', 'CAR WASH $4 WITH FILL-UP'
 - a bench with a local realtor ad by the ice machine
+- a payphone mounted by the store entrance
 Typography: clean geometric sans-serif, early digital influence.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 5 people, spread out with empty areas.
-- a man walking out of the store with a soda and a bag of chips
-- a parent and kid walking into the store
-- a mom loading groceries into a minivan
-Clothing: men in grunge style, windbreakers; women in slip dresses, high-waisted mom jeans. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+- a clerk restocking the ice merchandiser
+- a driver self-serving at the pump
+- a paperboy with a canvas bag on a bike
+Clothing: men in windbreakers, backwards caps; women in crop tops, floral dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
 - 1986-1997 Ford Aerostar — boxy rear-drive minivan — burgundy
 - 1995-2004 Toyota Tacoma — compact, rounded — hunter green
-- 1993-1997 Toyota Corolla — rounded compact sedan — silver
+- 1990-1994 Chevrolet Lumina — rounded mid-size sedan — silver
 - 1993-2002 Pontiac Firebird — sleek pointed sports coupe — white
 Parked with gaps; no vehicle newer than 1995.
-PLACEMENT: the first two parked on the LEFT side; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
+All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+One of these vehicles is parked at the pump island with its driver standing beside it refueling.
+PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn lane arrows

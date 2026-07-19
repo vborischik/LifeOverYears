@@ -30,10 +30,10 @@ Post-Vietnam, oil crisis era. A full-service neighborhood gas station in 1975 �
 CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
-- open service bays
-- chest-style soda vending machine by the office door
+- tire display rack near the service bay
+- oil-can rack stacked with quart cans beside the pump island
 - price sign showing gas around $0.57
-- main sign: an independent station sign in the style of Phillips 66
+- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
 - window signs: 'MECHANIC ON DUTY', 'MOTOR OIL 55¢ QT'
 - a bicycle leaning against a utility pole
 - a folded newspaper stack tied with twine by the office door
@@ -45,15 +45,17 @@ EXACTLY 4 people, spread out with empty areas.
 - a driver waiting behind the wheel while the attendant works
 - a mechanic leaning under the open hood of a car by the bay
 - a woman with a headscarf carrying a paper grocery bag
-Clothing: men in turtlenecks, wide lapels; women in peasant blouses, wide leg pants. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+Clothing: men in turtlenecks, wide lapels; women in peasant blouses, wide leg pants. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 1971-1980 Chevrolet Vega — small subcompact hatchback/wagon
-- 1975-1979 AMC Pacer — wide bubble-shaped compact, huge glass area
-- 1975-1980 Ford Granada — compact luxury, Mercedes-inspired formal grille
+- 1963-1976 Dodge Dart — compact, boxy, reliable workhorse
+- 1970-1976 AMC Hornet — compact, simple boxy lines
+- 1974-1978 Oldsmobile Cutlass Supreme — best-selling car in America, formal roofline
 Parked with gaps; no vehicle newer than 1975.
-PLACEMENT: all parked on the RIGHT side with gaps; the first one driving away from the camera in the near lane. No vehicle in the same spot as any other era.
+All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+One of these vehicles is parked at the pump island with its driver standing beside it refueling.
+PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, no rumble strips

@@ -27,33 +27,36 @@ the source geometry.
 TRANSFORM TO 2005
 Post-9/11 era. A 2005 gas station — big multi-island canopy, card readers at every pump, LED price sign, and a convenience store doing most of the business.
 
-CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
+CONDITION: busy — customers present, high activity, all pumps in use
 
 PERIOD DETAILS
-- automated car wash tunnel beside the lot
-- stacked cases of bottled water and charcoal bags outside the store
+- large convenience store with energy-drink and phone-card ads in the glass
+- pumps with card readers and small pay-at-pump screens
 - price sign showing gas around $2.30
-- main sign: an independent station sign in the style of ExxonMobil
-- window signs: 'PHONE CARDS SOLD HERE', 'ENERGY DRINKS 2 FOR $4'
-- a free real-estate flyer box by the door
-- 'NO SMOKING — TURN OFF ENGINE' decals on each pump
+- main sign: "BP" branded gas station — BP pole sign with price display and BP colors on the canopy fascia
+- window signs: 'ENERGY DRINKS 2 FOR $4', 'CIGARETTES $3.75 PACK'
+- ribbon magnets on the door of the service office
+- a propane exchange cage by the storefront
 Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 5 people, spread out with empty areas.
-- a driver self-serving at the pump
-- a clerk restocking the window display inside
-- a group of college kids with messenger bags
-Clothing: men in trucker hats, graphic tees; women in trucker hats, velour tracksuits. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+- a teenager filling tires at the coin-operated air machine
+- a man talking on a flip phone while leaning against his SUV as it fuels
+- a woman walking a small dog in a sweater
+Clothing: men in graphic tees, baggy jeans; women in chunky highlights, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 3 period vehicles, all different:
-- 2004-2010 Toyota Sienna — large rounded minivan — silver
-- 2003-2007 Nissan Altima — sporty mid-size — gold
-- 2004-2008 Ford F-150 — bigger, bolder grille — gray
+EXACTLY 4 period vehicles, all different:
+- 2001-2007 Dodge Grand Caravan — family minivan, rounded — gold
+- 2005-2010 Ford Mustang — retro muscle revival — dark blue
+- 2003-2009 Hummer H2 — massive military-styled SUV — dark red
+- 2004-2008 Chrysler 300 — bold boxy retro chrome grille — gray
 Parked with gaps; no vehicle newer than 2005.
-PLACEMENT: the first two parked on the RIGHT side; one parked on the left near the corner; the last one driving toward the camera in the far lane. No vehicle in the same spot as any other era.
+All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+One of these vehicles is parked at the pump island with its driver standing beside it refueling.
+PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn arrows

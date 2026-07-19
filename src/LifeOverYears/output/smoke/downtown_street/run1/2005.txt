@@ -29,29 +29,31 @@ Post-9/11 era. A 2005 main street — cellular stores and chain coffee arriving,
 
 PERIOD DETAILS
 - the video rental store closing down — 'EVERYTHING MUST GO — ALL MOVIES $3' banner across the window
-- MARY'S DINER with a refreshed awning and a 'COFFEE $1.25' vinyl decal on the glass
-- tanning salon with an airbrushed sun mural on the window
-- window signs: 'LATTE $2.95', 'RINGTONES $1.99'
-- a single scuffed payphone covered in stickers, rarely used
-- ribbon magnets on a lamppost
+- BLUE PLATE DINER with a refreshed awning and a 'COFFEE $1.25' vinyl decal on the glass
+- cellular phone store with 'FREE PHONE WITH 2-YEAR PLAN' posters
+- window signs: 'DVDs $14.99', 'LATTE $2.95'
+- a sandwich-board sign for the espresso cafe
+- a bike rack with a couple of mountain bikes
 Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 15 people, spread out with empty areas.
-- a shopper digging through the closing video store's sidewalk bargain bins
-- a barista handing an iced drink to a customer at the cafe door
-- a man in cargo shorts talking on a flip phone
-Clothing: men in trucker hats, cargo shorts; women in velour tracksuits, chunky highlights. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+- a teenager texting on a flip phone with both thumbs
+- a mother pushing a jogging stroller
+- a teen with white earbuds and an MP3 player
+Clothing: men in cargo shorts, baggy jeans; women in chunky highlights, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2001-2007 Toyota Highlander — early crossover — dark blue
-- 2000-2005 Ford Focus — European-styled compact — silver
-- 2004-2008 Chrysler 300 — bold boxy retro chrome grille — black
-- 1998-2005 Volkswagen New Beetle — retro bubble shape — dark red
+EXACTLY 5 period vehicles, all different:
+- 2004-2012 Chevrolet Colorado — mid-size pickup — dark red
+- 2005-2010 Chevrolet Cobalt — compact economy sedan — black
+- 1998-2005 Volkswagen New Beetle — retro bubble shape — dark blue
+- 2003-2007 Nissan Altima — sporty mid-size — silver
+- 2001-2007 Dodge Grand Caravan — family minivan, rounded — white
 Parked with gaps; no vehicle newer than 2005.
-PLACEMENT: the first two parked on the LEFT side; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
+All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+PLACEMENT: two parked on the LEFT side; the rest parked on the RIGHT side with gaps. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn arrows

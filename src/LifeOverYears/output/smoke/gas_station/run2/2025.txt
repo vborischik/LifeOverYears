@@ -27,33 +27,35 @@ the source geometry.
 TRANSFORM TO 2025
 Post-pandemic era. A 2025 fuel stop — LED canopy, full-color digital price sign, and a convenience store selling fresh food.
 
-CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
+CONDITION: restored — renovated appearance, modern updates on original structure
 
 PERIOD DETAILS
+- drive-through coffee lane attached to the store
 - free air and vacuum station at the lot edge
-- modern LED canopies
 - price sign showing gas around $3.40
-- main sign: an independent station sign in the style of Casey's
-- window signs: 'SCAN & GO — SKIP THE LINE', 'HOT PIZZA SLICES $2.99'
-- digital menu screens glowing in the store windows
+- main sign: "RaceTrac" branded gas station — RaceTrac pole sign with price display and RaceTrac colors on the canopy fascia
+- window signs: 'SCAN & GO — SKIP THE LINE', 'MEMBERS SAVE 10¢/GAL'
+- stacked bags of ice and firewood outside
 - outdoor cafe barriers with planters by the coffee lane
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 5 people, spread out with empty areas.
-- a driver watching the ad screen while fueling
-- a customer tapping a phone to pay at the pump
-- a woman filming a short vertical video on a phone
-Clothing: men in bucket hats, techwear; women in leggings and oversized hoodies, chunky dad sneakers. Fashion palette: sage green, beige, cream. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+EXACTLY 4 people, spread out with empty areas.
+- a driver self-serving at the pump
+- a delivery van driver walking out with a coffee
+- a parent and kid sharing earbuds
+Clothing: men in oversized fit tees, bucket hats; women in oversized blazers, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 2020-2025 Hyundai Tucson — sharp parametric grille design — black
-- 2021-2025 Kia Telluride — boxy upscale three-row SUV — white
-- 2017-2025 Honda CR-V — rounded best-selling crossover — dark green
+- 2019-2025 Ram 1500 — crew cab pickup, large grille — white
+- 2021-2025 Toyota Camry — sleek sedan, aggressive front fascia — gray
+- 2021-2025 Kia Carnival — boxy SUV-styled minivan — blue
 Parked with gaps; no vehicle newer than 2025.
-PLACEMENT: all parked on the RIGHT side with gaps; the first one driving away from the camera in the near lane. No vehicle in the same spot as any other era.
+All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+One of these vehicles is parked at the pump island with its driver standing beside it refueling.
+PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks

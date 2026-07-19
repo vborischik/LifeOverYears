@@ -13,6 +13,8 @@ public static class PromptSmokeTest
 {
     private static readonly int[] Years = { 1975, 1985, 1995, 2005, 2015, 2025 };
 
+    private const int MaxPromptChars = 4850;
+
     private static readonly JsonSerializerOptions WriteJson = new() { WriteIndented = true };
 
     private static readonly string[] Placeholders =
@@ -94,6 +96,8 @@ public static class PromptSmokeTest
         DoC19(gasRun1, gasRun2, dtRun1, dtRun2,               findings);
         DoC20(gasRun1, gasRun2, dtRun1, dtRun2, eras,         findings);
         DoC21(gasRun1, gasRun2, dtRun1, dtRun2, eras,         findings);
+        DoC22(gasRun1, gasRun2, dtRun1, dtRun2, unknownPrompt, logger, findings);
+        DoC23(gasRun1, gasRun2, dtRun1, dtRun2,               findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -389,7 +393,14 @@ public static class PromptSmokeTest
                 if (sc is null) continue;
 
                 int actual = prompt.SelectedVehicles.Count;
-                if (actual < sc.Vehicles.Min || actual > sc.Vehicles.Max)
+                // Conditions are gas-station-only: abandoned forces 0 vehicles and
+                // declining clamps to 1-2 there. Every other scene type must always
+                // land inside its scene_content range — 0 is never legal.
+                var clamped = sceneType == "gas_station" &&
+                              prompt.SceneCondition is "abandoned" or "declining";
+                if (sceneType != "gas_station" && actual == 0)
+                    errs.Add($"{label}/{year}: count=0 for non-gas scene (condition leak)");
+                else if (!clamped && (actual < sc.Vehicles.Min || actual > sc.Vehicles.Max))
                     errs.Add($"{label}/{year}: count={actual} outside [{sc.Vehicles.Min},{sc.Vehicles.Max}]");
 
                 int linesInText = prompt.SelectedVehicles.Count(m => prompt.Text.Contains($"- {m}"));
@@ -601,8 +612,10 @@ public static class PromptSmokeTest
                 if (prompt.Text.Contains("TEXT OVERLAY"))
                     errs.Add($"{label}/{year}: unexpected 'TEXT OVERLAY' section still present");
 
-                // Year still anchors the VEHICLES block ("no vehicle newer than 1975")
-                if (!prompt.Text.Contains($"no vehicle newer than {year}"))
+                // Year still anchors the VEHICLES block ("no vehicle newer than 1975");
+                // an abandoned era has no vehicles and therefore no anchor line.
+                if (prompt.SelectedVehicles.Count > 0 &&
+                    !prompt.Text.Contains($"no vehicle newer than {year}"))
                     errs.Add($"{label}/{year}: 'no vehicle newer than {year}' not found");
             }
         }
@@ -639,15 +652,15 @@ public static class PromptSmokeTest
             foreach (var (year, prompt) in run)
             {
                 int words = WordCount(prompt.Text);
-                if (words >= 650)
-                    errs.Add($"{label}/{year}: {words} words (limit 650)");
+                if (words >= 720)
+                    errs.Add($"{label}/{year}: {words} words (limit 720)");
             }
         int unknownWords = WordCount(unknownPrompt.Text);
-        if (unknownWords >= 650)
-            errs.Add($"unknown/1985: {unknownWords} words (limit 650)");
+        if (unknownWords >= 720)
+            errs.Add($"unknown/1985: {unknownWords} words (limit 720)");
 
-        f.Add(("C11", "Every prompt is under 650 words (limit raised from 550 for placement, sidewalk-rule, and tree-override lines)",
-            errs.Count == 0, errs.Count == 0 ? "All prompts under 650 words" : Join(errs)));
+        f.Add(("C11", "Every prompt is under 720 words (limit raised from 650 for condition, brand, traffic-flow, and pump-coupling lines)",
+            errs.Count == 0, errs.Count == 0 ? "All prompts under 720 words" : Join(errs)));
     }
 
     private static void DoC12(
@@ -776,7 +789,9 @@ public static class PromptSmokeTest
         {
             if (!prompt.Text.Contains(populate))
                 errs.Add($"{label}/{year}: missing populate-empty-base header");
-            if (!prompt.Text.Contains(sidewalk))
+            // An abandoned era is deserted — the PEOPLE block collapses to the
+            // no-people line and carries no sidewalk rule.
+            if (prompt.SceneCondition != "abandoned" && !prompt.Text.Contains(sidewalk))
                 errs.Add($"{label}/{year}: missing sidewalk rule");
         }
 
@@ -876,7 +891,8 @@ public static class PromptSmokeTest
                     errs.Add($"{label}/{year}: no 'window signs:' line with two quoted signs");
                 if (ExtrasLinesIn(prompt.Text, sc).Count == 0)
                     errs.Add($"{label}/{year}: no sampled extras line present");
-                if (eras[year].PeopleMix is { Count: > 0 } mix && !mix.Any(m => prompt.Text.Contains($"- {m}")))
+                if (prompt.SceneCondition != "abandoned" &&
+                    eras[year].PeopleMix is { Count: > 0 } mix && !mix.Any(m => prompt.Text.Contains($"- {m}")))
                     errs.Add($"{label}/{year}: no people_mix line present");
             }
 
@@ -894,32 +910,36 @@ public static class PromptSmokeTest
     {
         var errs = new List<string>();
 
-        // Presence in every prompt (including the unknown fallback).
+        // Presence in every prompt with vehicles (an abandoned era has no vehicles
+        // and no PLACEMENT line by design).
         foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, unknownPrompt))
-            if (PlacementLine(prompt) is null)
+            if (prompt.SelectedVehicles.Count > 0 && PlacementLine(prompt) is null)
                 errs.Add($"{label}/{year}: no PLACEMENT line");
 
-        // Per-run pattern de-duplication, evaluated per placement pool.
+        // Per-run pattern de-duplication. Patterns can be shared between the two
+        // pools and the used-set is shared across them, so replay the run's draws
+        // in year order: a repeat is only legal once every pattern in that draw's
+        // pool has already been used.
         void CheckRun(Dictionary<int, Prompt> run, string label)
         {
-            var entries = run.Values
-                .Select(p => (Count: p.SelectedVehicles.Count, Line: PlacementLine(p)))
-                .Where(e => e.Line is not null)
-                .ToList();
-
-            foreach (var poolTag in new[] { "34", "56" })
+            var used = new HashSet<string>();
+            foreach (var year in Years)
             {
-                var group = entries
-                    .Where(e => (poolTag == "34") == (e.Count <= 4))
-                    .Select(e => e.Line!)
-                    .ToList();
-                if (group.Count == 0) continue;
+                if (!run.TryGetValue(year, out var prompt) || prompt.SelectedVehicles.Count == 0)
+                    continue;
+                var line = PlacementLine(prompt);
+                if (line is null) continue; // already reported by the presence check
 
-                int poolSize = GenerationContext.PlacementPoolFor(poolTag == "34" ? 4 : 5).Count;
-                int expected = Math.Min(group.Count, poolSize);
-                int distinct = group.Distinct().Count();
-                if (distinct != expected)
-                    errs.Add($"{label} pool{poolTag}: {distinct} distinct of {group.Count} (expected {expected}, poolSize {poolSize})");
+                var pool    = GenerationContext.PlacementPoolFor(prompt.SelectedVehicles.Count);
+                var pattern = pool.FirstOrDefault(line.Contains);
+                if (pattern is null)
+                {
+                    errs.Add($"{label}/{year}: PLACEMENT line matches no pattern in its pool");
+                    continue;
+                }
+                if (used.Contains(pattern) && pool.Any(p => !used.Contains(p)))
+                    errs.Add($"{label}/{year}: pattern repeated before its pool was exhausted");
+                used.Add(pattern);
             }
         }
 
@@ -1012,6 +1032,80 @@ public static class PromptSmokeTest
 
         f.Add(("C21", "Run1 vs Run2: >=3 of 6 years differ in sampled extras or window signs",
             errs.Count == 0, errs.Count == 0 ? "Sufficient sampling variance between seeds" : Join(errs)));
+    }
+
+    // Prompt length budget in characters, over every prompt including the unknown
+    // fallback. Lengths are always logged so the longest blocks stay visible.
+    private static void DoC22(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Prompt unknownPrompt,
+        ILogger logger,
+        List<(string, string, bool, string)> f)
+    {
+        var errs    = new List<string>();
+        var lengths = new List<string>();
+
+        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, unknownPrompt))
+        {
+            int len = prompt.Text.Length;
+            lengths.Add($"{label} {year}={len}");
+            if (len > MaxPromptChars)
+                errs.Add($"C22 FAIL: {label} year {year} prompt is {len} chars (max {MaxPromptChars})");
+        }
+
+        logger.LogInformation("[Smoke] C22 lengths: {Lengths}", string.Join(" ", lengths));
+
+        f.Add(("C22", $"Every prompt is at most {MaxPromptChars} characters",
+            errs.Count == 0, errs.Count == 0 ? $"All prompts within {MaxPromptChars} chars" : Join(errs)));
+    }
+
+    // Conditions are gas-station-only: downtown prompts must never carry the
+    // zero-out lines or any condition other than "thriving", while gas prompts
+    // must honor what their sampled condition implies.
+    private static void DoC23(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+        const string noVehicles = "NO vehicles anywhere";
+        const string noPeople   = "NO people anywhere";
+
+        foreach (var (run, label) in new[] { (dtRun1, "downtown/run1"), (dtRun2, "downtown/run2") })
+            foreach (var (year, prompt) in run)
+            {
+                if (prompt.Text.Contains(noVehicles))
+                    errs.Add($"{label}/{year}: contains '{noVehicles}'");
+                if (prompt.Text.Contains(noPeople))
+                    errs.Add($"{label}/{year}: contains '{noPeople}'");
+                if (prompt.SceneCondition != "thriving")
+                    errs.Add($"{label}/{year}: SceneCondition '{prompt.SceneCondition}' (expected 'thriving')");
+            }
+
+        var peopleLine = new System.Text.RegularExpressions.Regex(@"EXACTLY (\d+) people");
+        foreach (var (run, label) in new[] { (gasRun1, "gas/run1"), (gasRun2, "gas/run2") })
+            foreach (var (year, prompt) in run)
+            {
+                if (prompt.SceneCondition == "abandoned")
+                {
+                    if (!prompt.Text.Contains(noVehicles))
+                        errs.Add($"{label}/{year}: abandoned but missing '{noVehicles}'");
+                    if (!prompt.Text.Contains(noPeople))
+                        errs.Add($"{label}/{year}: abandoned but missing '{noPeople}'");
+                }
+                else if (prompt.SceneCondition == "declining")
+                {
+                    var m = peopleLine.Match(prompt.Text);
+                    if (!m.Success || int.Parse(m.Groups[1].Value) is < 2 or > 4)
+                        errs.Add($"{label}/{year}: declining but people count is {(m.Success ? m.Groups[1].Value : "missing")} (expected 2-4)");
+                    if (prompt.SelectedVehicles.Count is < 1 or > 2)
+                        errs.Add($"{label}/{year}: declining but vehicle count is {prompt.SelectedVehicles.Count} (expected 1-2)");
+                }
+            }
+
+        f.Add(("C23", "Conditions stay gas-station-only: downtown always thriving with no zero-out lines; gas abandoned/declining prompts honor their counts",
+            errs.Count == 0, errs.Count == 0 ? "No condition leakage; gas condition counts honored" : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────

@@ -27,13 +27,13 @@ the source geometry.
 TRANSFORM TO 1995
 Clinton era prosperity. A 1995 self-serve station — wide canopy over multiple islands, attached convenience store, the first pay-at-pump card readers.
 
-CONDITION: new — recently built appearance, pristine surfaces, new signage
+CONDITION: busy — customers present, high activity, all pumps in use
 
 PERIOD DETAILS
-- self-serve pumps, some fitted with new credit-card readers
-- self-service only standard
+- air and water station at the lot edge
+- attached convenience store with lottery and cigarette ads in the glass
 - price sign showing gas around $1.15
-- main sign: an independent station sign in the style of Amoco
+- main sign: "Amoco" branded gas station — Amoco pole sign with price display and Amoco colors on the canopy fascia
 - window signs: 'CIGARETTES $1.89 PACK', 'CAR WASH $4 WITH FILL-UP'
 - a wire rack of free auto-trader papers by the door
 - a payphone mounted by the store entrance
@@ -41,19 +41,21 @@ Typography: clean geometric sans-serif, early digital influence.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 6 people, spread out with empty areas.
+EXACTLY 4 people, spread out with empty areas.
 - a clerk restocking the ice merchandiser
 - a parent and kid walking into the store
 - teens in baggy jeans and band tees
-Clothing: men in grunge style, windbreakers; women in slip dresses, chokers. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+Clothing: men in grunge style, windbreakers; women in slip dresses, chokers. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 1991-1996 Ford Escort — small rounded economy car — hunter green
-- 1988-1998 Chevrolet C/K 1500 — softly squared pickup — teal
-- 1992-1995 Honda Civic — small rounded coupe and sedan — navy blue
+- 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding — hunter green
+- 1995-2004 Toyota Tacoma — compact, rounded — navy blue
+- 1991-1996 Buick Roadmaster — large rounded wagon and sedan — burgundy
 Parked with gaps; no vehicle newer than 1995.
-PLACEMENT: the first two parked on the LEFT side; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
+All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+One of these vehicles is parked at the pump island with its driver standing beside it refueling.
+PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn lane arrows

@@ -28,31 +28,32 @@ TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 main street mid-revival — the video store replaced by a phone repair shop, third-wave coffee and a vape shop, smartphones in every hand.
 
 PERIOD DETAILS
-- MAIN STREET DINER with 'COFFEE $2.25' chalked on a menu board
+- STAR DINER with 'COFFEE $2.25' chalked on a menu board
+- barber shop with its spinning barber pole, now billed as a 'classic barbershop'
 - the old video store space now a phone repair shop with an 'iPHONE & TABLET REPAIR' LED sign
-- craft beer taproom with a hand-drawn chalkboard sidewalk sign
-- window signs: 'YOGA — FIRST CLASS FREE', 'BUY ONE GET ONE 50% OFF'
+- window signs: 'BUY ONE GET ONE 50% OFF', 'CRAFT LATTE $4.50'
+- chalkboard sandwich-board signs outside the cafes
 - a bike corral at the curb
-- a modern bike-share style rack
 Typography: minimalist flat sans-serif, simplified modern logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 11 people, spread out with empty areas.
-- sidewalk diners at small cafe tables under string lights
-- a dog leashed outside the coffee shop, its owner visible inside
-- a dog walker with three dogs
-Clothing: men in beards, skinny jeans; women in high-waisted skinny jeans, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+- a man in a henley checking a fitness band
+- a barista delivering drinks to an outdoor table
+- a courier carrying an insulated food delivery bag
+Clothing: men in boat shoes, beards; women in infinity scarves, ankle boots. Fashion palette: coral, mint green, navy. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
 EXACTLY 5 period vehicles, all different:
-- 2014-2019 Nissan Rogue — popular compact crossover — blue
-- 2013-2016 Ford Escape — rounded compact crossover — dark red
-- 2007-2017 Jeep Wrangler — boxy off-roader, round headlights — pearl white
-- 2013-2019 Ford Fusion — Aston-Martin-style grille, sleek — white
-- 2011-2016 Volkswagen Jetta — clean simple sedan — black
+- 2014-2018 Chevrolet Silverado — squared modern grille — black
+- 2007-2017 Jeep Wrangler — boxy off-roader, round headlights — blue
+- 2014-2019 Kia Soul — boxy urban hatchback — pearl white
+- 2015-2020 Ford Edge — mid-size crossover, bold grille — dark red
+- 2015-2020 Ford F-150 — aluminum body, C-clamp headlights — white
 Parked with gaps; no vehicle newer than 2015.
-PLACEMENT: three parked on the RIGHT side; one parked on the left near the corner; the last one driving away from the camera in the near lane. No vehicle in the same spot as any other era.
+All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks

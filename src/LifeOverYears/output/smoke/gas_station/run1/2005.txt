@@ -30,10 +30,10 @@ Post-9/11 era. A 2005 gas station — big multi-island canopy, card readers at e
 CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- large convenience store with energy-drink and phone-card ads in the glass
-- large multi-island canopies
+- pumps with card readers and small pay-at-pump screens
+- coin-operated air machine near the back of the lot
 - price sign showing gas around $2.30
-- main sign: an independent station sign in the style of Marathon
+- main sign: "RaceTrac" branded gas station — RaceTrac pole sign with price display and RaceTrac colors on the canopy fascia
 - window signs: 'ENERGY DRINKS 2 FOR $4', 'PHONE CARDS SOLD HERE'
 - a propane exchange cage by the storefront
 - a windshield-washer fluid display rack by the pumps
@@ -41,19 +41,20 @@ Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 5 people, spread out with empty areas.
+EXACTLY 3 people, spread out with empty areas.
 - a woman inserting her card at the pump reader
 - a clerk restocking the window display inside
 - a couple taking photos with a digital camera
-Clothing: men in baggy jeans, cargo shorts; women in velour tracksuits, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+Clothing: men in baggy jeans, cargo shorts; women in velour tracksuits, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 3 period vehicles, all different:
-- 2004-2010 Toyota Sienna — large rounded minivan — white
-- 2005-2010 Chevrolet Cobalt — compact economy sedan — dark blue
-- 2001-2007 Ford Escape — compact boxy SUV — gold
+EXACTLY 2 period vehicles, all different:
+- 1998-2005 Volkswagen New Beetle — retro bubble shape — gold
+- 2002-2006 Toyota Camry — smooth conservative mid-size — gray
 Parked with gaps; no vehicle newer than 2005.
-PLACEMENT: all parked on the RIGHT side with gaps; the first one driving away from the camera in the near lane. No vehicle in the same spot as any other era.
+All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+One of these vehicles is parked at the pump island with its driver standing beside it refueling.
+PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn arrows

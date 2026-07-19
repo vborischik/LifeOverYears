@@ -32,7 +32,13 @@ public sealed class PromptService : IPromptService
 
         var isGasStation = sceneType == "gas_station";
 
-        var condition = context.PickSceneCondition(eraProfile.AllowedSceneConditions);
+        // Conditions are a gas-station-only concept for now: only gas stations
+        // sample one and let it drive activity level (abandoned → deserted,
+        // declining → sparse). Other scene types always stay "thriving" and use
+        // their base scene_content ranges untouched.
+        var condition = isGasStation
+            ? context.PickSceneCondition(eraProfile.AllowedSceneConditions)
+            : "thriving";
         _logger.LogInformation("Scene condition for SceneDna {Id}, year {Year}: {Condition}",
             sceneDna.Id, year, condition);
 
@@ -41,21 +47,21 @@ public sealed class PromptService : IPromptService
         var peopleCount  = rng.Next(peopleRange.Min, peopleRange.Max + 1);
         var vehicleCount = rng.Next(vehicleRange.Min, vehicleRange.Max + 1);
 
-        // Condition dictates activity level: an abandoned place is deserted,
-        // a declining one only sparsely visited.
-        if (condition == "abandoned")
+        if (isGasStation && condition == "abandoned")
         {
             peopleCount  = 0;
             vehicleCount = 0;
         }
-        else if (condition == "declining")
+        else if (isGasStation && condition == "declining")
         {
             peopleCount  = rng.Next(2, 5);
             vehicleCount = rng.Next(1, 3);
         }
 
         var vehicles  = PickVehicles(eraProfile, context, vehicleCount, _logger);
-        var placement = context.NextPlacement(vehicles.Count);
+        // An abandoned era has no vehicles and no PLACEMENT line — don't consume a
+        // placement pattern from the run's pool for it.
+        var placement = vehicles.Count > 0 ? context.NextPlacement(vehicles.Count) : "";
         var brand     = isGasStation ? await ResolveGasBrandAsync(year, rng) : null;
 
         var text = template
@@ -390,6 +396,7 @@ public sealed class PromptService : IPromptService
         foreach (var (model, color) in vehicles)
             sb.AppendLine(color is null ? $"- {model}" : $"- {model} — {color}");
         sb.AppendLine($"Parked with gaps; no vehicle newer than {year}.");
+        sb.AppendLine("All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.");
         if (isGasStation)
             sb.AppendLine("One of these vehicles is parked at the pump island with its driver standing beside it refueling.");
         sb.Append($"PLACEMENT: {placement}. No vehicle in the same spot as any other era.");

@@ -30,10 +30,10 @@ Post-Vietnam, oil crisis era. A full-service neighborhood gas station in 1975 �
 CONDITION: new — recently built appearance, pristine surfaces, new signage
 
 PERIOD DETAILS
-- 'FREE MAPS' and trading-stamp decals on the office window
-- island canopies with brand colors
+- chest-style soda vending machine by the office door
+- gravity-style pump nozzles
 - price sign showing gas around $0.57
-- main sign: an independent station sign in the style of Gulf
+- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
 - window signs: 'MOTOR OIL 55¢ QT', 'TUNE-UP SPECIAL $19.95'
 - a folded newspaper stack tied with twine by the office door
 - an air hose with a driveway service bell line across the apron
@@ -41,19 +41,21 @@ Typography: bold sans-serif, slab serif, occasional script.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 6 people, spread out with empty areas.
+EXACTLY 4 people, spread out with empty areas.
 - a driver waiting behind the wheel while the attendant works
 - a kid buying a bottle of soda from the machine
 - a mailman in a USPS uniform with a leather satchel
-Clothing: men in wide lapels, turtlenecks; women in earth tones, wide leg pants. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+Clothing: men in wide lapels, turtlenecks; women in earth tones, wide leg pants. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 1972-1980 Dodge D100 — angular cab, simple grille
-- 1974-1983 Jeep Cherokee — two-door SUV, boxy, new model
-- 1968-1979 Chevrolet Nova — compact, simple three-box shape
+- 1973-1980 Chevrolet C10 — square body, chrome bumper
+- 1971-1976 Jeep Wagoneer — boxy full-size SUV, woodgrain trim optional
+- 1970-1978 AMC Gremlin — short stubby hatchback rear
 Parked with gaps; no vehicle newer than 1975.
-PLACEMENT: the first two parked on the RIGHT side; one parked on the left near the corner; the last one driving toward the camera in the far lane. No vehicle in the same spot as any other era.
+All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+One of these vehicles is parked at the pump island with its driver standing beside it refueling.
+PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, no rumble strips
