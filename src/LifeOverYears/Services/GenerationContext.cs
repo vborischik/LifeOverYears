@@ -17,16 +17,87 @@ public sealed class GenerationContext
     // ── Business names ────────────────────────────────────────────────────────
     // Descriptive words next to a business type leak onto signs ("the same local
     // diner, sign aging" rendered a sign reading "Aging Local DINER"), so scene
-    // content references the diner by a proper {DINER_NAME} token instead. One name
-    // is drawn per context (per scene run) and reused across all six eras.
+    // content references each recurring business by a proper name token instead.
+    // One name per pool is drawn per context (per scene run) and reused across
+    // all six eras.
     public static readonly IReadOnlyList<string> DinerNames = new[]
     {
         "MARY'S DINER", "MAIN STREET DINER", "STAR DINER", "TOWN DINER",
         "RED ROBIN DINER", "BLUE PLATE DINER"
     };
 
+    public static readonly IReadOnlyList<string> DrugStoreNames = new[]
+    {
+        "CORNER DRUGS", "CITY DRUG", "MAIN STREET PHARMACY", "PARK DRUGS"
+    };
+
+    public static readonly IReadOnlyList<string> HardwareNames = new[]
+    {
+        "MILLER HARDWARE", "ACE HARDWARE", "TOWN HARDWARE", "BENSON'S HARDWARE"
+    };
+
+    public static readonly IReadOnlyList<string> FiveAndDimeNames = new[]
+    {
+        "BEN FRANKLIN", "WOOLWORTH", "NEWBERRY'S"
+    };
+
+    public static readonly IReadOnlyList<string> BarberNames = new[]
+    {
+        "SAM'S BARBER SHOP", "MAIN ST BARBERS", "TONY'S BARBER SHOP", "CLASSIC CUTS"
+    };
+
+    public static readonly IReadOnlyList<string> ShoeRepairNames = new[]
+    {
+        "JOE'S SHOE REPAIR", "COBBLER'S CORNER", "CITY SHOE REPAIR"
+    };
+
+    public static readonly IReadOnlyList<string> ApplianceNames = new[]
+    {
+        "WESTSIDE TV & APPLIANCE", "HOME APPLIANCE CO", "CENTRAL TV"
+    };
+
+    public static readonly IReadOnlyList<string> DressShopNames = new[]
+    {
+        "THE FASHION SHOP", "ELAINE'S", "MODE APPAREL"
+    };
+
     private string? _dinerName;
     public string DinerName => _dinerName ??= DinerNames[Random.Next(DinerNames.Count)];
+
+    private string? _drugStoreName;
+    public string DrugStoreName => _drugStoreName ??= DrugStoreNames[Random.Next(DrugStoreNames.Count)];
+
+    private string? _hardwareName;
+    public string HardwareName => _hardwareName ??= HardwareNames[Random.Next(HardwareNames.Count)];
+
+    private string? _fiveAndDimeName;
+    public string FiveAndDimeName => _fiveAndDimeName ??= FiveAndDimeNames[Random.Next(FiveAndDimeNames.Count)];
+
+    private string? _barberName;
+    public string BarberName => _barberName ??= BarberNames[Random.Next(BarberNames.Count)];
+
+    private string? _shoeRepairName;
+    public string ShoeRepairName => _shoeRepairName ??= ShoeRepairNames[Random.Next(ShoeRepairNames.Count)];
+
+    private string? _applianceName;
+    public string ApplianceName => _applianceName ??= ApplianceNames[Random.Next(ApplianceNames.Count)];
+
+    private string? _dressShopName;
+    public string DressShopName => _dressShopName ??= DressShopNames[Random.Next(DressShopNames.Count)];
+
+    // Full token map for callers that substitute business names into an assembled
+    // prompt without needing to know each individual property.
+    public IReadOnlyDictionary<string, string> BusinessNameTokens() => new Dictionary<string, string>
+    {
+        ["{DINER_NAME}"]         = DinerName,
+        ["{DRUGSTORE_NAME}"]     = DrugStoreName,
+        ["{HARDWARE_NAME}"]      = HardwareName,
+        ["{FIVE_AND_DIME_NAME}"] = FiveAndDimeName,
+        ["{BARBER_NAME}"]        = BarberName,
+        ["{SHOE_REPAIR_NAME}"]   = ShoeRepairName,
+        ["{APPLIANCE_NAME}"]     = ApplianceName,
+        ["{DRESS_SHOP_NAME}"]    = DressShopName,
+    };
 
     // ── Scene condition ───────────────────────────────────────────────────────
     // One condition is sampled per era from that era's allowed list (a shared

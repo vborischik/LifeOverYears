@@ -30,27 +30,27 @@ Post-9/11 era. A 2005 gas station — big multi-island canopy, card readers at e
 CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- pumps with card readers and small pay-at-pump screens
-- coin-operated air machine near the back of the lot
+- branded canopy lighting
+- automated car wash tunnel beside the lot
 - price sign showing gas around $2.30
-- main sign: "RaceTrac" branded gas station — RaceTrac pole sign with price display and RaceTrac colors on the canopy fascia
-- window signs: 'ENERGY DRINKS 2 FOR $4', 'PHONE CARDS SOLD HERE'
-- a propane exchange cage by the storefront
-- a windshield-washer fluid display rack by the pumps
+- main sign: "QuikTrip" branded gas station — QuikTrip pole sign with price display and QuikTrip colors on the canopy fascia
+- window signs: 'CIGARETTES $3.75 PACK', 'PHONE CARDS SOLD HERE'
+- ribbon magnets on the door of the service office
+- trash cans with paper-towel dispensers between the pumps
 Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 3 people, spread out with empty areas.
-- a woman inserting her card at the pump reader
+EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
 - a clerk restocking the window display inside
-- a couple taking photos with a digital camera
-Clothing: men in baggy jeans, cargo shorts; women in velour tracksuits, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+- a customer walking out with a coffee cup
+- a UPS driver wheeling packages on a hand truck
+Clothing: men in baggy jeans, trucker hats; women in trucker hats, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
 EXACTLY 2 period vehicles, all different:
-- 1998-2005 Volkswagen New Beetle — retro bubble shape — gold
-- 2002-2006 Toyota Camry — smooth conservative mid-size — gray
+- 2001-2007 Ford Escape — compact boxy SUV — gold
+- 2003-2009 Hummer H2 — massive military-styled SUV — dark red
 Parked with gaps; no vehicle newer than 2005.
 All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
 One of these vehicles is parked at the pump island with its driver standing beside it refueling.

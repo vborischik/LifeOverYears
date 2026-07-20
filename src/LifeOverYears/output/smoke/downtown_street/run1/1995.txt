@@ -29,28 +29,28 @@ Clinton era prosperity. A 1995 main street — the video rental store at its abs
 
 PERIOD DETAILS
 - pizza and sub shop with a '2 SLICES + SODA $2.99' sign in the window
-- BLUE PLATE DINER with 'HOT COFFEE 75¢' in the window
-- barber shop with its spinning barber pole, unchanged
-- window signs: 'SUB COMBO $3.99', 'FREE INTERNET TRIAL — 30 DAYS'
+- RED ROBIN DINER with 'HOT COFFEE 75¢' in the window
+- music store with a 'CDs — CASSETTES' channel-letter sign
+- window signs: 'VHS 3-DAY RENTAL $1.99', 'CDs $9.99'
 - a wall-mounted payphone or payphone booth
-- the old painted ghost-sign now almost fully faded, barely legible
 - a bench with a local realtor ad
+- rollerblades leaning by a door
 Typography: clean geometric sans-serif, early digital influence.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 11 people, spread out with empty areas.
-- a woman talking on the wall-mounted payphone
-- two kids on a bench trading collectible cards
+EXACTLY 11 people TOTAL: 4 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
+- a group of teens in grunge flannel outside the music store
+- a clerk taping a sale poster inside a shop window
 - a mom loading groceries into a minivan
-Clothing: men in baggy jeans, grunge style; women in floral dresses, crop tops. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+Clothing: men in flannel shirts, windbreakers; women in floral dresses, crop tops. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
-- 1992-1996 Ford F-150 — rounded aero body — silver
-- 1992-1997 Ford Taurus — rounded jellybean shape, oval theme — teal
-- 1991-1996 Ford Escort — small rounded economy car — black
-- 1992-1996 Toyota Camry — rounded, understated — hunter green
+- 1991-1996 Ford Escort — small rounded economy car — teal
+- 1989-1997 Geo Metro — very small economy hatchback — silver
+- 1991-1994 Saturn SL — plastic body panels, compact — hunter green
+- 1988-1998 Chevrolet C/K 1500 — softly squared pickup — navy blue
 Parked with gaps; no vehicle newer than 1995.
 All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
 PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.

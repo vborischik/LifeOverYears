@@ -28,9 +28,9 @@ TRANSFORM TO 1975
 Post-Vietnam, oil crisis era. A working small-town main street in 1975 — locally owned shops with hand-painted and neon signs, a five & dime, and not a single modern chain in sight.
 
 PERIOD DETAILS
-- STAR DINER with a hand-lettered 'HOT COFFEE 25¢' sign in the window
-- appliance store window displaying console televisions with a 'COLOR TV' placard
-- corner drug store with a hand-painted 'REXALL DRUGS' style sign and a small neon 'PRESCRIPTIONS' sign in the window
+- MAIN STREET DINER with a hand-lettered 'HOT COFFEE 25¢' sign in the window
+- 'WESTSIDE TV & APPLIANCE' window displaying console televisions with a 'COLOR TV' placard
+- corner drug store with a hand-painted 'MAIN STREET PHARMACY' sign and a small neon 'PRESCRIPTIONS' sign in the window
 - window signs: 'ICE CREAM CONES 15¢', 'HAIRCUT $2.50'
 - a painted ghost-sign wall advertisement on brick, weathered but still clearly readable
 - a glass-and-aluminum telephone booth on the corner
@@ -38,11 +38,11 @@ Typography: bold sans-serif, slab serif, occasional script.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 11 people, spread out with empty areas.
+EXACTLY 17 people TOTAL: 7 near sidewalk (largest, foreground), 6 opposite sidewalk mid-block, 4 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
 - a mail carrier with a leather bag making rounds
 - an older man reading a folded newspaper on a bench
-- two boys with baseball gloves
-Clothing: men in turtlenecks, wide lapels; women in peasant blouses, earth tones. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+- a girl walking a bicycle with a basket
+Clothing: men in polyester suits, bell bottoms; women in wide leg pants, peasant blouses. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:

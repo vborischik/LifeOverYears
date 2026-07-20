@@ -28,31 +28,33 @@ TRANSFORM TO 2025
 Post-pandemic era. A 2025 main street — minimalist flat-logo storefronts, QR codes on the glass, delivery culture in plain view.
 
 PERIOD DETAILS
-- BLUE PLATE DINER with 'COFFEE $3.50' shown on a small digital menu screen in the window
-- boutique fitness studio with black-and-white minimalist branding
+- RED ROBIN DINER with 'COFFEE $3.50' shown on a small digital menu screen in the window
 - plant and gift shop with a hand-lettered kraft-paper window display
+- the old video store space now a specialty coffee bar with a minimalist flat logo
 - window signs: 'BOBA — BUY ONE GET ONE FRIDAYS', 'OAT MILK LATTE $6.50'
-- a shared e-scooter and e-bike dock at the curb
-- a stack of delivery packages waiting at a shop door
+- QR-code stickers on the storefront glass
+- outdoor cafe barriers with planters
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 13 people, spread out with empty areas.
-- a man in an oversized tee and chunky sneakers walking a small dog
-- a woman in athleisure carrying a boba tea
-- a woman filming a short vertical video on a phone
-Clothing: men in wide-leg pants, bucket hats; women in athleisure, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+EXACTLY 14 people TOTAL: 6 near sidewalk (largest, foreground), 5 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
+- a delivery courier with an insulated backpack picking up an order
+- sidewalk diners in a parklet dining structure
+- a delivery courier with a large insulated backpack
+Clothing: men in oversized fit tees, wide-leg pants; women in chunky dad sneakers, high-waisted wide-leg jeans. Fashion palette: sage green, beige, cream. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2023-2025 Kia Sportage — futuristic boomerang lights — gray
-- 2021-2025 Chevrolet Tahoe — huge full-size SUV — silver
-- 2024-2025 Toyota Grand Highlander — large family crossover — white
-- 2021-2025 Ford Bronco — retro boxy off-roader — dark green
+EXACTLY 6 period vehicles, all different:
+- 2017-2025 Honda CR-V — rounded best-selling crossover — dark green
+- 2019-2025 Subaru Outback — rugged wagon crossover — white
+- 2021-2025 Chevrolet Tahoe — huge full-size SUV — blue
+- 2019-2025 GMC Sierra — chrome-heavy full-size pickup — gray
+- 2023-2025 Kia Sportage — futuristic boomerang lights — black
+- 2021-2025 Nissan Rogue — squared-off crossover, floating roofline — silver
 Parked with gaps; no vehicle newer than 2025.
 All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
-PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
+PLACEMENT: three parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks

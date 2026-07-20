@@ -27,36 +27,35 @@ the source geometry.
 TRANSFORM TO 2005
 Post-9/11 era. A 2005 gas station — big multi-island canopy, card readers at every pump, LED price sign, and a convenience store doing most of the business.
 
-CONDITION: busy — customers present, high activity, all pumps in use
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
-- large convenience store with energy-drink and phone-card ads in the glass
+- wide multi-island canopy with branded fascia lighting
 - pumps with card readers and small pay-at-pump screens
 - price sign showing gas around $2.30
 - main sign: "BP" branded gas station — BP pole sign with price display and BP colors on the canopy fascia
-- window signs: 'ENERGY DRINKS 2 FOR $4', 'CIGARETTES $3.75 PACK'
-- ribbon magnets on the door of the service office
+- window signs: 'CIGARETTES $3.75 PACK', 'PHONE CARDS SOLD HERE'
 - a propane exchange cage by the storefront
+- trash cans with paper-towel dispensers between the pumps
 Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 5 people, spread out with empty areas.
+EXACTLY 6 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
 - a teenager filling tires at the coin-operated air machine
 - a man talking on a flip phone while leaning against his SUV as it fuels
 - a woman walking a small dog in a sweater
-Clothing: men in graphic tees, baggy jeans; women in chunky highlights, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+Clothing: men in trucker hats, frosted tips hair; women in trucker hats, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2001-2007 Dodge Grand Caravan — family minivan, rounded — gold
-- 2005-2010 Ford Mustang — retro muscle revival — dark blue
-- 2003-2009 Hummer H2 — massive military-styled SUV — dark red
-- 2004-2008 Chrysler 300 — bold boxy retro chrome grille — gray
+EXACTLY 3 period vehicles, all different:
+- 2001-2005 Honda Civic — rounded compact, very common — gray
+- 2002-2006 Toyota Camry — smooth conservative mid-size — black
+- 1998-2005 Volkswagen New Beetle — retro bubble shape — dark blue
 Parked with gaps; no vehicle newer than 2005.
 All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
 One of these vehicles is parked at the pump island with its driver standing beside it refueling.
-PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn arrows

@@ -27,7 +27,7 @@ the source geometry.
 TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 station — LED-lit canopy, digital price sign, video ads playing on every pump screen, and a big convenience store.
 
-CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
+CONDITION: restored — renovated appearance, modern updates on original structure
 
 PERIOD DETAILS
 - red DVD-rental kiosk outside the store entrance
@@ -41,16 +41,18 @@ Typography: minimalist flat sans-serif, simplified modern logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 4 people, spread out with empty areas.
+EXACTLY 7 people TOTAL: 3 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
 - a woman scrolling her smartphone while leaning on her crossover
 - a man returning a disc at the DVD kiosk
 - a woman in yoga pants carrying a green smoothie
 Clothing: men in henley shirts, slim-fit plaid shirts; women in ankle boots, infinity scarves. Fashion palette: coral, mint green, navy. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 2 period vehicles, all different:
+EXACTLY 4 period vehicles, all different:
 - 2013-2019 Ford Fusion — Aston-Martin-style grille, sleek — dark red
-- 2011-2016 Honda CR-V — rounded compact crossover — silver
+- 2011-2016 Honda CR-V — rounded compact crossover — black
+- 2014-2021 Subaru Outback — rugged wagon crossover — gray
+- 2013-2016 Mazda CX-5 — flowing KODO-design crossover — white
 Parked with gaps; no vehicle newer than 2015.
 All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
 One of these vehicles is parked at the pump island with its driver standing beside it refueling.

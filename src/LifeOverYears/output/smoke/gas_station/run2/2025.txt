@@ -30,32 +30,32 @@ Post-pandemic era. A 2025 fuel stop — LED canopy, full-color digital price sig
 CONDITION: restored — renovated appearance, modern updates on original structure
 
 PERIOD DETAILS
-- drive-through coffee lane attached to the store
-- free air and vacuum station at the lot edge
+- pay-at-pump screens with video ads
+- modern canopy with bright white LED lighting
 - price sign showing gas around $3.40
-- main sign: "RaceTrac" branded gas station — RaceTrac pole sign with price display and RaceTrac colors on the canopy fascia
-- window signs: 'SCAN & GO — SKIP THE LINE', 'MEMBERS SAVE 10¢/GAL'
-- stacked bags of ice and firewood outside
+- main sign: "Mobil" branded gas station — Mobil pole sign with price display and Mobil colors on the canopy fascia
+- window signs: 'COLD BREW $3.99', 'MEMBERS SAVE 10¢/GAL'
 - outdoor cafe barriers with planters by the coffee lane
+- digital menu screens glowing in the store windows
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 4 people, spread out with empty areas.
+EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
 - a driver self-serving at the pump
-- a delivery van driver walking out with a coffee
-- a parent and kid sharing earbuds
-Clothing: men in oversized fit tees, bucket hats; women in oversized blazers, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+- a clerk restocking the grab-and-go cooler behind the glass
+- a delivery courier with a large insulated backpack
+Clothing: men in oversized fit tees, techwear; women in high-waisted wide-leg jeans, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 2019-2025 Ram 1500 — crew cab pickup, large grille — white
-- 2021-2025 Toyota Camry — sleek sedan, aggressive front fascia — gray
-- 2021-2025 Kia Carnival — boxy SUV-styled minivan — blue
+- 2023-2025 Honda Accord — clean minimalist refresh — black
+- 2022-2025 Ford Maverick — small unibody pickup — blue
+- 2021-2025 Chrysler Pacifica — sleek minivan, thin lights — silver
 Parked with gaps; no vehicle newer than 2025.
 All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
 One of these vehicles is parked at the pump island with its driver standing beside it refueling.
-PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
+PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks

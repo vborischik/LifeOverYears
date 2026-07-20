@@ -232,14 +232,14 @@
     "downtown_street": {
       "narrative": "A working small-town main street in 1975 — locally owned shops with hand-painted and neon signs, a five & dime, and not a single modern chain in sight.",
       "storefronts": [
-        "corner drug store with a hand-painted 'REXALL DRUGS' style sign and a small neon 'PRESCRIPTIONS' sign in the window",
-        "'BEN FRANKLIN' five & dime with red-and-white lettering",
+        "corner drug store with a hand-painted '{DRUGSTORE_NAME}' sign and a small neon 'PRESCRIPTIONS' sign in the window",
+        "'{FIVE_AND_DIME_NAME}' five & dime with red-and-white lettering",
         "{DINER_NAME} with a hand-lettered 'HOT COFFEE 25¢' sign in the window",
-        "barber shop with a spinning red-white-and-blue barber pole by the door",
-        "hardware store with 'PAINT — GLASS — KEYS' painted on the display window",
-        "shoe repair shop with a small 'SHOE REPAIR — WHILE U WAIT' sign",
-        "appliance store window displaying console televisions with a 'COLOR TV' placard",
-        "women's dress shop with gold-leaf window lettering"
+        "barber shop with a spinning red-white-and-blue barber pole by the door and '{BARBER_NAME}' window lettering",
+        "'{HARDWARE_NAME}' with 'PAINT — GLASS — KEYS' painted on the display window",
+        "'{SHOE_REPAIR_NAME}' with a small 'SHOE REPAIR — WHILE U WAIT' sign",
+        "'{APPLIANCE_NAME}' window displaying console televisions with a 'COLOR TV' placard",
+        "'{DRESS_SHOP_NAME}' women's dress shop with gold-leaf window lettering"
       ],
       "window_signs": [
         "SALE — 3 for $1",
@@ -249,7 +249,7 @@
         "MILK 69¢ HALF GALLON",
         "TV REPAIR — FREE ESTIMATES"
       ],
-      "people": { "min": 10, "max": 15 },
+      "people": { "min": 16, "max": 22 },
       "people_activities": [
         "a woman in a midi skirt window-shopping at the five & dime",
         "two men in wide-lapel jackets talking outside the diner",
@@ -260,7 +260,13 @@
         "a teenager leaning on a bicycle near the curb",
         "a barber visible through the shop window cutting hair",
         "a couple leaving the diner, the man holding the door",
-        "a mail carrier with a leather bag making rounds"
+        "a mail carrier with a leather bag making rounds",
+        "two men in short-sleeve dress shirts talking outside the hardware store",
+        "a woman carrying paper grocery bags in both arms",
+        "a group of kids clustered outside the five & dime looking at the candy display",
+        "a small group waiting to cross at the corner crosswalk",
+        "a man in a fedora reading the drug store window display",
+        "a woman pushing a baby carriage along the sidewalk"
       ],
       "vehicles": { "min": 4, "max": 6 },
       "extras": [

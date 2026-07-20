@@ -17,10 +17,23 @@ public static class PromptSmokeTest
 
     private static readonly JsonSerializerOptions WriteJson = new() { WriteIndented = true };
 
-    private static readonly string[] Placeholders =
+    // Matches ANY unresolved {TOKEN} — template placeholders (e.g. {SCENE_BLOCK})
+    // as well as business-name tokens (e.g. {DINER_NAME}) — so a new token added
+    // anywhere in the future is caught automatically without updating a whitelist.
+    private static readonly System.Text.RegularExpressions.Regex UnresolvedTokenPattern =
+        new(@"\{[A-Z_]+\}");
+
+    // Every business-name pool, keyed by its template token, for token-resolution checks.
+    private static readonly (string Token, IReadOnlyList<string> Pool)[] BusinessNamePools =
     {
-        "{YEAR}", "{PRESERVE_BLOCK}", "{SCENE_BLOCK}", "{PEOPLE_BLOCK}",
-        "{VEHICLES_BLOCK}", "{ENVIRONMENT_BLOCK}", "{STYLE_BLOCK}"
+        ("{DINER_NAME}",         GenerationContext.DinerNames),
+        ("{DRUGSTORE_NAME}",     GenerationContext.DrugStoreNames),
+        ("{HARDWARE_NAME}",      GenerationContext.HardwareNames),
+        ("{FIVE_AND_DIME_NAME}", GenerationContext.FiveAndDimeNames),
+        ("{BARBER_NAME}",        GenerationContext.BarberNames),
+        ("{SHOE_REPAIR_NAME}",   GenerationContext.ShoeRepairNames),
+        ("{APPLIANCE_NAME}",     GenerationContext.ApplianceNames),
+        ("{DRESS_SHOP_NAME}",    GenerationContext.DressShopNames),
     };
 
     // Expected coffee-price substring in downtown_street storefronts per era (C8)
@@ -98,6 +111,7 @@ public static class PromptSmokeTest
         DoC21(gasRun1, gasRun2, dtRun1, dtRun2, eras,         findings);
         DoC22(gasRun1, gasRun2, dtRun1, dtRun2, unknownPrompt, logger, findings);
         DoC23(gasRun1, gasRun2, dtRun1, dtRun2,               findings);
+        DoC24(gasRun1, gasRun2, dtRun1, dtRun2,               findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -341,11 +355,10 @@ public static class PromptSmokeTest
                           .Append(unknownPrompt);
 
         foreach (var p in all)
-            foreach (var ph in Placeholders)
-                if (p.Text.Contains(ph))
-                    errs.Add($"year={p.Year}: found '{ph}'");
+            foreach (System.Text.RegularExpressions.Match m in UnresolvedTokenPattern.Matches(p.Text))
+                errs.Add($"year={p.Year}: found unresolved token '{m.Value}'");
 
-        f.Add(("C2", "No unresolved template placeholders remain",
+        f.Add(("C2", "No unresolved {TOKEN} of any kind remains in any prompt",
             errs.Count == 0, errs.Count == 0 ? "All placeholders resolved" : Join(errs)));
     }
 
@@ -1106,6 +1119,64 @@ public static class PromptSmokeTest
 
         f.Add(("C23", "Conditions stay gas-station-only: downtown always thriving with no zero-out lines; gas abandoned/declining prompts honor their counts",
             errs.Count == 0, errs.Count == 0 ? "No condition leakage; gas condition counts honored" : Join(errs)));
+    }
+
+    // Every business-name token resolves to a value drawn from its own pool (never
+    // a foreign pool's name or a leftover literal), and stays identical across
+    // every era built on the same context — mirroring how PromptService calls
+    // context.BusinessNameTokens() once per era on the ONE GenerationContext shared
+    // across all six eras of a run.
+    //
+    // Only {DINER_NAME} is guaranteed to land in every sampled prompt today (its
+    // storefront line is the only one price-anchored, so BuildSceneBlock's 3-of-8
+    // storefront sampler always includes it); the other seven tokens currently
+    // live only in 1975 downtown_street and compete for the two remaining sampled
+    // slots, so they will not appear in every run. This check therefore verifies
+    // the resolution MECHANISM directly (deterministic, independent of storefront
+    // sampling luck) and separately verifies no cross-era mismatch or cross-pool
+    // leak in whatever the sampler actually included.
+    private static void DoC24(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+
+        foreach (var seed in new[] { 7, 4242 })
+        {
+            var ctx    = new GenerationContext { Random = new Random(seed) };
+            var first  = ctx.BusinessNameTokens();
+            var second = ctx.BusinessNameTokens(); // simulates the next era's call on the same run context
+
+            foreach (var (token, pool) in BusinessNamePools)
+            {
+                if (!pool.Contains(first[token]))
+                    errs.Add($"seed {seed}: {token} resolved to '{first[token]}', not a member of its own pool");
+                if (first[token] != second[token])
+                    errs.Add($"seed {seed}: {token} changed between calls on the same context ('{first[token]}' vs '{second[token]}') — must stay stable across eras");
+            }
+        }
+
+        void CheckRun(Dictionary<int, Prompt> run, string label)
+        {
+            foreach (var (token, pool) in BusinessNamePools)
+            {
+                var found = run.Values
+                    .SelectMany(p => pool.Where(n => p.Text.Contains(n)))
+                    .Distinct()
+                    .ToList();
+                if (found.Count > 1)
+                    errs.Add($"{label}: {token} resolved to different names across eras: {string.Join(", ", found)}");
+            }
+        }
+
+        CheckRun(gasRun1, "gas/run1");
+        CheckRun(gasRun2, "gas/run2");
+        CheckRun(dtRun1,  "downtown/run1");
+        CheckRun(dtRun2,  "downtown/run2");
+
+        f.Add(("C24", "Every business-name token resolves to a member of its own pool and stays identical across all six eras of a run",
+            errs.Count == 0, errs.Count == 0 ? "All 8 business tokens resolve correctly and remain stable per run" : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────
