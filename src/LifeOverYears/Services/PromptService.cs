@@ -70,10 +70,15 @@ public sealed class PromptService : IPromptService
             .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, rng))
             .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation))
             .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year))
-            .Replace("{STYLE_BLOCK}",       BuildStyleBlock(eraProfile.Photography))
-            // Scene content refers to the recurring diner by token so the same name
-            // persists across every era of a run; resolve it last.
-            .Replace("{DINER_NAME}",        context.DinerName);
+            .Replace("{STYLE_BLOCK}",       BuildStyleBlock(eraProfile.Photography));
+
+        // Scene content refers to recurring businesses (diner, drug store, etc.) by
+        // token so the same name persists across every era of a run; resolve them
+        // last, over the fully assembled text, so tokens landing in any era JSON
+        // field (storefronts, window_signs, extras, people_activities, narrative)
+        // are covered regardless of which block builder emitted them.
+        foreach (var (token, name) in context.BusinessNameTokens())
+            text = text.Replace(token, name);
 
         return new Prompt(
             Id:               Guid.NewGuid().ToString(),
@@ -310,7 +315,13 @@ public sealed class PromptService : IPromptService
             sb.Append("NO people anywhere — the place is completely deserted.");
             return sb.ToString();
         }
-        sb.AppendLine($"EXACTLY {peopleCount} people, spread out with empty areas.");
+
+        var (near, opposite, distant) = SplitIntoZones(peopleCount);
+        var zones = new List<string>();
+        if (near > 0)     zones.Add($"{near} near sidewalk (largest, foreground)");
+        if (opposite > 0) zones.Add($"{opposite} opposite sidewalk mid-block");
+        if (distant > 0)  zones.Add($"{distant} distant, far end of block");
+        sb.AppendLine($"EXACTLY {peopleCount} people TOTAL: {string.Join(", ", zones)}. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.");
 
         if (content is not null)
             foreach (var activity in Sample(content.PeopleActivities, 2, rng))
@@ -330,6 +341,26 @@ public sealed class PromptService : IPromptService
         if (isGasStation)
             sb.Append(" Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.");
         return sb.ToString();
+    }
+
+    // ~40% near sidewalk (largest, foreground/mid-ground), ~35% opposite sidewalk
+    // mid-block, remainder as small distant figures — always summing to the exact
+    // total so the count contract holds regardless of scene density.
+    private static (int Near, int Opposite, int Distant) SplitIntoZones(int peopleCount)
+    {
+        var near     = (int)Math.Round(peopleCount * 0.40, MidpointRounding.AwayFromZero);
+        var opposite = (int)Math.Round(peopleCount * 0.35, MidpointRounding.AwayFromZero);
+        var distant  = peopleCount - near - opposite;
+        if (distant < 0)
+        {
+            var shrink       = -distant;
+            var fromOpposite = Math.Min(opposite, shrink);
+            opposite -= fromOpposite;
+            shrink   -= fromOpposite;
+            near      = Math.Max(0, near - shrink);
+            distant   = peopleCount - near - opposite;
+        }
+        return (near, opposite, distant);
     }
 
     private static List<(string Model, string? Color)> PickVehicles(

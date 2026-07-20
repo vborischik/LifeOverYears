@@ -28,31 +28,32 @@ TRANSFORM TO 1985
 Reagan era prosperity. A 1985 main street in transition — neon and backlit plastic overtaking hand-painted signs, a first small video rental shop among the old local stores.
 
 PERIOD DETAILS
-- BLUE PLATE DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
+- RED ROBIN DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
 - video arcade with a 'GAMES 25¢' neon sign and posters in the window
-- hair salon with a neon script 'STYLES' sign
-- window signs: 'PERM SPECIAL $25', '2 SLICES $1.50'
+- corner drug store with backlit plastic channel letters reading 'PHARMACY'
+- window signs: 'SALE 25% OFF', 'VHS OVERNIGHT RENTAL $2.99'
 - a bank of coin newspaper boxes at the corner
 - the painted ghost-sign wall ad now noticeably fading, colors washing out
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 10 people, spread out with empty areas.
-- a jogger in a bright tracksuit and headband passing through
-- a teenager carrying a boombox on his shoulder
-- a businessman with a briefcase and wide tie
-Clothing: men in acid wash jeans, windbreakers; women in bright neon colors, high-waisted jeans. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+EXACTLY 11 people TOTAL: 4 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
+- a businessman in a boxy suit walking briskly with a briefcase
+- a man in a windbreaker reading a newspaper by the corner
+- a mother with two kids in tow
+Clothing: men in windbreakers, shoulder pads in blazers; women in bright neon colors, shoulder pads. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
+EXACTLY 5 period vehicles, all different:
+- 1982-1992 Chevrolet Camaro — wedge-shaped sporty coupe — red
+- 1984-1988 Pontiac Fiero — small wedge two-seater — white
+- 1975-1991 Ford Econoline — boxy full-size van — silver
+- 1977-1990 Chevrolet Caprice — boxy full-size sedan, formal lines — burgundy
 - 1984-1987 Toyota Corolla — boxy compact, reliable look — charcoal gray
-- 1984-1989 Plymouth Voyager — boxy first-generation minivan — beige
-- 1982-1992 Chevrolet Camaro — wedge-shaped sporty coupe — white
-- 1973-1991 Chevrolet Suburban — long boxy wagon-SUV — light blue
 Parked with gaps; no vehicle newer than 1985.
 All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
-PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+PLACEMENT: two parked on the LEFT side; the rest parked on the RIGHT side with gaps. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, painted crosswalks

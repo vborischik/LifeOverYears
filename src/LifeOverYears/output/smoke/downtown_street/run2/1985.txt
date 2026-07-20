@@ -28,31 +28,33 @@ TRANSFORM TO 1985
 Reagan era prosperity. A 1985 main street in transition — neon and backlit plastic overtaking hand-painted signs, a first small video rental shop among the old local stores.
 
 PERIOD DETAILS
-- STAR DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
+- MAIN STREET DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
 - video arcade with a 'GAMES 25¢' neon sign and posters in the window
-- electronics store with a red 'RADIOSHACK' style logo sign
-- window signs: '2 SLICES $1.50', 'PERM SPECIAL $25'
+- record store with 'CASSETTES — LPs' in neon-accented window lettering
+- window signs: 'VHS OVERNIGHT RENTAL $2.99', 'PERM SPECIAL $25'
 - a mailbox with graffiti scratches
-- a bank of coin newspaper boxes at the corner
+- movie posters taped inside the video shop windows
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 11 people, spread out with empty areas.
-- a businessman in a boxy suit walking briskly with a briefcase
-- a teenager carrying a boombox on his shoulder
-- a businessman with a briefcase and wide tie
-Clothing: men in polo shirts with collars up, shoulder pads in blazers; women in big permed hair, shoulder pads. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+EXACTLY 13 people TOTAL: 5 near sidewalk (largest, foreground), 5 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
+- a man in a windbreaker reading a newspaper by the corner
+- a kid locking a BMX bike to a signpost
+- a kid with a boombox on his shoulder
+Clothing: men in windbreakers, shoulder pads in blazers; women in shoulder pads, high-waisted jeans. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 1977-1990 Chevrolet Caprice — boxy full-size sedan, formal lines — red
-- 1982-1985 Toyota Celica — angular sporty coupe, pop-up lights — beige
-- 1982-1993 Chevrolet S-10 — compact pickup, square — silver
-- 1979-1985 Ford LTD Country Squire — full-size woodgrain wagon — burgundy
+EXACTLY 6 period vehicles, all different:
+- 1980-1985 Cadillac Seville — sharp formal lines, bustleback — red
+- 1978-1986 Ford Bronco — full-size boxy SUV, round headlights — beige
+- 1979-1985 Ford Mustang — Fox body, angular hatchback coupe — light blue
+- 1982-1986 Nissan Sentra — small economy boxy sedan — burgundy
+- 1983-1987 Honda Accord — clean lines, pop-up headlights — charcoal gray
+- 1984-1989 Plymouth Voyager — boxy first-generation minivan — silver
 Parked with gaps; no vehicle newer than 1985.
 All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
-PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
+PLACEMENT: three parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, painted crosswalks

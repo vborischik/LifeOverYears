@@ -27,31 +27,31 @@ the source geometry.
 TRANSFORM TO 1995
 Clinton era prosperity. A 1995 self-serve station — wide canopy over multiple islands, attached convenience store, the first pay-at-pump card readers.
 
-CONDITION: busy — customers present, high activity, all pumps in use
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
-- air and water station at the lot edge
-- attached convenience store with lottery and cigarette ads in the glass
+- self-serve pumps, some fitted with new credit-card readers
+- large canopy covering multiple islands
 - price sign showing gas around $1.15
-- main sign: "Amoco" branded gas station — Amoco pole sign with price display and Amoco colors on the canopy fascia
-- window signs: 'CIGARETTES $1.89 PACK', 'CAR WASH $4 WITH FILL-UP'
-- a wire rack of free auto-trader papers by the door
+- main sign: "Mobil" branded gas station — Mobil pole sign with price display and Mobil colors on the canopy fascia
+- window signs: '2 HOT DOGS $2', 'CIGARETTES $1.89 PACK'
 - a payphone mounted by the store entrance
+- a hand-written 'PUMP 3 OUT OF ORDER' sign taped to one pump
 Typography: clean geometric sans-serif, early digital influence.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 4 people, spread out with empty areas.
-- a clerk restocking the ice merchandiser
+EXACTLY 6 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
 - a parent and kid walking into the store
-- teens in baggy jeans and band tees
-Clothing: men in grunge style, windbreakers; women in slip dresses, chokers. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+- a woman swiping a card at the new pay-at-pump reader
+- two women power-walking in windbreakers
+Clothing: men in backwards caps, flannel shirts; women in chokers, floral dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding — hunter green
-- 1995-2004 Toyota Tacoma — compact, rounded — navy blue
-- 1991-1996 Buick Roadmaster — large rounded wagon and sedan — burgundy
+- 1988-1998 Chevrolet C/K 1500 — softly squared pickup — burgundy
+- 1991-1994 Saturn SL — plastic body panels, compact — white
+- 1990-1997 Mazda Miata — tiny rounded roadster, pop-up lights — hunter green
 Parked with gaps; no vehicle newer than 1995.
 All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
 One of these vehicles is parked at the pump island with its driver standing beside it refueling.

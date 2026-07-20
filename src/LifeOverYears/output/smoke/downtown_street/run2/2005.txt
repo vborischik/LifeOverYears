@@ -29,30 +29,32 @@ Post-9/11 era. A 2005 main street — cellular stores and chain coffee arriving,
 
 PERIOD DETAILS
 - the video rental store closing down — 'EVERYTHING MUST GO — ALL MOVIES $3' banner across the window
-- STAR DINER with a refreshed awning and a 'COFFEE $1.25' vinyl decal on the glass
-- espresso cafe with a chalkboard menu and a round-logo awning
-- window signs: 'EVERYTHING MUST GO — 50-70% OFF', 'LATTE $2.95'
+- MAIN STREET DINER with a refreshed awning and a 'COFFEE $1.25' vinyl decal on the glass
+- barber shop with its spinning barber pole, unchanged
+- window signs: 'EVERYTHING MUST GO — 50-70% OFF', 'DVDs $14.99'
+- a free real-estate flyer box on the corner
 - a single scuffed payphone covered in stickers, rarely used
-- the ghost-sign reduced to a faint trace of paint on the brick
 Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 13 people, spread out with empty areas.
-- a businessman with a Bluetooth earpiece gesturing as he walks
-- a man loading a flat-screen TV box into an SUV
-- a woman walking a small dog in a sweater
-Clothing: men in cargo shorts, graphic tees; women in velour tracksuits, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+EXACTLY 11 people TOTAL: 4 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
+- a teenager texting on a flip phone with both thumbs
+- a barista handing an iced drink to a customer at the cafe door
+- a group of college kids with messenger bags
+Clothing: men in frosted tips hair, cargo shorts; women in velour tracksuits, chunky highlights. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2005-2010 Ford Mustang — retro muscle revival — dark red
-- 2000-2005 Ford Focus — European-styled compact — gray
-- 2003-2008 Toyota Corolla — conservative compact sedan — gold
-- 2001-2007 Dodge Grand Caravan — family minivan, rounded — dark blue
+EXACTLY 6 period vehicles, all different:
+- 2000-2005 Ford Focus — European-styled compact — gold
+- 2005-2010 Chevrolet Cobalt — compact economy sedan — dark red
+- 2001-2007 Ford Escape — compact boxy SUV — white
+- 2002-2006 Toyota Camry — smooth conservative mid-size — black
+- 2003-2009 Hummer H2 — massive military-styled SUV — dark blue
+- 2004-2010 Toyota Sienna — large rounded minivan — gray
 Parked with gaps; no vehicle newer than 2005.
 All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
-PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
+PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn arrows

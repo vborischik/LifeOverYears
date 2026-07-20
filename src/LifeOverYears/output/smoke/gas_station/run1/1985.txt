@@ -30,32 +30,32 @@ Reagan era prosperity. A 1985 self-service gas station — digital price sign ne
 CONDITION: new — recently built appearance, pristine surfaces, new signage
 
 PERIOD DETAILS
+- convenience store attached becoming common
 - propane tank exchange cage beside the building
-- flat canopy over two pump islands with angular 1980s brand striping
 - price sign showing gas around $1.12
-- main sign: "Hess" branded gas station — Hess pole sign with price display and Hess colors on the canopy fascia
-- window signs: 'MOTOR OIL 99¢ QT', 'HOT DOGS 2 FOR $1'
-- arcade game posters taped in the store window
+- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
+- window signs: 'CIGARETTES $1.10 PACK', 'FREE COFFEE WITH FILL-UP'
 - a mailbox with graffiti scratches at the lot edge
+- a display rack of windshield-washer fluid jugs
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 7 people, spread out with empty areas.
-- a driver waiting in his car for a free pump
+EXACTLY 7 people TOTAL: 3 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
+- a customer walking into the store counting bills
 - a clerk visible at the register through the store window
-- an older man in a flat cap reading a paper
-Clothing: men in polo shirts with collars up, acid wash jeans; women in big permed hair, leg warmers. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+- a mother with two kids in tow
+Clothing: men in windbreakers, shoulder pads in blazers; women in bright neon colors, shoulder pads. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 1984-1987 Honda Civic — small boxy hatchback — white
-- 1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan — red
-- 1982-1993 Chevrolet S-10 — compact pickup, square — light blue
+- 1982-1986 Nissan Sentra — small economy boxy sedan — light blue
+- 1984-1989 Plymouth Voyager — boxy first-generation minivan — charcoal gray
+- 1978-1987 Chevrolet Monte Carlo — personal luxury coupe, long hood — beige
 Parked with gaps; no vehicle newer than 1985.
 All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
 One of these vehicles is parked at the pump island with its driver standing beside it refueling.
-PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, painted crosswalks

@@ -41,7 +41,7 @@ Typography: bold sans-serif, slab serif, occasional script.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 4 people, spread out with empty areas.
+EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
 - a driver waiting behind the wheel while the attendant works
 - a mechanic leaning under the open hood of a car by the bay
 - a woman with a headscarf carrying a paper grocery bag
