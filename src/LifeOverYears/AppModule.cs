@@ -69,6 +69,8 @@ public sealed class AppModule : Module
                     _.Resolve<IDataService>(),
                     _.Resolve<IRunService>(),
                     _.Resolve<IImageGenerationProvider>(),
+                    _.Resolve<IYearOverlayService>(),
+                    _.Resolve<IVideoService>(),
                     _loggerFactory.CreateLogger<Pipeline>()))
                .SingleInstance();
     }

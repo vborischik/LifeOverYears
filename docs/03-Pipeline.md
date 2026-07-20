@@ -121,39 +121,36 @@ Conditions (`thriving` / `busy` / `new` / `declining` / `abandoned` / `restored`
 
 ---
 
-## Step 3 — Historical Images (submit/collect)
+## Step 3 — Historical Images (submit + wait)
 
-Generates photorealistic historical reconstructions for each era year via an async batch-style job model: submission and collection are decoupled so the process does not sit waiting on slow provider jobs.
+Generates photorealistic historical reconstructions for each era year. The pipeline submits one job per year, then waits — without timeout — on the run folder: a year is done the moment `images/{year}.png` exists, no matter who put it there (a provider download or a human dropping in a hand-generated file).
 
 **Input:** `Prompt` per year + clean base image  
 **Output:** `HistoricalImage` per year in `runs/{id}/images/{year}.png`
 
-Target model: **OpenAI GPT Image 1.5** — decision confirmed by direct image testing (`OpenAiImageProvider` not yet written; `StubImageProvider` exercises the flow).
+Target model: **OpenAI GPT Image 1.5** — decision confirmed by direct image testing. `OpenAiImageProvider` is not yet written; the current `StubImageProvider` delivers nothing itself, so images arrive in the run folder from outside.
 
 ```
-Submit (part of `run`):
 1. IImageGenerationProvider.CleanBaseAsync(source, prompt, base_clean.png)
         → source photo emptied of people and vehicles
 2. per year: IImageGenerationProvider.SubmitEraAsync(base, prompt, year, jobsDir)
-        → submits the generation job to the provider
+        → submits the generation job
         → persists job state to runs/{id}/jobs/{year}.json
           ({ "year", "provider", "jobId", "submittedAt" })
-3. pipeline logs the collect command and exits — nothing waits in-process
-
-Collect (separate invocation):
-   dotnet run -- collect <runFolder> [--wait]
-        → reads years from the run manifest run.json
-        → per missing year: IImageGenerationProvider.TryCollectAsync
+3. wait loop, no timeout, every 60s:
+        → missing = years without images/{year}.png
+        → per missing year: TryCollectAsync
              true  → result downloaded to images/{year}.png
-             false → job still pending
-             throws → job failed with the provider error
-        → all collected: overlay + video via VideoAssemblyRunner, exit 0
-        → some pending without --wait: summary, exit 2
-        → with --wait: polls every 60s until done; Ctrl+C safe —
-          state is on disk, rerunning collect resumes
+             false → still pending (files dropped in by hand
+                     count as done on the next iteration)
+             throws → run aborts with the provider error
+4. all present: YearOverlayService stamps into stamped/,
+   VideoService assembles video/timeline.mp4
 ```
 
 The run folder (`runs/{sceneId}_{timestamp}/`) contains `run.json` (manifest: sceneDnaId, sourcePath, years, createdAt), `prompts/`, `jobs/`, `images/`, `stamped/`, `video/`.
+
+The `collect <runFolder> [--wait]` and `assemble <folderPath>` CLI modes remain as recovery/debug tools — e.g. resuming the tail of a run whose process was interrupted — not part of the normal flow.
 
 ---
 
