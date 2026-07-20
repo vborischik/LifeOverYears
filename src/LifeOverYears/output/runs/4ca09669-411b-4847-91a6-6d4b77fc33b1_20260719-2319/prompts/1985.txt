@@ -1,0 +1,73 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- camera: eye-level, facing park, fov 90
+- residential road, 1-lane, concrete
+- sidewalks present, curbs present
+- driveways: right; parking: lot
+- commercial building at left, 1 story, stucco, glass, brick, flat roof, shallow setback
+- utilities: street lamp, fire hydrant
+- landscape: grass strip, hedge, flower bed
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 1985
+Reagan era prosperity. A 1985 self-service gas station — digital price sign newly installed, a small convenience store where the second service bay used to be.
+
+CONDITION: busy — customers present, high activity, all pumps in use
+
+PERIOD DETAILS
+- self-service standard, full service rare
+- credit card readers not yet at pump
+- price sign showing gas around $1.12
+- main sign: "Shell" branded gas station — Shell pole sign with price display and Shell colors on the canopy fascia
+- window signs: 'MOTOR OIL 99¢ QT', 'SELF SERVE — PAY INSIDE'
+- a BMX bike leaned by the store door
+- arcade game posters taped in the store window
+Typography: bold geometric sans-serif, early computer-influenced fonts.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+
+PEOPLE
+EXACTLY 5 people, spread out with empty areas.
+- a woman squeegeeing her windshield at the island
+- a clerk visible at the register through the store window
+- an older man in a flat cap reading a paper
+Clothing: men in acid wash jeans, windbreakers; women in bright neon colors, leg warmers. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+
+VEHICLES
+EXACTLY 4 period vehicles, all different:
+- 1981-1985 Ford Escort — small boxy economy hatchback — beige
+- 1982-1993 Chevrolet S-10 — compact pickup, square — silver
+- 1973-1987 Chevrolet C/K — square body pickup, dual headlights — light blue
+- 1983-1988 Ford Thunderbird — aero coupe, rounded — burgundy
+Parked with gaps; no vehicle newer than 1985.
+All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+One of these vehicles is parked at the pump island with its driver standing beside it refueling.
+PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, painted crosswalks
+- utilities: overhead power lines standard, wooden utility poles
+
+TREES
+- deciduous tree at left: very young sapling
+- deciduous tree at background: very young sapling
+Tree sizes MUST follow this specification even where they differ from the source photo.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — Kodacolor VR 200 or Fujicolor 100 look.
+Color: slightly cool tones compared to 1970s. Grain: moderate grain, cleaner than 1975.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

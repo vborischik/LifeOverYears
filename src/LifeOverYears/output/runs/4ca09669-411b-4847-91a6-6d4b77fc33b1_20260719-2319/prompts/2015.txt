@@ -1,0 +1,73 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- camera: eye-level, facing park, fov 90
+- residential road, 1-lane, concrete
+- sidewalks present, curbs present
+- driveways: right; parking: lot
+- commercial building at left, 1 story, stucco, glass, brick, flat roof, shallow setback
+- utilities: street lamp, fire hydrant
+- landscape: grass strip, hedge, flower bed
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 2015
+Smartphone era fully arrived. A 2015 station — LED-lit canopy, digital price sign, video ads playing on every pump screen, and a big convenience store.
+
+CONDITION: restored — renovated appearance, modern updates on original structure
+
+PERIOD DETAILS
+- air and vacuum island at the lot edge
+- modern canopy with white LED lighting
+- price sign showing gas around $2.45
+- main sign: "Sinclair" branded gas station — Sinclair pole sign with price display and Sinclair colors on the canopy fascia
+- window signs: '2 ENERGY DRINKS $5', 'E-CIG STARTER KITS'
+- an air-and-vacuum island at the lot edge
+- combined trash-and-squeegee stations between the pumps
+Typography: minimalist flat sans-serif, simplified modern logos.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+
+PEOPLE
+EXACTLY 7 people, spread out with empty areas.
+- a driver self-serving at the pump
+- a customer watching the pump screen ads while fueling
+- a man in skinny jeans taking a selfie
+Clothing: men in beards, skinny jeans; women in high-waisted skinny jeans, statement necklaces. Fashion palette: coral, mint green, navy. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+
+VEHICLES
+EXACTLY 4 period vehicles, all different:
+- 2012-2018 Ford Focus — sharp European compact — blue
+- 2009-2018 Ram 1500 — crosshair grille, refined — pearl white
+- 2011-2017 Honda Odyssey — lightning-bolt beltline minivan — black
+- 2013-2019 Ford Fusion — Aston-Martin-style grille, sleek — gray
+Parked with gaps; no vehicle newer than 2015.
+All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+One of these vehicles is parked at the pump island with its driver standing beside it refueling.
+PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, high-visibility crosswalks
+- utilities: overhead power lines common, undergrounding in new developments, fiber optic lines on poles
+
+TREES
+- deciduous tree at left: very young sapling
+- deciduous tree at background: established tree, modest canopy
+Tree sizes MUST follow this specification even where they differ from the source photo.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — digital — DSLR or smartphone camera look.
+Color: high saturation. Grain: clean, minimal noise.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

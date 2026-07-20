@@ -1,0 +1,72 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- camera: eye-level, facing park, fov 90
+- residential road, 1-lane, concrete
+- sidewalks present, curbs present
+- driveways: right; parking: lot
+- commercial building at left, 1 story, stucco, glass, brick, flat roof, shallow setback
+- utilities: street lamp, fire hydrant
+- landscape: grass strip, hedge, flower bed
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 1975
+Post-Vietnam, oil crisis era. A full-service neighborhood gas station in 1975 — uniformed attendants pump the gas, check the oil, and wipe the windshield.
+
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+
+PERIOD DETAILS
+- oil-can rack stacked with quart cans beside the pump island
+- open service bay with a car raised on the lift inside
+- price sign showing gas around $0.57
+- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
+- window signs: 'MOTOR OIL 55¢ QT', 'MECHANIC ON DUTY'
+- an air hose with a driveway service bell line across the apron
+- a bicycle leaning against a utility pole
+Typography: bold sans-serif, slab serif, occasional script.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+
+PEOPLE
+EXACTLY 4 people, spread out with empty areas.
+- a driver waiting behind the wheel while the attendant works
+- a customer paying the attendant cash through the car window
+- a woman with a headscarf carrying a paper grocery bag
+Clothing: men in wide lapels, plaid patterns; women in midi skirts, wide leg pants. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+
+VEHICLES
+EXACTLY 3 period vehicles, all different:
+- 1970-1976 Pontiac Firebird Trans Am — hood scoop, spoiler, bold graphics
+- 1974-1978 Dodge Monaco — large chrome grille, two-tone paint
+- 1971-1976 Jeep Wagoneer — boxy full-size SUV, woodgrain trim optional
+Parked with gaps; no vehicle newer than 1975.
+All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+One of these vehicles is parked at the pump island with its driver standing beside it refueling.
+PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, no rumble strips
+- utilities: overhead power lines everywhere, wooden utility poles standard
+
+TREES
+- deciduous tree at left: very young sapling
+- deciduous tree at background: very young sapling
+Tree sizes MUST follow this specification even where they differ from the source photo.
+
+PHOTOGRAPHIC STYLE
+STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.
+Grain: visible fine grain. Style: documentary, natural light.
+Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.
+
+PRIVACY
+Blur all faces and license plates.
