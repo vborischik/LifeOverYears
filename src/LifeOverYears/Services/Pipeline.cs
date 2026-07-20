@@ -11,8 +11,6 @@ public sealed class Pipeline
     private readonly IDataService _data;
     private readonly IRunService _runService;
     private readonly IImageGenerationProvider _images;
-    private readonly IYearOverlayService _overlay;
-    private readonly IVideoService _video;
     private readonly ILogger<Pipeline> _logger;
 
     public Pipeline(
@@ -21,8 +19,6 @@ public sealed class Pipeline
         IDataService data,
         IRunService runService,
         IImageGenerationProvider images,
-        IYearOverlayService overlay,
-        IVideoService video,
         ILogger<Pipeline> logger)
     {
         _vision = vision;
@@ -30,8 +26,6 @@ public sealed class Pipeline
         _data = data;
         _runService = runService;
         _images = images;
-        _overlay = overlay;
-        _video = video;
         _logger = logger;
     }
 
@@ -47,7 +41,7 @@ public sealed class Pipeline
             sceneDna.Environment.Terrain,
             sceneDna.Geometry.Buildings.Count);
 
-        var run = await _runService.CreateRunAsync(sceneDna.Id, photoPath);
+        var run = await _runService.CreateRunAsync(sceneDna.Id, photoPath, years);
 
         // Step 2 — Prompt per year (one GenerationContext shared across all years:
         // guarantees no car model repeats between the images of the same scene)
@@ -70,28 +64,18 @@ public sealed class Pipeline
         await _images.CleanBaseAsync(run.SourcePath, baseCleanPrompt, baseCleanPath);
         _logger.LogInformation("Step 3a complete — clean base: {Path}", baseCleanPath);
 
-        // Step 3b — era images, generated concurrently; completion is observed
-        // by the watcher via the folder contract, not by task order.
-        var generation = Task.WhenAll(years.Select(year =>
-            _images.GenerateEraAsync(
-                baseCleanPath, prompts[year].Text, year,
-                Path.Combine(run.ImagesDir, $"{year}.png"))));
+        // Step 3b — submit one generation job per year. Results are fetched
+        // later by the 'collect' CLI mode; job state lives in run.JobsDir.
+        foreach (var year in years)
+        {
+            await _images.SubmitEraAsync(baseCleanPath, prompts[year].Text, year, run.JobsDir);
+            _logger.LogInformation("Submitted {Year}", year);
+        }
 
-        // Step 3c — overlay years onto the stamped set, then assemble the video.
-        // years here is exactly the caller's requested list, threaded through
-        // unchanged from the watcher to the overlay to the composed video.
-        var (missing, video) = await VideoAssemblyRunner.RunAsync(
-            _overlay, _video, run.ImagesDir, run.StampedDir,
-            Path.Combine(run.VideoDir, "timeline.mp4"), years, generation, _logger);
-        if (missing.Count > 0)
-            return 1;
-        _logger.LogInformation("Step 3b complete — all {Count} era images present", years.Count);
-
-        if (video is null)
-            _logger.LogWarning("Pipeline finished without video (assembly skipped): {Root}", run.Root);
-        else
-            _logger.LogInformation("Pipeline complete — video: {Path}", video.FilePath);
-
+        _logger.LogInformation(
+            "All {Count} era jobs submitted. Collect results and assemble the video with: " +
+            "dotnet run -- collect {Root} --wait",
+            years.Count, run.Root);
         return 0;
     }
 }

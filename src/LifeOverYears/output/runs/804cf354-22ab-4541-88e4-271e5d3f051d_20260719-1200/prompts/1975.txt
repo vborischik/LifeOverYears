@@ -1,0 +1,73 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- camera: eye-level, facing street, fov 90
+- residential road, 1-lane, concrete
+- sidewalks absent, curbs present
+- driveways: center; parking: lot
+- commercial building at left, 1 story, stucco, brick, glass, flat roof, shallow setback
+- utilities: street lamp, fire hydrant, utility poles
+- landscape: grass strip, hedge, flower bed, mulch
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 1975
+Post-Vietnam, oil crisis era. A full-service neighborhood gas station in 1975 — uniformed attendants pump the gas, check the oil, and wipe the windshield.
+
+CONDITION: busy — customers present, high activity, all pumps in use
+
+PERIOD DETAILS
+- oil cans displayed outside
+- gravity-style pump nozzles
+- price sign showing gas around $0.57
+- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
+- window signs: 'MECHANIC ON DUTY', 'FLATS FIXED $2'
+- a folded newspaper stack tied with twine by the office door
+- a stack of used tires beside the service bay
+Typography: bold sans-serif, slab serif, occasional script.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+
+PEOPLE
+EXACTLY 5 people, spread out with empty areas.
+- a kid buying a bottle of soda from the machine
+- the station owner standing in the office doorway with a clipboard
+- a mailman in a USPS uniform with a leather satchel
+Clothing: men in plaid patterns, bell bottoms; women in wide leg pants, peasant blouses. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+
+VEHICLES
+EXACTLY 4 period vehicles, all different:
+- 1973-1979 Ford LTD — full-size sedan, wide body, bench seat
+- 1971-1976 Chevrolet Impala — full-size, chrome rear bumper
+- 1971-1976 Buick Estate Wagon — full-size wood-paneled station wagon
+- 1963-1976 Dodge Dart — compact, boxy, reliable workhorse
+Parked with gaps; no vehicle newer than 1975.
+All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+One of these vehicles is parked at the pump island with its driver standing beside it refueling.
+PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, no rumble strips
+- utilities: overhead power lines everywhere, wooden utility poles standard
+
+TREES
+- deciduous tree at left: very young sapling
+- deciduous tree at background: very young sapling
+Tree sizes MUST follow this specification even where they differ from the source photo.
+
+PHOTOGRAPHIC STYLE
+STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.
+Grain: visible fine grain. Style: documentary, natural light.
+Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.
+
+PRIVACY
+Blur all faces and license plates.

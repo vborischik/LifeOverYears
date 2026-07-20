@@ -4,10 +4,10 @@ using Microsoft.Extensions.Logging;
 
 namespace LifeOverYears.Services;
 
-// Shared tail of the pipeline — wait for exactly the requested years' images,
-// stamp each with its year, then compose the stamped set into a video.
-// Used by both Pipeline.cs (after real generation) and the 'assemble' CLI
-// mode (against a folder with images already on disk).
+// Shared tail of the pipeline — verify exactly the requested years' images are
+// on disk, stamp each with its year, then compose the stamped set into a video.
+// Used by the 'collect' and 'assemble' CLI modes; both target images that are
+// already present, so a missing year is an immediate error, not a wait.
 public static class VideoAssemblyRunner
 {
     public static async Task<(IReadOnlyList<int> Missing, Video? Video)> RunAsync(
@@ -17,12 +17,17 @@ public static class VideoAssemblyRunner
         string stampedDir,
         string videoOutputPath,
         IReadOnlyList<int> years,
-        Task generation,
         ILogger logger)
     {
-        var missing = await CompletionWatcher.WaitForImagesAsync(imagesDir, years, generation, logger);
+        var missing = years
+            .Where(y => !File.Exists(Path.Combine(imagesDir, $"{y}.png")))
+            .ToList();
         if (missing.Count > 0)
+        {
+            logger.LogError("Missing images for years {Years} in {Dir}",
+                string.Join(", ", missing), imagesDir);
             return (missing, null);
+        }
 
         Directory.CreateDirectory(stampedDir);
         foreach (var year in years)

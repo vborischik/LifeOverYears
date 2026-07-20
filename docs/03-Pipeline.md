@@ -121,20 +121,39 @@ Conditions (`thriving` / `busy` / `new` / `declining` / `abandoned` / `restored`
 
 ---
 
-## Step 3 — Historical Images (planned)
+## Step 3 — Historical Images (submit/collect)
 
-Generates photorealistic historical reconstructions for each era year.
+Generates photorealistic historical reconstructions for each era year via an async batch-style job model: submission and collection are decoupled so the process does not sit waiting on slow provider jobs.
 
-**Input:** `Prompt`  
-**Output:** `HistoricalImage` saved to `output/images/{year}/{promptId}.png`
+**Input:** `Prompt` per year + clean base image  
+**Output:** `HistoricalImage` per year in `runs/{id}/images/{year}.png`
 
-Target model: **OpenAI GPT Image 1.5** — decision confirmed by direct image testing (`OpenAiImageProvider` not yet written).
+Target model: **OpenAI GPT Image 1.5** — decision confirmed by direct image testing (`OpenAiImageProvider` not yet written; `StubImageProvider` exercises the flow).
 
 ```
-1. ImageProvider.GenerateImageAsync(prompt)
-        → POST to OpenAI GPT Image 1.5
-        → saves PNG, returns HistoricalImage
+Submit (part of `run`):
+1. IImageGenerationProvider.CleanBaseAsync(source, prompt, base_clean.png)
+        → source photo emptied of people and vehicles
+2. per year: IImageGenerationProvider.SubmitEraAsync(base, prompt, year, jobsDir)
+        → submits the generation job to the provider
+        → persists job state to runs/{id}/jobs/{year}.json
+          ({ "year", "provider", "jobId", "submittedAt" })
+3. pipeline logs the collect command and exits — nothing waits in-process
+
+Collect (separate invocation):
+   dotnet run -- collect <runFolder> [--wait]
+        → reads years from the run manifest run.json
+        → per missing year: IImageGenerationProvider.TryCollectAsync
+             true  → result downloaded to images/{year}.png
+             false → job still pending
+             throws → job failed with the provider error
+        → all collected: overlay + video via VideoAssemblyRunner, exit 0
+        → some pending without --wait: summary, exit 2
+        → with --wait: polls every 60s until done; Ctrl+C safe —
+          state is on disk, rerunning collect resumes
 ```
+
+The run folder (`runs/{sceneId}_{timestamp}/`) contains `run.json` (manifest: sceneDnaId, sourcePath, years, createdAt), `prompts/`, `jobs/`, `images/`, `stamped/`, `video/`.
 
 ---
 

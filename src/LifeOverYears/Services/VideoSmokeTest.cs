@@ -13,7 +13,7 @@ namespace LifeOverYears.Services;
 // Isolated ffmpeg smoke test: validates video assembly only. Generates its
 // own test images via ffmpeg's lavfi color source (no vision, no prompts,
 // no API keys), then exercises the real overlay + IVideoService/FfmpegProvider
-// path via the same VideoAssemblyRunner the Pipeline and 'assemble' CLI use.
+// path via the same VideoAssemblyRunner the 'collect' and 'assemble' CLI use.
 public static class VideoSmokeTest
 {
     private static readonly int[] Years = { 1975, 1985, 1995, 2005, 2015, 2025 };
@@ -77,12 +77,11 @@ public static class VideoSmokeTest
         foreach (var year in Years)
             await GenerateTestImageAsync(year, Path.Combine(imagesDir, $"{year}.png"), logger);
 
-        // Exercise the real production tail: watch -> overlay -> compose,
-        // via the same VideoAssemblyRunner Pipeline and 'assemble' use.
-        // Images already exist, so there's no generation task to await.
+        // Exercise the real production tail: verify -> overlay -> compose,
+        // via the same VideoAssemblyRunner 'collect' and 'assemble' use.
         var messagesBeforeFull = logCapture.Messages.Count;
         var (mainMissing, video) = await VideoAssemblyRunner.RunAsync(
-            overlay, videoService, imagesDir, stampedDir, outputPath, Years, Task.CompletedTask, logger);
+            overlay, videoService, imagesDir, stampedDir, outputPath, Years, logger);
         var messagesAfterFull = logCapture.Messages.Count;
 
         // O1 — stamped/{year}.png exists for every year, same dimensions as source.
@@ -172,7 +171,7 @@ public static class VideoSmokeTest
         var messagesBeforePartial = logCapture.Messages.Count;
         var (partialMissing, partialVideo) = await VideoAssemblyRunner.RunAsync(
             overlay, videoService, imagesDir, partialStampedDir, partialVideoPath,
-            PartialYears, Task.CompletedTask, logger);
+            PartialYears, logger);
 
         if (partialMissing.Count > 0)
             o3Errors.Add($"watcher reported missing years for a partial request: {string.Join(", ", partialMissing)}");

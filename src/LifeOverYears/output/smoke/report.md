@@ -1,11 +1,11 @@
 # Smoke Test Report
 
-Generated: 2026-07-19T15:05:08.1310500+00:00
+Generated: 2026-07-20T04:05:48.1180280+00:00
 
 ## Check Results
 
 | Check | Description | Status | Detail |
-|-------|-------x------|--------|--------|
+|-------|-------------|--------|--------|
 | C1 | Era deserialization: scene_content has required keys and color_mode present | ✅ PASS | All 6 eras OK |
 | C2 | No unresolved template placeholders remain | ✅ PASS | All placeholders resolved |
 | C3 | No vehicle model reuse within each run (dedup invariant) | ✅ PASS | No duplicates in any run |

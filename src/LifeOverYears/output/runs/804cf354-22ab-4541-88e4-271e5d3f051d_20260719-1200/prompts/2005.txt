@@ -1,0 +1,73 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- camera: eye-level, facing street, fov 90
+- residential road, 1-lane, concrete
+- sidewalks absent, curbs present
+- driveways: center; parking: lot
+- commercial building at left, 1 story, stucco, brick, glass, flat roof, shallow setback
+- utilities: street lamp, fire hydrant, utility poles
+- landscape: grass strip, hedge, flower bed, mulch
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 2005
+Post-9/11 era. A 2005 gas station — big multi-island canopy, card readers at every pump, LED price sign, and a convenience store doing most of the business.
+
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+
+PERIOD DETAILS
+- large convenience store with energy-drink and phone-card ads in the glass
+- pumps with card readers and small pay-at-pump screens
+- price sign showing gas around $2.30
+- main sign: "Mobil" branded gas station — Mobil pole sign with price display and Mobil colors on the canopy fascia
+- window signs: 'CAR WASH $6', 'PHONE CARDS SOLD HERE'
+- a windshield-washer fluid display rack by the pumps
+- a free real-estate flyer box by the door
+Typography: clean sans-serif, polished brand identities.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+
+PEOPLE
+EXACTLY 7 people, spread out with empty areas.
+- a customer walking out with a coffee cup
+- a teenager filling tires at the coin-operated air machine
+- a man in cargo shorts talking on a flip phone
+Clothing: men in cargo shorts, baggy jeans; women in low-rise jeans, chunky highlights. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+
+VEHICLES
+EXACTLY 4 period vehicles, all different:
+- 2005-2010 Jeep Grand Cherokee — rounded modern SUV — dark blue
+- 2004-2008 Chrysler 300 — bold boxy retro chrome grille — gray
+- 2003-2007 Honda Accord — clean lines, sharper than 1990s — gold
+- 2004-2008 Ford F-150 — bigger, bolder grille — dark red
+Parked with gaps; no vehicle newer than 2005.
+All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+One of these vehicles is parked at the pump island with its driver standing beside it refueling.
+PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, turn arrows
+- utilities: overhead power lines standard, cable and fiber lines on poles appearing
+
+TREES
+- deciduous tree at left: young tree, thin trunk
+- deciduous tree at background: young tree, thin trunk
+Tree sizes MUST follow this specification even where they differ from the source photo.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — early digital camera or Kodak/Fuji consumer film look.
+Color: neutral tones. Grain: low grain, early digital noise in shadows.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

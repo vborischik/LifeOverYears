@@ -1,0 +1,61 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- camera: eye-level, facing street, fov 90
+- residential road, 1-lane, concrete
+- sidewalks absent, curbs present
+- driveways: center; parking: lot
+- commercial building at left, 1 story, stucco, brick, glass, flat roof, shallow setback
+- utilities: street lamp, fire hydrant, utility poles
+- landscape: grass strip, hedge, flower bed, mulch
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 2025
+Post-pandemic era. A 2025 fuel stop — LED canopy, full-color digital price sign, and a convenience store selling fresh food.
+
+CONDITION: abandoned — closed business, boarded windows, weeds through pavement cracks, weathered surfaces
+
+PERIOD DETAILS
+- drive-through coffee lane attached to the store
+- large convenience store with 'FRESH FOOD — MADE TO ORDER' branding
+- price sign showing gas around $3.40
+- main sign: "Mobil" branded gas station — Mobil pole sign with price display and Mobil colors on the canopy fascia
+- window signs: 'COLD BREW $3.99', 'HOT PIZZA SLICES $2.99'
+- outdoor cafe barriers with planters by the coffee lane
+- digital menu screens glowing in the store windows
+Typography: minimalist geometric sans-serif, heavily simplified flat logos.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+
+PEOPLE
+NO people anywhere — the place is completely deserted.
+
+VEHICLES
+NO vehicles anywhere — empty lot, no parked or moving cars.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, high-visibility crosswalks
+- utilities: overhead lines in older areas, underground in new developments, fiber optic widespread
+
+TREES
+- deciduous tree at left: maturing tree
+- deciduous tree at background: maturing tree
+Tree sizes MUST follow this specification even where they differ from the source photo.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — digital — smartphone or mirrorless camera look.
+Color: high saturation. Grain: very clean, minimal to no noise.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

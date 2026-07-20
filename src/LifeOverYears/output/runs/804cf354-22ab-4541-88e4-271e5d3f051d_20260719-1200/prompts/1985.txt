@@ -1,0 +1,72 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- camera: eye-level, facing street, fov 90
+- residential road, 1-lane, concrete
+- sidewalks absent, curbs present
+- driveways: center; parking: lot
+- commercial building at left, 1 story, stucco, brick, glass, flat roof, shallow setback
+- utilities: street lamp, fire hydrant, utility poles
+- landscape: grass strip, hedge, flower bed, mulch
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
+scene naturally above (sky) and below (street/pavement) — this is canvas
+extension of one photograph, not additional panels. Do not stretch or distort
+the source geometry.
+
+TRANSFORM TO 1985
+Reagan era prosperity. A 1985 self-service gas station — digital price sign newly installed, a small convenience store where the second service bay used to be.
+
+CONDITION: new — recently built appearance, pristine surfaces, new signage
+
+PERIOD DETAILS
+- credit card readers not yet at pump
+- canopy designs more angular
+- price sign showing gas around $1.12
+- main sign: "76" branded gas station — 76 pole sign with price display and 76 colors on the canopy fascia
+- window signs: 'SELF SERVE — PAY INSIDE', 'FREE COFFEE WITH FILL-UP'
+- an 'AIR & WATER' sign at the lot corner
+- squeegee buckets at the pump islands
+Typography: bold geometric sans-serif, early computer-influenced fonts.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+
+PEOPLE
+EXACTLY 7 people, spread out with empty areas.
+- a driver self-serving at the pump
+- a teenager filling a bike tire at the air hose
+- an older man in a flat cap reading a paper
+Clothing: men in polo shirts with collars up, acid wash jeans; women in bright neon colors, leg warmers. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+
+VEHICLES
+EXACTLY 3 period vehicles, all different:
+- 1982-1985 Toyota Celica — angular sporty coupe, pop-up lights — silver
+- 1981-1985 Ford Escort — small boxy economy hatchback — red
+- 1981-1985 Dodge Aries — K-car, boxy economy sedan — burgundy
+Parked with gaps; no vehicle newer than 1985.
+All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+One of these vehicles is parked at the pump island with its driver standing beside it refueling.
+PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, painted crosswalks
+- utilities: overhead power lines standard, wooden utility poles
+
+TREES
+- deciduous tree at left: very young sapling
+- deciduous tree at background: very young sapling
+Tree sizes MUST follow this specification even where they differ from the source photo.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — Kodacolor VR 200 or Fujicolor 100 look.
+Color: slightly cool tones compared to 1970s. Grain: moderate grain, cleaner than 1975.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

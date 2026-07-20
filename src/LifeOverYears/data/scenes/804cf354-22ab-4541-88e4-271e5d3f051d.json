@@ -1,0 +1,69 @@
+{
+  "Id": "804cf354-22ab-4541-88e4-271e5d3f051d",
+  "CreatedAt": "2026-07-19T17:00:14.5861430\u002B00:00",
+  "SceneType": "gas_station",
+  "Camera": {
+    "Height": "eye-level",
+    "Direction": "street",
+    "Fov": 90
+  },
+  "Geometry": {
+    "Roads": [
+      {
+        "Type": "residential",
+        "Lanes": 1,
+        "Markings": [
+          "edge line"
+        ],
+        "Surface": "concrete"
+      }
+    ],
+    "Sidewalks": false,
+    "Curbs": true,
+    "Buildings": [
+      {
+        "Type": "commercial",
+        "Position": "left",
+        "Stories": 1,
+        "Materials": [
+          "stucco",
+          "brick",
+          "glass"
+        ],
+        "Roof": "flat",
+        "Setback": "shallow"
+      }
+    ],
+    "Driveways": [
+      "center"
+    ],
+    "Parking": "lot"
+  },
+  "Environment": {
+    "Terrain": "suburban",
+    "Utilities": [
+      "street lamp",
+      "fire hydrant",
+      "utility poles"
+    ],
+    "Trees": [
+      {
+        "Position": "left",
+        "Size": "medium",
+        "Type": "deciduous"
+      },
+      {
+        "Position": "background",
+        "Size": "medium",
+        "Type": "deciduous"
+      }
+    ],
+    "Landscape": [
+      "grass strip",
+      "hedge",
+      "flower bed",
+      "mulch"
+    ]
+  },
+  "ImmutableElements": []
+}

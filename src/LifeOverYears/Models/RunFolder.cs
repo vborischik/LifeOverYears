@@ -6,4 +6,5 @@ public record RunFolder(
     string ImagesDir,
     string StampedDir,
     string VideoDir,
+    string JobsDir,
     string SourcePath);
