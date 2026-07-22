@@ -44,7 +44,6 @@ public sealed class YearOverlayService : IYearOverlayService
 
         image.Mutate(ctx =>
         {
-            ctx.Fill(Color.Black.WithAlpha(0.55f), barRect);
             ctx.DrawText(text, font, Color.Black.WithAlpha(0.7f), shadowOrigin);
             ctx.DrawText(text, font, Color.White, textOrigin);
         });
