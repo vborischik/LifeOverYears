@@ -34,13 +34,26 @@ public sealed class YearOverlayService : IYearOverlayService
         var barTop    = image.Height - barHeight;
         var barRect   = new RectangularPolygon(0, barTop, image.Width, barHeight);
 
-        var font = ResolveFont(barHeight * 0.69f);
+        var font = ResolveFont(barHeight * 1.3f);
         var text = year.ToString();
         var textSize = TextMeasurer.MeasureSize(text, new TextOptions(font));
+
+        const int shadowOffset = 3;
+        // At this font scale, textSize.Height (line-metric based) can sit
+        // right at — or even slightly under-report — the actual glyph ink
+        // extents for bold digits, so purely centering on it risks clipping
+        // against the canvas edge. Keep a real margin from the bottom edge,
+        // accounting for the shadow's extra offset, and only center within
+        // the bar band when that still leaves the margin intact.
+        var bottomMargin  = Math.Max(10, (int)Math.Round(barHeight * 0.15));
+        var maxTextBottom = image.Height - bottomMargin - shadowOffset;
+        var centeredY     = barTop + barHeight / 2f - textSize.Height / 2f;
+        var textOriginY   = Math.Min(centeredY, maxTextBottom - textSize.Height);
+
         var textOrigin = new PointF(
             image.Width / 2f - textSize.Width / 2f,
-            barTop + barHeight / 2f - textSize.Height / 2f);
-        var shadowOrigin = new PointF(textOrigin.X + 3, textOrigin.Y + 3);
+            textOriginY);
+        var shadowOrigin = new PointF(textOrigin.X + shadowOffset, textOrigin.Y + shadowOffset);
 
         image.Mutate(ctx =>
         {
