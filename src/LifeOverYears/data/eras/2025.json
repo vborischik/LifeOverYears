@@ -176,6 +176,11 @@
         "5G small cell nodes on poles",
         "ground level and pole transformers",
         "rooftop solar panels common"
+      ],
+      "downtown_characteristics": [
+        "power, phone, and fiber fully undergrounded along the main commercial block",
+        "no utility poles along the street frontage; smart conduits and sensor loops below grade",
+        "overhead lines only at rear alleys, not visible from the street; discreet 5G nodes integrated into streetlight fixtures"
       ]
     }
   },

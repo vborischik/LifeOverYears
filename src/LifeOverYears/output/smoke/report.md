@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-07-21T16:06:51.8303913+00:00
+Generated: 2026-07-22T00:16:46.5944939+00:00
 
 ## Check Results
 
@@ -16,7 +16,7 @@ Generated: 2026-07-21T16:06:51.8303913+00:00
 | C8 | Gas station fuel prices always present; downtown coffee price in ≥1 run per year | ✅ PASS | All price anchors found |
 | C9 | PRESERVE block contains all building types and immutable elements verbatim | ✅ PASS | All building types and immutable elements present |
 | C10 | No TEXT OVERLAY section remains; year still anchors the VEHICLES block | ✅ PASS | Overlay removed and vehicle year anchors correct |
-| C11 | Every prompt is under 720 words (limit raised from 650 for condition, brand, traffic-flow, and pump-coupling lines) | ✅ PASS | All prompts under 720 words |
+| C11 | Every prompt is under 760 words (limit raised from 720 for the clear-driving-lane line) | ✅ PASS | All prompts under 760 words |
 | C12 | B&W prompts contain no vehicle pool colors, no 'Fashion palette', no 'desaturated' | ✅ PASS | B&W prompts are color-free |
 | C13 | Color eras: every vehicle has a color and no color repeats within one prompt | ✅ PASS | All vehicle colors unique per prompt |
 | C14 | Gas station 2025 prompt has no EV/electric/charger/Lightning content | ✅ PASS | 2025 gas prompts are fully de-electrified |
@@ -27,7 +27,7 @@ Generated: 2026-07-21T16:06:51.8303913+00:00
 | C19 | No descriptive-as-signage leaks; {DINER_NAME} resolved and identical across a run | ✅ PASS | Business names clean and diner name stable |
 | C20 | Every prompt has a two-sign 'window signs:' line, >=1 extras line, and a people_mix line | ✅ PASS | All three sampling axes present in every prompt |
 | C21 | Run1 vs Run2: >=3 of 6 years differ in sampled extras or window signs | ✅ PASS | Sufficient sampling variance between seeds |
-| C22 | Every prompt is at most 4850 characters | ✅ PASS | All prompts within 4850 chars |
+| C22 | Every prompt is at most 4900 characters | ✅ PASS | All prompts within 4900 chars |
 | C23 | Conditions stay gas-station-only: downtown always thriving with no zero-out lines; gas abandoned/declining prompts honor their counts | ✅ PASS | No condition leakage; gas condition counts honored |
 | C24 | Every business-name token resolves to a member of its own pool and stays identical across all six eras of a run | ✅ PASS | All 8 business tokens resolve correctly and remain stable per run |
 

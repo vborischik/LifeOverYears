@@ -69,7 +69,7 @@ public sealed class PromptService : IPromptService
             .Replace("{SCENE_BLOCK}",       BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, brand, rng))
             .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, rng))
             .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation))
-            .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year))
+            .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year, sceneType))
             .Replace("{STYLE_BLOCK}",       BuildStyleBlock(eraProfile.Photography));
 
         // Scene content refers to recurring businesses (diner, drug store, etc.) by
@@ -428,19 +428,24 @@ public sealed class PromptService : IPromptService
             sb.AppendLine(color is null ? $"- {model}" : $"- {model} — {color}");
         sb.AppendLine($"Parked with gaps; no vehicle newer than {year}.");
         sb.AppendLine("All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.");
+        sb.AppendLine("At least one full driving lane in each direction stays clear of parked vehicles, meters, and curb infrastructure — through traffic is never blocked.");
         if (isGasStation)
             sb.AppendLine("One of these vehicles is parked at the pump island with its driver standing beside it refueling.");
         sb.Append($"PLACEMENT: {placement}. No vehicle in the same spot as any other era.");
         return sb.ToString();
     }
 
-    private static string BuildEnvironmentBlock(SceneDna scene, EraProfile era, int year)
+    private static string BuildEnvironmentBlock(SceneDna scene, EraProfile era, int year, string sceneType)
     {
         var infra = era.Infrastructure;
         var sb = new StringBuilder();
         sb.AppendLine("ENVIRONMENT");
         sb.AppendLine($"- road markings: {Join(infra.Roads.Markings.Take(3).ToList())}");
-        sb.AppendLine($"- utilities: {Join(infra.Utilities.Characteristics.Take(2).ToList())}");
+        var isDowntown = sceneType == "downtown_street";
+        var utilitiesPool = isDowntown && era.Infrastructure.Utilities.DowntownCharacteristics is { Count: > 0 } dc
+            ? dc
+            : infra.Utilities.Characteristics;
+        sb.AppendLine($"- utilities: {Join(utilitiesPool.Take(2).ToList())}");
         sb.AppendLine();
         sb.AppendLine("TREES");
         foreach (var tree in scene.Environment.Trees)

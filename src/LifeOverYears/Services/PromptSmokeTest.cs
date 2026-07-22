@@ -13,7 +13,7 @@ public static class PromptSmokeTest
 {
     private static readonly int[] Years = { 1975, 1985, 1995, 2005, 2015, 2025 };
 
-    private const int MaxPromptChars = 4850;
+    private const int MaxPromptChars = 4900; // raised from 4850 for the clear-driving-lane line
 
     private static readonly JsonSerializerOptions WriteJson = new() { WriteIndented = true };
 
@@ -665,15 +665,15 @@ public static class PromptSmokeTest
             foreach (var (year, prompt) in run)
             {
                 int words = WordCount(prompt.Text);
-                if (words >= 720)
-                    errs.Add($"{label}/{year}: {words} words (limit 720)");
+                if (words >= 760)
+                    errs.Add($"{label}/{year}: {words} words (limit 760)");
             }
         int unknownWords = WordCount(unknownPrompt.Text);
-        if (unknownWords >= 720)
-            errs.Add($"unknown/1985: {unknownWords} words (limit 720)");
+        if (unknownWords >= 760)
+            errs.Add($"unknown/1985: {unknownWords} words (limit 760)");
 
-        f.Add(("C11", "Every prompt is under 720 words (limit raised from 650 for condition, brand, traffic-flow, and pump-coupling lines)",
-            errs.Count == 0, errs.Count == 0 ? "All prompts under 720 words" : Join(errs)));
+        f.Add(("C11", "Every prompt is under 760 words (limit raised from 720 for the clear-driving-lane line)",
+            errs.Count == 0, errs.Count == 0 ? "All prompts under 760 words" : Join(errs)));
     }
 
     private static void DoC12(

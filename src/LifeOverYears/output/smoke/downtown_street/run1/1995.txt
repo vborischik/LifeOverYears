@@ -53,6 +53,7 @@ EXACTLY 4 period vehicles, all different:
 - 1988-1998 Chevrolet C/K 1500 — softly squared pickup — navy blue
 Parked with gaps; no vehicle newer than 1995.
 All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+At least one full driving lane in each direction stays clear of parked vehicles, meters, and curb infrastructure — through traffic is never blocked.
 PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT

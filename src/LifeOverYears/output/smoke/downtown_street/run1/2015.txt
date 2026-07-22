@@ -54,11 +54,12 @@ EXACTLY 6 period vehicles, all different:
 - 2014-2018 Chevrolet Silverado — squared modern grille — dark red
 Parked with gaps; no vehicle newer than 2015.
 All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+At least one full driving lane in each direction stays clear of parked vehicles, meters, and curb infrastructure — through traffic is never blocked.
 PLACEMENT: three parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks
-- utilities: overhead power lines common, undergrounding in new developments, fiber optic lines on poles
+- utilities: power and phone lines routed underground along the main commercial block, no utility poles along the street frontage; conduits below grade
 
 TREES
 - oak tree at sidewalk left near corner: mature tree, full canopy

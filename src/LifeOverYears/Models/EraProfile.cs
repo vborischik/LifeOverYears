@@ -88,7 +88,8 @@ public record StreetFurniture(
     [property: JsonPropertyName("items")] IReadOnlyList<string> Items);
 
 public record Utilities(
-    [property: JsonPropertyName("characteristics")] IReadOnlyList<string> Characteristics);
+    [property: JsonPropertyName("characteristics")] IReadOnlyList<string> Characteristics,
+    [property: JsonPropertyName("downtown_characteristics")] IReadOnlyList<string>? DowntownCharacteristics = null);
 
 // ── Society ───────────────────────────────────────────────────────────────────
 
