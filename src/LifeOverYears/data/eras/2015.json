@@ -182,6 +182,11 @@
         "transformer boxes on poles and ground level",
         "cellular antennas on rooftops and towers",
         "small cell nodes appearing"
+      ],
+      "downtown_characteristics": [
+        "power and phone lines routed underground along the main commercial block",
+        "no utility poles along the street frontage; conduits below grade",
+        "overhead lines only at rear alleys, not visible from the street"
       ]
     }
   },

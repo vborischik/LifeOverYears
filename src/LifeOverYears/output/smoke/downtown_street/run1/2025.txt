@@ -54,11 +54,12 @@ EXACTLY 6 period vehicles, all different:
 - 2021-2025 Nissan Rogue — squared-off crossover, floating roofline — silver
 Parked with gaps; no vehicle newer than 2025.
 All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+At least one full driving lane in each direction stays clear of parked vehicles, meters, and curb infrastructure — through traffic is never blocked.
 PLACEMENT: three parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks
-- utilities: overhead lines in older areas, underground in new developments, fiber optic widespread
+- utilities: power, phone, and fiber fully undergrounded along the main commercial block, no utility poles along the street frontage; smart conduits and sensor loops below grade
 
 TREES
 - oak tree at sidewalk left near corner: mature tree, large canopy

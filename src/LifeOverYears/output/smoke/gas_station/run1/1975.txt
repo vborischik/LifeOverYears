@@ -54,6 +54,7 @@ EXACTLY 3 period vehicles, all different:
 - 1970-1978 AMC Gremlin — short stubby hatchback rear
 Parked with gaps; no vehicle newer than 1975.
 All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
+At least one full driving lane in each direction stays clear of parked vehicles, meters, and curb infrastructure — through traffic is never blocked.
 One of these vehicles is parked at the pump island with its driver standing beside it refueling.
 PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
 
