@@ -47,7 +47,8 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
     if (isSmokeTest)
         configBuilder.AddInMemoryCollection(new[]
         {
-            new KeyValuePair<string, string?>("Nvidia:ApiKey", "smoke-test-dummy")
+            new KeyValuePair<string, string?>("Nvidia:ApiKey", "smoke-test-dummy"),
+            new KeyValuePair<string, string?>("OpenAi:ApiKey", "smoke-test-dummy")
         });
 
     var configuration = configBuilder.Build();

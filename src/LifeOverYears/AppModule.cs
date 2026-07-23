@@ -50,8 +50,15 @@ public sealed class AppModule : Module
         builder.RegisterInstance(new RunService(_loggerFactory.CreateLogger<RunService>()))
                .As<IRunService>().SingleInstance();
 
-        // TODO: replace with OpenAiImageProvider once Step 3 goes live
-        builder.RegisterInstance(new StubImageProvider(_loggerFactory.CreateLogger<StubImageProvider>()))
+        var openAiKey = _configuration["OpenAi:ApiKey"]
+            ?? throw new InvalidOperationException("OpenAi:ApiKey is not configured in appsettings.json");
+
+        builder.RegisterInstance(new OpenAiProvider(new HttpClient(), openAiKey, _loggerFactory.CreateLogger<OpenAiProvider>()))
+               .As<IOpenAiProvider>().SingleInstance();
+
+        builder.Register(_ => new OpenAiImageProvider(
+                    _.Resolve<IOpenAiProvider>(),
+                    _loggerFactory.CreateLogger<OpenAiImageProvider>()))
                .As<IImageGenerationProvider>().SingleInstance();
 
         builder.RegisterInstance(new YearOverlayService(_loggerFactory.CreateLogger<YearOverlayService>()))
