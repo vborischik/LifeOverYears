@@ -51,7 +51,7 @@ public sealed class Pipeline
 
         // Step 2 — Prompt per year (one GenerationContext shared across all years:
         // guarantees no car model repeats between the images of the same scene)
-        var context = new GenerationContext { Random = new Random() };
+        var context = new GenerationContext { Random = new Random(), TotalEras = years.Count };
         var prompts = new Dictionary<int, Prompt>();
         foreach (var year in years)
         {

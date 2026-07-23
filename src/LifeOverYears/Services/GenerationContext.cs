@@ -99,18 +99,67 @@ public sealed class GenerationContext
         ["{DRESS_SHOP_NAME}"]    = DressShopName,
     };
 
-    // ── Scene condition ───────────────────────────────────────────────────────
-    // One condition is sampled per era from that era's allowed list (a shared
-    // context spans all six eras, so this is re-sampled on each BuildAsync call
-    // and reflects the most recently built era). Falls back to "thriving" when an
-    // era declares no allowed conditions.
+    // ── Scene condition trajectory ────────────────────────────────────────
+    // A run tells one story across its eras. Condition rank is monotonic: once
+    // a place starts declining it never quietly recovers in a later era. The
+    // only exception is the final era of a gas station, which resolves the arc.
+    public int TotalEras { get; init; } = 6;
+
+    private int _eraIndex = -1;
+    public int EraIndex => _eraIndex;
+    public bool IsFirstEra => _eraIndex == 0;
+    public bool IsLastEra => _eraIndex == TotalEras - 1;
+
+    // Called once per era at the top of PromptService.BuildAsync, before any
+    // sampling, so the index advances for every scene type — not only the ones
+    // that sample a condition.
+    public int BeginEra() => ++_eraIndex;
+
     public string SceneCondition { get; private set; } = "thriving";
 
-    public string PickSceneCondition(IReadOnlyList<string>? allowed)
+    private int _conditionRank;   // 0 healthy, 1 declining, 2 derelict
+
+    private static int RankOf(string condition) => condition switch
     {
-        SceneCondition = allowed is { Count: > 0 }
-            ? allowed[Random.Next(allowed.Count)]
-            : "thriving";
+        "declining"               => 1,
+        "abandoned" or "squatted" => 2,
+        _                         => 0
+    };
+
+    public string PickSceneCondition(IReadOnlyList<string>? allowed, string sceneType)
+    {
+        // Gas station finale: if the place ever fell apart, the last era
+        // resolves it — torn down and rebuilt, or taken over by squatters.
+        // Deliberately bypasses the era's allowed list, which has no "squatted".
+        if (sceneType == "gas_station" && IsLastEra && _conditionRank > 0)
+        {
+            SceneCondition = Random.Next(2) == 0 ? "new" : "squatted";
+            _conditionRank = RankOf(SceneCondition);
+            return SceneCondition;
+        }
+
+        var pool = (allowed ?? Array.Empty<string>())
+            .Where(c => RankOf(c) >= _conditionRank)
+            .ToList();
+
+        if (pool.Count == 0)
+        {
+            // Era offers nothing at or above the reached rank — hold the arc.
+            SceneCondition = _conditionRank >= 2 ? "abandoned" : "declining";
+            return SceneCondition;
+        }
+
+        // Once decline has started, prefer it deepening over flattening out:
+        // a place that was declining in 2005 should look worse in 2015.
+        if (_conditionRank > 0)
+        {
+            var worse = pool.Where(c => RankOf(c) > _conditionRank).ToList();
+            if (worse.Count > 0)
+                pool = worse;
+        }
+
+        SceneCondition = pool[Random.Next(pool.Count)];
+        _conditionRank = Math.Max(_conditionRank, RankOf(SceneCondition));
         return SceneCondition;
     }
 

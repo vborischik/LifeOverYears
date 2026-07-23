@@ -30,13 +30,13 @@ Smartphone era fully arrived. A 2015 station — LED-lit canopy, digital price s
 CONDITION: abandoned — closed business, boarded windows, weeds through pavement cracks, weathered surfaces
 
 PERIOD DETAILS
-- red DVD-rental kiosk outside the store entrance
-- card skimmer warnings on pumps
+- air and vacuum island at the lot edge
+- large modern canopies with LED lighting
 - price sign showing gas around $2.45
-- main sign: "Exxon" branded gas station — Exxon pole sign with price display and Exxon colors on the canopy fascia
-- window signs: '2 ENERGY DRINKS $5', 'ATM INSIDE'
-- an ice merchandiser and propane cage along the wall
-- an air-and-vacuum island at the lot edge
+- main sign: "BP" branded gas station — BP pole sign with price display and BP colors on the canopy fascia
+- window signs: 'E-CIG STARTER KITS', 'ATM INSIDE'
+- card-skimmer warning stickers on the pumps
+- a chalkboard A-frame sign advertising the coffee bar
 Typography: minimalist flat sans-serif, simplified modern logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
@@ -47,9 +47,14 @@ VEHICLES
 NO vehicles anywhere — empty lot, no parked or moving cars.
 
 ENVIRONMENT
-- road markings: yellow center line, white edge lines, high-visibility crosswalks
+- road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines common, undergrounding in new developments, fiber optic lines on poles
 
+DECAY
+- potholes, alligator cracking, gravel at the edges
+- weeds through pavement cracks, the curb
+- rusted signage askew, lettering broken off
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - cottonwood tree at northeast corner of lot: established tree, modest canopy
 - elm tree at sidewalk edge left of entrance: very young sapling

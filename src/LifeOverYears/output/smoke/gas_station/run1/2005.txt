@@ -58,9 +58,13 @@ One of these vehicles is parked at the pump island with its driver standing besi
 PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: yellow center line, white edge lines, turn arrows
+- road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines standard, cable and fiber lines on poles appearing
 
+DECAY
+- chalky faded lane paint, ghost lines in the tracks
+- chipped, stained curbs, weeds in the gutter
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - cottonwood tree at northeast corner of lot: young tree, thin trunk
 - elm tree at sidewalk edge left of entrance: very young sapling

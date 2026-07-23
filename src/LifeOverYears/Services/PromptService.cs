@@ -7,6 +7,10 @@ namespace LifeOverYears.Services;
 
 public sealed class PromptService : IPromptService
 {
+    // Cap on the doubled first-era crowd: "EXACTLY N people" stops being
+    // followed reliably by the image model much above this.
+    private const int FirstEraPeopleCap = 30;
+
     private readonly IDataService _data;
     private readonly ILogger<PromptService> _logger;
 
@@ -23,6 +27,7 @@ public sealed class PromptService : IPromptService
         var template = await _data.LoadPromptAsync("image-template");
         var rng      = context.Random;
         var year     = eraProfile.Year;
+        var eraIndex = context.BeginEra();
 
         var sceneType    = sceneDna.SceneType ?? "default";
         var sceneContent = ResolveSceneContent(eraProfile, sceneType);
@@ -31,28 +36,39 @@ public sealed class PromptService : IPromptService
                 year, sceneType);
 
         var isGasStation = sceneType == "gas_station";
+        // Downtown streets now carry a condition arc too — the decline of a main
+        // street is the story these runs are for. Strip malls and default scenes
+        // stay thriving and use their base ranges untouched.
+        var supportsCondition = sceneType is "gas_station" or "downtown_street";
 
-        // Conditions are a gas-station-only concept for now: only gas stations
-        // sample one and let it drive activity level (abandoned → deserted,
-        // declining → sparse). Other scene types always stay "thriving" and use
-        // their base scene_content ranges untouched.
-        var condition = isGasStation
-            ? context.PickSceneCondition(eraProfile.AllowedSceneConditions)
+        var condition = supportsCondition
+            ? context.PickSceneCondition(eraProfile.AllowedSceneConditions, sceneType)
             : "thriving";
-        _logger.LogInformation("Scene condition for SceneDna {Id}, year {Year}: {Condition}",
-            sceneDna.Id, year, condition);
+        _logger.LogInformation(
+            "Scene condition for SceneDna {Id}, year {Year} (era {Index}): {Condition}",
+            sceneDna.Id, year, eraIndex, condition);
 
         var peopleRange  = sceneContent?.People   ?? new CountRange(10, 15);
         var vehicleRange = sceneContent?.Vehicles ?? new CountRange(4, 6);
         var peopleCount  = rng.Next(peopleRange.Min, peopleRange.Max + 1);
         var vehicleCount = rng.Next(vehicleRange.Min, vehicleRange.Max + 1);
 
-        if (isGasStation && condition == "abandoned")
+        // The opening era sets the "before" that everything after is measured
+        // against; a sparse street there reads as empty rather than nostalgic.
+        if (context.IsFirstEra)
+            peopleCount = Math.Min(peopleCount * 2, FirstEraPeopleCap);
+
+        if (supportsCondition && condition == "abandoned")
         {
             peopleCount  = 0;
             vehicleCount = 0;
         }
-        else if (isGasStation && condition == "declining")
+        else if (supportsCondition && condition == "squatted")
+        {
+            peopleCount  = rng.Next(2, 5);
+            vehicleCount = rng.Next(0, 2);
+        }
+        else if (supportsCondition && condition == "declining")
         {
             peopleCount  = rng.Next(2, 5);
             vehicleCount = rng.Next(1, 3);
@@ -69,7 +85,7 @@ public sealed class PromptService : IPromptService
             .Replace("{SCENE_BLOCK}",       BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, brand, rng))
             .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, rng))
             .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation))
-            .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year, sceneType))
+            .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year, sceneType, condition, rng))
             .Replace("{STYLE_BLOCK}",       BuildStyleBlock(eraProfile.Photography));
 
         // Scene content refers to recurring businesses (diner, drug store, etc.) by
@@ -203,9 +219,59 @@ public sealed class PromptService : IPromptService
         "new"       => "recently built appearance, pristine surfaces, new signage",
         "declining" => "faded paint, minor wear, aging signage, sparse activity",
         "abandoned" => "closed business, boarded windows, weeds through pavement cracks, weathered surfaces",
+        "squatted"  => "closed and derelict, makeshift shelters and tarps by the boarded entrance, shopping carts and scattered belongings, weeds through the pavement",
         "restored"  => "renovated appearance, modern updates on original structure",
         _           => "well-maintained, freshly painted, active business, clean lot"
     };
+
+    // Physical wear that sells a place as run-down. Surfaces, finishes and
+    // litter only — never road width, curb lines, building footprints or
+    // camera, which stay fixed by the PRESERVE block. Visibility is internal
+    // (not private) so the smoke suite can verify pool membership directly —
+    // same pattern as StripRequiredMarker below.
+    internal static readonly string[] DecayModerate =
+    {
+        "mismatched asphalt patches, cracks at the joints",
+        "chalky faded lane paint, ghost lines in the tracks",
+        "chipped, stained curbs, weeds in the gutter",
+        "faded storefront paint, one window papered over",
+        "sun-bleached signage, a burnt-out sign letter",
+        "curb litter, an overflowing trash can"
+    };
+
+    internal static readonly string[] DecayHeavy =
+    {
+        "potholes, alligator cracking, gravel at the edges",
+        "lane markings nearly gone, faint paint traces",
+        "weeds through pavement cracks, the curb",
+        "boarded windows, glass cracked or missing",
+        "rusted signage askew, lettering broken off",
+        "graffiti on boarded panels, lower wall",
+        "trash along storefronts, a dumped mattress at the curb"
+    };
+
+    // Two or three concrete details per era, sampled so consecutive eras of the
+    // same run don't repeat the same wording.
+    private static string BuildDecayBlock(string condition, Random rng)
+    {
+        var pool = condition switch
+        {
+            "declining"               => DecayModerate,
+            "abandoned" or "squatted" => DecayHeavy,
+            _                         => null
+        };
+        if (pool is null)
+            return "";
+
+        var picks = Sample(pool, condition == "declining" ? 2 : 3, rng);
+        var sb = new StringBuilder();
+        sb.AppendLine();
+        sb.AppendLine("DECAY");
+        foreach (var p in picks)
+            sb.AppendLine($"- {p}");
+        sb.Append("Wear is surfaces only — road, curbs, footprints, camera unchanged.");
+        return sb.ToString().TrimEnd();
+    }
 
     private static string BuildSceneBlock(EraProfile era, SceneContent? content, string sceneType, string condition, string? brand, Random rng)
     {
@@ -217,8 +283,8 @@ public sealed class PromptService : IPromptService
         var isGasStation = sceneType == "gas_station";
 
         // Scene atmosphere — condition affects appearance/upkeep only, never the
-        // physical geometry in the PRESERVE block. Gas stations only for now.
-        if (isGasStation)
+        // physical geometry in the PRESERVE block.
+        if (sceneType is "gas_station" or "downtown_street")
         {
             sb.AppendLine();
             sb.AppendLine($"CONDITION: {condition} — {ConditionDescriptor(condition)}");
@@ -435,17 +501,24 @@ public sealed class PromptService : IPromptService
         return sb.ToString();
     }
 
-    private static string BuildEnvironmentBlock(SceneDna scene, EraProfile era, int year, string sceneType)
+    private static string BuildEnvironmentBlock(
+        SceneDna scene, EraProfile era, int year, string sceneType,
+        string condition, Random rng)
     {
         var infra = era.Infrastructure;
         var sb = new StringBuilder();
         sb.AppendLine("ENVIRONMENT");
-        sb.AppendLine($"- road markings: {Join(infra.Roads.Markings.Take(3).ToList())}");
+        // Crisp era markings only make sense on a scene that is still kept up.
+        if (condition is "declining" or "abandoned" or "squatted")
+            sb.AppendLine("- road markings: worn and faded, well past their last repainting");
+        else
+            sb.AppendLine($"- road markings: {Join(infra.Roads.Markings.Take(3).ToList())}");
         var isDowntown = sceneType == "downtown_street";
         var utilitiesPool = isDowntown && era.Infrastructure.Utilities.DowntownCharacteristics is { Count: > 0 } dc
             ? dc
             : infra.Utilities.Characteristics;
         sb.AppendLine($"- utilities: {Join(utilitiesPool.Take(2).ToList())}");
+        sb.Append(BuildDecayBlock(condition, rng));
         sb.AppendLine();
         sb.AppendLine("TREES");
         foreach (var tree in scene.Environment.Trees)

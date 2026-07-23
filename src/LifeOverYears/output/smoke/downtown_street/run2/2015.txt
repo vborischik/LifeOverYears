@@ -27,31 +27,32 @@ the source geometry.
 TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 main street mid-revival — the video store replaced by a phone repair shop, third-wave coffee and a vape shop, smartphones in every hand.
 
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+
 PERIOD DETAILS
-- MAIN STREET DINER with 'COFFEE $2.25' chalked on a menu board
-- third-wave coffee shop with a minimalist logo and Edison bulbs visible inside
+- RED ROBIN DINER with 'COFFEE $2.25' chalked on a menu board
 - craft beer taproom with a hand-drawn chalkboard sidewalk sign
-- window signs: 'BUY ONE GET ONE 50% OFF', 'CRAFT LATTE $4.50'
+- the old video store space now a phone repair shop with an 'iPHONE & TABLET REPAIR' LED sign
+- window signs: 'SCREEN REPAIR FROM $49', 'CRAFT LATTE $4.50'
 - string lights zigzagging over the sidewalk seating
-- a dog water bowl outside a cafe door
+- the old ghost-sign wall repainted as a colorful mural
 Typography: minimalist flat sans-serif, simplified modern logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 12 people TOTAL: 5 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
+EXACTLY 15 people TOTAL: 6 near sidewalk (largest, foreground), 5 opposite sidewalk mid-block, 4 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
 - a bearded man in a slim plaid shirt photographing his coffee
-- a couple taking a selfie in front of the painted mural
-- a man in skinny jeans taking a selfie
-Clothing: men in henley shirts, beards; women in statement necklaces, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+- a barista delivering drinks to an outdoor table
+- a dog walker with three dogs
+Clothing: men in henley shirts, beards; women in statement necklaces, ankle boots. Fashion palette: coral, mint green, navy. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
-EXACTLY 6 period vehicles, all different:
-- 2015-2020 Ford Edge — mid-size crossover, bold grille — gray
-- 2014-2019 Nissan Rogue — popular compact crossover — pearl white
-- 2011-2016 Hyundai Elantra — swoopy fluidic compact — silver
-- 2011-2016 Volkswagen Jetta — clean simple sedan — dark red
-- 2011-2016 Chrysler Town & Country — chrome-trimmed minivan — black
-- 2011-2016 Kia Optima — stylish mid-size, sporty — blue
+EXACTLY 5 period vehicles, all different:
+- 2009-2018 Ram 1500 — crosshair grille, refined — blue
+- 2010-2016 Chevrolet Equinox — mid-size crossover — silver
+- 2013-2016 Ford Escape — rounded compact crossover — gray
+- 2011-2016 Hyundai Elantra — swoopy fluidic compact — black
+- 2011-2016 Honda CR-V — rounded compact crossover — dark red
 Parked with gaps; no vehicle newer than 2015.
 All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
 At least one full driving lane in each direction stays clear of parked vehicles, meters, and curb infrastructure — through traffic is never blocked.

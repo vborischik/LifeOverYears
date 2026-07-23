@@ -36,7 +36,7 @@ Typography: bold geometric sans-serif, early computer-influenced fonts.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 11 people TOTAL: 4 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
+EXACTLY 22 people TOTAL: 9 near sidewalk (largest, foreground), 8 opposite sidewalk mid-block, 5 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
 - kids on BMX bikes by the curb
 - a woman using a wall-mounted payphone
 - a woman with permed hair and shoulder pads
