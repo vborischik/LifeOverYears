@@ -1,6 +1,8 @@
 using System.Net;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using LifeOverYears.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 
@@ -9,6 +11,8 @@ namespace LifeOverYears.Providers;
 public sealed class OpenAiProvider : IOpenAiProvider
 {
     private const string EditsUrl = "https://api.openai.com/v1/images/edits";
+    private const string FilesUrl = "https://api.openai.com/v1/files";
+    private const string BatchesUrl = "https://api.openai.com/v1/batches";
     private const string Model = "gpt-image-2";
     private const int MaxRetries = 4;
 
@@ -32,9 +36,9 @@ public sealed class OpenAiProvider : IOpenAiProvider
         byte[] referenceImage, string prompt, string size, string quality,
         CancellationToken ct = default)
     {
-        for (var attempt = 1; ; attempt++)
+        var payload = await SendWithRetryAsync(() =>
         {
-            using var form = new MultipartFormDataContent
+            var form = new MultipartFormDataContent
             {
                 { new StringContent(Model), "model" },
                 { new StringContent(prompt), "prompt" },
@@ -44,8 +48,74 @@ public sealed class OpenAiProvider : IOpenAiProvider
             var imageContent = new ByteArrayContent(referenceImage);
             imageContent.Headers.ContentType = new MediaTypeHeaderValue("image/png");
             form.Add(imageContent, "image[]", "base.png");
+            return new HttpRequestMessage(HttpMethod.Post, EditsUrl) { Content = form };
+        }, ct);
 
-            using var req = new HttpRequestMessage(HttpMethod.Post, EditsUrl) { Content = form };
+        return ExtractImageBytes(payload);
+    }
+
+    public async Task<string> UploadFileAsync(byte[] content, string fileName, string purpose,
+        CancellationToken ct = default)
+    {
+        var payload = await SendWithRetryAsync(() =>
+        {
+            var form = new MultipartFormDataContent
+            {
+                { new StringContent(purpose), "purpose" },
+            };
+            form.Add(new ByteArrayContent(content), "file", fileName);
+            return new HttpRequestMessage(HttpMethod.Post, FilesUrl) { Content = form };
+        }, ct);
+
+        return ExtractId(payload);
+    }
+
+    public async Task<string> CreateBatchAsync(string inputFileId, string endpoint,
+        CancellationToken ct = default)
+    {
+        var payload = await SendWithRetryAsync(() =>
+        {
+            var body = new
+            {
+                input_file_id = inputFileId,
+                endpoint,
+                completion_window = "24h"
+            };
+            var json = JsonSerializer.Serialize(body, JsonOpts);
+            return new HttpRequestMessage(HttpMethod.Post, BatchesUrl)
+            {
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+        }, ct);
+
+        return ExtractId(payload);
+    }
+
+    public async Task<(string Status, string? OutputFileId, string? ErrorFileId)> GetBatchAsync(
+        string batchId, CancellationToken ct = default)
+    {
+        var payload = await SendWithRetryAsync(
+            () => new HttpRequestMessage(HttpMethod.Get, $"{BatchesUrl}/{batchId}"), ct);
+
+        var batch = JsonSerializer.Deserialize<BatchResponse>(payload, JsonOpts)
+            ?? throw new InvalidOperationException($"Could not parse OpenAI batch response: {payload}");
+        return (batch.Status, batch.OutputFileId, batch.ErrorFileId);
+    }
+
+    public Task<string> DownloadFileContentAsync(string fileId, CancellationToken ct = default) =>
+        SendWithRetryAsync(() => new HttpRequestMessage(HttpMethod.Get, $"{FilesUrl}/{fileId}/content"), ct);
+
+    // Sends one request per attempt (a HttpRequestMessage/its content can only be
+    // sent once, so requestFactory builds a fresh one each time), retrying
+    // transient failures with the same backoff schedule every call site shares.
+    // Returns the raw response body on success; throws with status + payload on
+    // a non-retryable failure.
+    private async Task<string> SendWithRetryAsync(
+        Func<HttpRequestMessage> requestFactory, CancellationToken ct)
+    {
+        for (var attempt = 1; ; attempt++)
+        {
+            using var req = requestFactory();
             req.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _apiKey);
 
             HttpResponseMessage resp;
@@ -60,23 +130,26 @@ public sealed class OpenAiProvider : IOpenAiProvider
                 continue;
             }
 
-            var payload = await resp.Content.ReadAsStringAsync(ct);
-
-            if (resp.IsSuccessStatusCode)
-                return ExtractImageBytes(payload);
-
-            // Retry transient failures only.
-            if ((resp.StatusCode == HttpStatusCode.TooManyRequests
-                 || (int)resp.StatusCode >= 500) && attempt < MaxRetries)
+            using (resp)
             {
-                _logger.LogWarning("OpenAI {Status} (attempt {Attempt}), retrying", resp.StatusCode, attempt);
-                await Task.Delay(BackoffMs(attempt), ct);
-                continue;
-            }
+                var payload = await resp.Content.ReadAsStringAsync(ct);
 
-            // Non-retryable (e.g. moderation_blocked, bad request) — surface it.
-            throw new InvalidOperationException(
-                $"OpenAI image edit failed ({(int)resp.StatusCode} {resp.StatusCode}): {payload}");
+                if (resp.IsSuccessStatusCode)
+                    return payload;
+
+                // Retry transient failures only.
+                if ((resp.StatusCode == HttpStatusCode.TooManyRequests
+                     || (int)resp.StatusCode >= 500) && attempt < MaxRetries)
+                {
+                    _logger.LogWarning("OpenAI {Status} (attempt {Attempt}), retrying", resp.StatusCode, attempt);
+                    await Task.Delay(BackoffMs(attempt), ct);
+                    continue;
+                }
+
+                // Non-retryable (e.g. moderation_blocked, bad request) — surface it.
+                throw new InvalidOperationException(
+                    $"OpenAI request failed ({(int)resp.StatusCode} {resp.StatusCode}): {payload}");
+            }
         }
     }
 
@@ -91,4 +164,15 @@ public sealed class OpenAiProvider : IOpenAiProvider
             return Convert.FromBase64String(b64.GetString()!);
         throw new InvalidOperationException($"No image data in OpenAI response: {json}");
     }
+
+    private static string ExtractId(string json) =>
+        JsonSerializer.Deserialize<IdResponse>(json, JsonOpts)?.Id
+            ?? throw new InvalidOperationException($"No id in OpenAI response: {json}");
+
+    private sealed record IdResponse([property: JsonPropertyName("id")] string Id);
+
+    private sealed record BatchResponse(
+        [property: JsonPropertyName("status")] string Status,
+        [property: JsonPropertyName("output_file_id")] string? OutputFileId,
+        [property: JsonPropertyName("error_file_id")] string? ErrorFileId);
 }

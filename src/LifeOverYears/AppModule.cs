@@ -50,16 +50,47 @@ public sealed class AppModule : Module
         builder.RegisterInstance(new RunService(_loggerFactory.CreateLogger<RunService>()))
                .As<IRunService>().SingleInstance();
 
-        var openAiKey = _configuration["OpenAi:ApiKey"]
-            ?? throw new InvalidOperationException("OpenAi:ApiKey is not configured in appsettings.json");
+        var imagesEnabled = _configuration.GetValue("OpenAi:Enabled", true);
+        var imagesMode = _configuration["OpenAi:Mode"] ?? "sync";
+        _loggerFactory.CreateLogger<AppModule>().LogInformation(
+            "Image generation provider: enabled={Enabled}, mode={Mode}", imagesEnabled, imagesMode);
 
-        builder.RegisterInstance(new OpenAiProvider(new HttpClient(), openAiKey, _loggerFactory.CreateLogger<OpenAiProvider>()))
-               .As<IOpenAiProvider>().SingleInstance();
+        if (!imagesEnabled)
+        {
+            // Service off: fall back to the stub — jobs are recorded and the
+            // pipeline waits on the run folder for manually placed images.
+            builder.RegisterInstance(new StubImageProvider(_loggerFactory.CreateLogger<StubImageProvider>()))
+                   .As<IImageGenerationProvider>().SingleInstance();
+        }
+        else
+        {
+            var openAiKey = _configuration["OpenAi:ApiKey"]
+                ?? throw new InvalidOperationException(
+                    "OpenAi:ApiKey is not configured in appsettings.json (set OpenAi:Enabled to false to run without it)");
 
-        builder.Register(_ => new OpenAiImageProvider(
-                    _.Resolve<IOpenAiProvider>(),
-                    _loggerFactory.CreateLogger<OpenAiImageProvider>()))
-               .As<IImageGenerationProvider>().SingleInstance();
+            builder.RegisterInstance(new OpenAiProvider(new HttpClient(), openAiKey, _loggerFactory.CreateLogger<OpenAiProvider>()))
+                   .As<IOpenAiProvider>().SingleInstance();
+
+            if (string.Equals(imagesMode, "batch", StringComparison.OrdinalIgnoreCase))
+            {
+                builder.Register(_ => new OpenAiBatchImageProvider(
+                            _.Resolve<IOpenAiProvider>(),
+                            _loggerFactory.CreateLogger<OpenAiBatchImageProvider>()))
+                       .As<IImageGenerationProvider>().SingleInstance();
+            }
+            else if (string.Equals(imagesMode, "sync", StringComparison.OrdinalIgnoreCase))
+            {
+                builder.Register(_ => new OpenAiImageProvider(
+                            _.Resolve<IOpenAiProvider>(),
+                            _loggerFactory.CreateLogger<OpenAiImageProvider>()))
+                       .As<IImageGenerationProvider>().SingleInstance();
+            }
+            else
+            {
+                throw new InvalidOperationException(
+                    $"OpenAi:Mode must be 'sync' or 'batch', got '{imagesMode}'");
+            }
+        }
 
         builder.RegisterInstance(new YearOverlayService(_loggerFactory.CreateLogger<YearOverlayService>()))
                .As<IYearOverlayService>().SingleInstance();
