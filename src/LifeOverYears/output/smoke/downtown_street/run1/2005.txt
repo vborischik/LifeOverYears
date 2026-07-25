@@ -27,35 +27,36 @@ the source geometry.
 TRANSFORM TO 2005
 Post-9/11 era. A 2005 main street — cellular stores and chain coffee arriving, the video store in its final days, flip phones in every hand.
 
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+
 PERIOD DETAILS
 - the video rental store closing down — 'EVERYTHING MUST GO — ALL MOVIES $3' banner across the window
-- RED ROBIN DINER with a refreshed awning and a 'COFFEE $1.25' vinyl decal on the glass
-- cellular phone store with 'FREE PHONE WITH 2-YEAR PLAN' posters
-- window signs: 'EVERYTHING MUST GO — 50-70% OFF', 'TANNING — 1 MONTH UNLIMITED $29'
+- MARY'S DINER with a refreshed awning and a 'COFFEE $1.25' vinyl decal on the glass
+- tanning salon with an airbrushed sun mural on the window
+- window signs: 'DVDs $14.99', 'LATTE $2.95'
+- a bike rack with a couple of mountain bikes
 - a free real-estate flyer box on the corner
-- a sidewalk sandwich board with a cell-phone store promo
 Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 12 people TOTAL: 5 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
-- a man loading a flat-screen TV box into an SUV
-- a man in cargo shorts and a trucker hat carrying shopping bags
-- a man in cargo shorts talking on a flip phone
-Clothing: men in trucker hats, frosted tips hair; women in low-rise jeans, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+EXACTLY 14 people TOTAL: 6 near sidewalk (largest, foreground), 5 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
+- a barista handing an iced drink to a customer at the cafe door
+- a teenager texting on a flip phone with both thumbs
+- a group of college kids with messenger bags
+Clothing: men in frosted tips hair, baggy jeans; women in trucker hats, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
-EXACTLY 6 period vehicles, all different:
-- 1998-2005 Volkswagen New Beetle — retro bubble shape — gold
-- 2002-2006 Toyota Camry — smooth conservative mid-size — gray
-- 2001-2007 Dodge Grand Caravan — family minivan, rounded — dark red
-- 2002-2008 Dodge Ram — big rig grille evolved — dark blue
-- 2004-2008 Ford F-150 — bigger, bolder grille — white
-- 2003-2007 Honda Accord — clean lines, sharper than 1990s — black
+EXACTLY 5 period vehicles, all different:
+- 2002-2008 Dodge Ram — big rig grille evolved — gold
+- 2005-2010 Jeep Grand Cherokee — rounded modern SUV — gray
+- 2003-2008 Toyota Corolla — conservative compact sedan — dark blue
+- 1999-2006 Chevrolet Silverado — squared modern look — silver
+- 2003-2009 Hummer H2 — massive military-styled SUV — dark red
 Parked with gaps; no vehicle newer than 2005.
 All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
 At least one full driving lane in each direction stays clear of parked vehicles, meters, and curb infrastructure — through traffic is never blocked.
-PLACEMENT: three parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn arrows

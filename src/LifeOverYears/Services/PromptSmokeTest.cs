@@ -73,7 +73,7 @@ public static class PromptSmokeTest
         var dtRun2  = await BuildRun(promptService, downtownScene, eras, 1337, Years);
 
         // c) Unknown scene — 1985 only, must not throw
-        var unknownCtx    = new GenerationContext { Random = new Random(42) };
+        var unknownCtx    = new GenerationContext { Random = new Random(42), TotalEras = 1 };
         var unknownPrompt = await promptService.BuildAsync(unknownScene, eras[1985], unknownCtx);
         // SceneType "unknown" has no dedicated key → fell back to "default" scene_content
         logger.LogWarning("[Smoke] SceneType 'unknown' fell back to default scene_content for era 1985 — fallback path exercised");
@@ -110,8 +110,9 @@ public static class PromptSmokeTest
         DoC20(gasRun1, gasRun2, dtRun1, dtRun2, eras,         findings);
         DoC21(gasRun1, gasRun2, dtRun1, dtRun2, eras,         findings);
         DoC22(gasRun1, gasRun2, dtRun1, dtRun2, unknownPrompt, logger, findings);
-        DoC23(gasRun1, gasRun2, dtRun1, dtRun2,               findings);
+        DoC23(gasRun1, gasRun2, dtRun1, dtRun2, unknownPrompt, findings);
         DoC24(gasRun1, gasRun2, dtRun1, dtRun2,               findings);
+        DoC25(gasRun1, gasRun2, dtRun1, dtRun2, eras,         findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -296,7 +297,7 @@ public static class PromptSmokeTest
         int                      seed,
         int[]                    years)
     {
-        var ctx     = new GenerationContext { Random = new Random(seed) };
+        var ctx     = new GenerationContext { Random = new Random(seed), TotalEras = years.Length };
         var prompts = new Dictionary<int, Prompt>();
         foreach (var year in years)
             prompts[year] = await svc.BuildAsync(scene, eras[year], ctx);
@@ -406,13 +407,15 @@ public static class PromptSmokeTest
                 if (sc is null) continue;
 
                 int actual = prompt.SelectedVehicles.Count;
-                // Conditions are gas-station-only: abandoned forces 0 vehicles and
-                // declining clamps to 1-2 there. Every other scene type must always
-                // land inside its scene_content range — 0 is never legal.
-                var clamped = sceneType == "gas_station" &&
-                              prompt.SceneCondition is "abandoned" or "declining";
-                if (sceneType != "gas_station" && actual == 0)
-                    errs.Add($"{label}/{year}: count=0 for non-gas scene (condition leak)");
+                // Conditions apply to gas_station and downtown_street: abandoned
+                // forces 0 vehicles, declining/squatted clamp to a small range.
+                // strip_mall/default never sample a condition, so 0 is never
+                // legal for them — a bare 0 there would be a condition leak.
+                var supportsCondition = sceneType is "gas_station" or "downtown_street";
+                var clamped = supportsCondition &&
+                              prompt.SceneCondition is "abandoned" or "declining" or "squatted";
+                if (!supportsCondition && actual == 0)
+                    errs.Add($"{label}/{year}: count=0 for a scene type without conditions (condition leak)");
                 else if (!clamped && (actual < sc.Vehicles.Min || actual > sc.Vehicles.Max))
                     errs.Add($"{label}/{year}: count={actual} outside [{sc.Vehicles.Min},{sc.Vehicles.Max}]");
 
@@ -1073,31 +1076,39 @@ public static class PromptSmokeTest
             errs.Count == 0, errs.Count == 0 ? $"All prompts within {MaxPromptChars} chars" : Join(errs)));
     }
 
-    // Conditions are gas-station-only: downtown prompts must never carry the
-    // zero-out lines or any condition other than "thriving", while gas prompts
-    // must honor what their sampled condition implies.
+    // Condition rank: thriving/busy/new/restored=0, declining=1, abandoned/squatted=2.
+    private static readonly Dictionary<string, int> ConditionRank = new()
+    {
+        ["thriving"] = 0, ["busy"] = 0, ["new"] = 0, ["restored"] = 0,
+        ["declining"] = 1,
+        ["abandoned"] = 2, ["squatted"] = 2
+    };
+
+    // Conditions now apply to gas_station AND downtown_street. Verifies: (1)
+    // strip_mall/default (no dedicated fixture — unknownPrompt exercises the
+    // identical "not gas_station or downtown_street" code path, since
+    // PromptService.BuildAsync's supportsCondition check doesn't special-case
+    // strip_mall at all) always stays "thriving"; (2) rank is monotonic across
+    // one run's eras, with the single allowed exception of a gas station's
+    // final era dropping back to "new"; (3) abandoned/declining/squatted carry
+    // the counts they imply, for both scene types that support conditions;
+    // (4) "squatted" is a gas-station-only finale resolution.
     private static void DoC23(
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Prompt unknownPrompt,
         List<(string, string, bool, string)> f)
     {
         var errs = new List<string>();
         const string noVehicles = "NO vehicles anywhere";
         const string noPeople   = "NO people anywhere";
 
-        foreach (var (run, label) in new[] { (dtRun1, "downtown/run1"), (dtRun2, "downtown/run2") })
-            foreach (var (year, prompt) in run)
-            {
-                if (prompt.Text.Contains(noVehicles))
-                    errs.Add($"{label}/{year}: contains '{noVehicles}'");
-                if (prompt.Text.Contains(noPeople))
-                    errs.Add($"{label}/{year}: contains '{noPeople}'");
-                if (prompt.SceneCondition != "thriving")
-                    errs.Add($"{label}/{year}: SceneCondition '{prompt.SceneCondition}' (expected 'thriving')");
-            }
+        if (unknownPrompt.SceneCondition != "thriving")
+            errs.Add($"unknown(default)/1985: SceneCondition '{unknownPrompt.SceneCondition}' (expected 'thriving')");
 
         var peopleLine = new System.Text.RegularExpressions.Regex(@"EXACTLY (\d+) people");
-        foreach (var (run, label) in new[] { (gasRun1, "gas/run1"), (gasRun2, "gas/run2") })
+        void CheckCounts(Dictionary<int, Prompt> run, string label)
+        {
             foreach (var (year, prompt) in run)
             {
                 if (prompt.SceneCondition == "abandoned")
@@ -1107,18 +1118,54 @@ public static class PromptSmokeTest
                     if (!prompt.Text.Contains(noPeople))
                         errs.Add($"{label}/{year}: abandoned but missing '{noPeople}'");
                 }
-                else if (prompt.SceneCondition == "declining")
+                else if (prompt.SceneCondition is "declining" or "squatted")
                 {
                     var m = peopleLine.Match(prompt.Text);
                     if (!m.Success || int.Parse(m.Groups[1].Value) is < 2 or > 4)
-                        errs.Add($"{label}/{year}: declining but people count is {(m.Success ? m.Groups[1].Value : "missing")} (expected 2-4)");
-                    if (prompt.SelectedVehicles.Count is < 1 or > 2)
-                        errs.Add($"{label}/{year}: declining but vehicle count is {prompt.SelectedVehicles.Count} (expected 1-2)");
+                        errs.Add($"{label}/{year}: {prompt.SceneCondition} but people count is {(m.Success ? m.Groups[1].Value : "missing")} (expected 2-4)");
+                    var (vMin, vMax) = prompt.SceneCondition == "squatted" ? (0, 1) : (1, 2);
+                    if (prompt.SelectedVehicles.Count < vMin || prompt.SelectedVehicles.Count > vMax)
+                        errs.Add($"{label}/{year}: {prompt.SceneCondition} but vehicle count is {prompt.SelectedVehicles.Count} (expected {vMin}-{vMax})");
                 }
             }
+        }
 
-        f.Add(("C23", "Conditions stay gas-station-only: downtown always thriving with no zero-out lines; gas abandoned/declining prompts honor their counts",
-            errs.Count == 0, errs.Count == 0 ? "No condition leakage; gas condition counts honored" : Join(errs)));
+        CheckCounts(gasRun1, "gas/run1");
+        CheckCounts(gasRun2, "gas/run2");
+        CheckCounts(dtRun1,  "downtown/run1");
+        CheckCounts(dtRun2,  "downtown/run2");
+
+        void CheckMonotonic(Dictionary<int, Prompt> run, string label, bool isGasStation)
+        {
+            var prevRank = -1;
+            foreach (var year in Years)
+            {
+                if (!run.TryGetValue(year, out var prompt)) continue;
+                var rank = ConditionRank.GetValueOrDefault(prompt.SceneCondition, 0);
+                var isFinale = isGasStation && year == Years[^1];
+                if (prevRank >= 0 && rank < prevRank && !isFinale)
+                    errs.Add($"{label}/{year}: condition rank dropped from {prevRank} to {rank} ('{prompt.SceneCondition}') outside the gas-station finale exception");
+                prevRank = rank;
+            }
+        }
+
+        CheckMonotonic(gasRun1, "gas/run1", isGasStation: true);
+        CheckMonotonic(gasRun2, "gas/run2", isGasStation: true);
+        CheckMonotonic(dtRun1,  "downtown/run1", isGasStation: false);
+        CheckMonotonic(dtRun2,  "downtown/run2", isGasStation: false);
+
+        foreach (var (run, label) in new[] { (dtRun1, "downtown/run1"), (dtRun2, "downtown/run2") })
+            foreach (var (year, prompt) in run)
+                if (prompt.SceneCondition == "squatted")
+                    errs.Add($"{label}/{year}: downtown_street resolved to 'squatted' (gas-station-only)");
+
+        foreach (var (run, label) in new[] { (gasRun1, "gas/run1"), (gasRun2, "gas/run2") })
+            foreach (var (year, prompt) in run)
+                if (prompt.SceneCondition == "squatted" && year != Years[^1])
+                    errs.Add($"{label}/{year}: 'squatted' outside the final era");
+
+        f.Add(("C23", "strip_mall/default always thriving; rank monotonic per run (gas-station finale may resolve to 'new'); abandoned/declining/squatted counts honored for gas_station and downtown_street; 'squatted' only on a gas_station's final era",
+            errs.Count == 0, errs.Count == 0 ? "Condition trajectory invariants hold" : Join(errs)));
     }
 
     // Every business-name token resolves to a value drawn from its own pool (never
@@ -1144,7 +1191,7 @@ public static class PromptSmokeTest
 
         foreach (var seed in new[] { 7, 4242 })
         {
-            var ctx    = new GenerationContext { Random = new Random(seed) };
+            var ctx    = new GenerationContext { Random = new Random(seed), TotalEras = 1 };
             var first  = ctx.BusinessNameTokens();
             var second = ctx.BusinessNameTokens(); // simulates the next era's call on the same run context
 
@@ -1177,6 +1224,75 @@ public static class PromptSmokeTest
 
         f.Add(("C24", "Every business-name token resolves to a member of its own pool and stays identical across all six eras of a run",
             errs.Count == 0, errs.Count == 0 ? "All 8 business tokens resolve correctly and remain stable per run" : Join(errs)));
+    }
+
+    // DECAY section presence/absence, placement, wording, and pool provenance.
+    private static void DoC25(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Dictionary<int, EraProfile> eras,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+        var runs = new[]
+        {
+            (gasRun1, "gas/run1"), (gasRun2, "gas/run2"),
+            (dtRun1, "downtown/run1"), (dtRun2, "downtown/run2")
+        };
+        string[] forbiddenGeometryWords = { "road width", "curb position", "building footprint", "camera" };
+
+        foreach (var (run, label) in runs)
+            foreach (var (year, prompt) in run)
+            {
+                var decayExpected = prompt.SceneCondition is "declining" or "abandoned" or "squatted";
+                var hasDecay      = prompt.Text.Contains("DECAY");
+
+                if (decayExpected && !hasDecay)
+                    errs.Add($"{label}/{year}: {prompt.SceneCondition} but no DECAY section");
+                if (!decayExpected && hasDecay)
+                    errs.Add($"{label}/{year}: {prompt.SceneCondition} but has a DECAY section");
+
+                if (!decayExpected)
+                {
+                    var expectedMarkings = $"- road markings: {string.Join(", ", eras[year].Infrastructure.Roads.Markings.Take(3))}";
+                    if (!prompt.Text.Contains(expectedMarkings))
+                        errs.Add($"{label}/{year}: era road markings not verbatim for condition '{prompt.SceneCondition}'");
+                }
+
+                if (!hasDecay) continue;
+
+                var outputFormatIdx = prompt.Text.IndexOf("OUTPUT FORMAT", StringComparison.Ordinal);
+                var decayIdx        = prompt.Text.IndexOf("DECAY", StringComparison.Ordinal);
+                if (outputFormatIdx >= 0 && decayIdx < outputFormatIdx)
+                    errs.Add($"{label}/{year}: DECAY section appears before OUTPUT FORMAT (inside PRESERVE)");
+
+                var treesIdx  = prompt.Text.IndexOf("TREES", decayIdx, StringComparison.Ordinal);
+                var decayBody = treesIdx > decayIdx ? prompt.Text[decayIdx..treesIdx] : prompt.Text[decayIdx..];
+
+                // Only the sampled wear entries are checked for forbidden geometry
+                // terms — the block's own trailing constraint sentence legitimately
+                // names "road width", "curb positions", etc. specifically to say
+                // they DON'T change, so it must not trip this check.
+                var pool = prompt.SceneCondition == "declining" ? PromptService.DecayModerate : PromptService.DecayHeavy;
+                var bullets = decayBody.Split('\n')
+                    .Select(l => l.Trim())
+                    .Where(l => l.StartsWith("- "))
+                    .Select(l => l[2..].Trim())
+                    .ToList();
+                if (bullets.Count == 0)
+                    errs.Add($"{label}/{year}: DECAY section has no bullet lines");
+                foreach (var b in bullets)
+                {
+                    if (!pool.Contains(b))
+                        errs.Add($"{label}/{year}: DECAY bullet '{b}' not drawn from the expected pool for '{prompt.SceneCondition}'");
+                    foreach (var word in forbiddenGeometryWords)
+                        if (b.Contains(word, StringComparison.OrdinalIgnoreCase))
+                            errs.Add($"{label}/{year}: DECAY bullet '{b}' mentions forbidden geometry term '{word}'");
+                }
+            }
+
+        f.Add(("C25", "DECAY present iff condition is declining/abandoned/squatted; healthy conditions keep verbatim era road markings with no DECAY; DECAY never precedes OUTPUT FORMAT (i.e. never inside PRESERVE) and never mentions geometry terms; bullets are drawn from the correct severity pool",
+            errs.Count == 0, errs.Count == 0 ? "Decay section invariants hold" : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────

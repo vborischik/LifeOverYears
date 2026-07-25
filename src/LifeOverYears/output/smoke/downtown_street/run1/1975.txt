@@ -27,33 +27,35 @@ the source geometry.
 TRANSFORM TO 1975
 Post-Vietnam, oil crisis era. A working small-town main street in 1975 — locally owned shops with hand-painted and neon signs, a five & dime, and not a single modern chain in sight.
 
+CONDITION: new — recently built appearance, pristine surfaces, new signage
+
 PERIOD DETAILS
-- RED ROBIN DINER with a hand-lettered 'HOT COFFEE 25¢' sign in the window
-- 'MODE APPAREL' women's dress shop with gold-leaf window lettering
-- barber shop with a spinning red-white-and-blue barber pole by the door and 'CLASSIC CUTS' window lettering
-- window signs: 'TV REPAIR — FREE ESTIMATES', 'MILK 69¢ HALF GALLON'
-- a milk crate stack by a shop door
+- MARY'S DINER with a hand-lettered 'HOT COFFEE 25¢' sign in the window
+- 'CENTRAL TV' window displaying console televisions with a 'COLOR TV' placard
+- 'NEWBERRY'S' five & dime with red-and-white lettering
+- window signs: 'MILK 69¢ HALF GALLON', 'SHIRTS 2 FOR $5'
 - a wooden newspaper rack with stacked local papers by the diner door
+- a painted ghost-sign wall advertisement on brick, weathered but still clearly readable
 Typography: bold sans-serif, slab serif, occasional script.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 20 people TOTAL: 8 near sidewalk (largest, foreground), 7 opposite sidewalk mid-block, 5 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
-- a mail carrier with a leather bag making rounds
-- a group of kids clustered outside the five & dime looking at the candy display
-- a mailman in a USPS uniform with a leather satchel
-Clothing: men in polyester suits, turtlenecks; women in midi skirts, wide leg pants. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+EXACTLY 30 people TOTAL: 12 near sidewalk (largest, foreground), 11 opposite sidewalk mid-block, 7 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
+- a couple leaving the diner, the man holding the door
+- a woman carrying paper grocery bags in both arms
+- a woman with a headscarf carrying a paper grocery bag
+Clothing: men in bell bottoms, turtlenecks; women in midi skirts, wide leg pants. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
-- 1972-1980 Dodge D100 — angular cab, simple grille
-- 1974-1983 Jeep Cherokee — two-door SUV, boxy, new model
-- 1968-1979 Chevrolet Nova — compact, simple three-box shape
-- 1972-1976 Lincoln Continental Mark IV — long hood personal luxury coupe
+- 1973-1980 Chevrolet C10 — square body, chrome bumper
+- 1971-1976 Jeep Wagoneer — boxy full-size SUV, woodgrain trim optional
+- 1970-1978 AMC Gremlin — short stubby hatchback rear
+- 1974-1978 Cadillac DeVille — full-size luxury, formal roofline, chrome heavy
 Parked with gaps; no vehicle newer than 1975.
 All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
 At least one full driving lane in each direction stays clear of parked vehicles, meters, and curb infrastructure — through traffic is never blocked.
-PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
+PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, no rumble strips

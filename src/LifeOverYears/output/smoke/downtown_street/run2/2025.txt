@@ -27,35 +27,35 @@ the source geometry.
 TRANSFORM TO 2025
 Post-pandemic era. A 2025 main street — minimalist flat-logo storefronts, QR codes on the glass, delivery culture in plain view.
 
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+
 PERIOD DETAILS
-- MAIN STREET DINER with 'COFFEE $3.50' shown on a small digital menu screen in the window
-- the old video store space now a specialty coffee bar with a minimalist flat logo
-- barber shop with its spinning barber pole — six decades on
-- window signs: 'OAT MILK LATTE $6.50', 'ORDER AHEAD — SCAN THE QR CODE'
-- a kick scooter leaning by a wall
-- QR-code stickers on the storefront glass
+- RED ROBIN DINER with 'COFFEE $3.50' shown on a small digital menu screen in the window
+- delivery-only ghost kitchen storefront with pickup shelves visible through the glass
+- boutique fitness studio with black-and-white minimalist branding
+- window signs: 'LASHES FROM $79', 'NOW HIRING — APPLY ONLINE'
+- a stack of delivery packages waiting at a shop door
+- a shared e-scooter and e-bike dock at the curb
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 15 people TOTAL: 6 near sidewalk (largest, foreground), 5 opposite sidewalk mid-block, 4 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
-- a couple filming a vertical video on a phone gimbal
-- sidewalk diners in a parklet dining structure
-- a parent and kid sharing earbuds
-Clothing: men in oversized fit tees, bucket hats; women in oversized blazers, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+- a woman in athleisure carrying a boba tea
+- several people looking at smartphones as they walk
+- a man walking a doodle-breed dog
+Clothing: men in bucket hats, oversized fit tees; women in chunky dad sneakers, high-waisted wide-leg jeans. Fashion palette: sage green, beige, cream. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
 
 VEHICLES
-EXACTLY 6 period vehicles, all different:
-- 2020-2025 Hyundai Tucson — sharp parametric grille design — black
-- 2019-2025 GMC Sierra — chrome-heavy full-size pickup — gray
-- 2022-2025 Toyota Tundra — massive grille, muscular stance — dark green
-- 2021-2025 Kia Telluride — boxy upscale three-row SUV — blue
-- 2019-2025 Ram 1500 — crew cab pickup, large grille — silver
-- 2017-2025 Honda CR-V — rounded best-selling crossover — white
+EXACTLY 4 period vehicles, all different:
+- 2022-2025 Ford Maverick — small unibody pickup — gray
+- 2021-2025 Kia Carnival — boxy SUV-styled minivan — white
+- 2021-2025 Chevrolet Tahoe — huge full-size SUV — black
+- 2019-2025 Subaru Forester — practical boxy crossover — dark green
 Parked with gaps; no vehicle newer than 2025.
 All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
 At least one full driving lane in each direction stays clear of parked vehicles, meters, and curb infrastructure — through traffic is never blocked.
-PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
+PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks
