@@ -87,7 +87,16 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
     try
     {
         var pipeline = container.Resolve<Pipeline>();
-        return await pipeline.RunAsync(photoPath, years);
+        var result = await pipeline.RunAsync(photoPath, years);
+
+        // On success only, retire the source photo so the input folder does
+        // not accumulate already-processed images across runs. photoPath was
+        // read relative to projectRoot (RunAsync runs after SetCurrentDirectory),
+        // so the move must resolve against projectRoot too — not launchDir.
+        if (result == 0)
+            MoveProcessedPhoto(photoPath, projectRoot, loggerFactory.CreateLogger("Program"));
+
+        return result;
     }
     catch (Exception ex)
     {
@@ -246,6 +255,43 @@ static async Task<int> RunCollectAsync(
 
     logger.LogInformation("collect complete — video: {Path}", video.FilePath);
     return 0;
+}
+
+static void MoveProcessedPhoto(string photoPath, string projectRoot, ILogger logger)
+{
+    try
+    {
+        var sourceFull = Path.GetFullPath(photoPath, projectRoot);
+        if (!File.Exists(sourceFull))
+        {
+            logger.LogWarning("Processed-move skipped — source no longer exists: {Source}", sourceFull);
+            return;
+        }
+
+        var processedDir = Path.Combine(projectRoot, "processed");
+        Directory.CreateDirectory(processedDir);
+
+        var fileName = Path.GetFileName(sourceFull);
+        var destFull = Path.Combine(processedDir, fileName);
+
+        // Name collision → append a timestamp rather than overwrite, so no
+        // previously processed source is ever lost.
+        if (File.Exists(destFull))
+        {
+            var stem = Path.GetFileNameWithoutExtension(fileName);
+            var ext  = Path.GetExtension(fileName);
+            fileName = $"{stem}_{DateTimeOffset.Now:yyyyMMdd-HHmmss}{ext}";
+            destFull = Path.Combine(processedDir, fileName);
+        }
+
+        File.Move(sourceFull, destFull);
+        logger.LogInformation("Source photo retired to {Dest}", destFull);
+    }
+    catch (Exception ex)
+    {
+        // A failed move must never fail the run — the video is already done.
+        logger.LogWarning(ex, "Processed-move failed for {Source} — leaving source in place", photoPath);
+    }
 }
 
 static string ResolvePhotoPath(string[] args, string projectRoot)
