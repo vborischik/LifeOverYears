@@ -82,4 +82,15 @@ public sealed class DataService : IDataService
         await _fs.EnsureDirectoryExistsAsync(Path.GetDirectoryName(path)!);
         await _json.SerializeFileAsync(prompt, path);
     }
+
+    public async Task<IReadOnlyList<string>> LoadHashtagsAsync()
+    {
+        var path = Path.Combine("data", "captions", "hashtags.txt");
+        _logger.LogInformation("Loading hashtags from {Path}", path);
+        var text = await _fs.ReadAllTextAsync(path);
+        return text.Split('\n')
+            .Select(l => l.Trim())
+            .Where(l => l.Length > 0)
+            .ToList();
+    }
 }

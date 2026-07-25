@@ -13,6 +13,7 @@ public sealed class Pipeline
     private readonly IImageGenerationProvider _images;
     private readonly IYearOverlayService _overlay;
     private readonly IVideoService _video;
+    private readonly ICaptionService _caption;
     private readonly ILogger<Pipeline> _logger;
 
     public Pipeline(
@@ -23,6 +24,7 @@ public sealed class Pipeline
         IImageGenerationProvider images,
         IYearOverlayService overlay,
         IVideoService video,
+        ICaptionService caption,
         ILogger<Pipeline> logger)
     {
         _vision = vision;
@@ -32,6 +34,7 @@ public sealed class Pipeline
         _images = images;
         _overlay = overlay;
         _video = video;
+        _caption = caption;
         _logger = logger;
     }
 
@@ -122,6 +125,16 @@ public sealed class Pipeline
             return 1;
         }
         _logger.LogInformation("Pipeline complete — video: {Path}", video.FilePath);
+
+        // Step 5 — Caption
+        var caption = await _caption.GenerateAsync(sceneDna);
+        var captionPath = Path.Combine(run.Root, "caption.txt");
+        var captionText = caption.Description
+            + "\n\n"
+            + string.Join("\n", caption.Hashtags);
+        await File.WriteAllTextAsync(captionPath, captionText);
+        _logger.LogInformation("Step 5 complete — caption: {Path}", captionPath);
+
         return 0;
     }
 }

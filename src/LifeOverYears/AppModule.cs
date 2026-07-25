@@ -44,6 +44,12 @@ public sealed class AppModule : Module
         builder.Register(_ => new VisionService(_.Resolve<IVisionProvider>(), _.Resolve<IDataService>(), _loggerFactory.CreateLogger<VisionService>()))
                .As<IVisionService>().SingleInstance();
 
+        builder.Register(_ => new CaptionProvider(_.Resolve<INvidiaProvider>(), _loggerFactory.CreateLogger<CaptionProvider>()))
+               .As<ICaptionProvider>().SingleInstance();
+
+        builder.Register(_ => new CaptionService(_.Resolve<IDataService>(), _.Resolve<ICaptionProvider>(), _loggerFactory.CreateLogger<CaptionService>()))
+               .As<ICaptionService>().SingleInstance();
+
         builder.Register(_ => new PromptService(_.Resolve<IDataService>(), _loggerFactory.CreateLogger<PromptService>()))
                .As<IPromptService>().SingleInstance();
 
@@ -109,6 +115,7 @@ public sealed class AppModule : Module
                     _.Resolve<IImageGenerationProvider>(),
                     _.Resolve<IYearOverlayService>(),
                     _.Resolve<IVideoService>(),
+                    _.Resolve<ICaptionService>(),
                     _loggerFactory.CreateLogger<Pipeline>()))
                .SingleInstance();
     }

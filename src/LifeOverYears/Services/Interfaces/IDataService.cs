@@ -10,4 +10,5 @@ public interface IDataService
     Task<string> LoadPromptAsync(string name);
     Task<IReadOnlyList<(string Name, int From, int To)>> LoadGasBrandsAsync();
     Task SavePromptAsync(Prompt prompt);
+    Task<IReadOnlyList<string>> LoadHashtagsAsync();
 }
