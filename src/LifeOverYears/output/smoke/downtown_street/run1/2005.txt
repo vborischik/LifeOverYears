@@ -19,10 +19,9 @@ PRESERVE (must match source exactly)
 Keep this location instantly recognizable.
 
 OUTPUT FORMAT
-Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
-scene naturally above (sky) and below (street/pavement) — this is canvas
-extension of one photograph, not additional panels. Do not stretch or distort
-the source geometry.
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
 
 TRANSFORM TO 2005
 Post-9/11 era. A 2005 main street — cellular stores and chain coffee arriving, the video store in its final days, flip phones in every hand.
@@ -40,11 +39,11 @@ Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 14 people TOTAL: 6 near sidewalk (largest, foreground), 5 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
+EXACTLY 14 people TOTAL: 6 near sidewalk (largest, foreground), 5 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles.
 - a barista handing an iced drink to a customer at the cafe door
 - a teenager texting on a flip phone with both thumbs
 - a group of college kids with messenger bags
-Clothing: men in frosted tips hair, baggy jeans; women in trucker hats, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+Clothing: men in frosted tips hair, baggy jeans; women in trucker hats, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 5 period vehicles, all different:
@@ -54,8 +53,7 @@ EXACTLY 5 period vehicles, all different:
 - 1999-2006 Chevrolet Silverado — squared modern look — silver
 - 2003-2009 Hummer H2 — massive military-styled SUV — dark red
 Parked with gaps; no vehicle newer than 2005.
-All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
-At least one full driving lane in each direction stays clear of parked vehicles, meters, and curb infrastructure — through traffic is never blocked.
+Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
 PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT

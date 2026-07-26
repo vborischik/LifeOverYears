@@ -804,7 +804,7 @@ public static class PromptSmokeTest
     {
         var errs = new List<string>();
         const string populate = "populate it with the people and vehicles specified below";
-        const string sidewalk = "the driving lanes stay empty of pedestrians";
+        const string sidewalk = "never standing, sitting, or walking in the road or driving lanes";
 
         foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, unknownPrompt))
         {

@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-07-26T05:17:01.7968240+00:00
+Generated: 2026-07-26T19:21:31.1111446+00:00
 
 ## Check Results
 
@@ -61,7 +61,7 @@ Generated: 2026-07-26T05:17:01.7968240+00:00
 | 1985 | 5 | 1975-1991 Ford Econoline — boxy full-size van, 1983-1987 Honda Accord — clean lines, pop-up headlights, 1973-1987 Chevrolet C/K — square body pickup, dual headlights, 1980-1985 Buick LeSabre — boxy full-size, chrome trim, 1984-1988 Toyota Pickup — small, boxy, popular import |
 | 1995 | 5 | 1992-1995 Honda Civic — small rounded coupe and sedan, 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding, 1995-2004 Toyota Tacoma — compact, rounded, 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size, 1986-1997 Ford Aerostar — boxy rear-drive minivan |
 | 2005 | 5 | 2002-2008 Dodge Ram — big rig grille evolved, 2005-2010 Jeep Grand Cherokee — rounded modern SUV, 2003-2008 Toyota Corolla — conservative compact sedan, 1999-2006 Chevrolet Silverado — squared modern look, 2003-2009 Hummer H2 — massive military-styled SUV |
-| 2015 | 2 | 2012-2017 Toyota Camry — sharper creased mid-size sedan, 2014-2021 Subaru Outback — rugged wagon crossover |
+| 2015 | 5 | 2011-2016 Honda CR-V — rounded compact crossover, 2012-2018 Ford Focus — sharp European compact, 2015-2020 Ford F-150 — aluminum body, C-clamp headlights, 2013-2018 Hyundai Santa Fe — fluidic sculpture styling, 2011-2016 Chrysler Town & Country — chrome-trimmed minivan |
 | 2025 | 0 |  |
 
 ### downtown_street / Run 2 (seed=1337)

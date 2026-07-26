@@ -149,6 +149,11 @@ public sealed class GenerationContext
             .Where(c => RankOf(c) >= _conditionRank)
             .ToList();
 
+        // "new" = newly built — only credible in the run's first era. A rebuilt
+        // finale sets "new" directly (before this pool), so it stays unaffected.
+        if (!IsFirstEra)
+            pool = pool.Where(c => !string.Equals(c, "new", StringComparison.OrdinalIgnoreCase)).ToList();
+
         if (pool.Count == 0)
         {
             // Era offers nothing at or above the reached rank — hold the arc.

@@ -19,50 +19,47 @@ PRESERVE (must match source exactly)
 Keep this location instantly recognizable.
 
 OUTPUT FORMAT
-Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
-scene naturally above (sky) and below (street/pavement) — this is canvas
-extension of one photograph, not additional panels. Do not stretch or distort
-the source geometry.
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
 
 TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 main street mid-revival — the video store replaced by a phone repair shop, third-wave coffee and a vape shop, smartphones in every hand.
 
-CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
 - MARY'S DINER with 'COFFEE $2.25' chalked on a menu board
-- third-wave coffee shop with a minimalist logo and Edison bulbs visible inside
-- yoga studio with frosted glass and a lowercase sans-serif logo
-- window signs: 'CRAFT LATTE $4.50', 'SCREEN REPAIR FROM $49'
-- string lights zigzagging over the sidewalk seating
-- a modern bike-share style rack
+- boutique with a reclaimed-wood facade and minimalist lettering
+- barber shop with its spinning barber pole, now billed as a 'classic barbershop'
+- window signs: 'CRAFT LATTE $4.50', 'YOGA — FIRST CLASS FREE'
+- a bike corral at the curb
+- chalkboard sandwich-board signs outside the cafes
 Typography: minimalist flat sans-serif, simplified modern logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
+EXACTLY 15 people TOTAL: 6 near sidewalk (largest, foreground), 5 opposite sidewalk mid-block, 4 distant, far end of block. Grouped in pairs, threes, and singles.
+- a cyclist with a messenger bag riding in the bike lane
 - a dog leashed outside the coffee shop, its owner visible inside
-- sidewalk diners at small cafe tables under string lights
-- a dog walker with three dogs
-Clothing: men in henley shirts, slim-fit plaid shirts; women in yoga pants and leggings, ankle boots. Fashion palette: coral, mint green, navy. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+- a woman in yoga pants carrying a green smoothie
+Clothing: men in beards, boat shoes; women in infinity scarves, ankle boots. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 2 period vehicles, all different:
-- 2012-2017 Toyota Camry — sharper creased mid-size sedan — blue
-- 2014-2021 Subaru Outback — rugged wagon crossover — gray
+EXACTLY 5 period vehicles, all different:
+- 2011-2016 Honda CR-V — rounded compact crossover — pearl white
+- 2012-2018 Ford Focus — sharp European compact — black
+- 2015-2020 Ford F-150 — aluminum body, C-clamp headlights — dark red
+- 2013-2018 Hyundai Santa Fe — fluidic sculpture styling — gray
+- 2011-2016 Chrysler Town & Country — chrome-trimmed minivan — silver
 Parked with gaps; no vehicle newer than 2015.
-All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
-At least one full driving lane in each direction stays clear of parked vehicles, meters, and curb infrastructure — through traffic is never blocked.
-PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
+Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
+PLACEMENT: two parked on the LEFT side; the rest parked on the RIGHT side with gaps. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: worn and faded, well past their last repainting
+- road markings: yellow center line, white edge lines, high-visibility crosswalks
 - utilities: power and phone lines routed underground along the main commercial block, no utility poles along the street frontage; conduits below grade
 
-DECAY
-- faded storefront paint, one window papered over
-- sun-bleached signage, a burnt-out sign letter
-Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - oak tree at sidewalk left near corner: mature tree, full canopy
 - maple tree at sidewalk center in front of retail: established tree, modest canopy

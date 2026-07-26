@@ -8,10 +8,9 @@ signage visible in the source image.
 {PRESERVE_BLOCK}
 
 OUTPUT FORMAT
-Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
-scene naturally above (sky) and below (street/pavement) — this is canvas
-extension of one photograph, not additional panels. Do not stretch or distort
-the source geometry.
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
 
 {SCENE_BLOCK}
 

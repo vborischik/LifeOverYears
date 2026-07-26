@@ -19,15 +19,14 @@ PRESERVE (must match source exactly)
 Keep this location instantly recognizable.
 
 OUTPUT FORMAT
-Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
-scene naturally above (sky) and below (street/pavement) — this is canvas
-extension of one photograph, not additional panels. Do not stretch or distort
-the source geometry.
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
 
 TRANSFORM TO 1985
 Reagan era prosperity. A 1985 self-service gas station — digital price sign newly installed, a small convenience store where the second service bay used to be.
 
-CONDITION: new — recently built appearance, pristine surfaces, new signage
+CONDITION: busy — customers present, high activity, all pumps in use
 
 PERIOD DETAILS
 - canopy designs more angular
@@ -41,11 +40,11 @@ Typography: bold geometric sans-serif, early computer-influenced fonts.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 7 people TOTAL: 3 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
+EXACTLY 7 people TOTAL: 3 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
 - a clerk visible at the register through the store window
 - a man checking his oil with the hood up at the edge of the lot
 - a jogger in a tracksuit and headband
-Clothing: men in polo shirts with collars up, shoulder pads in blazers; women in high-waisted jeans, big permed hair. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+Clothing: men in polo shirts with collars up, shoulder pads in blazers; women in high-waisted jeans, big permed hair. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
@@ -53,9 +52,7 @@ EXACTLY 3 period vehicles, all different:
 - 1984-1989 Plymouth Voyager — boxy first-generation minivan — charcoal gray
 - 1978-1987 Chevrolet Monte Carlo — personal luxury coupe, long hood — beige
 Parked with gaps; no vehicle newer than 1985.
-All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
-At least one full driving lane in each direction stays clear of parked vehicles, meters, and curb infrastructure — through traffic is never blocked.
-One of these vehicles is parked at the pump island with its driver standing beside it refueling.
+Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
 PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT

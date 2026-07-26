@@ -19,10 +19,9 @@ PRESERVE (must match source exactly)
 Keep this location instantly recognizable.
 
 OUTPUT FORMAT
-Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
-scene naturally above (sky) and below (street/pavement) — this is canvas
-extension of one photograph, not additional panels. Do not stretch or distort
-the source geometry.
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
 
 TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 main street mid-revival — the video store replaced by a phone repair shop, third-wave coffee and a vape shop, smartphones in every hand.
@@ -40,11 +39,11 @@ Typography: minimalist flat sans-serif, simplified modern logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 15 people TOTAL: 6 near sidewalk (largest, foreground), 5 opposite sidewalk mid-block, 4 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
+EXACTLY 15 people TOTAL: 6 near sidewalk (largest, foreground), 5 opposite sidewalk mid-block, 4 distant, far end of block. Grouped in pairs, threes, and singles.
 - a bearded man in a slim plaid shirt photographing his coffee
 - a barista delivering drinks to an outdoor table
 - a dog walker with three dogs
-Clothing: men in henley shirts, beards; women in statement necklaces, ankle boots. Fashion palette: coral, mint green, navy. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+Clothing: men in henley shirts, beards; women in statement necklaces, ankle boots. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 5 period vehicles, all different:
@@ -54,8 +53,7 @@ EXACTLY 5 period vehicles, all different:
 - 2011-2016 Hyundai Elantra — swoopy fluidic compact — black
 - 2011-2016 Honda CR-V — rounded compact crossover — dark red
 Parked with gaps; no vehicle newer than 2015.
-All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
-At least one full driving lane in each direction stays clear of parked vehicles, meters, and curb infrastructure — through traffic is never blocked.
+Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
 PLACEMENT: two parked on the LEFT side; the rest parked on the RIGHT side with gaps. No vehicle in the same spot as any other era.
 
 ENVIRONMENT

@@ -19,10 +19,9 @@ PRESERVE (must match source exactly)
 Keep this location instantly recognizable.
 
 OUTPUT FORMAT
-Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
-scene naturally above (sky) and below (street/pavement) — this is canvas
-extension of one photograph, not additional panels. Do not stretch or distort
-the source geometry.
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
 
 TRANSFORM TO 1995
 Clinton era prosperity. A 1995 main street — the video rental store at its absolute peak, a computer shop newly arrived, chain logos displacing the last hand-painted signs.
@@ -41,11 +40,11 @@ Typography: clean geometric sans-serif, early digital influence.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 11 people TOTAL: 4 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
+EXACTLY 11 people TOTAL: 4 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles.
 - a man walking a dog past the computer shop
 - a woman talking on the wall-mounted payphone
 - a mom loading groceries into a minivan
-Clothing: men in backwards caps, baggy jeans; women in slip dresses, chokers. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.
+Clothing: men in backwards caps, baggy jeans; women in slip dresses, chokers. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 6 period vehicles, all different:
@@ -56,8 +55,7 @@ EXACTLY 6 period vehicles, all different:
 - 1989-1997 Geo Metro — very small economy hatchback — burgundy
 - 1994-1997 Honda Accord — smooth rounded sedan — silver
 Parked with gaps; no vehicle newer than 1995.
-All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
-At least one full driving lane in each direction stays clear of parked vehicles, meters, and curb infrastructure — through traffic is never blocked.
+Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
 PLACEMENT: three parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT

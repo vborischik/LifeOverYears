@@ -19,10 +19,9 @@ PRESERVE (must match source exactly)
 Keep this location instantly recognizable.
 
 OUTPUT FORMAT
-Create a TRUE 9:16 vertical portrait image — one single frame. Expand the SAME
-scene naturally above (sky) and below (street/pavement) — this is canvas
-extension of one photograph, not additional panels. Do not stretch or distort
-the source geometry.
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
 
 TRANSFORM TO 1975
 Post-Vietnam, oil crisis era. A full-service neighborhood gas station in 1975 — uniformed attendants pump the gas, check the oil, and wipe the windshield.
@@ -41,11 +40,11 @@ Typography: bold sans-serif, slab serif, occasional script.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 8 people TOTAL: 3 near sidewalk (largest, foreground), 3 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
+EXACTLY 8 people TOTAL: 3 near sidewalk (largest, foreground), 3 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
 - a driver waiting behind the wheel while the attendant works
 - a mechanic leaning under the open hood of a car by the bay
 - a woman with a headscarf carrying a paper grocery bag
-Clothing: men in turtlenecks, wide lapels; women in peasant blouses, wide leg pants. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+Clothing: men in turtlenecks, wide lapels; women in peasant blouses, wide leg pants. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
@@ -53,9 +52,7 @@ EXACTLY 3 period vehicles, all different:
 - 1970-1976 AMC Hornet — compact, simple boxy lines
 - 1974-1978 Oldsmobile Cutlass Supreme — best-selling car in America, formal roofline
 Parked with gaps; no vehicle newer than 1975.
-All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
-At least one full driving lane in each direction stays clear of parked vehicles, meters, and curb infrastructure — through traffic is never blocked.
-One of these vehicles is parked at the pump island with its driver standing beside it refueling.
+Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
 PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT

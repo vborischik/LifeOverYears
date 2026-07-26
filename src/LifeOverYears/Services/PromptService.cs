@@ -395,7 +395,7 @@ public sealed class PromptService : IPromptService
         if (near > 0)     zones.Add($"{near} near sidewalk (largest, foreground)");
         if (opposite > 0) zones.Add($"{opposite} opposite sidewalk mid-block");
         if (distant > 0)  zones.Add($"{distant} distant, far end of block");
-        sb.AppendLine($"EXACTLY {peopleCount} people TOTAL: {string.Join(", ", zones)}. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.");
+        sb.AppendLine($"EXACTLY {peopleCount} people TOTAL: {string.Join(", ", zones)}. Grouped in pairs, threes, and singles.");
 
         if (content is not null)
             foreach (var activity in Sample(content.PeopleActivities, 2, rng))
@@ -411,7 +411,7 @@ public sealed class PromptService : IPromptService
         if (era.Photography.ColorMode != "black_and_white")
             sb.Append($" Fashion palette: {Join(fashion.Colors.Take(3).ToList())}.");
         sb.Append(" No posing or eye contact.");
-        sb.Append(" All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians.");
+        sb.Append(" All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.");
         if (isGasStation)
             sb.Append(" Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.");
         return sb.ToString();
@@ -501,10 +501,7 @@ public sealed class PromptService : IPromptService
         foreach (var (model, color) in vehicles)
             sb.AppendLine(color is null ? $"- {model}" : $"- {model} — {color}");
         sb.AppendLine($"Parked with gaps; no vehicle newer than {year}.");
-        sb.AppendLine("All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.");
-        sb.AppendLine("At least one full driving lane in each direction stays clear of parked vehicles, meters, and curb infrastructure — through traffic is never blocked.");
-        if (isGasStation)
-            sb.AppendLine("One of these vehicles is parked at the pump island with its driver standing beside it refueling.");
+        sb.AppendLine("Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.");
         sb.Append($"PLACEMENT: {placement}. No vehicle in the same spot as any other era.");
         return sb.ToString();
     }
