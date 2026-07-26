@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-07-26T04:55:27.0935860+00:00
+Generated: 2026-07-26T05:17:01.7968240+00:00
 
 ## Check Results
 
@@ -39,20 +39,20 @@ Generated: 2026-07-26T04:55:27.0935860+00:00
 |------|-------|----------|
 | 1975 | 3 | 1973-1980 Chevrolet C10 — square body, chrome bumper, 1971-1976 Jeep Wagoneer — boxy full-size SUV, woodgrain trim optional, 1970-1978 AMC Gremlin — short stubby hatchback rear |
 | 1985 | 3 | 1982-1986 Nissan Sentra — small economy boxy sedan, 1984-1989 Plymouth Voyager — boxy first-generation minivan, 1978-1987 Chevrolet Monte Carlo — personal luxury coupe, long hood |
-| 1995 | 4 | 1993-1997 Toyota Corolla — rounded compact sedan, 1991-1996 Ford Escort — small rounded economy car, 1988-1998 Chevrolet C/K 1500 — softly squared pickup, 1995-1999 Dodge Neon — small rounded economy, friendly face |
-| 2005 | 2 | 2001-2007 Ford Escape — compact boxy SUV, 2003-2009 Hummer H2 — massive military-styled SUV |
+| 1995 | 3 | 1990-1994 Chevrolet Lumina — rounded mid-size sedan, 1994-1998 Ford Mustang — rounded SN95 pony car, 1993-1997 Ford Ranger — compact pickup, straight lines |
+| 2005 | 3 | 2002-2008 Dodge Ram — big rig grille evolved, 2005-2010 Jeep Grand Cherokee — rounded modern SUV, 2003-2008 Toyota Corolla — conservative compact sedan |
 | 2015 | 0 |  |
-| 2025 | 1 | 2019-2025 Ram 1500 — crew cab pickup, large grille |
+| 2025 | 4 | 2019-2025 Toyota RAV4 — boxy rugged crossover, very common, 2021-2025 Ford Bronco — retro boxy off-roader, 2020-2025 Hyundai Tucson — sharp parametric grille design, 2022-2025 Honda Civic — clean mature compact |
 
 ### gas_station / Run 2 (seed=1337)
 | Year | Count | Vehicles |
 |------|-------|----------|
 | 1975 | 3 | 1963-1976 Dodge Dart — compact, boxy, reliable workhorse, 1970-1976 AMC Hornet — compact, simple boxy lines, 1974-1978 Oldsmobile Cutlass Supreme — best-selling car in America, formal roofline |
 | 1985 | 4 | 1983-1988 Ford Thunderbird — aero coupe, rounded, 1980-1986 Ford F-150 — square body, dual headlights, 1981-1985 Ford Escort — small boxy economy hatchback, 1984-1990 Dodge Caravan — first minivan, boxy |
-| 1995 | 3 | 1988-1998 Chevrolet C/K 1500 — softly squared pickup, 1991-1994 Saturn SL — plastic body panels, compact, 1990-1997 Mazda Miata — tiny rounded roadster, pop-up lights |
-| 2005 | 3 | 2001-2005 Honda Civic — rounded compact, very common, 2002-2006 Toyota Camry — smooth conservative mid-size, 1998-2005 Volkswagen New Beetle — retro bubble shape |
-| 2015 | 4 | 2013-2019 Ford Fusion — Aston-Martin-style grille, sleek, 2011-2016 Honda CR-V — rounded compact crossover, 2014-2021 Subaru Outback — rugged wagon crossover, 2013-2016 Mazda CX-5 — flowing KODO-design crossover |
-| 2025 | 3 | 2023-2025 Honda Accord — clean minimalist refresh, 2022-2025 Ford Maverick — small unibody pickup, 2021-2025 Chrysler Pacifica — sleek minivan, thin lights |
+| 1995 | 4 | 1993-1997 Ford Ranger — compact pickup, straight lines, 1995-1999 Chevrolet Cavalier — compact, rounded, 1989-1997 Geo Metro — very small economy hatchback, 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size |
+| 2005 | 1 | 2004-2008 Pontiac Grand Prix — sporty sedan plastic cladding |
+| 2015 | 0 |  |
+| 2025 | 4 | 2019-2025 Chevrolet Equinox — rounded compact crossover, 2021-2025 Ford Bronco — retro boxy off-roader, 2022-2025 Honda Civic — clean mature compact, 2022-2025 Chevrolet Silverado — refreshed bold grille |
 
 ### downtown_street / Run 1 (seed=42)
 | Year | Count | Vehicles |

@@ -32,9 +32,8 @@ CONDITION: abandoned — closed business, boarded windows, weeds through pavemen
 PERIOD DETAILS
 - air and vacuum island at the lot edge
 - large modern canopies with LED lighting
-- price sign showing gas around $2.45
-- main sign: "BP" branded gas station — BP pole sign with price display and BP colors on the canopy fascia
-- window signs: 'E-CIG STARTER KITS', 'ATM INSIDE'
+- main sign: a bare stripped sign frame — rusted metal posts, an empty price panel with no digits, no lit letters, no logo, all branding gone
+- window signs: '2 ENERGY DRINKS $5', 'E-CIG STARTER KITS'
 - card-skimmer warning stickers on the pumps
 - a chalkboard A-frame sign advertising the coffee bar
 Typography: minimalist flat sans-serif, simplified modern logos.
@@ -51,9 +50,9 @@ ENVIRONMENT
 - utilities: overhead power lines common, undergrounding in new developments, fiber optic lines on poles
 
 DECAY
-- potholes, alligator cracking, gravel at the edges
-- weeds through pavement cracks, the curb
 - rusted signage askew, lettering broken off
+- graffiti on boarded panels, lower wall
+- trash along storefronts, a dumped mattress at the curb
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - cottonwood tree at northeast corner of lot: established tree, modest canopy

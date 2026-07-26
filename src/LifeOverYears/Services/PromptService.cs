@@ -78,11 +78,11 @@ public sealed class PromptService : IPromptService
         // An abandoned era has no vehicles and no PLACEMENT line — don't consume a
         // placement pattern from the run's pool for it.
         var placement = vehicles.Count > 0 ? context.NextPlacement(vehicles.Count) : "";
-        var brand     = isGasStation ? await ResolveGasBrandAsync(year, rng) : null;
+        var gasSign   = isGasStation ? await ResolveGasSignAsync(context, year, condition) : default;
 
         var text = template
             .Replace("{PRESERVE_BLOCK}",    BuildPreserveBlock(sceneDna))
-            .Replace("{SCENE_BLOCK}",       BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, brand, rng))
+            .Replace("{SCENE_BLOCK}",       BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, gasSign, rng))
             .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, rng))
             .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation))
             .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year, sceneType, condition, rng))
@@ -106,23 +106,23 @@ public sealed class PromptService : IPromptService
             SceneCondition:   condition);
     }
 
-    // Era-appropriate brand from data/brands/gas-brands.txt; null falls back to the
-    // era JSON gas_brands list inside BuildSceneBlock.
-    private async Task<string?> ResolveGasBrandAsync(int year, Random rng)
+    // Run-wide gas-station sign spec: one brand held across the run (with at most
+    // one rebrand), a dead stripped board when abandoned/squatted, and a fresh
+    // brand on a rebuilt finale. Brand-timeline state lives on GenerationContext.
+    private async Task<GenerationContext.GasSign> ResolveGasSignAsync(
+        GenerationContext context, int year, string condition)
     {
         try
         {
-            var brands   = await _data.LoadGasBrandsAsync();
-            var eligible = brands.Where(b => b.From <= year && year <= b.To).ToList();
-            if (eligible.Count > 0)
-                return eligible[rng.Next(eligible.Count)].Name;
-            _logger.LogWarning("No gas brand matches year {Year} — falling back to era JSON gas_brands", year);
+            var brands = await _data.LoadGasBrandsAsync();
+            return context.ResolveGasSign(brands, year, condition);
         }
         catch (Exception ex)
         {
             _logger.LogWarning(ex, "Could not load gas brands file — falling back to era JSON gas_brands");
+            // Null brand → BuildSceneBlock falls back to an independent-style sign.
+            return new GenerationContext.GasSign(GenerationContext.GasSignKind.Branded, null);
         }
-        return null;
     }
 
     private static SceneContent? ResolveSceneContent(EraProfile era, string sceneType)
@@ -273,7 +273,7 @@ public sealed class PromptService : IPromptService
         return sb.ToString().TrimEnd();
     }
 
-    private static string BuildSceneBlock(EraProfile era, SceneContent? content, string sceneType, string condition, string? brand, Random rng)
+    private static string BuildSceneBlock(EraProfile era, SceneContent? content, string sceneType, string condition, GenerationContext.GasSign gasSign, Random rng)
     {
         var sb = new StringBuilder();
         sb.AppendLine($"TRANSFORM TO {era.Year}");
@@ -339,16 +339,24 @@ public sealed class PromptService : IPromptService
             sb.AppendLine($"- {item}");
         if (isGasStation)
         {
-            sb.AppendLine($"- price sign showing gas around {era.Transportation.Fuel.AveragePricePerGallon}");
-            if (brand is not null)
+            if (gasSign.Kind == GenerationContext.GasSignKind.DeadBoard)
             {
-                sb.AppendLine($"- main sign: \"{brand}\" branded gas station — {brand} pole sign with price display and {brand} colors on the canopy fascia");
+                // Dead station — no price, no lit brand. A stripped, rusted frame.
+                sb.AppendLine("- main sign: a bare stripped sign frame — rusted metal posts, an empty price panel with no digits, no lit letters, no logo, all branding gone");
             }
             else
             {
-                var brands = era.Business.GasBrands;
-                if (brands is { Count: > 0 })
-                    sb.AppendLine($"- main sign: an independent station sign in the style of {brands[rng.Next(brands.Count)]}");
+                sb.AppendLine($"- price sign showing gas around {era.Transportation.Fuel.AveragePricePerGallon}");
+                if (gasSign.Brand is not null)
+                {
+                    sb.AppendLine($"- main sign: \"{gasSign.Brand}\" branded gas station — {gasSign.Brand} pole sign with price display and {gasSign.Brand} colors on the canopy fascia");
+                }
+                else
+                {
+                    var brands = era.Business.GasBrands;
+                    if (brands is { Count: > 0 })
+                        sb.AppendLine($"- main sign: an independent station sign in the style of {brands[rng.Next(brands.Count)]}");
+                }
             }
         }
 

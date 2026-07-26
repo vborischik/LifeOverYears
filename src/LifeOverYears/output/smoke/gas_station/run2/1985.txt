@@ -30,22 +30,22 @@ Reagan era prosperity. A 1985 self-service gas station — digital price sign ne
 CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
-- credit card readers not yet at pump
-- self-service standard, full service rare
+- squeegee buckets at islands
+- canopy designs more angular
 - price sign showing gas around $1.12
-- main sign: "Amoco" branded gas station — Amoco pole sign with price display and Amoco colors on the canopy fascia
-- window signs: 'SELF SERVE — PAY INSIDE', 'CIGARETTES $1.10 PACK'
-- a BMX bike leaned by the store door
-- squeegee buckets at the pump islands
+- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
+- window signs: 'CIGARETTES $1.10 PACK', 'SELF SERVE — PAY INSIDE'
+- a mailbox with graffiti scratches at the lot edge
+- a display rack of windshield-washer fluid jugs
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
-- a man checking his oil with the hood up at the edge of the lot
-- a driver waiting in his car for a free pump
-- a woman with permed hair and shoulder pads
-Clothing: men in shoulder pads in blazers, windbreakers; women in leg warmers, shoulder pads. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+- a woman squeegeeing her windshield at the island
+- a driver self-serving at the pump
+- a mother with two kids in tow
+Clothing: men in shoulder pads in blazers, acid wash jeans; women in big permed hair, bright neon colors. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:

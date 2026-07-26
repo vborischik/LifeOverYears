@@ -30,22 +30,22 @@ Reagan era prosperity. A 1985 self-service gas station — digital price sign ne
 CONDITION: new — recently built appearance, pristine surfaces, new signage
 
 PERIOD DETAILS
-- convenience store attached becoming common
-- propane tank exchange cage beside the building
+- canopy designs more angular
+- credit card readers not yet at pump
 - price sign showing gas around $1.12
 - main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
-- window signs: 'CIGARETTES $1.10 PACK', 'FREE COFFEE WITH FILL-UP'
-- a mailbox with graffiti scratches at the lot edge
-- a display rack of windshield-washer fluid jugs
+- window signs: 'MOTOR OIL 99¢ QT', 'HOT DOGS 2 FOR $1'
+- an 'AIR & WATER' sign at the lot corner
+- squeegee buckets at the pump islands
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 7 people TOTAL: 3 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
-- a customer walking into the store counting bills
 - a clerk visible at the register through the store window
-- a mother with two kids in tow
-Clothing: men in windbreakers, shoulder pads in blazers; women in bright neon colors, shoulder pads. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+- a man checking his oil with the hood up at the edge of the lot
+- a jogger in a tracksuit and headband
+Clothing: men in polo shirts with collars up, shoulder pads in blazers; women in high-waisted jeans, big permed hair. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:

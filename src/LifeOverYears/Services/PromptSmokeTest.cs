@@ -565,13 +565,18 @@ public static class PromptSmokeTest
     {
         var errs = new List<string>();
 
-        // Gas station: fuel price always emitted unconditionally — check both runs every year
+        // Gas station: fuel price is emitted unconditionally EXCEPT on a dead-board
+        // era (abandoned/squatted), where the station shows a stripped sign with no
+        // price at all — check both runs every year, skipping dead-board eras.
         foreach (var year in Years)
         {
             var price = eras[year].Transportation.Fuel.AveragePricePerGallon;
             foreach (var (run, label) in new[] { (gasRun1, "gas/run1"), (gasRun2, "gas/run2") })
+            {
+                if (run[year].SceneCondition is "abandoned" or "squatted") continue;
                 if (!run[year].Text.Contains(price))
                     errs.Add($"{label}/{year}: fuel price '{price}' not found");
+            }
         }
 
         // Downtown: coffee price is sampled — require at least one run per year to contain it

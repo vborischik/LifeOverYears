@@ -6,6 +6,12 @@ public sealed class GenerationContext
 {
     public required Random Random { get; init; }
 
+    // The full list of years in this run, ascending or not. Used to plan the
+    // gas-station brand timeline across the whole run (a station holds one brand
+    // for decades). Optional: when empty (e.g. smoke tests) brand resolution
+    // degenerates to a single cached brand chosen at the first era it is asked for.
+    public IReadOnlyList<int> Years { get; init; } = Array.Empty<int>();
+
     // Stores normalized base model names, so variants of the same vehicle
     // ("Ford F-150" vs "Ford F-150 Lightning") cannot co-exist within a run.
     public HashSet<string> UsedCarModels { get; } = new(StringComparer.OrdinalIgnoreCase);
@@ -118,6 +124,7 @@ public sealed class GenerationContext
     public string SceneCondition { get; private set; } = "thriving";
 
     private int _conditionRank;   // 0 healthy, 1 declining, 2 derelict
+    private bool _everDecayed;    // true once any era reached rank >= 1 this run
 
     private static int RankOf(string condition) => condition switch
     {
@@ -146,6 +153,7 @@ public sealed class GenerationContext
         {
             // Era offers nothing at or above the reached rank — hold the arc.
             SceneCondition = _conditionRank >= 2 ? "abandoned" : "declining";
+            _everDecayed = true;
             return SceneCondition;
         }
 
@@ -160,7 +168,94 @@ public sealed class GenerationContext
 
         SceneCondition = pool[Random.Next(pool.Count)];
         _conditionRank = Math.Max(_conditionRank, RankOf(SceneCondition));
+        if (_conditionRank >= 1) _everDecayed = true;
         return SceneCondition;
+    }
+
+    // ── Gas-station brand timeline ────────────────────────────────────────
+    // A real station keeps one brand for decades. Across a run we hold a single
+    // brand X; only if the run spans >= 25 years is there a ~50% chance of ONE
+    // rebrand X -> Y near the 20-30 year mark. Decay overrides everything: an
+    // abandoned/squatted era shows a dead, stripped board (no brand, no price),
+    // and a decayed station never executes its planned rebrand. A rebuilt
+    // finale ("new" after decay) reopens under a NEW brand Z, different from
+    // whatever it last wore.
+    public enum GasSignKind { Branded, DeadBoard }
+    public readonly record struct GasSign(GasSignKind Kind, string? Brand);
+
+    private bool _gasPlanBuilt;
+    private string? _brandX;            // initial brand
+    private string? _brandY;            // post-rebrand brand (null if no rebrand)
+    private int _rebrandYear = int.MaxValue;
+    private string? _lastLiveBrand;     // last brand actually shown lit
+
+    private string? PickEligibleAcross(
+        IReadOnlyList<(string Name, int From, int To)> brands, int fromYear, int toYear, string? exclude)
+    {
+        bool NotExcluded((string Name, int From, int To) b) =>
+            exclude is null || !string.Equals(b.Name, exclude, StringComparison.OrdinalIgnoreCase);
+
+        var eligible = brands.Where(b => b.From <= fromYear && toYear <= b.To).Where(NotExcluded).ToList();
+        if (eligible.Count == 0)  // relax to eligibility at the start year only
+            eligible = brands.Where(b => b.From <= fromYear && fromYear <= b.To).Where(NotExcluded).ToList();
+        return eligible.Count > 0 ? eligible[Random.Next(eligible.Count)].Name : null;
+    }
+
+    private void BuildGasPlan(IReadOnlyList<(string Name, int From, int To)> brands)
+    {
+        _gasPlanBuilt = true;
+        if (Years.Count == 0) return; // no span — fall back to single cached brand in ResolveGasSign
+
+        var ordered = Years.OrderBy(y => y).ToList();
+        var first = ordered[0];
+        var last  = ordered[^1];
+
+        var doRebrand = (last - first) >= 25 && Random.Next(2) == 0;
+        if (doRebrand)
+        {
+            var target = first + 20 + Random.Next(11);           // 20..30 years in
+            var switchYear = ordered.FirstOrDefault(y => y >= target);
+            if (switchYear > first) _rebrandYear = switchYear;
+        }
+
+        if (_rebrandYear == int.MaxValue)
+        {
+            _brandX = PickEligibleAcross(brands, first, last, exclude: null);
+        }
+        else
+        {
+            _brandX = PickEligibleAcross(brands, first, _rebrandYear - 1, exclude: null);
+            _brandY = PickEligibleAcross(brands, _rebrandYear, last, exclude: _brandX);
+            if (_brandY is null) _rebrandYear = int.MaxValue; // no distinct successor — hold X
+        }
+    }
+
+    // Resolves the sign to render for a gas station this era, given its condition.
+    public GasSign ResolveGasSign(
+        IReadOnlyList<(string Name, int From, int To)> brands, int year, string condition)
+    {
+        if (!_gasPlanBuilt) BuildGasPlan(brands);
+
+        // Dead station: bare stripped board regardless of brand plan.
+        if (condition is "abandoned" or "squatted")
+            return new GasSign(GasSignKind.DeadBoard, null);
+
+        // Rebuilt finale: reopens under a NEW identity, different from the last worn brand.
+        if (condition == "new" && IsLastEra && _everDecayed)
+        {
+            var z = PickEligibleAcross(brands, year, year, exclude: _lastLiveBrand);
+            if (z is not null) _lastLiveBrand = z;
+            return new GasSign(GasSignKind.Branded, z);
+        }
+
+        string? brand;
+        if (Years.Count > 0)
+            brand = (year >= _rebrandYear && _brandY is not null) ? _brandY : _brandX;
+        else
+            brand = _brandX ??= PickEligibleAcross(brands, year, year, exclude: null);
+
+        if (brand is not null) _lastLiveBrand = brand;
+        return new GasSign(GasSignKind.Branded, brand);
     }
 
     // ── Vehicle placement patterns ────────────────────────────────────────────

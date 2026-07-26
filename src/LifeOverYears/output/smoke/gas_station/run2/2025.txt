@@ -27,31 +27,32 @@ the source geometry.
 TRANSFORM TO 2025
 Post-pandemic era. A 2025 fuel stop — LED canopy, full-color digital price sign, and a convenience store selling fresh food.
 
-CONDITION: restored — renovated appearance, modern updates on original structure
+CONDITION: new — recently built appearance, pristine surfaces, new signage
 
 PERIOD DETAILS
-- pay-at-pump screens with video ads
-- modern canopy with bright white LED lighting
+- free air and vacuum station at the lot edge
+- modern LED canopies
 - price sign showing gas around $3.40
-- main sign: "Mobil" branded gas station — Mobil pole sign with price display and Mobil colors on the canopy fascia
-- window signs: 'COLD BREW $3.99', 'MEMBERS SAVE 10¢/GAL'
-- outdoor cafe barriers with planters by the coffee lane
+- main sign: "Arco" branded gas station — Arco pole sign with price display and Arco colors on the canopy fascia
+- window signs: 'SCAN & GO — SKIP THE LINE', 'COLD BREW $3.99'
 - digital menu screens glowing in the store windows
+- stacked bags of ice and firewood outside
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
-- a driver self-serving at the pump
+EXACTLY 5 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
 - a clerk restocking the grab-and-go cooler behind the glass
+- a delivery van driver walking out with a coffee
 - a delivery courier with a large insulated backpack
-Clothing: men in oversized fit tees, techwear; women in high-waisted wide-leg jeans, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+Clothing: men in techwear, chunky sneakers; women in high-waisted wide-leg jeans, chunky dad sneakers. Fashion palette: sage green, beige, cream. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 3 period vehicles, all different:
-- 2023-2025 Honda Accord — clean minimalist refresh — black
-- 2022-2025 Ford Maverick — small unibody pickup — blue
-- 2021-2025 Chrysler Pacifica — sleek minivan, thin lights — silver
+EXACTLY 4 period vehicles, all different:
+- 2019-2025 Chevrolet Equinox — rounded compact crossover — dark green
+- 2021-2025 Ford Bronco — retro boxy off-roader — black
+- 2022-2025 Honda Civic — clean mature compact — white
+- 2022-2025 Chevrolet Silverado — refreshed bold grille — blue
 Parked with gaps; no vehicle newer than 2025.
 All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
 At least one full driving lane in each direction stays clear of parked vehicles, meters, and curb infrastructure — through traffic is never blocked.

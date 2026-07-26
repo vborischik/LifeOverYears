@@ -27,30 +27,31 @@ the source geometry.
 TRANSFORM TO 2005
 Post-9/11 era. A 2005 gas station — big multi-island canopy, card readers at every pump, LED price sign, and a convenience store doing most of the business.
 
-CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
+CONDITION: busy — customers present, high activity, all pumps in use
 
 PERIOD DETAILS
-- branded canopy lighting
-- automated car wash tunnel beside the lot
+- large convenience store with energy-drink and phone-card ads in the glass
+- pay-at-pump screens with small displays
 - price sign showing gas around $2.30
-- main sign: "QuikTrip" branded gas station — QuikTrip pole sign with price display and QuikTrip colors on the canopy fascia
-- window signs: 'CIGARETTES $3.75 PACK', 'PHONE CARDS SOLD HERE'
-- ribbon magnets on the door of the service office
+- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
+- window signs: 'CIGARETTES $3.75 PACK', 'ENERGY DRINKS 2 FOR $4'
+- a windshield-washer fluid display rack by the pumps
 - trash cans with paper-towel dispensers between the pumps
 Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
-- a clerk restocking the window display inside
 - a customer walking out with a coffee cup
-- a UPS driver wheeling packages on a hand truck
-Clothing: men in baggy jeans, trucker hats; women in trucker hats, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+- a driver self-serving at the pump
+- a man in cargo shorts talking on a flip phone
+Clothing: men in cargo shorts, graphic tees; women in low-rise jeans, velour tracksuits. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 2 period vehicles, all different:
-- 2001-2007 Ford Escape — compact boxy SUV — gold
-- 2003-2009 Hummer H2 — massive military-styled SUV — dark red
+EXACTLY 3 period vehicles, all different:
+- 2002-2008 Dodge Ram — big rig grille evolved — gold
+- 2005-2010 Jeep Grand Cherokee — rounded modern SUV — gray
+- 2003-2008 Toyota Corolla — conservative compact sedan — dark blue
 Parked with gaps; no vehicle newer than 2005.
 All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
 At least one full driving lane in each direction stays clear of parked vehicles, meters, and curb infrastructure — through traffic is never blocked.
@@ -58,13 +59,9 @@ One of these vehicles is parked at the pump island with its driver standing besi
 PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: worn and faded, well past their last repainting
+- road markings: yellow center line, white edge lines, turn arrows
 - utilities: overhead power lines standard, cable and fiber lines on poles appearing
 
-DECAY
-- chalky faded lane paint, ghost lines in the tracks
-- chipped, stained curbs, weeds in the gutter
-Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - cottonwood tree at northeast corner of lot: young tree, thin trunk
 - elm tree at sidewalk edge left of entrance: very young sapling

@@ -27,31 +27,29 @@ the source geometry.
 TRANSFORM TO 2005
 Post-9/11 era. A 2005 gas station — big multi-island canopy, card readers at every pump, LED price sign, and a convenience store doing most of the business.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- wide multi-island canopy with branded fascia lighting
 - pumps with card readers and small pay-at-pump screens
+- branded canopy lighting
 - price sign showing gas around $2.30
-- main sign: "BP" branded gas station — BP pole sign with price display and BP colors on the canopy fascia
-- window signs: 'CIGARETTES $3.75 PACK', 'PHONE CARDS SOLD HERE'
-- a propane exchange cage by the storefront
+- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
+- window signs: 'ANY SIZE FOUNTAIN DRINK 99¢', 'CIGARETTES $3.75 PACK'
+- a windshield-washer fluid display rack by the pumps
 - trash cans with paper-towel dispensers between the pumps
 Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 6 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
+EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
+- a customer walking out with a coffee cup
 - a teenager filling tires at the coin-operated air machine
-- a man talking on a flip phone while leaning against his SUV as it fuels
-- a woman walking a small dog in a sweater
-Clothing: men in trucker hats, frosted tips hair; women in trucker hats, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+- a group of college kids with messenger bags
+Clothing: men in cargo shorts, baggy jeans; women in layered tank tops, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 3 period vehicles, all different:
-- 2001-2005 Honda Civic — rounded compact, very common — gray
-- 2002-2006 Toyota Camry — smooth conservative mid-size — black
-- 1998-2005 Volkswagen New Beetle — retro bubble shape — dark blue
+EXACTLY 1 period vehicles, all different:
+- 2004-2008 Pontiac Grand Prix — sporty sedan plastic cladding — white
 Parked with gaps; no vehicle newer than 2005.
 All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
 At least one full driving lane in each direction stays clear of parked vehicles, meters, and curb infrastructure — through traffic is never blocked.
@@ -59,9 +57,13 @@ One of these vehicles is parked at the pump island with its driver standing besi
 PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: yellow center line, white edge lines, turn arrows
+- road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines standard, cable and fiber lines on poles appearing
 
+DECAY
+- mismatched asphalt patches, cracks at the joints
+- chalky faded lane paint, ghost lines in the tracks
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - cottonwood tree at northeast corner of lot: young tree, thin trunk
 - elm tree at sidewalk edge left of entrance: very young sapling

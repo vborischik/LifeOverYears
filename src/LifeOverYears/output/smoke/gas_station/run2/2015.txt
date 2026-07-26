@@ -27,13 +27,12 @@ the source geometry.
 TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 station — LED-lit canopy, digital price sign, video ads playing on every pump screen, and a big convenience store.
 
-CONDITION: restored — renovated appearance, modern updates on original structure
+CONDITION: abandoned — closed business, boarded windows, weeds through pavement cracks, weathered surfaces
 
 PERIOD DETAILS
 - red DVD-rental kiosk outside the store entrance
 - ice merchandiser by the door
-- price sign showing gas around $2.45
-- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
+- main sign: a bare stripped sign frame — rusted metal posts, an empty price panel with no digits, no lit letters, no logo, all branding gone
 - window signs: '2 ENERGY DRINKS $5', 'ANY SIZE COFFEE $1'
 - a chalkboard A-frame sign advertising the coffee bar
 - card-skimmer warning stickers on the pumps
@@ -41,28 +40,20 @@ Typography: minimalist flat sans-serif, simplified modern logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 7 people TOTAL: 3 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles; sidewalks busy, driving lanes clear.
-- a woman scrolling her smartphone while leaning on her crossover
-- a man returning a disc at the DVD kiosk
-- a woman in yoga pants carrying a green smoothie
-Clothing: men in henley shirts, slim-fit plaid shirts; women in ankle boots, infinity scarves. Fashion palette: coral, mint green, navy. No posing or eye contact. All people on sidewalks, at storefronts, or beside parked vehicles — the driving lanes stay empty of pedestrians. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+NO people anywhere — the place is completely deserted.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2013-2019 Ford Fusion — Aston-Martin-style grille, sleek — dark red
-- 2011-2016 Honda CR-V — rounded compact crossover — black
-- 2014-2021 Subaru Outback — rugged wagon crossover — gray
-- 2013-2016 Mazda CX-5 — flowing KODO-design crossover — white
-Parked with gaps; no vehicle newer than 2015.
-All vehicles obey normal US right-hand traffic flow — parked parallel to the curb, each facing the same direction as its adjacent lane. Nothing sideways, diagonal, or against traffic.
-At least one full driving lane in each direction stays clear of parked vehicles, meters, and curb infrastructure — through traffic is never blocked.
-One of these vehicles is parked at the pump island with its driver standing beside it refueling.
-PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+NO vehicles anywhere — empty lot, no parked or moving cars.
 
 ENVIRONMENT
-- road markings: yellow center line, white edge lines, high-visibility crosswalks
+- road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines common, undergrounding in new developments, fiber optic lines on poles
 
+DECAY
+- weeds through pavement cracks, the curb
+- boarded windows, glass cracked or missing
+- potholes, alligator cracking, gravel at the edges
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - cottonwood tree at northeast corner of lot: established tree, modest canopy
 - elm tree at sidewalk edge left of entrance: very young sapling
