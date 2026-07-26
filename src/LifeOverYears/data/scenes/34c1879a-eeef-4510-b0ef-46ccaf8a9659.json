@@ -1,0 +1,60 @@
+{
+  "Id": "34c1879a-eeef-4510-b0ef-46ccaf8a9659",
+  "CreatedAt": "2026-07-26T04:07:25.8986630\u002B00:00",
+  "SceneType": "gas_station",
+  "Camera": {
+    "Height": "eye-level",
+    "Direction": "street",
+    "Fov": 90
+  },
+  "Geometry": {
+    "Roads": [
+      {
+        "Type": "arterial",
+        "Lanes": 2,
+        "Markings": [
+          "center line"
+        ],
+        "Surface": "asphalt"
+      }
+    ],
+    "Sidewalks": false,
+    "Curbs": false,
+    "Buildings": [
+      {
+        "Type": "commercial",
+        "Position": "center",
+        "Stories": 1,
+        "Materials": [
+          "brick",
+          "glass"
+        ],
+        "Roof": "pitched",
+        "Setback": "at-street"
+      }
+    ],
+    "Driveways": [
+      "center"
+    ],
+    "Parking": "lot"
+  },
+  "Environment": {
+    "Terrain": "suburban",
+    "Utilities": [
+      "power lines",
+      "utility poles"
+    ],
+    "Trees": [
+      {
+        "Position": "right",
+        "Size": "large",
+        "Type": "deciduous"
+      }
+    ],
+    "Landscape": [
+      "grass strip",
+      "hedge"
+    ]
+  },
+  "ImmutableElements": []
+}

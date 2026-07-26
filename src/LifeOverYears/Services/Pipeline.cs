@@ -69,6 +69,7 @@ public sealed class Pipeline
 
         // Step 3a — clean base: source photo emptied of people and vehicles
         var baseCleanPrompt = await _data.LoadPromptAsync("base-clean");
+        await File.WriteAllTextAsync(Path.Combine(run.PromptsDir, "base_clean.txt"), baseCleanPrompt);
         var baseCleanPath   = Path.Combine(run.Root, "base_clean.png");
         await _images.CleanBaseAsync(run.SourcePath, baseCleanPrompt, baseCleanPath);
         _logger.LogInformation("Step 3a complete — clean base: {Path}", baseCleanPath);

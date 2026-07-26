@@ -47,8 +47,11 @@ public sealed class YearOverlayService : IYearOverlayService
         // the bar band when that still leaves the margin intact.
         var bottomMargin  = Math.Max(10, (int)Math.Round(barHeight * 0.15));
         var maxTextBottom = image.Height - bottomMargin - shadowOffset;
+        // Nudge the number up by half its own height so it sits higher in the
+        // band and never rides the bottom edge.
+        var verticalNudge = textSize.Height * 0.5f;
         var centeredY     = barTop + barHeight / 2f - textSize.Height / 2f;
-        var textOriginY   = Math.Min(centeredY, maxTextBottom - textSize.Height);
+        var textOriginY   = Math.Min(centeredY, maxTextBottom - textSize.Height) - verticalNudge;
 
         var textOrigin = new PointF(
             image.Width / 2f - textSize.Width / 2f,
