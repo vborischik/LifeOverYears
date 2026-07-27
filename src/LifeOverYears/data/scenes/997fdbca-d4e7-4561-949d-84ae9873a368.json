@@ -1,0 +1,73 @@
+{
+  "Id": "997fdbca-d4e7-4561-949d-84ae9873a368",
+  "CreatedAt": "2026-07-26T21:31:17.9174170\u002B00:00",
+  "SceneType": "gas_station",
+  "Camera": {
+    "Height": "aerial",
+    "Direction": "street",
+    "Fov": 90
+  },
+  "Geometry": {
+    "Roads": [
+      {
+        "Type": "highway",
+        "Lanes": 1,
+        "Markings": [
+          "center line",
+          "edge line"
+        ],
+        "Surface": "asphalt"
+      }
+    ],
+    "Sidewalks": false,
+    "Curbs": false,
+    "Buildings": [
+      {
+        "Type": "commercial",
+        "Position": "center",
+        "Stories": 1,
+        "Materials": [
+          "wood",
+          "brick",
+          "metal"
+        ],
+        "Roof": "pitched",
+        "Setback": "shallow"
+      }
+    ],
+    "Driveways": [
+      "right"
+    ],
+    "Parking": "none"
+  },
+  "Environment": {
+    "Terrain": "rural",
+    "Utilities": [
+      "power lines",
+      "utility poles"
+    ],
+    "Trees": [
+      {
+        "Position": "left",
+        "Size": "small",
+        "Type": "deciduous"
+      },
+      {
+        "Position": "right",
+        "Size": "small",
+        "Type": "deciduous"
+      },
+      {
+        "Position": "background",
+        "Size": "medium",
+        "Type": "deciduous"
+      }
+    ],
+    "Landscape": [
+      "bare soil"
+    ]
+  },
+  "ImmutableElements": [
+    "mountain"
+  ]
+}

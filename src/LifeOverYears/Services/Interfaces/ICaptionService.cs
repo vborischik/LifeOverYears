@@ -4,5 +4,5 @@ namespace LifeOverYears.Services.Interfaces;
 
 public interface ICaptionService
 {
-    Task<Caption> GenerateAsync(SceneDna sceneDna);
+    Task<Caption> GenerateAsync(SceneDna sceneDna, SceneNarrative narrative);
 }

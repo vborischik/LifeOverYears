@@ -194,6 +194,13 @@ public sealed class GenerationContext
     private int _rebrandYear = int.MaxValue;
     private string? _lastLiveBrand;     // last brand actually shown lit
 
+    // Public read-only summary of the brand arc, for callers (e.g. caption
+    // generation) that need to describe the scene without touching sign-timeline
+    // internals.
+    public string? FirstBrand => _brandX;
+    public string? LastBrand => _lastLiveBrand ?? _brandX;
+    public bool RebrandOccurred => _rebrandYear != int.MaxValue && _brandY is not null;
+
     private string? PickEligibleAcross(
         IReadOnlyList<(string Name, int From, int To)> brands, int fromYear, int toYear, string? exclude)
     {

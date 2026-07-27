@@ -1,3 +1,4 @@
+using System.Linq;
 using LifeOverYears.Models;
 using LifeOverYears.Services.Interfaces;
 using Microsoft.Extensions.Logging;
@@ -128,7 +129,14 @@ public sealed class Pipeline
         _logger.LogInformation("Pipeline complete — video: {Path}", video.FilePath);
 
         // Step 5 — Caption
-        var caption = await _caption.GenerateAsync(sceneDna);
+        var narrative = new SceneNarrative(
+            FirstYear:       years.Min(),
+            LastYear:        years.Max(),
+            FinalCondition:  context.SceneCondition,
+            FirstBrand:      context.FirstBrand,
+            LastBrand:       context.LastBrand,
+            RebrandOccurred: context.RebrandOccurred);
+        var caption = await _caption.GenerateAsync(sceneDna, narrative);
         var captionPath = Path.Combine(run.Root, "caption.txt");
         var captionText = caption.Description
             + "\n\n"

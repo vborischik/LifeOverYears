@@ -1,0 +1,65 @@
+{
+  "Id": "a00e2152-fdba-4740-beeb-cfde07b0f940",
+  "CreatedAt": "2026-07-27T04:27:17.3800980\u002B00:00",
+  "SceneType": "downtown_street",
+  "Camera": {
+    "Height": "eye-level",
+    "Direction": "intersection",
+    "Fov": 90
+  },
+  "Geometry": {
+    "Roads": [
+      {
+        "Type": "arterial",
+        "Lanes": 2,
+        "Markings": [
+          "center line",
+          "edge line",
+          "turn arrow"
+        ],
+        "Surface": "asphalt"
+      }
+    ],
+    "Sidewalks": false,
+    "Curbs": false,
+    "Buildings": [
+      {
+        "Type": "commercial",
+        "Position": "center",
+        "Stories": 3,
+        "Materials": [
+          "brick"
+        ],
+        "Roof": "flat",
+        "Setback": "at-street"
+      }
+    ],
+    "Driveways": [
+      "left",
+      "right"
+    ],
+    "Parking": "on-street"
+  },
+  "Environment": {
+    "Terrain": "urban",
+    "Utilities": [
+      "power lines",
+      "street lamp",
+      "trash can",
+      "bench"
+    ],
+    "Trees": [
+      {
+        "Position": "left",
+        "Size": "medium",
+        "Type": "deciduous"
+      }
+    ],
+    "Landscape": [
+      "grass strip"
+    ]
+  },
+  "ImmutableElements": [
+    "permanent landmarks: none"
+  ]
+}
