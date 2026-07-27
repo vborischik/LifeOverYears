@@ -407,11 +407,11 @@ public static class PromptSmokeTest
                 if (sc is null) continue;
 
                 int actual = prompt.SelectedVehicles.Count;
-                // Conditions apply to gas_station and downtown_street: abandoned
-                // forces 0 vehicles, declining/squatted clamp to a small range.
-                // strip_mall/default never sample a condition, so 0 is never
+                // Conditions apply to gas_station, downtown_street and strip_mall:
+                // abandoned forces 0 vehicles, declining/squatted clamp to a small
+                // range. default/unknown never sample a condition, so 0 is never
                 // legal for them — a bare 0 there would be a condition leak.
-                var supportsCondition = sceneType is "gas_station" or "downtown_street";
+                var supportsCondition = sceneType is "gas_station" or "downtown_street" or "strip_mall";
                 var clamped = supportsCondition &&
                               prompt.SceneCondition is "abandoned" or "declining" or "squatted";
                 if (!supportsCondition && actual == 0)
@@ -1100,11 +1100,10 @@ public static class PromptSmokeTest
         ["abandoned"] = 2, ["squatted"] = 2
     };
 
-    // Conditions now apply to gas_station AND downtown_street. Verifies: (1)
-    // strip_mall/default (no dedicated fixture — unknownPrompt exercises the
-    // identical "not gas_station or downtown_street" code path, since
-    // PromptService.BuildAsync's supportsCondition check doesn't special-case
-    // strip_mall at all) always stays "thriving"; (2) rank is monotonic across
+    // Conditions now apply to gas_station, downtown_street AND strip_mall.
+    // Verifies: (1) default/unknown scenes (exercised by unknownPrompt, the only
+    // scene type left outside supportsCondition) always stay "thriving";
+    // (2) rank is monotonic across
     // one run's eras, with the single allowed exception of a gas station's
     // final era dropping back to "new"; (3) abandoned/declining/squatted carry
     // the counts they imply, for both scene types that support conditions;
@@ -1180,7 +1179,7 @@ public static class PromptSmokeTest
                 if (prompt.SceneCondition == "squatted" && year != Years[^1])
                     errs.Add($"{label}/{year}: 'squatted' outside the final era");
 
-        f.Add(("C23", "strip_mall/default always thriving; rank monotonic per run (gas-station finale may resolve to 'new'); abandoned/declining/squatted counts honored for gas_station and downtown_street; 'squatted' only on a gas_station's final era",
+        f.Add(("C23", "default/unknown scenes always thriving; rank monotonic per run (gas-station finale may resolve to 'new'); abandoned/declining/squatted counts honored for gas_station and downtown_street; 'squatted' only on a gas_station's final era",
             errs.Count == 0, errs.Count == 0 ? "Condition trajectory invariants hold" : Join(errs)));
     }
 

@@ -171,10 +171,11 @@ public sealed class GenerationContext
                 pool = worse;
         }
 
-        // A main street's decline is the story these runs exist for, and an even
-        // draw across the era's pool starts it too late to show. When a worse
-        // state is on offer, take it more often than chance alone would.
-        if (sceneType == "downtown_street" && pool.Count > 1)
+        // Decline is the story these runs exist for, and an even draw across the
+        // era's pool starts it too late to show. When a worse state is on offer,
+        // take it more often than chance alone would. Gas stations are excluded:
+        // they already resolve their arc through the new/squatted finale.
+        if (sceneType is "downtown_street" or "strip_mall" && pool.Count > 1)
         {
             var worstRank = pool.Max(RankOf);
             var worst = pool.Where(c => RankOf(c) == worstRank).ToList();

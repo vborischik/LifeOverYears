@@ -36,10 +36,10 @@ public sealed class PromptService : IPromptService
                 year, sceneType);
 
         var isGasStation = sceneType == "gas_station";
-        // Downtown streets now carry a condition arc too — the decline of a main
-        // street is the story these runs are for. Strip malls and default scenes
-        // stay thriving and use their base ranges untouched.
-        var supportsCondition = sceneType is "gas_station" or "downtown_street";
+        // Gas stations, downtown streets and strip malls all carry a condition
+        // arc — decline is the story these runs are for. Only default/unknown
+        // scenes stay thriving and use their base ranges untouched.
+        var supportsCondition = sceneType is "gas_station" or "downtown_street" or "strip_mall";
 
         var condition = supportsCondition
             ? context.PickSceneCondition(eraProfile.AllowedSceneConditions, sceneType)
@@ -277,13 +277,45 @@ public sealed class PromptService : IPromptService
         "plywood over a broken transom window, the glass long gone"
     };
 
+    // A strip mall decays by losing tenants: blank sign panels, FOR RENT glass
+    // and a downward tenant mix, with the parking apron going to seed.
+    internal static readonly string[] StripMallDecayModerate =
+    {
+        "two blank white sign panels where tenants moved out",
+        "a FOR RENT sign taped inside a dark storefront window",
+        "faded mansard shingles patched in mismatched colors",
+        "paper flyers taped inside the glass of one unit",
+        "parking stripes worn down to faint outlines",
+        "weeds along the base of the storefront walkway"
+    };
+
+    internal static readonly string[] StripMallDecayHeavy =
+    {
+        "every sign panel blank or removed, empty frames left on the pylon",
+        "storefronts boarded with plywood behind bent security grilles",
+        "grass and saplings pushing up through the parking apron",
+        "the pylon sign stripped back to a rusted frame",
+        "shopping carts abandoned across the empty lot",
+        "shattered storefront glass swept into the walkway corners"
+    };
+
     // Pool selection lives here (not at the call site) so the smoke test can
     // assert against exactly the pool the builder would have used.
     internal static string[]? DecayPoolFor(string sceneType, string condition) => condition switch
     {
-        "declining"               => sceneType == "downtown_street" ? DowntownDecayModerate : DecayModerate,
-        "abandoned" or "squatted" => sceneType == "downtown_street" ? DowntownDecayHeavy    : DecayHeavy,
-        _                         => null
+        "declining" => sceneType switch
+        {
+            "downtown_street" => DowntownDecayModerate,
+            "strip_mall"      => StripMallDecayModerate,
+            _                 => DecayModerate
+        },
+        "abandoned" or "squatted" => sceneType switch
+        {
+            "downtown_street" => DowntownDecayHeavy,
+            "strip_mall"      => StripMallDecayHeavy,
+            _                 => DecayHeavy
+        },
+        _ => null
     };
 
     // Two or three concrete details per era, sampled so consecutive eras of the
@@ -315,7 +347,7 @@ public sealed class PromptService : IPromptService
 
         // Scene atmosphere — condition affects appearance/upkeep only, never the
         // physical geometry in the PRESERVE block.
-        if (sceneType is "gas_station" or "downtown_street")
+        if (sceneType is "gas_station" or "downtown_street" or "strip_mall")
         {
             sb.AppendLine();
             sb.AppendLine($"CONDITION: {condition} — {ConditionDescriptor(condition)}");
