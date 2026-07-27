@@ -136,11 +136,16 @@ public sealed class GenerationContext
     public string PickSceneCondition(IReadOnlyList<string>? allowed, string sceneType)
     {
         // Gas station finale: if the place ever fell apart, the last era
-        // resolves it — torn down and rebuilt, or taken over by squatters.
+        // resolves it — rebuilt, renovated, or taken over by squatters.
         // Deliberately bypasses the era's allowed list, which has no "squatted".
         if (sceneType == "gas_station" && IsLastEra && _conditionRank > 0)
         {
-            SceneCondition = Random.Next(2) == 0 ? "new" : "squatted";
+            SceneCondition = Random.Next(3) switch
+            {
+                0 => "new",
+                1 => "restored",
+                _ => "squatted"
+            };
             _conditionRank = RankOf(SceneCondition);
             return SceneCondition;
         }
@@ -194,9 +199,11 @@ public sealed class GenerationContext
     // brand X; only if the run spans >= 25 years is there a ~50% chance of ONE
     // rebrand X -> Y near the 20-30 year mark. Decay overrides everything: an
     // abandoned/squatted era shows a dead, stripped board (no brand, no price),
-    // and a decayed station never executes its planned rebrand. A rebuilt
-    // finale ("new" after decay) reopens under a NEW brand Z, different from
-    // whatever it last wore.
+    // and a decayed station never executes its planned rebrand. The finale that
+    // resolves a decayed run's arc goes one of three ways: rebuilt under a NEW
+    // brand Z different from whatever it last wore ("new"), renovated under its
+    // OWN last live brand ("restored"), or abandoned to squatters ("squatted")
+    // with no sign at all.
     public enum GasSignKind { Branded, DeadBoard }
     public readonly record struct GasSign(GasSignKind Kind, string? Brand);
 
@@ -271,6 +278,13 @@ public sealed class GenerationContext
             if (z is not null) _lastLiveBrand = z;
             return new GasSign(GasSignKind.Branded, z);
         }
+
+        // Restored finale: the SAME business renovated, so it re-hangs its own
+        // last live brand rather than adopting a new identity. If the run never
+        // showed a live brand, fall through to the normal brand-plan path below
+        // instead of inventing one here.
+        if (condition == "restored" && IsLastEra && _everDecayed && _lastLiveBrand is not null)
+            return new GasSign(GasSignKind.Branded, _lastLiveBrand);
 
         string? brand;
         if (Years.Count > 0)

@@ -1199,11 +1199,13 @@ public static class PromptSmokeTest
     // Verifies: (1) default/unknown scenes (exercised by unknownPrompt, the only
     // scene type left outside supportsCondition) always stay "thriving";
     // (2) rank is monotonic across one run's eras, with the single allowed
-    // exception of a gas station's final era dropping back to "new" — downtown_street
-    // and strip_mall both follow the plain monotonic path with no finale exception;
-    // (3) abandoned/declining/squatted carry the counts they imply, for all three
-    // scene types that support conditions; (4) "squatted" is a gas-station-only
-    // finale resolution — never legal for downtown_street or strip_mall.
+    // exception of a gas station's final era dropping back to "new" or
+    // "restored" — downtown_street and strip_mall both follow the plain
+    // monotonic path with no finale exception; (3) abandoned/declining/squatted
+    // carry the counts they imply, for all three scene types that support
+    // conditions; (4) "squatted" and "restored" are gas-station-only finale
+    // resolutions — "squatted" is never legal for downtown_street or
+    // strip_mall, and "restored" may appear only on a gas station's final era.
     private static void DoC23(
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
@@ -1284,7 +1286,12 @@ public static class PromptSmokeTest
                 if (prompt.SceneCondition == "squatted" && year != Years[^1])
                     errs.Add($"{label}/{year}: 'squatted' outside the final era");
 
-        f.Add(("C23", "default/unknown scenes always thriving; rank monotonic per run (gas-station finale may resolve to 'new'); abandoned/declining/squatted counts honored for gas_station, downtown_street and strip_mall; 'squatted' only on a gas_station's final era",
+        foreach (var (run, label) in new[] { (gasRun1, "gas/run1"), (gasRun2, "gas/run2") })
+            foreach (var (year, prompt) in run)
+                if (prompt.SceneCondition == "restored" && year != Years[^1])
+                    errs.Add($"{label}/{year}: 'restored' outside the final era");
+
+        f.Add(("C23", "default/unknown scenes always thriving; rank monotonic per run (gas-station finale may resolve to 'new' or 'restored'); abandoned/declining/squatted counts honored for gas_station, downtown_street and strip_mall; 'squatted' only on a gas_station's final era; 'restored' only on a gas_station's final era",
             errs.Count == 0, errs.Count == 0 ? "Condition trajectory invariants hold" : Join(errs)));
     }
 
@@ -1520,11 +1527,12 @@ public static class PromptSmokeTest
 
         // 6. Condition coverage: every condition reachable at runtime (every
         // era's allowed_scene_conditions, plus the gas-station-finale-only
-        // "squatted") must map to a real phrase, not the unknown-condition
-        // fallback text.
+        // "squatted" and "restored") must map to a real phrase, not the
+        // unknown-condition fallback text.
         var reachableConditions = eras.Values
             .SelectMany(e => e.AllowedSceneConditions ?? Array.Empty<string>())
             .Append("squatted")
+            .Append("restored")
             .Distinct()
             .ToList();
         foreach (var condition in reachableConditions)
