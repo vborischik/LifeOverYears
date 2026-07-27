@@ -11,7 +11,7 @@ public sealed class CaptionService : ICaptionService
     private readonly ILogger<CaptionService> _logger;
 
     // Anchors that fit any ordinary American place.
-    private static readonly string[] CommonAngles =
+    public static readonly IReadOnlyList<string> CommonAngles = new[]
     {
         "a summer afternoon with nothing in particular to do",
         "riding along while a parent ran errands",
@@ -23,7 +23,7 @@ public sealed class CaptionService : ICaptionService
     // Scene-specific anchors. Feeding forecourt memories (pumping gas, checking
     // the oil) to a main street or a strip mall is what made captions read as
     // interchangeable, so each type draws from its own vocabulary first.
-    private static readonly Dictionary<string, string[]> AnglesByScene = new()
+    public static readonly IReadOnlyDictionary<string, IReadOnlyList<string>> AnglesByScene = new Dictionary<string, IReadOnlyList<string>>
     {
         ["gas_station"] = new[]
         {
@@ -54,7 +54,7 @@ public sealed class CaptionService : ICaptionService
         },
     };
 
-    private static string[] AnglesFor(string sceneType) =>
+    public static IReadOnlyList<string> AnglesFor(string sceneType) =>
         AnglesByScene.TryGetValue(sceneType, out var specific)
             ? specific.Concat(CommonAngles).ToArray()
             : CommonAngles;
@@ -84,7 +84,7 @@ public sealed class CaptionService : ICaptionService
         }
 
         var angles = AnglesFor(sceneType);
-        var angle = angles[Random.Shared.Next(angles.Length)];
+        var angle = angles[Random.Shared.Next(angles.Count)];
 
         // Rich, run-specific context. We deliberately do NOT feed a specific
         // city/state — the copy stays about a generic small American town — but
@@ -121,7 +121,9 @@ public sealed class CaptionService : ICaptionService
         return caption;
     }
 
-    private static string MapFinalCondition(string condition) => condition switch
+    public const string UnknownConditionText = "changed a lot over the years";
+
+    public static string MapFinalCondition(string condition) => condition switch
     {
         "thriving" or "busy" => "still standing and busy",
         "new"                => "rebuilt and freshly reopened",
@@ -129,6 +131,6 @@ public sealed class CaptionService : ICaptionService
         "declining"          => "still standing, but showing its age",
         "abandoned"          => "empty and abandoned now",
         "squatted"           => "long closed, taken over by squatters",
-        _                    => "changed a lot over the years",
+        _                    => UnknownConditionText,
     };
 }

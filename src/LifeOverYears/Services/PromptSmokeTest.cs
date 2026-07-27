@@ -118,6 +118,8 @@ public static class PromptSmokeTest
         DoC23(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, unknownPrompt, findings);
         DoC24(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2,                findings);
         DoC25(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, eras,          findings);
+        await DoC26(dataService, eras,                                       findings);
+        await DoC27(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -1430,6 +1432,170 @@ public static class PromptSmokeTest
 
         f.Add(("C25", "DECAY present iff condition is declining/abandoned/squatted; healthy conditions keep verbatim era road markings with no DECAY; DECAY never precedes OUTPUT FORMAT (i.e. never inside PRESERVE) and never mentions geometry terms; bullets are drawn from the correct severity pool",
             errs.Count == 0, errs.Count == 0 ? "Decay section invariants hold" : Join(errs)));
+    }
+
+    // Caption voice coverage: the caption system (CaptionService + its prompt
+    // files) must stay in sync with the prompt-generation condition/scene-type
+    // system as both evolve independently. A scene type or condition added on
+    // one side without a matching entry on the caption side would otherwise
+    // silently degrade to a generic caption at runtime.
+    private static async Task DoC26(
+        IDataService dataService,
+        Dictionary<int, EraProfile> eras,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+
+        // 1. caption-base and every scene-specific caption system prompt must load.
+        try
+        {
+            await dataService.LoadPromptAsync("caption-base");
+        }
+        catch (Exception ex)
+        {
+            errs.Add($"caption-base.txt failed to load: {ex.Message}");
+        }
+        foreach (var sceneType in CaptionService.AnglesByScene.Keys)
+        {
+            try
+            {
+                await dataService.LoadPromptAsync($"caption-{sceneType}");
+            }
+            catch (Exception ex)
+            {
+                errs.Add($"caption-{sceneType}.txt failed to load: {ex.Message}");
+            }
+        }
+
+        // 2. Every scene type with a scene_content block in the era JSONs must
+        // have its own caption voice.
+        var knownSceneTypes = eras.Values
+            .SelectMany(e => e.SceneContent?.Keys ?? Enumerable.Empty<string>())
+            .Where(k => k != "default")
+            .Distinct()
+            .ToList();
+        foreach (var sceneType in knownSceneTypes)
+            if (!CaptionService.AnglesByScene.ContainsKey(sceneType))
+                errs.Add($"scene type '{sceneType}' has scene_content but no CaptionService.AnglesByScene entry");
+
+        // 3. Pool hygiene: minimum size, no internal duplicates, no scene-specific
+        // anchor duplicated in CommonAngles.
+        void CheckPool(string label, IReadOnlyList<string> pool)
+        {
+            if (pool.Count < 4)
+                errs.Add($"{label}: only {pool.Count} anchors (need >= 4)");
+            var dupes = pool.GroupBy(a => a, StringComparer.OrdinalIgnoreCase)
+                            .Where(g => g.Count() > 1).Select(g => g.Key).ToList();
+            if (dupes.Count > 0)
+                errs.Add($"{label}: duplicate anchor(s): {string.Join(", ", dupes)}");
+        }
+
+        CheckPool("CommonAngles", CaptionService.CommonAngles);
+        foreach (var (sceneType, pool) in CaptionService.AnglesByScene)
+        {
+            CheckPool(sceneType, pool);
+            var leaks = pool.Where(a => CaptionService.CommonAngles.Contains(a, StringComparer.OrdinalIgnoreCase)).ToList();
+            if (leaks.Count > 0)
+                errs.Add($"{sceneType}: anchor(s) duplicated in CommonAngles: {string.Join(", ", leaks)}");
+        }
+
+        // 4. AnglesFor() composition contract.
+        var gasAngles         = CaptionService.AnglesFor("gas_station");
+        var expectedGasAngles = CaptionService.AnglesByScene["gas_station"].Concat(CaptionService.CommonAngles).ToList();
+        if (!gasAngles.SequenceEqual(expectedGasAngles))
+            errs.Add("AnglesFor(\"gas_station\") != AnglesByScene[\"gas_station\"] followed by CommonAngles");
+
+        var unknownAngles = CaptionService.AnglesFor("unknown");
+        if (!unknownAngles.SequenceEqual(CaptionService.CommonAngles))
+            errs.Add("AnglesFor(\"unknown\") != CommonAngles exactly");
+
+        // 5. Cross-voice leak: forecourt vocabulary must not bleed into a main
+        // street or strip mall caption.
+        string[] gasWords = { "gas", "pump", "oil", "attendant" };
+        foreach (var sceneType in new[] { "downtown_street", "strip_mall" })
+            foreach (var anchor in CaptionService.AnglesByScene[sceneType])
+                foreach (var word in gasWords)
+                    if (anchor.Contains(word, StringComparison.OrdinalIgnoreCase))
+                        errs.Add($"{sceneType} anchor '{anchor}' contains gas-station word '{word}'");
+
+        // 6. Condition coverage: every condition reachable at runtime (every
+        // era's allowed_scene_conditions, plus the gas-station-finale-only
+        // "squatted") must map to a real phrase, not the unknown-condition
+        // fallback text.
+        var reachableConditions = eras.Values
+            .SelectMany(e => e.AllowedSceneConditions ?? Array.Empty<string>())
+            .Append("squatted")
+            .Distinct()
+            .ToList();
+        foreach (var condition in reachableConditions)
+            if (CaptionService.MapFinalCondition(condition) == CaptionService.UnknownConditionText)
+                errs.Add($"condition '{condition}' is reachable at runtime but MapFinalCondition falls back to the unknown-condition text");
+
+        f.Add(("C26", "Caption prompt files load; every scene_content type has a caption voice; anchor pools are well-formed and non-leaking; AnglesFor() composition holds; every reachable condition maps to a real phrase",
+            errs.Count == 0, errs.Count == 0 ? "Caption voice coverage holds" : Join(errs)));
+    }
+
+    // base-clean.txt (the clean-plate pass) and every era prompt must agree on
+    // the 9:16 portrait canvas — a drift here means the clean base and the
+    // per-year edits fight over aspect ratio.
+    private static async Task DoC27(
+        IDataService dataService,
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+        const string portraitPhrase = "TRUE 9:16 vertical portrait";
+
+        // 1. base-clean.txt must load.
+        string? baseClean = null;
+        try
+        {
+            baseClean = await dataService.LoadPromptAsync("base-clean");
+        }
+        catch (Exception ex)
+        {
+            errs.Add($"base-clean.txt failed to load: {ex.Message}");
+        }
+
+        if (baseClean is not null)
+        {
+            // 2. base-clean.txt declares the exact portrait phrase.
+            if (!baseClean.Contains(portraitPhrase))
+                errs.Add($"base-clean.txt is missing the exact phrase '{portraitPhrase}'");
+
+            // 4. base-clean.txt must not hedge toward a different aspect ratio.
+            foreach (var forbidden in new[] { "16:9", "1:1", "4:5", "landscape", "square" })
+                if (baseClean.Contains(forbidden, StringComparison.OrdinalIgnoreCase))
+                    errs.Add($"base-clean.txt contains forbidden aspect-ratio term '{forbidden}'");
+
+            // 5. base-clean.txt still keeps its cleanup contract.
+            if (!baseClean.Contains("people", StringComparison.OrdinalIgnoreCase))
+                errs.Add("base-clean.txt no longer mentions removing people");
+            if (!baseClean.Contains("vehicle", StringComparison.OrdinalIgnoreCase))
+                errs.Add("base-clean.txt no longer mentions removing vehicles");
+            if (!baseClean.Contains("pixel-identical"))
+                errs.Add("base-clean.txt no longer contains 'pixel-identical'");
+            if (!baseClean.Contains("canvas extension"))
+                errs.Add("base-clean.txt no longer contains 'canvas extension'");
+        }
+
+        // 3. The same phrase must appear in every generated prompt of every run —
+        // base-clean and the era prompts must not drift apart on aspect ratio.
+        var runs = new[]
+        {
+            (gasRun1, "gas/run1"), (gasRun2, "gas/run2"),
+            (dtRun1, "downtown/run1"), (dtRun2, "downtown/run2"),
+            (smRun1, "strip/run1"), (smRun2, "strip/run2")
+        };
+        foreach (var (run, label) in runs)
+            foreach (var (year, prompt) in run)
+                if (!prompt.Text.Contains(portraitPhrase))
+                    errs.Add($"{label}/{year}: prompt is missing '{portraitPhrase}'");
+
+        f.Add(("C27", "base-clean.txt loads, declares the exact 9:16 portrait phrase (and no competing aspect-ratio term), keeps its people/vehicle-removal + pixel-identical/canvas-extension cleanup contract, and every generated prompt carries the same portrait phrase",
+            errs.Count == 0, errs.Count == 0 ? "base-clean/prompt aspect-ratio contract holds" : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────
