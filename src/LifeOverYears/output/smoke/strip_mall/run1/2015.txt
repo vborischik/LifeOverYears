@@ -1,0 +1,63 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- camera: eye-level, street-facing, fov 78
+- commercial arterial road, 4-lane, asphalt
+- sidewalks present, curbs present
+- driveways: north entrance apron, south entrance apron; parking: large front asphalt lot with painted stalls
+- single-story retail row under a continuous overhang building at along the back of the lot, 1 story, brick veneer, EIFS stucco panels, flat with continuous overhang roof, 60 feet from road setback
+- detached end-cap retail unit building at north end of the lot, 1 story, brick veneer, metal fascia panels, flat parapet roof, 40 feet from road setback
+- utilities: overhead power lines on wooden poles, transformer on rear property line pole
+- landscape: parking lot islands with curbing, landscape strip along the road frontage, painted stall striping
+- immutable elements: continuous storefront overhang along the retail row, pylon sign base at the road frontage, parking lot islands
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
+
+TRANSFORM TO 2015
+Smartphone era fully arrived. A 2015 strip mall in the retail apocalypse — vacant units between a vape shop, a dollar store, and a low-cost gym.
+
+CONDITION: abandoned — closed business, boarded windows, weeds through pavement cracks, weathered surfaces
+
+PERIOD DETAILS
+- every storefront closed and dark — no lit signs, no menu boards, no open businesses
+- faded remains of old signage still on the facade, lettering weathered and partly missing
+- plywood over the ground-floor windows, doors chained shut
+No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.
+
+PEOPLE
+NO people anywhere — the place is completely deserted.
+
+VEHICLES
+NO vehicles anywhere — empty lot, no parked or moving cars.
+
+ENVIRONMENT
+- road markings: worn and faded, well past their last repainting
+- utilities: overhead power lines common on wooden poles, fiber optic lines on poles
+
+DECAY
+- shattered storefront glass swept into the walkway corners
+- shopping carts abandoned across the empty lot
+- the pylon sign stripped back to a rusted frame
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
+TREES
+- crepe myrtle tree at parking lot island near entrance: clearly smaller than in the source — about 60% of its canopy there, thinner trunk
+- maple tree at landscape strip along the road: clearly smaller than in the source — about 80% of its canopy there, thinner trunk
+- oak tree at back property line: slightly smaller than in the source — about 90% of its canopy there
+Tree sizes MUST follow this specification even where they differ from the source photo.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — digital — DSLR or smartphone camera look.
+Color: high saturation. Grain: clean, minimal noise.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

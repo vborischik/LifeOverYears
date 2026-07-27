@@ -62,9 +62,9 @@ DECAY
 - chalky faded lane paint, ghost lines in the tracks
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
-- cottonwood tree at northeast corner of lot: young tree, thin trunk
-- elm tree at sidewalk edge left of entrance: very young sapling
-- cedar tree at back fence line: maturing tree
+- cottonwood tree at northeast corner of lot: clearly smaller than in the source — about 60% of its canopy there, thinner trunk
+- elm tree at sidewalk edge left of entrance: clearly smaller than in the source — about 40% of its canopy there, thinner trunk
+- cedar tree at back fence line: clearly smaller than in the source — about 80% of its canopy there, thinner trunk
 Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE

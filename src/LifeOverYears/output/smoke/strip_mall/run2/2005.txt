@@ -1,0 +1,75 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- camera: eye-level, street-facing, fov 78
+- commercial arterial road, 4-lane, asphalt
+- sidewalks present, curbs present
+- driveways: north entrance apron, south entrance apron; parking: large front asphalt lot with painted stalls
+- single-story retail row under a continuous overhang building at along the back of the lot, 1 story, brick veneer, EIFS stucco panels, flat with continuous overhang roof, 60 feet from road setback
+- detached end-cap retail unit building at north end of the lot, 1 story, brick veneer, metal fascia panels, flat parapet roof, 40 feet from road setback
+- utilities: overhead power lines on wooden poles, transformer on rear property line pole
+- landscape: parking lot islands with curbing, landscape strip along the road frontage, painted stall striping
+- immutable elements: continuous storefront overhang along the retail row, pylon sign base at the road frontage, parking lot islands
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
+
+TRANSFORM TO 2005
+Post-9/11 era. An aging 2005 strip mall — national franchises mixed with struggling locals, the video store on its last legs.
+
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
+
+PERIOD DETAILS
+- dollar store anchor with yellow 'EVERYTHING $1' signage
+- sandwich franchise with backlit menu photos in the window
+- tax preparation office with a green square logo
+- window signs: 'RINGTONES $1.99', 'NO CREDIT? NO PROBLEM!'
+- a cart corral in the lot
+- ribbon magnets on a lamppost
+Typography: clean sans-serif, polished brand identities.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+
+PEOPLE
+EXACTLY 2 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block. Grouped in pairs, threes, and singles.
+- a customer leaving the sandwich shop with a to-go bag
+- a man loading shopping bags into an SUV's tailgate
+- a teen with white earbuds and an MP3 player
+Clothing: men in frosted tips hair, baggy jeans; women in trucker hats, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+
+VEHICLES
+EXACTLY 2 period vehicles, all different:
+- 1999-2006 Chevrolet Silverado — squared modern look — gold
+- 2003-2008 Honda Pilot — boxy three-row SUV — black
+Parked with gaps; no vehicle newer than 2005.
+Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
+PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: worn and faded, well past their last repainting
+- utilities: overhead power lines standard, cable and fiber lines on poles appearing
+
+DECAY
+- weeds along the base of the storefront walkway
+- faded mansard shingles patched in mismatched colors
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
+TREES
+- crepe myrtle tree at parking lot island near entrance: clearly smaller than in the source — about 40% of its canopy there, thinner trunk
+- maple tree at landscape strip along the road: clearly smaller than in the source — about 60% of its canopy there, thinner trunk
+- oak tree at back property line: clearly smaller than in the source — about 80% of its canopy there, thinner trunk
+Tree sizes MUST follow this specification even where they differ from the source photo.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — early digital camera or Kodak/Fuji consumer film look.
+Color: neutral tones. Grain: low grain, early digital noise in shadows.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

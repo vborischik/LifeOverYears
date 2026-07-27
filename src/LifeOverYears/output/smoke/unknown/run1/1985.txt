@@ -56,7 +56,7 @@ ENVIRONMENT
 - utilities: overhead power lines standard, wooden utility poles
 
 TREES
-- pine tree at fence line east: very young sapling
+- pine tree at fence line east: a young tree, only about 15% of its canopy in the source photo, thin trunk
 Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE

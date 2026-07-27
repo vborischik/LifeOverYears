@@ -1,0 +1,75 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- camera: eye-level, street-facing, fov 78
+- commercial arterial road, 4-lane, asphalt
+- sidewalks present, curbs present
+- driveways: north entrance apron, south entrance apron; parking: large front asphalt lot with painted stalls
+- single-story retail row under a continuous overhang building at along the back of the lot, 1 story, brick veneer, EIFS stucco panels, flat with continuous overhang roof, 60 feet from road setback
+- detached end-cap retail unit building at north end of the lot, 1 story, brick veneer, metal fascia panels, flat parapet roof, 40 feet from road setback
+- utilities: overhead power lines on wooden poles, transformer on rear property line pole
+- landscape: parking lot islands with curbing, landscape strip along the road frontage, painted stall striping
+- immutable elements: continuous storefront overhang along the retail row, pylon sign base at the road frontage, parking lot islands
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
+
+TRANSFORM TO 1995
+Clinton era prosperity. A 1995 strip mall past its prime but still busy — big backlit box signs, a video store anchor, the first vacant units appearing.
+
+CONDITION: busy — customers present, high activity, all pumps in use
+
+PERIOD DETAILS
+- Chinese takeout with a 'LUNCH SPECIAL $3.95' menu taped to the glass
+- dollar store with a yellow 'EVERYTHING 99¢' banner
+- used video game store with a 'WE BUY & SELL GAMES' sign
+- window signs: 'VHS RENTAL $1.99', 'GOING OUT OF BUSINESS — 50% OFF'
+- rollerblades leaning by a storefront door
+- a cart corral with a few stray carts
+Typography: clean geometric sans-serif, early digital influence.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+
+PEOPLE
+EXACTLY 11 people TOTAL: 4 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles.
+- two teens skateboarding along the curb
+- a clerk on a break by the service door
+- a paperboy with a canvas bag on a bike
+Clothing: men in grunge style, backwards caps; women in slip dresses, crop tops. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+
+VEHICLES
+EXACTLY 6 period vehicles, all different:
+- 1990-1997 Mazda Miata — tiny rounded roadster, pop-up lights — navy blue
+- 1992-1997 Ford Taurus — rounded jellybean shape, oval theme — black
+- 1993-1997 Toyota Corolla — rounded compact sedan — silver
+- 1990-1994 Chevrolet Lumina — rounded mid-size sedan — hunter green
+- 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size — teal
+- 1993-1998 Jeep Grand Cherokee — early SUV, boxy-rounded — white
+Parked with gaps; no vehicle newer than 1995.
+Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
+PLACEMENT: three parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, turn lane arrows
+- utilities: overhead power lines standard, cable TV and early phone data lines on poles
+
+TREES
+- crepe myrtle tree at parking lot island near entrance: a young tree, only about 25% of its canopy in the source photo, thin trunk
+- maple tree at landscape strip along the road: clearly smaller than in the source — about 45% of its canopy there, thinner trunk
+- oak tree at back property line: clearly smaller than in the source — about 75% of its canopy there, thinner trunk
+Tree sizes MUST follow this specification even where they differ from the source photo.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — Kodak Gold 200 or Fujifilm Superia 200 look.
+Color: neutral to slightly warm tones. Grain: fine grain, cleaner than 1985.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

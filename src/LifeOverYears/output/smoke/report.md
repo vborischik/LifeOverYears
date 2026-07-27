@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-07-27T04:25:32.2199400+00:00
+Generated: 2026-07-27T21:55:11.7834444+00:00
 
 ## Check Results
 
@@ -11,7 +11,7 @@ Generated: 2026-07-27T04:25:32.2199400+00:00
 | C3 | No vehicle model reuse within each run (dedup invariant) | ✅ PASS | No duplicates in any run |
 | C4 | Vehicle count in range and VEHICLES section lines match SelectedVehicles.Count | ✅ PASS | All vehicle counts correct |
 | C5 | Run1 vs Run2: ≥3 years differ in vehicles; no year has identical full text | ✅ PASS | Sufficient variance between seeds |
-| C6 | Tree size ladder (distinct per era for mature trees, size-relative) and tree position+species in all prompts | ✅ PASS | Tree ladder and positions correct |
+| C6 | Tree canopy proportion vs. source photo (distinct per era for mature trees, size-relative) and tree position+species in all prompts | ✅ PASS | Tree ladder and positions correct |
 | C7 | 1975=B&W (STRICTLY BLACK AND WHITE); 1985-2025=COLOR photograph | ✅ PASS | Color mode correct in all prompts |
 | C8 | Gas station fuel prices always present; downtown coffee price in ≥1 run per year | ✅ PASS | All price anchors found |
 | C9 | PRESERVE block contains all building types and immutable elements verbatim | ✅ PASS | All building types and immutable elements present |
@@ -25,12 +25,14 @@ Generated: 2026-07-27T04:25:32.2199400+00:00
 | C17 | Every specific_models entry (cars+trucks) starts on or before its era year | ✅ PASS | All model year ranges are era-valid |
 | C18 | Every prompt has a PLACEMENT line; no repeated pattern per run unless the pool is exhausted | ✅ PASS | Placement present and de-duplicated per pool |
 | C19 | No descriptive-as-signage leaks; {DINER_NAME} resolved and identical across a run | ✅ PASS | Business names clean and diner name stable |
-| C20 | Every prompt has a two-sign 'window signs:' line, >=1 extras line, and a people_mix line | ✅ PASS | All three sampling axes present in every prompt |
+| C20 | Every live prompt has a two-sign 'window signs:' line, >=1 extras line, and a people_mix line; derelict eras carry none of them | ✅ PASS | All three sampling axes present in every prompt |
 | C21 | Run1 vs Run2: >=3 of 6 years differ in sampled extras or window signs | ✅ PASS | Sufficient sampling variance between seeds |
 | C22 | Every prompt is at most 4900 characters | ✅ PASS | All prompts within 4900 chars |
-| C23 | strip_mall/default always thriving; rank monotonic per run (gas-station finale may resolve to 'new'); abandoned/declining/squatted counts honored for gas_station and downtown_street; 'squatted' only on a gas_station's final era | ✅ PASS | Condition trajectory invariants hold |
+| C23 | default/unknown scenes always thriving; rank monotonic per run (gas-station finale may resolve to 'new' or 'restored'); abandoned/declining/squatted counts honored for gas_station, downtown_street and strip_mall; 'squatted' only on a gas_station's final era; 'restored' only on a gas_station's final era | ✅ PASS | Condition trajectory invariants hold |
 | C24 | Every business-name token resolves to a member of its own pool and stays identical across all six eras of a run | ✅ PASS | All 8 business tokens resolve correctly and remain stable per run |
 | C25 | DECAY present iff condition is declining/abandoned/squatted; healthy conditions keep verbatim era road markings with no DECAY; DECAY never precedes OUTPUT FORMAT (i.e. never inside PRESERVE) and never mentions geometry terms; bullets are drawn from the correct severity pool | ✅ PASS | Decay section invariants hold |
+| C26 | Caption prompt files load; every scene_content type has a caption voice; anchor pools are well-formed and non-leaking; AnglesFor() composition holds; every reachable condition maps to a real phrase | ✅ PASS | Caption voice coverage holds |
+| C27 | base-clean.txt loads, declares the exact 9:16 portrait phrase (and no competing aspect-ratio term), keeps its people/vehicle-removal + pixel-identical/canvas-extension cleanup contract, and every generated prompt carries the same portrait phrase | ✅ PASS | base-clean/prompt aspect-ratio contract holds |
 
 ## Vehicle Selections
 
@@ -42,7 +44,7 @@ Generated: 2026-07-27T04:25:32.2199400+00:00
 | 1995 | 3 | 1990-1994 Chevrolet Lumina — rounded mid-size sedan, 1994-1998 Ford Mustang — rounded SN95 pony car, 1993-1997 Ford Ranger — compact pickup, straight lines |
 | 2005 | 3 | 2002-2008 Dodge Ram — big rig grille evolved, 2005-2010 Jeep Grand Cherokee — rounded modern SUV, 2003-2008 Toyota Corolla — conservative compact sedan |
 | 2015 | 0 |  |
-| 2025 | 4 | 2019-2025 Toyota RAV4 — boxy rugged crossover, very common, 2021-2025 Ford Bronco — retro boxy off-roader, 2020-2025 Hyundai Tucson — sharp parametric grille design, 2022-2025 Honda Civic — clean mature compact |
+| 2025 | 4 | 2024-2025 Toyota Grand Highlander — large family crossover, 2021-2025 Toyota Camry — sleek sedan, aggressive front fascia, 2021-2025 Kia Carnival — boxy SUV-styled minivan, 2021-2025 Kia Telluride — boxy upscale three-row SUV |
 
 ### gas_station / Run 2 (seed=1337)
 | Year | Count | Vehicles |
@@ -52,7 +54,7 @@ Generated: 2026-07-27T04:25:32.2199400+00:00
 | 1995 | 4 | 1993-1997 Ford Ranger — compact pickup, straight lines, 1995-1999 Chevrolet Cavalier — compact, rounded, 1989-1997 Geo Metro — very small economy hatchback, 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size |
 | 2005 | 1 | 2004-2008 Pontiac Grand Prix — sporty sedan plastic cladding |
 | 2015 | 0 |  |
-| 2025 | 4 | 2019-2025 Chevrolet Equinox — rounded compact crossover, 2021-2025 Ford Bronco — retro boxy off-roader, 2022-2025 Honda Civic — clean mature compact, 2022-2025 Chevrolet Silverado — refreshed bold grille |
+| 2025 | 1 | 2019-2025 Subaru Outback — rugged wagon crossover |
 
 ### downtown_street / Run 1 (seed=42)
 | Year | Count | Vehicles |
@@ -60,8 +62,8 @@ Generated: 2026-07-27T04:25:32.2199400+00:00
 | 1975 | 4 | 1973-1980 Chevrolet C10 — square body, chrome bumper, 1971-1976 Jeep Wagoneer — boxy full-size SUV, woodgrain trim optional, 1970-1978 AMC Gremlin — short stubby hatchback rear, 1974-1978 Cadillac DeVille — full-size luxury, formal roofline, chrome heavy |
 | 1985 | 5 | 1975-1991 Ford Econoline — boxy full-size van, 1983-1987 Honda Accord — clean lines, pop-up headlights, 1973-1987 Chevrolet C/K — square body pickup, dual headlights, 1980-1985 Buick LeSabre — boxy full-size, chrome trim, 1984-1988 Toyota Pickup — small, boxy, popular import |
 | 1995 | 5 | 1992-1995 Honda Civic — small rounded coupe and sedan, 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding, 1995-2004 Toyota Tacoma — compact, rounded, 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size, 1986-1997 Ford Aerostar — boxy rear-drive minivan |
-| 2005 | 5 | 2002-2008 Dodge Ram — big rig grille evolved, 2005-2010 Jeep Grand Cherokee — rounded modern SUV, 2003-2008 Toyota Corolla — conservative compact sedan, 1999-2006 Chevrolet Silverado — squared modern look, 2003-2009 Hummer H2 — massive military-styled SUV |
-| 2015 | 5 | 2011-2016 Honda CR-V — rounded compact crossover, 2012-2018 Ford Focus — sharp European compact, 2015-2020 Ford F-150 — aluminum body, C-clamp headlights, 2013-2018 Hyundai Santa Fe — fluidic sculpture styling, 2011-2016 Chrysler Town & Country — chrome-trimmed minivan |
+| 2005 | 2 | 2003-2009 Hummer H2 — massive military-styled SUV, 1999-2006 Chevrolet Silverado — squared modern look |
+| 2015 | 0 |  |
 | 2025 | 0 |  |
 
 ### downtown_street / Run 2 (seed=1337)
@@ -70,7 +72,7 @@ Generated: 2026-07-27T04:25:32.2199400+00:00
 | 1975 | 4 | 1963-1976 Dodge Dart — compact, boxy, reliable workhorse, 1970-1976 AMC Hornet — compact, simple boxy lines, 1974-1978 Oldsmobile Cutlass Supreme — best-selling car in America, formal roofline, 1971-1976 Chevrolet G10 Sportvan — boxy windowed van, chrome bumper |
 | 1985 | 6 | 1982-1986 Nissan Sentra — small economy boxy sedan, 1983-1985 Nissan Maxima — boxy import sedan, 1978-1987 Chevrolet Monte Carlo — personal luxury coupe, long hood, 1982-1992 Chevrolet Camaro — wedge-shaped sporty coupe, 1981-1985 Dodge Aries — K-car, boxy economy sedan, 1984-1988 Pontiac Fiero — small wedge two-seater |
 | 1995 | 6 | 1991-1995 Dodge Caravan — rounded second-gen minivan, 1995-1999 Dodge Neon — small rounded economy, friendly face, 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding, 1992-1997 Ford Taurus — rounded jellybean shape, oval theme, 1989-1997 Geo Metro — very small economy hatchback, 1994-1997 Honda Accord — smooth rounded sedan |
-| 2005 | 6 | 2004-2012 Chevrolet Colorado — mid-size pickup, 2005-2010 Jeep Grand Cherokee — rounded modern SUV, 2000-2005 Ford Focus — European-styled compact, 2001-2005 Honda Civic — rounded compact, very common, 1998-2005 Volkswagen New Beetle — retro bubble shape, 2002-2007 Jeep Liberty — round-headlight compact SUV |
-| 2015 | 5 | 2009-2018 Ram 1500 — crosshair grille, refined, 2010-2016 Chevrolet Equinox — mid-size crossover, 2013-2016 Ford Escape — rounded compact crossover, 2011-2016 Hyundai Elantra — swoopy fluidic compact, 2011-2016 Honda CR-V — rounded compact crossover |
-| 2025 | 4 | 2022-2025 Ford Maverick — small unibody pickup, 2021-2025 Kia Carnival — boxy SUV-styled minivan, 2021-2025 Chevrolet Tahoe — huge full-size SUV, 2019-2025 Subaru Forester — practical boxy crossover |
+| 2005 | 1 | 2003-2007 Nissan Altima — sporty mid-size |
+| 2015 | 0 |  |
+| 2025 | 0 |  |
 

@@ -60,8 +60,8 @@ ENVIRONMENT
 - utilities: overhead power lines everywhere, wooden utility poles standard
 
 TREES
-- oak tree at sidewalk left near corner: very young sapling
-- maple tree at sidewalk center in front of retail: very young sapling
+- oak tree at sidewalk left near corner: clearly smaller than in the source — about 60% of its canopy there, thinner trunk
+- maple tree at sidewalk center in front of retail: a young tree, only about 30% of its canopy in the source photo, thin trunk
 Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE

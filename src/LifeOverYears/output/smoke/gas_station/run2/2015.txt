@@ -29,14 +29,11 @@ Smartphone era fully arrived. A 2015 station — LED-lit canopy, digital price s
 CONDITION: abandoned — closed business, boarded windows, weeds through pavement cracks, weathered surfaces
 
 PERIOD DETAILS
-- red DVD-rental kiosk outside the store entrance
-- ice merchandiser by the door
+- every storefront closed and dark — no lit signs, no menu boards, no open businesses
+- faded remains of old signage still on the facade, lettering weathered and partly missing
+- plywood over the ground-floor windows, doors chained shut
 - main sign: a bare stripped sign frame — rusted metal posts, an empty price panel with no digits, no lit letters, no logo, all branding gone
-- window signs: '2 ENERGY DRINKS $5', 'ANY SIZE COFFEE $1'
-- a chalkboard A-frame sign advertising the coffee bar
-- card-skimmer warning stickers on the pumps
-Typography: minimalist flat sans-serif, simplified modern logos.
-Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.
 
 PEOPLE
 NO people anywhere — the place is completely deserted.
@@ -46,17 +43,17 @@ NO vehicles anywhere — empty lot, no parked or moving cars.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
-- utilities: overhead power lines common, undergrounding in new developments, fiber optic lines on poles
+- utilities: overhead power lines common on wooden poles, fiber optic lines on poles
 
 DECAY
-- weeds through pavement cracks, the curb
-- boarded windows, glass cracked or missing
-- potholes, alligator cracking, gravel at the edges
+- lane markings nearly gone, faint paint traces
+- rusted signage askew, lettering broken off
+- trash along storefronts, a dumped mattress at the curb
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
-- cottonwood tree at northeast corner of lot: established tree, modest canopy
-- elm tree at sidewalk edge left of entrance: very young sapling
-- cedar tree at back fence line: mature tree, full canopy
+- cottonwood tree at northeast corner of lot: clearly smaller than in the source — about 80% of its canopy there, thinner trunk
+- elm tree at sidewalk edge left of entrance: clearly smaller than in the source — about 60% of its canopy there, thinner trunk
+- cedar tree at back fence line: slightly smaller than in the source — about 90% of its canopy there
 Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE

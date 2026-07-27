@@ -10,23 +10,54 @@ public sealed class CaptionService : ICaptionService
     private readonly ICaptionProvider _provider;
     private readonly ILogger<CaptionService> _logger;
 
-    // Sampled fresh each call so the model anchors on a different concrete
-    // memory instead of defaulting to whichever detail it favors most — this,
-    // combined with the run-specific facts below, is what breaks caption
-    // repetition across runs.
-    private static readonly IReadOnlyList<string> MemoryAngles = new[]
+    // Anchors that fit any ordinary American place.
+    public static readonly IReadOnlyList<string> CommonAngles = new[]
     {
-        "the sound of the bell when a car pulled in",
-        "the smell of gasoline mixed with rain",
-        "learning to pump gas for the first time",
-        "a summer road trip stop with the whole family packed in the car",
-        "an attendant who knew every regular by name",
-        "checking the oil and washing the windshield by hand",
-        "grabbing a cold soda or candy bar after school",
-        "the glow of the sign at night on an otherwise dark road",
-        "waiting in the back seat while a parent paid inside",
-        "the last time anyone remembers stopping there before it closed",
+        "a summer afternoon with nothing in particular to do",
+        "riding along while a parent ran errands",
+        "the way the light looked there late on a summer evening",
+        "running into someone you knew every single time",
+        "the last time anyone remembers going there before it closed",
     };
+
+    // Scene-specific anchors. Feeding forecourt memories (pumping gas, checking
+    // the oil) to a main street or a strip mall is what made captions read as
+    // interchangeable, so each type draws from its own vocabulary first.
+    public static readonly IReadOnlyDictionary<string, IReadOnlyList<string>> AnglesByScene = new Dictionary<string, IReadOnlyList<string>>
+    {
+        ["gas_station"] = new[]
+        {
+            "the sound of the bell when a car pulled in",
+            "the smell of gasoline mixed with rain",
+            "learning to pump gas for the first time",
+            "an attendant who knew every regular by name",
+            "checking the oil and washing the windshield by hand",
+            "a cold bottle of soda from the machine out front",
+        },
+        ["downtown_street"] = new[]
+        {
+            "storefront windows decorated for Christmas",
+            "the soda fountain counter at the drugstore",
+            "Saturday afternoon downtown when everyone was out",
+            "the parade coming down the main street",
+            "the smell of the bakery on the corner",
+            "meeting friends under the theater marquee",
+        },
+        ["strip_mall"] = new[]
+        {
+            "browsing the aisles of the video rental place on a Friday night",
+            "the arcade cabinets humming in the corner",
+            "takeout from the Chinese place at the end of the row",
+            "pushing a cart out to the car at the anchor supermarket",
+            "sitting on the curb in the parking lot with friends",
+            "the hum of the fluorescent lights under the storefront overhang",
+        },
+    };
+
+    public static IReadOnlyList<string> AnglesFor(string sceneType) =>
+        AnglesByScene.TryGetValue(sceneType, out var specific)
+            ? specific.Concat(CommonAngles).ToArray()
+            : CommonAngles;
 
     public CaptionService(IDataService data, ICaptionProvider provider, ILogger<CaptionService> logger)
     {
@@ -52,12 +83,13 @@ public sealed class CaptionService : ICaptionService
             _logger.LogInformation("Caption: no caption-{SceneType}, falling back to caption-base", sceneType);
         }
 
-        var angle = MemoryAngles[Random.Shared.Next(MemoryAngles.Count)];
+        var angles = AnglesFor(sceneType);
+        var angle = angles[Random.Shared.Next(angles.Count)];
 
         // Rich, run-specific context. We deliberately do NOT feed a specific
-        // city/state — the copy stays about a generic small American town —
-        // but everything else about THIS run's arc is handed over so the model
-        // can't default to a one-size-fits-all caption.
+        // city/state — the copy stays about a generic small American town — but
+        // everything else about THIS run's arc is handed over, so the model
+        // cannot fall back on a one-size-fits-all caption.
         var sb = new System.Text.StringBuilder();
         sb.AppendLine($"Scene type: {sceneType}.");
         sb.AppendLine($"The video spans {narrative.FirstYear} to {narrative.LastYear}.");
@@ -70,7 +102,7 @@ public sealed class CaptionService : ICaptionService
                 : $"It was known as {narrative.FirstBrand}.");
         }
         sb.AppendLine($"Anchor the caption on this specific memory: {angle}.");
-        sb.AppendLine("Write the description now, in your own words — do not reuse stock opening lines from your instructions.");
+        sb.AppendLine("Write the description now, in your own words — do not reuse stock opening lines from your instructions. Every sentence must be grammatically correct.");
         var userContext = sb.ToString();
 
         var description = await _provider.GenerateDescriptionAsync(systemPrompt, userContext);
@@ -89,14 +121,16 @@ public sealed class CaptionService : ICaptionService
         return caption;
     }
 
-    private static string MapFinalCondition(string condition) => condition switch
+    public const string UnknownConditionText = "changed a lot over the years";
+
+    public static string MapFinalCondition(string condition) => condition switch
     {
-        "thriving" or "busy"      => "still standing and busy",
-        "new"                     => "rebuilt and freshly reopened",
-        "restored"                => "restored and still open",
-        "declining"               => "still standing, but showing its age",
-        "abandoned"               => "empty and abandoned now",
-        "squatted"                => "long closed, taken over by squatters",
-        _                         => "changed a lot over the years",
+        "thriving" or "busy" => "still standing and busy",
+        "new"                => "rebuilt and freshly reopened",
+        "restored"           => "restored and still open",
+        "declining"          => "still standing, but showing its age",
+        "abandoned"          => "empty and abandoned now",
+        "squatted"           => "long closed, taken over by squatters",
+        _                    => UnknownConditionText,
     };
 }

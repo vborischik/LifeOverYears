@@ -36,10 +36,10 @@ public sealed class PromptService : IPromptService
                 year, sceneType);
 
         var isGasStation = sceneType == "gas_station";
-        // Downtown streets now carry a condition arc too — the decline of a main
-        // street is the story these runs are for. Strip malls and default scenes
-        // stay thriving and use their base ranges untouched.
-        var supportsCondition = sceneType is "gas_station" or "downtown_street";
+        // Gas stations, downtown streets and strip malls all carry a condition
+        // arc — decline is the story these runs are for. Only default/unknown
+        // scenes stay thriving and use their base ranges untouched.
+        var supportsCondition = sceneType is "gas_station" or "downtown_street" or "strip_mall";
 
         var condition = supportsCondition
             ? context.PickSceneCondition(eraProfile.AllowedSceneConditions, sceneType)
@@ -250,16 +250,79 @@ public sealed class PromptService : IPromptService
         "trash along storefronts, a dumped mattress at the curb"
     };
 
+    // A main street decays differently from a forecourt: the tells are shutters,
+    // painted-over sign bands and ghost signs on brick, with upper floors often
+    // still lived in above dead ground-floor storefronts.
+    internal static readonly string[] DowntownDecayModerate =
+    {
+        "a faded painted wall ad showing through the brick",
+        "one storefront papered over from inside, a handwritten sign taped to the glass",
+        "a sun-bleached awning, torn at one corner",
+        "peeling paint along the storefront cornice",
+        "an old sign band painted over, the previous lettering still faintly readable",
+        "cracked sidewalk squares, weeds at the tree pits"
+    };
+
+    internal static readonly string[] DowntownDecayHeavy =
+    {
+        "roll-down steel security shutters closed over the storefronts",
+        "an accordion scissor gate padlocked across a doorway",
+        "a sign band painted flat white, all lettering stripped off",
+        "a ghost sign for a long-gone business bleeding through the brickwork",
+        "graffiti tags across the lower brick and boarded panels",
+        "upper-floor windows still curtained above dead ground-floor storefronts",
+        "a torn vinyl banner sagging from the facade",
+        "rust streaks below the old cornice bolts",
+        "a collapsed awning frame hanging loose over the sidewalk",
+        "plywood over a broken transom window, the glass long gone"
+    };
+
+    // A strip mall decays by losing tenants: blank sign panels, FOR RENT glass
+    // and a downward tenant mix, with the parking apron going to seed.
+    internal static readonly string[] StripMallDecayModerate =
+    {
+        "two blank white sign panels where tenants moved out",
+        "a FOR RENT sign taped inside a dark storefront window",
+        "faded mansard shingles patched in mismatched colors",
+        "paper flyers taped inside the glass of one unit",
+        "parking stripes worn down to faint outlines",
+        "weeds along the base of the storefront walkway"
+    };
+
+    internal static readonly string[] StripMallDecayHeavy =
+    {
+        "every sign panel blank or removed, empty frames left on the pylon",
+        "storefronts boarded with plywood behind bent security grilles",
+        "grass and saplings pushing up through the parking apron",
+        "the pylon sign stripped back to a rusted frame",
+        "shopping carts abandoned across the empty lot",
+        "shattered storefront glass swept into the walkway corners"
+    };
+
+    // Pool selection lives here (not at the call site) so the smoke test can
+    // assert against exactly the pool the builder would have used.
+    internal static string[]? DecayPoolFor(string sceneType, string condition) => condition switch
+    {
+        "declining" => sceneType switch
+        {
+            "downtown_street" => DowntownDecayModerate,
+            "strip_mall"      => StripMallDecayModerate,
+            _                 => DecayModerate
+        },
+        "abandoned" or "squatted" => sceneType switch
+        {
+            "downtown_street" => DowntownDecayHeavy,
+            "strip_mall"      => StripMallDecayHeavy,
+            _                 => DecayHeavy
+        },
+        _ => null
+    };
+
     // Two or three concrete details per era, sampled so consecutive eras of the
     // same run don't repeat the same wording.
-    private static string BuildDecayBlock(string condition, Random rng)
+    private static string BuildDecayBlock(string condition, string sceneType, Random rng)
     {
-        var pool = condition switch
-        {
-            "declining"               => DecayModerate,
-            "abandoned" or "squatted" => DecayHeavy,
-            _                         => null
-        };
+        var pool = DecayPoolFor(sceneType, condition);
         if (pool is null)
             return "";
 
@@ -284,7 +347,7 @@ public sealed class PromptService : IPromptService
 
         // Scene atmosphere — condition affects appearance/upkeep only, never the
         // physical geometry in the PRESERVE block.
-        if (sceneType is "gas_station" or "downtown_street")
+        if (sceneType is "gas_station" or "downtown_street" or "strip_mall")
         {
             sb.AppendLine();
             sb.AppendLine($"CONDITION: {condition} — {ConditionDescriptor(condition)}");
@@ -292,6 +355,22 @@ public sealed class PromptService : IPromptService
 
         sb.AppendLine();
         sb.AppendLine("PERIOD DETAILS");
+
+        // A closed-down block must not advertise. The era's scene_content lists
+        // live businesses, promos and street props; emitting them alongside
+        // "CONDITION: abandoned" is a direct contradiction, and the image model
+        // resolves it by rendering the businesses. Derelict eras get their own
+        // short block instead, and skip window signs and extras entirely.
+        if (condition is "abandoned" or "squatted")
+        {
+            sb.AppendLine("- every storefront closed and dark — no lit signs, no menu boards, no open businesses");
+            sb.AppendLine("- faded remains of old signage still on the facade, lettering weathered and partly missing");
+            sb.AppendLine("- plywood over the ground-floor windows, doors chained shut");
+            if (isGasStation)
+                sb.AppendLine("- main sign: a bare stripped sign frame — rusted metal posts, an empty price panel with no digits, no lit letters, no logo, all branding gone");
+            sb.Append("No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.");
+            return sb.ToString();
+        }
 
         var pool = new List<string>();
         if (content is not null)
@@ -523,7 +602,7 @@ public sealed class PromptService : IPromptService
             ? dc
             : infra.Utilities.Characteristics;
         sb.AppendLine($"- utilities: {Join(utilitiesPool.Take(2).ToList())}");
-        sb.Append(BuildDecayBlock(condition, rng));
+        sb.Append(BuildDecayBlock(condition, sceneType, rng));
         sb.AppendLine();
         sb.AppendLine("TREES");
         foreach (var tree in scene.Environment.Trees)
@@ -532,29 +611,35 @@ public sealed class PromptService : IPromptService
         return sb.ToString().TrimEnd();
     }
 
-    private static readonly string[] TreeLadder =
-    {
-        "very young sapling",
-        "young tree, thin trunk",
-        "established tree, modest canopy",
-        "maturing tree",
-        "mature tree, full canopy",
-        "mature tree, large canopy"
-    };
+    // The source photo is the newest era, so it is the anchor: a tree's canopy
+    // in any earlier era is expressed as a proportion of what it looks like
+    // there, using a per-decade retention rate for the size Vision recorded.
+    // Unlike an absolute rung ladder, this never clamps and never repeats —
+    // every decade differs, giving the model a comparator it can act on
+    // regardless of which image it is actually editing.
+    private const int SourceYear = 2025; // newest era — trees render "as in the source" here
 
-    // Sizes scale relative to the size recorded in SceneDna: a tree that is already
-    // young in the 2025 source stays small in every earlier era.
     private static string DescribeTreeSize(string size, int year)
     {
-        var sourceIndex = size.ToLowerInvariant() switch
+        var retention = size.ToLowerInvariant() switch
         {
-            "large"  => 5,
-            "medium" => 3,
-            "small"  => 1,
-            _        => 3
+            "large"  => 0.90,
+            "medium" => 0.78,
+            "small"  => 0.62,
+            _        => 0.78
         };
-        var stepsBack = (2025 - year) / 10;
-        return TreeLadder[Math.Max(0, sourceIndex - stepsBack)];
+        var decadesBack = (SourceYear - year) / 10;
+        if (decadesBack == 0)
+            return "same size as in the source photo";
+
+        var fraction = Math.Pow(retention, decadesBack);
+        var pct = (int)(Math.Round(fraction * 20.0, MidpointRounding.AwayFromZero) * 5);
+
+        if (fraction >= 0.85)
+            return $"slightly smaller than in the source — about {pct}% of its canopy there";
+        if (fraction >= 0.35)
+            return $"clearly smaller than in the source — about {pct}% of its canopy there, thinner trunk";
+        return $"a young tree, only about {pct}% of its canopy in the source photo, thin trunk";
     }
 
     private static string BuildStyleBlock(Photography photo)

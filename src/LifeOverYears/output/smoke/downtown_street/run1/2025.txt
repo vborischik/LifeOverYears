@@ -29,14 +29,10 @@ Post-pandemic era. A 2025 main street — minimalist flat-logo storefronts, QR c
 CONDITION: abandoned — closed business, boarded windows, weeds through pavement cracks, weathered surfaces
 
 PERIOD DETAILS
-- MARY'S DINER with 'COFFEE $3.50' shown on a small digital menu screen in the window
-- boutique fitness studio with black-and-white minimalist branding
-- delivery-only ghost kitchen storefront with pickup shelves visible through the glass
-- window signs: 'NOW HIRING — APPLY ONLINE', 'ORDER AHEAD — SCAN THE QR CODE'
-- a stack of delivery packages waiting at a shop door
-- the ghost-sign wall now a commissioned mural with bold flat graphics
-Typography: minimalist geometric sans-serif, heavily simplified flat logos.
-Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+- every storefront closed and dark — no lit signs, no menu boards, no open businesses
+- faded remains of old signage still on the facade, lettering weathered and partly missing
+- plywood over the ground-floor windows, doors chained shut
+No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.
 
 PEOPLE
 NO people anywhere — the place is completely deserted.
@@ -46,16 +42,16 @@ NO vehicles anywhere — empty lot, no parked or moving cars.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
-- utilities: power, phone, and fiber fully undergrounded along the main commercial block, no utility poles along the street frontage; smart conduits and sensor loops below grade
+- utilities: overhead power lines still on the original poles along the street, fiber optic bundles and 5G small cell nodes mounted on the existing poles
 
 DECAY
-- graffiti on boarded panels, lower wall
-- weeds through pavement cracks, the curb
-- boarded windows, glass cracked or missing
+- a sign band painted flat white, all lettering stripped off
+- a torn vinyl banner sagging from the facade
+- graffiti tags across the lower brick and boarded panels
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
-- oak tree at sidewalk left near corner: mature tree, large canopy
-- maple tree at sidewalk center in front of retail: maturing tree
+- oak tree at sidewalk left near corner: same size as in the source photo
+- maple tree at sidewalk center in front of retail: same size as in the source photo
 Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE
