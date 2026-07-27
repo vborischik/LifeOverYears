@@ -1,0 +1,74 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- camera: eye-level, street-facing, fov 78
+- commercial arterial road, 4-lane, asphalt
+- sidewalks present, curbs present
+- driveways: north entrance apron, south entrance apron; parking: large front asphalt lot with painted stalls
+- single-story retail row under a continuous overhang building at along the back of the lot, 1 story, brick veneer, EIFS stucco panels, flat with continuous overhang roof, 60 feet from road setback
+- detached end-cap retail unit building at north end of the lot, 1 story, brick veneer, metal fascia panels, flat parapet roof, 40 feet from road setback
+- utilities: overhead power lines on wooden poles, transformer on rear property line pole
+- landscape: parking lot islands with curbing, landscape strip along the road frontage, painted stall striping
+- immutable elements: continuous storefront overhang along the retail row, pylon sign base at the road frontage, parking lot islands
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
+
+TRANSFORM TO 1975
+Post-Vietnam, oil crisis era. A brand-new mid-1970s strip mall — one low row of shops under a mansard-shingle canopy, fronted by an open parking lot.
+
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+
+PERIOD DETAILS
+- soft-serve ice cream stand at the end cap with a cone-shaped sign
+- small 'A&P' style grocery with stacked shopping carts by the door
+- laundromat with an 'OPEN 24 HOURS' sign and washers visible through the plate glass
+- window signs: 'GRAND OPENING', '8-TRACK TAPES $4.99'
+- a telephone booth at the edge of the parking lot
+- a row of nested shopping carts near the grocery entrance
+Typography: bold sans-serif, slab serif, occasional script.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+
+PEOPLE
+EXACTLY 16 people TOTAL: 6 near sidewalk (largest, foreground), 6 opposite sidewalk mid-block, 4 distant, far end of block. Grouped in pairs, threes, and singles.
+- a workman in uniform carrying a toolbox to his truck
+- a woman carrying a laundry basket under the canopy
+- a man in a work uniform on a lunch break
+Clothing: men in bell bottoms, plaid patterns; women in earth tones, midi skirts. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+
+VEHICLES
+EXACTLY 5 period vehicles, all different:
+- 1963-1976 Dodge Dart — compact, boxy, reliable workhorse
+- 1970-1976 AMC Hornet — compact, simple boxy lines
+- 1974-1978 Oldsmobile Cutlass Supreme — best-selling car in America, formal roofline
+- 1971-1976 Chevrolet G10 Sportvan — boxy windowed van, chrome bumper
+- 1975-1993 Volvo 240 — boxy Swedish sedan/wagon, safety-forward design
+Parked with gaps; no vehicle newer than 1975.
+Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
+PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, no rumble strips
+- utilities: overhead power lines everywhere, wooden utility poles standard
+
+TREES
+- crepe myrtle tree at parking lot island near entrance: very young sapling
+- maple tree at landscape strip along the road: very young sapling
+- oak tree at back property line: very young sapling
+Tree sizes MUST follow this specification even where they differ from the source photo.
+
+PHOTOGRAPHIC STYLE
+STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.
+Grain: visible fine grain. Style: documentary, natural light.
+Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.
+
+PRIVACY
+Blur all faces and license plates.
