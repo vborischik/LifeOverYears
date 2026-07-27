@@ -61,9 +61,9 @@ DECAY
 - faded mansard shingles patched in mismatched colors
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
-- crepe myrtle tree at parking lot island near entrance: very young sapling
-- maple tree at landscape strip along the road: young tree, thin trunk
-- oak tree at back property line: maturing tree
+- crepe myrtle tree at parking lot island near entrance: clearly smaller than in the source — about 40% of its canopy there, thinner trunk
+- maple tree at landscape strip along the road: clearly smaller than in the source — about 60% of its canopy there, thinner trunk
+- oak tree at back property line: clearly smaller than in the source — about 80% of its canopy there, thinner trunk
 Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE

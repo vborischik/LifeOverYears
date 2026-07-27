@@ -549,12 +549,23 @@ public static class PromptSmokeTest
 
         void CheckLadder(Dictionary<int, Prompt> run, string label)
         {
-            if (!run[1975].Text.Contains("very young sapling"))
-                errs.Add($"{label}/1975: missing 'very young sapling'");
-            if (!run[2005].Text.Contains("maturing tree"))
-                errs.Add($"{label}/2005: missing 'maturing tree'");
-            if (!run[2025].Text.Contains("mature tree, large canopy"))
-                errs.Add($"{label}/2025: missing 'mature tree, large canopy'");
+            // 1975 (5 decades back): the small and medium trees in gasScene both
+            // land in the youngest bucket, but at distinct percentages — unlike
+            // the old absolute-rung ladder, the large tree does NOT clamp to the
+            // same floor here (that flattening was exactly the bug being fixed).
+            if (!run[1975].Text.Contains("a young tree, only about 10% of its canopy in the source photo, thin trunk"))
+                errs.Add($"{label}/1975: missing small-tree young-canopy phrasing (10%)");
+            if (!run[1975].Text.Contains("a young tree, only about 30% of its canopy in the source photo, thin trunk"))
+                errs.Add($"{label}/1975: missing medium-tree young-canopy phrasing (30%)");
+
+            // 2005 (2 decades back): the mature (large) tree reads "clearly smaller".
+            if (!run[2005].Text.Contains("clearly smaller than in the source — about 80% of its canopy there, thinner trunk"))
+                errs.Add($"{label}/2005: missing mature-tree mid-life phrasing (80%)");
+
+            // 2025 (source year, 0 decades back): every tree — regardless of size —
+            // reads as exactly matching the source photo.
+            if (!run[2025].Text.Contains("same size as in the source photo"))
+                errs.Add($"{label}/2025: missing 'same size as in the source photo'");
         }
 
         CheckLadder(gasRun1, "gas_station/run1");
@@ -592,7 +603,7 @@ public static class PromptSmokeTest
             }
         }
 
-        f.Add(("C6", "Tree size ladder (distinct per era for mature trees, size-relative) and tree position+species in all prompts",
+        f.Add(("C6", "Tree canopy proportion vs. source photo (distinct per era for mature trees, size-relative) and tree position+species in all prompts",
             errs.Count == 0, errs.Count == 0 ? "Tree ladder and positions correct" : Join(errs)));
     }
 

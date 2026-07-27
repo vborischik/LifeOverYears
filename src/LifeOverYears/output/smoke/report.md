@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-07-27T19:37:55.1993795+00:00
+Generated: 2026-07-27T21:55:11.7834444+00:00
 
 ## Check Results
 
@@ -11,7 +11,7 @@ Generated: 2026-07-27T19:37:55.1993795+00:00
 | C3 | No vehicle model reuse within each run (dedup invariant) | ✅ PASS | No duplicates in any run |
 | C4 | Vehicle count in range and VEHICLES section lines match SelectedVehicles.Count | ✅ PASS | All vehicle counts correct |
 | C5 | Run1 vs Run2: ≥3 years differ in vehicles; no year has identical full text | ✅ PASS | Sufficient variance between seeds |
-| C6 | Tree size ladder (distinct per era for mature trees, size-relative) and tree position+species in all prompts | ✅ PASS | Tree ladder and positions correct |
+| C6 | Tree canopy proportion vs. source photo (distinct per era for mature trees, size-relative) and tree position+species in all prompts | ✅ PASS | Tree ladder and positions correct |
 | C7 | 1975=B&W (STRICTLY BLACK AND WHITE); 1985-2025=COLOR photograph | ✅ PASS | Color mode correct in all prompts |
 | C8 | Gas station fuel prices always present; downtown coffee price in ≥1 run per year | ✅ PASS | All price anchors found |
 | C9 | PRESERVE block contains all building types and immutable elements verbatim | ✅ PASS | All building types and immutable elements present |

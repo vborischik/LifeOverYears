@@ -50,8 +50,8 @@ DECAY
 - a ghost sign for a long-gone business bleeding through the brickwork
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
-- oak tree at sidewalk left near corner: mature tree, full canopy
-- maple tree at sidewalk center in front of retail: established tree, modest canopy
+- oak tree at sidewalk left near corner: slightly smaller than in the source — about 90% of its canopy there
+- maple tree at sidewalk center in front of retail: clearly smaller than in the source — about 80% of its canopy there, thinner trunk
 Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE

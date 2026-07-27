@@ -611,29 +611,35 @@ public sealed class PromptService : IPromptService
         return sb.ToString().TrimEnd();
     }
 
-    private static readonly string[] TreeLadder =
-    {
-        "very young sapling",
-        "young tree, thin trunk",
-        "established tree, modest canopy",
-        "maturing tree",
-        "mature tree, full canopy",
-        "mature tree, large canopy"
-    };
+    // The source photo is the newest era, so it is the anchor: a tree's canopy
+    // in any earlier era is expressed as a proportion of what it looks like
+    // there, using a per-decade retention rate for the size Vision recorded.
+    // Unlike an absolute rung ladder, this never clamps and never repeats —
+    // every decade differs, giving the model a comparator it can act on
+    // regardless of which image it is actually editing.
+    private const int SourceYear = 2025; // newest era — trees render "as in the source" here
 
-    // Sizes scale relative to the size recorded in SceneDna: a tree that is already
-    // young in the 2025 source stays small in every earlier era.
     private static string DescribeTreeSize(string size, int year)
     {
-        var sourceIndex = size.ToLowerInvariant() switch
+        var retention = size.ToLowerInvariant() switch
         {
-            "large"  => 5,
-            "medium" => 3,
-            "small"  => 1,
-            _        => 3
+            "large"  => 0.90,
+            "medium" => 0.78,
+            "small"  => 0.62,
+            _        => 0.78
         };
-        var stepsBack = (2025 - year) / 10;
-        return TreeLadder[Math.Max(0, sourceIndex - stepsBack)];
+        var decadesBack = (SourceYear - year) / 10;
+        if (decadesBack == 0)
+            return "same size as in the source photo";
+
+        var fraction = Math.Pow(retention, decadesBack);
+        var pct = (int)(Math.Round(fraction * 20.0, MidpointRounding.AwayFromZero) * 5);
+
+        if (fraction >= 0.85)
+            return $"slightly smaller than in the source — about {pct}% of its canopy there";
+        if (fraction >= 0.35)
+            return $"clearly smaller than in the source — about {pct}% of its canopy there, thinner trunk";
+        return $"a young tree, only about {pct}% of its canopy in the source photo, thin trunk";
     }
 
     private static string BuildStyleBlock(Photography photo)

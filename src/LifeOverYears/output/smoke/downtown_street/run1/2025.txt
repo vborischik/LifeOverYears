@@ -50,8 +50,8 @@ DECAY
 - graffiti tags across the lower brick and boarded panels
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
-- oak tree at sidewalk left near corner: mature tree, large canopy
-- maple tree at sidewalk center in front of retail: maturing tree
+- oak tree at sidewalk left near corner: same size as in the source photo
+- maple tree at sidewalk center in front of retail: same size as in the source photo
 Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE

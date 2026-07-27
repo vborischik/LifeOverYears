@@ -62,8 +62,8 @@ DECAY
 - a faded painted wall ad showing through the brick
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
-- oak tree at sidewalk left near corner: maturing tree
-- maple tree at sidewalk center in front of retail: young tree, thin trunk
+- oak tree at sidewalk left near corner: clearly smaller than in the source — about 80% of its canopy there, thinner trunk
+- maple tree at sidewalk center in front of retail: clearly smaller than in the source — about 60% of its canopy there, thinner trunk
 Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE
