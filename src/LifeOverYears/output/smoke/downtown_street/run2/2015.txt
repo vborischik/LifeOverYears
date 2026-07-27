@@ -58,7 +58,7 @@ PLACEMENT: two parked on the LEFT side; the rest parked on the RIGHT side with g
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks
-- utilities: power and phone lines routed underground along the main commercial block, no utility poles along the street frontage; conduits below grade
+- utilities: overhead power lines still on wooden poles along the street, fiber optic and cable bundles added to the existing poles
 
 TREES
 - oak tree at sidewalk left near corner: mature tree, full canopy

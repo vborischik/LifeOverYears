@@ -57,7 +57,7 @@ PLACEMENT: all parked on the LEFT side of the street with gaps between them. No 
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks
-- utilities: power, phone, and fiber fully undergrounded along the main commercial block, no utility poles along the street frontage; smart conduits and sensor loops below grade
+- utilities: overhead power lines still on the original poles along the street, fiber optic bundles and 5G small cell nodes mounted on the existing poles
 
 TREES
 - oak tree at sidewalk left near corner: mature tree, large canopy

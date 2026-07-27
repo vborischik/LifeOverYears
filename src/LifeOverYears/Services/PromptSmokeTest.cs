@@ -583,8 +583,14 @@ public static class PromptSmokeTest
         foreach (var year in Years)
         {
             var coffeeStr = DowntownCoffeePrices[year];
-            if (!dtRun1[year].Text.Contains(coffeeStr) && !dtRun2[year].Text.Contains(coffeeStr))
-                errs.Add($"downtown/{year}: coffee price '{coffeeStr}' absent from both runs (sampling miss)");
+            // A closed-down block shows no prices at all, so only live eras can
+            // carry the anchor; a year derelict in both runs is legitimately empty.
+            var live = new[] { dtRun1[year], dtRun2[year] }
+                .Where(p => p.SceneCondition != "abandoned" && p.SceneCondition != "squatted")
+                .ToList();
+            if (live.Count == 0) continue;
+            if (!live.Any(p => p.Text.Contains(coffeeStr)))
+                errs.Add($"downtown/{year}: coffee price '{coffeeStr}' absent from all live runs (sampling miss)");
         }
 
         f.Add(("C8", "Gas station fuel prices always present; downtown coffee price in ≥1 run per year",
@@ -908,16 +914,21 @@ public static class PromptSmokeTest
                 var sc = ContentFor(eras, year, sceneType);
                 if (sc is null) continue;
 
-                if (!WindowSignsLine.IsMatch(prompt.Text))
+                // A derelict era deliberately emits no window signs and no extras —
+                // those are live-business props and contradict a closed-down block.
+                var derelict = prompt.SceneCondition is "abandoned" or "squatted";
+                if (!derelict && !WindowSignsLine.IsMatch(prompt.Text))
                     errs.Add($"{label}/{year}: no 'window signs:' line with two quoted signs");
-                if (ExtrasLinesIn(prompt.Text, sc).Count == 0)
+                if (!derelict && ExtrasLinesIn(prompt.Text, sc).Count == 0)
                     errs.Add($"{label}/{year}: no sampled extras line present");
+                if (derelict && WindowSignsLine.IsMatch(prompt.Text))
+                    errs.Add($"{label}/{year}: {prompt.SceneCondition} but still has a 'window signs:' line");
                 if (prompt.SceneCondition != "abandoned" &&
                     eras[year].PeopleMix is { Count: > 0 } mix && !mix.Any(m => prompt.Text.Contains($"- {m}")))
                     errs.Add($"{label}/{year}: no people_mix line present");
             }
 
-        f.Add(("C20", "Every prompt has a two-sign 'window signs:' line, >=1 extras line, and a people_mix line",
+        f.Add(("C20", "Every live prompt has a two-sign 'window signs:' line, >=1 extras line, and a people_mix line; derelict eras carry none of them",
             errs.Count == 0, errs.Count == 0 ? "All three sampling axes present in every prompt" : Join(errs)));
     }
 

@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-07-26T19:21:31.1111446+00:00
+Generated: 2026-07-27T05:13:05.0560205+00:00
 
 ## Check Results
 
@@ -25,7 +25,7 @@ Generated: 2026-07-26T19:21:31.1111446+00:00
 | C17 | Every specific_models entry (cars+trucks) starts on or before its era year | ✅ PASS | All model year ranges are era-valid |
 | C18 | Every prompt has a PLACEMENT line; no repeated pattern per run unless the pool is exhausted | ✅ PASS | Placement present and de-duplicated per pool |
 | C19 | No descriptive-as-signage leaks; {DINER_NAME} resolved and identical across a run | ✅ PASS | Business names clean and diner name stable |
-| C20 | Every prompt has a two-sign 'window signs:' line, >=1 extras line, and a people_mix line | ✅ PASS | All three sampling axes present in every prompt |
+| C20 | Every live prompt has a two-sign 'window signs:' line, >=1 extras line, and a people_mix line; derelict eras carry none of them | ✅ PASS | All three sampling axes present in every prompt |
 | C21 | Run1 vs Run2: >=3 of 6 years differ in sampled extras or window signs | ✅ PASS | Sufficient sampling variance between seeds |
 | C22 | Every prompt is at most 4900 characters | ✅ PASS | All prompts within 4900 chars |
 | C23 | strip_mall/default always thriving; rank monotonic per run (gas-station finale may resolve to 'new'); abandoned/declining/squatted counts honored for gas_station and downtown_street; 'squatted' only on a gas_station's final era | ✅ PASS | Condition trajectory invariants hold |
@@ -42,7 +42,7 @@ Generated: 2026-07-26T19:21:31.1111446+00:00
 | 1995 | 3 | 1990-1994 Chevrolet Lumina — rounded mid-size sedan, 1994-1998 Ford Mustang — rounded SN95 pony car, 1993-1997 Ford Ranger — compact pickup, straight lines |
 | 2005 | 3 | 2002-2008 Dodge Ram — big rig grille evolved, 2005-2010 Jeep Grand Cherokee — rounded modern SUV, 2003-2008 Toyota Corolla — conservative compact sedan |
 | 2015 | 0 |  |
-| 2025 | 4 | 2019-2025 Toyota RAV4 — boxy rugged crossover, very common, 2021-2025 Ford Bronco — retro boxy off-roader, 2020-2025 Hyundai Tucson — sharp parametric grille design, 2022-2025 Honda Civic — clean mature compact |
+| 2025 | 4 | 2024-2025 Toyota Grand Highlander — large family crossover, 2021-2025 Toyota Camry — sleek sedan, aggressive front fascia, 2021-2025 Kia Carnival — boxy SUV-styled minivan, 2021-2025 Kia Telluride — boxy upscale three-row SUV |
 
 ### gas_station / Run 2 (seed=1337)
 | Year | Count | Vehicles |
@@ -52,7 +52,7 @@ Generated: 2026-07-26T19:21:31.1111446+00:00
 | 1995 | 4 | 1993-1997 Ford Ranger — compact pickup, straight lines, 1995-1999 Chevrolet Cavalier — compact, rounded, 1989-1997 Geo Metro — very small economy hatchback, 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size |
 | 2005 | 1 | 2004-2008 Pontiac Grand Prix — sporty sedan plastic cladding |
 | 2015 | 0 |  |
-| 2025 | 4 | 2019-2025 Chevrolet Equinox — rounded compact crossover, 2021-2025 Ford Bronco — retro boxy off-roader, 2022-2025 Honda Civic — clean mature compact, 2022-2025 Chevrolet Silverado — refreshed bold grille |
+| 2025 | 1 | 2019-2025 Subaru Outback — rugged wagon crossover |
 
 ### downtown_street / Run 1 (seed=42)
 | Year | Count | Vehicles |

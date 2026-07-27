@@ -293,6 +293,22 @@ public sealed class PromptService : IPromptService
         sb.AppendLine();
         sb.AppendLine("PERIOD DETAILS");
 
+        // A closed-down block must not advertise. The era's scene_content lists
+        // live businesses, promos and street props; emitting them alongside
+        // "CONDITION: abandoned" is a direct contradiction, and the image model
+        // resolves it by rendering the businesses. Derelict eras get their own
+        // short block instead, and skip window signs and extras entirely.
+        if (condition is "abandoned" or "squatted")
+        {
+            sb.AppendLine("- every storefront closed and dark — no lit signs, no menu boards, no open businesses");
+            sb.AppendLine("- faded remains of old signage still on the facade, lettering weathered and partly missing");
+            sb.AppendLine("- plywood over the ground-floor windows, doors chained shut");
+            if (isGasStation)
+                sb.AppendLine("- main sign: a bare stripped sign frame — rusted metal posts, an empty price panel with no digits, no lit letters, no logo, all branding gone");
+            sb.Append("No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.");
+            return sb.ToString();
+        }
+
         var pool = new List<string>();
         if (content is not null)
             pool.AddRange(content.Storefronts);
