@@ -26,39 +26,29 @@ distort the source geometry.
 TRANSFORM TO 2025
 Post-pandemic era. A 2025 main street — minimalist flat-logo storefronts, QR codes on the glass, delivery culture in plain view.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: abandoned — closed business, boarded windows, weeds through pavement cracks, weathered surfaces
 
 PERIOD DETAILS
-- RED ROBIN DINER with 'COFFEE $3.50' shown on a small digital menu screen in the window
-- delivery-only ghost kitchen storefront with pickup shelves visible through the glass
-- boutique fitness studio with black-and-white minimalist branding
-- window signs: 'LASHES FROM $79', 'NOW HIRING — APPLY ONLINE'
-- a stack of delivery packages waiting at a shop door
-- a shared e-scooter and e-bike dock at the curb
-Typography: minimalist geometric sans-serif, heavily simplified flat logos.
-Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+- every storefront closed and dark — no lit signs, no menu boards, no open businesses
+- faded remains of old signage still on the facade, lettering weathered and partly missing
+- plywood over the ground-floor windows, doors chained shut
+No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.
 
 PEOPLE
-EXACTLY 15 people TOTAL: 6 near sidewalk (largest, foreground), 5 opposite sidewalk mid-block, 4 distant, far end of block. Grouped in pairs, threes, and singles.
-- a woman in athleisure carrying a boba tea
-- several people looking at smartphones as they walk
-- a man walking a doodle-breed dog
-Clothing: men in bucket hats, oversized fit tees; women in chunky dad sneakers, high-waisted wide-leg jeans. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+NO people anywhere — the place is completely deserted.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2022-2025 Ford Maverick — small unibody pickup — gray
-- 2021-2025 Kia Carnival — boxy SUV-styled minivan — white
-- 2021-2025 Chevrolet Tahoe — huge full-size SUV — black
-- 2019-2025 Subaru Forester — practical boxy crossover — dark green
-Parked with gaps; no vehicle newer than 2025.
-Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
+NO vehicles anywhere — empty lot, no parked or moving cars.
 
 ENVIRONMENT
-- road markings: yellow center line, white edge lines, high-visibility crosswalks
+- road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines still on the original poles along the street, fiber optic bundles and 5G small cell nodes mounted on the existing poles
 
+DECAY
+- a sign band painted flat white, all lettering stripped off
+- roll-down steel security shutters closed over the storefronts
+- upper-floor windows still curtained above dead ground-floor storefronts
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - oak tree at sidewalk left near corner: mature tree, large canopy
 - maple tree at sidewalk center in front of retail: maturing tree

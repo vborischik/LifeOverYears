@@ -26,40 +26,29 @@ distort the source geometry.
 TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 main street mid-revival — the video store replaced by a phone repair shop, third-wave coffee and a vape shop, smartphones in every hand.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: abandoned — closed business, boarded windows, weeds through pavement cracks, weathered surfaces
 
 PERIOD DETAILS
-- MARY'S DINER with 'COFFEE $2.25' chalked on a menu board
-- boutique with a reclaimed-wood facade and minimalist lettering
-- barber shop with its spinning barber pole, now billed as a 'classic barbershop'
-- window signs: 'CRAFT LATTE $4.50', 'YOGA — FIRST CLASS FREE'
-- a bike corral at the curb
-- chalkboard sandwich-board signs outside the cafes
-Typography: minimalist flat sans-serif, simplified modern logos.
-Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+- every storefront closed and dark — no lit signs, no menu boards, no open businesses
+- faded remains of old signage still on the facade, lettering weathered and partly missing
+- plywood over the ground-floor windows, doors chained shut
+No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.
 
 PEOPLE
-EXACTLY 15 people TOTAL: 6 near sidewalk (largest, foreground), 5 opposite sidewalk mid-block, 4 distant, far end of block. Grouped in pairs, threes, and singles.
-- a cyclist with a messenger bag riding in the bike lane
-- a dog leashed outside the coffee shop, its owner visible inside
-- a woman in yoga pants carrying a green smoothie
-Clothing: men in beards, boat shoes; women in infinity scarves, ankle boots. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+NO people anywhere — the place is completely deserted.
 
 VEHICLES
-EXACTLY 5 period vehicles, all different:
-- 2011-2016 Honda CR-V — rounded compact crossover — pearl white
-- 2012-2018 Ford Focus — sharp European compact — black
-- 2015-2020 Ford F-150 — aluminum body, C-clamp headlights — dark red
-- 2013-2018 Hyundai Santa Fe — fluidic sculpture styling — gray
-- 2011-2016 Chrysler Town & Country — chrome-trimmed minivan — silver
-Parked with gaps; no vehicle newer than 2015.
-Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: two parked on the LEFT side; the rest parked on the RIGHT side with gaps. No vehicle in the same spot as any other era.
+NO vehicles anywhere — empty lot, no parked or moving cars.
 
 ENVIRONMENT
-- road markings: yellow center line, white edge lines, high-visibility crosswalks
+- road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines still on wooden poles along the street, fiber optic and cable bundles added to the existing poles
 
+DECAY
+- a torn vinyl banner sagging from the facade
+- an accordion scissor gate padlocked across a doorway
+- a ghost sign for a long-gone business bleeding through the brickwork
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - oak tree at sidewalk left near corner: mature tree, full canopy
 - maple tree at sidewalk center in front of retail: established tree, modest canopy

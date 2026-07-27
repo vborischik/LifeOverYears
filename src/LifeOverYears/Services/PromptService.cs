@@ -250,16 +250,47 @@ public sealed class PromptService : IPromptService
         "trash along storefronts, a dumped mattress at the curb"
     };
 
+    // A main street decays differently from a forecourt: the tells are shutters,
+    // painted-over sign bands and ghost signs on brick, with upper floors often
+    // still lived in above dead ground-floor storefronts.
+    internal static readonly string[] DowntownDecayModerate =
+    {
+        "a faded painted wall ad showing through the brick",
+        "one storefront papered over from inside, a handwritten sign taped to the glass",
+        "a sun-bleached awning, torn at one corner",
+        "peeling paint along the storefront cornice",
+        "an old sign band painted over, the previous lettering still faintly readable",
+        "cracked sidewalk squares, weeds at the tree pits"
+    };
+
+    internal static readonly string[] DowntownDecayHeavy =
+    {
+        "roll-down steel security shutters closed over the storefronts",
+        "an accordion scissor gate padlocked across a doorway",
+        "a sign band painted flat white, all lettering stripped off",
+        "a ghost sign for a long-gone business bleeding through the brickwork",
+        "graffiti tags across the lower brick and boarded panels",
+        "upper-floor windows still curtained above dead ground-floor storefronts",
+        "a torn vinyl banner sagging from the facade",
+        "rust streaks below the old cornice bolts",
+        "a collapsed awning frame hanging loose over the sidewalk",
+        "plywood over a broken transom window, the glass long gone"
+    };
+
+    // Pool selection lives here (not at the call site) so the smoke test can
+    // assert against exactly the pool the builder would have used.
+    internal static string[]? DecayPoolFor(string sceneType, string condition) => condition switch
+    {
+        "declining"               => sceneType == "downtown_street" ? DowntownDecayModerate : DecayModerate,
+        "abandoned" or "squatted" => sceneType == "downtown_street" ? DowntownDecayHeavy    : DecayHeavy,
+        _                         => null
+    };
+
     // Two or three concrete details per era, sampled so consecutive eras of the
     // same run don't repeat the same wording.
-    private static string BuildDecayBlock(string condition, Random rng)
+    private static string BuildDecayBlock(string condition, string sceneType, Random rng)
     {
-        var pool = condition switch
-        {
-            "declining"               => DecayModerate,
-            "abandoned" or "squatted" => DecayHeavy,
-            _                         => null
-        };
+        var pool = DecayPoolFor(sceneType, condition);
         if (pool is null)
             return "";
 
@@ -539,7 +570,7 @@ public sealed class PromptService : IPromptService
             ? dc
             : infra.Utilities.Characteristics;
         sb.AppendLine($"- utilities: {Join(utilitiesPool.Take(2).ToList())}");
-        sb.Append(BuildDecayBlock(condition, rng));
+        sb.Append(BuildDecayBlock(condition, sceneType, rng));
         sb.AppendLine();
         sb.AppendLine("TREES");
         foreach (var tree in scene.Environment.Trees)

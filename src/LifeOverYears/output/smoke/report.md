@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-07-27T05:13:05.0560205+00:00
+Generated: 2026-07-27T13:26:01.6005981+00:00
 
 ## Check Results
 
@@ -60,8 +60,8 @@ Generated: 2026-07-27T05:13:05.0560205+00:00
 | 1975 | 4 | 1973-1980 Chevrolet C10 — square body, chrome bumper, 1971-1976 Jeep Wagoneer — boxy full-size SUV, woodgrain trim optional, 1970-1978 AMC Gremlin — short stubby hatchback rear, 1974-1978 Cadillac DeVille — full-size luxury, formal roofline, chrome heavy |
 | 1985 | 5 | 1975-1991 Ford Econoline — boxy full-size van, 1983-1987 Honda Accord — clean lines, pop-up headlights, 1973-1987 Chevrolet C/K — square body pickup, dual headlights, 1980-1985 Buick LeSabre — boxy full-size, chrome trim, 1984-1988 Toyota Pickup — small, boxy, popular import |
 | 1995 | 5 | 1992-1995 Honda Civic — small rounded coupe and sedan, 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding, 1995-2004 Toyota Tacoma — compact, rounded, 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size, 1986-1997 Ford Aerostar — boxy rear-drive minivan |
-| 2005 | 5 | 2002-2008 Dodge Ram — big rig grille evolved, 2005-2010 Jeep Grand Cherokee — rounded modern SUV, 2003-2008 Toyota Corolla — conservative compact sedan, 1999-2006 Chevrolet Silverado — squared modern look, 2003-2009 Hummer H2 — massive military-styled SUV |
-| 2015 | 5 | 2011-2016 Honda CR-V — rounded compact crossover, 2012-2018 Ford Focus — sharp European compact, 2015-2020 Ford F-150 — aluminum body, C-clamp headlights, 2013-2018 Hyundai Santa Fe — fluidic sculpture styling, 2011-2016 Chrysler Town & Country — chrome-trimmed minivan |
+| 2005 | 2 | 2003-2009 Hummer H2 — massive military-styled SUV, 1999-2006 Chevrolet Silverado — squared modern look |
+| 2015 | 0 |  |
 | 2025 | 0 |  |
 
 ### downtown_street / Run 2 (seed=1337)
@@ -70,7 +70,7 @@ Generated: 2026-07-27T05:13:05.0560205+00:00
 | 1975 | 4 | 1963-1976 Dodge Dart — compact, boxy, reliable workhorse, 1970-1976 AMC Hornet — compact, simple boxy lines, 1974-1978 Oldsmobile Cutlass Supreme — best-selling car in America, formal roofline, 1971-1976 Chevrolet G10 Sportvan — boxy windowed van, chrome bumper |
 | 1985 | 6 | 1982-1986 Nissan Sentra — small economy boxy sedan, 1983-1985 Nissan Maxima — boxy import sedan, 1978-1987 Chevrolet Monte Carlo — personal luxury coupe, long hood, 1982-1992 Chevrolet Camaro — wedge-shaped sporty coupe, 1981-1985 Dodge Aries — K-car, boxy economy sedan, 1984-1988 Pontiac Fiero — small wedge two-seater |
 | 1995 | 6 | 1991-1995 Dodge Caravan — rounded second-gen minivan, 1995-1999 Dodge Neon — small rounded economy, friendly face, 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding, 1992-1997 Ford Taurus — rounded jellybean shape, oval theme, 1989-1997 Geo Metro — very small economy hatchback, 1994-1997 Honda Accord — smooth rounded sedan |
-| 2005 | 6 | 2004-2012 Chevrolet Colorado — mid-size pickup, 2005-2010 Jeep Grand Cherokee — rounded modern SUV, 2000-2005 Ford Focus — European-styled compact, 2001-2005 Honda Civic — rounded compact, very common, 1998-2005 Volkswagen New Beetle — retro bubble shape, 2002-2007 Jeep Liberty — round-headlight compact SUV |
-| 2015 | 5 | 2009-2018 Ram 1500 — crosshair grille, refined, 2010-2016 Chevrolet Equinox — mid-size crossover, 2013-2016 Ford Escape — rounded compact crossover, 2011-2016 Hyundai Elantra — swoopy fluidic compact, 2011-2016 Honda CR-V — rounded compact crossover |
-| 2025 | 4 | 2022-2025 Ford Maverick — small unibody pickup, 2021-2025 Kia Carnival — boxy SUV-styled minivan, 2021-2025 Chevrolet Tahoe — huge full-size SUV, 2019-2025 Subaru Forester — practical boxy crossover |
+| 2005 | 1 | 2003-2007 Nissan Altima — sporty mid-size |
+| 2015 | 0 |  |
+| 2025 | 0 |  |
 

@@ -171,6 +171,17 @@ public sealed class GenerationContext
                 pool = worse;
         }
 
+        // A main street's decline is the story these runs exist for, and an even
+        // draw across the era's pool starts it too late to show. When a worse
+        // state is on offer, take it more often than chance alone would.
+        if (sceneType == "downtown_street" && pool.Count > 1)
+        {
+            var worstRank = pool.Max(RankOf);
+            var worst = pool.Where(c => RankOf(c) == worstRank).ToList();
+            if (worst.Count < pool.Count && Random.NextDouble() < 0.6)
+                pool = worst;
+        }
+
         SceneCondition = pool[Random.Next(pool.Count)];
         _conditionRank = Math.Max(_conditionRank, RankOf(SceneCondition));
         if (_conditionRank >= 1) _everDecayed = true;

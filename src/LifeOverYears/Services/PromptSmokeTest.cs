@@ -1289,7 +1289,8 @@ public static class PromptSmokeTest
                 // terms — the block's own trailing constraint sentence legitimately
                 // names "road width", "curb positions", etc. specifically to say
                 // they DON'T change, so it must not trip this check.
-                var pool = prompt.SceneCondition == "declining" ? PromptService.DecayModerate : PromptService.DecayHeavy;
+                var poolSceneType = label.StartsWith("downtown", StringComparison.Ordinal) ? "downtown_street" : "gas_station";
+                var pool = PromptService.DecayPoolFor(poolSceneType, prompt.SceneCondition) ?? Array.Empty<string>();
                 var bullets = decayBody.Split('\n')
                     .Select(l => l.Trim())
                     .Where(l => l.StartsWith("- "))
