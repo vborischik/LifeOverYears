@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-07-28T20:05:50.6758970+00:00
+Generated: 2026-07-28T20:55:14.8606468+00:00
 
 ## Check Results
 
@@ -34,6 +34,7 @@ Generated: 2026-07-28T20:05:50.6758970+00:00
 | C26 | Caption prompt files load; every scene_content type has a caption voice; anchor pools are well-formed and non-leaking; AnglesFor() composition holds; every reachable condition maps to a real phrase | ✅ PASS | Caption voice coverage holds |
 | C27 | base-clean.txt loads, declares the exact 9:16 portrait phrase (and no competing aspect-ratio term), keeps its people/vehicle-removal + pixel-identical/canvas-extension cleanup contract, and every generated prompt carries the same portrait phrase | ✅ PASS | base-clean/prompt aspect-ratio contract holds |
 | C28 | People bullet lines (people_activities picks and the people_mix line) never repeat within a run unless their era's own pool is already exhausted | ✅ PASS | No premature people-line repeats |
+| C29 | DeclineBias() ramps non-decreasing across the run and stays within 0..1 | ✅ PASS | Bias ramp OK across all eras |
 
 ## Vehicle Selections
 

@@ -126,6 +126,7 @@ public static class PromptSmokeTest
         await DoC26(dataService, eras,                                       findings);
         await DoC27(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, findings);
         DoC28(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, eras,          findings);
+        DoC29(findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -1793,6 +1794,36 @@ public static class PromptSmokeTest
 
         f.Add(("C28", "People bullet lines (people_activities picks and the people_mix line) never repeat within a run unless their era's own pool is already exhausted",
             errs.Count == 0, errs.Count == 0 ? "No premature people-line repeats" : Join(errs)));
+    }
+
+    private static void DoC29(List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+        const int totalEras = 6;
+
+        var method = typeof(GenerationContext).GetMethod("DeclineBias",
+            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+            ?? throw new InvalidOperationException("GenerationContext.DeclineBias not found");
+
+        var ctx = new GenerationContext { Random = new Random(42), TotalEras = totalEras };
+
+        double? previous = null;
+        for (int i = 0; i < totalEras; i++)
+        {
+            ctx.BeginEra();
+            var bias = (double)method.Invoke(ctx, null)!;
+
+            if (bias < 0.0 || bias > 1.0)
+                errs.Add($"eraIndex={i}: DeclineBias() {bias} is outside 0..1");
+
+            if (previous is not null && bias < previous.Value)
+                errs.Add($"eraIndex={i}: DeclineBias() {bias} is lower than previous era's {previous.Value}");
+
+            previous = bias;
+        }
+
+        f.Add(("C29", "DeclineBias() ramps non-decreasing across the run and stays within 0..1",
+            errs.Count == 0, errs.Count == 0 ? "Bias ramp OK across all eras" : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────

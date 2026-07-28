@@ -27,36 +27,36 @@ Post-9/11 era. An auto repair shop in 2005 — a check-engine scanner plugged in
 
 PERIOD DETAILS
 - a printed banner advertising tire brands and a '$24.95 OIL CHANGE' promo, replacing the old painted sign
-- a parts counter with a barcode scanner by the register
-- office with plate glass window, a flat monitor visible on the counter
-- window signs: 'OIL CHANGE $24.95', 'AFTERMARKET WHEELS IN STOCK'
-- a barcode scanner at the parts counter
+- two roll-up bay doors, one open with a laptop-style scan tool plugged into a dashboard
+- a display wall of aftermarket wheels visible through the office glass
+- window signs: 'OIL CHANGE $24.95', 'BRAKES FROM $89.95'
 - a printed vinyl banner advertising tire brands
+- a stack of take-off wheels behind the building
 Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- an apprentice organizing tools on a rolling cart
-- a teenager admiring the wheel display through the glass
-- a man loading a case of bottled water into a minivan
-Clothing: men in graphic tees, trucker hats; women in velour tracksuits, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a driver waiting in the office, laptop bag beside him
+- a woman dropping off a minivan with two kids in the back seat
+- a grandmother clutching a coupon flyer at a bus bench
+Clothing: men in baggy jeans, trucker hats; women in layered tank tops, chunky highlights. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 5 period vehicles, all different:
-- 2001-2007 Toyota Highlander — early crossover — black
-- 2000-2007 Ford Taurus — rounded, aging fleet-look sedan — dark blue
-- 2005-2010 Jeep Grand Cherokee — rounded modern SUV — silver
-- 2000-2006 Chevrolet Tahoe — full-size SUV peak era — white
-- 2005-2010 Chevrolet Cobalt — compact economy sedan — gray
+EXACTLY 1 period vehicles, all different:
+- 2004-2008 Chrysler 300 — bold boxy retro chrome grille — silver
 Parked with gaps; no vehicle newer than 2005.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: three parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: yellow center line, white edge lines, turn arrows
+- road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines standard, cable and fiber lines on poles appearing
 
+DECAY
+- a stack of worn tires leaning against the side wall
+- the painted sign band faded, letters flaking at the edges
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - maple tree at street corner: clearly smaller than in the source — about 60% of its canopy there, thinner trunk
 - elm tree at side yard: clearly smaller than in the source — about 40% of its canopy there, thinner trunk

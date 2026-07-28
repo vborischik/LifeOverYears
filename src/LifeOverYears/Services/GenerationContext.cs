@@ -184,13 +184,15 @@ public sealed class GenerationContext
 
         // Decline is the story these runs exist for, and an even draw across the
         // era's pool starts it too late to show. When a worse state is on offer,
-        // take it more often than chance alone would. Gas stations are excluded:
-        // they already resolve their arc through the new/squatted finale.
-        if (sceneType is "downtown_street" or "strip_mall" && pool.Count > 1)
+        // take it more often than chance alone would, with the bias ramping up
+        // across the run so a place can stay healthy into the 2000s and only
+        // fall apart near the end. Gas stations are excluded: they already
+        // resolve their arc through the new/squatted finale.
+        if (sceneType is "downtown_street" or "strip_mall" or "auto_repair" && pool.Count > 1)
         {
             var worstRank = pool.Max(RankOf);
             var worst = pool.Where(c => RankOf(c) == worstRank).ToList();
-            if (worst.Count < pool.Count && Random.NextDouble() < 0.6)
+            if (worst.Count < pool.Count && Random.NextDouble() < DeclineBias())
                 pool = worst;
         }
 
@@ -199,6 +201,9 @@ public sealed class GenerationContext
         if (_conditionRank >= 1) _everDecayed = true;
         return SceneCondition;
     }
+
+    private double DeclineBias() =>
+        TotalEras <= 1 ? 0.80 : 0.15 + 0.65 * ((double)EraIndex / (TotalEras - 1));
 
     // ── Gas-station brand timeline ────────────────────────────────────────
     // A real station keeps one brand for decades. Across a run we hold a single

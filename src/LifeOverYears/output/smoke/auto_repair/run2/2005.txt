@@ -27,37 +27,37 @@ Post-9/11 era. An auto repair shop in 2005 — a check-engine scanner plugged in
 
 PERIOD DETAILS
 - a printed banner advertising tire brands and a '$24.95 OIL CHANGE' promo, replacing the old painted sign
-- a parts counter with a barcode scanner by the register
+- office with plate glass window, a flat monitor visible on the counter
 - a small waiting area with a TV mounted in the corner of the office
-- window signs: 'BRAKES FROM $89.95', 'AFTERMARKET WHEELS IN STOCK'
-- a wall-mounted TV in the waiting area
-- a printed vinyl banner advertising tire brands
+- window signs: 'ALIGNMENT $49.95', 'CHECK ENGINE LIGHT $59.95'
+- a barcode scanner at the parts counter
+- a stack of take-off wheels behind the building
 Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a mechanic carrying an aftermarket wheel across the apron
-- a mechanic plugging a scan tool into a car's diagnostic port
-- a woman walking a small dog in a sweater
-Clothing: men in baggy jeans, cargo shorts; women in trucker hats, velour tracksuits. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a customer pointing at a check-engine code printout
+- the owner ringing up a repair at a barcode register
+- a man in cargo shorts talking on a flip phone
+Clothing: men in graphic tees, baggy jeans; women in velour tracksuits, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 6 period vehicles, all different:
-- 2000-2005 Ford Focus — European-styled compact — gold
-- 1999-2006 Chevrolet Silverado — squared modern look — white
-- 1998-2004 Nissan Frontier — compact pickup — silver
-- 2000-2006 Chevrolet Tahoe — full-size SUV peak era — black
-- 2001-2007 Toyota Highlander — early crossover — gray
-- 2004-2008 Chrysler 300 — bold boxy retro chrome grille — dark blue
+EXACTLY 2 period vehicles, all different:
+- 2001-2005 Honda Civic — rounded compact, very common — silver
+- 2002-2007 Jeep Liberty — round-headlight compact SUV — gray
 Parked with gaps; no vehicle newer than 2005.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: two parked on the LEFT side; the rest parked on the RIGHT side with gaps. No vehicle in the same spot as any other era.
+PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: yellow center line, white edge lines, turn arrows
+- road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines standard, cable and fiber lines on poles appearing
 
+DECAY
+- a hand-lettered service sign taped inside the office glass
+- one service bay door rolled down while the other stays open
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - maple tree at street corner: clearly smaller than in the source — about 60% of its canopy there, thinner trunk
 - elm tree at side yard: clearly smaller than in the source — about 40% of its canopy there, thinner trunk

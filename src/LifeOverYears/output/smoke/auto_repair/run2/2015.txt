@@ -42,9 +42,9 @@ ENVIRONMENT
 - utilities: overhead power lines common on wooden poles, fiber optic lines on poles
 
 DECAY
-- plywood over the office plate glass
-- graffiti tagged across the painted sign band
+- weeds and grass pushing through cracks in the concrete apron
 - every bay door rolled down, dented and streaked with rust
+- graffiti tagged across the painted sign band
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - maple tree at street corner: clearly smaller than in the source — about 80% of its canopy there, thinner trunk
