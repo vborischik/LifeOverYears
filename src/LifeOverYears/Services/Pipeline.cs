@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Text.Json;
 using LifeOverYears.Models;
 using LifeOverYears.Services.Interfaces;
 using Microsoft.Extensions.Logging;
@@ -46,12 +47,20 @@ public sealed class Pipeline
 
         // Step 1 — SceneDna (once for all years)
         var sceneDna = await _vision.AnalyzeAsync(photoPath);
-        _logger.LogInformation("Step 1 complete — SceneDna: id={Id} terrain={Terrain} buildings={Buildings}",
+        _logger.LogInformation(
+            "Step 1 complete — SceneDna: id={Id} sceneType={SceneType} buildings={Buildings} roads={Roads} terrain={Terrain}",
             sceneDna.Id,
-            sceneDna.Environment.Terrain,
-            sceneDna.Geometry.Buildings.Count);
+            sceneDna.SceneType,
+            sceneDna.Geometry.Buildings.Count,
+            sceneDna.Geometry.Roads.Count,
+            sceneDna.Environment.Terrain);
 
-        var run = await _runService.CreateRunAsync(sceneDna.Id, photoPath, years);
+        var run = await _runService.CreateRunAsync(sceneDna, photoPath, years);
+
+        // Full vision output, verbatim — one scene per run, so verbosity here
+        // is exactly the point: run.log ends up with the complete SceneDna a
+        // human can audit without re-running vision.
+        _logger.LogDebug("SceneDna (full): {SceneDna}", JsonSerializer.Serialize(sceneDna));
 
         // Step 2 — Prompt per year (one GenerationContext shared across all years:
         // guarantees no car model repeats between the images of the same scene)

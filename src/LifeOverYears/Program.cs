@@ -53,7 +53,8 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
 
     var configuration = configBuilder.Build();
 
-    using var loggerFactory = LoggerFactory.Create(b => b.AddConsole().SetMinimumLevel(LogLevel.Debug));
+    using var loggerFactory = LoggerFactory.Create(b => b.AddConsole().AddProvider(RunLogProvider.Instance)
+                                                          .SetMinimumLevel(LogLevel.Debug));
 
     var builder = new ContainerBuilder();
     builder.RegisterModule(new AppModule(configuration, loggerFactory));

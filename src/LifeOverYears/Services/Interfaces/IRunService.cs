@@ -4,5 +4,5 @@ namespace LifeOverYears.Services.Interfaces;
 
 public interface IRunService
 {
-    Task<RunFolder> CreateRunAsync(string sceneId, string sourcePhotoPath, IReadOnlyList<int> years);
+    Task<RunFolder> CreateRunAsync(SceneDna sceneDna, string sourcePhotoPath, IReadOnlyList<int> years);
 }
