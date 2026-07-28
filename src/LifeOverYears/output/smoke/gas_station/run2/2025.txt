@@ -26,7 +26,7 @@ distort the source geometry.
 TRANSFORM TO 2025
 Post-pandemic era. A 2025 fuel stop — LED canopy, full-color digital price sign, and a convenience store selling fresh food.
 
-CONDITION: squatted — closed and derelict, makeshift shelters and tarps by the boarded entrance, shopping carts and scattered belongings, weeds through the pavement
+CONDITION: abandoned — closed business, boarded windows, weeds through pavement cracks, weathered surfaces
 
 PERIOD DETAILS
 - every storefront closed and dark — no lit signs, no menu boards, no open businesses
@@ -36,27 +36,19 @@ PERIOD DETAILS
 No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.
 
 PEOPLE
-EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a driver self-serving at the pump
-- a customer tapping a phone to pay at the pump
-- a retiree couple with matching walking poles
-Clothing: men in chunky sneakers, oversized fit tees; women in high-waisted wide-leg jeans, oversized blazers. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+NO people anywhere — the place is completely deserted.
 
 VEHICLES
-EXACTLY 1 period vehicles, all different:
-- 2019-2025 Subaru Outback — rugged wagon crossover — black
-Parked with gaps; no vehicle newer than 2025.
-Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
+NO vehicles anywhere — empty lot, no parked or moving cars.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
 - utilities: overhead lines on existing poles in older commercial areas, fiber optic widespread
 
 DECAY
-- graffiti on boarded panels, lower wall
-- lane markings nearly gone, faint paint traces
+- boarded windows, glass cracked or missing
 - rusted signage askew, lettering broken off
+- lane markings nearly gone, faint paint traces
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - cottonwood tree at northeast corner of lot: same size as in the source photo

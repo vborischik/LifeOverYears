@@ -45,9 +45,9 @@ ENVIRONMENT
 - utilities: overhead power lines still on wooden poles along the street, fiber optic and cable bundles added to the existing poles
 
 DECAY
-- rust streaks below the old cornice bolts
-- a torn vinyl banner sagging from the facade
-- plywood over a broken transom window, the glass long gone
+- a sign band painted flat white, all lettering stripped off
+- a collapsed awning frame hanging loose over the sidewalk
+- a ghost sign for a long-gone business bleeding through the brickwork
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - oak tree at sidewalk left near corner: slightly smaller than in the source — about 90% of its canopy there

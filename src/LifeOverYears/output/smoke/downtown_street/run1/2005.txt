@@ -30,36 +30,35 @@ CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
 - the video rental store closing down — 'EVERYTHING MUST GO — ALL MOVIES $3' banner across the window
-- MARY'S DINER with a refreshed awning and a 'COFFEE $1.25' vinyl decal on the glass
-- tanning salon with an airbrushed sun mural on the window
-- window signs: 'DVDs $14.99', 'LATTE $2.95'
+- BLUE PLATE DINER with a refreshed awning and a 'COFFEE $1.25' vinyl decal on the glass
+- FIRST STATE BANK branch with internally lit channel letters
+- window signs: 'TANNING — 1 MONTH UNLIMITED $29', 'RINGTONES $1.99'
+- a single scuffed payphone covered in stickers, rarely used
 - a bike rack with a couple of mountain bikes
-- a free real-estate flyer box on the corner
 Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
 - a barista handing an iced drink to a customer at the cafe door
-- a teenager texting on a flip phone with both thumbs
-- a group of college kids with messenger bags
-Clothing: men in frosted tips hair, baggy jeans; women in trucker hats, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a woman in low-rise jeans talking on a flip phone
+- a teen with white earbuds and an MP3 player
+Clothing: men in trucker hats, cargo shorts; women in layered tank tops, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 2 period vehicles, all different:
-- 2003-2009 Hummer H2 — massive military-styled SUV — silver
-- 1999-2006 Chevrolet Silverado — squared modern look — dark red
+EXACTLY 1 period vehicles, all different:
+- 2000-2005 Ford Focus — European-styled compact — white
 Parked with gaps; no vehicle newer than 2005.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines standard, cable and fiber lines on poles appearing
 
 DECAY
-- cracked sidewalk squares, weeds at the tree pits
 - a faded painted wall ad showing through the brick
+- cracked sidewalk squares, weeds at the tree pits
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - oak tree at sidewalk left near corner: clearly smaller than in the source — about 80% of its canopy there, thinner trunk

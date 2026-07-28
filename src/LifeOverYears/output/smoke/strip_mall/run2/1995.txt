@@ -30,31 +30,30 @@ CONDITION: busy — customers present, high activity, all pumps in use
 PERIOD DETAILS
 - Chinese takeout with a 'LUNCH SPECIAL $3.95' menu taped to the glass
 - dollar store with a yellow 'EVERYTHING 99¢' banner
-- used video game store with a 'WE BUY & SELL GAMES' sign
-- window signs: 'VHS RENTAL $1.99', 'GOING OUT OF BUSINESS — 50% OFF'
-- rollerblades leaning by a storefront door
-- a cart corral with a few stray carts
+- one vacant unit with soaped windows and a 'FOR LEASE' sign
+- window signs: 'FREE PAGER ACTIVATION', 'VHS RENTAL $1.99'
+- a wall-mounted payphone bank near the anchor store
+- a grand-opening banner strung across the dollar store
 Typography: clean geometric sans-serif, early digital influence.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 11 people TOTAL: 4 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles.
-- two teens skateboarding along the curb
+EXACTLY 8 people TOTAL: 3 near sidewalk (largest, foreground), 3 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
+- a family loading takeout bags into a minivan
 - a clerk on a break by the service door
-- a paperboy with a canvas bag on a bike
-Clothing: men in grunge style, backwards caps; women in slip dresses, crop tops. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a mom loading groceries into a minivan
+Clothing: men in grunge style, baggy jeans; women in crop tops, slip dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 6 period vehicles, all different:
-- 1990-1997 Mazda Miata — tiny rounded roadster, pop-up lights — navy blue
-- 1992-1997 Ford Taurus — rounded jellybean shape, oval theme — black
-- 1993-1997 Toyota Corolla — rounded compact sedan — silver
-- 1990-1994 Chevrolet Lumina — rounded mid-size sedan — hunter green
-- 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size — teal
-- 1993-1998 Jeep Grand Cherokee — early SUV, boxy-rounded — white
+EXACTLY 5 period vehicles, all different:
+- 1992-1996 Ford F-150 — rounded aero body — navy blue
+- 1991-1994 Saturn SL — plastic body panels, compact — teal
+- 1994-1998 Ford Mustang — rounded SN95 pony car — silver
+- 1994-1997 Honda Accord — smooth rounded sedan — white
+- 1986-1997 Ford Aerostar — boxy rear-drive minivan — hunter green
 Parked with gaps; no vehicle newer than 1995.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: three parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+PLACEMENT: two parked on the LEFT side; the rest parked on the RIGHT side with gaps. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn lane arrows

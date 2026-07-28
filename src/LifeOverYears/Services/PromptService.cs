@@ -83,7 +83,7 @@ public sealed class PromptService : IPromptService
         var text = template
             .Replace("{PRESERVE_BLOCK}",    BuildPreserveBlock(sceneDna))
             .Replace("{SCENE_BLOCK}",       BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, gasSign, rng))
-            .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, rng))
+            .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, rng, context))
             .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation))
             .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year, sceneType, condition, rng))
             .Replace("{STYLE_BLOCK}",       BuildStyleBlock(eraProfile.Photography));
@@ -459,7 +459,7 @@ public sealed class PromptService : IPromptService
         return sb.ToString();
     }
 
-    private static string BuildPeopleBlock(EraProfile era, SceneContent? content, int peopleCount, bool isGasStation, Random rng)
+    private static string BuildPeopleBlock(EraProfile era, SceneContent? content, int peopleCount, bool isGasStation, Random rng, GenerationContext context)
     {
         var sb = new StringBuilder();
         sb.AppendLine("PEOPLE");
@@ -477,11 +477,15 @@ public sealed class PromptService : IPromptService
         sb.AppendLine($"EXACTLY {peopleCount} people TOTAL: {string.Join(", ", zones)}. Grouped in pairs, threes, and singles.");
 
         if (content is not null)
-            foreach (var activity in Sample(content.PeopleActivities, 2, rng))
+            foreach (var activity in SampleUnused(content.PeopleActivities, 2, rng, context))
                 sb.AppendLine($"- {activity}");
 
         if (era.PeopleMix is { Count: > 0 })
-            sb.AppendLine($"- {era.PeopleMix[rng.Next(era.PeopleMix.Count)]}");
+        {
+            var mixPick = SampleUnused(era.PeopleMix, 1, rng, context);
+            if (mixPick.Count > 0)
+                sb.AppendLine($"- {mixPick[0]}");
+        }
 
         var fashion = era.Society.Fashion;
         var men     = Sample(fashion.Men, 2, rng);
@@ -673,6 +677,39 @@ public sealed class PromptService : IPromptService
 
     private static List<string> Sample(IEnumerable<string> pool, int count, Random rng) =>
         pool.Distinct().OrderBy(_ => rng.Next()).Take(count).ToList();
+
+    // Like Sample, but with cross-era memory via context.TryUsePeopleLine — the
+    // same shape UsedCarModels gives vehicles. Shuffles the distinct pool once,
+    // then walks it taking entries not yet used elsewhere in this run until it
+    // has `count`. If the pool is exhausted before reaching `count` (every entry
+    // already used by an earlier era), it tops up from those already-used
+    // entries in the same shuffled order, so it always returns
+    // min(count, pool size) — never fewer than plain Sample would — and never
+    // throws on an empty pool.
+    private static List<string> SampleUnused(
+        IEnumerable<string> pool, int count, Random rng, GenerationContext context)
+    {
+        var shuffled = pool.Distinct().OrderBy(_ => rng.Next()).ToList();
+        var picks    = new List<string>();
+        var leftover = new List<string>();
+
+        foreach (var item in shuffled)
+        {
+            if (picks.Count >= count) break;
+            if (context.TryUsePeopleLine(item))
+                picks.Add(item);
+            else
+                leftover.Add(item);
+        }
+
+        foreach (var item in leftover)
+        {
+            if (picks.Count >= count) break;
+            picks.Add(item);
+        }
+
+        return picks;
+    }
 
     private static string Join(IReadOnlyList<string> list) =>
         list.Count > 0 ? string.Join(", ", list) : "none";

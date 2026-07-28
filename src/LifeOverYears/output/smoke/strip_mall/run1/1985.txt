@@ -25,35 +25,37 @@ distort the source geometry.
 TRANSFORM TO 1985
 Reagan era prosperity. A 1985 strip mall at its peak — striped awnings, neon accents, every unit leased and the lot busy.
 
-CONDITION: busy — customers present, high activity, all pumps in use
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
-- electronics store with a red 'RADIOSHACK' style sign
-- tanning salon with a neon palm-tree window sign
-- video rental store with a bold backlit 'VIDEO RENTALS — VHS' sign and movie posters
-- window signs: 'CASSETTES 3 FOR $10', 'VHS RENTALS 99¢ TUESDAYS'
+- aerobics studio with 'AEROBICS' in neon script
+- one-hour photo shop with a 'FILM DEVELOPING — 1 HOUR' sign
+- nail salon with airbrushed window art
+- window signs: 'NAILS $12', 'VHS RENTALS 99¢ TUESDAYS'
+- arcade game posters in the arcade window
 - a cart corral in the parking lot
-- striped awnings casting bold shadows on the walkway
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 12 people TOTAL: 5 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles.
-- teenagers clustered outside the video store
-- a customer at the photo counter visible through the glass
-- a woman with permed hair and shoulder pads
-Clothing: men in shoulder pads in blazers, acid wash jeans; women in big permed hair, bright neon colors. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a woman in leg warmers entering the aerobics studio
+- a man loading an electronics box into a hatchback
+- a group of teenagers in bright windbreakers
+Clothing: men in shoulder pads in blazers, acid wash jeans; women in leg warmers, shoulder pads. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 5 period vehicles, all different:
-- 1984-1987 Honda Civic — small boxy hatchback — white
-- 1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan — red
-- 1982-1993 Chevrolet S-10 — compact pickup, square — light blue
-- 1984-1989 Plymouth Voyager — boxy first-generation minivan — charcoal gray
-- 1979-1985 Ford Mustang — Fox body, angular hatchback coupe — burgundy
+EXACTLY 7 period vehicles, all different:
+- 1980-1985 Cadillac Seville — sharp formal lines, bustleback — light blue
+- 1979-1985 Ford LTD Country Squire — full-size woodgrain wagon — burgundy
+- 1979-1985 Ford Mustang — Fox body, angular hatchback coupe — charcoal gray
+- 1982-1986 Nissan Sentra — small economy boxy sedan — beige
+- 1981-1985 Ford Escort — small boxy economy hatchback — silver
+- 1984-1987 Toyota Corolla — boxy compact, reliable look — white
+- 1984-1990 Dodge Caravan — first minivan, boxy — red
 Parked with gaps; no vehicle newer than 1985.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
+PLACEMENT: three parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, painted crosswalks

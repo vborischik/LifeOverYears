@@ -26,30 +26,39 @@ distort the source geometry.
 TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 station — LED-lit canopy, digital price sign, video ads playing on every pump screen, and a big convenience store.
 
-CONDITION: abandoned — closed business, boarded windows, weeds through pavement cracks, weathered surfaces
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
-- every storefront closed and dark — no lit signs, no menu boards, no open businesses
-- faded remains of old signage still on the facade, lettering weathered and partly missing
-- plywood over the ground-floor windows, doors chained shut
-- main sign: a bare stripped sign frame — rusted metal posts, an empty price panel with no digits, no lit letters, no logo, all branding gone
-No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.
+- air and vacuum island at the lot edge
+- pumps with color screens playing ads
+- price sign showing gas around $2.45
+- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
+- window signs: '2 ENERGY DRINKS $5', 'ATM INSIDE'
+- card-skimmer warning stickers on the pumps
+- an ice merchandiser and propane cage along the wall
+Typography: minimalist flat sans-serif, simplified modern logos.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-NO people anywhere — the place is completely deserted.
+EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- a customer watching the pump screen ads while fueling
+- a man returning a disc at the DVD kiosk
+- a dog walker with three dogs
+Clothing: men in boat shoes, henley shirts; women in ankle boots, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-NO vehicles anywhere — empty lot, no parked or moving cars.
+EXACTLY 3 period vehicles, all different:
+- 2010-2016 Chevrolet Equinox — mid-size crossover — silver
+- 2011-2016 Hyundai Elantra — swoopy fluidic compact — white
+- 2014-2021 Subaru Outback — rugged wagon crossover — gray
+Parked with gaps; no vehicle newer than 2015.
+Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
+PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: worn and faded, well past their last repainting
+- road markings: yellow center line, white edge lines, high-visibility crosswalks
 - utilities: overhead power lines common on wooden poles, fiber optic lines on poles
 
-DECAY
-- lane markings nearly gone, faint paint traces
-- rusted signage askew, lettering broken off
-- trash along storefronts, a dumped mattress at the curb
-Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - cottonwood tree at northeast corner of lot: clearly smaller than in the source — about 80% of its canopy there, thinner trunk
 - elm tree at sidewalk edge left of entrance: clearly smaller than in the source — about 60% of its canopy there, thinner trunk

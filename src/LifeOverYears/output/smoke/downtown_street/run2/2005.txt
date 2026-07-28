@@ -30,24 +30,24 @@ CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
 - the video rental store closing down — 'EVERYTHING MUST GO — ALL MOVIES $3' banner across the window
-- RED ROBIN DINER with a refreshed awning and a 'COFFEE $1.25' vinyl decal on the glass
-- tanning salon with an airbrushed sun mural on the window
-- window signs: 'EVERYTHING MUST GO — 50-70% OFF', 'RINGTONES $1.99'
-- a sandwich-board sign for the espresso cafe
-- the ghost-sign reduced to a faint trace of paint on the brick
+- MARY'S DINER with a refreshed awning and a 'COFFEE $1.25' vinyl decal on the glass
+- FIRST STATE BANK branch with internally lit channel letters
+- window signs: 'EVERYTHING MUST GO — 50-70% OFF', 'LATTE $2.95'
+- ribbon magnets on a lamppost
+- a single scuffed payphone covered in stickers, rarely used
 Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 2 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block. Grouped in pairs, threes, and singles.
-- a shopper digging through the closing video store's sidewalk bargain bins
-- a man in cargo shorts and a trucker hat carrying shopping bags
-- a UPS driver wheeling packages on a hand truck
-Clothing: men in frosted tips hair, baggy jeans; women in low-rise jeans, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- a barista handing an iced drink to a customer at the cafe door
+- a mother pushing a jogging stroller
+- a man in cargo shorts talking on a flip phone
+Clothing: men in graphic tees, baggy jeans; women in layered tank tops, velour tracksuits. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 1 period vehicles, all different:
-- 2003-2007 Nissan Altima — sporty mid-size — white
+- 2002-2006 Toyota Camry — smooth conservative mid-size — black
 Parked with gaps; no vehicle newer than 2005.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
 PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
@@ -57,8 +57,8 @@ ENVIRONMENT
 - utilities: overhead power lines standard, cable and fiber lines on poles appearing
 
 DECAY
-- one storefront papered over from inside, a handwritten sign taped to the glass
-- a sun-bleached awning, torn at one corner
+- a faded painted wall ad showing through the brick
+- cracked sidewalk squares, weeds at the tree pits
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - oak tree at sidewalk left near corner: clearly smaller than in the source — about 80% of its canopy there, thinner trunk

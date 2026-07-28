@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-07-27T23:44:06.4630240+00:00
+Generated: 2026-07-28T14:10:40.9959365+00:00
 
 ## Check Results
 
@@ -33,6 +33,7 @@ Generated: 2026-07-27T23:44:06.4630240+00:00
 | C25 | DECAY present iff condition is declining/abandoned/squatted; healthy conditions keep verbatim era road markings with no DECAY; DECAY never precedes OUTPUT FORMAT (i.e. never inside PRESERVE) and never mentions geometry terms; bullets are drawn from the correct severity pool | ✅ PASS | Decay section invariants hold |
 | C26 | Caption prompt files load; every scene_content type has a caption voice; anchor pools are well-formed and non-leaking; AnglesFor() composition holds; every reachable condition maps to a real phrase | ✅ PASS | Caption voice coverage holds |
 | C27 | base-clean.txt loads, declares the exact 9:16 portrait phrase (and no competing aspect-ratio term), keeps its people/vehicle-removal + pixel-identical/canvas-extension cleanup contract, and every generated prompt carries the same portrait phrase | ✅ PASS | base-clean/prompt aspect-ratio contract holds |
+| C28 | People bullet lines (people_activities picks and the people_mix line) never repeat within a run unless their era's own pool is already exhausted | ✅ PASS | No premature people-line repeats |
 
 ## Vehicle Selections
 
@@ -40,29 +41,29 @@ Generated: 2026-07-27T23:44:06.4630240+00:00
 | Year | Count | Vehicles |
 |------|-------|----------|
 | 1975 | 3 | 1973-1980 Chevrolet C10 — square body, chrome bumper, 1971-1976 Jeep Wagoneer — boxy full-size SUV, woodgrain trim optional, 1970-1978 AMC Gremlin — short stubby hatchback rear |
-| 1985 | 3 | 1982-1986 Nissan Sentra — small economy boxy sedan, 1984-1989 Plymouth Voyager — boxy first-generation minivan, 1978-1987 Chevrolet Monte Carlo — personal luxury coupe, long hood |
-| 1995 | 3 | 1990-1994 Chevrolet Lumina — rounded mid-size sedan, 1994-1998 Ford Mustang — rounded SN95 pony car, 1993-1997 Ford Ranger — compact pickup, straight lines |
-| 2005 | 3 | 2002-2008 Dodge Ram — big rig grille evolved, 2005-2010 Jeep Grand Cherokee — rounded modern SUV, 2003-2008 Toyota Corolla — conservative compact sedan |
+| 1985 | 3 | 1982-1993 Chevrolet S-10 — compact pickup, square, 1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan, 1980-1986 Ford F-150 — square body, dual headlights |
+| 1995 | 4 | 1992-1997 Ford Taurus — rounded jellybean shape, oval theme, 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size, 1990-1994 Chevrolet Lumina — rounded mid-size sedan, 1994-1998 Ford Mustang — rounded SN95 pony car |
+| 2005 | 4 | 1999-2006 Chevrolet Silverado — squared modern look, 2004-2012 Chevrolet Colorado — mid-size pickup, 2000-2006 Chevrolet Tahoe — full-size SUV peak era, 2003-2009 Hummer H2 — massive military-styled SUV |
 | 2015 | 0 |  |
-| 2025 | 4 | 2024-2025 Toyota Grand Highlander — large family crossover, 2021-2025 Toyota Camry — sleek sedan, aggressive front fascia, 2021-2025 Kia Carnival — boxy SUV-styled minivan, 2021-2025 Kia Telluride — boxy upscale three-row SUV |
+| 2025 | 3 | 2019-2025 Subaru Outback — rugged wagon crossover, 2019-2025 Chevrolet Equinox — rounded compact crossover, 2019-2025 Toyota Corolla — sharp-nosed compact |
 
 ### gas_station / Run 2 (seed=1337)
 | Year | Count | Vehicles |
 |------|-------|----------|
 | 1975 | 3 | 1963-1976 Dodge Dart — compact, boxy, reliable workhorse, 1970-1976 AMC Hornet — compact, simple boxy lines, 1974-1978 Oldsmobile Cutlass Supreme — best-selling car in America, formal roofline |
-| 1985 | 4 | 1983-1988 Ford Thunderbird — aero coupe, rounded, 1980-1986 Ford F-150 — square body, dual headlights, 1981-1985 Ford Escort — small boxy economy hatchback, 1984-1990 Dodge Caravan — first minivan, boxy |
-| 1995 | 4 | 1993-1997 Ford Ranger — compact pickup, straight lines, 1995-1999 Chevrolet Cavalier — compact, rounded, 1989-1997 Geo Metro — very small economy hatchback, 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size |
-| 2005 | 1 | 2004-2008 Pontiac Grand Prix — sporty sedan plastic cladding |
-| 2015 | 0 |  |
-| 2025 | 1 | 2019-2025 Subaru Outback — rugged wagon crossover |
+| 1985 | 4 | 1983-1987 Honda Accord — clean lines, pop-up headlights, 1984-1989 Plymouth Voyager — boxy first-generation minivan, 1984-1990 Dodge Caravan — first minivan, boxy, 1981-1985 Dodge Aries — K-car, boxy economy sedan |
+| 1995 | 4 | 1992-1995 Honda Civic — small rounded coupe and sedan, 1993-2002 Pontiac Firebird — sleek pointed sports coupe, 1991-1996 Buick Roadmaster — large rounded wagon and sedan, 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size |
+| 2005 | 3 | 2000-2007 Ford Taurus — rounded, aging fleet-look sedan, 2005-2010 Chevrolet Cobalt — compact economy sedan, 2004-2008 Chrysler 300 — bold boxy retro chrome grille |
+| 2015 | 3 | 2010-2016 Chevrolet Equinox — mid-size crossover, 2011-2016 Hyundai Elantra — swoopy fluidic compact, 2014-2021 Subaru Outback — rugged wagon crossover |
+| 2025 | 0 |  |
 
 ### downtown_street / Run 1 (seed=42)
 | Year | Count | Vehicles |
 |------|-------|----------|
 | 1975 | 4 | 1973-1980 Chevrolet C10 — square body, chrome bumper, 1971-1976 Jeep Wagoneer — boxy full-size SUV, woodgrain trim optional, 1970-1978 AMC Gremlin — short stubby hatchback rear, 1974-1978 Cadillac DeVille — full-size luxury, formal roofline, chrome heavy |
-| 1985 | 5 | 1975-1991 Ford Econoline — boxy full-size van, 1983-1987 Honda Accord — clean lines, pop-up headlights, 1973-1987 Chevrolet C/K — square body pickup, dual headlights, 1980-1985 Buick LeSabre — boxy full-size, chrome trim, 1984-1988 Toyota Pickup — small, boxy, popular import |
-| 1995 | 5 | 1992-1995 Honda Civic — small rounded coupe and sedan, 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding, 1995-2004 Toyota Tacoma — compact, rounded, 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size, 1986-1997 Ford Aerostar — boxy rear-drive minivan |
-| 2005 | 2 | 2003-2009 Hummer H2 — massive military-styled SUV, 1999-2006 Chevrolet Silverado — squared modern look |
+| 1985 | 6 | 1978-1986 Ford Bronco — full-size boxy SUV, round headlights, 1983-1985 Nissan Maxima — boxy import sedan, 1983-1988 Ford Thunderbird — aero coupe, rounded, 1982-1985 Toyota Celica — angular sporty coupe, pop-up lights, 1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline, 1973-1991 Chevrolet Suburban — long boxy wagon-SUV |
+| 1995 | 4 | 1993-1998 Jeep Grand Cherokee — early SUV, boxy-rounded, 1993-1997 Toyota Corolla — rounded compact sedan, 1995-2004 Toyota Tacoma — compact, rounded, 1988-1998 Chevrolet C/K 1500 — softly squared pickup |
+| 2005 | 1 | 2000-2005 Ford Focus — European-styled compact |
 | 2015 | 0 |  |
 | 2025 | 0 |  |
 
@@ -70,9 +71,9 @@ Generated: 2026-07-27T23:44:06.4630240+00:00
 | Year | Count | Vehicles |
 |------|-------|----------|
 | 1975 | 4 | 1963-1976 Dodge Dart — compact, boxy, reliable workhorse, 1970-1976 AMC Hornet — compact, simple boxy lines, 1974-1978 Oldsmobile Cutlass Supreme — best-selling car in America, formal roofline, 1971-1976 Chevrolet G10 Sportvan — boxy windowed van, chrome bumper |
-| 1985 | 6 | 1982-1986 Nissan Sentra — small economy boxy sedan, 1983-1985 Nissan Maxima — boxy import sedan, 1978-1987 Chevrolet Monte Carlo — personal luxury coupe, long hood, 1982-1992 Chevrolet Camaro — wedge-shaped sporty coupe, 1981-1985 Dodge Aries — K-car, boxy economy sedan, 1984-1988 Pontiac Fiero — small wedge two-seater |
-| 1995 | 6 | 1991-1995 Dodge Caravan — rounded second-gen minivan, 1995-1999 Dodge Neon — small rounded economy, friendly face, 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding, 1992-1997 Ford Taurus — rounded jellybean shape, oval theme, 1989-1997 Geo Metro — very small economy hatchback, 1994-1997 Honda Accord — smooth rounded sedan |
-| 2005 | 1 | 2003-2007 Nissan Altima — sporty mid-size |
+| 1985 | 4 | 1980-1985 Buick LeSabre — boxy full-size, chrome trim, 1982-1992 Chevrolet Camaro — wedge-shaped sporty coupe, 1978-1987 Chevrolet Monte Carlo — personal luxury coupe, long hood, 1983-1985 Nissan Maxima — boxy import sedan |
+| 1995 | 5 | 1993-1998 Jeep Grand Cherokee — early SUV, boxy-rounded, 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size, 1995-1999 Chevrolet Cavalier — compact, rounded, 1994-1997 Honda Accord — smooth rounded sedan, 1995-2004 Toyota Tacoma — compact, rounded |
+| 2005 | 1 | 2002-2006 Toyota Camry — smooth conservative mid-size |
 | 2015 | 0 |  |
 | 2025 | 0 |  |
 

@@ -20,6 +20,12 @@ public sealed class GenerationContext
 
     public bool TryUseCarModel(string model) => UsedCarModels.Add(BaseModelName(model));
 
+    // Same shape as UsedCarModels, but for people-activity/people-mix bullet
+    // lines: without this, people picks had no cross-era memory the way cars do.
+    public HashSet<string> UsedPeopleLines { get; } = new(StringComparer.OrdinalIgnoreCase);
+
+    public bool TryUsePeopleLine(string line) => UsedPeopleLines.Add(line);
+
     // ── Business names ────────────────────────────────────────────────────────
     // Descriptive words next to a business type leak onto signs ("the same local
     // diner, sign aging" rendered a sign reading "Aging Local DINER"), so scene

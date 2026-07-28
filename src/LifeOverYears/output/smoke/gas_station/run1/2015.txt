@@ -46,9 +46,9 @@ ENVIRONMENT
 - utilities: overhead power lines common on wooden poles, fiber optic lines on poles
 
 DECAY
-- graffiti on boarded panels, lower wall
-- boarded windows, glass cracked or missing
+- lane markings nearly gone, faint paint traces
 - trash along storefronts, a dumped mattress at the curb
+- rusted signage askew, lettering broken off
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - cottonwood tree at northeast corner of lot: clearly smaller than in the source — about 80% of its canopy there, thinner trunk

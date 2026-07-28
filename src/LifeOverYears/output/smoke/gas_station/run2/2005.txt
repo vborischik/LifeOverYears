@@ -26,41 +26,39 @@ distort the source geometry.
 TRANSFORM TO 2005
 Post-9/11 era. A 2005 gas station — big multi-island canopy, card readers at every pump, LED price sign, and a convenience store doing most of the business.
 
-CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
+CONDITION: busy — customers present, high activity, all pumps in use
 
 PERIOD DETAILS
+- automated car wash tunnel beside the lot
 - pumps with card readers and small pay-at-pump screens
-- branded canopy lighting
 - price sign showing gas around $2.30
 - main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
-- window signs: 'ANY SIZE FOUNTAIN DRINK 99¢', 'CIGARETTES $3.75 PACK'
+- window signs: 'PHONE CARDS SOLD HERE', 'ENERGY DRINKS 2 FOR $4'
 - a windshield-washer fluid display rack by the pumps
-- trash cans with paper-towel dispensers between the pumps
+- 'NO SMOKING — TURN OFF ENGINE' decals on each pump
 Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a customer walking out with a coffee cup
-- a teenager filling tires at the coin-operated air machine
-- a group of college kids with messenger bags
-Clothing: men in cargo shorts, baggy jeans; women in layered tank tops, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+EXACTLY 5 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- a driver self-serving at the pump
+- a woman inserting her card at the pump reader
+- a UPS driver wheeling packages on a hand truck
+Clothing: men in cargo shorts, baggy jeans; women in velour tracksuits, chunky highlights. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 1 period vehicles, all different:
-- 2004-2008 Pontiac Grand Prix — sporty sedan plastic cladding — white
+EXACTLY 3 period vehicles, all different:
+- 2000-2007 Ford Taurus — rounded, aging fleet-look sedan — gold
+- 2005-2010 Chevrolet Cobalt — compact economy sedan — dark red
+- 2004-2008 Chrysler 300 — bold boxy retro chrome grille — dark blue
 Parked with gaps; no vehicle newer than 2005.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
+PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: worn and faded, well past their last repainting
+- road markings: yellow center line, white edge lines, turn arrows
 - utilities: overhead power lines standard, cable and fiber lines on poles appearing
 
-DECAY
-- mismatched asphalt patches, cracks at the joints
-- chalky faded lane paint, ghost lines in the tracks
-Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - cottonwood tree at northeast corner of lot: clearly smaller than in the source — about 60% of its canopy there, thinner trunk
 - elm tree at sidewalk edge left of entrance: clearly smaller than in the source — about 40% of its canopy there, thinner trunk

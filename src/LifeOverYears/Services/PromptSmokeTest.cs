@@ -120,6 +120,7 @@ public static class PromptSmokeTest
         DoC25(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, eras,          findings);
         await DoC26(dataService, eras,                                       findings);
         await DoC27(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, findings);
+        DoC28(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, eras,          findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -1615,6 +1616,65 @@ public static class PromptSmokeTest
 
         f.Add(("C27", "base-clean.txt loads, declares the exact 9:16 portrait phrase (and no competing aspect-ratio term), keeps its people/vehicle-removal + pixel-identical/canvas-extension cleanup contract, and every generated prompt carries the same portrait phrase",
             errs.Count == 0, errs.Count == 0 ? "base-clean/prompt aspect-ratio contract holds" : Join(errs)));
+    }
+
+    // People bullet lines (content.PeopleActivities picks and the era.PeopleMix
+    // line) now share cross-era memory via context.TryUsePeopleLine — the same
+    // shape UsedCarModels already gives vehicles. Verifies, per run: a line is
+    // never repeated unless every other entry in its own era's pool has already
+    // been used elsewhere in that run — mirrors C18's placement-pattern
+    // exhaustion rule. A flat "never repeats" would be too strong given how
+    // small some real pools still are (era.PeopleMix currently has as few as
+    // 6-7 entries per era) before the planned pool-expansion pass.
+    private static void DoC28(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, EraProfile> eras,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+        var runs = new[]
+        {
+            (gasRun1, "gas_station", "gas/run1"), (gasRun2, "gas_station", "gas/run2"),
+            (dtRun1, "downtown_street", "downtown/run1"), (dtRun2, "downtown_street", "downtown/run2"),
+            (smRun1, "strip_mall", "strip/run1"), (smRun2, "strip_mall", "strip/run2")
+        };
+
+        foreach (var (run, sceneType, label) in runs)
+        {
+            // Mirrors context.UsedPeopleLines: one combined used-set for the
+            // whole run, shared between people_activities and people_mix picks,
+            // exactly as PromptService shares one GenerationContext per run.
+            var used = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+            void CheckLine(int year, string line, IReadOnlyList<string> pool)
+            {
+                if (used.Contains(line) && pool.Any(p => !used.Contains(p)))
+                    errs.Add($"{label}/{year}: people line '{line}' repeated before its era pool was exhausted");
+                used.Add(line);
+            }
+
+            foreach (var year in Years)
+            {
+                if (!run.TryGetValue(year, out var prompt)) continue;
+
+                var sc = ContentFor(eras, year, sceneType);
+                if (sc is not null)
+                    foreach (var activity in sc.PeopleActivities.Where(a => prompt.Text.Contains($"- {a}")))
+                        CheckLine(year, activity, sc.PeopleActivities);
+
+                if (eras[year].PeopleMix is { Count: > 0 } mix)
+                {
+                    var mixLine = mix.FirstOrDefault(m => prompt.Text.Contains($"- {m}"));
+                    if (mixLine is not null)
+                        CheckLine(year, mixLine, mix);
+                }
+            }
+        }
+
+        f.Add(("C28", "People bullet lines (people_activities picks and the people_mix line) never repeat within a run unless their era's own pool is already exhausted",
+            errs.Count == 0, errs.Count == 0 ? "No premature people-line repeats" : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────

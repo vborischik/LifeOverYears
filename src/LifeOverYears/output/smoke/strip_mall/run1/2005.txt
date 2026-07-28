@@ -25,40 +25,42 @@ distort the source geometry.
 TRANSFORM TO 2005
 Post-9/11 era. An aging 2005 strip mall — national franchises mixed with struggling locals, the video store on its last legs.
 
-CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
+CONDITION: busy — customers present, high activity, all pumps in use
 
 PERIOD DETAILS
 - dollar store anchor with yellow 'EVERYTHING $1' signage
 - check-cashing store with a neon 'FAST CASH' sign
 - hair salon with a 'WALK-INS WELCOME' sign
-- window signs: 'RINGTONES $1.99', 'NO CREDIT? NO PROBLEM!'
+- window signs: 'NO CREDIT? NO PROBLEM!', 'DVD BLOWOUT — 4 FOR $10'
 - a sidewalk sandwich board with a cell-phone store promo
-- a free real-estate flyer box by the walkway
+- ribbon magnets on a lamppost
 Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- an employee dragging a clearance rack onto the walkway
-- a couple browsing the closing video store's bargain bins
+EXACTLY 9 people TOTAL: 4 near sidewalk (largest, foreground), 3 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
+- a customer leaving the sandwich shop with a to-go bag
+- teenagers gathered outside the game store
 - a teen with white earbuds and an MP3 player
-Clothing: men in cargo shorts, baggy jeans; women in chunky highlights, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+Clothing: men in graphic tees, baggy jeans; women in low-rise jeans, velour tracksuits. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 1 period vehicles, all different:
-- 2000-2007 Ford Taurus — rounded, aging fleet-look sedan — dark red
+EXACTLY 7 period vehicles, all different:
+- 2003-2009 Hummer H2 — massive military-styled SUV — gray
+- 2002-2008 Dodge Ram — big rig grille evolved — silver
+- 2002-2009 Chevrolet TrailBlazer — mid-size SUV boxy — dark red
+- 2004-2012 Chevrolet Colorado — mid-size pickup — gold
+- 2002-2007 Jeep Liberty — round-headlight compact SUV — dark blue
+- 2004-2010 Toyota Sienna — large rounded minivan — black
+- 1998-2005 Volkswagen New Beetle — retro bubble shape — white
 Parked with gaps; no vehicle newer than 2005.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+PLACEMENT: two parked on the LEFT side; the rest parked on the RIGHT side with gaps. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: worn and faded, well past their last repainting
+- road markings: yellow center line, white edge lines, turn arrows
 - utilities: overhead power lines standard, cable and fiber lines on poles appearing
 
-DECAY
-- weeds along the base of the storefront walkway
-- a FOR RENT sign taped inside a dark storefront window
-Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - crepe myrtle tree at parking lot island near entrance: clearly smaller than in the source — about 40% of its canopy there, thinner trunk
 - maple tree at landscape strip along the road: clearly smaller than in the source — about 60% of its canopy there, thinner trunk
