@@ -131,6 +131,8 @@ public static class PromptSmokeTest
         DoC31(dtRun1, dtRun2,                                                                  findings);
         DoC32(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
         DoC33(findings);
+        DoC34(eras, findings);
+        DoC35(eras, findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -1937,6 +1939,92 @@ public static class PromptSmokeTest
 
         f.Add(("C33", "Chain tenant presence is stable across a run: no flicker between schedule-eligible eras",
             errs.Count == 0, errs.Count == 0 ? "No presence flicker across 20 seeds x 6 eras" : Join(errs)));
+    }
+
+    // Invokes PromptService.BuildSceneBlock (private) directly via reflection with
+    // a forced abandoned/squatted condition, so the derelict branch is exercised
+    // deterministically for every year regardless of what condition the smoke
+    // fixtures happened to sample — this targets the wiring fix itself, not just
+    // ResolveChainTenants' own contract (already covered by C32/C33).
+    private static string InvokeBuildSceneBlock(
+        EraProfile era, SceneContent? content, string sceneType, string condition, GenerationContext context)
+    {
+        var method = typeof(PromptService).GetMethod("BuildSceneBlock",
+            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)
+            ?? throw new InvalidOperationException("PromptService.BuildSceneBlock not found");
+
+        var gasSign = new GenerationContext.GasSign(GenerationContext.GasSignKind.DeadBoard, null);
+        var rng = new Random(1); // unused by the derelict branch — no sampling happens there
+        var args = new object?[] { era, content, sceneType, condition, gasSign, rng, context };
+        return (string)method.Invoke(null, args)!;
+    }
+
+    // A derelict era must still surface a ghost sign when the run has that chain
+    // and its schedule has already put it past its closing year (or the demotion
+    // from Named) — that's the whole point of routing ResolveChainTenants through
+    // the derelict branch instead of going silent there.
+    private static void DoC34(Dictionary<int, EraProfile> eras, List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+        string[] derelictConditions = { "abandoned", "squatted" };
+        string[] sceneTypes = { "strip_mall", "downtown_street" };
+
+        for (int seed = 1; seed <= 30; seed++)
+            foreach (var sceneType in sceneTypes)
+            {
+                var ctx = new GenerationContext { Random = new Random(seed) };
+                _ = ctx.BlockbusterPresent;
+                _ = ctx.RadioShackPresent;
+
+                foreach (var year in Years)
+                foreach (var condition in derelictConditions)
+                {
+                    var text = InvokeBuildSceneBlock(eras[year], ContentFor(eras, year, sceneType), sceneType, condition, ctx);
+                    var tenants = ctx.ResolveChainTenants(year, sceneType, condition);
+
+                    foreach (var tenant in tenants)
+                    {
+                        if (tenant.Kind != GenerationContext.ChainSignKind.Ghost)
+                            errs.Add($"seed={seed} year={year} scene={sceneType} condition={condition}: ResolveChainTenants returned non-Ghost kind {tenant.Kind} in a derelict era");
+                        if (!text.Contains($"- {tenant.Text}"))
+                            errs.Add($"seed={seed} year={year} scene={sceneType} condition={condition}: derelict block missing expected ghost line for {tenant.Name}");
+                    }
+                }
+            }
+
+        f.Add(("C34", "A derelict era emits the ghost line whenever the run's chain schedule calls for one",
+            errs.Count == 0, errs.Count == 0 ? "Ghost lines present wherever the schedule calls for them" : Join(errs)));
+    }
+
+    // The derelict branch exists to keep live business out of a closed-down
+    // scene — a Named or Generic chain line there would be exactly the
+    // contradiction it's designed to prevent.
+    private static void DoC35(Dictionary<int, EraProfile> eras, List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+        string[] derelictConditions = { "abandoned", "squatted" };
+        string[] sceneTypes = { "strip_mall", "downtown_street" };
+        string[] namedOrGenericMarkers = { "Blockbuster", "RadioShack", "CB RADIOS", "STEREO - SPEAKERS - TAPES" };
+
+        for (int seed = 1; seed <= 30; seed++)
+            foreach (var sceneType in sceneTypes)
+            {
+                var ctx = new GenerationContext { Random = new Random(seed) };
+                _ = ctx.BlockbusterPresent;
+                _ = ctx.RadioShackPresent;
+
+                foreach (var year in Years)
+                foreach (var condition in derelictConditions)
+                {
+                    var text = InvokeBuildSceneBlock(eras[year], ContentFor(eras, year, sceneType), sceneType, condition, ctx);
+                    foreach (var marker in namedOrGenericMarkers)
+                        if (text.Contains(marker))
+                            errs.Add($"seed={seed} year={year} scene={sceneType} condition={condition}: derelict block contains disallowed marker '{marker}'");
+                }
+            }
+
+        f.Add(("C35", "A derelict era never emits a Named or Generic chain tenant line",
+            errs.Count == 0, errs.Count == 0 ? "No Named/Generic chain content in any derelict block" : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────

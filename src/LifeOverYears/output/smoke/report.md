@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-07-28T21:12:02.8014066+00:00
+Generated: 2026-07-28T21:20:30.0963343+00:00
 
 ## Check Results
 
@@ -39,6 +39,8 @@ Generated: 2026-07-28T21:12:02.8014066+00:00
 | C31 | Blockbuster never appears in a downtown_street prompt, in any form | ✅ PASS | No Blockbuster content in any downtown_street prompt |
 | C32 | Neither chain ever appears Named in an abandoned or squatted era | ✅ PASS | No named chain tenants in derelict eras |
 | C33 | Chain tenant presence is stable across a run: no flicker between schedule-eligible eras | ✅ PASS | No presence flicker across 20 seeds x 6 eras |
+| C34 | A derelict era emits the ghost line whenever the run's chain schedule calls for one | ✅ PASS | Ghost lines present wherever the schedule calls for them |
+| C35 | A derelict era never emits a Named or Generic chain tenant line | ✅ PASS | No Named/Generic chain content in any derelict block |
 
 ## Vehicle Selections
 

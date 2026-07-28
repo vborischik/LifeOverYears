@@ -393,6 +393,12 @@ public sealed class PromptService : IPromptService
             sb.AppendLine("- plywood over the ground-floor windows, doors chained shut");
             if (isGasStation)
                 sb.AppendLine("- main sign: a bare stripped sign frame — rusted metal posts, an empty price panel with no digits, no lit letters, no logo, all branding gone");
+            // A ghost sign is exactly the remnant this branch already describes —
+            // only Ghost belongs here. Named/Generic would be live business, which
+            // is what this branch exists to keep out of a derelict scene.
+            foreach (var tenant in context.ResolveChainTenants(era.Year, sceneType, condition))
+                if (tenant.Kind == GenerationContext.ChainSignKind.Ghost)
+                    sb.AppendLine($"- {tenant.Text}");
             sb.Append("No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.");
             return sb.ToString();
         }
