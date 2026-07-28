@@ -952,7 +952,7 @@ public static class PromptSmokeTest
             // \bEVs?\b (case-sensitive) so lowercase words like "eye-level" don't false-match
             if (System.Text.RegularExpressions.Regex.IsMatch(text, @"\bEVs?\b"))
                 errs.Add($"{label}/2025: contains 'EV'");
-            foreach (var term in new[] { "electric", "charger", "Lightning" })
+            foreach (var term in new[] { "electric", "charger", "Lightning", "e-scooter", "e-bike" })
                 if (text.Contains(term, StringComparison.OrdinalIgnoreCase))
                     errs.Add($"{label}/2025: contains '{term}'");
         }
