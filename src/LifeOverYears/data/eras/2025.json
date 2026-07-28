@@ -304,6 +304,56 @@
         "a kick scooter leaning by the store wall"
       ]
     },
+    "auto_repair": {
+      "narrative": "A thinly staffed independent auto repair shop in 2025 — one bay open, one dark, and most of the signage now generic printed vinyl rather than anything custom.",
+      "storefronts": [
+        "generic printed vinyl sign band reading 'AUTO REPAIR' in plain block letters",
+        "office with plate glass window, a QR-code payment sign taped near the register",
+        "two roll-up bay doors, one open with a single car inside, the other closed",
+        "a small digital tablet mounted at the counter for checkout",
+        "a generic printed banner advertising '$49.99 OIL CHANGE', replacing older signage",
+        "a thinly stocked parts shelf visible through the office glass"
+      ],
+      "window_signs": [
+        "OIL CHANGE $49.99",
+        "BRAKES FROM $149.99",
+        "SCAN & PAY AVAILABLE",
+        "STATE INSPECTION $24.99",
+        "APPOINTMENT ONLY — CALL AHEAD"
+      ],
+      "people": { "min": 2, "max": 3 },
+      "people_activities": [
+        "the sole mechanic on duty working alone in the one open bay",
+        "the owner checking a tablet at the counter for the day's appointments",
+        "a customer paying by scanning a QR code at the register",
+        "a driver calling ahead from the parking lot before coming in",
+        "a woman waiting in her car rather than the office",
+        "a mechanic closing the second bay door, unused for the day",
+        "a delivery driver dropping off a single small parts box",
+        "an older regular customer chatting with the owner about slower days",
+        "a mechanic sliding out from under a car on a creeper",
+        "a teenager dropping off a parent's car and walking off with headphones on",
+        "a customer glancing at their phone while waiting by the door",
+        "a mechanic wiping his hands before answering a video call",
+        "a driver double-checking the appointment-only sign before knocking",
+        "the owner locking the second bay for good measure",
+        "a customer pointing at a dashboard warning light on their phone screen",
+        "a mechanic carrying a single tire across a mostly empty apron",
+        "a woman picking up her car and tapping to pay",
+        "the owner doing paperwork alone at the counter",
+        "a driver idling briefly, unsure if the shop is open",
+        "a mechanic taking a short break outside the one open bay"
+      ],
+      "vehicles": { "min": 2, "max": 4 },
+      "extras": [
+        "a QR-code payment sign taped near the register",
+        "a small digital tablet at the checkout counter",
+        "a generic printed banner advertising oil changes",
+        "a thinly stocked parts shelf visible through the glass",
+        "a closed, unused second bay door",
+        "a faded 'APPOINTMENT ONLY' sign taped to the office door"
+      ]
+    },
     "strip_mall": {
       "narrative": "A 2025 strip mall rebuilt around services and food — nail studios, phone stores, and pickup-driven restaurants where retail used to be.",
       "storefronts": [

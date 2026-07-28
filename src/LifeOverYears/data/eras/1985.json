@@ -293,6 +293,57 @@
         "a mailbox with graffiti scratches at the lot edge"
       ]
     },
+    "auto_repair": {
+      "narrative": "A neighborhood auto repair shop in 1985 — backlit sign letters over the bays, radial tires stacked out front, and a shop moving from carburetors to the first electronic engine diagnostics.",
+      "storefronts": [
+        "backlit plastic channel letters spelling 'AUTO REPAIR' across the sign band",
+        "office with plate glass window, a hand-lettered 'BRAKES • MUFFLERS' sign taped inside",
+        "two roll-up service bay doors, one open with a car on the lift",
+        "a stack of radial tires displayed just outside the office door",
+        "a new electronic engine analyzer visible through the bay door",
+        "a parts counter through the office glass, catalog binders stacked behind it",
+        "a faded price board from a previous era, papered over with a new one reading 'BRAKES $59.95'"
+      ],
+      "window_signs": [
+        "BRAKES $59.95",
+        "RADIAL TIRES — 4 FOR $199",
+        "COMPUTERIZED TUNE-UP",
+        "MUFFLERS INSTALLED TODAY",
+        "OIL CHANGE $12.95"
+      ],
+      "people": { "min": 4, "max": 6 },
+      "people_activities": [
+        "a mechanic hooking up an engine analyzer to a car in the bay",
+        "the owner behind the counter ringing up a brake job",
+        "a woman waiting in the office reading a magazine",
+        "a mechanic rolling a new radial tire in from the display stack",
+        "a customer in a windbreaker pointing under his hood",
+        "a mechanic wiping grease off a wrench with a shop rag",
+        "a teenager dropping off his car before school",
+        "a delivery driver wheeling a hand truck of parts boxes to the counter",
+        "a mechanic testing a muffler clamp under a raised car",
+        "an older woman handing over keys at the office window",
+        "a man in a tie waiting on a bench, checking his watch",
+        "a mechanic sliding out from under a car on a creeper",
+        "two mechanics comparing a diagnostic printout",
+        "a customer arguing good-naturedly over an estimate at the counter",
+        "a young apprentice organizing tools on a pegboard",
+        "a driver pulling in and honking lightly for a bay",
+        "a mechanic torquing wheel lugs after a brake job",
+        "a woman in a business suit dropping off a company car",
+        "a mechanic carrying a battery across the apron",
+        "the owner talking on a corded phone at the counter"
+      ],
+      "vehicles": { "min": 5, "max": 7 },
+      "extras": [
+        "a new-looking electronic engine analyzer on a rolling cart",
+        "a stack of radial tires under the office window",
+        "a bell hose stretched across the apron",
+        "a corded phone visible on the office counter",
+        "a metal parts cabinet with catalog binders on top",
+        "a faded painted sign ghosted beneath the newer backlit letters"
+      ]
+    },
     "strip_mall": {
       "narrative": "A 1985 strip mall at its peak — striped awnings, neon accents, every unit leased and the lot busy.",
       "storefronts": [

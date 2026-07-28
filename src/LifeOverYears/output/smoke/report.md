@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-07-28T15:55:01.8639887+00:00
+Generated: 2026-07-28T16:07:30.7739389+00:00
 
 ## Check Results
 
@@ -31,7 +31,7 @@ Generated: 2026-07-28T15:55:01.8639887+00:00
 | C23 | default/unknown scenes always thriving; rank monotonic per run (gas-station finale may resolve to 'new' or 'restored'); abandoned/declining/squatted counts honored for gas_station, downtown_street and strip_mall; 'squatted' only on a gas_station's final era; 'restored' only on a gas_station's final era | ✅ PASS | Condition trajectory invariants hold |
 | C24 | Every business-name token resolves to a member of its own pool and stays identical across all six eras of a run | ✅ PASS | All 8 business tokens resolve correctly and remain stable per run |
 | C25 | DECAY present iff condition is declining/abandoned/squatted; healthy conditions keep verbatim era road markings with no DECAY; DECAY never precedes OUTPUT FORMAT (i.e. never inside PRESERVE) and never mentions geometry terms; bullets are drawn from the correct severity pool | ✅ PASS | Decay section invariants hold |
-| C26 | Caption prompt files load; every scene_content type has a caption voice; anchor pools are well-formed and non-leaking; AnglesFor() composition holds; every reachable condition maps to a real phrase | ✅ PASS | Caption voice coverage holds |
+| C26 | Caption prompt files load; every scene_content type has a caption voice; anchor pools are well-formed and non-leaking; AnglesFor() composition holds; every reachable condition maps to a real phrase | ❌ FAIL | scene type 'auto_repair' has scene_content but no CaptionService.AnglesByScene entry |
 | C27 | base-clean.txt loads, declares the exact 9:16 portrait phrase (and no competing aspect-ratio term), keeps its people/vehicle-removal + pixel-identical/canvas-extension cleanup contract, and every generated prompt carries the same portrait phrase | ✅ PASS | base-clean/prompt aspect-ratio contract holds |
 | C28 | People bullet lines (people_activities picks and the people_mix line) never repeat within a run unless their era's own pool is already exhausted | ✅ PASS | No premature people-line repeats |
 

@@ -23,41 +23,39 @@ Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
 distort the source geometry.
 
 TRANSFORM TO 2015
-Smartphone era fully arrived. An ordinary 2015 American commercial street — LED signs, crossovers at the curb, smartphones out everywhere.
+Smartphone era fully arrived. An independent auto repair shop in 2015 — a state inspection sticker machine on the counter, a tire-pressure sensor reset tool in the bay, and fewer cars in the lot than there used to be as quick-lube chains pull business away.
 
 PERIOD DETAILS
-- MARY'S DINER with 'COFFEE $2.25' on a chalkboard menu
-- yoga studio with frosted glass
-- third-wave coffee shop with a minimalist logo
-- window signs: 'SCREEN REPAIR FROM $49', 'BUY ONE GET ONE 50% OFF'
-- chalkboard sandwich-board signs
-- a modern bike-share style rack
+- a faded printed banner reading '$19.95 STATE INSPECTION' from a past promotion still hanging on the fascia
+- printed vinyl sign band reading 'AUTO REPAIR — STATE INSPECTION'
+- a tire-pressure sensor reset tool on a cart inside the open bay
+- window signs: 'TPMS SERVICE AVAILABLE', 'OIL CHANGE $29.95'
+- a tire-pressure sensor reset tool on a rolling cart
+- a quick-lube chain coupon taped inside the office door, half torn
 Typography: minimalist flat sans-serif, simplified modern logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a dog tied up outside the coffee shop
-- a barista serving a sidewalk table
-- two kids on kick scooters
-Clothing: men in slim-fit plaid shirts, beards; women in statement necklaces, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a mechanic sliding out from under a car on a creeper
+- a delivery driver dropping off a small parts box
+- a man in skinny jeans taking a selfie
+Clothing: men in henley shirts, boat shoes; women in ankle boots, statement necklaces. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 2 period vehicles, all different:
-- 2010-2016 Chevrolet Equinox — mid-size crossover — white
-- 2014-2019 Kia Soul — boxy urban hatchback — silver
+EXACTLY 4 period vehicles, all different:
+- 2013-2018 Hyundai Santa Fe — fluidic sculpture styling — white
+- 2014-2019 Nissan Rogue — popular compact crossover — black
+- 2007-2017 Jeep Wrangler — boxy off-roader, round headlights — silver
+- 2015-2023 Ford F-150 — aluminum body, blocky modern — gray
 Parked with gaps; no vehicle newer than 2015.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: worn and faded, well past their last repainting
+- road markings: yellow center line, white edge lines, high-visibility crosswalks
 - utilities: overhead power lines common on wooden poles, fiber optic lines on poles
 
-DECAY
-- oil stains spreading dark across the concrete apron
-- the painted sign band faded, letters flaking at the edges
-Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - maple tree at street corner: clearly smaller than in the source — about 80% of its canopy there, thinner trunk
 - elm tree at side yard: clearly smaller than in the source — about 60% of its canopy there, thinner trunk

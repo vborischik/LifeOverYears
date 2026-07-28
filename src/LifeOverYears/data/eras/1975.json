@@ -319,6 +319,58 @@
         "a folded newspaper stack tied with twine by the office door"
       ]
     },
+    "auto_repair": {
+      "narrative": "An independent auto repair garage in 1975 — hand-lettered prices in the window, motor-oil brand signs on the wall, and mechanics who know every regular's car by sound.",
+      "storefronts": [
+        "small office with a plate glass window and hand-lettered 'AUTO REPAIR' arched across the glass",
+        "painted sign band across the parapet reading 'TUNE-UPS — BRAKES — MUFFLERS'",
+        "two service bay roll-up doors, one raised with a car up on the lift inside",
+        "porcelain motor-oil brand signs mounted beside the office door",
+        "a parts counter visible through the office glass, shelves of boxed parts behind it",
+        "a stack of tires piled against the side wall near the bay",
+        "a hand-painted price board in the office window reading 'TUNE-UPS $19.95'",
+        "a lit 'OPEN' sign hanging crooked in the office door glass"
+      ],
+      "window_signs": [
+        "TUNE-UP SPECIAL $19.95",
+        "BRAKES FROM $39.95",
+        "MUFFLER INSTALLED — WHILE YOU WAIT",
+        "OIL CHANGE $4.95",
+        "FREE ESTIMATES"
+      ],
+      "people": { "min": 4, "max": 6 },
+      "people_activities": [
+        "a mechanic in oil-stained coveralls wheeling a creeper out from under a car",
+        "the shop owner writing up a work order on a clipboard at the counter",
+        "a customer in a suit leaning in the office doorway waiting on his car",
+        "a mechanic testing a muffler's fit under a raised car",
+        "a woman handing over her keys at the office window",
+        "a delivery driver dropping off a boxed part at the counter",
+        "a mechanic wiping his hands on a shop rag walking between bays",
+        "a teenager watching a tune-up through the open bay door",
+        "a farmer in overalls waiting on a bench outside the office",
+        "a mechanic rolling a tire toward the stack against the wall",
+        "a man in a work uniform checking a clipboard invoice with the owner",
+        "a mechanic under the hood with a trouble light clipped to the fender",
+        "a woman reading a magazine on the office bench while she waits",
+        "a young apprentice sweeping metal shavings out of a bay",
+        "a driver idling at the curb waiting for a bay to open up",
+        "a mechanic torquing lug nuts on a raised car",
+        "two men comparing notes over an open hood",
+        "a customer pointing under his own hood explaining the problem",
+        "a mechanic carrying a battery across the apron",
+        "an older man in a cap chatting with the owner by the office door"
+      ],
+      "vehicles": { "min": 5, "max": 7 },
+      "extras": [
+        "a hand-cranked hydraulic lift visible through the open bay",
+        "a metal parts cabinet against the office wall, visible through the glass",
+        "a bell wire strung across the apron to announce arriving cars",
+        "a wall-mounted air hose reel beside the bay door",
+        "a chalkboard tally of the day's jobs propped in the office window",
+        "a wrecker truck parked at the side of the lot"
+      ]
+    },
     "strip_mall": {
       "narrative": "A brand-new mid-1970s strip mall — one low row of shops under a mansard-shingle canopy, fronted by an open parking lot.",
       "storefronts": [

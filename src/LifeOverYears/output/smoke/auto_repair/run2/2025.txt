@@ -23,7 +23,7 @@ Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
 distort the source geometry.
 
 TRANSFORM TO 2025
-Post-pandemic era. An ordinary 2025 American commercial street — flat minimalist logos, QR codes and delivery drivers.
+Post-pandemic era. A thinly staffed independent auto repair shop in 2025 — one bay open, one dark, and most of the signage now generic printed vinyl rather than anything custom.
 
 PERIOD DETAILS
 - every storefront closed and dark — no lit signs, no menu boards, no open businesses
@@ -42,9 +42,9 @@ ENVIRONMENT
 - utilities: overhead lines on existing poles in older commercial areas, fiber optic widespread
 
 DECAY
-- a wrecked car with its hood off left sitting at a bay door
+- every bay door rolled down, dented and streaked with rust
 - graffiti tagged across the painted sign band
-- roofing material torn loose along the parapet, debris at the roof edge
+- a wrecked car with its hood off left sitting at a bay door
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - maple tree at street corner: same size as in the source photo

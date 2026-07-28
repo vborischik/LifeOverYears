@@ -23,28 +23,39 @@ Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
 distort the source geometry.
 
 TRANSFORM TO 2015
-Smartphone era fully arrived. An ordinary 2015 American commercial street — LED signs, crossovers at the curb, smartphones out everywhere.
+Smartphone era fully arrived. An independent auto repair shop in 2015 — a state inspection sticker machine on the counter, a tire-pressure sensor reset tool in the bay, and fewer cars in the lot than there used to be as quick-lube chains pull business away.
 
 PERIOD DETAILS
-- every storefront closed and dark — no lit signs, no menu boards, no open businesses
-- faded remains of old signage still on the facade, lettering weathered and partly missing
-- plywood over the ground-floor windows, doors chained shut
-No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.
+- a faded printed banner reading '$19.95 STATE INSPECTION' from a past promotion still hanging on the fascia
+- a tire-pressure sensor reset tool on a cart inside the open bay
+- two roll-up bay doors, only one in use with a car up on the lift
+- window signs: 'BRAKES FROM $99.95', 'TIRE ROTATION $24.95'
+- a tablet propped beside the register
+- a tire-pressure sensor reset tool on a rolling cart
+Typography: minimalist flat sans-serif, simplified modern logos.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-NO people anywhere — the place is completely deserted.
+EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- a customer checking a tablet screen the mechanic is holding
+- a teenager picking up a car for a parent
+- a man in skinny jeans taking a selfie
+Clothing: men in slim-fit plaid shirts, skinny jeans; women in infinity scarves, ankle boots. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-NO vehicles anywhere — empty lot, no parked or moving cars.
+EXACTLY 1 period vehicles, all different:
+- 2011-2017 Honda Odyssey — lightning-bolt beltline minivan — pearl white
+Parked with gaps; no vehicle newer than 2015.
+Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
+PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines common on wooden poles, fiber optic lines on poles
 
 DECAY
-- plywood over the office plate glass
-- a wrecked car with its hood off left sitting at a bay door
-- roofing material torn loose along the parapet, debris at the roof edge
+- weeds at the apron edges and along the base of the building
+- a hand-lettered service sign taped inside the office glass
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - maple tree at street corner: clearly smaller than in the source — about 80% of its canopy there, thinner trunk

@@ -23,40 +23,41 @@ Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
 distort the source geometry.
 
 TRANSFORM TO 2005
-Post-9/11 era. An ordinary 2005 American commercial street — channel-letter signs, flip phones, SUVs at the curb.
+Post-9/11 era. An auto repair shop in 2005 — a check-engine scanner plugged into a customer's dashboard, a wall of aftermarket wheels, and a printed vinyl banner where hand-painted lettering used to be.
 
 PERIOD DETAILS
-- MAIN STREET DINER with a 'COFFEE $1.25' vinyl decal on the glass
-- cellular phone store with contract posters
-- video rental store with 'EVERYTHING MUST GO' closing banners
-- window signs: 'TANNING $29/MONTH', 'LATTE $2.95'
-- a free real-estate flyer box
-- a faint trace of the old ghost-sign on the brick
+- a printed banner advertising tire brands and a '$24.95 OIL CHANGE' promo, replacing the old painted sign
+- a small waiting area with a TV mounted in the corner of the office
+- printed vinyl banner across the sign band reading 'AUTO REPAIR — CHECK ENGINE DIAGNOSTICS'
+- window signs: 'CHECK ENGINE LIGHT $59.95', 'OIL CHANGE $24.95'
+- a printed vinyl banner advertising tire brands
+- a wall display of aftermarket wheels
 Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a shopper with big-box store bags
-- a man with a Bluetooth earpiece
-- a group of college kids with messenger bags
-Clothing: men in cargo shorts, graphic tees; women in layered tank tops, chunky highlights. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a driver waiting in the office, laptop bag beside him
+- a delivery driver wheeling in a boxed wheel set
+- a UPS driver wheeling packages on a hand truck
+Clothing: men in trucker hats, cargo shorts; women in trucker hats, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 1 period vehicles, all different:
-- 2005-2010 Jeep Grand Cherokee — rounded modern SUV — gray
+EXACTLY 6 period vehicles, all different:
+- 2002-2007 Jeep Liberty — round-headlight compact SUV — gray
+- 2004-2012 Chevrolet Colorado — mid-size pickup — silver
+- 2003-2007 Nissan Altima — sporty mid-size — white
+- 2005-2010 Ford Mustang — retro muscle revival — gold
+- 2001-2007 Ford Escape — compact boxy SUV — dark blue
+- 1998-2005 Volkswagen New Beetle — retro bubble shape — black
 Parked with gaps; no vehicle newer than 2005.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
+PLACEMENT: three parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: worn and faded, well past their last repainting
+- road markings: yellow center line, white edge lines, turn arrows
 - utilities: overhead power lines standard, cable and fiber lines on poles appearing
 
-DECAY
-- a stack of worn tires leaning against the side wall
-- a hand-lettered service sign taped inside the office glass
-Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - maple tree at street corner: clearly smaller than in the source — about 60% of its canopy there, thinner trunk
 - elm tree at side yard: clearly smaller than in the source — about 40% of its canopy there, thinner trunk

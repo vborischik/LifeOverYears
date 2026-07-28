@@ -439,7 +439,7 @@ public static class PromptSmokeTest
         List<(string, string, bool, string)> f)
     {
         var errs = new List<string>();
-        string[] requiredKeys = { "downtown_street", "gas_station", "strip_mall", "default" };
+        string[] requiredKeys = { "downtown_street", "gas_station", "strip_mall", "auto_repair", "default" };
 
         foreach (var (year, era) in eras)
         {

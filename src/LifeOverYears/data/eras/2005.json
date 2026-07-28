@@ -302,6 +302,57 @@
         "ribbon magnets on the door of the service office"
       ]
     },
+    "auto_repair": {
+      "narrative": "An auto repair shop in 2005 — a check-engine scanner plugged into a customer's dashboard, a wall of aftermarket wheels, and a printed vinyl banner where hand-painted lettering used to be.",
+      "storefronts": [
+        "printed vinyl banner across the sign band reading 'AUTO REPAIR — CHECK ENGINE DIAGNOSTICS'",
+        "office with plate glass window, a flat monitor visible on the counter",
+        "two roll-up bay doors, one open with a laptop-style scan tool plugged into a dashboard",
+        "a display wall of aftermarket wheels visible through the office glass",
+        "a parts counter with a barcode scanner by the register",
+        "a printed banner advertising tire brands and a '$24.95 OIL CHANGE' promo, replacing the old painted sign",
+        "a small waiting area with a TV mounted in the corner of the office"
+      ],
+      "window_signs": [
+        "CHECK ENGINE LIGHT $59.95",
+        "BRAKES FROM $89.95",
+        "ALIGNMENT $49.95",
+        "AFTERMARKET WHEELS IN STOCK",
+        "OIL CHANGE $24.95"
+      ],
+      "people": { "min": 3, "max": 4 },
+      "people_activities": [
+        "a mechanic plugging a scan tool into a car's diagnostic port",
+        "the owner ringing up a repair at a barcode register",
+        "a customer watching a wall-mounted TV in the waiting area",
+        "a mechanic torquing an aftermarket wheel onto a car",
+        "a woman on a cell phone waiting by the office window",
+        "a delivery driver wheeling in a boxed wheel set",
+        "a mechanic reading a printout from the scan tool",
+        "a teenager admiring the wheel display through the glass",
+        "a mechanic sliding out from under a car on a creeper",
+        "a man comparing brake prices on the printed banner outside",
+        "a woman dropping off a minivan with two kids in the back seat",
+        "a mechanic wiping his hands before taking a customer's keys",
+        "an apprentice organizing tools on a rolling cart",
+        "a driver waiting in the office, laptop bag beside him",
+        "a mechanic checking tire tread with a gauge",
+        "an older man chatting with the owner about a past repair",
+        "a mechanic carrying an aftermarket wheel across the apron",
+        "a customer pointing at a check-engine code printout",
+        "a woman picking up her car and checking the paperwork",
+        "a mechanic closing a bay door at the end of a job"
+      ],
+      "vehicles": { "min": 4, "max": 6 },
+      "extras": [
+        "a wall display of aftermarket wheels",
+        "a laptop-style scan tool on a rolling cart",
+        "a wall-mounted TV in the waiting area",
+        "a barcode scanner at the parts counter",
+        "a printed vinyl banner advertising tire brands",
+        "a stack of take-off wheels behind the building"
+      ]
+    },
     "strip_mall": {
       "narrative": "An aging 2005 strip mall — national franchises mixed with struggling locals, the video store on its last legs.",
       "storefronts": [

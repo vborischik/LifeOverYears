@@ -23,34 +23,35 @@ Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
 distort the source geometry.
 
 TRANSFORM TO 1975
-Post-Vietnam, oil crisis era. An ordinary American commercial street in 1975 — modest local businesses, bold simple signage, wide quiet pavement.
+Post-Vietnam, oil crisis era. An independent auto repair garage in 1975 — hand-lettered prices in the window, motor-oil brand signs on the wall, and mechanics who know every regular's car by sound.
 
 PERIOD DETAILS
-- MARY'S DINER with a hand-lettered 'HOT COFFEE 25¢' sign
-- five & dime with red 'BEN FRANKLIN' style lettering
-- drug store with a hand-painted sign and a neon 'PRESCRIPTIONS' sign in the window
-- window signs: 'TV REPAIR — FREE ESTIMATES', 'MALTS 30¢'
-- a glass telephone booth on the corner
-- an American flag on a storefront bracket
+- a hand-painted price board in the office window reading 'TUNE-UPS $19.95'
+- two service bay roll-up doors, one raised with a car up on the lift inside
+- painted sign band across the parapet reading 'TUNE-UPS — BRAKES — MUFFLERS'
+- window signs: 'FREE ESTIMATES', 'OIL CHANGE $4.95'
+- a chalkboard tally of the day's jobs propped in the office window
+- a wall-mounted air hose reel beside the bay door
 Typography: bold sans-serif, slab serif, occasional script.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 16 people TOTAL: 6 near sidewalk (largest, foreground), 6 opposite sidewalk mid-block, 4 distant, far end of block. Grouped in pairs, threes, and singles.
-- a shopkeeper in an apron sweeping the sidewalk
-- a man in a polyester suit checking his watch at the bus stop
-- a man in a work uniform on a lunch break
-Clothing: men in polyester suits, plaid patterns; women in wide leg pants, peasant blouses. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 8 people TOTAL: 3 near sidewalk (largest, foreground), 3 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
+- a man in a work uniform checking a clipboard invoice with the owner
+- a young apprentice sweeping metal shavings out of a bay
+- an elderly couple walking arm in arm
+Clothing: men in bell bottoms, polyester suits; women in midi skirts, peasant blouses. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
+EXACTLY 5 period vehicles, all different:
 - 1973-1980 Chevrolet C10 — square body, chrome bumper
 - 1971-1976 Jeep Wagoneer — boxy full-size SUV, woodgrain trim optional
 - 1970-1978 AMC Gremlin — short stubby hatchback rear
 - 1974-1978 Cadillac DeVille — full-size luxury, formal roofline, chrome heavy
+- 1975-1978 Datsun 280Z — sleek fastback sports coupe
 Parked with gaps; no vehicle newer than 1975.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
+PLACEMENT: two parked on the LEFT side; the rest parked on the RIGHT side with gaps. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, no rumble strips

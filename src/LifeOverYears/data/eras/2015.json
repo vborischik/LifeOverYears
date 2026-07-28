@@ -312,6 +312,56 @@
         "an air-and-vacuum island at the lot edge"
       ]
     },
+    "auto_repair": {
+      "narrative": "An independent auto repair shop in 2015 — a state inspection sticker machine on the counter, a tire-pressure sensor reset tool in the bay, and fewer cars in the lot than there used to be as quick-lube chains pull business away.",
+      "storefronts": [
+        "printed vinyl sign band reading 'AUTO REPAIR — STATE INSPECTION'",
+        "office with plate glass window, a state inspection sticker machine visible on the counter",
+        "two roll-up bay doors, only one in use with a car up on the lift",
+        "a tire-pressure sensor reset tool on a cart inside the open bay",
+        "a faded printed banner reading '$19.95 STATE INSPECTION' from a past promotion still hanging on the fascia",
+        "a parts counter with a tablet propped beside the register"
+      ],
+      "window_signs": [
+        "STATE INSPECTION $19.95",
+        "TIRE ROTATION $24.95",
+        "BRAKES FROM $99.95",
+        "TPMS SERVICE AVAILABLE",
+        "OIL CHANGE $29.95"
+      ],
+      "people": { "min": 2, "max": 4 },
+      "people_activities": [
+        "a mechanic resetting a tire-pressure sensor with a handheld tool",
+        "the owner stamping a state inspection sticker at the counter",
+        "a customer checking a tablet screen the mechanic is holding",
+        "a mechanic alone in the second bay, the other sitting empty",
+        "a woman waiting near the door checking her phone",
+        "a driver reading a quick-lube coupon before walking in anyway",
+        "a mechanic torquing lug nuts after a tire rotation",
+        "an older regular chatting with the owner about slow business",
+        "a mechanic sliding out from under a car on a creeper",
+        "a delivery driver dropping off a small parts box",
+        "a teenager picking up a car for a parent",
+        "a mechanic wiping his hands before checking a text message",
+        "a customer pointing at a dashboard warning light",
+        "a man waiting in a folding chair just inside the office door",
+        "a mechanic checking a laptop plugged into a dashboard port",
+        "an apprentice restocking a nearly bare parts shelf",
+        "a mechanic carrying a tire across the mostly empty apron",
+        "a woman dropping off her car before walking to catch a bus",
+        "the owner locking one bay door early for the day",
+        "a mechanic checking the time, waiting on the next car to arrive"
+      ],
+      "vehicles": { "min": 3, "max": 5 },
+      "extras": [
+        "a state inspection sticker machine on the counter",
+        "a tire-pressure sensor reset tool on a rolling cart",
+        "a faded printed banner from an old promotion",
+        "an empty second bay with the door down",
+        "a tablet propped beside the register",
+        "a quick-lube chain coupon taped inside the office door, half torn"
+      ]
+    },
     "strip_mall": {
       "narrative": "A 2015 strip mall in the retail apocalypse — vacant units between a vape shop, a dollar store, and a low-cost gym.",
       "storefronts": [
