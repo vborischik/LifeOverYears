@@ -9,7 +9,7 @@ PRESERVE (must match source exactly)
 - camera: eye-level, street-facing, fov 78
 - commercial arterial road, 4-lane, asphalt
 - sidewalks present, curbs present
-- driveways: north entrance apron, south entrance apron; parking: large front asphalt lot with painted stalls
+- driveways: north entrance apron, south entrance apron
 - single-story retail row under a continuous overhang building at along the back of the lot, 1 story, brick veneer, EIFS stucco panels, flat with continuous overhang roof, 60 feet from road setback
 - detached end-cap retail unit building at north end of the lot, 1 story, brick veneer, metal fascia panels, flat parapet roof, 40 feet from road setback
 - utilities: overhead power lines on wooden poles, transformer on rear property line pole

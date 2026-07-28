@@ -288,7 +288,7 @@ public static class PromptSmokeTest
                     Setback:   "40 feet from road")
             ],
             Driveways: ["north entrance apron", "south entrance apron"],
-            Parking:   "large front asphalt lot with painted stalls"),
+            Parking:   ""),
         Environment: new Environment(
             Terrain:   "suburban flat",
             Utilities: ["overhead power lines on wooden poles", "transformer on rear property line pole"],
