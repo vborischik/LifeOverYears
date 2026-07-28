@@ -105,6 +105,14 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
         logger.LogError(ex, "Pipeline failed");
         return 1;
     }
+    finally
+    {
+        // A run that dies before RunService ever creates the run folder (bad
+        // photo path, vision failure, config error) would otherwise lose its
+        // whole buffered log — this is the fallback destination for exactly
+        // that case. No-op once a real run.log exists.
+        RunLogProvider.FlushIfUnattached();
+    }
 }
 
 static async Task<int> RunAssembleAsync(string[] args, string launchDir)

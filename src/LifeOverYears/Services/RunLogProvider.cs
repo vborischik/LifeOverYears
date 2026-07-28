@@ -18,6 +18,7 @@ public sealed class RunLogProvider : ILoggerProvider
     private readonly object _lock = new();
     private readonly List<string> _buffer = new();
     private string? _path;
+    private bool _fallbackFlushed;
 
     private RunLogProvider() { }
 
@@ -32,6 +33,27 @@ public sealed class RunLogProvider : ILoggerProvider
             File.WriteAllLines(path, Instance._buffer);
             Instance._buffer.Clear();
             Instance._path = path;
+        }
+    }
+
+    // Fallback for a run that dies before Attach ever fires (bad photo path,
+    // vision failure, config error) — otherwise the whole buffered log would
+    // simply vanish with the process. No-op if Attach already ran (run.log
+    // already has it) or if this has already written a fallback file once.
+    public static void FlushIfUnattached()
+    {
+        lock (Instance._lock)
+        {
+            if (Instance._path is not null) return;
+            if (Instance._fallbackFlushed) return;
+            Instance._fallbackFlushed = true;
+
+            if (Instance._buffer.Count == 0) return; // nothing to write, no file created
+
+            var dir = Path.Combine("output", "errors");
+            Directory.CreateDirectory(dir);
+            var path = Path.Combine(dir, $"{DateTime.Now:yyyyMMdd-HHmmss}.log");
+            File.WriteAllLines(path, Instance._buffer);
         }
     }
 
