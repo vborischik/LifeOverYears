@@ -1,0 +1,70 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- camera: eye-level, street-facing, fov 76
+- residential road, 2-lane, asphalt
+- sidewalks present, curbs present
+- driveways: corner entrance apron; parking: concrete apron in front of the bays
+- small office with plate glass building at corner of the lot, 1 story, brick veneer, plate glass, flat parapet roof, 20 feet from road setback
+- service bay row under one continuous roof building at rear of the lot, 1 story, concrete block, corrugated metal, flat roof, 40 feet from road setback
+- utilities: overhead power lines, utility pole at the corner
+- landscape: narrow grass strip along the road, gravel edge along the apron
+- immutable elements: painted sign band across the parapet, corner lot at the intersection, concrete apron in front of the service bays
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
+
+TRANSFORM TO 1995
+Clinton era prosperity. An ordinary 1995 American commercial street — backlit box signs, rounded cars, the video store era at full strength.
+
+PERIOD DETAILS
+- MARY'S DINER with 'HOT COFFEE 75¢' in the window
+- barber shop with its spinning barber pole
+- pizza and sub shop with combo deal posters
+- window signs: 'HAIRCUT $8', 'VHS 3-DAY RENTAL $1.99'
+- a bench with a local realtor ad
+- coin-operated newspaper boxes
+Typography: clean geometric sans-serif, early digital influence.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+
+PEOPLE
+EXACTLY 9 people TOTAL: 4 near sidewalk (largest, foreground), 3 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
+- a mother pushing a stroller
+- a man walking a dog
+- a dad carrying a kid on his shoulders
+Clothing: men in baggy jeans, backwards caps; women in chokers, floral dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+
+VEHICLES
+EXACTLY 4 period vehicles, all different:
+- 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding — teal
+- 1990-1997 Mazda Miata — tiny rounded roadster, pop-up lights — silver
+- 1993-2002 Pontiac Firebird — sleek pointed sports coupe — hunter green
+- 1988-1998 Chevrolet C/K 1500 — softly squared pickup — navy blue
+Parked with gaps; no vehicle newer than 1995.
+Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
+PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, turn lane arrows
+- utilities: overhead power lines standard, cable TV and early phone data lines on poles
+
+TREES
+- maple tree at street corner: clearly smaller than in the source — about 45% of its canopy there, thinner trunk
+- elm tree at side yard: a young tree, only about 25% of its canopy in the source photo, thin trunk
+Tree sizes MUST follow this specification even where they differ from the source photo.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — Kodak Gold 200 or Fujifilm Superia 200 look.
+Color: neutral to slightly warm tones. Grain: fine grain, cleaner than 1985.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

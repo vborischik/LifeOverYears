@@ -1,0 +1,60 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- camera: eye-level, street-facing, fov 76
+- residential road, 2-lane, asphalt
+- sidewalks present, curbs present
+- driveways: corner entrance apron; parking: concrete apron in front of the bays
+- small office with plate glass building at corner of the lot, 1 story, brick veneer, plate glass, flat parapet roof, 20 feet from road setback
+- service bay row under one continuous roof building at rear of the lot, 1 story, concrete block, corrugated metal, flat roof, 40 feet from road setback
+- utilities: overhead power lines, utility pole at the corner
+- landscape: narrow grass strip along the road, gravel edge along the apron
+- immutable elements: painted sign band across the parapet, corner lot at the intersection, concrete apron in front of the service bays
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
+
+TRANSFORM TO 2025
+Post-pandemic era. An ordinary 2025 American commercial street — flat minimalist logos, QR codes and delivery drivers.
+
+PERIOD DETAILS
+- every storefront closed and dark — no lit signs, no menu boards, no open businesses
+- faded remains of old signage still on the facade, lettering weathered and partly missing
+- plywood over the ground-floor windows, doors chained shut
+No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.
+
+PEOPLE
+NO people anywhere — the place is completely deserted.
+
+VEHICLES
+NO vehicles anywhere — empty lot, no parked or moving cars.
+
+ENVIRONMENT
+- road markings: worn and faded, well past their last repainting
+- utilities: overhead lines on existing poles in older commercial areas, fiber optic widespread
+
+DECAY
+- weeds and grass pushing through cracks in the concrete apron
+- roofing material torn loose along the parapet, debris at the roof edge
+- every bay door rolled down, dented and streaked with rust
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
+TREES
+- maple tree at street corner: same size as in the source photo
+- elm tree at side yard: same size as in the source photo
+Tree sizes MUST follow this specification even where they differ from the source photo.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — digital — smartphone or mirrorless camera look.
+Color: high saturation. Grain: very clean, minimal to no noise.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

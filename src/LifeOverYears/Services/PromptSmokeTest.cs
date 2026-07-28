@@ -60,6 +60,7 @@ public static class PromptSmokeTest
         var gasScene       = MakeGasStationScene();
         var downtownScene  = MakeDowntownScene();
         var stripMallScene = MakeStripMallScene();
+        var autoRepairScene = MakeAutoRepairScene();
         var unknownScene   = MakeUnknownScene();
 
         // Load all era profiles
@@ -73,7 +74,9 @@ public static class PromptSmokeTest
         var dtRun1  = await BuildRun(promptService, downtownScene,  eras, 42,   Years);
         var dtRun2  = await BuildRun(promptService, downtownScene,  eras, 1337, Years);
         var smRun1  = await BuildRun(promptService, stripMallScene, eras, 42,   Years);
+        var arRun1  = await BuildRun(promptService, autoRepairScene, eras, 42,   Years);
         var smRun2  = await BuildRun(promptService, stripMallScene, eras, 1337, Years);
+        var arRun2  = await BuildRun(promptService, autoRepairScene, eras, 1337, Years);
 
         // c) Unknown scene — 1985 only, must not throw
         var unknownCtx    = new GenerationContext { Random = new Random(42), TotalEras = 1 };
@@ -87,40 +90,42 @@ public static class PromptSmokeTest
         await SaveRun(downtownScene.SceneType,  1, dtRun1);
         await SaveRun(downtownScene.SceneType,  2, dtRun2);
         await SaveRun(stripMallScene.SceneType, 1, smRun1);
+        await SaveRun(autoRepairScene.SceneType, 1, arRun1);
         await SaveRun(stripMallScene.SceneType, 2, smRun2);
+        await SaveRun(autoRepairScene.SceneType, 2, arRun2);
         await SaveRun(unknownScene.SceneType,   1, new Dictionary<int, Prompt> { { 1985, unknownPrompt } });
 
         // d) Checks C1–C25
         var findings = new List<(string Id, string Desc, bool Pass, string Detail)>();
 
         DoC1 (eras,                                                            findings);
-        DoC2 (gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, unknownPrompt,  findings);
-        DoC3 (gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2,                 findings);
-        DoC4 (gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, eras,          findings);
-        DoC5 (gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2,                findings);
+        DoC2 (gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt,  findings);
+        DoC3 (gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2,                 findings);
+        DoC4 (gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, eras,          findings);
+        DoC5 (gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2,                findings);
         DoC6 (gasRun1, gasRun2, gasScene,                                      findings);
         DoC7 (gasRun1, gasRun2, dtRun1, dtRun2,                                findings);
         DoC8 (gasRun1, gasRun2, dtRun1, dtRun2, eras,                          findings);
-        DoC9 (gasRun1, gasScene, dtRun1, downtownScene, smRun1, stripMallScene, findings);
-        DoC10(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2,                findings);
-        DoC11(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, unknownPrompt, findings);
-        DoC12(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, eras,          findings);
-        DoC13(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, eras,          findings);
+        DoC9 (gasRun1, gasScene, dtRun1, downtownScene, smRun1, stripMallScene, arRun1, autoRepairScene, findings);
+        DoC10(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2,                findings);
+        DoC11(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
+        DoC12(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, eras,          findings);
+        DoC13(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, eras,          findings);
         DoC14(gasRun1, gasRun2,                                               findings);
-        DoC15(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, unknownPrompt, findings);
-        DoC16(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, unknownPrompt, findings);
+        DoC15(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
+        DoC16(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
         DoC17(eras,                                                           findings);
-        DoC18(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, unknownPrompt, findings);
-        DoC19(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2,                findings);
-        DoC20(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, eras,          findings);
-        DoC21(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, eras,          findings);
-        DoC22(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, unknownPrompt, logger, findings);
-        DoC23(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, unknownPrompt, findings);
-        DoC24(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2,                findings);
-        DoC25(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, eras,          findings);
+        DoC18(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
+        DoC19(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2,                findings);
+        DoC20(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, eras,          findings);
+        DoC21(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, eras,          findings);
+        DoC22(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, logger, findings);
+        DoC23(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
+        DoC24(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2,                findings);
+        DoC25(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, eras,          findings);
         await DoC26(dataService, eras,                                       findings);
-        await DoC27(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, findings);
-        DoC28(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, eras,          findings);
+        await DoC27(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, findings);
+        DoC28(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, eras,          findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -307,6 +312,57 @@ public static class PromptSmokeTest
             "parking lot islands"
         ]);
 
+    private static SceneDna MakeAutoRepairScene() => new(
+        Id:        "smoke-auto-repair",
+        CreatedAt: "2025-01-01T00:00:00Z",
+        SceneType: "auto_repair",
+        Camera: new Camera(Height: "eye-level", Direction: "street-facing", Fov: 76),
+        Geometry: new Geometry(
+            Roads:
+            [
+                new Road(
+                    Type:     "residential",
+                    Lanes:    2,
+                    Markings: ["center line", "crosswalk"],
+                    Surface:  "asphalt")
+            ],
+            Sidewalks: true,
+            Curbs:     true,
+            Buildings:
+            [
+                new Building(
+                    Type:      "small office with plate glass",
+                    Position:  "corner of the lot",
+                    Stories:   1,
+                    Materials: ["brick veneer", "plate glass"],
+                    Roof:      "flat parapet",
+                    Setback:   "20 feet from road"),
+                new Building(
+                    Type:      "service bay row under one continuous roof",
+                    Position:  "rear of the lot",
+                    Stories:   1,
+                    Materials: ["concrete block", "corrugated metal"],
+                    Roof:      "flat",
+                    Setback:   "40 feet from road")
+            ],
+            Driveways: ["corner entrance apron"],
+            Parking:   "concrete apron in front of the bays"),
+        Environment: new Environment(
+            Terrain:   "suburban flat",
+            Utilities: ["overhead power lines", "utility pole at the corner"],
+            Trees:
+            [
+                new Tree(Position: "street corner", Size: "medium", Type: "maple"),
+                new Tree(Position: "side yard",      Size: "small",  Type: "elm")
+            ],
+            Landscape: ["narrow grass strip along the road", "gravel edge along the apron"]),
+        ImmutableElements:
+        [
+            "painted sign band across the parapet",
+            "corner lot at the intersection",
+            "concrete apron in front of the service bays"
+        ]);
+
     private static SceneDna MakeUnknownScene() => new(
         Id:        "smoke-unknown",
         CreatedAt: "2025-01-01T00:00:00Z",
@@ -408,6 +464,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Prompt unknownPrompt,
         List<(string, string, bool, string)> f)
     {
@@ -415,6 +472,7 @@ public static class PromptSmokeTest
         var all  = gasRun1.Values.Concat(gasRun2.Values)
                           .Concat(dtRun1.Values).Concat(dtRun2.Values)
                           .Concat(smRun1.Values).Concat(smRun2.Values)
+                          .Concat(arRun1.Values).Concat(arRun2.Values)
                           .Append(unknownPrompt);
 
         foreach (var p in all)
@@ -429,6 +487,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         List<(string, string, bool, string)> f)
     {
         var errs = new List<string>();
@@ -447,7 +506,9 @@ public static class PromptSmokeTest
         Check(dtRun1,  "downtown_street/run1");
         Check(dtRun2,  "downtown_street/run2");
         Check(smRun1,  "strip_mall/run1");
+        Check(arRun1,  "auto_repair/run1");
         Check(smRun2,  "strip_mall/run2");
+        Check(arRun2,  "auto_repair/run2");
 
         f.Add(("C3", "No vehicle model reuse within each run (dedup invariant)",
             errs.Count == 0, errs.Count == 0 ? "No duplicates in any run" : "Duplicates: " + Join(errs)));
@@ -457,6 +518,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Dictionary<int, EraProfile> eras,
         List<(string, string, bool, string)> f)
     {
@@ -477,7 +539,7 @@ public static class PromptSmokeTest
                 // abandoned forces 0 vehicles, declining/squatted clamp to a small
                 // range. default/unknown never sample a condition, so 0 is never
                 // legal for them — a bare 0 there would be a condition leak.
-                var supportsCondition = sceneType is "gas_station" or "downtown_street" or "strip_mall";
+                var supportsCondition = sceneType is "gas_station" or "downtown_street" or "strip_mall" or "auto_repair";
                 var clamped = supportsCondition &&
                               prompt.SceneCondition is "abandoned" or "declining" or "squatted";
                 if (!supportsCondition && actual == 0)
@@ -496,7 +558,9 @@ public static class PromptSmokeTest
         Check(dtRun1,  "downtown_street", "downtown_street/run1");
         Check(dtRun2,  "downtown_street", "downtown_street/run2");
         Check(smRun1,  "strip_mall",      "strip_mall/run1");
+        Check(arRun1,  "auto_repair",     "auto_repair/run1");
         Check(smRun2,  "strip_mall",      "strip_mall/run2");
+        Check(arRun2,  "auto_repair",     "auto_repair/run2");
 
         f.Add(("C4", "Vehicle count in range and VEHICLES section lines match SelectedVehicles.Count",
             errs.Count == 0, errs.Count == 0 ? "All vehicle counts correct" : Join(errs)));
@@ -506,6 +570,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         List<(string, string, bool, string)> f)
     {
         var errs = new List<string>();
@@ -536,6 +601,7 @@ public static class PromptSmokeTest
         Check(gasRun1, gasRun2, "gas_station");
         Check(dtRun1,  dtRun2,  "downtown_street");
         Check(smRun1,  smRun2,  "strip_mall");
+        Check(arRun1,  arRun2,  "auto_repair");
 
         f.Add(("C5", "Run1 vs Run2: ≥3 years differ in vehicles; no year has identical full text",
             errs.Count == 0, errs.Count == 0 ? "Sufficient variance between seeds" : Join(errs)));
@@ -682,6 +748,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, SceneDna gasScene,
         Dictionary<int, Prompt> dtRun1,  SceneDna dtScene,
         Dictionary<int, Prompt> smRun1,  SceneDna smScene,
+        Dictionary<int, Prompt> arRun1,  SceneDna arScene,
         List<(string, string, bool, string)> f)
     {
         var errs = new List<string>();
@@ -702,6 +769,7 @@ public static class PromptSmokeTest
         Check(gasRun1, gasScene, "gas_station/run1");
         Check(dtRun1,  dtScene,  "downtown_street/run1");
         Check(smRun1,  smScene,  "strip_mall/run1");
+        Check(arRun1,  arScene,  "auto_repair/run1");
 
         f.Add(("C9", "PRESERVE block contains all building types and immutable elements verbatim",
             errs.Count == 0, errs.Count == 0 ? "All building types and immutable elements present" : Join(errs)));
@@ -711,6 +779,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         List<(string, string, bool, string)> f)
     {
         var errs = new List<string>();
@@ -736,7 +805,9 @@ public static class PromptSmokeTest
         Check(dtRun1,  "downtown_street/run1");
         Check(dtRun2,  "downtown_street/run2");
         Check(smRun1,  "strip_mall/run1");
+        Check(arRun1,  "auto_repair/run1");
         Check(smRun2,  "strip_mall/run2");
+        Check(arRun2,  "auto_repair/run2");
 
         f.Add(("C10", "No TEXT OVERLAY section remains; year still anchors the VEHICLES block",
             errs.Count == 0, errs.Count == 0 ? "Overlay removed and vehicle year anchors correct" : Join(errs)));
@@ -746,6 +817,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Prompt unknownPrompt,
         List<(string, string, bool, string)> f)
     {
@@ -754,7 +826,7 @@ public static class PromptSmokeTest
         {
             (gasRun1, "gas/run1"), (gasRun2, "gas/run2"),
             (dtRun1, "downtown/run1"), (dtRun2, "downtown/run2"),
-            (smRun1, "strip/run1"), (smRun2, "strip/run2")
+            (smRun1, "strip/run1"), (smRun2, "strip/run2"), (arRun1, "auto/run1"), (arRun2, "auto/run2")
         };
 
         // Words = whitespace tokens containing at least one letter or digit;
@@ -782,6 +854,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Dictionary<int, EraProfile> eras,
         List<(string, string, bool, string)> f)
     {
@@ -790,7 +863,7 @@ public static class PromptSmokeTest
         {
             (gasRun1, "gas/run1"), (gasRun2, "gas/run2"),
             (dtRun1, "downtown/run1"), (dtRun2, "downtown/run2"),
-            (smRun1, "strip/run1"), (smRun2, "strip/run2")
+            (smRun1, "strip/run1"), (smRun2, "strip/run2"), (arRun1, "auto/run1"), (arRun2, "auto/run2")
         };
 
         foreach (var (year, era) in eras.Where(e => e.Value.Photography.ColorMode == "black_and_white"))
@@ -818,6 +891,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Dictionary<int, EraProfile> eras,
         List<(string, string, bool, string)> f)
     {
@@ -826,7 +900,7 @@ public static class PromptSmokeTest
         {
             (gasRun1, "gas/run1"), (gasRun2, "gas/run2"),
             (dtRun1, "downtown/run1"), (dtRun2, "downtown/run2"),
-            (smRun1, "strip/run1"), (smRun2, "strip/run2")
+            (smRun1, "strip/run1"), (smRun2, "strip/run2"), (arRun1, "auto/run1"), (arRun2, "auto/run2")
         };
 
         foreach (var (run, label) in runs)
@@ -881,13 +955,14 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Prompt? unknownPrompt = null)
     {
         foreach (var (run, label) in new[]
         {
             (gasRun1, "gas/run1"), (gasRun2, "gas/run2"),
             (dtRun1, "downtown/run1"), (dtRun2, "downtown/run2"),
-            (smRun1, "strip/run1"), (smRun2, "strip/run2")
+            (smRun1, "strip/run1"), (smRun2, "strip/run2"), (arRun1, "auto/run1"), (arRun2, "auto/run2")
         })
             foreach (var (year, prompt) in run)
                 yield return (year, prompt, label);
@@ -900,6 +975,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Prompt unknownPrompt,
         List<(string, string, bool, string)> f)
     {
@@ -907,7 +983,7 @@ public static class PromptSmokeTest
         const string populate = "populate it with the people and vehicles specified below";
         const string sidewalk = "never standing, sitting, or walking in the road or driving lanes";
 
-        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, unknownPrompt))
+        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt))
         {
             if (!prompt.Text.Contains(populate))
                 errs.Add($"{label}/{year}: missing populate-empty-base header");
@@ -926,13 +1002,14 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Prompt unknownPrompt,
         List<(string, string, bool, string)> f)
     {
         var errs = new List<string>();
         const string overrideLine = "Tree sizes MUST follow this specification";
 
-        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, unknownPrompt))
+        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt))
         {
             if (!prompt.Text.Contains("TREES")) continue;
             if (!prompt.Text.Contains(overrideLine))
@@ -994,6 +1071,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Dictionary<int, EraProfile> eras,
         List<(string, string, bool, string)> f)
     {
@@ -1003,7 +1081,7 @@ public static class PromptSmokeTest
         {
             (gasRun1, "gas_station", "gas/run1"), (gasRun2, "gas_station", "gas/run2"),
             (dtRun1, "downtown_street", "downtown/run1"), (dtRun2, "downtown_street", "downtown/run2"),
-            (smRun1, "strip_mall", "strip/run1"), (smRun2, "strip_mall", "strip/run2")
+            (smRun1, "strip_mall", "strip/run1"), (smRun2, "strip_mall", "strip/run2"), (arRun1, "auto_repair", "auto/run1"), (arRun2, "auto_repair", "auto/run2")
         };
 
         foreach (var (run, sceneType, label) in runs)
@@ -1036,6 +1114,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Prompt unknownPrompt,
         List<(string, string, bool, string)> f)
     {
@@ -1043,7 +1122,7 @@ public static class PromptSmokeTest
 
         // Presence in every prompt with vehicles (an abandoned era has no vehicles
         // and no PLACEMENT line by design).
-        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, unknownPrompt))
+        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt))
             if (prompt.SelectedVehicles.Count > 0 && PlacementLine(prompt) is null)
                 errs.Add($"{label}/{year}: no PLACEMENT line");
 
@@ -1079,7 +1158,9 @@ public static class PromptSmokeTest
         CheckRun(dtRun1,  "downtown/run1");
         CheckRun(dtRun2,  "downtown/run2");
         CheckRun(smRun1,  "strip/run1");
+        CheckRun(arRun1,  "auto/run1");
         CheckRun(smRun2,  "strip/run2");
+        CheckRun(arRun2,  "auto/run2");
 
         f.Add(("C18", "Every prompt has a PLACEMENT line; no repeated pattern per run unless the pool is exhausted",
             errs.Count == 0, errs.Count == 0 ? "Placement present and de-duplicated per pool" : Join(errs)));
@@ -1093,6 +1174,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         List<(string, string, bool, string)> f)
     {
         var errs = new List<string>();
@@ -1101,7 +1183,7 @@ public static class PromptSmokeTest
             @"\b(aging|corporate)\b(?:\s+\S+){0,2}\s+(diner|bank|store|shop|market|pharmacy|cafe|salon|grocery|hardware|bakery|deli)\b",
             System.Text.RegularExpressions.RegexOptions.IgnoreCase);
 
-        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2))
+        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2))
         {
             var text = prompt.Text;
             if (text.Contains("the same local diner", StringComparison.OrdinalIgnoreCase) ||
@@ -1130,7 +1212,9 @@ public static class PromptSmokeTest
         CheckName(dtRun1,  "downtown/run1");
         CheckName(dtRun2,  "downtown/run2");
         CheckName(smRun1,  "strip/run1");
+        CheckName(arRun1,  "auto/run1");
         CheckName(smRun2,  "strip/run2");
+        CheckName(arRun2,  "auto/run2");
 
         f.Add(("C19", "No descriptive-as-signage leaks; {DINER_NAME} resolved and identical across a run",
             errs.Count == 0, errs.Count == 0 ? "Business names clean and diner name stable" : Join(errs)));
@@ -1141,6 +1225,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Dictionary<int, EraProfile> eras,
         List<(string, string, bool, string)> f)
     {
@@ -1167,6 +1252,7 @@ public static class PromptSmokeTest
         Check(gasRun1, gasRun2, "gas_station",     "gas_station");
         Check(dtRun1,  dtRun2,  "downtown_street", "downtown_street");
         Check(smRun1,  smRun2,  "strip_mall",      "strip_mall");
+        Check(arRun1,  arRun2,  "auto_repair",      "auto_repair");
 
         f.Add(("C21", "Run1 vs Run2: >=3 of 6 years differ in sampled extras or window signs",
             errs.Count == 0, errs.Count == 0 ? "Sufficient sampling variance between seeds" : Join(errs)));
@@ -1178,6 +1264,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Prompt unknownPrompt,
         ILogger logger,
         List<(string, string, bool, string)> f)
@@ -1185,7 +1272,7 @@ public static class PromptSmokeTest
         var errs    = new List<string>();
         var lengths = new List<string>();
 
-        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, unknownPrompt))
+        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt))
         {
             int len = prompt.Text.Length;
             lengths.Add($"{label} {year}={len}");
@@ -1222,6 +1309,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Prompt unknownPrompt,
         List<(string, string, bool, string)> f)
     {
@@ -1261,7 +1349,9 @@ public static class PromptSmokeTest
         CheckCounts(dtRun1,  "downtown/run1");
         CheckCounts(dtRun2,  "downtown/run2");
         CheckCounts(smRun1,  "strip/run1");
+        CheckCounts(arRun1,  "auto/run1");
         CheckCounts(smRun2,  "strip/run2");
+        CheckCounts(arRun2,  "auto/run2");
 
         void CheckMonotonic(Dictionary<int, Prompt> run, string label, bool isGasStation)
         {
@@ -1282,12 +1372,14 @@ public static class PromptSmokeTest
         CheckMonotonic(dtRun1,  "downtown/run1", isGasStation: false);
         CheckMonotonic(dtRun2,  "downtown/run2", isGasStation: false);
         CheckMonotonic(smRun1,  "strip/run1", isGasStation: false);
+        CheckMonotonic(arRun1,  "auto/run1", isGasStation: false);
         CheckMonotonic(smRun2,  "strip/run2", isGasStation: false);
+        CheckMonotonic(arRun2,  "auto/run2", isGasStation: false);
 
         foreach (var (run, label) in new[]
         {
             (dtRun1, "downtown/run1"), (dtRun2, "downtown/run2"),
-            (smRun1, "strip/run1"),    (smRun2, "strip/run2")
+            (smRun1, "strip/run1"),    (smRun2, "strip/run2"), (arRun1, "auto/run1"), (arRun2, "auto/run2")
         })
             foreach (var (year, prompt) in run)
                 if (prompt.SceneCondition == "squatted")
@@ -1325,6 +1417,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         List<(string, string, bool, string)> f)
     {
         var errs = new List<string>();
@@ -1362,7 +1455,9 @@ public static class PromptSmokeTest
         CheckRun(dtRun1,  "downtown/run1");
         CheckRun(dtRun2,  "downtown/run2");
         CheckRun(smRun1,  "strip/run1");
+        CheckRun(arRun1,  "auto/run1");
         CheckRun(smRun2,  "strip/run2");
+        CheckRun(arRun2,  "auto/run2");
 
         f.Add(("C24", "Every business-name token resolves to a member of its own pool and stays identical across all six eras of a run",
             errs.Count == 0, errs.Count == 0 ? "All 8 business tokens resolve correctly and remain stable per run" : Join(errs)));
@@ -1378,6 +1473,7 @@ public static class PromptSmokeTest
         _ when label.StartsWith("gas",      StringComparison.Ordinal) => "gas_station",
         _ when label.StartsWith("downtown", StringComparison.Ordinal) => "downtown_street",
         _ when label.StartsWith("strip",    StringComparison.Ordinal) => "strip_mall",
+        _ when label.StartsWith("auto",     StringComparison.Ordinal) => "auto_repair",
         _ => throw new InvalidOperationException(
             $"DoC25: run label '{label}' has no known scene-type mapping — add it to SceneTypeForLabel")
     };
@@ -1386,6 +1482,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Dictionary<int, EraProfile> eras,
         List<(string, string, bool, string)> f)
     {
@@ -1394,7 +1491,7 @@ public static class PromptSmokeTest
         {
             (gasRun1, "gas/run1"), (gasRun2, "gas/run2"),
             (dtRun1, "downtown/run1"), (dtRun2, "downtown/run2"),
-            (smRun1, "strip/run1"), (smRun2, "strip/run2")
+            (smRun1, "strip/run1"), (smRun2, "strip/run2"), (arRun1, "auto/run1"), (arRun2, "auto/run2")
         };
         string[] forbiddenGeometryWords = { "road width", "curb position", "building footprint", "camera" };
 
@@ -1563,6 +1660,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         List<(string, string, bool, string)> f)
     {
         var errs = new List<string>();
@@ -1607,7 +1705,7 @@ public static class PromptSmokeTest
         {
             (gasRun1, "gas/run1"), (gasRun2, "gas/run2"),
             (dtRun1, "downtown/run1"), (dtRun2, "downtown/run2"),
-            (smRun1, "strip/run1"), (smRun2, "strip/run2")
+            (smRun1, "strip/run1"), (smRun2, "strip/run2"), (arRun1, "auto/run1"), (arRun2, "auto/run2")
         };
         foreach (var (run, label) in runs)
             foreach (var (year, prompt) in run)
@@ -1630,6 +1728,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Dictionary<int, EraProfile> eras,
         List<(string, string, bool, string)> f)
     {
@@ -1638,7 +1737,7 @@ public static class PromptSmokeTest
         {
             (gasRun1, "gas_station", "gas/run1"), (gasRun2, "gas_station", "gas/run2"),
             (dtRun1, "downtown_street", "downtown/run1"), (dtRun2, "downtown_street", "downtown/run2"),
-            (smRun1, "strip_mall", "strip/run1"), (smRun2, "strip_mall", "strip/run2")
+            (smRun1, "strip_mall", "strip/run1"), (smRun2, "strip_mall", "strip/run2"), (arRun1, "auto_repair", "auto/run1"), (arRun2, "auto_repair", "auto/run2")
         };
 
         foreach (var (run, sceneType, label) in runs)

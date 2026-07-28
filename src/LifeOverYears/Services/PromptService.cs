@@ -36,10 +36,10 @@ public sealed class PromptService : IPromptService
                 year, sceneType);
 
         var isGasStation = sceneType == "gas_station";
-        // Gas stations, downtown streets and strip malls all carry a condition
-        // arc — decline is the story these runs are for. Only default/unknown
-        // scenes stay thriving and use their base ranges untouched.
-        var supportsCondition = sceneType is "gas_station" or "downtown_street" or "strip_mall";
+        // Gas stations, downtown streets, strip malls and auto repair shops all
+        // carry a condition arc — decline is the story these runs are for. Only
+        // default/unknown scenes stay thriving and use their base ranges untouched.
+        var supportsCondition = sceneType is "gas_station" or "downtown_street" or "strip_mall" or "auto_repair";
 
         var condition = supportsCondition
             ? context.PickSceneCondition(eraProfile.AllowedSceneConditions, sceneType)
@@ -299,6 +299,29 @@ public sealed class PromptService : IPromptService
         "shattered storefront glass swept into the walkway corners"
     };
 
+    // An independent auto repair shop decays through its own working surfaces:
+    // the bay doors, the sign band, the apron — never geometry, and never a
+    // feature (pump island, canopy) that might not exist in a given SceneDna.
+    internal static readonly string[] AutoRepairDecayModerate =
+    {
+        "one service bay door rolled down while the other stays open",
+        "oil stains spreading dark across the concrete apron",
+        "a stack of worn tires leaning against the side wall",
+        "the painted sign band faded, letters flaking at the edges",
+        "a hand-lettered service sign taped inside the office glass",
+        "weeds at the apron edges and along the base of the building"
+    };
+
+    internal static readonly string[] AutoRepairDecayHeavy =
+    {
+        "every bay door rolled down, dented and streaked with rust",
+        "plywood over the office plate glass",
+        "graffiti tagged across the painted sign band",
+        "roofing material torn loose along the parapet, debris at the roof edge",
+        "weeds and grass pushing through cracks in the concrete apron",
+        "a wrecked car with its hood off left sitting at a bay door"
+    };
+
     // Pool selection lives here (not at the call site) so the smoke test can
     // assert against exactly the pool the builder would have used.
     internal static string[]? DecayPoolFor(string sceneType, string condition) => condition switch
@@ -307,12 +330,14 @@ public sealed class PromptService : IPromptService
         {
             "downtown_street" => DowntownDecayModerate,
             "strip_mall"      => StripMallDecayModerate,
+            "auto_repair"     => AutoRepairDecayModerate,
             _                 => DecayModerate
         },
         "abandoned" or "squatted" => sceneType switch
         {
             "downtown_street" => DowntownDecayHeavy,
             "strip_mall"      => StripMallDecayHeavy,
+            "auto_repair"     => AutoRepairDecayHeavy,
             _                 => DecayHeavy
         },
         _ => null

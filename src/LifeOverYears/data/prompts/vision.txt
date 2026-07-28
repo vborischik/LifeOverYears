@@ -3,7 +3,7 @@ You are a street scene analysis AI. Analyze the provided photo and return ONLY a
 Fill every field based on what you observe in the image. Use the exact schema below:
 
 {
-  "scene_type": "<gas_station|strip_mall|downtown_street|residential_street|highway|parking_lot|shopping_center|industrial|unknown>",
+  "scene_type": "<gas_station|auto_repair|strip_mall|downtown_street|residential_street|highway|parking_lot|shopping_center|industrial|unknown>",
   "camera": {
     "height": "<eye-level|low|high|aerial>",
     "direction": "<street|intersection|alley|facade|park>",
@@ -66,3 +66,6 @@ Rules:
 - setback is "deep" when a parking area or apron separates the building from
   the road, "shallow" for a narrow strip or sidewalk plus planting, and
   "at-street" only when the facade meets the sidewalk directly.
+- a building with service bays and roll-up doors is "auto_repair", even when
+  its low flat-roofed shape resembles an old service station; choose
+  "gas_station" only when pump islands or a fuel canopy are actually visible.

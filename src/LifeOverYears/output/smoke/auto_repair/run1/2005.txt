@@ -1,0 +1,72 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- camera: eye-level, street-facing, fov 76
+- residential road, 2-lane, asphalt
+- sidewalks present, curbs present
+- driveways: corner entrance apron; parking: concrete apron in front of the bays
+- small office with plate glass building at corner of the lot, 1 story, brick veneer, plate glass, flat parapet roof, 20 feet from road setback
+- service bay row under one continuous roof building at rear of the lot, 1 story, concrete block, corrugated metal, flat roof, 40 feet from road setback
+- utilities: overhead power lines, utility pole at the corner
+- landscape: narrow grass strip along the road, gravel edge along the apron
+- immutable elements: painted sign band across the parapet, corner lot at the intersection, concrete apron in front of the service bays
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
+
+TRANSFORM TO 2005
+Post-9/11 era. An ordinary 2005 American commercial street — channel-letter signs, flip phones, SUVs at the curb.
+
+PERIOD DETAILS
+- MARY'S DINER with a 'COFFEE $1.25' vinyl decal on the glass
+- espresso cafe with a chalkboard menu
+- nail salon with an LED 'OPEN' sign
+- window signs: 'TANNING $29/MONTH', 'LATTE $2.95'
+- a single scuffed payphone
+- a bike rack
+Typography: clean sans-serif, polished brand identities.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+
+PEOPLE
+EXACTLY 10 people TOTAL: 4 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
+- a woman carrying an iced coffee
+- a shopper with big-box store bags
+- a group of college kids with messenger bags
+Clothing: men in graphic tees, cargo shorts; women in layered tank tops, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+
+VEHICLES
+EXACTLY 6 period vehicles, all different:
+- 2001-2007 Dodge Grand Caravan — family minivan, rounded — white
+- 2002-2006 Toyota Camry — smooth conservative mid-size — gold
+- 2004-2010 Toyota Sienna — large rounded minivan — gray
+- 1998-2004 Nissan Frontier — compact pickup — dark red
+- 1999-2006 Chevrolet Silverado — squared modern look — dark blue
+- 2003-2007 Honda Accord — clean lines, sharper than 1990s — black
+Parked with gaps; no vehicle newer than 2005.
+Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
+PLACEMENT: two parked on the LEFT side; the rest parked on the RIGHT side with gaps. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, turn arrows
+- utilities: overhead power lines standard, cable and fiber lines on poles appearing
+
+TREES
+- maple tree at street corner: clearly smaller than in the source — about 60% of its canopy there, thinner trunk
+- elm tree at side yard: clearly smaller than in the source — about 40% of its canopy there, thinner trunk
+Tree sizes MUST follow this specification even where they differ from the source photo.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — early digital camera or Kodak/Fuji consumer film look.
+Color: neutral tones. Grain: low grain, early digital noise in shadows.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.

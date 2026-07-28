@@ -1,0 +1,72 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove all
+modern businesses, logos, brands, storefront names, banners, advertisements, and
+signage visible in the source image.
+
+PRESERVE (must match source exactly)
+- camera: eye-level, street-facing, fov 76
+- residential road, 2-lane, asphalt
+- sidewalks present, curbs present
+- driveways: corner entrance apron; parking: concrete apron in front of the bays
+- small office with plate glass building at corner of the lot, 1 story, brick veneer, plate glass, flat parapet roof, 20 feet from road setback
+- service bay row under one continuous roof building at rear of the lot, 1 story, concrete block, corrugated metal, flat roof, 40 feet from road setback
+- utilities: overhead power lines, utility pole at the corner
+- landscape: narrow grass strip along the road, gravel edge along the apron
+- immutable elements: painted sign band across the parapet, corner lot at the intersection, concrete apron in front of the service bays
+Keep this location instantly recognizable.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
+
+TRANSFORM TO 2015
+Smartphone era fully arrived. An ordinary 2015 American commercial street — LED signs, crossovers at the curb, smartphones out everywhere.
+
+PERIOD DETAILS
+- MARY'S DINER with 'COFFEE $2.25' on a chalkboard menu
+- yoga studio with frosted glass
+- third-wave coffee shop with a minimalist logo
+- window signs: 'SCREEN REPAIR FROM $49', 'BUY ONE GET ONE 50% OFF'
+- chalkboard sandwich-board signs
+- a modern bike-share style rack
+Typography: minimalist flat sans-serif, simplified modern logos.
+Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+
+PEOPLE
+EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- a dog tied up outside the coffee shop
+- a barista serving a sidewalk table
+- two kids on kick scooters
+Clothing: men in slim-fit plaid shirts, beards; women in statement necklaces, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+
+VEHICLES
+EXACTLY 2 period vehicles, all different:
+- 2010-2016 Chevrolet Equinox — mid-size crossover — white
+- 2014-2019 Kia Soul — boxy urban hatchback — silver
+Parked with gaps; no vehicle newer than 2015.
+Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
+PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: worn and faded, well past their last repainting
+- utilities: overhead power lines common on wooden poles, fiber optic lines on poles
+
+DECAY
+- oil stains spreading dark across the concrete apron
+- the painted sign band faded, letters flaking at the edges
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
+TREES
+- maple tree at street corner: clearly smaller than in the source — about 80% of its canopy there, thinner trunk
+- elm tree at side yard: clearly smaller than in the source — about 60% of its canopy there, thinner trunk
+Tree sizes MUST follow this specification even where they differ from the source photo.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — digital — DSLR or smartphone camera look.
+Color: high saturation. Grain: clean, minimal noise.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur all faces and license plates.
