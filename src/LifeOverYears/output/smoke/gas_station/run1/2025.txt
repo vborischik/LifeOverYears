@@ -26,34 +26,35 @@ distort the source geometry.
 TRANSFORM TO 2025
 Post-pandemic era. A 2025 fuel stop — LED canopy, full-color digital price sign, and a convenience store selling fresh food.
 
-CONDITION: new — recently built appearance, pristine surfaces, new signage
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
-- modern canopy with bright white LED lighting
-- free air and vacuum station at the lot edge
+- pay-at-pump screens with video ads
+- drive-through coffee lane attached to the store
 - price sign showing gas around $3.40
-- main sign: "Mobil" branded gas station — Mobil pole sign with price display and Mobil colors on the canopy fascia
-- window signs: 'COLD BREW $3.99', 'MEMBERS SAVE 10¢/GAL'
-- stacked bags of ice and firewood outside
-- digital menu screens glowing in the store windows
+- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
+- window signs: 'MEMBERS SAVE 10¢/GAL', 'HOT PIZZA SLICES $2.99'
+- a kick scooter leaning by the store wall
+- stacked delivery boxes by the store door
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 5 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a delivery van driver walking out with a coffee
-- a customer tapping a phone to pay at the pump
-- a delivery courier with a large insulated backpack
-Clothing: men in bucket hats, oversized fit tees; women in leggings and oversized hoodies, high-waisted wide-leg jeans. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+EXACTLY 7 people TOTAL: 3 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
+- a clerk restocking the grab-and-go cooler behind the glass
+- a teenager tapping a smartwatch to pay at the pump
+- a teenager gliding by on an e-scooter
+Clothing: men in chunky sneakers, bucket hats; women in athleisure, chunky dad sneakers. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 3 period vehicles, all different:
-- 2019-2025 Subaru Outback — rugged wagon crossover — blue
-- 2019-2025 Chevrolet Equinox — rounded compact crossover — gray
-- 2019-2025 Toyota Corolla — sharp-nosed compact — silver
+EXACTLY 4 period vehicles, all different:
+- 2022-2025 Honda Civic — clean mature compact — white
+- 2023-2025 Honda Accord — clean minimalist refresh — black
+- 2019-2025 Chevrolet Equinox — rounded compact crossover — dark green
+- 2017-2025 Honda CR-V — rounded best-selling crossover — silver
 Parked with gaps; no vehicle newer than 2025.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks

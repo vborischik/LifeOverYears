@@ -25,39 +25,28 @@ distort the source geometry.
 TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 strip mall in the retail apocalypse — vacant units between a vape shop, a dollar store, and a low-cost gym.
 
-CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
+CONDITION: abandoned — closed business, boarded windows, weeds through pavement cracks, weathered surfaces
 
 PERIOD DETAILS
-- phone repair store with a 'WE FIX PHONES' sign
-- Mexican taqueria with a hand-painted mural sign
-- former video store unit now a vape shop with an LED 'VAPE' sign
-- window signs: '70% OFF CLEARANCE', 'GYM MEMBERSHIP $10/MO'
-- string lights over an outdoor seating nook
-- cracked, patched parking lot with faded stripes
-Typography: minimalist flat sans-serif, simplified modern logos.
-Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+- every storefront closed and dark — no lit signs, no menu boards, no open businesses
+- faded remains of old signage still on the facade, lettering weathered and partly missing
+- plywood over the ground-floor windows, doors chained shut
+No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.
 
 PEOPLE
-EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a shopper scrolling a phone under the canopy
-- a woman carrying takeout containers to her car
-- a woman in yoga pants carrying a green smoothie
-Clothing: men in boat shoes, skinny jeans; women in high-waisted skinny jeans, statement necklaces. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+NO people anywhere — the place is completely deserted.
 
 VEHICLES
-EXACTLY 1 period vehicles, all different:
-- 2011-2016 Chrysler Town & Country — chrome-trimmed minivan — gray
-Parked with gaps; no vehicle newer than 2015.
-Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
+NO vehicles anywhere — empty lot, no parked or moving cars.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines common on wooden poles, fiber optic lines on poles
 
 DECAY
-- two blank white sign panels where tenants moved out
-- a FOR RENT sign taped inside a dark storefront window
+- grass and saplings pushing up through the parking apron
+- every sign panel blank or removed, empty frames left on the pylon
+- shattered storefront glass swept into the walkway corners
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - crepe myrtle tree at parking lot island near entrance: clearly smaller than in the source — about 60% of its canopy there, thinner trunk

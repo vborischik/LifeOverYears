@@ -12,7 +12,20 @@
     "a man in a work uniform on a lunch break",
     "a woman with a headscarf carrying a paper grocery bag",
     "a shopkeeper in an apron by his doorway",
-    "a girl walking a bicycle with a basket"
+    "a girl walking a bicycle with a basket",
+    "a young man in a leisure suit adjusting his collar",
+    "a grandmother in cat-eye glasses carrying a church bulletin",
+    "a boy selling newspapers on the corner, coins jingling in his pouch",
+    "a factory worker in a denim jacket walking home at shift change",
+    "a teenage girl in platform shoes waiting for a friend",
+    "a police officer in a short-sleeve summer uniform directing traffic",
+    "a young mother with a toddler in a stroller and a diaper bag",
+    "a deliveryman in brown shorts unloading crates from a panel truck",
+    "a veteran in a service cap sitting alone on a bench",
+    "a teenage boy with a transistor radio pressed to his ear",
+    "a woman in a pantsuit carrying a hatbox",
+    "an older man walking a beagle on a leash",
+    "a construction worker in a hard hat eating a sandwich on a low wall"
   ],
 
   "transportation": {
@@ -266,7 +279,11 @@
         "a group of kids clustered outside the five & dime looking at the candy display",
         "a small group waiting to cross at the corner crosswalk",
         "a man in a fedora reading the drug store window display",
-        "a woman pushing a baby carriage along the sidewalk"
+        "a woman pushing a baby carriage along the sidewalk",
+        "a young couple browsing a wedding-ring display in the jewelry shop window",
+        "a boy in a Cub Scout uniform waiting outside the five & dime for his mother",
+        "a saleswoman adjusting a mannequin in the dress shop window",
+        "an off-duty man in coveralls grabbing coffee at the diner counter"
       ],
       "vehicles": { "min": 4, "max": 6 },
       "extras": [
@@ -307,7 +324,19 @@
         "a customer paying the attendant cash through the car window",
         "a mechanic leaning under the open hood of a car by the bay",
         "a kid buying a bottle of soda from the machine",
-        "the station owner standing in the office doorway with a clipboard"
+        "the station owner standing in the office doorway with a clipboard",
+        "a young attendant checking tire pressure with a gauge",
+        "an attendant hanging up the pump nozzle after finishing a fill",
+        "a woman attendant, rare for the era, ringing up a sale at the register",
+        "a trucker climbing down from his rig to stretch while it's fueled",
+        "two boys pressing their faces to the station window looking at a display of oil cans",
+        "an attendant writing up a claim ticket for a state inspection sticker",
+        "a customer flipping through a road map from the free rack",
+        "an attendant topping off a radiator with a coolant can",
+        "a family piling back into their wagon after a rest stop",
+        "an attendant sweeping the apron with a push broom",
+        "a mechanic test-driving a car in a slow loop around the lot",
+        "an elderly man leaning on his cane, waiting by the office door for his ride"
       ],
       "vehicles": { "min": 3, "max": 4 },
       "extras": [
@@ -399,7 +428,19 @@
         "a shopper browsing the record store window",
         "a workman in uniform carrying a toolbox to his truck",
         "a woman carrying a laundry basket under the canopy",
-        "an elderly couple walking slowly along the covered walkway"
+        "an elderly couple walking slowly along the covered walkway",
+        "a teenage boy restocking the hardware store's outdoor display",
+        "a woman comparing fabric bolts through the craft store window",
+        "two girls skipping rope near the ice cream stand",
+        "a repairman fixing a flickering sign letter on a ladder",
+        "a shopper counting change at the laundromat's coin machine",
+        "a young clerk sweeping the sidewalk in front of the pharmacy",
+        "a man in a leisure suit browsing the record store's new release bin",
+        "a boy on a bicycle delivering newspapers to shop doors",
+        "a family posing for a photo in front of the new sign",
+        "a stock boy wheeling a hand truck of canned goods into the grocery",
+        "a woman waiting on a bench outside the beauty salon",
+        "a security guard making rounds through the parking lot at dusk"
       ],
       "vehicles": { "min": 5, "max": 7 },
       "extras": [

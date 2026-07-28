@@ -26,35 +26,34 @@ distort the source geometry.
 TRANSFORM TO 1995
 Clinton era prosperity. A 1995 self-serve station — wide canopy over multiple islands, attached convenience store, the first pay-at-pump card readers.
 
-CONDITION: busy — customers present, high activity, all pumps in use
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
 - automatic car wash bay at the back of the lot
-- air and water station at the lot edge
+- self-service only standard
 - price sign showing gas around $1.15
 - main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
-- window signs: '2 HOT DOGS $2', 'PAY AT PUMP — NEW!'
-- a payphone mounted by the store entrance
-- stacked cases of soda on a pallet outside the store
+- window signs: '32oz FOUNTAIN DRINK 89¢', 'CAR WASH $4 WITH FILL-UP'
+- a hand-written 'PUMP 3 OUT OF ORDER' sign taped to one pump
+- squeegee buckets at the pump islands
 Typography: clean geometric sans-serif, early digital influence.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 7 people TOTAL: 3 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
-- a man walking out of the store with a soda and a bag of chips
-- a parent and kid walking into the store
-- a dad carrying a kid on his shoulders
-Clothing: men in baggy jeans, flannel shirts; women in crop tops, slip dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+EXACTLY 5 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- a family piling out of a minivan for a bathroom break
+- a trucker stretching his legs beside his idling rig
+- a grandmother pushing a wire cart of groceries
+Clothing: men in grunge style, flannel shirts; women in crop tops, floral dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 1992-1997 Ford Taurus — rounded jellybean shape, oval theme — burgundy
-- 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size — teal
-- 1990-1994 Chevrolet Lumina — rounded mid-size sedan — black
-- 1994-1998 Ford Mustang — rounded SN95 pony car — silver
+EXACTLY 3 period vehicles, all different:
+- 1992-1996 Ford F-150 — rounded aero body — navy blue
+- 1988-1998 Chevrolet C/K 1500 — softly squared pickup — white
+- 1993-1998 Jeep Grand Cherokee — early SUV, boxy-rounded — black
 Parked with gaps; no vehicle newer than 1995.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
+PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn lane arrows

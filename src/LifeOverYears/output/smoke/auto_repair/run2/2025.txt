@@ -42,9 +42,9 @@ ENVIRONMENT
 - utilities: overhead lines on existing poles in older commercial areas, fiber optic widespread
 
 DECAY
-- every bay door rolled down, dented and streaked with rust
+- roofing material torn loose along the parapet, debris at the roof edge
+- plywood over the office plate glass
 - graffiti tagged across the painted sign band
-- a wrecked car with its hood off left sitting at a bay door
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - maple tree at street corner: same size as in the source photo

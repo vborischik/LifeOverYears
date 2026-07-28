@@ -11,7 +11,21 @@
     "a woman walking a small dog in a sweater",
     "a man in cargo shorts talking on a flip phone",
     "a teen with white earbuds and an MP3 player",
-    "a couple taking photos with a digital camera"
+    "a couple taking photos with a digital camera",
+    "a teenager adjusting an MP3 player clipped to his belt",
+    "a mom balancing a coffee cup and a diaper bag",
+    "a man in a trucker hat parking an SUV at an angle across two spaces",
+    "a woman comparing ringtones on her flip phone with a friend",
+    "a teenager skateboarding with a messenger bag bouncing on his back",
+    "a dad wrangling twins in a double jogging stroller",
+    "an office worker clipped to a Bluetooth headset mid-conversation",
+    "a college student balancing an iced coffee and a laptop bag",
+    "a delivery driver checking a handheld scanner before knocking",
+    "a woman power-walking with a small dog on a retractable leash",
+    "a teenager comparing camera phones with a friend",
+    "a man loading a case of bottled water into a minivan",
+    "a grandmother clutching a coupon flyer at a bus bench",
+    "a jogger checking a heart-rate monitor watch mid-stride"
   ],
 
   "transportation": {
@@ -252,7 +266,18 @@
         "a shopper digging through the closing video store's sidewalk bargain bins",
         "a barista handing an iced drink to a customer at the cafe door",
         "a mother pushing a jogging stroller",
-        "a man loading a flat-screen TV box into an SUV"
+        "a man loading a flat-screen TV box into an SUV",
+        "a teenager comparing ringtones on a flip phone with a friend",
+        "a woman leaving the bank branch with a folder of papers",
+        "a man walking briskly with a rolling laptop bag",
+        "two girls sharing earbuds from one MP3 player",
+        "a boy on a razor scooter weaving around a bench",
+        "a barista sweeping the sidewalk in front of the cafe",
+        "a mail carrier pushing a cart of parcels along the curb",
+        "a man in a Bluetooth headset arguing about directions",
+        "a woman comparing tanning packages taped in the salon window",
+        "a teenager skateboarding past the closing video store",
+        "a grandmother window-shopping with a small dog on a leash"
       ],
       "vehicles": { "min": 4, "max": 6 },
       "extras": [
@@ -290,7 +315,21 @@
         "a man talking on a flip phone while leaning against his SUV as it fuels",
         "a clerk restocking the window display inside",
         "a customer walking out with a coffee cup",
-        "a teenager filling tires at the coin-operated air machine"
+        "a teenager filling tires at the coin-operated air machine",
+        "a teenager buying an energy drink at the counter",
+        "a man scraping ice off his windshield before fueling",
+        "a clerk swapping out a cigarette price sign behind the register",
+        "a woman on a Bluetooth headset pacing near her SUV as it fuels",
+        "a driver squinting at the small pay-at-pump screen",
+        "a trucker paying cash through the store window at night",
+        "a teenager filling a bike tire at the coin-operated air machine",
+        "a clerk restocking phone cards on a rack by the door",
+        "a man topping off washer fluid from a jug in his trunk",
+        "a woman waiting for her SUV to finish fueling, checking a shopping list",
+        "a delivery driver dropping off a rack of newspapers",
+        "a kid pressing his face to the ice-cream freezer glass",
+        "a driver comparing gas prices on his phone before pulling in",
+        "a clerk sweeping the apron near the trash cans"
       ],
       "vehicles": { "min": 3, "max": 4 },
       "extras": [
@@ -379,7 +418,21 @@
         "a woman texting on a flip phone under the canopy",
         "a customer leaving the sandwich shop with a to-go bag",
         "an employee dragging a clearance rack onto the walkway",
-        "a couple browsing the closing video store's bargain bins"
+        "a couple browsing the closing video store's bargain bins",
+        "a teenager trading a used game at the counter",
+        "a mom comparing coupons outside the dollar store",
+        "a man loading a flat-screen box into a minivan",
+        "a woman leaving the check-cashing store counting bills",
+        "a teenager waiting on a bench for a ride",
+        "a delivery driver wheeling a hand truck to a storefront",
+        "a girl practicing on a skateboard near the cart corral",
+        "a man comparing cell plans through the cellular store window",
+        "a woman balancing a tray from the sandwich shop",
+        "a clerk taping a clearance sign to the glass",
+        "a security guard patrolling the row at dusk",
+        "a teenager filming a friend on a flip-phone camera",
+        "a family piling out of an SUV near the entrance",
+        "an older man reading a paper on a bench outside the tax office"
       ],
       "vehicles": { "min": 5, "max": 7 },
       "extras": [

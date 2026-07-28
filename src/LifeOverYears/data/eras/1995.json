@@ -11,7 +11,21 @@
     "a paperboy with a canvas bag on a bike",
     "teens in baggy jeans and band tees",
     "an office worker with a pager on his belt",
-    "a mom loading groceries into a minivan"
+    "a mom loading groceries into a minivan",
+    "a teenager paging through a comic at a spinner rack",
+    "a man in a Starter jacket waiting at a bus stop",
+    "a woman power-walking with hand weights",
+    "a boy trading Pogs with a friend on a curb",
+    "an office worker eating a sandwich on a bench during lunch",
+    "a grandmother pushing a wire cart of groceries",
+    "a teenager wearing a backwards cap and cargo shorts",
+    "a jogger with a portable CD player clipped to his waistband",
+    "a woman balancing a diaper bag and a cordless phone",
+    "a man in a windbreaker walking two dogs on retractable leashes",
+    "a girl practicing on rollerblades along the curb",
+    "a delivery driver in a brown uniform carrying a stack of packages",
+    "an older man reading a folded newspaper at a bus bench",
+    "a teenager showing a friend a new pair of platform sneakers"
   ],
 
   "transportation": {
@@ -255,7 +269,18 @@
         "a mother pushing a stroller past the diner",
         "a clerk taping a sale poster inside a shop window",
         "two kids on a bench trading collectible cards",
-        "a man walking a dog past the computer shop"
+        "a man walking a dog past the computer shop",
+        "a teenager flipping through CD singles at the music store rack",
+        "a woman comparing prices at the computer shop window",
+        "a man on rollerblades weaving around pedestrians",
+        "a boy showing off a new pager to his friends",
+        "a woman balancing a tray of coffee and bagels from the cafe",
+        "a shop clerk restocking the newspaper rack",
+        "a teenager sitting on the curb reading a comic book",
+        "an older man waiting at the bus bench with a folded paper",
+        "a woman pushing twins in a double stroller",
+        "a delivery man wheeling a hand truck stacked with soda cases",
+        "a teenager showing a friend a Discman through the music store window"
       ],
       "vehicles": { "min": 4, "max": 6 },
       "extras": [
@@ -293,7 +318,21 @@
         "a man walking out of the store with a soda and a bag of chips",
         "a clerk restocking the ice merchandiser",
         "a driver checking tire pressure at the air station",
-        "a parent and kid walking into the store"
+        "a parent and kid walking into the store",
+        "a teenager filling up his first car alone for the first time",
+        "a clerk hanging a new lottery poster in the window",
+        "a woman on a large cell phone while the pump clicks off",
+        "a man buying a lottery ticket at the counter",
+        "a driver checking a paper road map against a highway sign",
+        "a teenager buying a pack of gum and a soda at the register",
+        "a clerk sweeping cigarette butts from around the trash can",
+        "a family piling out of a minivan for a bathroom break",
+        "a man topping off his washer fluid from a jug in his trunk",
+        "a driver waiting behind another car for the same pump",
+        "a woman scraping a bumper sticker off with her thumbnail while she waits",
+        "a trucker stretching his legs beside his idling rig",
+        "a clerk restocking the beef jerky rack by the register",
+        "a kid pressing quarters into the air machine for a bike tire"
       ],
       "vehicles": { "min": 3, "max": 4 },
       "extras": [
@@ -383,7 +422,20 @@
         "a man carrying a stack of rented videotapes to his car",
         "two teens skateboarding along the curb",
         "a woman leaving the nail salon waving her nails dry",
-        "a clerk on a break by the service door"
+        "a clerk on a break by the service door",
+        "a teenager renting a Sega cartridge at the game store counter",
+        "a woman comparing tax software boxes through a window",
+        "a family sharing an order of Chinese takeout on a bench",
+        "a man loading a big-screen TV box into his SUV",
+        "a teenager paging a friend from a payphone bank",
+        "a girl practicing rollerblade stops in the parking lot",
+        "a clerk taping a going-out-of-business sign to the glass",
+        "a mother comparing coupons outside the dollar store",
+        "a boy trading game cartridges with a friend on the curb",
+        "a man carrying a pizza box balanced on one hand",
+        "a woman leaving the tax office with a folder of paperwork",
+        "a teenager waiting for a ride outside the arcade",
+        "a security guard walking the row of stores at closing time"
       ],
       "vehicles": { "min": 5, "max": 7 },
       "extras": [

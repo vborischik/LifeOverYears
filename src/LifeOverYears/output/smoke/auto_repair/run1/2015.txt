@@ -26,36 +26,26 @@ TRANSFORM TO 2015
 Smartphone era fully arrived. An independent auto repair shop in 2015 — a state inspection sticker machine on the counter, a tire-pressure sensor reset tool in the bay, and fewer cars in the lot than there used to be as quick-lube chains pull business away.
 
 PERIOD DETAILS
-- a faded printed banner reading '$19.95 STATE INSPECTION' from a past promotion still hanging on the fascia
-- printed vinyl sign band reading 'AUTO REPAIR — STATE INSPECTION'
-- a tire-pressure sensor reset tool on a cart inside the open bay
-- window signs: 'TPMS SERVICE AVAILABLE', 'OIL CHANGE $29.95'
-- a tire-pressure sensor reset tool on a rolling cart
-- a quick-lube chain coupon taped inside the office door, half torn
-Typography: minimalist flat sans-serif, simplified modern logos.
-Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+- every storefront closed and dark — no lit signs, no menu boards, no open businesses
+- faded remains of old signage still on the facade, lettering weathered and partly missing
+- plywood over the ground-floor windows, doors chained shut
+No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.
 
 PEOPLE
-EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a mechanic sliding out from under a car on a creeper
-- a delivery driver dropping off a small parts box
-- a man in skinny jeans taking a selfie
-Clothing: men in henley shirts, boat shoes; women in ankle boots, statement necklaces. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+NO people anywhere — the place is completely deserted.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2013-2018 Hyundai Santa Fe — fluidic sculpture styling — white
-- 2014-2019 Nissan Rogue — popular compact crossover — black
-- 2007-2017 Jeep Wrangler — boxy off-roader, round headlights — silver
-- 2015-2023 Ford F-150 — aluminum body, blocky modern — gray
-Parked with gaps; no vehicle newer than 2015.
-Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
+NO vehicles anywhere — empty lot, no parked or moving cars.
 
 ENVIRONMENT
-- road markings: yellow center line, white edge lines, high-visibility crosswalks
+- road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines common on wooden poles, fiber optic lines on poles
 
+DECAY
+- a wrecked car with its hood off left sitting at a bay door
+- plywood over the office plate glass
+- graffiti tagged across the painted sign band
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - maple tree at street corner: clearly smaller than in the source — about 80% of its canopy there, thinner trunk
 - elm tree at side yard: clearly smaller than in the source — about 60% of its canopy there, thinner trunk

@@ -12,7 +12,20 @@
     "a businessman with a briefcase and wide tie",
     "a kid with a boombox on his shoulder",
     "a woman with permed hair and shoulder pads",
-    "an older man in a flat cap reading a paper"
+    "an older man in a flat cap reading a paper",
+    "a college student wheeling a mountain bike with a U-lock on the frame",
+    "a father in a polo shirt with the collar popped, walking briskly",
+    "a girl in leg warmers practicing dance steps on the sidewalk",
+    "an older woman in a velour tracksuit carrying a tote bag",
+    "a teenage boy skateboarding down the curb cut",
+    "a delivery man in short shorts and tube socks unloading a van",
+    "a woman in a power suit with enormous shoulder pads striding past",
+    "a man with a mullet washing his car windows at a rest stop",
+    "two girls sharing a Walkman with one earbud each",
+    "a father coaching a Little League team across the lot",
+    "a mall security guard in a blazer making rounds",
+    "a grandmother clutching a coupon flyer",
+    "a construction worker in a hard hat crossing at the light"
   ],
 
   "transportation": {
@@ -242,7 +255,18 @@
         "a shopkeeper arranging a sidewalk sale rack",
         "a jogger in a bright tracksuit and headband passing through",
         "a kid locking a BMX bike to a signpost",
-        "a woman using the wall-mounted payphone"
+        "a woman using the wall-mounted payphone",
+        "a record store clerk taping a new release poster in the window",
+        "a woman in acid-wash jeans flipping through a rack of cassette singles",
+        "a boy showing off a new pair of high-top sneakers to a friend",
+        "a man in a suit using a payphone with a long cord stretched around the booth",
+        "two girls comparing friendship bracelets on a bench",
+        "a delivery man wheeling a hand truck of soda cases into the diner",
+        "a mail carrier in shorts making his afternoon rounds",
+        "a teenager break-dancing on a flattened cardboard box",
+        "a barber sweeping hair clippings out the shop door",
+        "a woman jogging past the storefronts in bright spandex",
+        "an older couple sharing a booth visible through the diner window"
       ],
       "vehicles": { "min": 4, "max": 6 },
       "extras": [
@@ -281,7 +305,20 @@
         "a man checking his oil with the hood up at the edge of the lot",
         "a woman squeegeeing her windshield at the island",
         "a teenager filling a bike tire at the air hose",
-        "a driver waiting in his car for a free pump"
+        "a driver waiting in his car for a free pump",
+        "an attendant-turned-cashier waving through the store window",
+        "a teenager practicing skateboard tricks near the air hose",
+        "a woman in a minivan pumping gas while her kids wait inside",
+        "a trucker checking his mirrors before pulling out",
+        "a man in a windbreaker jogging in place while his tank fills",
+        "a clerk taping a new price sign to the pole",
+        "a driver arguing with the pump's new digital display",
+        "a kid spinning the free-air hose reel out of boredom",
+        "a woman counting quarters for the air machine",
+        "an off-duty mechanic chatting with the clerk through the store door",
+        "a man wiping down his windshield with a paper towel from his own car",
+        "a delivery driver dropping a rack of newspapers by the store door",
+        "a teenager buying a pack of gum at the counter"
       ],
       "vehicles": { "min": 3, "max": 4 },
       "extras": [
@@ -372,7 +409,19 @@
         "a woman in leg warmers entering the aerobics studio",
         "a man loading an electronics box into a hatchback",
         "a customer at the photo counter visible through the glass",
-        "a skateboarder rolling along the covered walkway"
+        "a skateboarder rolling along the covered walkway",
+        "a teenager renting a Nintendo cartridge at the video counter",
+        "a woman comparing perms in the salon's window display",
+        "a man loading a big-box TV set into his hatchback",
+        "two boys trading baseball cards on the curb",
+        "a jogger cutting through the parking lot on her route",
+        "a clerk changing the marquee letters on the pizza parlor sign",
+        "a family posing for a photo outside the photo shop",
+        "a teenager waiting for a ride outside the arcade",
+        "a woman balancing a stack of tanning towels",
+        "a stock clerk wheeling a pallet of soda into the grocery",
+        "a security guard chatting with a shop owner near the entrance",
+        "a man adjusting the antenna on a boombox by the curb"
       ],
       "vehicles": { "min": 5, "max": 7 },
       "extras": [

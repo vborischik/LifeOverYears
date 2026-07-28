@@ -11,7 +11,21 @@
     "a courier carrying an insulated food delivery bag",
     "a man in skinny jeans taking a selfie",
     "a woman in yoga pants carrying a green smoothie",
-    "two kids on kick scooters"
+    "two kids on kick scooters",
+    "a teenager filming a friend doing a trick on a longboard",
+    "a man in a beard and flannel ordering from a food truck window",
+    "a woman power-walking while listening to a podcast through earbuds",
+    "a dad wearing a baby in a front carrier",
+    "a delivery cyclist checking an app on his phone at a curb",
+    "a group of friends comparing photos on their phones",
+    "an office worker in skinny jeans carrying a cold-brew growler",
+    "a woman walking a dog in a knit sweater",
+    "a teenager scrolling social media while waiting for a ride",
+    "a jogger checking a fitness tracker on his wrist",
+    "a man loading a bike onto a car rack",
+    "a woman balancing a yoga mat and an iced coffee",
+    "a grandmother video-chatting with a tablet held at arm's length",
+    "two teenagers sharing earbuds from one phone"
   ],
 
   "transportation": {
@@ -262,7 +276,18 @@
         "a dog leashed outside the coffee shop, its owner visible inside",
         "sidewalk diners at small cafe tables under string lights",
         "a barista delivering drinks to an outdoor table",
-        "a man in a henley checking a fitness band"
+        "a man in a henley checking a fitness band",
+        "a teenager filming a video for social media outside the mural",
+        "a man ordering from a food truck window",
+        "a woman comparing yoga class schedules on the studio's window sign",
+        "a delivery cyclist checking his phone at the curb",
+        "a barista sweeping the sidewalk before opening",
+        "two friends comparing photos on their phones at a cafe table",
+        "a man walking a dog past the vape shop",
+        "a woman power-walking with wireless earbuds in",
+        "a teenager skateboarding past the bike corral",
+        "a grandmother reading a menu posted outside the taproom",
+        "a jogger checking a fitness watch at the crosswalk"
       ],
       "vehicles": { "min": 4, "max": 6 },
       "extras": [
@@ -300,7 +325,21 @@
         "a woman scrolling her smartphone while leaning on her crossover",
         "a man returning a disc at the DVD kiosk",
         "a clerk stacking windshield-washer fluid by the door",
-        "a driver vacuuming his car at the vacuum island"
+        "a driver vacuuming his car at the vacuum island",
+        "a teenager filming the pump's ad screen for a laugh",
+        "a man tapping his phone against the reader to pay",
+        "a woman checking a ride-share app while her tank fills",
+        "a driver comparing gas app prices before choosing a pump",
+        "a clerk restocking cold brew cans in the cooler",
+        "a teenager filling a bike tire at the air station",
+        "a man wiping his windshield with a paper towel from his glovebox",
+        "a driver waiting behind a car at the only open pump",
+        "a woman on a video call while she pumps gas",
+        "a delivery driver grabbing a coffee before getting back on the road",
+        "a clerk sweeping cigarette butts near the trash bin",
+        "a kid pressing his face against the DVD kiosk glass",
+        "a man topping off tire pressure with the digital gauge",
+        "a woman scanning a loyalty app barcode at the register"
       ],
       "vehicles": { "min": 3, "max": 4 },
       "extras": [
@@ -388,7 +427,21 @@
         "a family loading dollar-store bags into a crossover",
         "a man vaping outside the vape shop",
         "a woman carrying takeout containers to her car",
-        "a delivery driver carrying packages to a storefront"
+        "a delivery driver carrying packages to a storefront",
+        "a teenager filming a trick outside the gym entrance",
+        "a woman comparing gym membership signs through the window",
+        "a man loading vape supplies into his trunk",
+        "a family sharing tacos at an outdoor table",
+        "a delivery driver checking an app before entering a storefront",
+        "a teenager scrolling a phone while waiting on a bench",
+        "a woman leaving the thrift store with a donation bag",
+        "a man vaping while scrolling through his phone",
+        "a girl practicing on a longboard near the cart corral",
+        "an older man reading a flyer taped to the vacant storefront glass",
+        "a mother comparing phone repair prices through the window",
+        "a security guard walking the row at dusk",
+        "a teenager filming a friend skateboarding across the lot",
+        "a woman balancing a protein shake and a gym bag"
       ],
       "vehicles": { "min": 5, "max": 7 },
       "extras": [

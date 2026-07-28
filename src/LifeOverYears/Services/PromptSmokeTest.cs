@@ -440,6 +440,8 @@ public static class PromptSmokeTest
     {
         var errs = new List<string>();
         string[] requiredKeys = { "downtown_street", "gas_station", "strip_mall", "auto_repair", "default" };
+        string[] poolsRequiring20 = { "downtown_street", "gas_station", "strip_mall", "auto_repair" };
+        const int minPoolSize = 20;
 
         foreach (var (year, era) in eras)
         {
@@ -454,9 +456,17 @@ public static class PromptSmokeTest
 
             if (era.Photography.ColorMode is null)
                 errs.Add($"{year}: photography.color_mode is null");
+
+            if (era.PeopleMix is null || era.PeopleMix.Count < minPoolSize)
+                errs.Add($"{year}: people_mix has {era.PeopleMix?.Count ?? 0} entries, expected >= {minPoolSize}");
+
+            foreach (var key in poolsRequiring20)
+                if (era.SceneContent.TryGetValue(key, out var scene) &&
+                    scene.PeopleActivities.Count < minPoolSize)
+                    errs.Add($"{year}: scene_content.{key}.people_activities has {scene.PeopleActivities.Count} entries, expected >= {minPoolSize}");
         }
 
-        f.Add(("C1", "Era deserialization: scene_content has required keys and color_mode present",
+        f.Add(("C1", "Era deserialization: scene_content has required keys, color_mode present, people pools >= 20",
             errs.Count == 0, errs.Count == 0 ? "All 6 eras OK" : Join(errs)));
     }
 

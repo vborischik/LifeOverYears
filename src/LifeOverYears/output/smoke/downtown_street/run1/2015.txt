@@ -45,9 +45,9 @@ ENVIRONMENT
 - utilities: overhead power lines still on wooden poles along the street, fiber optic and cable bundles added to the existing poles
 
 DECAY
-- a torn vinyl banner sagging from the facade
 - a collapsed awning frame hanging loose over the sidewalk
-- roll-down steel security shutters closed over the storefronts
+- plywood over a broken transom window, the glass long gone
+- graffiti tags across the lower brick and boarded panels
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - oak tree at sidewalk left near corner: slightly smaller than in the source — about 90% of its canopy there

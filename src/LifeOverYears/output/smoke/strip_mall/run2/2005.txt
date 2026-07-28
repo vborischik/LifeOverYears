@@ -25,42 +25,40 @@ distort the source geometry.
 TRANSFORM TO 2005
 Post-9/11 era. An aging 2005 strip mall — national franchises mixed with struggling locals, the video store on its last legs.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
 - dollar store anchor with yellow 'EVERYTHING $1' signage
-- tax preparation office with a green square logo
-- video rental store with 'STORE CLOSING — EVERYTHING MUST GO' banners
-- window signs: 'NAIL FILL $18', 'FOOTLONG COMBO $5.99'
-- a 'STORE CLOSING' A-frame sign on the walkway
-- a sidewalk sandwich board with a cell-phone store promo
+- cellular store with carrier logos and 'FREE FLIP PHONE' posters
+- hair salon with a 'WALK-INS WELCOME' sign
+- window signs: 'NO CREDIT? NO PROBLEM!', 'FOOTLONG COMBO $5.99'
+- light poles with faded banner ads
+- a free real-estate flyer box by the walkway
 Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 10 people TOTAL: 4 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
-- a customer leaving the sandwich shop with a to-go bag
-- a man loading shopping bags into an SUV's tailgate
-- a couple taking photos with a digital camera
-Clothing: men in graphic tees, baggy jeans; women in velour tracksuits, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 2 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block. Grouped in pairs, threes, and singles.
+- a family piling out of an SUV near the entrance
+- a girl practicing on a skateboard near the cart corral
+- a teenager comparing camera phones with a friend
+Clothing: men in trucker hats, frosted tips hair; women in chunky highlights, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 7 period vehicles, all different:
-- 2004-2012 Chevrolet Colorado — mid-size pickup — white
-- 2001-2005 Honda Civic — rounded compact, very common — silver
-- 2003-2008 Toyota Corolla — conservative compact sedan — gold
-- 2004-2008 Pontiac Grand Prix — sporty sedan plastic cladding — dark blue
-- 2000-2005 Ford Focus — European-styled compact — dark red
-- 2001-2007 Ford Escape — compact boxy SUV — gray
-- 2005-2010 Jeep Grand Cherokee — rounded modern SUV — black
+EXACTLY 1 period vehicles, all different:
+- 2002-2009 Chevrolet TrailBlazer — mid-size SUV boxy — dark red
 Parked with gaps; no vehicle newer than 2005.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: three parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: yellow center line, white edge lines, turn arrows
+- road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines standard, cable and fiber lines on poles appearing
 
+DECAY
+- parking stripes worn down to faint outlines
+- two blank white sign panels where tenants moved out
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - crepe myrtle tree at parking lot island near entrance: clearly smaller than in the source — about 40% of its canopy there, thinner trunk
 - maple tree at landscape strip along the road: clearly smaller than in the source — about 60% of its canopy there, thinner trunk

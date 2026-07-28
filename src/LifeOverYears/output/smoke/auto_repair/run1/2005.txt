@@ -27,30 +27,31 @@ Post-9/11 era. An auto repair shop in 2005 — a check-engine scanner plugged in
 
 PERIOD DETAILS
 - a printed banner advertising tire brands and a '$24.95 OIL CHANGE' promo, replacing the old painted sign
-- a small waiting area with a TV mounted in the corner of the office
+- a parts counter with a barcode scanner by the register
 - office with plate glass window, a flat monitor visible on the counter
-- window signs: 'CHECK ENGINE LIGHT $59.95', 'BRAKES FROM $89.95'
-- a stack of take-off wheels behind the building
-- a laptop-style scan tool on a rolling cart
+- window signs: 'OIL CHANGE $24.95', 'AFTERMARKET WHEELS IN STOCK'
+- a barcode scanner at the parts counter
+- a printed vinyl banner advertising tire brands
 Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a woman picking up her car and checking the paperwork
-- a customer pointing at a check-engine code printout
-- a teen with white earbuds and an MP3 player
-Clothing: men in cargo shorts, graphic tees; women in chunky highlights, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- an apprentice organizing tools on a rolling cart
+- a teenager admiring the wheel display through the glass
+- a man loading a case of bottled water into a minivan
+Clothing: men in graphic tees, trucker hats; women in velour tracksuits, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 1998-2005 Volkswagen New Beetle — retro bubble shape — black
-- 2002-2007 Jeep Liberty — round-headlight compact SUV — dark blue
-- 2001-2007 Toyota Highlander — early crossover — white
-- 2002-2009 Chevrolet TrailBlazer — mid-size SUV boxy — dark red
+EXACTLY 5 period vehicles, all different:
+- 2001-2007 Toyota Highlander — early crossover — black
+- 2000-2007 Ford Taurus — rounded, aging fleet-look sedan — dark blue
+- 2005-2010 Jeep Grand Cherokee — rounded modern SUV — silver
+- 2000-2006 Chevrolet Tahoe — full-size SUV peak era — white
+- 2005-2010 Chevrolet Cobalt — compact economy sedan — gray
 Parked with gaps; no vehicle newer than 2005.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
+PLACEMENT: three parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn arrows

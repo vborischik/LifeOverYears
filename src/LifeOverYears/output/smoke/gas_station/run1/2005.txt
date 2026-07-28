@@ -29,32 +29,31 @@ Post-9/11 era. A 2005 gas station — big multi-island canopy, card readers at e
 CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
-- branded canopy lighting
-- coin-operated air machine near the back of the lot
+- credit card readers at pump standard
+- wide multi-island canopy with branded fascia lighting
 - price sign showing gas around $2.30
 - main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
-- window signs: 'ANY SIZE FOUNTAIN DRINK 99¢', 'CIGARETTES $3.75 PACK'
-- trash cans with paper-towel dispensers between the pumps
-- a propane exchange cage by the storefront
+- window signs: 'PHONE CARDS SOLD HERE', 'CAR WASH $6'
+- a free real-estate flyer box by the door
+- ribbon magnets on the door of the service office
 Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 7 people TOTAL: 3 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
-- a man talking on a flip phone while leaning against his SUV as it fuels
-- a customer walking out with a coffee cup
-- a group of college kids with messenger bags
-Clothing: men in trucker hats, graphic tees; women in trucker hats, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+EXACTLY 5 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- a woman waiting for her SUV to finish fueling, checking a shopping list
+- a kid pressing his face to the ice-cream freezer glass
+- a couple taking photos with a digital camera
+Clothing: men in trucker hats, graphic tees; women in velour tracksuits, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 1999-2006 Chevrolet Silverado — squared modern look — black
-- 2004-2012 Chevrolet Colorado — mid-size pickup — dark red
-- 2000-2006 Chevrolet Tahoe — full-size SUV peak era — white
-- 2003-2009 Hummer H2 — massive military-styled SUV — gray
+EXACTLY 3 period vehicles, all different:
+- 2002-2009 Chevrolet TrailBlazer — mid-size SUV boxy — black
+- 2001-2007 Ford Escape — compact boxy SUV — dark blue
+- 2000-2005 Ford Focus — European-styled compact — gray
 Parked with gaps; no vehicle newer than 2005.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
+PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn arrows

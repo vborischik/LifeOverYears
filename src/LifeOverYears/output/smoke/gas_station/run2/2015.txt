@@ -26,39 +26,41 @@ distort the source geometry.
 TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 station — LED-lit canopy, digital price sign, video ads playing on every pump screen, and a big convenience store.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- air and vacuum island at the lot edge
-- pumps with color screens playing ads
+- pay-at-pump with color screens and ads
+- large convenience store with fresh-coffee branding in the windows
 - price sign showing gas around $2.45
 - main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
-- window signs: '2 ENERGY DRINKS $5', 'ATM INSIDE'
-- card-skimmer warning stickers on the pumps
-- an ice merchandiser and propane cage along the wall
+- window signs: 'E-CIG STARTER KITS', 'ATM INSIDE'
+- combined trash-and-squeegee stations between the pumps
+- a chalkboard A-frame sign advertising the coffee bar
 Typography: minimalist flat sans-serif, simplified modern logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a customer watching the pump screen ads while fueling
-- a man returning a disc at the DVD kiosk
+- a clerk restocking cold brew cans in the cooler
+- a driver self-serving at the pump
 - a dog walker with three dogs
-Clothing: men in boat shoes, henley shirts; women in ankle boots, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+Clothing: men in henley shirts, skinny jeans; women in infinity scarves, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 3 period vehicles, all different:
-- 2010-2016 Chevrolet Equinox — mid-size crossover — silver
-- 2011-2016 Hyundai Elantra — swoopy fluidic compact — white
-- 2014-2021 Subaru Outback — rugged wagon crossover — gray
+EXACTLY 1 period vehicles, all different:
+- 2013-2016 Mazda CX-5 — flowing KODO-design crossover — white
 Parked with gaps; no vehicle newer than 2015.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
+PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: yellow center line, white edge lines, high-visibility crosswalks
+- road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines common on wooden poles, fiber optic lines on poles
 
+DECAY
+- curb litter, an overflowing trash can
+- chipped, stained curbs, weeds in the gutter
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - cottonwood tree at northeast corner of lot: clearly smaller than in the source — about 80% of its canopy there, thinner trunk
 - elm tree at sidewalk edge left of entrance: clearly smaller than in the source — about 60% of its canopy there, thinner trunk

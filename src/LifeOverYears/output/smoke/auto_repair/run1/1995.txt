@@ -27,30 +27,30 @@ Clinton era prosperity. An auto repair shop in 1995 — an alignment rack in one
 
 PERIOD DETAILS
 - a tire display rack near the office entrance with a hand-lettered '$39.95 ALIGNMENT' sign taped to it
-- office with plate glass window and a state emissions-testing sticker in the corner
+- an air conditioning service sign taped inside the office window
 - a parts counter through the glass, computer monitor visible on the desk
-- window signs: 'EMISSIONS TEST $24.95', 'TIRES — NATIONAL BRANDS'
-- a beige computer monitor on the office desk
+- window signs: 'OIL CHANGE $19.95', 'TIRES — NATIONAL BRANDS'
+- a cordless phone base on the counter
 - a tire display rack near the entrance
 Typography: clean geometric sans-serif, early digital influence.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- an older man comparing tire prices on the banner outside
+EXACTLY 5 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
 - a woman in business attire dropping off a lease car
-- a paperboy with a canvas bag on a bike
-Clothing: men in windbreakers, backwards caps; women in crop tops, high-waisted mom jeans. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a mechanic guiding a car onto the alignment rack
+- an office worker eating a sandwich on a bench during lunch
+Clothing: men in baggy jeans, grunge style; women in slip dresses, high-waisted mom jeans. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
-- 1990-1997 Mazda Miata — tiny rounded roadster, pop-up lights — silver
-- 1992-1995 Honda Civic — small rounded coupe and sedan — black
-- 1995-2004 Toyota Tacoma — compact, rounded — burgundy
-- 1993-1997 Toyota Corolla — rounded compact sedan — navy blue
+- 1991-1996 Buick Roadmaster — large rounded wagon and sedan — navy blue
+- 1994-1997 Honda Accord — smooth rounded sedan — white
+- 1992-1996 Ford F-150 — rounded aero body — teal
+- 1994-2001 Dodge Ram — big rig style grille, bold — black
 Parked with gaps; no vehicle newer than 1995.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn lane arrows
