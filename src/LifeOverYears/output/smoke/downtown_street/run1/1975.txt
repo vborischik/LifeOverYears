@@ -30,20 +30,20 @@ CONDITION: new — recently built appearance, pristine surfaces, new signage
 
 PERIOD DETAILS
 - TOWN DINER with a hand-lettered 'HOT COFFEE 25¢' sign in the window
-- 'CENTRAL TV' window displaying console televisions with a 'COLOR TV' placard
-- 'BEN FRANKLIN' five & dime with red-and-white lettering
-- window signs: 'MILK 69¢ HALF GALLON', 'SHIRTS 2 FOR $5'
-- a wooden newspaper rack with stacked local papers by the diner door
+- 'HOME APPLIANCE CO' window displaying console televisions with a 'COLOR TV' placard
+- 'WOOLWORTH' five & dime with red-and-white lettering
+- window signs: 'SHIRTS 2 FOR $5', 'HAIRCUT $2.50'
 - a painted ghost-sign wall advertisement on brick, weathered but still clearly readable
+- a glass-and-aluminum telephone booth on the corner
 Typography: bold sans-serif, slab serif, occasional script.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 30 people TOTAL: 12 near sidewalk (largest, foreground), 11 opposite sidewalk mid-block, 7 distant, far end of block. Grouped in pairs, threes, and singles.
-- a couple leaving the diner, the man holding the door
-- a woman carrying paper grocery bags in both arms
-- a girl walking a bicycle with a basket
-Clothing: men in wide lapels, bell bottoms; women in midi skirts, earth tones. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a barber visible through the shop window cutting hair
+- two men in short-sleeve dress shirts talking outside the hardware store
+- a shopkeeper in an apron by his doorway
+Clothing: men in turtlenecks, wide lapels; women in wide leg pants, earth tones. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:

@@ -218,6 +218,9 @@ public sealed class GenerationContext
     public enum GasSignKind { Branded, DeadBoard }
     public readonly record struct GasSign(GasSignKind Kind, string? Brand);
 
+    public enum ChainSignKind { Generic, Named, Ghost }
+    public readonly record struct ChainTenant(string Name, ChainSignKind Kind, string Text);
+
     private bool _gasPlanBuilt;
     private string? _brandX;            // initial brand
     private string? _brandY;            // post-rebrand brand (null if no rebrand)
@@ -305,6 +308,96 @@ public sealed class GenerationContext
 
         if (brand is not null) _lastLiveBrand = brand;
         return new GasSign(GasSignKind.Branded, brand);
+    }
+
+    // ── Chain tenant plan ──────────────────────────────────────────────────
+    // Whether Blockbuster and RadioShack ever set up shop in this run is decided
+    // once, lazily, on first use — same idiom as the business-name pools above.
+    // Independent rolls: both, one, or neither chain may be present. Once decided,
+    // every era resolves the same chain's presence purely from year + condition —
+    // no re-rolling, so a chain that showed up doesn't flicker in and out.
+    private bool? _blockbusterPresent;
+    public bool BlockbusterPresent => _blockbusterPresent ??= Random.NextDouble() < 0.5;
+
+    private bool? _radioShackPresent;
+    public bool RadioShackPresent => _radioShackPresent ??= Random.NextDouble() < 0.4;
+
+    // Blockbuster only ever leased strip-mall end caps, never a main-street
+    // storefront. RadioShack fit either. Any other scene type gets nothing.
+    public IReadOnlyList<ChainTenant> ResolveChainTenants(int year, string sceneType, string condition)
+    {
+        if (sceneType is not ("strip_mall" or "downtown_street"))
+            return Array.Empty<ChainTenant>();
+
+        var tenants = new List<ChainTenant>();
+
+        if (sceneType == "strip_mall" && BlockbusterPresent)
+        {
+            var bb = ResolveBlockbuster(year, condition);
+            if (bb is not null) tenants.Add(bb.Value);
+        }
+
+        if (RadioShackPresent)
+        {
+            var rs = ResolveRadioShack(year, condition);
+            if (rs is not null) tenants.Add(rs.Value);
+        }
+
+        return tenants;
+    }
+
+    // The chain opened in late 1985 and had no small-town presence until the late
+    // eighties, and its stores were gone by 2014 — before 1990 it simply isn't
+    // there yet, at all.
+    private static ChainTenant? ResolveBlockbuster(int year, string condition)
+    {
+        if (year < 1990) return null;
+
+        var kind = year <= 2009 ? ChainSignKind.Named : ChainSignKind.Ghost;
+
+        // Ghost is driven by year alone; a live Named tenant must never appear
+        // in a derelict era, so decay demotes Named down to Ghost.
+        if (condition is "abandoned" or "squatted" && kind == ChainSignKind.Named)
+            kind = ChainSignKind.Ghost;
+
+        var text = kind switch
+        {
+            ChainSignKind.Named => year < 1996
+                ? "a Blockbuster Video store in the row, blue storefront sign with the yellow torn-ticket logo, the ticket larger on this earlier wordmark"
+                : "a Blockbuster store in the row, blue storefront sign with the yellow torn-ticket logo",
+            ChainSignKind.Ghost => "the unit where the store was, a rectangular patch of less-faded wall above the door where the sign board was removed, anchor holes still visible, a lighter band along the top where the blue fascia ran, no lettering at all",
+            _ => throw new InvalidOperationException($"Unexpected Blockbuster sign kind: {kind}")
+        };
+
+        return new ChainTenant("Blockbuster", kind, text);
+    }
+
+    // RadioShack ran under its own name for decades before the image-model-known
+    // one-word logo existed, so pre-1990 it must never be named — only the
+    // generic radio-and-electronics shop it actually was.
+    private static ChainTenant? ResolveRadioShack(int year, string condition)
+    {
+        var kind = year < 1990 ? ChainSignKind.Generic
+                 : year <= 2014 ? ChainSignKind.Named
+                 : ChainSignKind.Ghost;
+
+        if (condition is "abandoned" or "squatted")
+        {
+            if (kind == ChainSignKind.Named) kind = ChainSignKind.Ghost;
+            else if (kind == ChainSignKind.Generic) return null; // no chain sign ever went up to strip
+        }
+
+        var text = kind switch
+        {
+            ChainSignKind.Generic => year <= 1980
+                ? "a small radio and electronics shop, hand-lettered window sign reading CB RADIOS - ANTENNAS - SCANNERS, no chain name anywhere"
+                : "a small radio and electronics shop, hand-lettered window sign reading STEREO - SPEAKERS - TAPES, no chain name anywhere",
+            ChainSignKind.Named => "a RadioShack store, red sign board with white lettering",
+            ChainSignKind.Ghost => "the unit where the store was, a rectangular patch of less-faded wall above the door where the sign board was removed, anchor holes still visible, no lettering at all",
+            _ => throw new InvalidOperationException($"Unexpected RadioShack sign kind: {kind}")
+        };
+
+        return new ChainTenant("RadioShack", kind, text);
     }
 
     // ── Vehicle placement patterns ────────────────────────────────────────────

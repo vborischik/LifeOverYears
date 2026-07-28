@@ -45,9 +45,9 @@ ENVIRONMENT
 - utilities: overhead power lines still on wooden poles along the street, fiber optic and cable bundles added to the existing poles
 
 DECAY
-- rust streaks below the old cornice bolts
-- upper-floor windows still curtained above dead ground-floor storefronts
 - an accordion scissor gate padlocked across a doorway
+- a torn vinyl banner sagging from the facade
+- rust streaks below the old cornice bolts
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - oak tree at sidewalk left near corner: slightly smaller than in the source — about 90% of its canopy there

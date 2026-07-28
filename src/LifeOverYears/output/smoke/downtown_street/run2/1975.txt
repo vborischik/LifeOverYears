@@ -29,21 +29,22 @@ Post-Vietnam, oil crisis era. A working small-town main street in 1975 — local
 CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
-- STAR DINER with a hand-lettered 'HOT COFFEE 25¢' sign in the window
-- 'JOE'S SHOE REPAIR' with a small 'SHOE REPAIR — WHILE U WAIT' sign
-- 'NEWBERRY'S' five & dime with red-and-white lettering
-- window signs: 'SALE — 3 for $1', 'ICE CREAM CONES 15¢'
-- a glass-and-aluminum telephone booth on the corner
+- BLUE PLATE DINER with a hand-lettered 'HOT COFFEE 25¢' sign in the window
+- 'COBBLER'S CORNER' with a small 'SHOE REPAIR — WHILE U WAIT' sign
+- 'BEN FRANKLIN' five & dime with red-and-white lettering
+- a small radio and electronics shop, hand-lettered window sign reading CB RADIOS - ANTENNAS - SCANNERS, no chain name anywhere
+- window signs: 'SALE — 3 for $1', 'TV REPAIR — FREE ESTIMATES'
 - 2-3 bicycles leaned against a storefront wall
+- a painted ghost-sign wall advertisement on brick, weathered but still clearly readable
 Typography: bold sans-serif, slab serif, occasional script.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 30 people TOTAL: 12 near sidewalk (largest, foreground), 11 opposite sidewalk mid-block, 7 distant, far end of block. Grouped in pairs, threes, and singles.
-- a saleswoman adjusting a mannequin in the dress shop window
-- a couple leaving the diner, the man holding the door
-- a police officer in a short-sleeve summer uniform directing traffic
-Clothing: men in polyester suits, bell bottoms; women in earth tones, peasant blouses. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a boy in a Cub Scout uniform waiting outside the five & dime for his mother
+- a barber visible through the shop window cutting hair
+- a teenage girl in platform shoes waiting for a friend
+Clothing: men in bell bottoms, wide lapels; women in wide leg pants, earth tones. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:

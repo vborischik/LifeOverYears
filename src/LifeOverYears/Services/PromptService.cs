@@ -82,7 +82,7 @@ public sealed class PromptService : IPromptService
 
         var text = template
             .Replace("{PRESERVE_BLOCK}",    BuildPreserveBlock(sceneDna))
-            .Replace("{SCENE_BLOCK}",       BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, gasSign, rng))
+            .Replace("{SCENE_BLOCK}",       BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, gasSign, rng, context))
             .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, rng, context))
             .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation))
             .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year, sceneType, condition, rng))
@@ -361,7 +361,7 @@ public sealed class PromptService : IPromptService
         return sb.ToString().TrimEnd();
     }
 
-    private static string BuildSceneBlock(EraProfile era, SceneContent? content, string sceneType, string condition, GenerationContext.GasSign gasSign, Random rng)
+    private static string BuildSceneBlock(EraProfile era, SceneContent? content, string sceneType, string condition, GenerationContext.GasSign gasSign, Random rng, GenerationContext context)
     {
         var sb = new StringBuilder();
         sb.AppendLine($"TRANSFORM TO {era.Year}");
@@ -441,6 +441,13 @@ public sealed class PromptService : IPromptService
 
         foreach (var item in picks)
             sb.AppendLine($"- {item}");
+
+        // Chain tenant plan: a per-run decision resolved fresh for this era's
+        // year/condition. Not decay content — a ghost sign is a period detail
+        // (like the storefronts above), so it never goes through DecayPoolFor.
+        foreach (var tenant in context.ResolveChainTenants(era.Year, sceneType, condition))
+            sb.AppendLine($"- {tenant.Text}");
+
         if (isGasStation)
         {
             if (gasSign.Kind == GenerationContext.GasSignKind.DeadBoard)

@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-07-28T20:55:14.8606468+00:00
+Generated: 2026-07-28T21:12:02.8014066+00:00
 
 ## Check Results
 
@@ -25,7 +25,7 @@ Generated: 2026-07-28T20:55:14.8606468+00:00
 | C17 | Every specific_models entry (cars+trucks) starts on or before its era year | ✅ PASS | All model year ranges are era-valid |
 | C18 | Every prompt has a PLACEMENT line; no repeated pattern per run unless the pool is exhausted | ✅ PASS | Placement present and de-duplicated per pool |
 | C19 | No descriptive-as-signage leaks; {DINER_NAME} resolved and identical across a run | ✅ PASS | Business names clean and diner name stable |
-| C20 | Every live prompt has a two-sign 'window signs:' line, >=1 extras line, and a people_mix line; derelict eras carry none of them | ✅ PASS | All three sampling axes present in every prompt |
+| C20 | Every live prompt has a two-sign 'window signs:' line, >=1 extras line, and a people_mix line; derelict eras carry none of them | ❌ FAIL | strip/run2/1995: no 'window signs:' line with two quoted signs |
 | C21 | Run1 vs Run2: >=3 of 6 years differ in sampled extras or window signs | ✅ PASS | Sufficient sampling variance between seeds |
 | C22 | Every prompt is at most 4900 characters | ✅ PASS | All prompts within 4900 chars |
 | C23 | default/unknown scenes always thriving; rank monotonic per run (gas-station finale may resolve to 'new' or 'restored'); abandoned/declining/squatted counts honored for gas_station, downtown_street and strip_mall; 'squatted' only on a gas_station's final era; 'restored' only on a gas_station's final era | ✅ PASS | Condition trajectory invariants hold |
@@ -35,6 +35,10 @@ Generated: 2026-07-28T20:55:14.8606468+00:00
 | C27 | base-clean.txt loads, declares the exact 9:16 portrait phrase (and no competing aspect-ratio term), keeps its people/vehicle-removal + pixel-identical/canvas-extension cleanup contract, and every generated prompt carries the same portrait phrase | ✅ PASS | base-clean/prompt aspect-ratio contract holds |
 | C28 | People bullet lines (people_activities picks and the people_mix line) never repeat within a run unless their era's own pool is already exhausted | ✅ PASS | No premature people-line repeats |
 | C29 | DeclineBias() ramps non-decreasing across the run and stays within 0..1 | ✅ PASS | Bias ramp OK across all eras |
+| C30 | Neither chain ever appears Named in a prompt for a year before 1990 | ✅ PASS | No pre-1990 named chain tenants |
+| C31 | Blockbuster never appears in a downtown_street prompt, in any form | ✅ PASS | No Blockbuster content in any downtown_street prompt |
+| C32 | Neither chain ever appears Named in an abandoned or squatted era | ✅ PASS | No named chain tenants in derelict eras |
+| C33 | Chain tenant presence is stable across a run: no flicker between schedule-eligible eras | ✅ PASS | No presence flicker across 20 seeds x 6 eras |
 
 ## Vehicle Selections
 
@@ -62,9 +66,9 @@ Generated: 2026-07-28T20:55:14.8606468+00:00
 | Year | Count | Vehicles |
 |------|-------|----------|
 | 1975 | 4 | 1973-1980 Chevrolet C10 — square body, chrome bumper, 1971-1976 Jeep Wagoneer — boxy full-size SUV, woodgrain trim optional, 1970-1978 AMC Gremlin — short stubby hatchback rear, 1974-1978 Cadillac DeVille — full-size luxury, formal roofline, chrome heavy |
-| 1985 | 5 | 1982-1992 Chevrolet Camaro — wedge-shaped sporty coupe, 1984-1987 Toyota Corolla — boxy compact, reliable look, 1979-1985 Ford Mustang — Fox body, angular hatchback coupe, 1983-1987 Honda Accord — clean lines, pop-up headlights, 1980-1989 Lincoln Town Car — long boxy luxury sedan |
-| 1995 | 5 | 1995-1999 Chevrolet Cavalier — compact, rounded, 1991-1995 Dodge Caravan — rounded second-gen minivan, 1986-1997 Ford Aerostar — boxy rear-drive minivan, 1988-1998 Chevrolet C/K 1500 — softly squared pickup, 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size |
-| 2005 | 2 | 2001-2007 Ford Escape — compact boxy SUV, 2001-2007 Toyota Highlander — early crossover |
+| 1985 | 5 | 1984-1987 Toyota Corolla — boxy compact, reliable look, 1983-1987 Honda Accord — clean lines, pop-up headlights, 1978-1987 Chevrolet Monte Carlo — personal luxury coupe, long hood, 1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline, 1980-1985 Buick LeSabre — boxy full-size, chrome trim |
+| 1995 | 5 | 1991-1994 Saturn SL — plastic body panels, compact, 1990-1997 Mazda Miata — tiny rounded roadster, pop-up lights, 1989-1997 Geo Metro — very small economy hatchback, 1994-2001 Dodge Ram — big rig style grille, bold, 1992-1996 Toyota Camry — rounded, understated |
+| 2005 | 1 | 2001-2007 Dodge Grand Caravan — family minivan, rounded |
 | 2015 | 0 |  |
 | 2025 | 0 |  |
 
@@ -72,9 +76,9 @@ Generated: 2026-07-28T20:55:14.8606468+00:00
 | Year | Count | Vehicles |
 |------|-------|----------|
 | 1975 | 4 | 1963-1976 Dodge Dart — compact, boxy, reliable workhorse, 1970-1976 AMC Hornet — compact, simple boxy lines, 1974-1978 Oldsmobile Cutlass Supreme — best-selling car in America, formal roofline, 1971-1976 Chevrolet G10 Sportvan — boxy windowed van, chrome bumper |
-| 1985 | 4 | 1984-1987 Honda Civic — small boxy hatchback, 1979-1985 Ford LTD Country Squire — full-size woodgrain wagon, 1980-1985 Buick LeSabre — boxy full-size, chrome trim, 1980-1989 Lincoln Town Car — long boxy luxury sedan |
-| 1995 | 6 | 1989-1997 Geo Metro — very small economy hatchback, 1993-1997 Toyota Corolla — rounded compact sedan, 1988-1998 Chevrolet C/K 1500 — softly squared pickup, 1994-1997 Honda Accord — smooth rounded sedan, 1986-1997 Ford Aerostar — boxy rear-drive minivan, 1994-1998 Ford Mustang — rounded SN95 pony car |
-| 2005 | 4 | 2003-2008 Honda Pilot — boxy three-row SUV, 2001-2007 Ford Escape — compact boxy SUV, 2002-2007 Jeep Liberty — round-headlight compact SUV, 2003-2007 Nissan Altima — sporty mid-size |
+| 1985 | 6 | 1979-1985 Ford Mustang — Fox body, angular hatchback coupe, 1984-1989 Plymouth Voyager — boxy first-generation minivan, 1981-1985 Ford Escort — small boxy economy hatchback, 1980-1985 Buick LeSabre — boxy full-size, chrome trim, 1978-1986 Ford Bronco — full-size boxy SUV, round headlights, 1983-1987 Honda Accord — clean lines, pop-up headlights |
+| 1995 | 6 | 1990-1997 Mazda Miata — tiny rounded roadster, pop-up lights, 1993-1998 Jeep Grand Cherokee — early SUV, boxy-rounded, 1995-2004 Toyota Tacoma — compact, rounded, 1991-1995 Dodge Caravan — rounded second-gen minivan, 1993-1997 Ford Ranger — compact pickup, straight lines, 1990-1994 Chevrolet Lumina — rounded mid-size sedan |
+| 2005 | 1 | 2001-2007 Toyota Highlander — early crossover |
 | 2015 | 0 |  |
 | 2025 | 0 |  |
 

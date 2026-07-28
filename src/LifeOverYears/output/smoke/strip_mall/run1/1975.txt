@@ -31,18 +31,19 @@ PERIOD DETAILS
 - 'TRUE VALUE' style hardware store with a red sign
 - laundromat with an 'OPEN 24 HOURS' sign and washers visible through the plate glass
 - small 'A&P' style grocery with stacked shopping carts by the door
-- window signs: 'COLD POP 20¢', 'BACK TO SCHOOL — JEANS $6'
-- an American flag on a pole at the lot entrance
-- painted white parking stall lines, slightly faded
+- a small radio and electronics shop, hand-lettered window sign reading CB RADIOS - ANTENNAS - SCANNERS, no chain name anywhere
+- window signs: 'WASH 35¢ — DRY 10¢', '8-TRACK TAPES $4.99'
+- a telephone booth at the edge of the parking lot
+- a row of nested shopping carts near the grocery entrance
 Typography: bold sans-serif, slab serif, occasional script.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 16 people TOTAL: 6 near sidewalk (largest, foreground), 6 opposite sidewalk mid-block, 4 distant, far end of block. Grouped in pairs, threes, and singles.
-- two girls skipping rope near the ice cream stand
-- a young clerk sweeping the sidewalk in front of the pharmacy
-- a grandmother in cat-eye glasses carrying a church bulletin
-Clothing: men in polyester suits, bell bottoms; women in earth tones, wide leg pants. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a teenage boy restocking the hardware store's outdoor display
+- a repairman fixing a flickering sign letter on a ladder
+- a girl walking a bicycle with a basket
+Clothing: men in wide lapels, bell bottoms; women in midi skirts, earth tones. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 5 period vehicles, all different:

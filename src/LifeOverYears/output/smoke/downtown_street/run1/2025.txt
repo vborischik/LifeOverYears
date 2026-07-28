@@ -45,8 +45,8 @@ ENVIRONMENT
 - utilities: overhead power lines still on the original poles along the street, fiber optic bundles and 5G small cell nodes mounted on the existing poles
 
 DECAY
+- rust streaks below the old cornice bolts
 - plywood over a broken transom window, the glass long gone
-- a torn vinyl banner sagging from the facade
 - a collapsed awning frame hanging loose over the sidewalk
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES

@@ -44,9 +44,9 @@ ENVIRONMENT
 - utilities: overhead power lines common on wooden poles, fiber optic lines on poles
 
 DECAY
-- shopping carts abandoned across the empty lot
-- shattered storefront glass swept into the walkway corners
 - every sign panel blank or removed, empty frames left on the pylon
+- shattered storefront glass swept into the walkway corners
+- storefronts boarded with plywood behind bent security grilles
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - crepe myrtle tree at parking lot island near entrance: clearly smaller than in the source — about 60% of its canopy there, thinner trunk

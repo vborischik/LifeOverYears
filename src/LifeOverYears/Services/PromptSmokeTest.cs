@@ -127,6 +127,10 @@ public static class PromptSmokeTest
         await DoC27(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, findings);
         DoC28(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, eras,          findings);
         DoC29(findings);
+        DoC30(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
+        DoC31(dtRun1, dtRun2,                                                                  findings);
+        DoC32(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
+        DoC33(findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -1824,6 +1828,115 @@ public static class PromptSmokeTest
 
         f.Add(("C29", "DeclineBias() ramps non-decreasing across the run and stays within 0..1",
             errs.Count == 0, errs.Count == 0 ? "Bias ramp OK across all eras" : Join(errs)));
+    }
+
+    // Named markers are unambiguous: Ghost text never names either chain, and
+    // RadioShack's pre-1990 Generic text explicitly carries no chain name — so a
+    // literal "Blockbuster"/"RadioShack" substring can only come from a Named line.
+    private static void DoC30(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
+        Prompt unknownPrompt,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+
+        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt))
+        {
+            if (year >= 1990) continue;
+            if (prompt.Text.Contains("Blockbuster"))
+                errs.Add($"{label}/{year}: Blockbuster appears Named before 1990");
+            if (prompt.Text.Contains("RadioShack"))
+                errs.Add($"{label}/{year}: RadioShack appears Named before 1990");
+        }
+
+        f.Add(("C30", "Neither chain ever appears Named in a prompt for a year before 1990",
+            errs.Count == 0, errs.Count == 0 ? "No pre-1990 named chain tenants" : Join(errs)));
+    }
+
+    private static void DoC31(
+        Dictionary<int, Prompt> dtRun1, Dictionary<int, Prompt> dtRun2,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+        string[] markers = { "Blockbuster", "torn-ticket", "blue fascia" };
+
+        foreach (var (run, label) in new[] { (dtRun1, "downtown/run1"), (dtRun2, "downtown/run2") })
+            foreach (var (year, prompt) in run)
+                foreach (var marker in markers)
+                    if (prompt.Text.Contains(marker))
+                        errs.Add($"{label}/{year}: found Blockbuster marker '{marker}' in a downtown_street prompt");
+
+        f.Add(("C31", "Blockbuster never appears in a downtown_street prompt, in any form",
+            errs.Count == 0, errs.Count == 0 ? "No Blockbuster content in any downtown_street prompt" : Join(errs)));
+    }
+
+    private static void DoC32(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
+        Prompt unknownPrompt,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+
+        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt))
+        {
+            if (prompt.SceneCondition is not ("abandoned" or "squatted")) continue;
+            if (prompt.Text.Contains("Blockbuster"))
+                errs.Add($"{label}/{year}: Blockbuster appears Named in a {prompt.SceneCondition} era");
+            if (prompt.Text.Contains("RadioShack"))
+                errs.Add($"{label}/{year}: RadioShack appears Named in a {prompt.SceneCondition} era");
+        }
+
+        f.Add(("C32", "Neither chain ever appears Named in an abandoned or squatted era",
+            errs.Count == 0, errs.Count == 0 ? "No named chain tenants in derelict eras" : Join(errs)));
+    }
+
+    // Deterministic structural check, not a sampled-outcome assertion: for any
+    // fixed seed, whichever way the once-per-run presence coin landed, that
+    // presence must hold consistently across every era of the run — a chain
+    // present in the run appears in exactly the eras its year/condition schedule
+    // allows, and a chain absent from the run never appears at all. Condition is
+    // held at "thriving" throughout so only the presence/year logic is exercised,
+    // not the abandoned/squatted overrides already covered by C32.
+    private static void DoC33(List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+        var years = new[] { 1975, 1985, 1995, 2005, 2015, 2025 };
+
+        for (int seed = 1; seed <= 20; seed++)
+        {
+            var ctx = new GenerationContext { Random = new Random(seed) };
+            bool bbPresentInRun = ctx.BlockbusterPresent;
+            bool rsPresentInRun = ctx.RadioShackPresent;
+
+            foreach (var year in years)
+            {
+                var stripTenants = ctx.ResolveChainTenants(year, "strip_mall", "thriving");
+
+                var expectBb = bbPresentInRun && year >= 1990;
+                var hasBb    = stripTenants.Any(t => t.Name == "Blockbuster");
+                if (hasBb != expectBb)
+                    errs.Add($"seed={seed} year={year}: Blockbuster presence flicker (present-in-run={bbPresentInRun}, expected={expectBb}, actual={hasBb})");
+
+                var expectRs  = rsPresentInRun; // RadioShack schedule covers every year while healthy (Generic/Named/Ghost)
+                var hasRsStrip = stripTenants.Any(t => t.Name == "RadioShack");
+                if (hasRsStrip != expectRs)
+                    errs.Add($"seed={seed} year={year}: RadioShack presence flicker in strip_mall (present-in-run={rsPresentInRun}, expected={expectRs}, actual={hasRsStrip})");
+
+                var dtTenants = ctx.ResolveChainTenants(year, "downtown_street", "thriving");
+                var hasRsDt   = dtTenants.Any(t => t.Name == "RadioShack");
+                if (hasRsDt != expectRs)
+                    errs.Add($"seed={seed} year={year}: RadioShack presence flicker in downtown_street (present-in-run={rsPresentInRun}, expected={expectRs}, actual={hasRsDt})");
+            }
+        }
+
+        f.Add(("C33", "Chain tenant presence is stable across a run: no flicker between schedule-eligible eras",
+            errs.Count == 0, errs.Count == 0 ? "No presence flicker across 20 seeds x 6 eras" : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────

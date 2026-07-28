@@ -31,18 +31,19 @@ PERIOD DETAILS
 - soft-serve ice cream stand at the end cap with a cone-shaped sign
 - small 'A&P' style grocery with stacked shopping carts by the door
 - laundromat with an 'OPEN 24 HOURS' sign and washers visible through the plate glass
-- window signs: 'GRAND OPENING', '8-TRACK TAPES $4.99'
+- a small radio and electronics shop, hand-lettered window sign reading CB RADIOS - ANTENNAS - SCANNERS, no chain name anywhere
+- window signs: 'COLD POP 20¢', 'BACK TO SCHOOL — JEANS $6'
+- a coin-operated kiddie ride by a storefront door
 - a telephone booth at the edge of the parking lot
-- a row of nested shopping carts near the grocery entrance
 Typography: bold sans-serif, slab serif, occasional script.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
 EXACTLY 16 people TOTAL: 6 near sidewalk (largest, foreground), 6 opposite sidewalk mid-block, 4 distant, far end of block. Grouped in pairs, threes, and singles.
-- two girls skipping rope near the ice cream stand
-- a workman in uniform carrying a toolbox to his truck
-- a deliveryman in brown shorts unloading crates from a panel truck
-Clothing: men in turtlenecks, plaid patterns; women in earth tones, peasant blouses. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a woman waiting on a bench outside the beauty salon
+- a teenage boy restocking the hardware store's outdoor display
+- a police officer in a short-sleeve summer uniform directing traffic
+Clothing: men in polyester suits, bell bottoms; women in earth tones, peasant blouses. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 5 period vehicles, all different:
