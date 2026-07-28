@@ -137,14 +137,14 @@
       "Walmart", "Target", "Costco", "Sears closing stores", "Kmart closing stores",
       "McDonald's", "Burger King", "Wendy's", "Taco Bell", "Subway", "Starbucks", "Chipotle", "Five Guys", "Panera",
       "Kroger", "Publix", "Whole Foods", "Trader Joe's", "Aldi",
-      "Best Buy", "GameStop", "RadioShack closing",
+      "Best Buy", "GameStop",
       "Home Depot", "Lowe's",
       "Walgreens", "CVS", "7-Eleven",
       "AT&T", "Verizon", "T-Mobile"
     ],
     "absent_brands": [
       "Blockbuster Video", "Circuit City", "Borders", "Hollywood Video",
-      "widespread Amazon physical stores"
+      "widespread Amazon physical stores", "RadioShack"
     ],
     "signage": {
       "characteristics": [

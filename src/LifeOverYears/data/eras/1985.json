@@ -124,12 +124,12 @@
       "Kmart", "Sears", "JCPenney", "Woolworth", "Service Merchandise",
       "McDonald's", "Burger King", "Wendy's", "Pizza Hut", "Taco Bell",
       "Kroger", "Safeway", "Winn-Dixie",
-      "RadioShack", "Blockbuster Video", "Circuit City",
+      "RadioShack", "Circuit City",
       "7-Eleven", "Hardee's"
     ],
     "absent_brands": [
       "Starbucks", "Home Depot large format", "Costco", "Amazon",
-      "Best Buy", "Target Supercenter", "Walmart Supercenter"
+      "Best Buy", "Target Supercenter", "Walmart Supercenter", "Blockbuster Video"
     ],
     "signage": {
       "characteristics": [
