@@ -7,13 +7,13 @@ Fill every field based on what you observe in the image. Use the exact schema be
   "camera": {
     "height": "<eye-level|low|high|aerial>",
     "direction": "<street|intersection|alley|facade|park>",
-    "fov": 90
+    "fov": <degrees, 20-120>
   },
   "geometry": {
     "roads": [
       {
         "type": "<residential|arterial|highway|alley>",
-        "lanes": 1,
+        "lanes": <count>,
         "markings": ["<center line|edge line|turn arrow|crosswalk|none>"],
         "surface": "<asphalt|concrete|brick|gravel>"
       }
@@ -26,7 +26,7 @@ Fill every field based on what you observe in the image. Use the exact schema be
       {
         "type": "<residential|commercial|industrial|mixed>",
         "position": "<left|right|center|background>",
-        "stories": 1,
+        "stories": <count>,
         "materials": ["<brick|concrete|stucco|wood|glass|metal>"],
         "roof": "<flat|pitched|mansard|shed>",
         "setback": "<at-street|shallow|deep>"
@@ -45,7 +45,7 @@ Fill every field based on what you observe in the image. Use the exact schema be
     "utilities": ["<power lines|utility poles|fire hydrant|street lamp|mailbox|bench|bus stop|pay phone|trash can>"],
     "landscape": ["<grass strip|planter|hedge|flower bed|mulch|bare soil|none>"]
   },
-  "immutable_elements": ["<permanent landmarks: bridge, church, river, mountain, water tower, etc.>"]
+  "immutable_elements": ["<permanent landmarks: bridge, church, river, mountain, water tower, freestanding pylon or monument sign, continuous storefront overhang or canopy, canopy support columns, parking lot islands, loading dock, etc.>"]
 }
 
 Rules:
@@ -55,3 +55,14 @@ Rules:
 - Arrays may be empty [] if nothing is visible
 - sidewalks and curbs are boolean: true if visible, false if not
 - Be specific — prefer detailed observations over generic labels
+- roads, buildings, and trees are arrays: include one entry per distinct
+  structure actually visible, not one entry total. A multi-tenant retail row
+  with separate storefronts is still ONE building if it sits under a single
+  continuous roof; a detached end unit sitting apart from that roofline is a
+  SECOND building.
+- parking is "lot" whenever a dedicated off-street paved area for customer
+  parking is visible, even if street parking is also present; "on-street"
+  only when parallel or angled bays along the roadway are the only parking.
+- setback is "deep" when a parking area or apron separates the building from
+  the road, "shallow" for a narrow strip or sidewalk plus planting, and
+  "at-street" only when the facade meets the sidewalk directly.
