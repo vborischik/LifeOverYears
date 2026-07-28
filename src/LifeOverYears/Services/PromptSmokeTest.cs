@@ -1634,6 +1634,15 @@ public static class PromptSmokeTest
                     if (anchor.Contains(word, StringComparison.OrdinalIgnoreCase))
                         errs.Add($"{sceneType} anchor '{anchor}' contains gas-station word '{word}'");
 
+        // auto_repair legitimately uses "oil" (motor oil, oil stains) — a narrower
+        // check without it guards against the exact confusion the scene type
+        // exists to prevent: pumps, fuel, or an attendant slipping into its voice.
+        string[] autoRepairGasWords = { "gas", "pump", "attendant" };
+        foreach (var anchor in CaptionService.AnglesByScene["auto_repair"])
+            foreach (var word in autoRepairGasWords)
+                if (anchor.Contains(word, StringComparison.OrdinalIgnoreCase))
+                    errs.Add($"auto_repair anchor '{anchor}' contains gas-station word '{word}'");
+
         // 6. Condition coverage: every condition reachable at runtime (every
         // era's allowed_scene_conditions, plus the gas-station-finale-only
         // "squatted" and "restored") must map to a real phrase, not the

@@ -52,6 +52,15 @@ public sealed class CaptionService : ICaptionService
             "sitting on the curb in the parking lot with friends",
             "the hum of the fluorescent lights under the storefront overhang",
         },
+        ["auto_repair"] = new[]
+        {
+            "the mechanic who knew your car better than you did",
+            "waiting in the little office while they finished the brakes",
+            "the smell of motor oil and rubber drifting out of the bay",
+            "the parts calendar hanging behind the counter",
+            "handing the keys to the same man who worked on your father's car",
+            "the sound of the impact wrench through the open bay door",
+        },
     };
 
     public static IReadOnlyList<string> AnglesFor(string sceneType) =>
