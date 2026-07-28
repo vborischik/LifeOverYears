@@ -1080,8 +1080,12 @@ public static class PromptSmokeTest
                  .Where(e => text.Contains($"- {e}"))
                  .ToList();
 
+    // Greedy .* (not [^']+) so a sign's own text may contain an apostrophe
+    // (e.g. "GENERAL TSO'S COMBO $4.25") without breaking the match — greedy
+    // backtracking still finds the real ', ' separator between the two
+    // quoted signs, since '.' never crosses the line's own newline.
     private static readonly System.Text.RegularExpressions.Regex WindowSignsLine =
-        new(@"- window signs: '[^']+', '[^']+'");
+        new(@"- window signs: '.*', '.*'");
 
     // Window signs, sampled extras, and people_mix present in every prompt.
     private static void DoC20(

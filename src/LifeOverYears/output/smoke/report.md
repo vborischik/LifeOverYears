@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-07-28T23:13:01.7533914+00:00
+Generated: 2026-07-28T23:17:17.0746340+00:00
 
 ## Check Results
 
@@ -25,7 +25,7 @@ Generated: 2026-07-28T23:13:01.7533914+00:00
 | C17 | Every specific_models entry (cars+trucks) starts on or before its era year | ✅ PASS | All model year ranges are era-valid |
 | C18 | Every prompt has a PLACEMENT line; no repeated pattern per run unless the pool is exhausted | ✅ PASS | Placement present and de-duplicated per pool |
 | C19 | No descriptive-as-signage leaks; {DINER_NAME} resolved and identical across a run | ✅ PASS | Business names clean and diner name stable |
-| C20 | Every live prompt has a two-sign 'window signs:' line, >=1 extras line, and a people_mix line; derelict eras carry none of them | ❌ FAIL | strip/run2/1995: no 'window signs:' line with two quoted signs |
+| C20 | Every live prompt has a two-sign 'window signs:' line, >=1 extras line, and a people_mix line; derelict eras carry none of them | ✅ PASS | All three sampling axes present in every prompt |
 | C21 | Run1 vs Run2: >=3 of 6 years differ in sampled extras or window signs | ✅ PASS | Sufficient sampling variance between seeds |
 | C22 | Every prompt is at most 4900 characters | ✅ PASS | All prompts within 4900 chars |
 | C23 | default/unknown scenes always thriving; rank monotonic per run (gas-station finale may resolve to 'new' or 'restored'); abandoned/declining/squatted counts honored for gas_station, downtown_street and strip_mall; 'squatted' only on a gas_station's final era; 'restored' only on a gas_station's final era | ✅ PASS | Condition trajectory invariants hold |
