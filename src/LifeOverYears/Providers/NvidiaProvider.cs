@@ -24,9 +24,29 @@ public sealed class NvidiaProvider : INvidiaProvider
     {
         _logger.LogDebug("POST {Url}", url);
         var json = JsonSerializer.Serialize(body, JsonOpts);
-        var response = await _http.PostAsync(url, new StringContent(json, Encoding.UTF8, "application/json"));
-        response.EnsureSuccessStatusCode();
-        return await response.Content.ReadAsStringAsync();
+
+        const int maxAttempts = 3;
+        for (var attempt = 1; ; attempt++)
+        {
+            try
+            {
+                var response = await _http.PostAsync(url, new StringContent(json, Encoding.UTF8, "application/json"));
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch (TaskCanceledException)
+            {
+                // No CancellationToken is passed into this method, so this always
+                // means the HttpClient timeout elapsed — never caller cancellation.
+                if (attempt >= maxAttempts)
+                    throw;
+
+                _logger.LogWarning(
+                    "POST {Url} timed out on attempt {Attempt}/{MaxAttempts} — retrying in 2s",
+                    url, attempt, maxAttempts);
+                await Task.Delay(2000);
+            }
+        }
     }
 
     public async Task<string> PollAsync(string url, int timeoutSeconds = 120)
