@@ -3,3 +3,4 @@
 bin/
 obj/
 appsettings.json
+src/LifeOverYears/output/runs/
