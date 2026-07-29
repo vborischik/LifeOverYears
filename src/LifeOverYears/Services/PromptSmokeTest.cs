@@ -133,6 +133,7 @@ public static class PromptSmokeTest
         DoC33(findings);
         DoC34(eras, findings);
         DoC35(eras, findings);
+        DoC36(dtRun1, dtRun2, gasRun1, smRun1, arRun1, unknownPrompt, findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -1161,7 +1162,7 @@ public static class PromptSmokeTest
                 var line = PlacementLine(prompt);
                 if (line is null) continue; // already reported by the presence check
 
-                var pool    = GenerationContext.PlacementPoolFor(prompt.SelectedVehicles.Count);
+                var pool    = GenerationContext.AllPlacementPatternsFor(prompt.SelectedVehicles.Count);
                 var pattern = pool.FirstOrDefault(line.Contains);
                 if (pattern is null)
                 {
@@ -2029,6 +2030,61 @@ public static class PromptSmokeTest
 
         f.Add(("C35", "A derelict era never emits a Named or Generic chain tenant line",
             errs.Count == 0, errs.Count == 0 ? "No Named/Generic chain content in any derelict block" : Join(errs)));
+    }
+
+    // Street-shaped placement language (sidewalk zones, "hug the curb", "side of
+    // the street") must be gated on the SceneDna geometry that actually has a
+    // sidewalk/on-street parking — a forecourt, apron or lot fixture must never
+    // inherit it. Same abandoned/vehicle skips as C15/C18.
+    private static void DoC36(
+        Dictionary<int, Prompt> dtRun1, Dictionary<int, Prompt> dtRun2,
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> smRun1, Dictionary<int, Prompt> arRun1,
+        Prompt unknownPrompt,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+
+        // unknownPrompt: Sidewalks false, Parking "gravel lot" — the only
+        // fixture exercising the off-street PEOPLE branch end to end.
+        // ("sidewalk" itself isn't checked bare: PRESERVE always states
+        // "sidewalks present/absent" regardless of geometry — checking the
+        // gated zone/trailing-clause wording specifically instead.)
+        if (unknownPrompt.Text.Contains("near sidewalk") || unknownPrompt.Text.Contains("stay on sidewalks"))
+            errs.Add("unknown/1985: off-street prompt still uses on-street PEOPLE wording");
+        if (unknownPrompt.Text.Contains("hug the curb"))
+            errs.Add("unknown/1985: off-street prompt still says 'hug the curb'");
+        if (unknownPrompt.Text.Contains("side of the street"))
+            errs.Add("unknown/1985: off-street prompt still says 'side of the street'");
+        if (!unknownPrompt.Text.Contains("stay on the lot apron"))
+            errs.Add("unknown/1985: off-street prompt missing 'stay on the lot apron'");
+
+        // dtRun1/dtRun2: Sidewalks true, "parallel street parking both sides" —
+        // must keep its exact current output, unchanged by this gate.
+        foreach (var (run, label) in new[] { (dtRun1, "downtown/run1"), (dtRun2, "downtown/run2") })
+            foreach (var year in Years)
+            {
+                if (!run.TryGetValue(year, out var prompt)) continue;
+                if (prompt.SceneCondition != "abandoned" && !prompt.Text.Contains("stay on sidewalks"))
+                    errs.Add($"{label}/{year}: on-street prompt missing 'stay on sidewalks'");
+                if (prompt.SelectedVehicles.Count > 0 && !prompt.Text.Contains("hug the curb"))
+                    errs.Add($"{label}/{year}: on-street prompt missing 'hug the curb'");
+            }
+
+        // gasRun1/smRun1/arRun1: off-street parking (forecourt/lot/apron) —
+        // vehicles must never hug a curb or place along "the street".
+        foreach (var (run, label) in new[] { (gasRun1, "gas/run1"), (smRun1, "strip/run1"), (arRun1, "auto/run1") })
+            foreach (var year in Years)
+            {
+                if (!run.TryGetValue(year, out var prompt)) continue;
+                if (prompt.Text.Contains("hug the curb"))
+                    errs.Add($"{label}/{year}: off-street prompt says 'hug the curb'");
+                var line = PlacementLine(prompt);
+                if (line is not null && line.Contains("side of the street"))
+                    errs.Add($"{label}/{year}: off-street PLACEMENT line says 'side of the street'");
+            }
+
+        f.Add(("C36", "Street-shaped placement language (sidewalk zones, curb-hugging, PLACEMENT wording) is gated on SceneDna geometry",
+            errs.Count == 0, errs.Count == 0 ? "Street language present only where geometry supports it" : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────

@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-07-28T23:17:17.0746340+00:00
+Generated: 2026-07-29T13:36:59.3896453+00:00
 
 ## Check Results
 
@@ -23,7 +23,7 @@ Generated: 2026-07-28T23:17:17.0746340+00:00
 | C15 | Every prompt contains the populate-empty-base header and the sidewalk rule | ✅ PASS | Populate header and sidewalk rule present everywhere |
 | C16 | Every prompt with a TREES section contains the tree-size override line | ✅ PASS | Tree-size override present in all TREES sections |
 | C17 | Every specific_models entry (cars+trucks) starts on or before its era year | ✅ PASS | All model year ranges are era-valid |
-| C18 | Every prompt has a PLACEMENT line; no repeated pattern per run unless the pool is exhausted | ✅ PASS | Placement present and de-duplicated per pool |
+| C18 | Every prompt has a PLACEMENT line; no repeated pattern per run unless the pool is exhausted | ❌ FAIL | gas/run1/2015: pattern repeated before its pool was exhausted; gas/run1/2025: pattern repeated before its pool was exhausted; gas/run2/2015: pattern repeated before its pool was exhausted; strip/run2/2005: pattern repeated before its pool was exhausted |
 | C19 | No descriptive-as-signage leaks; {DINER_NAME} resolved and identical across a run | ✅ PASS | Business names clean and diner name stable |
 | C20 | Every live prompt has a two-sign 'window signs:' line, >=1 extras line, and a people_mix line; derelict eras carry none of them | ✅ PASS | All three sampling axes present in every prompt |
 | C21 | Run1 vs Run2: >=3 of 6 years differ in sampled extras or window signs | ✅ PASS | Sufficient sampling variance between seeds |
@@ -41,6 +41,7 @@ Generated: 2026-07-28T23:17:17.0746340+00:00
 | C33 | Chain tenant presence is stable across a run: no flicker between schedule-eligible eras | ✅ PASS | No presence flicker across 20 seeds x 6 eras |
 | C34 | A derelict era emits the ghost line whenever the run's chain schedule calls for one | ✅ PASS | Ghost lines present wherever the schedule calls for them |
 | C35 | A derelict era never emits a Named or Generic chain tenant line | ✅ PASS | No Named/Generic chain content in any derelict block |
+| C36 | Street-shaped placement language (sidewalk zones, curb-hugging, PLACEMENT wording) is gated on SceneDna geometry | ✅ PASS | Street language present only where geometry supports it |
 
 ## Vehicle Selections
 

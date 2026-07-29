@@ -421,15 +421,43 @@ public sealed class GenerationContext
         "two parked on the LEFT side; the rest parked on the RIGHT side with gaps"
     };
 
-    // Pool selected by vehicle count: 3-4 vehicles → the smaller-arrangement pool.
-    public static IReadOnlyList<string> PlacementPoolFor(int vehicleCount) =>
-        vehicleCount <= 4 ? PlacementPatterns34 : PlacementPatterns56;
+    // Off-street counterparts: a forecourt, apron or lot has no "side of the
+    // street" to speak of, so these describe stalls instead of curb sides.
+    // Wording stays generic so gas_station, strip_mall and auto_repair can all
+    // draw from the same pools.
+    public static readonly IReadOnlyList<string> PlacementPatternsLot34 = new[]
+    {
+        "all parked in the lot, nose-in to marked stalls, with an empty stall between them",
+        "two nose-in near the building; the rest angled into stalls at the far edge of the lot",
+        "one nose-in close to the entrance; the rest spread across stalls toward the lot's far edge",
+        "all angled into stalls along the far edge of the lot, the near stalls left empty"
+    };
+
+    public static readonly IReadOnlyList<string> PlacementPatternsLot56 = new[]
+    {
+        "all parked in the lot, nose-in to marked stalls, with gaps between them",
+        "three nose-in near the building; the rest in stalls at the far edge of the lot",
+        "two in stalls near the entrance; the rest spread across the lot with gaps"
+    };
+
+    // Pool selected by parking type first, then vehicle count: 3-4 vehicles →
+    // the smaller-arrangement pool.
+    public static IReadOnlyList<string> PlacementPoolFor(int vehicleCount, bool onStreet) =>
+        onStreet
+            ? (vehicleCount <= 4 ? PlacementPatterns34    : PlacementPatterns56)
+            : (vehicleCount <= 4 ? PlacementPatternsLot34 : PlacementPatternsLot56);
+
+    // Union of both parking types' pools for a given vehicle count — for the
+    // smoke suite, which validates a PLACEMENT line against whichever pool it
+    // could plausibly have come from without needing to know onStreet itself.
+    public static IReadOnlyList<string> AllPlacementPatternsFor(int vehicleCount) =>
+        PlacementPoolFor(vehicleCount, true).Concat(PlacementPoolFor(vehicleCount, false)).ToList();
 
     private readonly HashSet<string> _usedPlacements = new();
 
-    public string NextPlacement(int vehicleCount)
+    public string NextPlacement(int vehicleCount, bool onStreet)
     {
-        var pool      = PlacementPoolFor(vehicleCount);
+        var pool      = PlacementPoolFor(vehicleCount, onStreet);
         var available = pool.Where(p => !_usedPlacements.Contains(p)).ToList();
         if (available.Count == 0)          // pool exhausted this run — reuse is allowed
             available = pool.ToList();

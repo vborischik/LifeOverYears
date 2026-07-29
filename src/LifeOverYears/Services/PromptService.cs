@@ -35,7 +35,9 @@ public sealed class PromptService : IPromptService
             _logger.LogWarning("No scene_content in era {Year} for scene type '{SceneType}' — building generic scene block",
                 year, sceneType);
 
-        var isGasStation = sceneType == "gas_station";
+        var isGasStation    = sceneType == "gas_station";
+        var hasSidewalks    = sceneDna.Geometry.Sidewalks;
+        var onStreetParking = IsOnStreetParking(sceneDna.Geometry.Parking);
         // Gas stations, downtown streets, strip malls and auto repair shops all
         // carry a condition arc — decline is the story these runs are for. Only
         // default/unknown scenes stay thriving and use their base ranges untouched.
@@ -77,14 +79,14 @@ public sealed class PromptService : IPromptService
         var vehicles  = PickVehicles(eraProfile, context, vehicleCount, _logger);
         // An abandoned era has no vehicles and no PLACEMENT line — don't consume a
         // placement pattern from the run's pool for it.
-        var placement = vehicles.Count > 0 ? context.NextPlacement(vehicles.Count) : "";
+        var placement = vehicles.Count > 0 ? context.NextPlacement(vehicles.Count, onStreetParking) : "";
         var gasSign   = isGasStation ? await ResolveGasSignAsync(context, year, condition) : default;
 
         var text = template
             .Replace("{PRESERVE_BLOCK}",    BuildPreserveBlock(sceneDna))
             .Replace("{SCENE_BLOCK}",       BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, gasSign, rng, context))
-            .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, rng, context))
-            .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation))
+            .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, hasSidewalks, rng, context))
+            .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation, onStreetParking))
             .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year, sceneType, condition, rng))
             .Replace("{STYLE_BLOCK}",       BuildStyleBlock(eraProfile.Photography));
 
@@ -123,6 +125,18 @@ public sealed class PromptService : IPromptService
             // Null brand → BuildSceneBlock falls back to an independent-style sign.
             return new GenerationContext.GasSign(GenerationContext.GasSignKind.Branded, null);
         }
+    }
+
+    // Vision writes Parking as free text ("parallel street parking both sides",
+    // "gravel lot", "concrete apron in front of the bays"). Anything that does not
+    // name the street or the curb is treated as off-street: forecourts, aprons and
+    // lots are the common case and must not inherit parallel-parking language.
+    private static bool IsOnStreetParking(string? parking)
+    {
+        if (string.IsNullOrWhiteSpace(parking)) return false;
+        var p = parking.ToLowerInvariant();
+        return p.Contains("street") || p.Contains("curb")
+            || p.Contains("parallel") || p.Contains("meter");
     }
 
     private static SceneContent? ResolveSceneContent(EraProfile era, string sceneType)
@@ -497,7 +511,7 @@ public sealed class PromptService : IPromptService
         return sb.ToString();
     }
 
-    private static string BuildPeopleBlock(EraProfile era, SceneContent? content, int peopleCount, bool isGasStation, Random rng, GenerationContext context)
+    private static string BuildPeopleBlock(EraProfile era, SceneContent? content, int peopleCount, bool isGasStation, bool hasSidewalks, Random rng, GenerationContext context)
     {
         var sb = new StringBuilder();
         sb.AppendLine("PEOPLE");
@@ -509,9 +523,18 @@ public sealed class PromptService : IPromptService
 
         var (near, opposite, distant) = SplitIntoZones(peopleCount);
         var zones = new List<string>();
-        if (near > 0)     zones.Add($"{near} near sidewalk (largest, foreground)");
-        if (opposite > 0) zones.Add($"{opposite} opposite sidewalk mid-block");
-        if (distant > 0)  zones.Add($"{distant} distant, far end of block");
+        if (hasSidewalks)
+        {
+            if (near > 0)     zones.Add($"{near} near sidewalk (largest, foreground)");
+            if (opposite > 0) zones.Add($"{opposite} opposite sidewalk mid-block");
+            if (distant > 0)  zones.Add($"{distant} distant, far end of block");
+        }
+        else
+        {
+            if (near > 0)     zones.Add($"{near} in the foreground near the building entrance (largest)");
+            if (opposite > 0) zones.Add($"{opposite} mid-ground out on the lot, beside parked vehicles");
+            if (distant > 0)  zones.Add($"{distant} distant, at the far edge of the lot");
+        }
         sb.AppendLine($"EXACTLY {peopleCount} people TOTAL: {string.Join(", ", zones)}. Grouped in pairs, threes, and singles.");
 
         if (content is not null)
@@ -532,7 +555,9 @@ public sealed class PromptService : IPromptService
         if (era.Photography.ColorMode != "black_and_white")
             sb.Append($" Fashion palette: {Join(fashion.Colors.Take(3).ToList())}.");
         sb.Append(" No posing or eye contact.");
-        sb.Append(" All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.");
+        sb.Append(hasSidewalks
+            ? " All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes."
+            : " All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.");
         if (isGasStation)
             sb.Append(" Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.");
         return sb.ToString();
@@ -609,7 +634,7 @@ public sealed class PromptService : IPromptService
         return result;
     }
 
-    private static string BuildVehiclesBlock(IReadOnlyList<(string Model, string? Color)> vehicles, int year, string placement, bool isGasStation)
+    private static string BuildVehiclesBlock(IReadOnlyList<(string Model, string? Color)> vehicles, int year, string placement, bool isGasStation, bool onStreetParking)
     {
         var sb = new StringBuilder();
         sb.AppendLine("VEHICLES");
@@ -622,7 +647,9 @@ public sealed class PromptService : IPromptService
         foreach (var (model, color) in vehicles)
             sb.AppendLine(color is null ? $"- {model}" : $"- {model} — {color}");
         sb.AppendLine($"Parked with gaps; no vehicle newer than {year}.");
-        sb.AppendLine("Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.");
+        sb.AppendLine(onStreetParking
+            ? "Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic."
+            : "Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.");
         sb.Append($"PLACEMENT: {placement}. No vehicle in the same spot as any other era.");
         return sb.ToString();
     }
