@@ -39,9 +39,8 @@ Typography: bold sans-serif, slab serif, occasional script.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 16 people TOTAL: 6 near sidewalk (largest, foreground), 6 opposite sidewalk mid-block, 4 distant, far end of block. Grouped in pairs, threes, and singles.
+EXACTLY 16 people TOTAL, spread naturally at different distances along the sidewalk. Grouped in pairs, threes, and singles.
 - a woman waiting on a bench outside the beauty salon
-- a teenage boy restocking the hardware store's outdoor display
 - a police officer in a short-sleeve summer uniform directing traffic
 Clothing: men in polyester suits, bell bottoms; women in earth tones, peasant blouses. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 

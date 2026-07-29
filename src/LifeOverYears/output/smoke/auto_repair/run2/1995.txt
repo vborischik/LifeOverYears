@@ -36,9 +36,8 @@ Typography: clean geometric sans-serif, early digital influence.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+EXACTLY 4 people TOTAL, spread naturally at different distances along the sidewalk. Grouped in pairs, threes, and singles.
 - a mechanic recharging an A/C system with a gauge set
-- a man in a cap chatting with the owner at the counter
 - a grandmother pushing a wire cart of groceries
 Clothing: men in baggy jeans, flannel shirts; women in slip dresses, high-waisted mom jeans. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 

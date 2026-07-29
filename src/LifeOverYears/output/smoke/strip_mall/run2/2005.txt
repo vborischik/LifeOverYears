@@ -40,9 +40,8 @@ Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 9 people TOTAL: 4 near sidewalk (largest, foreground), 3 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
+EXACTLY 9 people TOTAL, spread naturally at different distances along the sidewalk. Grouped in pairs, threes, and singles.
 - a teenager filming a friend on a flip-phone camera
-- a delivery driver wheeling a hand truck to a storefront
 - a woman power-walking with a small dog on a retractable leash
 Clothing: men in graphic tees, trucker hats; women in layered tank tops, velour tracksuits. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 

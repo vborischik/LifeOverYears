@@ -40,9 +40,8 @@ Typography: clean geometric sans-serif, early digital influence.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 5 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+EXACTLY 5 people TOTAL, spread naturally at different distances along the sidewalk. Grouped in pairs, threes, and singles.
 - a family piling out of a minivan for a bathroom break
-- a trucker stretching his legs beside his idling rig
 - a grandmother pushing a wire cart of groceries
 Clothing: men in grunge style, flannel shirts; women in crop tops, floral dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 

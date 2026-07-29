@@ -41,9 +41,8 @@ Typography: clean geometric sans-serif, early digital influence.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 10 people TOTAL: 4 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
+EXACTLY 10 people TOTAL, spread naturally at different distances along the sidewalk. Grouped in pairs, threes, and singles.
 - a shop clerk restocking the newspaper rack
-- a man on rollerblades weaving around pedestrians
 - an office worker with a pager on his belt
 Clothing: men in backwards caps, baggy jeans; women in chokers, slip dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 

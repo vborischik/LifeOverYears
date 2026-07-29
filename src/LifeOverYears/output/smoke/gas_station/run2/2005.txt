@@ -40,9 +40,8 @@ Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 5 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+EXACTLY 5 people TOTAL, spread naturally at different distances along the sidewalk. Grouped in pairs, threes, and singles.
 - a teenager filling tires at the coin-operated air machine
-- a clerk restocking the window display inside
 - a woman comparing ringtones on her flip phone with a friend
 Clothing: men in cargo shorts, graphic tees; women in layered tank tops, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 

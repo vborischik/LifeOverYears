@@ -40,9 +40,8 @@ Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+EXACTLY 3 people TOTAL, spread naturally at different distances along the sidewalk. Grouped in pairs, threes, and singles.
 - a man in a Bluetooth headset arguing about directions
-- a woman leaving the bank branch with a folder of papers
 - a delivery driver checking a handheld scanner before knocking
 Clothing: men in baggy jeans, graphic tees; women in velour tracksuits, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 

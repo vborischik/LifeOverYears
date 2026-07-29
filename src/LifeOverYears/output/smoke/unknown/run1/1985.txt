@@ -35,9 +35,8 @@ Typography: bold geometric sans-serif, early computer-influenced fonts.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 22 people TOTAL: 9 in the foreground near the building entrance (largest), 8 mid-ground out on the lot, beside parked vehicles, 5 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
+EXACTLY 22 people TOTAL, spread naturally at different distances across the lot. Grouped in pairs, threes, and singles.
 - kids on BMX bikes by the curb
-- a woman using a wall-mounted payphone
 - a college student wheeling a mountain bike with a U-lock on the frame
 Clothing: men in acid wash jeans, polo shirts with collars up; women in leg warmers, bright neon colors. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 

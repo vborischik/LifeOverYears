@@ -36,9 +36,8 @@ Typography: bold geometric sans-serif, early computer-influenced fonts.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 5 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+EXACTLY 5 people TOTAL, spread naturally at different distances along the sidewalk. Grouped in pairs, threes, and singles.
 - a mechanic sliding out from under a car on a creeper
-- a young apprentice organizing tools on a pegboard
 - a businessman with a briefcase and wide tie
 Clothing: men in shoulder pads in blazers, polo shirts with collars up; women in leg warmers, bright neon colors. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 

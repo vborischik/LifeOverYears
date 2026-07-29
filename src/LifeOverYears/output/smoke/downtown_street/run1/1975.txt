@@ -39,9 +39,8 @@ Typography: bold sans-serif, slab serif, occasional script.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 30 people TOTAL: 12 near sidewalk (largest, foreground), 11 opposite sidewalk mid-block, 7 distant, far end of block. Grouped in pairs, threes, and singles.
+EXACTLY 30 people TOTAL, spread naturally at different distances along the sidewalk. Grouped in pairs, threes, and singles.
 - a barber visible through the shop window cutting hair
-- two men in short-sleeve dress shirts talking outside the hardware store
 - a shopkeeper in an apron by his doorway
 Clothing: men in turtlenecks, wide lapels; women in wide leg pants, earth tones. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 

@@ -40,9 +40,8 @@ Typography: minimalist flat sans-serif, simplified modern logos.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 7 people TOTAL: 3 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
+EXACTLY 7 people TOTAL, spread naturally at different distances along the sidewalk. Grouped in pairs, threes, and singles.
 - a man returning a disc at the DVD kiosk
-- a driver comparing gas app prices before choosing a pump
 - a dog walker with three dogs
 Clothing: men in slim-fit plaid shirts, skinny jeans; women in high-waisted skinny jeans, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 

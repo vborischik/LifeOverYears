@@ -40,9 +40,8 @@ Typography: bold geometric sans-serif, early computer-influenced fonts.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+EXACTLY 4 people TOTAL, spread naturally at different distances along the sidewalk. Grouped in pairs, threes, and singles.
 - a customer walking into the store counting bills
-- a woman squeegeeing her windshield at the island
 - a woman in a power suit with enormous shoulder pads striding past
 Clothing: men in acid wash jeans, shoulder pads in blazers; women in bright neon colors, high-waisted jeans. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 

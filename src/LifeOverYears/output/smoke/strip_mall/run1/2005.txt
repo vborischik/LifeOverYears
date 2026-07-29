@@ -39,9 +39,8 @@ Typography: clean sans-serif, polished brand identities.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 2 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block. Grouped in pairs, threes, and singles.
+EXACTLY 2 people TOTAL, spread naturally at different distances along the sidewalk. Grouped in pairs, threes, and singles.
 - a mom comparing coupons outside the dollar store
-- a woman texting on a flip phone under the canopy
 - an office worker clipped to a Bluetooth headset mid-conversation
 Clothing: men in trucker hats, frosted tips hair; women in trucker hats, velour tracksuits. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 

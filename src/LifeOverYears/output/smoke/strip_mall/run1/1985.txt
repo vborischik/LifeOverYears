@@ -39,9 +39,8 @@ Typography: bold geometric sans-serif, early computer-influenced fonts.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 12 people TOTAL: 5 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles.
+EXACTLY 12 people TOTAL, spread naturally at different distances along the sidewalk. Grouped in pairs, threes, and singles.
 - a teenager renting a Nintendo cartridge at the video counter
-- two boys trading baseball cards on the curb
 - a group of teenagers in bright windbreakers
 Clothing: men in polo shirts with collars up, shoulder pads in blazers; women in leg warmers, high-waisted jeans. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 

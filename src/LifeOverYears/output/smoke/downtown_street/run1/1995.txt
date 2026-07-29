@@ -40,9 +40,8 @@ Typography: clean geometric sans-serif, early digital influence.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
 
 PEOPLE
-EXACTLY 13 people TOTAL: 5 near sidewalk (largest, foreground), 5 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles.
+EXACTLY 13 people TOTAL, spread naturally at different distances along the sidewalk. Grouped in pairs, threes, and singles.
 - a mother pushing a stroller past the diner
-- a businessman talking on a large early cell phone
 - teens in baggy jeans and band tees
 Clothing: men in baggy jeans, windbreakers; women in floral dresses, slip dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 

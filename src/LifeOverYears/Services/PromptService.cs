@@ -521,24 +521,12 @@ public sealed class PromptService : IPromptService
             return sb.ToString();
         }
 
-        var (near, opposite, distant) = SplitIntoZones(peopleCount);
-        var zones = new List<string>();
-        if (hasSidewalks)
-        {
-            if (near > 0)     zones.Add($"{near} near sidewalk (largest, foreground)");
-            if (opposite > 0) zones.Add($"{opposite} opposite sidewalk mid-block");
-            if (distant > 0)  zones.Add($"{distant} distant, far end of block");
-        }
-        else
-        {
-            if (near > 0)     zones.Add($"{near} in the foreground near the building entrance (largest)");
-            if (opposite > 0) zones.Add($"{opposite} mid-ground out on the lot, beside parked vehicles");
-            if (distant > 0)  zones.Add($"{distant} distant, at the far edge of the lot");
-        }
-        sb.AppendLine($"EXACTLY {peopleCount} people TOTAL: {string.Join(", ", zones)}. Grouped in pairs, threes, and singles.");
+        sb.AppendLine(hasSidewalks
+            ? $"EXACTLY {peopleCount} people TOTAL, spread naturally at different distances along the sidewalk. Grouped in pairs, threes, and singles."
+            : $"EXACTLY {peopleCount} people TOTAL, spread naturally at different distances across the lot. Grouped in pairs, threes, and singles.");
 
         if (content is not null)
-            foreach (var activity in SampleUnused(content.PeopleActivities, 2, rng, context))
+            foreach (var activity in SampleUnused(content.PeopleActivities, 1, rng, context))
                 sb.AppendLine($"- {activity}");
 
         if (era.PeopleMix is { Count: > 0 })
