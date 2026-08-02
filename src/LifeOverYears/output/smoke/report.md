@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-08-02T02:31:29.5299030+00:00
+Generated: 2026-08-02T02:35:32.8760300+00:00
 
 ## Check Results
 
@@ -23,7 +23,7 @@ Generated: 2026-08-02T02:31:29.5299030+00:00
 | C15 | Every prompt contains the populate-empty-base header and the sidewalk rule | ✅ PASS | Populate header and sidewalk rule present everywhere |
 | C16 | Every prompt with a TREES section contains the tree-size override line | ✅ PASS | Tree-size override present in all TREES sections |
 | C17 | Every specific_models entry (cars+trucks) starts on or before its era year | ✅ PASS | All model year ranges are era-valid |
-| C18 | Every prompt has a PLACEMENT line; no repeated pattern per run unless the pool is exhausted | ❌ FAIL | gas/run1/2015: pattern repeated before its pool was exhausted; gas/run1/2025: pattern repeated before its pool was exhausted; gas/run2/2015: pattern repeated before its pool was exhausted; strip/run2/2005: pattern repeated before its pool was exhausted |
+| C18 | Every prompt has a PLACEMENT line; no repeated pattern per run unless the pool is exhausted | ✅ PASS | Placement present and de-duplicated per pool |
 | C19 | No descriptive-as-signage leaks; {DINER_NAME} resolved and identical across a run | ✅ PASS | Business names clean and diner name stable |
 | C20 | Every live prompt has a two-sign 'window signs:' line, >=1 extras line, and a people_mix line; derelict eras carry none of them | ✅ PASS | All three sampling axes present in every prompt |
 | C21 | Run1 vs Run2: >=3 of 6 years differ in sampled extras or window signs | ✅ PASS | Sufficient sampling variance between seeds |

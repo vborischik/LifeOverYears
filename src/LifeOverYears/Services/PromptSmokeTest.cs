@@ -1148,10 +1148,11 @@ public static class PromptSmokeTest
             if (prompt.SelectedVehicles.Count > 0 && PlacementLine(prompt) is null)
                 errs.Add($"{label}/{year}: no PLACEMENT line");
 
-        // Per-run pattern de-duplication. Patterns can be shared between the two
-        // pools and the used-set is shared across them, so replay the run's draws
-        // in year order: a repeat is only legal once every pattern in that draw's
-        // pool has already been used.
+        // Per-run pattern de-duplication. Patterns can be shared between the
+        // count-based pools and the used-set is shared across them, so replay the
+        // run's draws in year order: a repeat is only legal once every pattern in
+        // that draw's own pool — same vehicle count AND same parking type — has
+        // already been used.
         void CheckRun(Dictionary<int, Prompt> run, string label)
         {
             var used = new HashSet<string>();
@@ -1162,13 +1163,24 @@ public static class PromptSmokeTest
                 var line = PlacementLine(prompt);
                 if (line is null) continue; // already reported by the presence check
 
-                var pool    = GenerationContext.AllPlacementPatternsFor(prompt.SelectedVehicles.Count);
-                var pattern = pool.FirstOrDefault(line.Contains);
+                var pattern = GenerationContext.AllPlacementPatternsFor(prompt.SelectedVehicles.Count)
+                    .FirstOrDefault(line.Contains);
                 if (pattern is null)
                 {
                     errs.Add($"{label}/{year}: PLACEMENT line matches no pattern in its pool");
                     continue;
                 }
+
+                // Exhaustion is judged against the pool the draw actually came
+                // from, not the union of both parking types. An era draws from
+                // one type only, so street patterns left unused can never make a
+                // legally-exhausted lot pool (or vice versa) look unexhausted.
+                // Street and lot wordings are disjoint, so the matched pattern
+                // identifies its own type.
+                var onStreet = GenerationContext.PlacementPoolFor(prompt.SelectedVehicles.Count, true)
+                    .Contains(pattern);
+                var pool = GenerationContext.PlacementPoolFor(prompt.SelectedVehicles.Count, onStreet);
+
                 if (used.Contains(pattern) && pool.Any(p => !used.Contains(p)))
                     errs.Add($"{label}/{year}: pattern repeated before its pool was exhausted");
                 used.Add(pattern);
