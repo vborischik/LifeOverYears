@@ -40,6 +40,18 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
         _logger = logger;
     }
 
+    public async Task SynthesizeBaseAsync(string prompt, string outputPath)
+    {
+        // Synchronous, same reasoning as CleanBaseAsync below: the pipeline
+        // blocks on the base before any era submit, so batching this single
+        // call would add a 24h window for no benefit.
+        _logger.LogInformation("SynthesizeBase: generating from text ({Prompt} chars) via gpt-image-2",
+            prompt.Length);
+        var result = await _openai.GenerateImageAsync(prompt, Size, Quality);
+        await File.WriteAllBytesAsync(outputPath, result);
+        _logger.LogInformation("SynthesizeBase complete: {Output}", outputPath);
+    }
+
     public async Task CleanBaseAsync(string sourcePath, string prompt, string outputPath)
     {
         // Synchronous, same as OpenAiImageProvider: the pipeline blocks on this

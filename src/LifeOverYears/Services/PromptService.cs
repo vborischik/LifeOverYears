@@ -83,7 +83,7 @@ public sealed class PromptService : IPromptService
         var gasSign   = isGasStation ? await ResolveGasSignAsync(context, year, condition) : default;
 
         var text = template
-            .Replace("{PRESERVE_BLOCK}",    BuildPreserveBlock(sceneDna))
+            .Replace("{PRESERVE_BLOCK}",    BuildPreserveBlock(sceneDna, "PRESERVE (must match source exactly)", "Keep this location instantly recognizable."))
             .Replace("{SCENE_BLOCK}",       BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, gasSign, rng, context))
             .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, hasSidewalks, rng, context))
             .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation, onStreetParking))
@@ -106,6 +106,22 @@ public sealed class PromptService : IPromptService
             SelectedVehicles: vehicles.Select(v => v.Model).ToList(),
             CreatedAt:        DateTimeOffset.UtcNow.ToString("o"),
             SceneCondition:   condition);
+    }
+
+    // Synthetic base: the scene built from SceneDna text alone, with no source
+    // photo anywhere in the request. Same geometry rundown as an era prompt, but
+    // framed as construction rather than preservation.
+    public async Task<string> BuildBaseAsync(SceneDna sceneDna)
+    {
+        _logger.LogInformation("Building synthetic base prompt for SceneDna {Id}", sceneDna.Id);
+
+        var template = await _data.LoadPromptAsync("base-synthetic");
+        var text = template.Replace("{GEOMETRY_BLOCK}",
+            BuildPreserveBlock(sceneDna, "BUILD THIS SCENE", ""));
+
+        _logger.LogInformation("Synthetic base prompt built: id={Id} length={Length}",
+            sceneDna.Id, text.Length);
+        return text;
     }
 
     // Run-wide gas-station sign spec: one brand held across the run (with at most
@@ -148,10 +164,14 @@ public sealed class PromptService : IPromptService
         return era.SceneContent.TryGetValue("default", out var fallback) ? fallback : null;
     }
 
-    private static string BuildPreserveBlock(SceneDna s)
+    // The geometry rundown is identical whether we are telling the model to
+    // preserve an existing photo or to build the scene from nothing; only the
+    // framing differs, so header and closing are supplied by the caller. A
+    // closing of "" omits the trailing line entirely.
+    private static string BuildPreserveBlock(SceneDna s, string header, string closing)
     {
         var sb = new StringBuilder();
-        sb.AppendLine("PRESERVE (must match source exactly)");
+        sb.AppendLine(header);
         // Some SceneDna directions already read "…-facing"; avoid "facing street-facing".
         var facingClause = s.Camera.Direction.Contains("facing", StringComparison.OrdinalIgnoreCase)
             ? s.Camera.Direction
@@ -178,8 +198,14 @@ public sealed class PromptService : IPromptService
         var immutable = CleanImmutableElements(s.ImmutableElements);
         if (immutable.Count > 0)
             sb.AppendLine($"- immutable elements: {string.Join(", ", immutable)}");
-        sb.Append("Keep this location instantly recognizable.");
-        return sb.ToString();
+        if (closing.Length > 0)
+        {
+            sb.Append(closing);
+            return sb.ToString();
+        }
+        // No closing line: drop the trailing newline so the block does not
+        // inject a blank line where it is substituted.
+        return sb.ToString().TrimEnd('\r', '\n');
     }
 
     // Vision output sometimes embeds its own label ("permanent landmarks: none") inside

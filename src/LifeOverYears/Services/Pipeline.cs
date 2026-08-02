@@ -16,6 +16,7 @@ public sealed class Pipeline
     private readonly IYearOverlayService _overlay;
     private readonly IVideoService _video;
     private readonly ICaptionService _caption;
+    private readonly string _baseMode;
     private readonly ILogger<Pipeline> _logger;
 
     public Pipeline(
@@ -27,6 +28,7 @@ public sealed class Pipeline
         IYearOverlayService overlay,
         IVideoService video,
         ICaptionService caption,
+        string baseMode,
         ILogger<Pipeline> logger)
     {
         _vision = vision;
@@ -37,6 +39,7 @@ public sealed class Pipeline
         _overlay = overlay;
         _video = video;
         _caption = caption;
+        _baseMode = baseMode;
         _logger = logger;
     }
 
@@ -77,18 +80,33 @@ public sealed class Pipeline
                 year, prompt.Id, prompt.Text.Length);
         }
 
-        // Step 3a — clean base: source photo emptied of people and vehicles
-        var baseCleanPrompt = await _data.LoadPromptAsync("base-clean");
-        await File.WriteAllTextAsync(Path.Combine(run.PromptsDir, "base_clean.txt"), baseCleanPrompt);
-        var baseCleanPath   = Path.Combine(run.Root, "base_clean.png");
-        await _images.CleanBaseAsync(run.SourcePath, baseCleanPrompt, baseCleanPath);
-        _logger.LogInformation("Step 3a complete — clean base: {Path}", baseCleanPath);
+        // Step 3a — the base every era image is generated from. Either the
+        // source photo emptied of people and vehicles ("clean"), or the scene
+        // rebuilt from SceneDna text with the photo never sent at all
+        // ("synthetic"). Everything downstream consumes the same single path.
+        string basePath;
+        if (string.Equals(_baseMode, "synthetic", StringComparison.OrdinalIgnoreCase))
+        {
+            var basePrompt = await _prompt.BuildBaseAsync(sceneDna);
+            await File.WriteAllTextAsync(Path.Combine(run.PromptsDir, "base_synthetic.txt"), basePrompt);
+            basePath = Path.Combine(run.Root, "base_synthetic.png");
+            await _images.SynthesizeBaseAsync(basePrompt, basePath);
+            _logger.LogInformation("Step 3a complete — synthetic base: {Path}", basePath);
+        }
+        else
+        {
+            var baseCleanPrompt = await _data.LoadPromptAsync("base-clean");
+            await File.WriteAllTextAsync(Path.Combine(run.PromptsDir, "base_clean.txt"), baseCleanPrompt);
+            basePath = Path.Combine(run.Root, "base_clean.png");
+            await _images.CleanBaseAsync(run.SourcePath, baseCleanPrompt, basePath);
+            _logger.LogInformation("Step 3a complete — clean base: {Path}", basePath);
+        }
 
         // Step 3b — submit one generation job per year; job state lives in
         // run.JobsDir.
         foreach (var year in years)
         {
-            await _images.SubmitEraAsync(baseCleanPath, prompts[year].Text, year, run.JobsDir);
+            await _images.SubmitEraAsync(basePath, prompts[year].Text, year, run.JobsDir);
             _logger.LogInformation("Submitted {Year}", year);
         }
 

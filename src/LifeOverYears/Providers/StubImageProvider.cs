@@ -20,6 +20,16 @@ public sealed class StubImageProvider : IImageGenerationProvider
         _logger = logger;
     }
 
+    public async Task SynthesizeBaseAsync(string prompt, string outputPath)
+    {
+        // Nothing to copy from — there is no source photo in synthetic mode, so
+        // the base has to come from outside like the era images do.
+        _logger.LogWarning(
+            "[Stub] SynthesizeBase: no image written — generate the base from prompts/base_synthetic.txt and place it at {Output}",
+            outputPath);
+        await Task.CompletedTask;
+    }
+
     public async Task CleanBaseAsync(string sourcePath, string prompt, string outputPath)
     {
         File.Copy(sourcePath, outputPath, overwrite: true);

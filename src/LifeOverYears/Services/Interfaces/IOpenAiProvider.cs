@@ -10,6 +10,11 @@ public interface IOpenAiProvider
         byte[] referenceImage, string prompt, string size, string quality,
         CancellationToken ct = default);
 
+    // POST /v1/images/generations (JSON). No reference image — the prompt is
+    // the only input. Returns the decoded PNG bytes.
+    Task<byte[]> GenerateImageAsync(string prompt, string size, string quality,
+        CancellationToken ct = default);
+
     // Files API: upload bytes, return the file id.
     Task<string> UploadFileAsync(byte[] content, string fileName, string purpose,
         CancellationToken ct = default);

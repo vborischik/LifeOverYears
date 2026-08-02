@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-08-02T02:35:32.8760300+00:00
+Generated: 2026-08-02T04:01:29.8280860+00:00
 
 ## Check Results
 
@@ -42,6 +42,7 @@ Generated: 2026-08-02T02:35:32.8760300+00:00
 | C34 | A derelict era emits the ghost line whenever the run's chain schedule calls for one | ✅ PASS | Ghost lines present wherever the schedule calls for them |
 | C35 | A derelict era never emits a Named or Generic chain tenant line | ✅ PASS | No Named/Generic chain content in any derelict block |
 | C36 | Street-shaped placement language (sidewalk zones, curb-hugging, PLACEMENT wording) is gated on SceneDna geometry | ✅ PASS | Street language present only where geometry supports it |
+| C37 | Synthetic base prompts carry scene geometry with no source-photo wording; era PRESERVE header unchanged | ✅ PASS | Synthetic base prompts well-formed and era prompts unchanged |
 
 ## Vehicle Selections
 

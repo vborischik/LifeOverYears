@@ -11,6 +11,7 @@ namespace LifeOverYears.Providers;
 public sealed class OpenAiProvider : IOpenAiProvider
 {
     private const string EditsUrl = "https://api.openai.com/v1/images/edits";
+    private const string GenerationsUrl = "https://api.openai.com/v1/images/generations";
     private const string FilesUrl = "https://api.openai.com/v1/files";
     private const string BatchesUrl = "https://api.openai.com/v1/batches";
     private const string Model = "gpt-image-2";
@@ -49,6 +50,28 @@ public sealed class OpenAiProvider : IOpenAiProvider
             imageContent.Headers.ContentType = new MediaTypeHeaderValue("image/png");
             form.Add(imageContent, "image[]", "base.png");
             return new HttpRequestMessage(HttpMethod.Post, EditsUrl) { Content = form };
+        }, ct);
+
+        return ExtractImageBytes(payload);
+    }
+
+    public async Task<byte[]> GenerateImageAsync(string prompt, string size, string quality,
+        CancellationToken ct = default)
+    {
+        var payload = await SendWithRetryAsync(() =>
+        {
+            var body = new
+            {
+                model = Model,
+                prompt,
+                size,
+                quality
+            };
+            var json = JsonSerializer.Serialize(body, JsonOpts);
+            return new HttpRequestMessage(HttpMethod.Post, GenerationsUrl)
+            {
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
         }, ct);
 
         return ExtractImageBytes(payload);

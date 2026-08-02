@@ -6,6 +6,10 @@ namespace LifeOverYears.Services.Interfaces;
 // later — possibly by a separate process — to fetch finished results.
 public interface IImageGenerationProvider
 {
+    // Text-to-image: builds the base from a SceneDna description with no
+    // source photo, so no pixel of the input image survives into the run.
+    Task SynthesizeBaseAsync(string prompt, string outputPath);
+
     Task CleanBaseAsync(string sourcePath, string prompt, string outputPath);
 
     Task SubmitEraAsync(string basePath, string prompt, int year, string jobsDir);

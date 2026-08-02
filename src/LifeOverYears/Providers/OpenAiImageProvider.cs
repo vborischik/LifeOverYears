@@ -31,6 +31,15 @@ public sealed class OpenAiImageProvider : IImageGenerationProvider
         _logger = logger;
     }
 
+    public async Task SynthesizeBaseAsync(string prompt, string outputPath)
+    {
+        _logger.LogInformation("SynthesizeBase: generating from text ({Prompt} chars) via gpt-image-2",
+            prompt.Length);
+        var result = await _openai.GenerateImageAsync(prompt, Size, Quality);
+        await File.WriteAllBytesAsync(outputPath, result);
+        _logger.LogInformation("SynthesizeBase complete: {Output}", outputPath);
+    }
+
     public async Task CleanBaseAsync(string sourcePath, string prompt, string outputPath)
     {
         var source = await File.ReadAllBytesAsync(sourcePath);

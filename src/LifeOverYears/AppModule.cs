@@ -58,8 +58,18 @@ public sealed class AppModule : Module
 
         var imagesEnabled = _configuration.GetValue("OpenAi:Enabled", true);
         var imagesMode = _configuration["OpenAi:Mode"] ?? "sync";
+
+        var baseMode = _configuration["Pipeline:BaseMode"] ?? "clean";
+        if (!string.Equals(baseMode, "clean", StringComparison.OrdinalIgnoreCase)
+            && !string.Equals(baseMode, "synthetic", StringComparison.OrdinalIgnoreCase))
+        {
+            throw new InvalidOperationException(
+                $"Pipeline:BaseMode must be 'clean' or 'synthetic', got '{baseMode}'");
+        }
+
         _loggerFactory.CreateLogger<AppModule>().LogInformation(
-            "Image generation provider: enabled={Enabled}, mode={Mode}", imagesEnabled, imagesMode);
+            "Image generation provider: enabled={Enabled}, mode={Mode}, baseMode={BaseMode}",
+            imagesEnabled, imagesMode, baseMode);
 
         if (!imagesEnabled)
         {
@@ -116,6 +126,7 @@ public sealed class AppModule : Module
                     _.Resolve<IYearOverlayService>(),
                     _.Resolve<IVideoService>(),
                     _.Resolve<ICaptionService>(),
+                    baseMode,
                     _loggerFactory.CreateLogger<Pipeline>()))
                .SingleInstance();
     }

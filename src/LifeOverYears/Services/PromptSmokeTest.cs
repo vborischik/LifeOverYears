@@ -134,6 +134,7 @@ public static class PromptSmokeTest
         DoC34(eras, findings);
         DoC35(eras, findings);
         DoC36(dtRun1, dtRun2, gasRun1, smRun1, arRun1, unknownPrompt, findings);
+        await DoC37(promptService, gasScene, downtownScene, stripMallScene, autoRepairScene, gasRun1, findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -2097,6 +2098,59 @@ public static class PromptSmokeTest
 
         f.Add(("C36", "Street-shaped placement language (sidewalk zones, curb-hugging, PLACEMENT wording) is gated on SceneDna geometry",
             errs.Count == 0, errs.Count == 0 ? "Street language present only where geometry supports it" : Join(errs)));
+    }
+
+    // Synthetic base prompts carry the scene's geometry but never reference a
+    // source photo, and the shared BuildPreserveBlock refactor left era prompts
+    // byte-identical (asserted via their unchanged PRESERVE header).
+    private static async Task DoC37(
+        IPromptService promptService,
+        SceneDna gasScene, SceneDna downtownScene, SceneDna stripMallScene, SceneDna autoRepairScene,
+        Dictionary<int, Prompt> gasRun1,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+
+        foreach (var (scene, label) in new[]
+        {
+            (gasScene,        "gas_station"),
+            (downtownScene,   "downtown_street"),
+            (stripMallScene,  "strip_mall"),
+            (autoRepairScene, "auto_repair"),
+        })
+        {
+            var text = await promptService.BuildBaseAsync(scene);
+
+            // Geometry actually made it in, in the same shape BuildPreserveBlock emits.
+            foreach (var b in scene.Geometry.Buildings)
+                if (!text.Contains($"{b.Type} building at {b.Position}"))
+                    errs.Add($"{label}: base prompt missing building '{b.Type}'");
+            foreach (var r in scene.Geometry.Roads)
+                if (!text.Contains($"{r.Type} road, {r.Lanes}-lane, {r.Surface}"))
+                    errs.Add($"{label}: base prompt missing road '{r.Type}'");
+
+            // Token substituted, and framed as construction rather than preservation.
+            if (text.Contains("{GEOMETRY_BLOCK}"))
+                errs.Add($"{label}: base prompt still contains an unsubstituted {{GEOMETRY_BLOCK}}");
+            if (!text.Contains("BUILD THIS SCENE"))
+                errs.Add($"{label}: base prompt missing the 'BUILD THIS SCENE' header");
+
+            // Nothing may point at a photo that synthetic mode never sends.
+            if (text.Contains("uploaded photo", StringComparison.OrdinalIgnoreCase))
+                errs.Add($"{label}: base prompt references an 'uploaded photo'");
+            if (text.Contains("source", StringComparison.OrdinalIgnoreCase))
+                errs.Add($"{label}: base prompt references a 'source'");
+        }
+
+        // The refactor that parameterised BuildPreserveBlock must not have moved
+        // the era prompts' header off its exact original wording.
+        foreach (var year in Years)
+            if (gasRun1.TryGetValue(year, out var prompt)
+                && !prompt.Text.Contains("PRESERVE (must match source exactly)"))
+                errs.Add($"gas/run1/{year}: era prompt lost the 'PRESERVE (must match source exactly)' header");
+
+        f.Add(("C37", "Synthetic base prompts carry scene geometry with no source-photo wording; era PRESERVE header unchanged",
+            errs.Count == 0, errs.Count == 0 ? "Synthetic base prompts well-formed and era prompts unchanged" : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────
