@@ -4,3 +4,6 @@ bin/
 obj/
 appsettings.json
 src/LifeOverYears/output/runs/
+src/LifeOverYears/data/scenes/
+src/LifeOverYears/output/prompts/
+src/LifeOverYears/testImage/

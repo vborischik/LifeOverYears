@@ -7,7 +7,7 @@ namespace LifeOverYears.Providers;
 public sealed class CaptionProvider : ICaptionProvider
 {
     private const string Endpoint = "https://integrate.api.nvidia.com/v1/chat/completions";
-    private const string Model = "google/gemma-4-31b-it";
+    private const string Model = "nvidia/llama-3.1-nemotron-nano-vl-8b-v1";
 
     private readonly INvidiaProvider _nvidia;
     private readonly ILogger<CaptionProvider> _logger;
