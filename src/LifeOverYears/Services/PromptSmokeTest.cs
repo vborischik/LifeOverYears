@@ -13,7 +13,7 @@ public static class PromptSmokeTest
 {
     private static readonly int[] Years = { 1975, 1985, 1995, 2005, 2015, 2025 };
 
-    private const int MaxPromptChars = 4900; // raised from 4850 for the clear-driving-lane line
+    private const int MaxPromptChars = 5300; // raised from 4900: the model-year-restriction and utilities-qualifier sentences added real length
 
     private static readonly JsonSerializerOptions WriteJson = new() { WriteIndented = true };
 
@@ -135,6 +135,9 @@ public static class PromptSmokeTest
         DoC35(eras, findings);
         DoC36(dtRun1, dtRun2, gasRun1, smRun1, arRun1, unknownPrompt, findings);
         await DoC37(promptService, gasScene, downtownScene, stripMallScene, autoRepairScene, gasRun1, findings);
+        await DoC38(promptService, gasScene, downtownScene, stripMallScene, autoRepairScene,
+            gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
+        DoC39(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -811,11 +814,18 @@ public static class PromptSmokeTest
                 if (prompt.Text.Contains("TEXT OVERLAY"))
                     errs.Add($"{label}/{year}: unexpected 'TEXT OVERLAY' section still present");
 
-                // Year still anchors the VEHICLES block ("no vehicle newer than 1975");
+                // Year still anchors the VEHICLES block ("No vehicle newer than 1975");
                 // an abandoned era has no vehicles and therefore no anchor line.
                 if (prompt.SelectedVehicles.Count > 0 &&
-                    !prompt.Text.Contains($"no vehicle newer than {year}"))
-                    errs.Add($"{label}/{year}: 'no vehicle newer than {year}' not found");
+                    !prompt.Text.Contains($"No vehicle newer than {year}"))
+                    errs.Add($"{label}/{year}: 'No vehicle newer than {year}' not found");
+
+                // The model-year restriction closes the gap a range like
+                // "1975-1993 Volvo 240" leaves open — without it the generator
+                // could render a late-range car while formally obeying the line.
+                if (prompt.SelectedVehicles.Count > 0 &&
+                    !prompt.Text.Contains($"render the {year} model year specifically"))
+                    errs.Add($"{label}/{year}: missing the model-year rendering restriction for ranged vehicle listings");
             }
         }
 
@@ -828,8 +838,8 @@ public static class PromptSmokeTest
         Check(smRun2,  "strip_mall/run2");
         Check(arRun2,  "auto_repair/run2");
 
-        f.Add(("C10", "No TEXT OVERLAY section remains; year still anchors the VEHICLES block",
-            errs.Count == 0, errs.Count == 0 ? "Overlay removed and vehicle year anchors correct" : Join(errs)));
+        f.Add(("C10", "No TEXT OVERLAY section remains; year still anchors the VEHICLES block and carries the ranged-model-year restriction",
+            errs.Count == 0, errs.Count == 0 ? "Overlay removed, vehicle year anchors correct, model-year restriction present" : Join(errs)));
     }
 
     private static void DoC11(
@@ -854,19 +864,20 @@ public static class PromptSmokeTest
             text.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries)
                 .Count(t => t.Any(char.IsLetterOrDigit));
 
+        const int maxWords = 820; // raised from 760: the model-year-restriction and utilities-qualifier sentences added real length
         foreach (var (run, label) in all)
             foreach (var (year, prompt) in run)
             {
                 int words = WordCount(prompt.Text);
-                if (words >= 760)
-                    errs.Add($"{label}/{year}: {words} words (limit 760)");
+                if (words >= maxWords)
+                    errs.Add($"{label}/{year}: {words} words (limit {maxWords})");
             }
         int unknownWords = WordCount(unknownPrompt.Text);
-        if (unknownWords >= 760)
-            errs.Add($"unknown/1985: {unknownWords} words (limit 760)");
+        if (unknownWords >= maxWords)
+            errs.Add($"unknown/1985: {unknownWords} words (limit {maxWords})");
 
-        f.Add(("C11", "Every prompt is under 760 words (limit raised from 720 for the clear-driving-lane line)",
-            errs.Count == 0, errs.Count == 0 ? "All prompts under 760 words" : Join(errs)));
+        f.Add(("C11", $"Every prompt is under {maxWords} words",
+            errs.Count == 0, errs.Count == 0 ? $"All prompts under {maxWords} words" : Join(errs)));
     }
 
     private static void DoC12(
@@ -2151,6 +2162,89 @@ public static class PromptSmokeTest
 
         f.Add(("C37", "Synthetic base prompts carry scene geometry with no source-photo wording; era PRESERVE header unchanged",
             errs.Count == 0, errs.Count == 0 ? "Synthetic base prompts well-formed and era prompts unchanged" : Join(errs)));
+    }
+
+    // A tree's size must be stated in exactly one place per prompt: the era
+    // PRESERVE block never states it (the TREES section already gives that
+    // tree's size for the target era, so a "must match source exactly" tree
+    // line here would freeze it at the source photo's size and contradict
+    // that), while the synthetic base — which has no TREES section and no
+    // photo at all — is the only place its trees get described, so it must.
+    private static async Task DoC38(
+        IPromptService promptService,
+        SceneDna gasScene, SceneDna downtownScene, SceneDna stripMallScene, SceneDna autoRepairScene,
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
+        Prompt unknownPrompt,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+
+        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt))
+        {
+            var preserveIdx = prompt.Text.IndexOf("PRESERVE (must match source exactly)", StringComparison.Ordinal);
+            var outputIdx   = prompt.Text.IndexOf("OUTPUT FORMAT", StringComparison.Ordinal);
+            if (preserveIdx < 0 || outputIdx < preserveIdx) continue;
+
+            var preserveSection = prompt.Text[preserveIdx..outputIdx];
+            // Word-boundary match: a naive substring check false-positives on
+            // "street" (which contains "tree").
+            if (System.Text.RegularExpressions.Regex.IsMatch(preserveSection, @"\btrees?\b", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                errs.Add($"{label}/{year}: era PRESERVE block mentions a tree — the TREES section already states its size for this era");
+        }
+
+        foreach (var (scene, label) in new[]
+        {
+            (gasScene,        "gas_station"),
+            (downtownScene,   "downtown_street"),
+            (stripMallScene,  "strip_mall"),
+            (autoRepairScene, "auto_repair"),
+        })
+        {
+            var text = await promptService.BuildBaseAsync(scene);
+            foreach (var tree in scene.Environment.Trees)
+                if (!text.Contains($"{tree.Type} tree at {tree.Position}"))
+                    errs.Add($"{label}: synthetic base missing tree line for '{tree.Type}' at '{tree.Position}'");
+        }
+
+        f.Add(("C38", "A tree's size is stated in exactly one place per prompt: never in the era PRESERVE block, always in the synthetic base's geometry block",
+            errs.Count == 0, errs.Count == 0 ? "No double-statement; synthetic base carries every tree the era PRESERVE block omits" : Join(errs)));
+    }
+
+    // "new" means pristine surfaces (ConditionDescriptor), but the era data's
+    // ghost-sign extra is an old, weathered wall ad — left unreconciled that
+    // directly contradicts "new" with no relationship stated. PromptService
+    // swaps it for an explicit reconciling line whenever condition is "new";
+    // this asserts neither the raw contradiction nor an unexplained mention
+    // ever reaches a "new"-condition prompt.
+    private static void DoC39(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
+        Prompt unknownPrompt,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+        string[] rawContradictionMarkers = { "weathered but still clearly readable", "weathered but readable" };
+        const string reconciled = "all other buildings and storefronts look newly built or recently renovated";
+
+        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt))
+        {
+            if (prompt.SceneCondition != "new") continue;
+
+            foreach (var marker in rawContradictionMarkers)
+                if (prompt.Text.Contains(marker))
+                    errs.Add($"{label}/{year}: 'new' condition prompt still has the raw ghost-sign contradiction '{marker}'");
+
+            if (prompt.Text.Contains("ghost sign", StringComparison.OrdinalIgnoreCase) && !prompt.Text.Contains(reconciled))
+                errs.Add($"{label}/{year}: 'new' condition prompt mentions a ghost sign without the reconciling clause");
+        }
+
+        f.Add(("C39", "A 'new' condition prompt never pairs pristine surfaces with an unexplained weathered ghost sign",
+            errs.Count == 0, errs.Count == 0 ? "No unreconciled ghost-sign contradiction in any 'new' condition prompt" : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────

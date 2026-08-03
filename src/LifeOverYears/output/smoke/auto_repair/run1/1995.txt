@@ -1,9 +1,10 @@
 One single continuous photograph — no panels, grids, or split frames.
 
 Use the uploaded photo as the exact base composition. The street in the source
-is empty — populate it with the people and vehicles specified below. Remove all
-modern businesses, logos, brands, storefront names, banners, advertisements, and
-signage visible in the source image.
+is empty — populate it with the people and vehicles specified below. Remove the
+modern businesses, logos, brands, storefront names, banners and advertisements
+visible in the source image, and replace them only with the period signage
+specified below.
 
 PRESERVE (must match source exactly)
 - camera: eye-level, street-facing, fov 76
@@ -12,7 +13,7 @@ PRESERVE (must match source exactly)
 - driveways: corner entrance apron; parking: concrete apron in front of the bays
 - small office with plate glass building at corner of the lot, 1 story, brick veneer, plate glass, flat parapet roof, 20 feet from road setback
 - service bay row under one continuous roof building at rear of the lot, 1 story, concrete block, corrugated metal, flat roof, 40 feet from road setback
-- utilities: overhead power lines, utility pole at the corner
+- utilities: overhead power lines, utility pole at the corner — keep their exact positions and geometry, but render them as period-appropriate infrastructure for the target year
 - landscape: narrow grass strip along the road, gravel edge along the apron
 - immutable elements: painted sign band across the parapet, corner lot at the intersection, concrete apron in front of the service bays
 Keep this location instantly recognizable.
@@ -48,7 +49,7 @@ EXACTLY 4 period vehicles, all different:
 - 1994-1997 Honda Accord — smooth rounded sedan — white
 - 1992-1996 Ford F-150 — rounded aero body — teal
 - 1994-2001 Dodge Ram — big rig style grille, bold — black
-Parked with gaps; no vehicle newer than 1995.
+Parked with gaps. Where a model is listed with a year range, render the 1995 model year specifically — only styling, trim and features available in 1995, nothing introduced later. No vehicle newer than 1995.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
 PLACEMENT: all angled into stalls along the far edge of the lot, the near stalls left empty. No vehicle in the same spot as any other era.
 

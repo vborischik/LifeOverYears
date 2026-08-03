@@ -1,9 +1,10 @@
 One single continuous photograph — no panels, grids, or split frames.
 
 Use the uploaded photo as the exact base composition. The street in the source
-is empty — populate it with the people and vehicles specified below. Remove all
-modern businesses, logos, brands, storefront names, banners, advertisements, and
-signage visible in the source image.
+is empty — populate it with the people and vehicles specified below. Remove the
+modern businesses, logos, brands, storefront names, banners and advertisements
+visible in the source image, and replace them only with the period signage
+specified below.
 
 PRESERVE (must match source exactly)
 - camera: eye-level, street-facing, fov 80
@@ -13,8 +14,8 @@ PRESERVE (must match source exactly)
 - two-story brick commercial building at left block face, 2 stories, red brick, cast iron storefront columns, flat parapet roof, at sidewalk setback
 - single-story retail building at center block face, 1 story, brick, plate glass storefront, flat with low parapet roof, at sidewalk setback
 - corner mixed-use building at right corner, 3 stories, brick, stone trim cornice, flat roof, at sidewalk setback
-- utilities: overhead power and telephone lines, wooden utility poles every 50 feet
-- landscape: concrete sidewalks, brick pavers at crosswalks, small planted tree pits
+- utilities: overhead power and telephone lines, wooden utility poles every 50 feet — keep their exact positions and geometry, but render them as period-appropriate infrastructure for the target year
+- landscape: concrete sidewalks, brick pavers at crosswalks
 - immutable elements: cast iron storefront columns on left building, recessed corner entrance on right building, brick alley mid-block
 Keep this location instantly recognizable.
 
@@ -33,7 +34,7 @@ PERIOD DETAILS
 - 'HOME APPLIANCE CO' window displaying console televisions with a 'COLOR TV' placard
 - 'WOOLWORTH' five & dime with red-and-white lettering
 - window signs: 'SHIRTS 2 FOR $5', 'HAIRCUT $2.50'
-- a painted ghost-sign wall advertisement on brick, weathered but still clearly readable
+- one pre-existing older brick wall carries a weathered ghost sign; all other buildings and storefronts look newly built or recently renovated
 - a glass-and-aluminum telephone booth on the corner
 Typography: bold sans-serif, slab serif, occasional script.
 Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
@@ -51,7 +52,7 @@ EXACTLY 4 period vehicles, all different:
 - 1971-1976 Jeep Wagoneer — boxy full-size SUV, woodgrain trim optional
 - 1970-1978 AMC Gremlin — short stubby hatchback rear
 - 1974-1978 Cadillac DeVille — full-size luxury, formal roofline, chrome heavy
-Parked with gaps; no vehicle newer than 1975.
+Parked with gaps. Where a model is listed with a year range, render the 1975 model year specifically — only styling, trim and features available in 1975, nothing introduced later. No vehicle newer than 1975.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
 PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
 

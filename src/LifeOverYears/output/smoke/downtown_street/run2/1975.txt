@@ -1,9 +1,10 @@
 One single continuous photograph — no panels, grids, or split frames.
 
 Use the uploaded photo as the exact base composition. The street in the source
-is empty — populate it with the people and vehicles specified below. Remove all
-modern businesses, logos, brands, storefront names, banners, advertisements, and
-signage visible in the source image.
+is empty — populate it with the people and vehicles specified below. Remove the
+modern businesses, logos, brands, storefront names, banners and advertisements
+visible in the source image, and replace them only with the period signage
+specified below.
 
 PRESERVE (must match source exactly)
 - camera: eye-level, street-facing, fov 80
@@ -13,8 +14,8 @@ PRESERVE (must match source exactly)
 - two-story brick commercial building at left block face, 2 stories, red brick, cast iron storefront columns, flat parapet roof, at sidewalk setback
 - single-story retail building at center block face, 1 story, brick, plate glass storefront, flat with low parapet roof, at sidewalk setback
 - corner mixed-use building at right corner, 3 stories, brick, stone trim cornice, flat roof, at sidewalk setback
-- utilities: overhead power and telephone lines, wooden utility poles every 50 feet
-- landscape: concrete sidewalks, brick pavers at crosswalks, small planted tree pits
+- utilities: overhead power and telephone lines, wooden utility poles every 50 feet — keep their exact positions and geometry, but render them as period-appropriate infrastructure for the target year
+- landscape: concrete sidewalks, brick pavers at crosswalks
 - immutable elements: cast iron storefront columns on left building, recessed corner entrance on right building, brick alley mid-block
 Keep this location instantly recognizable.
 
@@ -52,7 +53,7 @@ EXACTLY 4 period vehicles, all different:
 - 1970-1976 AMC Hornet — compact, simple boxy lines
 - 1974-1978 Oldsmobile Cutlass Supreme — best-selling car in America, formal roofline
 - 1971-1976 Chevrolet G10 Sportvan — boxy windowed van, chrome bumper
-Parked with gaps; no vehicle newer than 1975.
+Parked with gaps. Where a model is listed with a year range, render the 1975 model year specifically — only styling, trim and features available in 1975, nothing introduced later. No vehicle newer than 1975.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
 PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
 

@@ -83,7 +83,7 @@ public sealed class PromptService : IPromptService
         var gasSign   = isGasStation ? await ResolveGasSignAsync(context, year, condition) : default;
 
         var text = template
-            .Replace("{PRESERVE_BLOCK}",    BuildPreserveBlock(sceneDna, "PRESERVE (must match source exactly)", "Keep this location instantly recognizable."))
+            .Replace("{PRESERVE_BLOCK}",    BuildPreserveBlock(sceneDna, "PRESERVE (must match source exactly)", "Keep this location instantly recognizable.", includeTrees: false))
             .Replace("{SCENE_BLOCK}",       BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, gasSign, rng, context))
             .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, hasSidewalks, rng, context))
             .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation, onStreetParking))
@@ -117,7 +117,7 @@ public sealed class PromptService : IPromptService
 
         var template = await _data.LoadPromptAsync("base-synthetic");
         var text = template.Replace("{GEOMETRY_BLOCK}",
-            BuildPreserveBlock(sceneDna, "BUILD THIS SCENE", ""));
+            BuildPreserveBlock(sceneDna, "BUILD THIS SCENE", "", includeTrees: true));
 
         _logger.LogInformation("Synthetic base prompt built: id={Id} length={Length}",
             sceneDna.Id, text.Length);
@@ -168,7 +168,16 @@ public sealed class PromptService : IPromptService
     // preserve an existing photo or to build the scene from nothing; only the
     // framing differs, so header and closing are supplied by the caller. A
     // closing of "" omits the trailing line entirely.
-    private static string BuildPreserveBlock(SceneDna s, string header, string closing)
+    //
+    // includeTrees gates whether this block states each tree's size on its own:
+    // the era PRESERVE block (BuildAsync) passes false, because the TREES
+    // section already gives that tree's size for the target era — a "must
+    // match source exactly" claim here would freeze it at the source photo's
+    // size and contradict a TREES line rendering it smaller for an earlier
+    // decade. The synthetic base (BuildBaseAsync) passes true: there is no
+    // photo and no separate TREES section for it, so this is the only place
+    // the trees get described at all.
+    private static string BuildPreserveBlock(SceneDna s, string header, string closing, bool includeTrees)
     {
         var sb = new StringBuilder();
         sb.AppendLine(header);
@@ -192,10 +201,15 @@ public sealed class PromptService : IPromptService
         foreach (var b in s.Geometry.Buildings)
             sb.AppendLine($"- {b.Type} building at {b.Position}, {b.Stories} {(b.Stories == 1 ? "story" : "stories")}, {Join(b.Materials)}, {b.Roof} roof, {b.Setback} setback");
         if (s.Environment.Utilities.Count > 0)
-            sb.AppendLine($"- utilities: {string.Join(", ", s.Environment.Utilities)}");
-        if (s.Environment.Landscape.Count > 0)
-            sb.AppendLine($"- landscape: {string.Join(", ", s.Environment.Landscape)}");
+            sb.AppendLine($"- utilities: {string.Join(", ", s.Environment.Utilities)} — keep their exact positions and geometry, but render them as period-appropriate infrastructure for the target year");
+        var landscape = includeTrees ? s.Environment.Landscape : DropTreeMentions(s.Environment.Landscape);
+        if (landscape.Count > 0)
+            sb.AppendLine($"- landscape: {string.Join(", ", landscape)}");
+        if (includeTrees)
+            foreach (var tree in s.Environment.Trees)
+                sb.AppendLine($"- {tree.Type} tree at {tree.Position}, {tree.Size} size");
         var immutable = CleanImmutableElements(s.ImmutableElements);
+        if (!includeTrees) immutable = DropTreeMentions(immutable);
         if (immutable.Count > 0)
             sb.AppendLine($"- immutable elements: {string.Join(", ", immutable)}");
         if (closing.Length > 0)
@@ -207,6 +221,15 @@ public sealed class PromptService : IPromptService
         // inject a blank line where it is substituted.
         return sb.ToString().TrimEnd('\r', '\n');
     }
+
+    // Vision writes Landscape and ImmutableElements as free text, so a tree could
+    // plausibly turn up there too ("mature oak tree", "tree pits") rather than
+    // only in the structured Trees array — drop any such mention when trees are
+    // excluded, so the TREES section stays the one place that states a tree's
+    // condition. Word-boundary match: a naive substring check false-positives
+    // on "street" (which contains "tree").
+    private static List<string> DropTreeMentions(IReadOnlyList<string> elements) =>
+        elements.Where(e => !System.Text.RegularExpressions.Regex.IsMatch(e, @"\btrees?\b", System.Text.RegularExpressions.RegexOptions.IgnoreCase)).ToList();
 
     // Vision output sometimes embeds its own label ("permanent landmarks: none") inside
     // an element — strip it so the PRESERVE line carries a single label, and drop
@@ -263,6 +286,20 @@ public sealed class PromptService : IPromptService
         "restored"  => "renovated appearance, modern updates on original structure",
         _           => "well-maintained, freshly painted, active business, clean lot"
     };
+
+    // A "new" condition means pristine surfaces — but the era data's ghost-sign
+    // extra (an old painted wall ad, "weathered but still clearly readable")
+    // exists to give even a freshly built era some history, and left as-is it
+    // just contradicts "new" outright with no relationship stated. Swap it for
+    // an explicit reconciling line instead of leaving both claims side by side.
+    private static string ReconcileWithNewCondition(string extra, string condition)
+    {
+        if (condition != "new") return extra;
+        if (!extra.Contains("ghost-sign", StringComparison.OrdinalIgnoreCase) &&
+            !extra.Contains("ghost sign", StringComparison.OrdinalIgnoreCase))
+            return extra;
+        return "one pre-existing older brick wall carries a weathered ghost sign; all other buildings and storefronts look newly built or recently renovated";
+    }
 
     // Physical wear that sells a place as run-down. Surfaces, finishes and
     // litter only — never road width, curb lines, building footprints or
@@ -527,9 +564,9 @@ public sealed class PromptService : IPromptService
             var required = content.Extras.Where(e => e.Contains("REQUIRED")).ToList();
             var optional = content.Extras.Except(required).ToList();
             foreach (var extra in required)
-                sb.AppendLine($"- {StripRequiredMarker(extra)}");
+                sb.AppendLine($"- {ReconcileWithNewCondition(StripRequiredMarker(extra), condition)}");
             foreach (var extra in Sample(optional, 2, rng))
-                sb.AppendLine($"- {extra}");
+                sb.AppendLine($"- {ReconcileWithNewCondition(extra, condition)}");
         }
 
         sb.AppendLine($"Typography: {era.Business.Signage.TypographyStyle}.");
@@ -672,7 +709,7 @@ public sealed class PromptService : IPromptService
         sb.AppendLine($"EXACTLY {vehicles.Count} period vehicles, all different:");
         foreach (var (model, color) in vehicles)
             sb.AppendLine(color is null ? $"- {model}" : $"- {model} — {color}");
-        sb.AppendLine($"Parked with gaps; no vehicle newer than {year}.");
+        sb.AppendLine($"Parked with gaps. Where a model is listed with a year range, render the {year} model year specifically — only styling, trim and features available in {year}, nothing introduced later. No vehicle newer than {year}.");
         sb.AppendLine(onStreetParking
             ? "Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic."
             : "Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.");

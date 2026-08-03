@@ -1,9 +1,10 @@
 One single continuous photograph — no panels, grids, or split frames.
 
 Use the uploaded photo as the exact base composition. The street in the source
-is empty — populate it with the people and vehicles specified below. Remove all
-modern businesses, logos, brands, storefront names, banners, advertisements, and
-signage visible in the source image.
+is empty — populate it with the people and vehicles specified below. Remove the
+modern businesses, logos, brands, storefront names, banners and advertisements
+visible in the source image, and replace them only with the period signage
+specified below.
 
 PRESERVE (must match source exactly)
 - camera: eye-level, street-facing, fov 78
@@ -12,7 +13,7 @@ PRESERVE (must match source exactly)
 - driveways: north entrance apron, south entrance apron
 - single-story retail row under a continuous overhang building at along the back of the lot, 1 story, brick veneer, EIFS stucco panels, flat with continuous overhang roof, 60 feet from road setback
 - detached end-cap retail unit building at north end of the lot, 1 story, brick veneer, metal fascia panels, flat parapet roof, 40 feet from road setback
-- utilities: overhead power lines on wooden poles, transformer on rear property line pole
+- utilities: overhead power lines on wooden poles, transformer on rear property line pole — keep their exact positions and geometry, but render them as period-appropriate infrastructure for the target year
 - landscape: parking lot islands with curbing, landscape strip along the road frontage, painted stall striping
 - immutable elements: continuous storefront overhang along the retail row, pylon sign base at the road frontage, parking lot islands
 Keep this location instantly recognizable.
@@ -53,7 +54,7 @@ EXACTLY 6 period vehicles, all different:
 - 1988-1998 Chevrolet C/K 1500 — softly squared pickup — white
 - 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size — burgundy
 - 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding — silver
-Parked with gaps; no vehicle newer than 1995.
+Parked with gaps. Where a model is listed with a year range, render the 1995 model year specifically — only styling, trim and features available in 1995, nothing introduced later. No vehicle newer than 1995.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
 PLACEMENT: three nose-in near the building; the rest in stalls at the far edge of the lot. No vehicle in the same spot as any other era.
 

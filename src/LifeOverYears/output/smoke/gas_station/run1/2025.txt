@@ -1,9 +1,10 @@
 One single continuous photograph — no panels, grids, or split frames.
 
 Use the uploaded photo as the exact base composition. The street in the source
-is empty — populate it with the people and vehicles specified below. Remove all
-modern businesses, logos, brands, storefront names, banners, advertisements, and
-signage visible in the source image.
+is empty — populate it with the people and vehicles specified below. Remove the
+modern businesses, logos, brands, storefront names, banners and advertisements
+visible in the source image, and replace them only with the period signage
+specified below.
 
 PRESERVE (must match source exactly)
 - camera: eye-level, street-facing, fov 75
@@ -13,7 +14,7 @@ PRESERVE (must match source exactly)
 - gas station canopy building at center lot over pump islands, 1 story, steel frame, corrugated metal fascia, flat roof, 30 feet from road setback
 - service station office building at rear right corner, 1 story, concrete block, brick veneer, flat parapet roof, at parking apron setback
 - open service bay building at rear left corner, 1 story, concrete block, gabled metal roof, at parking apron setback
-- utilities: overhead power lines on wooden poles, transformer on northeast corner pole
+- utilities: overhead power lines on wooden poles, transformer on northeast corner pole — keep their exact positions and geometry, but render them as period-appropriate infrastructure for the target year
 - landscape: flat asphalt apron, painted concrete curbing, narrow grass strip at road edge
 - immutable elements: canopy with four corner support posts, pump island with eight dispensers, north and south driveway aprons
 Keep this location instantly recognizable.
@@ -52,7 +53,7 @@ EXACTLY 4 period vehicles, all different:
 - 2023-2025 Honda Accord — clean minimalist refresh — black
 - 2019-2025 Chevrolet Equinox — rounded compact crossover — dark green
 - 2017-2025 Honda CR-V — rounded best-selling crossover — silver
-Parked with gaps; no vehicle newer than 2025.
+Parked with gaps. Where a model is listed with a year range, render the 2025 model year specifically — only styling, trim and features available in 2025, nothing introduced later. No vehicle newer than 2025.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
 PLACEMENT: all parked in the lot, nose-in to marked stalls, with an empty stall between them. No vehicle in the same spot as any other era.
 
