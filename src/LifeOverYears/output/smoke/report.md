@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-08-03T05:29:24.1393968+00:00
+Generated: 2026-08-03T13:07:17.4581620+00:00
 
 ## Check Results
 
@@ -16,7 +16,7 @@ Generated: 2026-08-03T05:29:24.1393968+00:00
 | C8 | Gas station fuel prices always present; downtown coffee price in ≥1 run per year | ✅ PASS | All price anchors found |
 | C9 | PRESERVE block contains all building types and immutable elements verbatim | ✅ PASS | All building types and immutable elements present |
 | C10 | No TEXT OVERLAY section remains; year still anchors the VEHICLES block and carries the ranged-model-year restriction | ✅ PASS | Overlay removed, vehicle year anchors correct, model-year restriction present |
-| C11 | Every prompt is under 820 words | ✅ PASS | All prompts under 820 words |
+| C11 | Every prompt is under 920 words | ✅ PASS | All prompts under 920 words |
 | C12 | B&W prompts contain no vehicle pool colors, no 'Fashion palette', no 'desaturated' | ✅ PASS | B&W prompts are color-free |
 | C13 | Color eras: every vehicle has a color and no color repeats within one prompt | ✅ PASS | All vehicle colors unique per prompt |
 | C14 | Gas station 2025 prompt has no EV/electric/charger/Lightning content | ✅ PASS | 2025 gas prompts are fully de-electrified |
@@ -27,7 +27,7 @@ Generated: 2026-08-03T05:29:24.1393968+00:00
 | C19 | No descriptive-as-signage leaks; {DINER_NAME} resolved and identical across a run | ✅ PASS | Business names clean and diner name stable |
 | C20 | Every live prompt has a two-sign 'window signs:' line, >=1 extras line, and a people_mix line; derelict eras carry none of them | ✅ PASS | All three sampling axes present in every prompt |
 | C21 | Run1 vs Run2: >=3 of 6 years differ in sampled extras or window signs | ✅ PASS | Sufficient sampling variance between seeds |
-| C22 | Every prompt is at most 5300 characters | ✅ PASS | All prompts within 5300 chars |
+| C22 | Every prompt is at most 6000 characters | ✅ PASS | All prompts within 6000 chars |
 | C23 | default/unknown scenes always thriving; rank monotonic per run (gas-station finale may resolve to 'new' or 'restored'); abandoned/declining/squatted counts honored for gas_station, downtown_street and strip_mall; 'squatted' only on a gas_station's final era; 'restored' only on a gas_station's final era | ✅ PASS | Condition trajectory invariants hold |
 | C24 | Every business-name token resolves to a member of its own pool and stays identical across all six eras of a run | ✅ PASS | All 8 business tokens resolve correctly and remain stable per run |
 | C25 | DECAY present iff condition is declining/abandoned/squatted; healthy conditions keep verbatim era road markings with no DECAY; DECAY never precedes OUTPUT FORMAT (i.e. never inside PRESERVE) and never mentions geometry terms; bullets are drawn from the correct severity pool | ✅ PASS | Decay section invariants hold |
@@ -45,6 +45,7 @@ Generated: 2026-08-03T05:29:24.1393968+00:00
 | C37 | Synthetic base prompts carry scene geometry with no source-photo wording; era PRESERVE header unchanged | ✅ PASS | Synthetic base prompts well-formed and era prompts unchanged |
 | C38 | A tree's size is stated in exactly one place per prompt: never in the era PRESERVE block, always in the synthetic base's geometry block | ✅ PASS | No double-statement; synthetic base carries every tree the era PRESERVE block omits |
 | C39 | A 'new' condition prompt never pairs pristine surfaces with an unexplained weathered ghost sign | ✅ PASS | No unreconciled ghost-sign contradiction in any 'new' condition prompt |
+| C40 | image-template.txt carries the PRIORITY ORDER rule; every era prompt's SIGNAGE RESTRICTION whitelist lists exactly the quoted strings from its own scene block; the old blanket quotes-only line is gone | ✅ PASS | Priority order present; signage whitelist consistent everywhere; old line removed |
 
 ## Vehicle Selections
 

@@ -13,7 +13,7 @@ public static class PromptSmokeTest
 {
     private static readonly int[] Years = { 1975, 1985, 1995, 2005, 2015, 2025 };
 
-    private const int MaxPromptChars = 5300; // raised from 4900: the model-year-restriction and utilities-qualifier sentences added real length
+    private const int MaxPromptChars = 6000; // raised from 5300: the priority order block and the per-era SIGNAGE RESTRICTION whitelist added real length
 
     private static readonly JsonSerializerOptions WriteJson = new() { WriteIndented = true };
 
@@ -138,6 +138,7 @@ public static class PromptSmokeTest
         await DoC38(promptService, gasScene, downtownScene, stripMallScene, autoRepairScene,
             gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
         DoC39(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
+        await DoC40(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -864,7 +865,7 @@ public static class PromptSmokeTest
             text.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries)
                 .Count(t => t.Any(char.IsLetterOrDigit));
 
-        const int maxWords = 820; // raised from 760: the model-year-restriction and utilities-qualifier sentences added real length
+        const int maxWords = 920; // raised from 820: the priority order block and the per-era SIGNAGE RESTRICTION whitelist added real length
         foreach (var (run, label) in all)
             foreach (var (year, prompt) in run)
             {
@@ -2245,6 +2246,83 @@ public static class PromptSmokeTest
 
         f.Add(("C39", "A 'new' condition prompt never pairs pristine surfaces with an unexplained weathered ghost sign",
             errs.Count == 0, errs.Count == 0 ? "No unreconciled ghost-sign contradiction in any 'new' condition prompt" : Join(errs)));
+    }
+
+    // image-template.txt carries the PRIORITY ORDER rule, and every era prompt's
+    // SIGNAGE RESTRICTION whitelist lists exactly (no more, no fewer) the quoted
+    // strings CollectSignText would pull from that prompt's own scene block —
+    // invoked via reflection so this tracks the real implementation rather than
+    // a hand-rolled duplicate that could drift from it. The old blanket
+    // "only what appears in quotes" line must be gone everywhere.
+    private static async Task DoC40(
+        IDataService dataService,
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
+        Prompt unknownPrompt,
+        List<(string, string, bool, string)> f)
+    {
+        var errs = new List<string>();
+
+        try
+        {
+            var template = await dataService.LoadPromptAsync("image-template");
+            if (!template.Contains("PRIORITY ORDER — when instructions conflict, the lower number wins"))
+                errs.Add("image-template.txt missing the PRIORITY ORDER header/rule line");
+        }
+        catch (Exception ex)
+        {
+            errs.Add($"image-template.txt failed to load: {ex.Message}");
+        }
+
+        var collectSignText = typeof(PromptService).GetMethod("CollectSignText",
+            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)
+            ?? throw new InvalidOperationException("PromptService.CollectSignText not found");
+
+        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt))
+        {
+            if (prompt.Text.Contains("Sign text is only what appears in quotes"))
+                errs.Add($"{label}/{year}: old 'Sign text is only what appears in quotes' line still present");
+
+            var transformIdx = prompt.Text.IndexOf("TRANSFORM TO", StringComparison.Ordinal);
+            var peopleIdx     = prompt.Text.IndexOf("\nPEOPLE\n", StringComparison.Ordinal);
+            if (transformIdx < 0 || peopleIdx < 0 || peopleIdx <= transformIdx) continue;
+
+            var signageIdx        = prompt.Text.IndexOf("SIGNAGE RESTRICTION", transformIdx, StringComparison.Ordinal);
+            var hasSignageSection = signageIdx >= 0 && signageIdx < peopleIdx;
+            var sceneSection      = prompt.Text[transformIdx..(hasSignageSection ? signageIdx : peopleIdx)];
+
+            var expected = (List<string>)collectSignText.Invoke(null, new object?[] { sceneSection })!;
+
+            if (expected.Count == 0)
+            {
+                if (hasSignageSection)
+                    errs.Add($"{label}/{year}: unexpected SIGNAGE RESTRICTION section with no quoted strings in the scene block");
+                continue;
+            }
+
+            if (!hasSignageSection)
+            {
+                errs.Add($"{label}/{year}: missing SIGNAGE RESTRICTION section despite {expected.Count} quoted strings in the scene block");
+                continue;
+            }
+
+            var whitelistSection = prompt.Text[signageIdx..peopleIdx];
+            foreach (var s in expected)
+                if (!whitelistSection.Contains($"'{s}'"))
+                    errs.Add($"{label}/{year}: SIGNAGE RESTRICTION missing '{s}' from its own scene block");
+
+            // Reverse: every listed entry must be one CollectSignText would
+            // itself have produced from this same scene block — no extras.
+            foreach (System.Text.RegularExpressions.Match m in System.Text.RegularExpressions.Regex.Matches(
+                whitelistSection, @"^'(.+)'$", System.Text.RegularExpressions.RegexOptions.Multiline))
+                if (!expected.Contains(m.Groups[1].Value))
+                    errs.Add($"{label}/{year}: SIGNAGE RESTRICTION lists '{m.Groups[1].Value}' which is not in its own scene block");
+        }
+
+        f.Add(("C40", "image-template.txt carries the PRIORITY ORDER rule; every era prompt's SIGNAGE RESTRICTION whitelist lists exactly the quoted strings from its own scene block; the old blanket quotes-only line is gone",
+            errs.Count == 0, errs.Count == 0 ? "Priority order present; signage whitelist consistent everywhere; old line removed" : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────

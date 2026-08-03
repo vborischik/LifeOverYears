@@ -1,5 +1,13 @@
 One single continuous photograph — no panels, grids, or split frames.
 
+PRIORITY ORDER — when instructions conflict, the lower number wins
+1. The uploaded image's composition and geometry.
+2. The exact people and vehicle counts given below.
+3. The historical transformation for the target year.
+4. The specific period details listed.
+5. Add nothing that is not asked for — no extra businesses, signs, vehicles,
+   people, logos or advertisements.
+
 Use the uploaded photo as the exact base composition. The street in the source
 is empty — populate it with the people and vehicles specified below. Remove the
 modern businesses, logos, brands, storefront names, banners and advertisements
@@ -38,7 +46,14 @@ PERIOD DETAILS
 - a kick scooter leaning by the store wall
 - stacked delivery boxes by the store door
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
-Sign text is only what appears in quotes — do not turn other words from this prompt into signage.
+
+
+SIGNAGE RESTRICTION
+The only readable text anywhere in the image is:
+'Citgo'
+'MEMBERS SAVE 10¢/GAL'
+'HOT PIZZA SLICES $2.99'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 7 people TOTAL: 3 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.

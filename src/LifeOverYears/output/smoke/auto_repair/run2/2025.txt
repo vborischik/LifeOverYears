@@ -1,5 +1,13 @@
 One single continuous photograph — no panels, grids, or split frames.
 
+PRIORITY ORDER — when instructions conflict, the lower number wins
+1. The uploaded image's composition and geometry.
+2. The exact people and vehicle counts given below.
+3. The historical transformation for the target year.
+4. The specific period details listed.
+5. Add nothing that is not asked for — no extra businesses, signs, vehicles,
+   people, logos or advertisements.
+
 Use the uploaded photo as the exact base composition. The street in the source
 is empty — populate it with the people and vehicles specified below. Remove the
 modern businesses, logos, brands, storefront names, banners and advertisements

@@ -82,9 +82,12 @@ public sealed class PromptService : IPromptService
         var placement = vehicles.Count > 0 ? context.NextPlacement(vehicles.Count, onStreetParking) : "";
         var gasSign   = isGasStation ? await ResolveGasSignAsync(context, year, condition) : default;
 
+        var sceneBlock = BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, gasSign, rng, context);
+        sceneBlock = AppendSignageRestriction(sceneBlock);
+
         var text = template
             .Replace("{PRESERVE_BLOCK}",    BuildPreserveBlock(sceneDna, "PRESERVE (must match source exactly)", "Keep this location instantly recognizable.", includeTrees: false))
-            .Replace("{SCENE_BLOCK}",       BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, gasSign, rng, context))
+            .Replace("{SCENE_BLOCK}",       sceneBlock)
             .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, hasSidewalks, rng, context))
             .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation, onStreetParking))
             .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year, sceneType, condition, rng))
@@ -570,7 +573,72 @@ public sealed class PromptService : IPromptService
         }
 
         sb.AppendLine($"Typography: {era.Business.Signage.TypographyStyle}.");
-        sb.Append("Sign text is only what appears in quotes — do not turn other words from this prompt into signage.");
+        return sb.ToString();
+    }
+
+    // Matches text inside straight quotes ('...' or "...") or typographic quotes
+    // ('...' or "..." with curly marks) — every place the scene block quotes a
+    // sign, brand or window-sign string.
+    //
+    // Excludes newlines from the captured span: prose elsewhere in the block
+    // (an era narrative, an extras entry) can carry a single unmatched
+    // apostrophe ("regular's car"), and without this a quote pair could span
+    // from that stray apostrophe all the way to an unrelated closing quote
+    // many lines later.
+    //
+    // The straight-quote alternatives also have to tell a real delimiter apart
+    // from a word-internal apostrophe/possessive — a business name like
+    // "COBBLER'S CORNER" sits on the same line as a second quoted string, and
+    // a naive [^'\n]+ would treat the apostrophe in "COBBLER'S" as the closing
+    // quote, truncating that name and misreading the gap before the next
+    // quoted string as a signage entry of its own. (?<!\w)/(?!\w) require a
+    // real delimiter to sit next to whitespace or a boundary, not another
+    // letter; (?<=\w)'(?=\w) lets a letter-flanked apostrophe count as
+    // ordinary content instead of ending the match.
+    private static readonly System.Text.RegularExpressions.Regex QuotedTextPattern = new(
+        "(?<!\\w)\"((?:[^\"\n]|(?<=\\w)\"(?=\\w))+)\"(?!\\w)" +
+        "|(?<!\\w)'((?:[^'\n]|(?<=\\w)'(?=\\w))+)'(?!\\w)" +
+        "|“([^”\n]+)”" +
+        "|‘([^’\n]+)’");
+
+    // Every readable string the scene block actually quotes, in first-seen
+    // order, deduplicated. This becomes the whitelist: the model otherwise
+    // lifts words out of the prompt and paints them onto surfaces that were
+    // never given any text at all.
+    private static List<string> CollectSignText(string sceneBlock)
+    {
+        var seen   = new HashSet<string>();
+        var result = new List<string>();
+        foreach (System.Text.RegularExpressions.Match m in QuotedTextPattern.Matches(sceneBlock))
+        {
+            string? text = null;
+            for (var i = 1; i <= 4; i++)
+                if (m.Groups[i].Success) { text = m.Groups[i].Value.Trim(); break; }
+
+            if (text is null || text.Length < 2) continue;
+            if (seen.Add(text)) result.Add(text);
+        }
+        return result;
+    }
+
+    // Replaces the old blanket "sign text is only what appears in quotes" line
+    // with an explicit whitelist of exactly the strings this era's scene block
+    // quoted. A bare whitelist would forbid a ghost sign's own weathered-but-
+    // readable text, so the closing sentence explicitly carves out lettering
+    // that is present but illegible, rather than contradicting that detail.
+    private static string AppendSignageRestriction(string sceneBlock)
+    {
+        var signText = CollectSignText(sceneBlock);
+        if (signText.Count == 0) return sceneBlock;
+
+        var sb = new StringBuilder(sceneBlock);
+        sb.AppendLine();
+        sb.AppendLine();
+        sb.AppendLine("SIGNAGE RESTRICTION");
+        sb.AppendLine("The only readable text anywhere in the image is:");
+        foreach (var s in signText)
+            sb.AppendLine($"'{s}'");
+        sb.Append("Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.");
         return sb.ToString();
     }
 
