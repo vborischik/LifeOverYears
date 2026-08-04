@@ -643,35 +643,58 @@ public static class PromptSmokeTest
             // land in the youngest bucket, but at distinct percentages — unlike
             // the old absolute-rung ladder, the large tree does NOT clamp to the
             // same floor here (that flattening was exactly the bug being fixed).
-            if (!run[1975].Text.Contains("a young tree, only about 10% of its canopy in the source photo, thin trunk"))
+            if (!run[1975].Text.Contains("a young tree, only about 10% of its canopy in the base image, thin trunk"))
                 errs.Add($"{label}/1975: missing small-tree young-canopy phrasing (10%)");
-            if (!run[1975].Text.Contains("a young tree, only about 30% of its canopy in the source photo, thin trunk"))
+            if (!run[1975].Text.Contains("a young tree, only about 30% of its canopy in the base image, thin trunk"))
                 errs.Add($"{label}/1975: missing medium-tree young-canopy phrasing (30%)");
 
             // 2005 (2 decades back): the mature (large) tree reads "clearly smaller".
-            if (!run[2005].Text.Contains("clearly smaller than in the source — about 80% of its canopy there, thinner trunk"))
+            if (!run[2005].Text.Contains("clearly smaller than in the base image — about 80% of its canopy there, thinner trunk"))
                 errs.Add($"{label}/2005: missing mature-tree mid-life phrasing (80%)");
 
-            // 2025 (source year, 0 decades back): every tree — regardless of size —
-            // reads as exactly matching the source photo.
-            if (!run[2025].Text.Contains("same size as in the source photo"))
-                errs.Add($"{label}/2025: missing 'same size as in the source photo'");
+            // 2025 (source year, 0 decades back): the base image already shows the
+            // trees at their current size, so there is no TREES section at all —
+            // an instruction there could only contradict the base.
+            if (run[2025].Text.Contains("TREES"))
+                errs.Add($"{label}/2025: source year still emits a TREES section");
+            if (run[2025].Text.Contains("Tree sizes MUST follow this specification"))
+                errs.Add($"{label}/2025: source year still emits the tree-size override line");
+
+            // The anchor is the base image each era request actually uploads —
+            // never the original photo, which those calls never see.
+            foreach (var year in new[] { 1975, 1985, 1995, 2005, 2015 })
+            {
+                if (!run[year].Text.Contains("the base image"))
+                    errs.Add($"{label}/{year}: tree sizes not anchored to 'the base image'");
+                if (run[year].Text.Contains("source photo"))
+                    errs.Add($"{label}/{year}: tree spec still references the 'source photo'");
+            }
         }
 
         CheckLadder(gasRun1, "gas_station/run1");
         CheckLadder(gasRun2, "gas_station/run2");
 
-        // Every tree position+type must appear verbatim in every year prompt
+        // Every tree position+type must appear verbatim in each era that still
+        // carries a TREES section. The era PRESERVE block deliberately omits
+        // trees (see BuildPreserveBlock's includeTrees), so the source year —
+        // which has no TREES section either — names no trees at all: the base
+        // image already shows them, and there is nothing to restate.
         foreach (var tree in scene.Environment.Trees)
         {
             var expected = $"{tree.Type} tree at {tree.Position}";
             foreach (var (run, label) in new[] { (gasRun1, "gas_station/run1"), (gasRun2, "gas_station/run2") })
                 foreach (var (year, prompt) in run)
-                    if (!prompt.Text.Contains(expected))
+                {
+                    var present = prompt.Text.Contains(expected);
+                    if (year == 2025 && present)
+                        errs.Add($"{label}/2025: source year still names tree '{expected}'");
+                    else if (year != 2025 && !present)
                         errs.Add($"{label}/{year}: missing tree '{expected}'");
+                }
         }
 
-        // A mature (large) source tree must render a distinct size label in all six eras
+        // A mature (large) source tree must render a distinct size label in each
+        // era that has a TREES section (all but the source year).
         var matureTree = scene.Environment.Trees.FirstOrDefault(t =>
             t.Size.Equals("large", StringComparison.OrdinalIgnoreCase));
         if (matureTree is not null)
@@ -683,6 +706,12 @@ public static class PromptSmokeTest
                 foreach (var (year, prompt) in run)
                 {
                     var line = prompt.Text.Split('\n').FirstOrDefault(l => l.StartsWith(linePrefix));
+                    if (year == 2025)
+                    {
+                        if (line is not null)
+                            errs.Add($"{label}/2025: source year still carries a tree size label");
+                        continue;
+                    }
                     if (line is null)
                         errs.Add($"{label}/{year}: no size label line for mature tree '{matureTree.Type}'");
                     else
@@ -693,8 +722,8 @@ public static class PromptSmokeTest
             }
         }
 
-        f.Add(("C6", "Tree canopy proportion vs. source photo (distinct per era for mature trees, size-relative) and tree position+species in all prompts",
-            errs.Count == 0, errs.Count == 0 ? "Tree ladder and positions correct" : Join(errs)));
+        f.Add(("C6", "Tree canopy proportion vs. the base image (distinct per era for mature trees, size-relative), and no TREES section or tree mention in the source year",
+            errs.Count == 0, errs.Count == 0 ? "Tree ladder and source-year omission correct" : Join(errs)));
     }
 
     private static void DoC7(

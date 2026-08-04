@@ -76,12 +76,6 @@ ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks
 - utilities: overhead lines on existing poles in older commercial areas, fiber optic widespread
 
-TREES
-- cottonwood tree at northeast corner of lot: same size as in the source photo
-- elm tree at sidewalk edge left of entrance: same size as in the source photo
-- cedar tree at back fence line: same size as in the source photo
-Tree sizes MUST follow this specification even where they differ from the source photo.
-
 PHOTOGRAPHIC STYLE
 COLOR photograph — digital — smartphone or mirrorless camera look.
 Color: high saturation. Grain: very clean, minimal to no noise.

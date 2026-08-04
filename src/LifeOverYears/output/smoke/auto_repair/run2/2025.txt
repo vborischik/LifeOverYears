@@ -55,10 +55,6 @@ DECAY
 - a wrecked car with its hood off left sitting at a bay door
 - weeds and grass pushing through cracks in the concrete apron
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
-TREES
-- maple tree at street corner: same size as in the source photo
-- elm tree at side yard: same size as in the source photo
-Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — digital — smartphone or mirrorless camera look.

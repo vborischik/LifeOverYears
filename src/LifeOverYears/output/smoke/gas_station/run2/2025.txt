@@ -63,11 +63,6 @@ DECAY
 - boarded windows, glass cracked or missing
 - lane markings nearly gone, faint paint traces
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
-TREES
-- cottonwood tree at northeast corner of lot: same size as in the source photo
-- elm tree at sidewalk edge left of entrance: same size as in the source photo
-- cedar tree at back fence line: same size as in the source photo
-Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — digital — smartphone or mirrorless camera look.

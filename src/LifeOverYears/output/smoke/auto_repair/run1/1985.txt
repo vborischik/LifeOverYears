@@ -76,9 +76,9 @@ ENVIRONMENT
 - utilities: overhead power lines standard, wooden utility poles
 
 TREES
-- maple tree at street corner: clearly smaller than in the source — about 35% of its canopy there, thinner trunk
-- elm tree at side yard: a young tree, only about 15% of its canopy in the source photo, thin trunk
-Tree sizes MUST follow this specification even where they differ from the source photo.
+- maple tree at street corner: clearly smaller than in the base image — about 35% of its canopy there, thinner trunk
+- elm tree at side yard: a young tree, only about 15% of its canopy in the base image, thin trunk
+Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — Kodacolor VR 200 or Fujicolor 100 look.

@@ -56,9 +56,9 @@ DECAY
 - graffiti tagged across the painted sign band
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
-- maple tree at street corner: clearly smaller than in the source — about 80% of its canopy there, thinner trunk
-- elm tree at side yard: clearly smaller than in the source — about 60% of its canopy there, thinner trunk
-Tree sizes MUST follow this specification even where they differ from the source photo.
+- maple tree at street corner: clearly smaller than in the base image — about 80% of its canopy there, thinner trunk
+- elm tree at side yard: clearly smaller than in the base image — about 60% of its canopy there, thinner trunk
+Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — digital — DSLR or smartphone camera look.

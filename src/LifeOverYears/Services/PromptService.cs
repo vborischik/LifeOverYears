@@ -803,22 +803,43 @@ public sealed class PromptService : IPromptService
             : infra.Utilities.Characteristics;
         sb.AppendLine($"- utilities: {Join(utilitiesPool.Take(2).ToList())}");
         sb.Append(BuildDecayBlock(condition, sceneType, rng));
-        sb.AppendLine();
-        sb.AppendLine("TREES");
-        foreach (var tree in scene.Environment.Trees)
-            sb.AppendLine($"- {tree.Type} tree at {tree.Position}: {DescribeTreeSize(tree.Size, year)}");
-        sb.Append("Tree sizes MUST follow this specification even where they differ from the source photo.");
+
+        // In the source year the base image already shows the trees at their
+        // current size, so every DescribeTreeSize comes back empty and the whole
+        // section is omitted. Emitting it there would tell the model to match the
+        // base and to deviate from it in the same breath.
+        var treeLines = scene.Environment.Trees
+            .Select(t => (Tree: t, Size: DescribeTreeSize(t.Size, year)))
+            .Where(x => x.Size.Length > 0)
+            .Select(x => $"- {x.Tree.Type} tree at {x.Tree.Position}: {x.Size}")
+            .ToList();
+
+        if (treeLines.Count > 0)
+        {
+            sb.AppendLine();
+            sb.AppendLine("TREES");
+            foreach (var line in treeLines)
+                sb.AppendLine(line);
+            sb.Append("Tree sizes MUST follow this specification even where they differ from the base image.");
+        }
+
         return sb.ToString().TrimEnd();
     }
 
-    // The source photo is the newest era, so it is the anchor: a tree's canopy
-    // in any earlier era is expressed as a proportion of what it looks like
-    // there, using a per-decade retention rate for the size Vision recorded.
-    // Unlike an absolute rung ladder, this never clamps and never repeats —
-    // every decade differs, giving the model a comparator it can act on
-    // regardless of which image it is actually editing.
-    private const int SourceYear = 2025; // newest era — trees render "as in the source" here
+    // The newest era is the anchor: a tree's canopy in any earlier era is
+    // expressed as a proportion of what it looks like there, using a per-decade
+    // retention rate for the size Vision recorded. Unlike an absolute rung
+    // ladder, this never clamps and never repeats — every decade differs,
+    // giving the model a comparator it can act on.
+    //
+    // The comparator is the BASE IMAGE, not the original photo: every era
+    // request uploads base_clean.png (or base_synthetic.png), and the source
+    // photo is never sent to those calls at all.
+    private const int SourceYear = 2025; // newest era — the base image already shows trees at this size
 
+    // Returns "" for the source year: the base already shows the trees at their
+    // current size, so there is nothing to instruct. The caller drops the whole
+    // TREES section in that case.
     private static string DescribeTreeSize(string size, int year)
     {
         var retention = size.ToLowerInvariant() switch
@@ -830,16 +851,16 @@ public sealed class PromptService : IPromptService
         };
         var decadesBack = (SourceYear - year) / 10;
         if (decadesBack == 0)
-            return "same size as in the source photo";
+            return "";
 
         var fraction = Math.Pow(retention, decadesBack);
         var pct = (int)(Math.Round(fraction * 20.0, MidpointRounding.AwayFromZero) * 5);
 
         if (fraction >= 0.85)
-            return $"slightly smaller than in the source — about {pct}% of its canopy there";
+            return $"slightly smaller than in the base image — about {pct}% of its canopy there";
         if (fraction >= 0.35)
-            return $"clearly smaller than in the source — about {pct}% of its canopy there, thinner trunk";
-        return $"a young tree, only about {pct}% of its canopy in the source photo, thin trunk";
+            return $"clearly smaller than in the base image — about {pct}% of its canopy there, thinner trunk";
+        return $"a young tree, only about {pct}% of its canopy in the base image, thin trunk";
     }
 
     private static string BuildStyleBlock(Photography photo)

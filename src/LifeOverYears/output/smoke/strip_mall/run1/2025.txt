@@ -58,11 +58,6 @@ DECAY
 - grass and saplings pushing up through the parking apron
 - the pylon sign stripped back to a rusted frame
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
-TREES
-- crepe myrtle tree at parking lot island near entrance: same size as in the source photo
-- maple tree at landscape strip along the road: same size as in the source photo
-- oak tree at back property line: same size as in the source photo
-Tree sizes MUST follow this specification even where they differ from the source photo.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — digital — smartphone or mirrorless camera look.

@@ -78,9 +78,9 @@ DECAY
 - one storefront papered over from inside, a handwritten sign taped to the glass
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
-- oak tree at sidewalk left near corner: clearly smaller than in the source — about 80% of its canopy there, thinner trunk
-- maple tree at sidewalk center in front of retail: clearly smaller than in the source — about 60% of its canopy there, thinner trunk
-Tree sizes MUST follow this specification even where they differ from the source photo.
+- oak tree at sidewalk left near corner: clearly smaller than in the base image — about 80% of its canopy there, thinner trunk
+- maple tree at sidewalk center in front of retail: clearly smaller than in the base image — about 60% of its canopy there, thinner trunk
+Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — early digital camera or Kodak/Fuji consumer film look.

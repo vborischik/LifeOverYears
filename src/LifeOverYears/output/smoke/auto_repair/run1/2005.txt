@@ -74,9 +74,9 @@ DECAY
 - the painted sign band faded, letters flaking at the edges
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
-- maple tree at street corner: clearly smaller than in the source — about 60% of its canopy there, thinner trunk
-- elm tree at side yard: clearly smaller than in the source — about 40% of its canopy there, thinner trunk
-Tree sizes MUST follow this specification even where they differ from the source photo.
+- maple tree at street corner: clearly smaller than in the base image — about 60% of its canopy there, thinner trunk
+- elm tree at side yard: clearly smaller than in the base image — about 40% of its canopy there, thinner trunk
+Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — early digital camera or Kodak/Fuji consumer film look.

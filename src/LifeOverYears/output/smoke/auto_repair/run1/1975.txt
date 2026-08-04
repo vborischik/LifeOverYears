@@ -75,9 +75,9 @@ ENVIRONMENT
 - utilities: overhead power lines everywhere, wooden utility poles standard
 
 TREES
-- maple tree at street corner: a young tree, only about 30% of its canopy in the source photo, thin trunk
-- elm tree at side yard: a young tree, only about 10% of its canopy in the source photo, thin trunk
-Tree sizes MUST follow this specification even where they differ from the source photo.
+- maple tree at street corner: a young tree, only about 30% of its canopy in the base image, thin trunk
+- elm tree at side yard: a young tree, only about 10% of its canopy in the base image, thin trunk
+Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE
 STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.

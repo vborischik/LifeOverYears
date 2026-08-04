@@ -76,10 +76,10 @@ ENVIRONMENT
 - utilities: overhead power lines common on wooden poles, fiber optic lines on poles
 
 TREES
-- cottonwood tree at northeast corner of lot: clearly smaller than in the source — about 80% of its canopy there, thinner trunk
-- elm tree at sidewalk edge left of entrance: clearly smaller than in the source — about 60% of its canopy there, thinner trunk
-- cedar tree at back fence line: slightly smaller than in the source — about 90% of its canopy there
-Tree sizes MUST follow this specification even where they differ from the source photo.
+- cottonwood tree at northeast corner of lot: clearly smaller than in the base image — about 80% of its canopy there, thinner trunk
+- elm tree at sidewalk edge left of entrance: clearly smaller than in the base image — about 60% of its canopy there, thinner trunk
+- cedar tree at back fence line: slightly smaller than in the base image — about 90% of its canopy there
+Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — digital — DSLR or smartphone camera look.

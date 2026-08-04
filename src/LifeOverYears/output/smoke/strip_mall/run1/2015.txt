@@ -59,10 +59,10 @@ DECAY
 - storefronts boarded with plywood behind bent security grilles
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
-- crepe myrtle tree at parking lot island near entrance: clearly smaller than in the source — about 60% of its canopy there, thinner trunk
-- maple tree at landscape strip along the road: clearly smaller than in the source — about 80% of its canopy there, thinner trunk
-- oak tree at back property line: slightly smaller than in the source — about 90% of its canopy there
-Tree sizes MUST follow this specification even where they differ from the source photo.
+- crepe myrtle tree at parking lot island near entrance: clearly smaller than in the base image — about 60% of its canopy there, thinner trunk
+- maple tree at landscape strip along the road: clearly smaller than in the base image — about 80% of its canopy there, thinner trunk
+- oak tree at back property line: slightly smaller than in the base image — about 90% of its canopy there
+Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — digital — DSLR or smartphone camera look.
