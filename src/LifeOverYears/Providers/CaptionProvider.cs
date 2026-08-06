@@ -7,7 +7,7 @@ namespace LifeOverYears.Providers;
 public sealed class CaptionProvider : ICaptionProvider
 {
     private const string Endpoint = "https://integrate.api.nvidia.com/v1/chat/completions";
-    private const string Model = "nvidia/llama-3.1-nemotron-nano-vl-8b-v1";
+    private const string Model = "openai/gpt-oss-120b";
 
     private readonly INvidiaProvider _nvidia;
     private readonly ILogger<CaptionProvider> _logger;
@@ -46,7 +46,7 @@ public sealed class CaptionProvider : ICaptionProvider
             .GetString();
 
         if (string.IsNullOrWhiteSpace(text))
-            throw new InvalidOperationException("Caption: gemma returned empty content");
+            throw new InvalidOperationException("Caption: model returned empty content");
 
         return text.Trim();
     }

@@ -13,7 +13,7 @@ namespace LifeOverYears.Providers;
 // and the 'collect' CLI mode already rely on.
 public sealed class OpenAiImageProvider : IImageGenerationProvider
 {
-    private const string Size = "1024x1536";   // 2:3 portrait, non-experimental
+    private const string Size =  "720x1280";    // 2:3 portrait, non-experimental
     private const string Quality = "medium";
 
     private static readonly JsonSerializerOptions JobJson =
