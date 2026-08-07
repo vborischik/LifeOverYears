@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-08-07T21:20:37.0615850+00:00
+Generated: 2026-08-07T21:23:31.6067770+00:00
 
 ## Check Results
 
@@ -46,7 +46,7 @@ Generated: 2026-08-07T21:20:37.0615850+00:00
 | C38 | A tree's size is stated in exactly one place per prompt: never in the era PRESERVE block, always in the synthetic base's geometry block | ✅ PASS | No double-statement; synthetic base carries every tree the era PRESERVE block omits |
 | C39 | A 'new' condition prompt never pairs pristine surfaces with an unexplained weathered ghost sign | ✅ PASS | No unreconciled ghost-sign contradiction in any 'new' condition prompt |
 | C40 | image-template.txt carries the PRIORITY ORDER rule; every era prompt's SIGNAGE RESTRICTION whitelist lists exactly the quoted strings from its own scene block; the old blanket quotes-only line is gone | ✅ PASS | Priority order present; signage whitelist consistent everywhere; old line removed |
-| C41 | Caption assembly produces a complete, fully substituted caption for every scene type; scene types differ; weekly rotation reaches every body; same-week scenes are separated by the id offset | ❌ FAIL | gas_station: 5 consecutive weeks reach only 1/5 bodies; downtown_street: 5 consecutive weeks reach only 1/5 bodies; strip_mall: 5 consecutive weeks reach only 1/5 bodies; auto_repair: 5 consecutive weeks reach only 1/5 bodies; unknown: 5 consecutive weeks reach only 1/5 bodies; same-week scene ids all map to one body (1 distinct across 6 ids) — the id offset is not separating scenes |
+| C41 | Caption assembly produces a complete, fully substituted caption for every scene type; scene types differ; weekly rotation reaches every body; same-week scenes are separated by the id offset | ✅ PASS | Caption assembly varied and fully substituted |
 
 ## Vehicle Selections
 

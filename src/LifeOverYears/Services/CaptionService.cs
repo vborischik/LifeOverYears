@@ -147,7 +147,7 @@ public sealed class CaptionService : ICaptionService
     // weeks visits every body exactly once — the rotation can never stall on a
     // subset. The scene-id offset keeps two scenes captioned the same week apart.
     public static int SelectBodyIndex(int isoWeek, string? sceneDnaId, int bodyCount) =>
-        0;
+        (int)(((uint)isoWeek + StableHash(sceneDnaId)) % (uint)bodyCount);
 
     // Splits on a line that is exactly the separator, so a "---" inside a body
     // line cannot break it apart. Blank bodies are dropped.
