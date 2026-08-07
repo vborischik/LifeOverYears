@@ -18,6 +18,18 @@ public sealed class AppModule : Module
         _loggerFactory = loggerFactory;
     }
 
+    // Connections are pooled indefinitely by default. OpenAI and NVIDIA drop
+    // idle ones server-side, so a long run picks a dead socket out of the
+    // pool and fails mid-upload with "Connection reset by peer". Capping
+    // lifetime and idle time forces a fresh connection instead.
+    private static HttpClient BuildHttpClient() =>
+        new(new SocketsHttpHandler
+        {
+            PooledConnectionLifetime    = TimeSpan.FromMinutes(2),
+            PooledConnectionIdleTimeout = TimeSpan.FromSeconds(20),
+            ConnectTimeout              = TimeSpan.FromSeconds(30),
+        });
+
     protected override void Load(ContainerBuilder builder)
     {
         var nvidiaKey = _configuration["Nvidia:ApiKey"]
@@ -35,7 +47,7 @@ public sealed class AppModule : Module
                     _loggerFactory.CreateLogger<DataService>()))
                .As<IDataService>().SingleInstance();
 
-        builder.RegisterInstance(new NvidiaProvider(new HttpClient(), nvidiaKey, _loggerFactory.CreateLogger<NvidiaProvider>()))
+        builder.RegisterInstance(new NvidiaProvider(BuildHttpClient(), nvidiaKey, _loggerFactory.CreateLogger<NvidiaProvider>()))
                .As<INvidiaProvider>().SingleInstance();
 
         builder.Register(_ => new VisionProvider(_.Resolve<INvidiaProvider>(), _loggerFactory.CreateLogger<VisionProvider>()))
@@ -84,7 +96,7 @@ public sealed class AppModule : Module
                 ?? throw new InvalidOperationException(
                     "OpenAi:ApiKey is not configured in appsettings.json (set OpenAi:Enabled to false to run without it)");
 
-            builder.RegisterInstance(new OpenAiProvider(new HttpClient(), openAiKey, _loggerFactory.CreateLogger<OpenAiProvider>()))
+            builder.RegisterInstance(new OpenAiProvider(BuildHttpClient(), openAiKey, _loggerFactory.CreateLogger<OpenAiProvider>()))
                    .As<IOpenAiProvider>().SingleInstance();
 
             if (string.Equals(imagesMode, "batch", StringComparison.OrdinalIgnoreCase))

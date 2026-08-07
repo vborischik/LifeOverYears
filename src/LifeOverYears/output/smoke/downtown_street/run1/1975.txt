@@ -14,18 +14,10 @@ modern businesses, logos, brands, storefront names, banners and advertisements
 visible in the source image, and replace them only with the period signage
 specified below.
 
-PRESERVE (must match source exactly)
-- camera: eye-level, street-facing, fov 80
-- main street road, 2-lane, asphalt
-- sidewalks present, curbs present
-- driveways: alley entrance mid-block; parking: parallel street parking both sides
-- two-story brick commercial building at left block face, 2 stories, red brick, cast iron storefront columns, flat parapet roof, at sidewalk setback
-- single-story retail building at center block face, 1 story, brick, plate glass storefront, flat with low parapet roof, at sidewalk setback
-- corner mixed-use building at right corner, 3 stories, brick, stone trim cornice, flat roof, at sidewalk setback
-- utilities: overhead power and telephone lines, wooden utility poles every 50 feet — keep their exact positions and geometry, but render them as period-appropriate infrastructure for the target year
-- landscape: concrete sidewalks, brick pavers at crosswalks
-- immutable elements: cast iron storefront columns on left building, recessed corner entrance on right building, brick alley mid-block
-Keep this location instantly recognizable.
+PRESERVE
+Keep the uploaded image's composition, camera angle, geometry, buildings,
+roads and permanent structures exactly as they are. Do not redraw,
+reposition or restyle them. Change only what the sections below ask for.
 
 OUTPUT FORMAT
 Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above

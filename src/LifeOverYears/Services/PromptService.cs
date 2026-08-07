@@ -11,6 +11,17 @@ public sealed class PromptService : IPromptService
     // followed reliably by the image model much above this.
     private const int FirstEraPeopleCap = 30;
 
+    // Short-form PRESERVE for the era path. BuildAsync always edits an existing
+    // image — base_synthetic.png in synthetic mode, the cleaned photo in clean
+    // mode — so the geometry is already in the pixels, and restating it in text
+    // competes with the image rather than reinforcing it.
+    private const string ShortPreserveBlock = """
+        PRESERVE
+        Keep the uploaded image's composition, camera angle, geometry, buildings,
+        roads and permanent structures exactly as they are. Do not redraw,
+        reposition or restyle them. Change only what the sections below ask for.
+        """;
+
     private readonly IDataService _data;
     private readonly ILogger<PromptService> _logger;
 
@@ -86,7 +97,12 @@ public sealed class PromptService : IPromptService
         sceneBlock = AppendSignageRestriction(sceneBlock);
 
         var text = template
-            .Replace("{PRESERVE_BLOCK}",    BuildPreserveBlock(sceneDna, "PRESERVE (must match source exactly)", "Keep this location instantly recognizable.", includeTrees: false))
+            // EXPERIMENT: the generated per-era geometry block is parked while the
+            // short fixed form is evaluated. To restore it, uncomment the line
+            // below and drop the ShortPreserveBlock line. BuildPreserveBlock and
+            // its includeTrees path stay live — BuildBaseAsync still needs them.
+            // .Replace("{PRESERVE_BLOCK}",    BuildPreserveBlock(sceneDna, "PRESERVE (must match source exactly)", "Keep this location instantly recognizable.", includeTrees: false))
+            .Replace("{PRESERVE_BLOCK}",    ShortPreserveBlock)
             .Replace("{SCENE_BLOCK}",       sceneBlock)
             .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, hasSidewalks, rng, context))
             .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation, onStreetParking))

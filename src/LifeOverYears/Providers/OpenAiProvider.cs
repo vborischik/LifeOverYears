@@ -146,7 +146,10 @@ public sealed class OpenAiProvider : IOpenAiProvider
             {
                 resp = await _http.SendAsync(req, ct);
             }
-            catch (HttpRequestException ex) when (attempt < MaxRetries)
+            // A peer reset can surface as a bare IOException while the multipart
+            // body is still being written, without being wrapped in an
+            // HttpRequestException — retry that the same way.
+            catch (Exception ex) when (ex is HttpRequestException or IOException && attempt < MaxRetries)
             {
                 _logger.LogWarning(ex, "OpenAI request failed (attempt {Attempt}), retrying", attempt);
                 await Task.Delay(BackoffMs(attempt), ct);

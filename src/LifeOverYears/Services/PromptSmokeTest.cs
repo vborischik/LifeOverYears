@@ -96,7 +96,9 @@ public static class PromptSmokeTest
         await SaveRun(unknownScene.SceneType,   1, new Dictionary<int, Prompt> { { 1985, unknownPrompt } });
 
         // d) Checks C1–C25
-        var findings = new List<(string Id, string Desc, bool Pass, string Detail)>();
+        // Pass is tri-state: true PASS, false FAIL, null SKIP. A parked check
+        // reports SKIP so it stays visible in the report — never a silent PASS.
+        var findings = new List<(string Id, string Desc, bool? Pass, string Detail)>();
 
         DoC1 (eras,                                                            findings);
         DoC2 (gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt,  findings);
@@ -143,15 +145,19 @@ public static class PromptSmokeTest
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
 
-        int passed = findings.Count(f => f.Pass);
-        int total  = findings.Count;
+        int passed  = findings.Count(f => f.Pass == true);
+        int failed  = findings.Count(f => f.Pass == false);
+        int skipped = findings.Count(f => f.Pass is null);
+        int total   = findings.Count - skipped;   // skipped checks assert nothing
+        var skipNote = skipped > 0 ? $", {skipped} skipped" : "";
         Console.WriteLine();
-        Console.WriteLine($"Smoke test: {passed}/{total} checks passed" +
-                          (passed == total ? "" : " — FAILURES DETECTED"));
+        Console.WriteLine($"Smoke test: {passed}/{total} checks passed{skipNote}" +
+                          (failed == 0 ? "" : " — FAILURES DETECTED"));
         Console.WriteLine("See output/smoke/report.md for full details.");
-        logger.LogInformation("[Smoke] Done: {Passed}/{Total} checks passed", passed, total);
+        logger.LogInformation("[Smoke] Done: {Passed}/{Total} checks passed, {Skipped} skipped",
+            passed, total, skipped);
 
-        return passed == total ? 0 : 1;
+        return failed == 0 ? 0 : 1;
     }
 
     // ── Fake SceneDna factories ───────────────────────────────────────────────
@@ -449,7 +455,7 @@ public static class PromptSmokeTest
 
     private static void DoC1(
         Dictionary<int, EraProfile> eras,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
         string[] requiredKeys = { "downtown_street", "gas_station", "strip_mall", "auto_repair", "default" };
@@ -489,7 +495,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Prompt unknownPrompt,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
         var all  = gasRun1.Values.Concat(gasRun2.Values)
@@ -511,7 +517,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
 
@@ -543,7 +549,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Dictionary<int, EraProfile> eras,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
 
@@ -594,7 +600,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
 
@@ -633,7 +639,7 @@ public static class PromptSmokeTest
     private static void DoC6(
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         SceneDna scene,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
 
@@ -729,7 +735,7 @@ public static class PromptSmokeTest
     private static void DoC7(
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
 
@@ -760,7 +766,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, EraProfile> eras,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
 
@@ -801,30 +807,39 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> dtRun1,  SceneDna dtScene,
         Dictionary<int, Prompt> smRun1,  SceneDna smScene,
         Dictionary<int, Prompt> arRun1,  SceneDna arScene,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
-        var errs = new List<string>();
-
-        void Check(Dictionary<int, Prompt> run, SceneDna scene, string label)
-        {
-            foreach (var (year, prompt) in run)
-            {
-                foreach (var b in scene.Geometry.Buildings)
-                    if (!prompt.Text.Contains(b.Type))
-                        errs.Add($"{label}/{year}: building type '{b.Type}' not in PRESERVE");
-                foreach (var el in scene.ImmutableElements)
-                    if (!prompt.Text.Contains(el))
-                        errs.Add($"{label}/{year}: immutable element '{el}' not in PRESERVE");
-            }
-        }
-
-        Check(gasRun1, gasScene, "gas_station/run1");
-        Check(dtRun1,  dtScene,  "downtown_street/run1");
-        Check(smRun1,  smScene,  "strip_mall/run1");
-        Check(arRun1,  arScene,  "auto_repair/run1");
+        // PARKED: this check asserts the generated per-era PRESERVE block, which
+        // BuildAsync no longer emits — the era path now uses the short fixed
+        // instruction. Restore together with the BuildPreserveBlock call in
+        // PromptService line 89 by uncommenting the body below and the f.Add
+        // beneath it, then deleting the SKIP report.
+        //
+        // var errs = new List<string>();
+        //
+        // void Check(Dictionary<int, Prompt> run, SceneDna scene, string label)
+        // {
+        //     foreach (var (year, prompt) in run)
+        //     {
+        //         foreach (var b in scene.Geometry.Buildings)
+        //             if (!prompt.Text.Contains(b.Type))
+        //                 errs.Add($"{label}/{year}: building type '{b.Type}' not in PRESERVE");
+        //         foreach (var el in scene.ImmutableElements)
+        //             if (!prompt.Text.Contains(el))
+        //                 errs.Add($"{label}/{year}: immutable element '{el}' not in PRESERVE");
+        //     }
+        // }
+        //
+        // Check(gasRun1, gasScene, "gas_station/run1");
+        // Check(dtRun1,  dtScene,  "downtown_street/run1");
+        // Check(smRun1,  smScene,  "strip_mall/run1");
+        // Check(arRun1,  arScene,  "auto_repair/run1");
+        //
+        // f.Add(("C9", "PRESERVE block contains all building types and immutable elements verbatim",
+        //     errs.Count == 0, errs.Count == 0 ? "All building types and immutable elements present" : Join(errs)));
 
         f.Add(("C9", "PRESERVE block contains all building types and immutable elements verbatim",
-            errs.Count == 0, errs.Count == 0 ? "All building types and immutable elements present" : Join(errs)));
+            null, "parked while the short era PRESERVE is evaluated — restore together with the BuildPreserveBlock call in PromptService line 89"));
     }
 
     private static void DoC10(
@@ -832,7 +847,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
 
@@ -878,7 +893,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Prompt unknownPrompt,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
         var all  = new[]
@@ -916,7 +931,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Dictionary<int, EraProfile> eras,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
         var runs = new[]
@@ -953,7 +968,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Dictionary<int, EraProfile> eras,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
         var runs = new[]
@@ -992,7 +1007,7 @@ public static class PromptSmokeTest
 
     private static void DoC14(
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
 
@@ -1037,7 +1052,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Prompt unknownPrompt,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
         const string populate = "populate it with the people and vehicles specified below";
@@ -1064,7 +1079,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Prompt unknownPrompt,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
         const string overrideLine = "Tree sizes MUST follow this specification";
@@ -1083,7 +1098,7 @@ public static class PromptSmokeTest
     // Data validation: no specific_models entry post-dates its era.
     private static void DoC17(
         Dictionary<int, EraProfile> eras,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
 
@@ -1137,7 +1152,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Dictionary<int, EraProfile> eras,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
 
@@ -1180,7 +1195,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Prompt unknownPrompt,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
 
@@ -1251,7 +1266,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
         // 'aging'/'corporate' within two words before a business type reads as a sign.
@@ -1303,7 +1318,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Dictionary<int, EraProfile> eras,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
 
@@ -1343,7 +1358,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Prompt unknownPrompt,
         ILogger logger,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs    = new List<string>();
         var lengths = new List<string>();
@@ -1387,7 +1402,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Prompt unknownPrompt,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
         const string noVehicles = "NO vehicles anywhere";
@@ -1494,7 +1509,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
 
@@ -1560,7 +1575,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Dictionary<int, EraProfile> eras,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
         var runs = new[]
@@ -1634,7 +1649,7 @@ public static class PromptSmokeTest
     private static async Task DoC26(
         IDataService dataService,
         Dictionary<int, EraProfile> eras,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
 
@@ -1746,7 +1761,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
         const string portraitPhrase = "TRUE 9:16 vertical portrait";
@@ -1815,7 +1830,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Dictionary<int, EraProfile> eras,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
         var runs = new[]
@@ -1861,7 +1876,7 @@ public static class PromptSmokeTest
             errs.Count == 0, errs.Count == 0 ? "No premature people-line repeats" : Join(errs)));
     }
 
-    private static void DoC29(List<(string, string, bool, string)> f)
+    private static void DoC29(List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
         const int totalEras = 6;
@@ -1900,7 +1915,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Prompt unknownPrompt,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
 
@@ -1919,7 +1934,7 @@ public static class PromptSmokeTest
 
     private static void DoC31(
         Dictionary<int, Prompt> dtRun1, Dictionary<int, Prompt> dtRun2,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
         string[] markers = { "Blockbuster", "torn-ticket", "blue fascia" };
@@ -1940,7 +1955,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Prompt unknownPrompt,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
 
@@ -1964,7 +1979,7 @@ public static class PromptSmokeTest
     // allows, and a chain absent from the run never appears at all. Condition is
     // held at "thriving" throughout so only the presence/year logic is exercised,
     // not the abandoned/squatted overrides already covered by C32.
-    private static void DoC33(List<(string, string, bool, string)> f)
+    private static void DoC33(List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
         var years = new[] { 1975, 1985, 1995, 2005, 2015, 2025 };
@@ -2022,7 +2037,7 @@ public static class PromptSmokeTest
     // and its schedule has already put it past its closing year (or the demotion
     // from Named) — that's the whole point of routing ResolveChainTenants through
     // the derelict branch instead of going silent there.
-    private static void DoC34(Dictionary<int, EraProfile> eras, List<(string, string, bool, string)> f)
+    private static void DoC34(Dictionary<int, EraProfile> eras, List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
         string[] derelictConditions = { "abandoned", "squatted" };
@@ -2058,7 +2073,7 @@ public static class PromptSmokeTest
     // The derelict branch exists to keep live business out of a closed-down
     // scene — a Named or Generic chain line there would be exactly the
     // contradiction it's designed to prevent.
-    private static void DoC35(Dictionary<int, EraProfile> eras, List<(string, string, bool, string)> f)
+    private static void DoC35(Dictionary<int, EraProfile> eras, List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
         string[] derelictConditions = { "abandoned", "squatted" };
@@ -2094,7 +2109,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> dtRun1, Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> smRun1, Dictionary<int, Prompt> arRun1,
         Prompt unknownPrompt,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
 
@@ -2148,7 +2163,7 @@ public static class PromptSmokeTest
         IPromptService promptService,
         SceneDna gasScene, SceneDna downtownScene, SceneDna stripMallScene, SceneDna autoRepairScene,
         Dictionary<int, Prompt> gasRun1,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
 
@@ -2183,15 +2198,25 @@ public static class PromptSmokeTest
                 errs.Add($"{label}: base prompt references a 'source'");
         }
 
+        // PARKED (second half only): the era prompts no longer carry the
+        // generated PRESERVE header — they use the short fixed instruction.
+        // Restore together with the BuildPreserveBlock call in PromptService
+        // line 89 by uncommenting the block below and restoring the original
+        // description/detail wording on the f.Add beneath it.
+        //
         // The refactor that parameterised BuildPreserveBlock must not have moved
         // the era prompts' header off its exact original wording.
-        foreach (var year in Years)
-            if (gasRun1.TryGetValue(year, out var prompt)
-                && !prompt.Text.Contains("PRESERVE (must match source exactly)"))
-                errs.Add($"gas/run1/{year}: era prompt lost the 'PRESERVE (must match source exactly)' header");
+        // foreach (var year in Years)
+        //     if (gasRun1.TryGetValue(year, out var prompt)
+        //         && !prompt.Text.Contains("PRESERVE (must match source exactly)"))
+        //         errs.Add($"gas/run1/{year}: era prompt lost the 'PRESERVE (must match source exactly)' header");
 
-        f.Add(("C37", "Synthetic base prompts carry scene geometry with no source-photo wording; era PRESERVE header unchanged",
-            errs.Count == 0, errs.Count == 0 ? "Synthetic base prompts well-formed and era prompts unchanged" : Join(errs)));
+        // The base-prompt half above stays live and still asserts real behaviour;
+        // only the era-header half is parked, so this reports PASS/FAIL as normal.
+        f.Add(("C37", "Synthetic base prompts carry scene geometry with no source-photo wording (era PRESERVE header assertion parked)",
+            errs.Count == 0, errs.Count == 0
+                ? "Synthetic base prompts well-formed; era header assertion parked while the short era PRESERVE is evaluated — restore together with the BuildPreserveBlock call in PromptService line 89"
+                : Join(errs)));
     }
 
     // A tree's size must be stated in exactly one place per prompt: the era
@@ -2208,7 +2233,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Prompt unknownPrompt,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
 
@@ -2255,7 +2280,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Prompt unknownPrompt,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
         string[] rawContradictionMarkers = { "weathered but still clearly readable", "weathered but readable" };
@@ -2290,7 +2315,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
         Prompt unknownPrompt,
-        List<(string, string, bool, string)> f)
+        List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
 
@@ -2357,7 +2382,7 @@ public static class PromptSmokeTest
     // ── Report ────────────────────────────────────────────────────────────────
 
     private static async Task WriteReport(
-        List<(string Id, string Desc, bool Pass, string Detail)> findings,
+        List<(string Id, string Desc, bool? Pass, string Detail)> findings,
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         ILogger logger)
@@ -2375,7 +2400,7 @@ public static class PromptSmokeTest
         sb.AppendLine("|-------|-------------|--------|--------|");
         foreach (var (id, desc, pass, detail) in findings)
         {
-            var status = pass ? "✅ PASS" : "❌ FAIL";
+            var status = pass switch { true => "✅ PASS", false => "❌ FAIL", null => "⏭️ SKIP" };
             var safeDetail = detail.Replace("|", "\\|");
             sb.AppendLine($"| {id} | {desc} | {status} | {safeDetail} |");
         }
@@ -2411,7 +2436,7 @@ public static class PromptSmokeTest
         logger.LogInformation("[Smoke] Check summary:");
         foreach (var (id, _, pass, detail) in findings)
             logger.LogInformation("[Smoke]   {Id} {Status}: {Detail}",
-                id, pass ? "PASS" : "FAIL", detail);
+                id, pass switch { true => "PASS", false => "FAIL", null => "SKIP" }, detail);
     }
 
     private static string Join(IEnumerable<string> items) => string.Join("; ", items);

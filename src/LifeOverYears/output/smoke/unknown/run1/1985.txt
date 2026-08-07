@@ -14,16 +14,10 @@ modern businesses, logos, brands, storefront names, banners and advertisements
 visible in the source image, and replace them only with the period signage
 specified below.
 
-PRESERVE (must match source exactly)
-- camera: elevated, facing oblique, fov 60
-- local street road, 2-lane, asphalt
-- sidewalks absent, curbs absent
-- driveways: gravel access road; parking: gravel lot
-- industrial warehouse building at background, 1 story, corrugated metal, gabled roof, 50 feet from road setback
-- utilities: overhead power lines — keep their exact positions and geometry, but render them as period-appropriate infrastructure for the target year
-- landscape: gravel and packed dirt lot
-- immutable elements: loading dock on east wall
-Keep this location instantly recognizable.
+PRESERVE
+Keep the uploaded image's composition, camera angle, geometry, buildings,
+roads and permanent structures exactly as they are. Do not redraw,
+reposition or restyle them. Change only what the sections below ask for.
 
 OUTPUT FORMAT
 Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above

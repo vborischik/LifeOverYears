@@ -14,17 +14,10 @@ modern businesses, logos, brands, storefront names, banners and advertisements
 visible in the source image, and replace them only with the period signage
 specified below.
 
-PRESERVE (must match source exactly)
-- camera: eye-level, street-facing, fov 76
-- residential road, 2-lane, asphalt
-- sidewalks present, curbs present
-- driveways: corner entrance apron; parking: concrete apron in front of the bays
-- small office with plate glass building at corner of the lot, 1 story, brick veneer, plate glass, flat parapet roof, 20 feet from road setback
-- service bay row under one continuous roof building at rear of the lot, 1 story, concrete block, corrugated metal, flat roof, 40 feet from road setback
-- utilities: overhead power lines, utility pole at the corner — keep their exact positions and geometry, but render them as period-appropriate infrastructure for the target year
-- landscape: narrow grass strip along the road, gravel edge along the apron
-- immutable elements: painted sign band across the parapet, corner lot at the intersection, concrete apron in front of the service bays
-Keep this location instantly recognizable.
+PRESERVE
+Keep the uploaded image's composition, camera angle, geometry, buildings,
+roads and permanent structures exactly as they are. Do not redraw,
+reposition or restyle them. Change only what the sections below ask for.
 
 OUTPUT FORMAT
 Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
