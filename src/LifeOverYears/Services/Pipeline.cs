@@ -153,23 +153,39 @@ public sealed class Pipeline
             _logger.LogWarning("Pipeline finished without video (assembly skipped): {Root}", run.Root);
             return 1;
         }
-        _logger.LogInformation("Pipeline complete — video: {Path}", video.FilePath);
+        _logger.LogInformation("Step 4 complete — video: {Path}", video.FilePath);
 
-        // Step 5 — Caption
-        var narrative = new SceneNarrative(
-            FirstYear:       years.Min(),
-            LastYear:        years.Max(),
-            FinalCondition:  context.SceneCondition,
-            FirstBrand:      context.FirstBrand,
-            LastBrand:       context.LastBrand,
-            RebrandOccurred: context.RebrandOccurred);
-        var caption = await _caption.GenerateAsync(sceneDna, narrative);
-        var captionPath = Path.Combine(run.Root, "caption.txt");
-        var captionText = caption.Description
-            + "\n\n"
-            + string.Join("\n", caption.Hashtags);
-        await File.WriteAllTextAsync(captionPath, captionText);
-        _logger.LogInformation("Step 5 complete — caption: {Path}", captionPath);
+        // Step 5 — Caption. Best-effort: the images, stamped frames and video are
+        // already on disk by this point, so a caption failure (a network blip, an
+        // empty model response) must not discard a finished run. The caption is
+        // the one artefact that can be regenerated on its own afterwards.
+        var captionWritten = false;
+        try
+        {
+            var narrative = new SceneNarrative(
+                FirstYear:       years.Min(),
+                LastYear:        years.Max(),
+                FinalCondition:  context.SceneCondition,
+                FirstBrand:      context.FirstBrand,
+                LastBrand:       context.LastBrand,
+                RebrandOccurred: context.RebrandOccurred);
+            var caption = await _caption.GenerateAsync(sceneDna, narrative);
+            var captionPath = Path.Combine(run.Root, "caption.txt");
+            var captionText = caption.Description
+                + "\n\n"
+                + string.Join("\n", caption.Hashtags);
+            await File.WriteAllTextAsync(captionPath, captionText);
+            captionWritten = true;
+            _logger.LogInformation("Step 5 complete — caption: {Path}", captionPath);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex,
+                "Step 5 failed — caption not written; the run is otherwise complete: {Root}", run.Root);
+        }
+
+        _logger.LogInformation("Pipeline complete — video: {Path}, caption.txt: {CaptionState}",
+            video.FilePath, captionWritten ? "written" : "NOT written");
 
         return 0;
     }

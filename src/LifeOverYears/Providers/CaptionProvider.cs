@@ -32,21 +32,41 @@ public sealed class CaptionProvider : ICaptionProvider
             },
             temperature = 0.9,
             top_p = 0.95,
-            max_tokens = 700
+            // gpt-oss-120b is a reasoning model: its chain of thought goes to
+            // reasoning_content and the answer to content, both drawn from this
+            // one budget. At 700 the reasoning consumed all of it and content
+            // came back empty on an otherwise successful 200.
+            max_tokens = 2000
         };
 
         _logger.LogInformation("Caption: requesting description from {Model}", Model);
         var raw = await _nvidia.PostAsync(Endpoint, body);
 
         using var doc = JsonDocument.Parse(raw);
-        var text = doc.RootElement
+        var message = doc.RootElement
             .GetProperty("choices")[0]
-            .GetProperty("message")
-            .GetProperty("content")
-            .GetString();
+            .GetProperty("message");
+        var text = message.GetProperty("content").GetString();
 
         if (string.IsNullOrWhiteSpace(text))
-            throw new InvalidOperationException("Caption: model returned empty content");
+        {
+            // Distinguish "reasoned but never answered" (budget exhausted) from a
+            // refusal or a malformed response — they look identical at the HTTP
+            // layer, and only the first is fixed by raising max_tokens.
+            var reasoning = message.TryGetProperty("reasoning_content", out var r)
+                ? r.GetString()
+                : null;
+            _logger.LogWarning(
+                "Caption: empty content from {Model}; reasoning_content {State} ({Length} chars)",
+                Model,
+                reasoning is null ? "absent" : "present",
+                reasoning?.Length ?? 0);
+
+            throw new InvalidOperationException(
+                reasoning is { Length: > 0 }
+                    ? $"Caption: model returned empty content after {reasoning.Length} chars of reasoning_content — the token budget was likely spent before the answer"
+                    : "Caption: model returned empty content and no reasoning_content");
+        }
 
         return text.Trim();
     }
