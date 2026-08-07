@@ -56,10 +56,10 @@ public sealed class AppModule : Module
         builder.Register(_ => new VisionService(_.Resolve<IVisionProvider>(), _.Resolve<IDataService>(), _loggerFactory.CreateLogger<VisionService>()))
                .As<IVisionService>().SingleInstance();
 
-        builder.Register(_ => new CaptionProvider(_.Resolve<INvidiaProvider>(), _loggerFactory.CreateLogger<CaptionProvider>()))
-               .As<ICaptionProvider>().SingleInstance();
-
-        builder.Register(_ => new CaptionService(_.Resolve<IDataService>(), _.Resolve<ICaptionProvider>(), _loggerFactory.CreateLogger<CaptionService>()))
+        // CaptionProvider (the LLM path) is deliberately unregistered: captions are
+        // now assembled locally from data/captions/{sceneType}.txt. The provider and
+        // its interface remain in the repo, unwired, so the LLM path can be restored.
+        builder.Register(_ => new CaptionService(_.Resolve<IDataService>(), _loggerFactory.CreateLogger<CaptionService>()))
                .As<ICaptionService>().SingleInstance();
 
         builder.Register(_ => new PromptService(_.Resolve<IDataService>(), _loggerFactory.CreateLogger<PromptService>()))

@@ -11,4 +11,8 @@ public interface IDataService
     Task<IReadOnlyList<(string Name, int From, int To)>> LoadGasBrandsAsync();
     Task SavePromptAsync(Prompt prompt);
     Task<IReadOnlyList<string>> LoadHashtagsAsync();
+
+    // data/captions/{name}.txt — the caption bodies for one scene type.
+    // Throws FileNotFoundException when absent, so callers can fall back.
+    Task<string> LoadCaptionBodiesAsync(string name);
 }

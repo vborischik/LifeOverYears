@@ -83,6 +83,13 @@ public sealed class DataService : IDataService
         await _json.SerializeFileAsync(prompt, path);
     }
 
+    public async Task<string> LoadCaptionBodiesAsync(string name)
+    {
+        var path = Path.Combine("data", "captions", $"{name}.txt");
+        _logger.LogInformation("Loading caption bodies {Name} from {Path}", name, path);
+        return await _fs.ReadAllTextAsync(path);
+    }
+
     public async Task<IReadOnlyList<string>> LoadHashtagsAsync()
     {
         var path = Path.Combine("data", "captions", "hashtags.txt");

@@ -7,7 +7,6 @@ namespace LifeOverYears.Services;
 public sealed class CaptionService : ICaptionService
 {
     private readonly IDataService _data;
-    private readonly ICaptionProvider _provider;
     private readonly ILogger<CaptionService> _logger;
 
     // Anchors that fit any ordinary American place.
@@ -68,53 +67,54 @@ public sealed class CaptionService : ICaptionService
             ? specific.Concat(CommonAngles).ToArray()
             : CommonAngles;
 
-    public CaptionService(IDataService data, ICaptionProvider provider, ILogger<CaptionService> logger)
+    public CaptionService(IDataService data, ILogger<CaptionService> logger)
     {
         _data = data;
-        _provider = provider;
         _logger = logger;
     }
 
+    // Bodies within a caption file are separated by a line containing only "---".
+    private const string BodySeparator = "---";
+
     public async Task<Caption> GenerateAsync(SceneDna sceneDna, SceneNarrative narrative)
     {
-        // System prompt is categorized by scene type: caption-{sceneType}.txt,
-        // falling back to caption-base.txt when no scene-specific file exists.
+        // Caption bodies are categorized by scene type: data/captions/{sceneType}.txt,
+        // falling back to base.txt when no scene-specific file exists — the same
+        // lookup the LLM system prompts used, one directory over.
         var sceneType = string.IsNullOrWhiteSpace(sceneDna.SceneType) ? "base" : sceneDna.SceneType;
-        string systemPrompt;
+        string raw;
         try
         {
-            systemPrompt = await _data.LoadPromptAsync($"caption-{sceneType}");
-            _logger.LogInformation("Caption: using scene-specific prompt caption-{SceneType}", sceneType);
+            raw = await _data.LoadCaptionBodiesAsync(sceneType);
+            _logger.LogInformation("Caption: using scene-specific bodies {SceneType}.txt", sceneType);
         }
         catch (FileNotFoundException)
         {
-            systemPrompt = await _data.LoadPromptAsync("caption-base");
-            _logger.LogInformation("Caption: no caption-{SceneType}, falling back to caption-base", sceneType);
+            raw = await _data.LoadCaptionBodiesAsync("base");
+            _logger.LogInformation("Caption: no {SceneType}.txt, falling back to base.txt", sceneType);
         }
+
+        var bodies = SplitBodies(raw);
+        if (bodies.Count == 0)
+            throw new InvalidOperationException(
+                $"Caption: data/captions/{sceneType}.txt contains no bodies");
+
+        // Rotate wording weekly so the feed does not repeat itself, offset by the
+        // scene id so two scenes captioned in the same week don't come out
+        // identical. Deterministic: the same scene in the same week always gets
+        // the same body.
+        var week  = System.Globalization.ISOWeek.GetWeekOfYear(DateTime.UtcNow);
+        var index = (int)(((uint)week + StableHash(sceneDna.Id)) % (uint)bodies.Count);
+        var body  = bodies[index];
 
         var angles = AnglesFor(sceneType);
-        var angle = angles[Random.Shared.Next(angles.Count)];
+        var angle  = angles[Random.Shared.Next(angles.Count)];
 
-        // Rich, run-specific context. We deliberately do NOT feed a specific
-        // city/state — the copy stays about a generic small American town — but
-        // everything else about THIS run's arc is handed over, so the model
-        // cannot fall back on a one-size-fits-all caption.
-        var sb = new System.Text.StringBuilder();
-        sb.AppendLine($"Scene type: {sceneType}.");
-        sb.AppendLine($"The video spans {narrative.FirstYear} to {narrative.LastYear}.");
-        sb.AppendLine($"By the last year shown, the place is: {MapFinalCondition(narrative.FinalCondition)}.");
-        if (sceneType == "gas_station" && narrative.FirstBrand is not null)
-        {
-            sb.AppendLine(narrative.RebrandOccurred
-                && !string.Equals(narrative.FirstBrand, narrative.LastBrand, StringComparison.OrdinalIgnoreCase)
-                ? $"It was known as {narrative.FirstBrand}, and later became {narrative.LastBrand}."
-                : $"It was known as {narrative.FirstBrand}.");
-        }
-        sb.AppendLine($"Anchor the caption on this specific memory: {angle}.");
-        sb.AppendLine("Write the description now, in your own words — do not reuse stock opening lines from your instructions. Every sentence must be grammatically correct.");
-        var userContext = sb.ToString();
-
-        var description = await _provider.GenerateDescriptionAsync(systemPrompt, userContext);
+        var description = body
+            .Replace("{firstYear}", narrative.FirstYear.ToString())
+            .Replace("{lastYear}",  narrative.LastYear.ToString())
+            .Replace("{angle}",     angle)
+            .Replace("{condition}", MapFinalCondition(narrative.FinalCondition));
 
         // Hashtags: one shared pool for every scene type, loaded from
         // data/captions/hashtags.txt, then narrowed to a pinned set plus a
@@ -127,9 +127,37 @@ public sealed class CaptionService : ICaptionService
             Description: description,
             Hashtags: hashtags);
 
-        _logger.LogInformation("Caption generated: {Length} chars, {Tags} hashtags selected, angle=\"{Angle}\"",
-            description.Length, caption.Hashtags.Count, angle);
+        _logger.LogInformation(
+            "Caption assembled: {Length} chars, body {Index}/{Count} (week {Week}), {Tags} hashtags, angle=\"{Angle}\"",
+            description.Length, index + 1, bodies.Count, week, caption.Hashtags.Count, angle);
         return caption;
+    }
+
+    // Splits on a line that is exactly the separator, so a "---" inside a body
+    // line cannot break it apart. Blank bodies are dropped.
+    public static IReadOnlyList<string> SplitBodies(string raw) =>
+        raw.Replace("\r\n", "\n")
+           .Split($"\n{BodySeparator}\n")
+           .Select(b => b.Trim())
+           .Where(b => b.Length > 0)
+           .ToList();
+
+    // string.GetHashCode is randomized per process in .NET, which would make the
+    // body choice differ between runs of the same scene in the same week. FNV-1a
+    // keeps it stable across processes and machines.
+    private static uint StableHash(string? value)
+    {
+        if (string.IsNullOrEmpty(value)) return 0;
+        unchecked
+        {
+            var hash = 2166136261u;
+            foreach (var c in value)
+            {
+                hash ^= c;
+                hash *= 16777619u;
+            }
+            return hash;
+        }
     }
 
     private const int PinnedCount = 3;
