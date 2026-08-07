@@ -116,8 +116,10 @@ public sealed class CaptionService : ICaptionService
 
         var description = await _provider.GenerateDescriptionAsync(systemPrompt, userContext);
 
-        // Hashtags: one fixed set for everything, loaded from data/captions/hashtags.txt
-        var hashtags = await _data.LoadHashtagsAsync();
+        // Hashtags: one shared pool for every scene type, loaded from
+        // data/captions/hashtags.txt, then narrowed to a pinned set plus a
+        // couple of sampled tags.
+        var hashtags = SelectHashtags(await _data.LoadHashtagsAsync());
 
         var caption = new Caption(
             Id: Guid.NewGuid().ToString("N"),
@@ -125,9 +127,39 @@ public sealed class CaptionService : ICaptionService
             Description: description,
             Hashtags: hashtags);
 
-        _logger.LogInformation("Caption generated: {Length} chars, {Tags} hashtags, angle=\"{Angle}\"",
-            description.Length, hashtags.Count, angle);
+        _logger.LogInformation("Caption generated: {Length} chars, {Tags} hashtags selected, angle=\"{Angle}\"",
+            description.Length, caption.Hashtags.Count, angle);
         return caption;
+    }
+
+    private const int PinnedCount = 3;
+    private const int RandomCount = 2;
+
+    // The first three lines of hashtags.txt are pinned reach tags and stay
+    // in file order; the rest is a pool we sample from so posts do not
+    // repeat the same trailing tags every time. Reordering the file is how
+    // the pinned set is changed — no code edit needed.
+    private static IReadOnlyList<string> SelectHashtags(IReadOnlyList<string> all)
+    {
+        // Too short to split into pinned + sampled: hand back what there is
+        // rather than throwing on a trimmed-down file.
+        if (all.Count <= PinnedCount + RandomCount)
+            return all;
+
+        var selected = new List<string>(PinnedCount + RandomCount);
+        selected.AddRange(all.Take(PinnedCount));
+
+        // Partial Fisher-Yates over the remainder: draws RandomCount distinct
+        // entries without shuffling or copying the whole pool.
+        var pool = all.Skip(PinnedCount).ToArray();
+        for (var i = 0; i < RandomCount; i++)
+        {
+            var j = Random.Shared.Next(i, pool.Length);
+            (pool[i], pool[j]) = (pool[j], pool[i]);
+            selected.Add(pool[i]);
+        }
+
+        return selected;
     }
 
     public const string UnknownConditionText = "changed a lot over the years";
