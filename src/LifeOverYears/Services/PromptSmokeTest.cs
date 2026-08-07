@@ -141,6 +141,7 @@ public static class PromptSmokeTest
             gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
         DoC39(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
         await DoC40(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
+        await DoC41(dataService, gasScene, downtownScene, stripMallScene, autoRepairScene, unknownScene, findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -1653,24 +1654,52 @@ public static class PromptSmokeTest
     {
         var errs = new List<string>();
 
-        // 1. caption-base and every scene-specific caption system prompt must load.
-        try
+        // 1. Every caption body file must load and parse. Captions are assembled
+        // locally now, so this covers data/captions/ — the files GenerateAsync
+        // actually reads. (data/prompts/caption-*.txt are the retired LLM system
+        // prompts, kept in the repo but no longer read at runtime, so asserting
+        // on them would only guard dead files.)
+        const int MinBodies = 5;
+        var allowedPlaceholders = new HashSet<string>(StringComparer.Ordinal)
+            { "firstYear", "lastYear", "angle", "condition" };
+        var placeholder = new System.Text.RegularExpressions.Regex(@"\{(\w+)\}");
+
+        foreach (var name in CaptionService.AnglesByScene.Keys.Append("base"))
         {
-            await dataService.LoadPromptAsync("caption-base");
-        }
-        catch (Exception ex)
-        {
-            errs.Add($"caption-base.txt failed to load: {ex.Message}");
-        }
-        foreach (var sceneType in CaptionService.AnglesByScene.Keys)
-        {
+            string rawBodies;
             try
             {
-                await dataService.LoadPromptAsync($"caption-{sceneType}");
+                rawBodies = await dataService.LoadCaptionBodiesAsync(name);
             }
             catch (Exception ex)
             {
-                errs.Add($"caption-{sceneType}.txt failed to load: {ex.Message}");
+                errs.Add($"captions/{name}.txt failed to load: {ex.Message}");
+                continue;
+            }
+
+            var bodies = CaptionService.SplitBodies(rawBodies);
+            if (bodies.Count < MinBodies)
+                errs.Add($"captions/{name}.txt: {bodies.Count} bodies (need >= {MinBodies})");
+
+            for (var i = 0; i < bodies.Count; i++)
+            {
+                var body  = bodies[i];
+                var label = $"captions/{name}.txt body {i + 1}";
+
+                // An unknown placeholder never gets substituted and ships as
+                // literal braces in the posted caption.
+                foreach (System.Text.RegularExpressions.Match m in placeholder.Matches(body))
+                    if (!allowedPlaceholders.Contains(m.Groups[1].Value))
+                        errs.Add($"{label}: unknown placeholder {m.Value}");
+
+                // Hashtags are appended from hashtags.txt — a body carrying its
+                // own would double up in the posted caption.
+                if (body.Contains('#'))
+                    errs.Add($"{label}: contains a hashtag; hashtags are appended separately");
+
+                // The format ends on a question that invites comments.
+                if (!body.TrimEnd().EndsWith('?'))
+                    errs.Add($"{label}: does not end on a question");
             }
         }
 
@@ -1748,8 +1777,8 @@ public static class PromptSmokeTest
             if (CaptionService.MapFinalCondition(condition) == CaptionService.UnknownConditionText)
                 errs.Add($"condition '{condition}' is reachable at runtime but MapFinalCondition falls back to the unknown-condition text");
 
-        f.Add(("C26", "Caption prompt files load; every scene_content type has a caption voice; anchor pools are well-formed and non-leaking; AnglesFor() composition holds; every reachable condition maps to a real phrase",
-            errs.Count == 0, errs.Count == 0 ? "Caption voice coverage holds" : Join(errs)));
+        f.Add(("C26", "Caption body files load and parse (>=5 bodies, known placeholders only, no hashtags, ends on a question); every scene_content type has a caption voice; anchor pools are well-formed and non-leaking; AnglesFor() composition holds; every reachable condition maps to a real phrase",
+            errs.Count == 0, errs.Count == 0 ? "Caption body files and voice coverage hold" : Join(errs)));
     }
 
     // base-clean.txt (the clean-plate pass) and every era prompt must agree on
@@ -2377,6 +2406,123 @@ public static class PromptSmokeTest
 
         f.Add(("C40", "image-template.txt carries the PRIORITY ORDER rule; every era prompt's SIGNAGE RESTRICTION whitelist lists exactly the quoted strings from its own scene block; the old blanket quotes-only line is gone",
             errs.Count == 0, errs.Count == 0 ? "Priority order present; signage whitelist consistent everywhere; old line removed" : Join(errs)));
+    }
+
+    // End-to-end caption assembly. C26 validates the body files as text; this
+    // drives the real CaptionService against them and checks the output varies:
+    // captions are assembled locally now, so a stuck rotation or an unsubstituted
+    // placeholder would ship straight to a post with nothing else to catch it.
+    private static async Task DoC41(
+        IDataService dataService,
+        SceneDna gasScene, SceneDna downtownScene, SceneDna stripMallScene,
+        SceneDna autoRepairScene, SceneDna unknownScene,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        var service = new CaptionService(
+            dataService, Microsoft.Extensions.Logging.Abstractions.NullLogger<CaptionService>.Instance);
+
+        var scenes = new[]
+        {
+            (Scene: gasScene,        Label: "gas_station"),
+            (Scene: downtownScene,   Label: "downtown_street"),
+            (Scene: stripMallScene,  Label: "strip_mall"),
+            (Scene: autoRepairScene, Label: "auto_repair"),
+            (Scene: unknownScene,    Label: "unknown"),   // exercises the base.txt fallback
+        };
+
+        var narrative = new SceneNarrative(
+            FirstYear: 1975, LastYear: 2025, FinalCondition: "abandoned",
+            FirstBrand: "TEXACO", LastBrand: "SHELL", RebrandOccurred: true);
+
+        // 1. Every scene type assembles a usable caption.
+        var descriptions = new Dictionary<string, string>();
+        foreach (var (scene, label) in scenes)
+        {
+            Caption caption;
+            try
+            {
+                caption = await service.GenerateAsync(scene, narrative);
+            }
+            catch (Exception ex)
+            {
+                errs.Add($"{label}: GenerateAsync threw: {ex.Message}");
+                continue;
+            }
+
+            var text = caption.Description;
+            descriptions[label] = text;
+
+            if (string.IsNullOrWhiteSpace(text))
+                errs.Add($"{label}: empty description");
+            // Any surviving brace means a placeholder never got substituted and
+            // would be posted literally.
+            if (text.Contains('{') || text.Contains('}'))
+                errs.Add($"{label}: unsubstituted placeholder in output: {text[Math.Max(0, text.IndexOf('{'))..Math.Min(text.Length, text.IndexOf('{') + 30)]}");
+            if (text.Contains("1975") is false || text.Contains("2025") is false)
+                errs.Add($"{label}: narrative years missing from the assembled caption");
+            if (!text.Contains(CaptionService.MapFinalCondition("abandoned")))
+                errs.Add($"{label}: mapped condition phrase missing from the assembled caption");
+            if (!text.TrimEnd().EndsWith('?'))
+                errs.Add($"{label}: assembled caption does not end on a question");
+            if (caption.Hashtags.Count == 0)
+                errs.Add($"{label}: no hashtags appended");
+        }
+
+        // 2. Different scene types must not produce the same words — the whole
+        // point of per-scene files is that a forecourt and a main street differ.
+        var duplicates = descriptions
+            .GroupBy(kv => kv.Value)
+            .Where(g => g.Count() > 1)
+            .Select(g => string.Join(" == ", g.Select(kv => kv.Key)))
+            .ToList();
+        foreach (var dupe in duplicates)
+            errs.Add($"identical caption text across scene types: {dupe}");
+
+        // 3. Weekly rotation reaches every body. index advances with the week, so
+        // any run of bodyCount consecutive weeks must visit all of them — this
+        // catches a rotation collapsed onto a subset.
+        foreach (var (scene, label) in scenes)
+        {
+            var raw = await LoadBodiesFor(dataService, scene.SceneType);
+            var count = CaptionService.SplitBodies(raw).Count;
+            if (count == 0) { errs.Add($"{label}: no bodies to rotate"); continue; }
+
+            var seen = Enumerable.Range(1, count)
+                .Select(w => CaptionService.SelectBodyIndex(w, scene.Id, count))
+                .Distinct()
+                .Count();
+            if (seen != count)
+                errs.Add($"{label}: {count} consecutive weeks reach only {seen}/{count} bodies");
+        }
+
+        // 4. Two scenes captioned in the same week must not collapse onto one
+        // body — that is what the scene-id offset exists for.
+        var gasBodies = CaptionService.SplitBodies(await LoadBodiesFor(dataService, "gas_station")).Count;
+        if (gasBodies > 1)
+        {
+            var ids = new[] { "smoke-a", "smoke-b", "smoke-c", "smoke-d", "smoke-e", "smoke-f" };
+            var indices = ids.Select(id => CaptionService.SelectBodyIndex(30, id, gasBodies)).Distinct().Count();
+            if (indices < 2)
+                errs.Add($"same-week scene ids all map to one body ({indices} distinct across {ids.Length} ids) — the id offset is not separating scenes");
+        }
+
+        f.Add(("C41", "Caption assembly produces a complete, fully substituted caption for every scene type; scene types differ; weekly rotation reaches every body; same-week scenes are separated by the id offset",
+            errs.Count == 0, errs.Count == 0 ? "Caption assembly varied and fully substituted" : Join(errs)));
+    }
+
+    // Mirrors CaptionService's own lookup: scene-specific file, else base.
+    private static async Task<string> LoadBodiesFor(IDataService dataService, string? sceneType)
+    {
+        var name = string.IsNullOrWhiteSpace(sceneType) ? "base" : sceneType;
+        try
+        {
+            return await dataService.LoadCaptionBodiesAsync(name);
+        }
+        catch (FileNotFoundException)
+        {
+            return await dataService.LoadCaptionBodiesAsync("base");
+        }
     }
 
     // ── Report ────────────────────────────────────────────────────────────────

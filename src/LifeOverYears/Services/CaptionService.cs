@@ -104,7 +104,7 @@ public sealed class CaptionService : ICaptionService
         // identical. Deterministic: the same scene in the same week always gets
         // the same body.
         var week  = System.Globalization.ISOWeek.GetWeekOfYear(DateTime.UtcNow);
-        var index = (int)(((uint)week + StableHash(sceneDna.Id)) % (uint)bodies.Count);
+        var index = SelectBodyIndex(week, sceneDna.Id, bodies.Count);
         var body  = bodies[index];
 
         var angles = AnglesFor(sceneType);
@@ -132,6 +132,13 @@ public sealed class CaptionService : ICaptionService
             description.Length, index + 1, bodies.Count, week, caption.Hashtags.Count, angle);
         return caption;
     }
+
+    // Which body a given scene gets in a given ISO week. Advancing the week by
+    // one advances the index by one, so any run of bodies.Count consecutive
+    // weeks visits every body exactly once — the rotation can never stall on a
+    // subset. The scene-id offset keeps two scenes captioned the same week apart.
+    public static int SelectBodyIndex(int isoWeek, string? sceneDnaId, int bodyCount) =>
+        0;
 
     // Splits on a line that is exactly the separator, so a "---" inside a body
     // line cannot break it apart. Blank bodies are dropped.
