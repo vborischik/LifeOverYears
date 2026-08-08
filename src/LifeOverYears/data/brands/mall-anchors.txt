@@ -1,0 +1,58 @@
+Sears|1925|2018
+JCPenney|1902|2025
+Montgomery Ward|1926|2001
+Woolworth|1912|1997
+Kmart|1962|2020
+Mervyn's|1949|2008
+Service Merchandise|1960|2002
+Macy's|1990|2025
+Dillard's|1938|2025
+Nordstrom|1980|2025
+Kohl's|1962|2025
+Belk|1888|2025
+Boscov's|1914|2025
+Von Maur|1872|2025
+Bloomingdale's|1970|2025
+Lord & Taylor|1970|2020
+Neiman Marcus|1970|2025
+Saks Fifth Avenue|1970|2025
+Marshall Field's|1929|2006
+Kaufmann's|1930|2006
+Filene's|1929|2006
+Foley's|1947|2006
+Hecht's|1930|2006
+Rich's|1924|2005
+Lazarus|1929|2005
+Burdines|1936|2005
+Robinsons-May|1993|2006
+The Broadway|1930|1996
+Bullock's|1929|1996
+Jordan Marsh|1930|1996
+Woodward & Lothrop|1930|1995
+Strawbridge's|1930|2006
+Famous-Barr|1930|2006
+Meier & Frank|1930|2006
+L.S. Ayres|1905|2006
+Hudson's|1911|2001
+Dayton's|1902|2001
+Elder-Beerman|1883|2018
+Younkers|1856|2018
+Herberger's|1889|2018
+Carson Pirie Scott|1854|2018
+Bergner's|1889|2018
+Boston Store|1897|2018
+Parisian|1877|2007
+McRae's|1902|2006
+Proffitt's|1919|2006
+Gottschalks|1904|2009
+Jacobson's|1868|2002
+Hess's|1897|1996
+Higbee's|1860|1992
+Maison Blanche|1897|1998
+Steinbach|1870|2000
+Stein Mart|1908|2020
+Bealls|1915|2025
+Palais Royal|1921|2020
+Peebles|1891|2020
+Goody's|1953|2025
+Burlington|1972|2025

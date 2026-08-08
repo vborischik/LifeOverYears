@@ -1,0 +1,133 @@
+Sam Goody|1951|2008
+Musicland|1955|2006
+Suncoast Motion Picture Company|1986|2009
+Media Play|1992|2006
+Camelot Music|1956|2001
+Record Town|1972|2006
+Tape World|1975|2001
+Spec's Music|1948|1998
+FYE|1993|2025
+Coconuts Music|1980|2018
+Waldenbooks|1962|2011
+B. Dalton|1966|2010
+Borders Express|2004|2011
+Babbage's|1984|2005
+Software Etc|1984|2005
+Electronics Boutique|1977|2006
+FuncoLand|1988|2005
+EB Games|2000|2006
+GameStop|1996|2025
+RadioShack|1921|2015
+Sharper Image|1977|2008
+Brookstone|1965|2018
+Circuit City|1949|2009
+Ritz Camera|1918|2012
+KB Toys|1922|2009
+Zany Brainy|1991|2003
+Disney Store|1987|2025
+Warner Bros. Studio Store|1991|2001
+Natural Wonders|1972|2001
+San Francisco Music Box Company|1978|2010
+Spencer Gifts|1947|2025
+Wicks 'N' Sticks|1968|2006
+Things Remembered|1967|2022
+Hallmark|1910|2025
+Sunglass Hut|1971|2025
+Claire's|1961|2025
+Icing|1993|2025
+Afterthoughts|1990|2003
+Piercing Pagoda|1969|2025
+Merle Harmon's Fan Fair|1977|2000
+Lids|1995|2025
+Champs Sports|1984|2025
+Foot Locker|1974|2025
+Kinney Shoes|1894|1998
+Thom McAn|1922|1996
+Payless ShoeSource|1956|2019
+Naturalizer|1927|2025
+Florsheim|1892|2002
+Bakers Shoes|1926|2012
+Nine West|1978|2018
+Journeys|1986|2025
+The Limited|1963|2017
+Limited Too|1987|2008
+Express|1980|2025
+Structure|1989|2003
+Gap|1969|2025
+Old Navy|1994|2025
+Banana Republic|1978|2025
+American Eagle Outfitters|1977|2025
+Aeropostale|1987|2025
+Abercrombie & Fitch|1992|2025
+Hollister|2000|2025
+Hot Topic|1989|2025
+Pacific Sunwear|1980|2020
+Wet Seal|1962|2017
+Contempo Casuals|1962|2001
+Merry-Go-Round|1968|1996
+Chess King|1968|1995
+County Seat|1973|1999
+Casual Corner|1950|2005
+Petite Sophisticate|1975|2005
+August Max|1978|2005
+Lerner Shops|1918|1995
+New York & Company|1995|2025
+Deb Shops|1932|2015
+Rave|1976|2007
+5-7-9|1970|2005
+Gadzooks|1983|2005
+Charlotte Russe|1975|2025
+Forever 21|1984|2025
+Rue21|1976|2025
+Body Central|1972|2014
+Frederick's of Hollywood|1947|2015
+Victoria's Secret|1977|2025
+Lane Bryant|1904|2025
+Ann Taylor|1954|2025
+Talbots|1947|2025
+Chico's|1983|2025
+Christopher & Banks|1956|2021
+Dress Barn|1962|2019
+Cache|1975|2015
+bebe|1976|2017
+Guess|1981|2025
+Levi's|1853|2025
+Eddie Bauer|1920|2025
+Foxmoor|1960|1985
+J. Riggings|1970|1998
+Oaktree|1974|1999
+Jay Jacobs|1941|1999
+Braun's|1955|1997
+Paul Harris|1954|2001
+Northern Reflections|1985|1999
+Today's Man|1971|2003
+Men's Wearhouse|1973|2025
+Bath & Body Works|1990|2025
+The Body Shop|1976|2025
+Garden Botanika|1990|1999
+Crabtree & Evelyn|1972|2019
+Yankee Candle|1969|2025
+Bombay Company|1978|2007
+Godiva|1966|2021
+Rocky Mountain Chocolate Factory|1981|2025
+GNC|1935|2025
+Vitamin World|1977|2020
+Zales|1924|2025
+Kay Jewelers|1916|2025
+Gordon's Jewelers|1905|2025
+Whitehall Jewellers|1895|2008
+LensCrafters|1983|2025
+Pearle Vision|1961|2025
+Regis Hairstylists|1922|2025
+MasterCuts|1985|2020
+Trade Secret|1980|2013
+Glamour Shots|1988|2010
+Aladdin's Castle|1974|1996
+Time-Out|1970|1994
+Tilt|1972|2015
+Motherhood Maternity|1982|2025
+Gymboree|1976|2019
+The Children's Place|1969|2025
+Justice|2004|2020
+Build-A-Bear Workshop|1997|2025
+Hickory Farms|1951|2025
