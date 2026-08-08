@@ -7,10 +7,12 @@ namespace LifeOverYears.Services;
 
 public sealed class RunService : IRunService
 {
+    private readonly string _outputDir;
     private readonly ILogger<RunService> _logger;
 
-    public RunService(ILogger<RunService> logger)
+    public RunService(string outputDir, ILogger<RunService> logger)
     {
+        _outputDir = outputDir;
         _logger = logger;
     }
 
@@ -19,8 +21,11 @@ public sealed class RunService : IRunService
 
     public async Task<RunFolder> CreateRunAsync(SceneDna sceneDna, string sourcePhotoPath, IReadOnlyList<int> years)
     {
-        var root = Path.Combine("output", "runs",
-            $"{sceneDna.Id}_{DateTimeOffset.Now:yyyyMMdd-HHmm}");
+        // OutputDir is a single config string (default "output/runs") — split
+        // on '/' so a configured value combines correctly on any platform.
+        var segments = _outputDir.Split('/').ToList();
+        segments.Add($"{sceneDna.Id}_{DateTimeOffset.Now:yyyyMMdd-HHmm}");
+        var root = Path.Combine(segments.ToArray());
 
         var prompts = Path.Combine(root, "prompts");
         var images  = Path.Combine(root, "images");

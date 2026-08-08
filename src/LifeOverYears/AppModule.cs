@@ -65,7 +65,8 @@ public sealed class AppModule : Module
         builder.Register(_ => new PromptService(_.Resolve<IDataService>(), _loggerFactory.CreateLogger<PromptService>()))
                .As<IPromptService>().SingleInstance();
 
-        builder.RegisterInstance(new RunService(_loggerFactory.CreateLogger<RunService>()))
+        var folders = PipelineFolders.Resolve(_configuration);
+        builder.RegisterInstance(new RunService(folders.OutputDir, _loggerFactory.CreateLogger<RunService>()))
                .As<IRunService>().SingleInstance();
 
         var imagesEnabled = _configuration.GetValue("OpenAi:Enabled", true);

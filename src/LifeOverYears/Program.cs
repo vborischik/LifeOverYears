@@ -29,6 +29,16 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
             videoService, overlayService, videoLoggerFactory.CreateLogger("VideoSmokeTest"), logCapture);
     }
 
+    // TODO: remove smoke test
+    // Fully isolated: no appsettings, no DI container. Covers PipelineFolders
+    // config binding plus the real ResolvePhotoPath/MoveProcessedPhoto local
+    // functions below, reached via reflection.
+    if (args.Contains("--smoke-folders"))
+    {
+        using var folderLoggerFactory = LoggerFactory.Create(b => b.AddConsole().SetMinimumLevel(LogLevel.Debug));
+        return await FolderSmokeTest.RunAsync(folderLoggerFactory.CreateLogger("FolderSmokeTest"));
+    }
+
     // 'assemble <folderPath> [years...]' — manual testing only: no vision, no
     // prompts, no image provider call. Points overlay+assembly at images that
     // are already sitting in {folderPath}/images/. Isolated like --smoke-video:
@@ -52,6 +62,7 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
         });
 
     var configuration = configBuilder.Build();
+    var folders = PipelineFolders.Resolve(configuration);
 
     using var loggerFactory = LoggerFactory.Create(b => b.AddConsole().AddProvider(RunLogProvider.Instance)
                                                           .SetMinimumLevel(LogLevel.Debug));
@@ -65,9 +76,11 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
     {
         var promptService = container.Resolve<IPromptService>();
         var dataService   = container.Resolve<IDataService>();
-        return await PromptSmokeTest.RunAsync(
+        var promptResult = await PromptSmokeTest.RunAsync(
             promptService, dataService,
             loggerFactory.CreateLogger("SmokeTest"));
+        var folderResult = await FolderSmokeTest.RunAsync(loggerFactory.CreateLogger("SmokeTest"));
+        return promptResult == 0 && folderResult == 0 ? 0 : 1;
     }
 
     // 'collect <runFolder> [--wait]' — fetches finished generation jobs into
@@ -80,7 +93,7 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
     if (args.Length >= 1 && args[0] == "run")
         args = args.Skip(1).ToArray();
 
-    var photoPath = ResolvePhotoPath(args, projectRoot);
+    var photoPath = ResolvePhotoPath(args, projectRoot, folders.InputDir);
     var years     = args.Length >= 2
         ? args.Skip(1).Select(int.Parse).ToList()
         : new List<int> { 1975,1985,1995,2005,2015,2025 };
@@ -90,12 +103,13 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
         var pipeline = container.Resolve<Pipeline>();
         var result = await pipeline.RunAsync(photoPath, years);
 
-        // On success only, retire the source photo so the input folder does
-        // not accumulate already-processed images across runs. photoPath was
-        // read relative to projectRoot (RunAsync runs after SetCurrentDirectory),
-        // so the move must resolve against projectRoot too — not launchDir.
-        if (result == 0)
-            MoveProcessedPhoto(photoPath, projectRoot, loggerFactory.CreateLogger("Program"));
+        // Retire the source photo either way so the input folder does not
+        // accumulate already-processed (or already-failed) images across
+        // runs. photoPath was read relative to projectRoot (RunAsync runs
+        // after SetCurrentDirectory), so the move must resolve against
+        // projectRoot too — not launchDir.
+        var destDir = result == 0 ? folders.ProcessedDir : folders.FailedDir;
+        MoveProcessedPhoto(photoPath, projectRoot, destDir, loggerFactory.CreateLogger("Program"));
 
         return result;
     }
@@ -103,6 +117,7 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
     {
         var logger = loggerFactory.CreateLogger("Program");
         logger.LogError(ex, "Pipeline failed");
+        MoveProcessedPhoto(photoPath, projectRoot, folders.FailedDir, logger);
         return 1;
     }
     finally
@@ -266,7 +281,7 @@ static async Task<int> RunCollectAsync(
     return 0;
 }
 
-static void MoveProcessedPhoto(string photoPath, string projectRoot, ILogger logger)
+static void MoveProcessedPhoto(string photoPath, string projectRoot, string destDir, ILogger logger)
 {
     try
     {
@@ -277,11 +292,11 @@ static void MoveProcessedPhoto(string photoPath, string projectRoot, ILogger log
             return;
         }
 
-        var processedDir = Path.Combine(projectRoot, "processed");
-        Directory.CreateDirectory(processedDir);
+        var destDirFull = Path.Combine(projectRoot, destDir);
+        Directory.CreateDirectory(destDirFull);
 
         var fileName = Path.GetFileName(sourceFull);
-        var destFull = Path.Combine(processedDir, fileName);
+        var destFull = Path.Combine(destDirFull, fileName);
 
         // Name collision → append a timestamp rather than overwrite, so no
         // previously processed source is ever lost.
@@ -290,7 +305,7 @@ static void MoveProcessedPhoto(string photoPath, string projectRoot, ILogger log
             var stem = Path.GetFileNameWithoutExtension(fileName);
             var ext  = Path.GetExtension(fileName);
             fileName = $"{stem}_{DateTimeOffset.Now:yyyyMMdd-HHmmss}{ext}";
-            destFull = Path.Combine(processedDir, fileName);
+            destFull = Path.Combine(destDirFull, fileName);
         }
 
         File.Move(sourceFull, destFull);
@@ -303,24 +318,24 @@ static void MoveProcessedPhoto(string photoPath, string projectRoot, ILogger log
     }
 }
 
-static string ResolvePhotoPath(string[] args, string projectRoot)
+static string ResolvePhotoPath(string[] args, string projectRoot, string inputDir)
 {
     if (args.Length >= 1)
         return args[0];
 
-    var testImageDir = Path.Combine(projectRoot, "testImage");
-    if (Directory.Exists(testImageDir))
+    var inputDirFull = Path.Combine(projectRoot, inputDir);
+    if (Directory.Exists(inputDirFull))
     {
-        var first = Directory.EnumerateFiles(testImageDir, "*.jpg")
-            .Concat(Directory.EnumerateFiles(testImageDir, "*.jpeg"))
-            .Concat(Directory.EnumerateFiles(testImageDir, "*.png"))
+        var first = Directory.EnumerateFiles(inputDirFull, "*.jpg")
+            .Concat(Directory.EnumerateFiles(inputDirFull, "*.jpeg"))
+            .Concat(Directory.EnumerateFiles(inputDirFull, "*.png"))
             .FirstOrDefault();
 
         if (first is not null)
             return first;
     }
 
-    throw new InvalidOperationException($"No photo path provided and no images found in {testImageDir}");
+    throw new InvalidOperationException($"No photo path provided and no images found in {inputDirFull}");
 }
 
 static string FindProjectRoot()
