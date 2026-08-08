@@ -60,6 +60,15 @@ public sealed class CaptionService : ICaptionService
             "handing the keys to the same man who worked on your father's car",
             "the sound of the impact wrench through the open bay door",
         },
+        ["mall"] = new[]
+        {
+            "the smell of Cinnabon drifting through the food court",
+            "riding the escalator up and down for no reason",
+            "picking a movie at the multiplex and committing to it",
+            "meeting up by the fountain in center court",
+            "walking the whole mall twice before buying anything",
+            "the arcade tokens that never lasted as long as you wanted",
+        },
     };
 
     public static IReadOnlyList<string> AnglesFor(string sceneType) =>

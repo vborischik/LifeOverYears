@@ -452,6 +452,39 @@
         "a milk crate stack by a service door"
       ]
     },
+    "mall": {
+      "narrative": "A 1975 enclosed shopping mall at its newest — a long windowless brick-and-concrete box with SEARS in tall backlit letters high on the end-cap, above a parking lot filled to the far edge.",
+      "storefronts": [
+        "individual backlit anchor letters high on the windowless end-cap",
+        "a tall internally-lit pylon sign at the lot entrance",
+        "a recessed main entrance with brushed aluminum doors under a shallow canopy",
+        "beige concrete panels above a dark brick base course, no windows along the run",
+        "a covered drop-off lane with a flat cantilevered roof",
+        "rooftop mechanical units just visible above the parapet"
+      ],
+      "window_signs": [
+        "OPEN 10-9 MON-SAT",
+        "FREE PARKING",
+        "MONTGOMERY WARD"
+      ],
+      "people_activities": [
+        "a family crossing the lot toward the entrance",
+        "two women carrying department store bags to a station wagon",
+        "teenagers loitering by the doors",
+        "a man loading boxes into a tailgate",
+        "a couple hunting their own car down a row",
+        "a mother steadying a toddler on the crosswalk",
+        "kids cutting diagonally across the lot",
+        "an older couple resting on a bench by the doors"
+      ],
+      "extras": [
+        "rows of tall lot light poles on concrete bases",
+        "long low planter islands splitting the parking rows",
+        "crisp freshly painted stall lines",
+        "a metal bus shelter at the lot edge"
+      ],
+      "crowd": "packed"
+    },
     "default": {
       "narrative": "An ordinary American commercial street in 1975 — modest local businesses, bold simple signage, wide quiet pavement.",
       "storefronts": [

@@ -3,7 +3,7 @@ You are a street scene analysis AI. Analyze the provided photo and return ONLY a
 Fill every field based on what you observe in the image. Use the exact schema below:
 
 {
-  "scene_type": "<gas_station|auto_repair|strip_mall|downtown_street|residential_street|highway|parking_lot|shopping_center|industrial|unknown>",
+  "scene_type": "<gas_station|auto_repair|strip_mall|mall|downtown_street|residential_street|highway|parking_lot|shopping_center|industrial|unknown>",
   "camera": {
     "height": "<eye-level|low|high|aerial>",
     "direction": "<street|intersection|alley|facade|park>",

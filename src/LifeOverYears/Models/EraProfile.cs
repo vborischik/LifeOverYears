@@ -140,7 +140,11 @@ public record SceneContent(
     [property: JsonPropertyName("narrative")]         string Narrative,
     [property: JsonPropertyName("storefronts")]       IReadOnlyList<string> Storefronts,
     [property: JsonPropertyName("window_signs")]      IReadOnlyList<string> WindowSigns,
-    [property: JsonPropertyName("people")]            CountRange People,
+    [property: JsonPropertyName("people")]            CountRange? People,
     [property: JsonPropertyName("people_activities")] IReadOnlyList<string> PeopleActivities,
-    [property: JsonPropertyName("vehicles")]          CountRange Vehicles,
-    [property: JsonPropertyName("extras")]            IReadOnlyList<string> Extras);
+    [property: JsonPropertyName("vehicles")]          CountRange? Vehicles,
+    [property: JsonPropertyName("extras")]            IReadOnlyList<string> Extras,
+    // "packed" (used by the enclosed mall scene type) renders a dense,
+    // uncountable crowd/lot instead of an exact People/Vehicles count — those
+    // two fields are omitted entirely in era JSON for a packed scene.
+    [property: JsonPropertyName("crowd")]             string? Crowd = null);

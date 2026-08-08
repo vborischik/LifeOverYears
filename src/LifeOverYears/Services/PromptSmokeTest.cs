@@ -142,6 +142,7 @@ public static class PromptSmokeTest
         DoC39(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
         await DoC40(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
         await DoC41(dataService, gasScene, downtownScene, stripMallScene, autoRepairScene, unknownScene, findings);
+        await DoC42(promptService, eras, findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -383,6 +384,50 @@ public static class PromptSmokeTest
             "concrete apron in front of the service bays"
         ]);
 
+    private static SceneDna MakeMallScene() => new(
+        Id:        "smoke-mall",
+        CreatedAt: "2025-01-01T00:00:00Z",
+        SceneType: "mall",
+        Camera: new Camera(Height: "eye-level", Direction: "facade", Fov: 82),
+        Geometry: new Geometry(
+            Roads:
+            [
+                new Road(
+                    Type:     "commercial arterial",
+                    Lanes:    4,
+                    Markings: ["yellow center line", "white edge lines", "turn lane arrows"],
+                    Surface:  "asphalt")
+            ],
+            Sidewalks: false,
+            Curbs:     false,
+            Buildings:
+            [
+                new Building(
+                    Type:      "enclosed mall box",
+                    Position:  "rear of the lot",
+                    Stories:   1,
+                    Materials: ["concrete panels", "brick base course"],
+                    Roof:      "flat",
+                    Setback:   "150 feet from road")
+            ],
+            Driveways: ["main entrance apron", "side entrance apron"],
+            Parking:   "large surface lot surrounding the building"),
+        Environment: new Environment(
+            Terrain:   "suburban flat",
+            Utilities: ["tall parking lot light poles", "overhead power lines at the lot edge"],
+            Trees:
+            [
+                new Tree(Position: "planter island near entrance", Size: "small",  Type: "honey locust"),
+                new Tree(Position: "lot perimeter",                 Size: "medium", Type: "maple")
+            ],
+            Landscape: ["long planter islands splitting the parking rows", "painted stall striping"]),
+        ImmutableElements:
+        [
+            "windowless end-cap facade",
+            "recessed main entrance with canopy",
+            "rows of tall lot light poles"
+        ]);
+
     private static SceneDna MakeUnknownScene() => new(
         Id:        "smoke-unknown",
         CreatedAt: "2025-01-01T00:00:00Z",
@@ -562,7 +607,7 @@ public static class PromptSmokeTest
                 SceneContent? sc = null;
                 if (era.SceneContent?.TryGetValue(sceneType, out sc) != true)
                     era.SceneContent?.TryGetValue("default", out sc);
-                if (sc is null) continue;
+                if (sc?.Vehicles is not { } vehicleRange) continue;
 
                 int actual = prompt.SelectedVehicles.Count;
                 // Conditions apply to gas_station, downtown_street and strip_mall:
@@ -574,8 +619,8 @@ public static class PromptSmokeTest
                               prompt.SceneCondition is "abandoned" or "declining" or "squatted";
                 if (!supportsCondition && actual == 0)
                     errs.Add($"{label}/{year}: count=0 for a scene type without conditions (condition leak)");
-                else if (!clamped && (actual < sc.Vehicles.Min || actual > sc.Vehicles.Max))
-                    errs.Add($"{label}/{year}: count={actual} outside [{sc.Vehicles.Min},{sc.Vehicles.Max}]");
+                else if (!clamped && (actual < vehicleRange.Min || actual > vehicleRange.Max))
+                    errs.Add($"{label}/{year}: count={actual} outside [{vehicleRange.Min},{vehicleRange.Max}]");
 
                 int linesInText = prompt.SelectedVehicles.Count(m => prompt.Text.Contains($"- {m}"));
                 if (linesInText != actual)
@@ -2523,6 +2568,39 @@ public static class PromptSmokeTest
         {
             return await dataService.LoadCaptionBodiesAsync("base");
         }
+    }
+
+    // Packed-crowd mall scenes (crowd="packed" in the era JSON, years 1975/1985/
+    // 1995) render a dense, uncountable crowd and a full lot instead of an
+    // "EXACTLY N" count: PEOPLE gets the fixed crowd-wording line, VEHICLES lists
+    // exactly 5 representative models with no PLACEMENT line.
+    private static async Task DoC42(
+        IPromptService promptService,
+        Dictionary<int, EraProfile> eras,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        const string crowdWording = "A DENSE CROWD of shoppers";
+        const string lotWording   = "A FULL parking lot";
+
+        var mallScene = MakeMallScene();
+        foreach (var year in new[] { 1975, 1985, 1995 })
+        {
+            var ctx    = new GenerationContext { Random = new Random(42), TotalEras = 1 };
+            var prompt = await promptService.BuildAsync(mallScene, eras[year], ctx);
+
+            if (!prompt.Text.Contains(crowdWording))
+                errs.Add($"mall/{year}: missing packed-crowd PEOPLE wording '{crowdWording}'");
+            if (!prompt.Text.Contains(lotWording))
+                errs.Add($"mall/{year}: missing packed-crowd VEHICLES wording '{lotWording}'");
+            if (prompt.SelectedVehicles.Count != 5)
+                errs.Add($"mall/{year}: expected exactly 5 representative vehicles, got {prompt.SelectedVehicles.Count}");
+            if (prompt.Text.Contains("PLACEMENT:"))
+                errs.Add($"mall/{year}: packed mode emitted a PLACEMENT line");
+        }
+
+        f.Add(("C42", "Packed-crowd mall scenes render crowd/lot wording, exactly 5 representative vehicles, no PLACEMENT line",
+            errs.Count == 0, errs.Count == 0 ? "Packed crowd rendering correct across 1975/1985/1995" : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────

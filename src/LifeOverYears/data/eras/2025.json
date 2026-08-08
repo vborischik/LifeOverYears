@@ -446,6 +446,30 @@
         "a kick scooter leaning by a wall"
       ]
     },
+    "mall": {
+      "narrative": "A 2025 enclosed mall standing dead — the long windowless box intact but blank, the end-cap bearing only the ghost rectangle and anchor holes where the sign was, an empty cracked lot with nothing parked on it.",
+      "storefronts": [
+        "entrance doors papered over and chained, no lit signage anywhere"
+      ],
+      "window_signs": [],
+      "people": { "min": 0, "max": 0 },
+      "people_activities": [
+        "a family crossing the lot toward the entrance",
+        "two women carrying department store bags to a station wagon",
+        "teenagers loitering by the doors",
+        "a man loading boxes into a tailgate",
+        "a couple hunting their own car down a row",
+        "a mother steadying a toddler on the crosswalk",
+        "kids cutting diagonally across the lot",
+        "an older couple resting on a bench by the doors"
+      ],
+      "vehicles": { "min": 0, "max": 0 },
+      "extras": [
+        "weeds through wide asphalt cracks",
+        "a toppled lot light pole",
+        "stall lines almost entirely gone"
+      ]
+    },
     "default": {
       "narrative": "An ordinary 2025 American commercial street — flat minimalist logos, QR codes and delivery drivers.",
       "storefronts": [

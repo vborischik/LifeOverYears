@@ -453,6 +453,38 @@
         "a food truck parked at the lot edge"
       ]
     },
+    "mall": {
+      "narrative": "A 2015 enclosed mall mostly hollowed out — a rectangular patch of less-faded wall above the end-cap where the anchor letters were removed, anchor holes still visible, only a scatter of cars near the doors.",
+      "storefronts": [
+        "a rectangular patch of less-faded wall where the backlit anchor letters once hung, anchor mounting holes still visible",
+        "a tall internally-lit pylon sign at the lot entrance",
+        "a recessed main entrance with brushed aluminum doors under a shallow canopy",
+        "beige concrete panels above a dark brick base course, no windows along the run",
+        "a covered drop-off lane with a flat cantilevered roof",
+        "rooftop mechanical units just visible above the parapet",
+        "a mirrored-glass entrance vestibule projecting from the facade"
+      ],
+      "window_signs": [
+        "MALL HOURS 11-7"
+      ],
+      "people": { "min": 4, "max": 6 },
+      "people_activities": [
+        "a family crossing the lot toward the entrance",
+        "two women carrying department store bags to a station wagon",
+        "teenagers loitering by the doors",
+        "a man loading boxes into a tailgate",
+        "a couple hunting their own car down a row",
+        "a mother steadying a toddler on the crosswalk",
+        "kids cutting diagonally across the lot",
+        "an older couple resting on a bench by the doors"
+      ],
+      "vehicles": { "min": 3, "max": 5 },
+      "extras": [
+        "cracked asphalt with weeds through the seams",
+        "a light pole with its fixture missing",
+        "faded stall lines barely readable"
+      ]
+    },
     "default": {
       "narrative": "An ordinary 2015 American commercial street — LED signs, crossovers at the curb, smartphones out everywhere.",
       "storefronts": [

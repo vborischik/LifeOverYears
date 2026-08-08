@@ -61,15 +61,31 @@ public sealed class PromptService : IPromptService
             "Scene condition for SceneDna {Id}, year {Year} (era {Index}): {Condition}",
             sceneDna.Id, year, eraIndex, condition);
 
-        var peopleRange  = sceneContent?.People   ?? new CountRange(10, 15);
-        var vehicleRange = sceneContent?.Vehicles ?? new CountRange(4, 6);
-        var peopleCount  = rng.Next(peopleRange.Min, peopleRange.Max + 1);
-        var vehicleCount = rng.Next(vehicleRange.Min, vehicleRange.Max + 1);
+        // "packed" scenes (the enclosed mall) render a dense, uncountable crowd
+        // and a full lot instead of an exact count — People/Vehicles ranges are
+        // not even present in their era JSON, so no count is derived from them
+        // and the first-era doubling below does not apply.
+        var isPacked = sceneContent?.Crowd == "packed";
 
-        // The opening era sets the "before" that everything after is measured
-        // against; a sparse street there reads as empty rather than nostalgic.
-        if (context.IsFirstEra)
-            peopleCount = Math.Min(peopleCount * 2, FirstEraPeopleCap);
+        int peopleCount;
+        int vehicleCount;
+        if (isPacked)
+        {
+            peopleCount  = 0;
+            vehicleCount = 0;
+        }
+        else
+        {
+            var peopleRange  = sceneContent?.People   ?? new CountRange(10, 15);
+            var vehicleRange = sceneContent?.Vehicles ?? new CountRange(4, 6);
+            peopleCount  = rng.Next(peopleRange.Min, peopleRange.Max + 1);
+            vehicleCount = rng.Next(vehicleRange.Min, vehicleRange.Max + 1);
+
+            // The opening era sets the "before" that everything after is measured
+            // against; a sparse street there reads as empty rather than nostalgic.
+            if (context.IsFirstEra)
+                peopleCount = Math.Min(peopleCount * 2, FirstEraPeopleCap);
+        }
 
         if (supportsCondition && condition == "abandoned")
         {
@@ -87,10 +103,14 @@ public sealed class PromptService : IPromptService
             vehicleCount = rng.Next(1, 3);
         }
 
-        var vehicles  = PickVehicles(eraProfile, context, vehicleCount, _logger);
+        // Packed mode only needs a handful of representative models named up
+        // close — pulling a full vehicleCount would exhaust the era's pool for
+        // no visual benefit, since the rest of the lot is described, not listed.
+        var vehicles = PickVehicles(eraProfile, context, isPacked ? 5 : vehicleCount, _logger);
         // An abandoned era has no vehicles and no PLACEMENT line — don't consume a
-        // placement pattern from the run's pool for it.
-        var placement = vehicles.Count > 0 ? context.NextPlacement(vehicles.Count, onStreetParking) : "";
+        // placement pattern from the run's pool for it. A packed lot has no gaps
+        // to arrange either, so it skips placement the same way.
+        var placement = !isPacked && vehicles.Count > 0 ? context.NextPlacement(vehicles.Count, onStreetParking) : "";
         var gasSign   = isGasStation ? await ResolveGasSignAsync(context, year, condition) : default;
 
         var sceneBlock = BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, gasSign, rng, context);
@@ -104,8 +124,8 @@ public sealed class PromptService : IPromptService
             // .Replace("{PRESERVE_BLOCK}",    BuildPreserveBlock(sceneDna, "PRESERVE (must match source exactly)", "Keep this location instantly recognizable.", includeTrees: false))
             .Replace("{PRESERVE_BLOCK}",    ShortPreserveBlock)
             .Replace("{SCENE_BLOCK}",       sceneBlock)
-            .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, hasSidewalks, rng, context))
-            .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation, onStreetParking))
+            .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, hasSidewalks, rng, context, isPacked))
+            .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation, onStreetParking, isPacked))
             .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year, sceneType, condition, rng))
             .Replace("{STYLE_BLOCK}",       BuildStyleBlock(eraProfile.Photography));
 
@@ -658,31 +678,38 @@ public sealed class PromptService : IPromptService
         return sb.ToString();
     }
 
-    private static string BuildPeopleBlock(EraProfile era, SceneContent? content, int peopleCount, bool isGasStation, bool hasSidewalks, Random rng, GenerationContext context)
+    private static string BuildPeopleBlock(EraProfile era, SceneContent? content, int peopleCount, bool isGasStation, bool hasSidewalks, Random rng, GenerationContext context, bool isPacked)
     {
         var sb = new StringBuilder();
         sb.AppendLine("PEOPLE");
-        if (peopleCount == 0)
+        if (!isPacked && peopleCount == 0)
         {
             sb.Append("NO people anywhere — the place is completely deserted.");
             return sb.ToString();
         }
 
-        var (near, opposite, distant) = SplitIntoZones(peopleCount);
-        var zones = new List<string>();
-        if (hasSidewalks)
+        if (isPacked)
         {
-            if (near > 0)     zones.Add($"{near} near sidewalk (largest, foreground)");
-            if (opposite > 0) zones.Add($"{opposite} opposite sidewalk mid-block");
-            if (distant > 0)  zones.Add($"{distant} distant, far end of block");
+            sb.AppendLine("A DENSE CROWD of shoppers — far too many to count: a steady stream in and out of the entrance doors, groups moving between parked cars, clusters waiting near the doors, foreground figures sharp and background figures loose. Do not render an empty or sparse scene.");
         }
         else
         {
-            if (near > 0)     zones.Add($"{near} in the foreground near the building entrance (largest)");
-            if (opposite > 0) zones.Add($"{opposite} mid-ground out on the lot, beside parked vehicles");
-            if (distant > 0)  zones.Add($"{distant} distant, at the far edge of the lot");
+            var (near, opposite, distant) = SplitIntoZones(peopleCount);
+            var zones = new List<string>();
+            if (hasSidewalks)
+            {
+                if (near > 0)     zones.Add($"{near} near sidewalk (largest, foreground)");
+                if (opposite > 0) zones.Add($"{opposite} opposite sidewalk mid-block");
+                if (distant > 0)  zones.Add($"{distant} distant, far end of block");
+            }
+            else
+            {
+                if (near > 0)     zones.Add($"{near} in the foreground near the building entrance (largest)");
+                if (opposite > 0) zones.Add($"{opposite} mid-ground out on the lot, beside parked vehicles");
+                if (distant > 0)  zones.Add($"{distant} distant, at the far edge of the lot");
+            }
+            sb.AppendLine($"EXACTLY {peopleCount} people TOTAL: {string.Join(", ", zones)}. Grouped in pairs, threes, and singles.");
         }
-        sb.AppendLine($"EXACTLY {peopleCount} people TOTAL: {string.Join(", ", zones)}. Grouped in pairs, threes, and singles.");
 
         if (content is not null)
             foreach (var activity in SampleUnused(content.PeopleActivities, 2, rng, context))
@@ -781,15 +808,25 @@ public sealed class PromptService : IPromptService
         return result;
     }
 
-    private static string BuildVehiclesBlock(IReadOnlyList<(string Model, string? Color)> vehicles, int year, string placement, bool isGasStation, bool onStreetParking)
+    private static string BuildVehiclesBlock(IReadOnlyList<(string Model, string? Color)> vehicles, int year, string placement, bool isGasStation, bool onStreetParking, bool isPacked)
     {
         var sb = new StringBuilder();
         sb.AppendLine("VEHICLES");
-        if (vehicles.Count == 0)
+        if (!isPacked && vehicles.Count == 0)
         {
             sb.Append("NO vehicles anywhere — empty lot, no parked or moving cars.");
             return sb.ToString();
         }
+
+        if (isPacked)
+        {
+            sb.AppendLine("A FULL parking lot — every stall occupied in unbroken rows out to the far edge, too many vehicles to count, no empty stalls in the foreground. Representative models visible near the camera:");
+            foreach (var (model, color) in vehicles)
+                sb.AppendLine(color is null ? $"- {model}" : $"- {model} — {color}");
+            sb.Append($"Every other vehicle in the lot is period-correct for {year}; nothing newer. All nose-in or angled into stalls; none parallel-parked.");
+            return sb.ToString();
+        }
+
         sb.AppendLine($"EXACTLY {vehicles.Count} period vehicles, all different:");
         foreach (var (model, color) in vehicles)
             sb.AppendLine(color is null ? $"- {model}" : $"- {model} — {color}");

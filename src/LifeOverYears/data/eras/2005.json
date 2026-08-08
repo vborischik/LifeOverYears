@@ -444,6 +444,43 @@
         "ribbon magnets on a lamppost"
       ]
     },
+    "mall": {
+      "narrative": "A 2005 enclosed mall past its peak — the end-cap letters changed hands again, the box unchanged, whole rows of the lot empty on a weekday.",
+      "storefronts": [
+        "bold geometric backlit anchor letters high on the windowless end-cap",
+        "a tall internally-lit pylon sign at the lot entrance",
+        "a recessed main entrance with brushed aluminum doors under a shallow canopy",
+        "beige concrete panels above a dark brick base course, no windows along the run",
+        "a covered drop-off lane with a flat cantilevered roof",
+        "rooftop mechanical units just visible above the parapet",
+        "a mirrored-glass entrance vestibule projecting from the facade"
+      ],
+      "window_signs": [
+        "OPEN 10-9 MON-SAT",
+        "MACY'S",
+        "DILLARD'S"
+      ],
+      "people": { "min": 12, "max": 16 },
+      "people_activities": [
+        "a family crossing the lot toward the entrance",
+        "two women carrying department store bags to a station wagon",
+        "teenagers loitering by the doors",
+        "a man loading boxes into a tailgate",
+        "a couple hunting their own car down a row",
+        "a mother steadying a toddler on the crosswalk",
+        "kids cutting diagonally across the lot",
+        "an older couple resting on a bench by the doors"
+      ],
+      "vehicles": { "min": 7, "max": 9 },
+      "extras": [
+        "rows of tall lot light poles on concrete bases",
+        "long low planter islands splitting the parking rows",
+        "crisp freshly painted stall lines",
+        "a metal bus shelter at the lot edge",
+        "a bank of wall-mounted payphones by the entrance",
+        "faded stall lines with asphalt patching between rows"
+      ]
+    },
     "default": {
       "narrative": "An ordinary 2005 American commercial street — channel-letter signs, flip phones, SUVs at the curb.",
       "storefronts": [
