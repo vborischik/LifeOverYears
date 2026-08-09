@@ -1,4 +1,4 @@
-One single continuous photograph of an ordinary American location — no panels,
+One single continuous photograph of {SCENE_TYPE_PHRASE} — no panels,
 grids, or split frames. Photorealistic, shot on a normal camera at eye level.
 
 {GEOMETRY_BLOCK}

@@ -155,8 +155,33 @@ public sealed class PromptService : IPromptService
         _logger.LogInformation("Building synthetic base prompt for SceneDna {Id}", sceneDna.Id);
 
         var template = await _data.LoadPromptAsync("base-synthetic");
-        var text = template.Replace("{GEOMETRY_BLOCK}",
-            BuildPreserveBlock(sceneDna, "BUILD THIS SCENE", "", includeTrees: true));
+
+        // The base builds geometry from nothing, so it is the one prompt that has
+        // to say what kind of place this is. Without it the model sees a generic
+        // street and has to infer the type from the immutable elements — which
+        // describe a canopy or a pylon without ever naming a station.
+        const string fallbackKey = "unknown";
+        var phrases   = await _data.LoadSceneTypePhrasesAsync();
+        var sceneType = sceneDna.SceneType;
+        var usedKey   = !string.IsNullOrWhiteSpace(sceneType) && phrases.ContainsKey(sceneType)
+            ? sceneType
+            : fallbackKey;
+
+        if (!phrases.TryGetValue(usedKey, out var phrase))
+            throw new InvalidOperationException(
+                $"scene-types.txt has no '{fallbackKey}' entry to fall back to (scene type '{sceneType}')");
+
+        if (!string.Equals(usedKey, sceneType, StringComparison.OrdinalIgnoreCase))
+            _logger.LogInformation(
+                "Synthetic base: scene type '{SceneType}' has no scene-types.txt entry — using '{Key}'",
+                sceneType ?? "(none)", usedKey);
+        else
+            _logger.LogInformation("Synthetic base: using scene type phrase '{Key}'", usedKey);
+
+        var text = template
+            .Replace("{SCENE_TYPE_PHRASE}", phrase)
+            .Replace("{GEOMETRY_BLOCK}",
+                BuildPreserveBlock(sceneDna, "BUILD THIS SCENE", "", includeTrees: true));
 
         _logger.LogInformation("Synthetic base prompt built: id={Id} length={Length}",
             sceneDna.Id, text.Length);

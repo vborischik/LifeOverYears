@@ -136,7 +136,7 @@ public static class PromptSmokeTest
         DoC34(eras, findings);
         DoC35(eras, findings);
         DoC36(dtRun1, dtRun2, gasRun1, smRun1, arRun1, unknownPrompt, findings);
-        await DoC37(promptService, gasScene, downtownScene, stripMallScene, autoRepairScene, gasRun1, findings);
+        await DoC37(promptService, dataService, gasScene, downtownScene, stripMallScene, autoRepairScene, gasRun1, findings);
         await DoC38(promptService, gasScene, downtownScene, stripMallScene, autoRepairScene,
             gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
         DoC39(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
@@ -2235,11 +2235,15 @@ public static class PromptSmokeTest
     // byte-identical (asserted via their unchanged PRESERVE header).
     private static async Task DoC37(
         IPromptService promptService,
+        IDataService dataService,
         SceneDna gasScene, SceneDna downtownScene, SceneDna stripMallScene, SceneDna autoRepairScene,
         Dictionary<int, Prompt> gasRun1,
         List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
+
+        const string genericPhrase = "an ordinary American location";
+        var phrases = await dataService.LoadSceneTypePhrasesAsync();
 
         foreach (var (scene, label) in new[]
         {
@@ -2250,6 +2254,19 @@ public static class PromptSmokeTest
         })
         {
             var text = await promptService.BuildBaseAsync(scene);
+
+            // The base is the only prompt that builds geometry from nothing, so it
+            // must name the kind of place. Without this the model infers the type
+            // from immutable elements that describe a canopy or a pylon without
+            // ever saying "gas station".
+            if (text.Contains("{SCENE_TYPE_PHRASE}"))
+                errs.Add($"{label}: base prompt still contains an unsubstituted {{SCENE_TYPE_PHRASE}}");
+            if (!phrases.TryGetValue(label, out var expectedPhrase))
+                errs.Add($"{label}: no scene-types.txt entry");
+            else if (!text.Contains(expectedPhrase))
+                errs.Add($"{label}: base prompt missing its scene type phrase '{expectedPhrase}'");
+            if (text.Contains(genericPhrase))
+                errs.Add($"{label}: base prompt still says '{genericPhrase}' for a known scene type");
 
             // Geometry actually made it in, in the same shape BuildPreserveBlock emits.
             foreach (var b in scene.Geometry.Buildings)
@@ -2287,7 +2304,7 @@ public static class PromptSmokeTest
 
         // The base-prompt half above stays live and still asserts real behaviour;
         // only the era-header half is parked, so this reports PASS/FAIL as normal.
-        f.Add(("C37", "Synthetic base prompts carry scene geometry with no source-photo wording (era PRESERVE header assertion parked)",
+        f.Add(("C37", "Synthetic base prompts name their scene type and carry scene geometry, with no source-photo wording (era PRESERVE header assertion parked)",
             errs.Count == 0, errs.Count == 0
                 ? "Synthetic base prompts well-formed; era header assertion parked while the short era PRESERVE is evaluated — restore together with the BuildPreserveBlock call in PromptService line 89"
                 : Join(errs)));

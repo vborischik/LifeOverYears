@@ -75,6 +75,37 @@ public sealed class DataService : IDataService
         return brands;
     }
 
+    public async Task<IReadOnlyDictionary<string, string>> LoadSceneTypePhrasesAsync()
+    {
+        var path = Path.Combine("data", "prompts", "scene-types.txt");
+        _logger.LogInformation("Loading scene type phrases from {Path}", path);
+        var text = await _fs.ReadAllTextAsync(path);
+
+        var phrases = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var line in text.Split('\n'))
+        {
+            var trimmed = line.Trim();
+            if (trimmed.Length == 0)
+                continue;
+            // Split on the FIRST '=' only: a phrase may legitimately contain one.
+            var sep = trimmed.IndexOf('=');
+            if (sep <= 0 || sep == trimmed.Length - 1)
+            {
+                _logger.LogWarning("Skipping malformed scene type line: {Line}", trimmed);
+                continue;
+            }
+            var key    = trimmed[..sep].Trim();
+            var phrase = trimmed[(sep + 1)..].Trim();
+            if (key.Length == 0 || phrase.Length == 0)
+            {
+                _logger.LogWarning("Skipping malformed scene type line: {Line}", trimmed);
+                continue;
+            }
+            phrases[key] = phrase;
+        }
+        return phrases;
+    }
+
     public async Task SavePromptAsync(Prompt prompt)
     {
         var path = Path.Combine("output", "prompts", prompt.SceneDnaId, $"{prompt.Year}.json");

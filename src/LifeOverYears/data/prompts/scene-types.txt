@@ -1,0 +1,5 @@
+gas_station = a gas station, with a pump island under a freestanding canopy on support columns and a small attached store building
+auto_repair = an auto repair shop, with a row of service bays under one continuous roof and a small office
+strip_mall = a strip mall, a single-story retail row under a continuous storefront overhang, fronted by a parking lot
+downtown_street = a downtown commercial street, storefronts meeting the sidewalk on both sides
+unknown = an ordinary American location
