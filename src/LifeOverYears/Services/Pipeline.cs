@@ -87,7 +87,7 @@ public sealed class Pipeline
         string basePath;
         if (string.Equals(_baseMode, "synthetic", StringComparison.OrdinalIgnoreCase))
         {
-            var basePrompt = await _prompt.BuildBaseAsync(sceneDna);
+            var basePrompt = await _prompt.BuildBaseAsync(sceneDna, years.Min());
             await File.WriteAllTextAsync(Path.Combine(run.PromptsDir, "base_synthetic.txt"), basePrompt);
             basePath = Path.Combine(run.Root, "base_synthetic.png");
             await _images.SynthesizeBaseAsync(basePrompt, basePath);

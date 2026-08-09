@@ -3,6 +3,8 @@ grids, or split frames. Photorealistic, shot on a normal camera at eye level.
 
 {GEOMETRY_BLOCK}
 
+{PERIOD_BLOCK}
+
 The scene is completely empty: no people, no vehicles, no bicycles. Streets,
 parking spaces and sidewalks are bare. Buildings have blank storefronts — no
 business names, no logos, no brands, no advertisements, no signage text of any

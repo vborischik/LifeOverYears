@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-08-09T03:56:22.5505080+00:00
+Generated: 2026-08-09T04:18:20.3018510+00:00
 
 ## Check Results
 
@@ -14,7 +14,7 @@ Generated: 2026-08-09T03:56:22.5505080+00:00
 | C6 | Tree canopy proportion vs. the base image (distinct per era for mature trees, size-relative), and no TREES section or tree mention in the source year | ✅ PASS | Tree ladder and source-year omission correct |
 | C7 | 1975=B&W (STRICTLY BLACK AND WHITE); 1985-2025=COLOR photograph | ✅ PASS | Color mode correct in all prompts |
 | C8 | Gas station fuel prices always present; downtown coffee price in ≥1 run per year | ✅ PASS | All price anchors found |
-| C9 | PRESERVE block contains all building types and immutable elements verbatim | ⏭️ SKIP | parked while the short era PRESERVE is evaluated — restore together with the BuildPreserveBlock call in PromptService line 89 |
+| C9 | DISABLED — PRESERVE block contains all building types and immutable elements verbatim | ⛔ DISABLED | disabled while the short era PRESERVE is evaluated — restore together with the BuildPreserveBlock call in PromptService line 89 |
 | C10 | No TEXT OVERLAY section remains; year still anchors the VEHICLES block and carries the ranged-model-year restriction | ✅ PASS | Overlay removed, vehicle year anchors correct, model-year restriction present |
 | C11 | Every prompt is under 920 words | ✅ PASS | All prompts under 920 words |
 | C12 | B&W prompts contain no vehicle pool colors, no 'Fashion palette', no 'desaturated' | ✅ PASS | B&W prompts are color-free |

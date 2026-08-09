@@ -96,8 +96,8 @@ public static class PromptSmokeTest
         await SaveRun(unknownScene.SceneType,   1, new Dictionary<int, Prompt> { { 1985, unknownPrompt } });
 
         // d) Checks C1–C25
-        // Pass is tri-state: true PASS, false FAIL, null SKIP. A parked check
-        // reports SKIP so it stays visible in the report — never a silent PASS.
+        // Pass is tri-state: true PASS, false FAIL, null DISABLED. A parked check
+        // reports DISABLED so it stays visible in the report — never a silent PASS.
         var findings = new List<(string Id, string Desc, bool? Pass, string Detail)>();
 
         DoC1 (eras,                                                            findings);
@@ -149,15 +149,15 @@ public static class PromptSmokeTest
 
         int passed  = findings.Count(f => f.Pass == true);
         int failed  = findings.Count(f => f.Pass == false);
-        int skipped = findings.Count(f => f.Pass is null);
-        int total   = findings.Count - skipped;   // skipped checks assert nothing
-        var skipNote = skipped > 0 ? $", {skipped} skipped" : "";
+        int disabled = findings.Count(f => f.Pass is null);
+        int total    = findings.Count - disabled;   // disabled checks assert nothing
+        var disabledNote = disabled > 0 ? $", {disabled} disabled" : "";
         Console.WriteLine();
-        Console.WriteLine($"Smoke test: {passed}/{total} checks passed{skipNote}" +
+        Console.WriteLine($"Smoke test: {passed}/{total} checks passed{disabledNote}" +
                           (failed == 0 ? "" : " — FAILURES DETECTED"));
         Console.WriteLine("See output/smoke/report.md for full details.");
-        logger.LogInformation("[Smoke] Done: {Passed}/{Total} checks passed, {Skipped} skipped",
-            passed, total, skipped);
+        logger.LogInformation("[Smoke] Done: {Passed}/{Total} checks passed, {Disabled} disabled",
+            passed, total, disabled);
 
         return failed == 0 ? 0 : 1;
     }
@@ -884,8 +884,8 @@ public static class PromptSmokeTest
         // f.Add(("C9", "PRESERVE block contains all building types and immutable elements verbatim",
         //     errs.Count == 0, errs.Count == 0 ? "All building types and immutable elements present" : Join(errs)));
 
-        f.Add(("C9", "PRESERVE block contains all building types and immutable elements verbatim",
-            null, "parked while the short era PRESERVE is evaluated — restore together with the BuildPreserveBlock call in PromptService line 89"));
+        f.Add(("C9", "DISABLED — PRESERVE block contains all building types and immutable elements verbatim",
+            null, "disabled while the short era PRESERVE is evaluated — restore together with the BuildPreserveBlock call in PromptService line 89"));
     }
 
     private static void DoC10(
@@ -2262,7 +2262,7 @@ public static class PromptSmokeTest
             (MakeMallScene(), "mall"),
         })
         {
-            var text = await promptService.BuildBaseAsync(scene);
+            var text = await promptService.BuildBaseAsync(scene, Years[0]);
 
             // The base is the only prompt that builds geometry from nothing, so it
             // must name the kind of place. Without this the model infers the type
@@ -2276,6 +2276,13 @@ public static class PromptSmokeTest
                 errs.Add($"{label}: base prompt missing its scene type phrase '{expectedPhrase}'");
             if (text.Contains(genericPhrase))
                 errs.Add($"{label}: base prompt still says '{genericPhrase}' for a known scene type");
+
+            // The base is dated from the run's earliest year, so an undated base
+            // does not render as present-day and force every early era to undo it.
+            if (text.Contains("{PERIOD_BLOCK}"))
+                errs.Add($"{label}: base prompt still contains an unsubstituted {{PERIOD_BLOCK}}");
+            if (!text.Contains($"PERIOD — build the scene as it stood in {Years[0]}"))
+                errs.Add($"{label}: base prompt is not dated to the base year {Years[0]}");
 
             // Geometry actually made it in, in the same shape BuildPreserveBlock emits.
             foreach (var b in scene.Geometry.Buildings)
@@ -2358,7 +2365,7 @@ public static class PromptSmokeTest
             (autoRepairScene, "auto_repair"),
         })
         {
-            var text = await promptService.BuildBaseAsync(scene);
+            var text = await promptService.BuildBaseAsync(scene, Years[0]);
             foreach (var tree in scene.Environment.Trees)
                 if (!text.Contains($"{tree.Type} tree at {tree.Position}"))
                     errs.Add($"{label}: synthetic base missing tree line for '{tree.Type}' at '{tree.Position}'");
@@ -2650,7 +2657,7 @@ public static class PromptSmokeTest
         sb.AppendLine("|-------|-------------|--------|--------|");
         foreach (var (id, desc, pass, detail) in findings)
         {
-            var status = pass switch { true => "✅ PASS", false => "❌ FAIL", null => "⏭️ SKIP" };
+            var status = pass switch { true => "✅ PASS", false => "❌ FAIL", null => "\u26D4 DISABLED" };
             var safeDetail = detail.Replace("|", "\\|");
             sb.AppendLine($"| {id} | {desc} | {status} | {safeDetail} |");
         }
@@ -2686,7 +2693,7 @@ public static class PromptSmokeTest
         logger.LogInformation("[Smoke] Check summary:");
         foreach (var (id, _, pass, detail) in findings)
             logger.LogInformation("[Smoke]   {Id} {Status}: {Detail}",
-                id, pass switch { true => "PASS", false => "FAIL", null => "SKIP" }, detail);
+                id, pass switch { true => "PASS", false => "FAIL", null => "DISABLED" }, detail);
     }
 
     private static string Join(IEnumerable<string> items) => string.Join("; ", items);

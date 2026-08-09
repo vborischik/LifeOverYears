@@ -150,9 +150,10 @@ public sealed class PromptService : IPromptService
     // Synthetic base: the scene built from SceneDna text alone, with no source
     // photo anywhere in the request. Same geometry rundown as an era prompt, but
     // framed as construction rather than preservation.
-    public async Task<string> BuildBaseAsync(SceneDna sceneDna)
+    public async Task<string> BuildBaseAsync(SceneDna sceneDna, int baseYear)
     {
-        _logger.LogInformation("Building synthetic base prompt for SceneDna {Id}", sceneDna.Id);
+        _logger.LogInformation("Building synthetic base prompt for SceneDna {Id}, base year {Year}",
+            sceneDna.Id, baseYear);
 
         var template = await _data.LoadPromptAsync("base-synthetic");
 
@@ -178,14 +179,38 @@ public sealed class PromptService : IPromptService
         else
             _logger.LogInformation("Synthetic base: using scene type phrase '{Key}'", usedKey);
 
+        // Undated, the base renders as present-day — fresh asphalt, modern poles,
+        // current storefront systems — and every early era then has to undo that.
+        // The run's years are known up front, so build it in the earliest one and
+        // let the eras age it forward.
+        var baseEra = await _data.LoadEraProfileAsync(baseYear);
+
         var text = template
             .Replace("{SCENE_TYPE_PHRASE}", phrase)
+            .Replace("{PERIOD_BLOCK}",      BuildBasePeriodBlock(baseEra))
             .Replace("{GEOMETRY_BLOCK}",
                 BuildPreserveBlock(sceneDna, "BUILD THIS SCENE", "", includeTrees: true));
 
         _logger.LogInformation("Synthetic base prompt built: id={Id} length={Length}",
             sceneDna.Id, text.Length);
         return text;
+    }
+
+    // Period for the synthetic base, taken from the base year's era profile rather
+    // than hardcoded, so the run's own years drive it. Only permanent fabric is
+    // described: the base carries no people, vehicles or signage to date.
+    private static string BuildBasePeriodBlock(EraProfile era)
+    {
+        var sb = new StringBuilder();
+        sb.AppendLine($"PERIOD — build the scene as it stood in {era.Year}");
+        sb.AppendLine($"Everything permanent must be plausible for {era.Year}; nothing may look newer.");
+        sb.AppendLine($"- commercial architecture: {Join(era.Architecture.Commercial.Styles.Take(2).ToList())}");
+        sb.AppendLine($"- building materials: {Join(era.Architecture.Commercial.Materials.Take(3).ToList())}");
+        sb.AppendLine($"- road surface: {Join(era.Infrastructure.Roads.Materials.Take(2).ToList())}");
+        sb.AppendLine($"- road markings: {Join(era.Infrastructure.Roads.Markings.Take(3).ToList())}");
+        sb.AppendLine($"- utilities: {Join(era.Infrastructure.Utilities.Characteristics.Take(2).ToList())}");
+        sb.Append("No later-era construction: no LED fixtures, no aluminium-and-glass curtain wall, no modern bollards or plastic sign boxes.");
+        return sb.ToString();
     }
 
     // Run-wide gas-station sign spec: one brand held across the run (with at most
