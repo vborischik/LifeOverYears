@@ -10,6 +10,18 @@ namespace LifeOverYears.Services;
 // already present, so a missing year is an immediate error, not a wait.
 public static class VideoAssemblyRunner
 {
+    // A year's image may arrive as either "{year}.png" or "{year}-clean.png" —
+    // the second is a hand-corrected version dropped in alongside the generated
+    // one. When both exist the cleaned file wins: it was made deliberately to
+    // replace what the provider produced. Returns null when neither is present.
+    public static string? FindEraImage(string imagesDir, int year)
+    {
+        var cleaned = Path.Combine(imagesDir, $"{year}-clean.png");
+        if (File.Exists(cleaned)) return cleaned;
+        var plain = Path.Combine(imagesDir, $"{year}.png");
+        return File.Exists(plain) ? plain : null;
+    }
+
     public static async Task<(IReadOnlyList<int> Missing, Video? Video)> RunAsync(
         IYearOverlayService overlay,
         IVideoService video,
@@ -20,7 +32,7 @@ public static class VideoAssemblyRunner
         ILogger logger)
     {
         var missing = years
-            .Where(y => !File.Exists(Path.Combine(imagesDir, $"{y}.png")))
+            .Where(y => FindEraImage(imagesDir, y) is null)
             .ToList();
         if (missing.Count > 0)
         {
@@ -32,7 +44,8 @@ public static class VideoAssemblyRunner
         Directory.CreateDirectory(stampedDir);
         foreach (var year in years)
         {
-            var source = Path.Combine(imagesDir, $"{year}.png");
+            // Non-null: the missing check above already returned on any gap.
+            var source = FindEraImage(imagesDir, year)!;
             var stamped = Path.Combine(stampedDir, $"{year}.png");
             await overlay.StampAsync(source, year, stamped);
         }

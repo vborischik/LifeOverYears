@@ -27,42 +27,41 @@ distort the source geometry.
 TRANSFORM TO 1995
 Clinton era prosperity. A 1995 self-serve station — wide canopy over multiple islands, attached convenience store, the first pay-at-pump card readers.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: busy — customers present, high activity, all pumps in use
 
 PERIOD DETAILS
-- automatic car wash bay at the back of the lot
-- self-service only standard
+- older strip malls showing age
+- channel letter signs on storefronts
 - price sign showing gas around $1.15
-- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
-- window signs: '32oz FOUNTAIN DRINK 89¢', 'CAR WASH $4 WITH FILL-UP'
-- a hand-written 'PUMP 3 OUT OF ORDER' sign taped to one pump
-- squeegee buckets at the pump islands
+- main sign: "Chevron" branded gas station — Chevron pole sign with price display and Chevron colors on the canopy fascia
+- window signs: 'CAR WASH $4 WITH FILL-UP', 'PAY AT PUMP — NEW!'
+- a wire rack of free auto-trader papers by the door
+- a payphone mounted by the store entrance
 Typography: clean geometric sans-serif, early digital influence.
 
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Citgo'
-'32oz FOUNTAIN DRINK 89¢'
+'Chevron'
 'CAR WASH $4 WITH FILL-UP'
-'PUMP 3 OUT OF ORDER'
+'PAY AT PUMP — NEW!'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 5 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a family piling out of a minivan for a bathroom break
-- a trucker stretching his legs beside his idling rig
-- a grandmother pushing a wire cart of groceries
-Clothing: men in grunge style, flannel shirts; women in crop tops, floral dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+- a clerk restocking the ice merchandiser
+- a driver checking a paper road map against a highway sign
+- a paperboy with a canvas bag on a bike
+Clothing: men in baggy jeans, backwards caps; women in slip dresses, crop tops. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 1992-1996 Ford F-150 — rounded aero body — navy blue
-- 1988-1998 Chevrolet C/K 1500 — softly squared pickup — white
-- 1993-1998 Jeep Grand Cherokee — early SUV, boxy-rounded — black
+- 1992-1996 Ford F-150 — rounded aero body — black
+- 1995-1999 Dodge Neon — small rounded economy, friendly face — white
+- 1994-2001 Dodge Ram — big rig style grille, bold — silver
 Parked with gaps. Where a model is listed with a year range, render the 1995 model year specifically — only styling, trim and features available in 1995, nothing introduced later. No vehicle newer than 1995.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: one nose-in close to the entrance; the rest spread across stalls toward the lot's far edge. No vehicle in the same spot as any other era.
+PLACEMENT: all angled into stalls along the far edge of the lot, the near stalls left empty. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn lane arrows
@@ -78,6 +77,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — Kodak Gold 200 or Fujifilm Superia 200 look.
 Color: neutral to slightly warm tones. Grain: fine grain, cleaner than 1985.
 Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

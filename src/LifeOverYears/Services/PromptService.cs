@@ -22,6 +22,19 @@ public sealed class PromptService : IPromptService
         reposition or restyle them. Change only what the sections below ask for.
         """;
 
+    // The uploaded image is empty when every era edits the shared base, but
+    // already populated when eras are chained — the previous year's people and
+    // vehicles are still in it and must be cleared before this year's are placed.
+    private const string FreshBaseNote =
+        "Use the uploaded photo as the exact base composition. The street in the source\n" +
+        "is empty — populate it with the people and vehicles specified below.";
+
+    private const string ChainedBaseNote =
+        "Use the uploaded photo as the exact base composition. It shows this same place in\n" +
+        "an earlier year: first remove EVERY person, vehicle and bicycle already in it, so\n" +
+        "the street is empty, then populate it with the people and vehicles specified below.\n" +
+        "Keep none of the earlier year's figures or traffic.";
+
     private readonly IDataService _data;
     private readonly ILogger<PromptService> _logger;
 
@@ -94,8 +107,9 @@ public sealed class PromptService : IPromptService
         }
         else if (supportsCondition && condition == "squatted")
         {
-            peopleCount  = rng.Next(2, 5);
-            vehicleCount = rng.Next(0, 2);
+            // The two drinkers, plus one passer-by who is only walking through.
+            peopleCount  = 3;
+            vehicleCount = rng.Next(0, 2);   // nothing, or one long-dead wreck
         }
         else if (supportsCondition && condition == "declining")
         {
@@ -106,7 +120,15 @@ public sealed class PromptService : IPromptService
         // Packed mode only needs a handful of representative models named up
         // close — pulling a full vehicleCount would exhaust the era's pool for
         // no visual benefit, since the rest of the lot is described, not listed.
-        var vehicles = PickVehicles(eraProfile, context, isPacked ? 5 : vehicleCount, _logger);
+        // A squatted era has no working traffic: anything on the lot is a wreck
+        // dumped years ago, described rather than drawn from the era's model pool
+        // (those are current, running cars — exactly what must not appear here).
+        var isSquatted    = supportsCondition && condition == "squatted";
+        var derelictCount = isSquatted ? vehicleCount : 0;
+
+        var vehicles = isSquatted
+            ? new List<(string Model, string? Color)>()
+            : PickVehicles(eraProfile, context, isPacked ? 5 : vehicleCount, _logger);
         // An abandoned era has no vehicles and no PLACEMENT line — don't consume a
         // placement pattern from the run's pool for it. A packed lot has no gaps
         // to arrange either, so it skips placement the same way.
@@ -122,12 +144,13 @@ public sealed class PromptService : IPromptService
             // below and drop the ShortPreserveBlock line. BuildPreserveBlock and
             // its includeTrees path stay live — BuildBaseAsync still needs them.
             // .Replace("{PRESERVE_BLOCK}",    BuildPreserveBlock(sceneDna, "PRESERVE (must match source exactly)", "Keep this location instantly recognizable.", includeTrees: false))
+            .Replace("{BASE_NOTE}",         context.ChainedFromPreviousEra ? ChainedBaseNote : FreshBaseNote)
             .Replace("{PRESERVE_BLOCK}",    ShortPreserveBlock)
             .Replace("{SCENE_BLOCK}",       sceneBlock)
-            .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, hasSidewalks, rng, context, isPacked))
-            .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation, onStreetParking, isPacked))
+            .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, hasSidewalks, rng, context, isPacked, isSquatted, IsDecliningRetail(condition, sceneType)))
+            .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation, onStreetParking, isPacked, derelictCount))
             .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year, sceneType, condition, rng))
-            .Replace("{STYLE_BLOCK}",       BuildStyleBlock(eraProfile.Photography));
+            .Replace("{STYLE_BLOCK}",       BuildStyleBlock(eraProfile.Photography, condition));
 
         // Scene content refers to recurring businesses (diner, drug store, etc.) by
         // token so the same name persists across every era of a run; resolve them
@@ -371,7 +394,9 @@ public sealed class PromptService : IPromptService
         "new"       => "recently built appearance, pristine surfaces, new signage",
         "declining" => "faded paint, minor wear, aging signage, sparse activity",
         "abandoned" => "closed business, boarded windows, weeds through pavement cracks, weathered surfaces",
-        "squatted"  => "closed and derelict, makeshift shelters and tarps by the boarded entrance, shopping carts and scattered belongings, weeds through the pavement",
+        // No shelters, carts or belongings: nobody lives here. The place is dead
+        // and someone has just walked in to drink out of sight.
+        "squatted"  => "closed and derelict, boarded entrance, weeds through the pavement, litter blown against the kerb",
         "restored"  => "renovated appearance, modern updates on original structure",
         _           => "well-maintained, freshly painted, active business, clean lot"
     };
@@ -511,6 +536,11 @@ public sealed class PromptService : IPromptService
 
     // Two or three concrete details per era, sampled so consecutive eras of the
     // same run don't repeat the same wording.
+    // A retail row that is failing but not yet dead — the only state where a
+    // surviving tenant makes sense. Squatted and abandoned stay fully closed.
+    private static bool IsDecliningRetail(string condition, string sceneType) =>
+        condition == "declining" && sceneType is "downtown_street" or "strip_mall";
+
     private static string BuildDecayBlock(string condition, string sceneType, Random rng)
     {
         var pool = DecayPoolFor(sceneType, condition);
@@ -569,9 +599,27 @@ public sealed class PromptService : IPromptService
             return sb.ToString();
         }
 
+        // A half-dead retail row is not uniformly dark. Two tenants outlast
+        // everything else in a failing American strip — the liquor store and the
+        // tax/check-cashing office — and their lit windows are what makes the
+        // dark units either side read as loss rather than as night.
+        if (IsDecliningRetail(condition, sceneType))
+        {
+            sb.AppendLine("- a liquor store still open, its lit window the brightest thing in the row");
+            sb.AppendLine("- a tax preparation and check-cashing office still open a few doors along, plain lettering, bars on the window");
+            sb.AppendLine("- most of the other units dark behind the glass, several papered over from the inside");
+        }
+
         var pool = new List<string>();
         if (content is not null)
             pool.AddRange(content.Storefronts);
+        // The two survivors are stated explicitly above; drop any storefront the
+        // era pool offers for the same businesses so they are not listed twice.
+        if (IsDecliningRetail(condition, sceneType))
+            pool.RemoveAll(s => s.Contains("liquor", StringComparison.OrdinalIgnoreCase)
+                             || s.Contains("tax ", StringComparison.OrdinalIgnoreCase)
+                             || s.Contains("check cashing", StringComparison.OrdinalIgnoreCase)
+                             || s.Contains("check-cashing", StringComparison.OrdinalIgnoreCase));
         else
         {
             pool.AddRange(era.Architecture.Commercial.Characteristics);
@@ -611,8 +659,22 @@ public sealed class PromptService : IPromptService
             picks.Add(item);
         }
 
+        // Storefront picks need the same "new" reconciliation the extras get: the
+        // pool carries ghost-sign entries ("ghost signs from closed retailers")
+        // that contradict a freshly rebuilt scene outright. Only the extras path
+        // was covered before, so whether the contradiction shipped came down to
+        // which pool the ghost-sign line happened to be sampled from.
+        var ghostReconciled = false;
         foreach (var item in picks)
-            sb.AppendLine($"- {item}");
+        {
+            var line = ReconcileWithNewCondition(item, condition);
+            if (!ReferenceEquals(line, item))
+            {
+                if (ghostReconciled) continue;   // one reconciling line is enough
+                ghostReconciled = true;
+            }
+            sb.AppendLine($"- {line}");
+        }
 
         // Chain tenant plan: a per-run decision resolved fresh for this era's
         // year/condition. Not decay content — a ghost sign is a period detail
@@ -728,13 +790,38 @@ public sealed class PromptService : IPromptService
         return sb.ToString();
     }
 
-    private static string BuildPeopleBlock(EraProfile era, SceneContent? content, int peopleCount, bool isGasStation, bool hasSidewalks, Random rng, GenerationContext context, bool isPacked)
+    private static string BuildPeopleBlock(EraProfile era, SceneContent? content, int peopleCount, bool isGasStation, bool hasSidewalks, Random rng, GenerationContext context, bool isPacked, bool isSquatted, bool isDecliningRetail)
     {
         var sb = new StringBuilder();
         sb.AppendLine("PEOPLE");
         if (!isPacked && peopleCount == 0)
         {
             sb.Append("NO people anywhere — the place is completely deserted.");
+            return sb.ToString();
+        }
+
+        // The era's people_activities are all customers and staff of a working
+        // business — a clerk restocking a cooler, someone refuelling. Emitting
+        // them at a dead station contradicts the condition outright, and the
+        // image model resolves that by reopening the place. Nothing from the era
+        // pool is used here, and no clothing is specified.
+        if (isSquatted)
+        {
+            sb.AppendLine($"EXACTLY {peopleCount} people TOTAL and nobody else:");
+            sb.AppendLine("- two of them sitting close together on the kerb out of the wind, sharing a bottle between them, turned slightly away, keeping to themselves");
+
+            // An ordinary passer-by still walks past a dead lot — they simply have
+            // no business with it. Drawn from the era's people_mix so the figure
+            // stays period-correct, but explicitly just passing through.
+            if (era.PeopleMix is { Count: > 0 })
+            {
+                var mixPick = SampleUnused(era.PeopleMix, 1, rng, context);
+                if (mixPick.Count > 0)
+                    sb.AppendLine($"- {mixPick[0]} — passing by along the far edge, not stopping, nothing to do with this place");
+            }
+
+            sb.AppendLine("No staff, no customers, nobody working — nothing here is open.");
+            sb.Append("The two have only come in to drink out of sight: no tents, no tarps, no bedding, no shopping carts, no belongings laid out — nobody lives here.");
             return sb.ToString();
         }
 
@@ -759,6 +846,23 @@ public sealed class PromptService : IPromptService
                 if (distant > 0)  zones.Add($"{distant} distant, at the far edge of the lot");
             }
             sb.AppendLine($"EXACTLY {peopleCount} people TOTAL: {string.Join(", ", zones)}. Grouped in pairs, threes, and singles.");
+        }
+
+        // The liquor store is the one thing still drawing anybody to a dying row,
+        // so that is where the figures collect. Count and behaviour are both
+        // sampled — sometimes one person waiting, sometimes a few already drinking.
+        if (isDecliningRetail)
+        {
+            var n    = rng.Next(1, 4);
+            var who  = n == 1 ? "one person" : $"{n} people";
+            var doing = rng.Next(4) switch
+            {
+                0 => "waiting outside the liquor store for someone, not going in",
+                1 => "just out of the liquor store, a bottle in a black plastic bag",
+                2 => "already drinking, sitting along the wall a few doors down from the liquor store",
+                _ => "standing around outside the liquor store with nothing to do"
+            };
+            sb.AppendLine($"- of these, {who} {doing} — keeping to themselves, not looking at the camera");
         }
 
         if (content is not null)
@@ -858,10 +962,23 @@ public sealed class PromptService : IPromptService
         return result;
     }
 
-    private static string BuildVehiclesBlock(IReadOnlyList<(string Model, string? Color)> vehicles, int year, string placement, bool isGasStation, bool onStreetParking, bool isPacked)
+    private static string BuildVehiclesBlock(IReadOnlyList<(string Model, string? Color)> vehicles, int year, string placement, bool isGasStation, bool onStreetParking, bool isPacked, int derelictCount)
     {
         var sb = new StringBuilder();
         sb.AppendLine("VEHICLES");
+
+        // Anything still on a squatted lot was dumped, not parked: it must read as
+        // a wreck a decade older than the era, never a current running car.
+        if (derelictCount > 0)
+        {
+            var noun = derelictCount == 1 ? "vehicle" : "vehicles";
+            sb.AppendLine($"EXACTLY {derelictCount} old, worn {noun} and nothing else — left standing here, not driven for a long time:");
+            sb.AppendLine($"- an ordinary sedan or pickup of roughly {year - 15}-{year - 12}, plain and unremarkable, already well used");
+            sb.AppendLine("- dulled paint, dents and rust spots, dirty, one tyre flat, sitting askew across the faded stall lines");
+            sb.Append($"NO clean, current or well-kept vehicles anywhere, and nothing newer than about {year - 12}.");
+            return sb.ToString();
+        }
+
         if (!isPacked && vehicles.Count == 0)
         {
             sb.Append("NO vehicles anywhere — empty lot, no parked or moving cars.");
@@ -966,23 +1083,45 @@ public sealed class PromptService : IPromptService
         return $"a young tree, only about {pct}% of its canopy in the base image, thin trunk";
     }
 
-    private static string BuildStyleBlock(Photography photo)
+    private static string BuildStyleBlock(Photography photo, string condition)
     {
         var sb = new StringBuilder();
         sb.AppendLine("PHOTOGRAPHIC STYLE");
-        if (photo.ColorMode == "black_and_white")
+        var monochrome = photo.ColorMode == "black_and_white";
+        if (monochrome)
         {
             sb.AppendLine("STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.");
             sb.AppendLine($"Grain: {photo.Grain}. Style: {StripSaturationWording(photo.Style)}.");
-            sb.Append("Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.");
+            sb.AppendLine("Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.");
         }
         else
         {
             sb.AppendLine($"COLOR photograph — {photo.FilmStock} look.");
             sb.AppendLine($"Color: {Join(photo.ColorCharacteristics.Take(1).ToList())}. Grain: {photo.Grain}.");
-            sb.Append("Photorealistic — NOT black-and-white, no HDR.");
+            sb.AppendLine("Photorealistic — NOT black-and-white, no HDR.");
         }
+        sb.Append(LightFor(condition, monochrome));
         return sb.ToString();
+    }
+
+    // Weather carries the arc. A living era shot under grey cloud reads as
+    // depressing rather than remembered, and the loss at the end then has
+    // nothing to land against — so the good years get open, pleasant daylight
+    // and only the dead ones go flat and grey. Never storm or fog: the scene
+    // must stay a clear daytime record, not a mood piece.
+    private static string LightFor(string condition, bool monochrome)
+    {
+        if (condition is "abandoned" or "squatted")
+            return "Light: flat, even light under a grey overcast — subdued and cheerless, but plainly daytime; no fog, no rain, no darkness.";
+
+        if (condition == "declining")
+            return monochrome
+                ? "Light: plain daylight, lightly overcast, soft shadows — quiet, not bleak."
+                : "Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.";
+
+        return monochrome
+            ? "Light: bright open daylight, clear sky, soft natural shadows — a fine, ordinary day."
+            : "Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.";
     }
 
     // A monochrome prompt must never mention saturation — image models take it as a

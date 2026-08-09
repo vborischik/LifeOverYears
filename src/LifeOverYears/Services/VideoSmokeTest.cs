@@ -147,17 +147,40 @@ public static class VideoSmokeTest
         findings.Add(("V4", "codec_name == h264, pix_fmt == yuv420p",
             v4, $"actual: codec_name={probe.CodecName}, pix_fmt={probe.PixFmt}"));
 
-        // V6: confirm the xfade radial-wipe path was actually taken, not a
-        // hard-cut concat — detecting a wipe vs. a cut from pixels alone is
-        // out of scope for a smoke test, so this asserts on the ffmpeg
-        // command FfmpegProvider logged at Debug level.
+        // V6: confirm the xfade path was actually taken, not a hard-cut concat —
+        // detecting a wipe vs. a cut from pixels alone is out of scope for a
+        // smoke test, so this asserts on the ffmpeg command FfmpegProvider
+        // logged at Debug level. Transitions are now drawn per cut, so this also
+        // checks every one is from the pool and that a 6-frame video uses all
+        // five distinct kinds rather than repeating one.
         var commandLine = logCapture.Messages.FirstOrDefault(m =>
             m.Contains("ffmpeg command:", StringComparison.OrdinalIgnoreCase));
-        var v6 = commandLine is not null
-            && commandLine.Contains("xfade", StringComparison.OrdinalIgnoreCase)
-            && commandLine.Contains("radial", StringComparison.OrdinalIgnoreCase);
-        findings.Add(("V6", "ffmpeg command used filter_complex xfade with a radial transition (not concat)",
-            v6, commandLine is null ? "no 'ffmpeg command:' log line captured" : commandLine));
+        var v6Errors = new List<string>();
+        if (commandLine is null)
+            v6Errors.Add("no 'ffmpeg command:' log line captured");
+        else
+        {
+            if (!commandLine.Contains("xfade", StringComparison.OrdinalIgnoreCase))
+                v6Errors.Add("command does not use xfade (hard-cut concat?)");
+
+            var used = System.Text.RegularExpressions.Regex
+                .Matches(commandLine, @"xfade=transition=([a-z]+)")
+                .Select(m => m.Groups[1].Value)
+                .ToList();
+
+            if (used.Count != Years.Length - 1)
+                v6Errors.Add($"{used.Count} transitions for {Years.Length} frames (expected {Years.Length - 1})");
+            foreach (var t in used.Where(t => !Providers.FfmpegProvider.TransitionTypes.Contains(t)))
+                v6Errors.Add($"transition '{t}' is not in the pool");
+            if (used.Count == Providers.FfmpegProvider.TransitionTypes.Count
+                && used.Distinct().Count() != used.Count)
+                v6Errors.Add($"transitions repeat within one video: {string.Join(", ", used)}");
+        }
+
+        findings.Add(("V6",
+            $"ffmpeg used filter_complex xfade (not concat) with one pooled transition per cut, all distinct across {Years.Length} frames",
+            v6Errors.Count == 0,
+            v6Errors.Count == 0 ? commandLine! : string.Join("; ", v6Errors)));
 
         // O3 — a PARTIAL year list must only wait for, stamp, and assemble
         // exactly those years, leaving the rest of the images/ folder alone.
@@ -232,6 +255,44 @@ public static class VideoSmokeTest
             o4Errors.Count == 0
                 ? $"n={Years.Length} warned={fullWarned} (plan adjusted={expectFullWarn}); n={PartialYears.Length} warned={partialWarned}"
                 : string.Join("; ", o4Errors)));
+
+        // O5 — a hand-corrected "{year}-clean.png" must satisfy the year in place
+        // of "{year}.png", and win when both are present. Assembly reads through
+        // FindEraImage, so this is what decides which pixels reach the video.
+        var o5Errors = new List<string>();
+        var o5Dir = Path.Combine(root, "clean-variant");
+        Directory.CreateDirectory(o5Dir);
+        try
+        {
+            const int probeYear = 1975;
+            var cleanOnly = Path.Combine(o5Dir, $"{probeYear}-clean.png");
+            await GenerateTestImageAsync(probeYear, cleanOnly, logger);
+
+            var found = VideoAssemblyRunner.FindEraImage(o5Dir, probeYear);
+            if (found != cleanOnly)
+                errsAdd($"'-clean' alone not accepted: resolved to {found ?? "(null)"}");
+
+            // Both present: the cleaned file is the deliberate replacement.
+            var plain = Path.Combine(o5Dir, $"{probeYear}.png");
+            await GenerateTestImageAsync(probeYear, plain, logger);
+            found = VideoAssemblyRunner.FindEraImage(o5Dir, probeYear);
+            if (found != cleanOnly)
+                errsAdd($"'-clean' did not win over the plain file: resolved to {found ?? "(null)"}");
+
+            if (VideoAssemblyRunner.FindEraImage(o5Dir, 1801) is not null)
+                errsAdd("a year with no file at all resolved to something");
+
+            void errsAdd(string m) => o5Errors.Add(m);
+        }
+        finally
+        {
+            Directory.Delete(o5Dir, recursive: true);
+        }
+
+        findings.Add(("O5",
+            "A hand-corrected {year}-clean.png satisfies the year and takes precedence over {year}.png",
+            o5Errors.Count == 0,
+            o5Errors.Count == 0 ? "clean-variant resolution correct" : string.Join("; ", o5Errors)));
 
         await WriteReport(findings, logger);
         PrintSummary(findings);

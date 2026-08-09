@@ -27,16 +27,15 @@ distort the source geometry.
 TRANSFORM TO 1995
 Clinton era prosperity. A 1995 strip mall past its prime but still busy — big backlit box signs, a video store anchor, the first vacant units appearing.
 
-CONDITION: busy — customers present, high activity, all pumps in use
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
 - Chinese takeout with a 'LUNCH SPECIAL $3.95' menu taped to the glass
 - dollar store with a yellow 'EVERYTHING 99¢' banner
-- one vacant unit with soaped windows and a 'FOR LEASE' sign
-- a RadioShack store, red sign board with white lettering
-- window signs: 'GOING OUT OF BUSINESS — 50% OFF', 'FREE PAGER ACTIVATION'
+- large illuminated box signs
+- window signs: 'FREE PAGER ACTIVATION', 'EVERYTHING 99¢'
+- a wall-mounted payphone bank near the anchor store
 - a cart corral with a few stray carts
-- a grand-opening banner strung across the dollar store
 Typography: clean geometric sans-serif, early digital influence.
 
 
@@ -44,29 +43,27 @@ SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 'LUNCH SPECIAL $3.95'
 'EVERYTHING 99¢'
-'FOR LEASE'
-'GOING OUT OF BUSINESS — 50% OFF'
 'FREE PAGER ACTIVATION'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 8 people TOTAL: 3 near sidewalk (largest, foreground), 3 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
-- a teenager renting a Sega cartridge at the game store counter
-- a clerk on a break by the service door
-- a mom loading groceries into a minivan
-Clothing: men in windbreakers, flannel shirts; women in slip dresses, high-waisted mom jeans. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 10 people TOTAL: 4 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
+- a girl practicing rollerblade stops in the parking lot
+- teenagers comparing game cartridges through the store window
+- a grandmother pushing a wire cart of groceries
+Clothing: men in grunge style, backwards caps; women in slip dresses, floral dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 6 period vehicles, all different:
-- 1995-1999 Chevrolet Cavalier — compact, rounded — teal
-- 1991-1995 Dodge Caravan — rounded second-gen minivan — navy blue
-- 1986-1997 Ford Aerostar — boxy rear-drive minivan — black
-- 1988-1998 Chevrolet C/K 1500 — softly squared pickup — white
 - 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size — burgundy
-- 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding — silver
+- 1993-1997 Toyota Corolla — rounded compact sedan — silver
+- 1992-1997 Ford Taurus — rounded jellybean shape, oval theme — hunter green
+- 1990-1994 Chevrolet Lumina — rounded mid-size sedan — teal
+- 1992-1996 Ford F-150 — rounded aero body — black
+- 1995-1999 Chevrolet Cavalier — compact, rounded — white
 Parked with gaps. Where a model is listed with a year range, render the 1995 model year specifically — only styling, trim and features available in 1995, nothing introduced later. No vehicle newer than 1995.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: three nose-in near the building; the rest in stalls at the far edge of the lot. No vehicle in the same spot as any other era.
+PLACEMENT: all parked in the lot, nose-in to marked stalls, with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn lane arrows
@@ -82,6 +79,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — Kodak Gold 200 or Fujifilm Superia 200 look.
 Color: neutral to slightly warm tones. Grain: fine grain, cleaner than 1985.
 Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

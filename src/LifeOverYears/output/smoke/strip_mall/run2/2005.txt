@@ -27,17 +27,18 @@ distort the source geometry.
 TRANSFORM TO 2005
 Post-9/11 era. An aging 2005 strip mall — national franchises mixed with struggling locals, the video store on its last legs.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
+- a liquor store still open, its lit window the brightest thing in the row
+- a tax preparation and check-cashing office still open a few doors along, plain lettering, bars on the window
+- most of the other units dark behind the glass, several papered over from the inside
 - dollar store anchor with yellow 'EVERYTHING $1' signage
 - video rental store with 'STORE CLOSING — EVERYTHING MUST GO' banners
-- check-cashing store with a neon 'FAST CASH' sign
-- a Blockbuster store in the row, blue storefront sign with the yellow torn-ticket logo
-- a RadioShack store, red sign board with white lettering
-- window signs: 'NAIL FILL $18', 'RINGTONES $1.99'
-- a cart corral in the lot
+- hair salon with a 'WALK-INS WELCOME' sign
+- window signs: 'RINGTONES $1.99', 'NO CREDIT? NO PROBLEM!'
 - ribbon magnets on a lamppost
+- a cart corral in the lot
 Typography: clean sans-serif, polished brand identities.
 
 
@@ -45,33 +46,34 @@ SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 'EVERYTHING $1'
 'STORE CLOSING — EVERYTHING MUST GO'
-'FAST CASH'
-'NAIL FILL $18'
+'WALK-INS WELCOME'
 'RINGTONES $1.99'
+'NO CREDIT? NO PROBLEM!'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 9 people TOTAL: 4 near sidewalk (largest, foreground), 3 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
-- a teenager filming a friend on a flip-phone camera
-- a delivery driver wheeling a hand truck to a storefront
-- a woman power-walking with a small dog on a retractable leash
-Clothing: men in graphic tees, trucker hats; women in layered tank tops, velour tracksuits. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- of these, 3 people standing around outside the liquor store with nothing to do — keeping to themselves, not looking at the camera
+- a customer leaving the sandwich shop with a to-go bag
+- an older man reading a paper on a bench outside the tax office
+- a teenager adjusting an MP3 player clipped to his belt
+Clothing: men in frosted tips hair, cargo shorts; women in velour tracksuits, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 5 period vehicles, all different:
-- 2003-2008 Honda Pilot — boxy three-row SUV — dark blue
-- 2001-2007 Ford Escape — compact boxy SUV — gray
-- 2002-2007 Jeep Liberty — round-headlight compact SUV — black
-- 2003-2007 Nissan Altima — sporty mid-size — dark red
-- 1998-2004 Nissan Frontier — compact pickup — gold
+EXACTLY 1 period vehicles, all different:
+- 2000-2007 Ford Taurus — rounded, aging fleet-look sedan — silver
 Parked with gaps. Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: two in stalls near the entrance; the rest spread across the lot with gaps. No vehicle in the same spot as any other era.
+PLACEMENT: all angled into stalls along the far edge of the lot, the near stalls left empty. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: yellow center line, white edge lines, turn arrows
+- road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines standard, cable and fiber lines on poles appearing
 
+DECAY
+- weeds along the base of the storefront walkway
+- a FOR RENT sign taped inside a dark storefront window
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - crepe myrtle tree at parking lot island near entrance: clearly smaller than in the base image — about 40% of its canopy there, thinner trunk
 - maple tree at landscape strip along the road: clearly smaller than in the base image — about 60% of its canopy there, thinner trunk
@@ -82,6 +84,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — early digital camera or Kodak/Fuji consumer film look.
 Color: neutral tones. Grain: low grain, early digital noise in shadows.
 Photorealistic — NOT black-and-white, no HDR.
+Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
 
 PRIVACY
 Blur all faces and license plates.

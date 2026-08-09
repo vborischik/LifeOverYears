@@ -27,50 +27,51 @@ distort the source geometry.
 TRANSFORM TO 2005
 Post-9/11 era. An aging 2005 strip mall — national franchises mixed with struggling locals, the video store on its last legs.
 
-CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
+CONDITION: busy — customers present, high activity, all pumps in use
 
 PERIOD DETAILS
 - dollar store anchor with yellow 'EVERYTHING $1' signage
-- video rental store with 'STORE CLOSING — EVERYTHING MUST GO' banners
+- hair salon with a 'WALK-INS WELCOME' sign
 - tax preparation office with a green square logo
-- a RadioShack store, red sign board with white lettering
-- window signs: 'NO CREDIT? NO PROBLEM!', 'RINGTONES $1.99'
+- window signs: 'NO CREDIT? NO PROBLEM!', 'DVD BLOWOUT — 4 FOR $10'
+- a 'STORE CLOSING' A-frame sign on the walkway
 - a cart corral in the lot
-- a free real-estate flyer box by the walkway
 Typography: clean sans-serif, polished brand identities.
 
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 'EVERYTHING $1'
-'STORE CLOSING — EVERYTHING MUST GO'
+'WALK-INS WELCOME'
 'NO CREDIT? NO PROBLEM!'
-'RINGTONES $1.99'
+'DVD BLOWOUT — 4 FOR $10'
+'STORE CLOSING'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 2 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block. Grouped in pairs, threes, and singles.
-- a mom comparing coupons outside the dollar store
-- a woman texting on a flip phone under the canopy
-- an office worker clipped to a Bluetooth headset mid-conversation
-Clothing: men in trucker hats, frosted tips hair; women in trucker hats, velour tracksuits. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 10 people TOTAL: 4 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
+- a woman leaving the check-cashing store counting bills
+- teenagers gathered outside the game store
+- a woman walking a small dog in a sweater
+Clothing: men in frosted tips hair, cargo shorts; women in velour tracksuits, chunky highlights. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 2 period vehicles, all different:
-- 2002-2007 Jeep Liberty — round-headlight compact SUV — white
-- 2001-2007 Toyota Highlander — early crossover — dark blue
+EXACTLY 7 period vehicles, all different:
+- 2002-2009 Chevrolet TrailBlazer — mid-size SUV boxy — white
+- 2001-2007 Toyota Highlander — early crossover — gray
+- 2003-2007 Nissan Altima — sporty mid-size — black
+- 2005-2010 Jeep Grand Cherokee — rounded modern SUV — silver
+- 1999-2006 Chevrolet Silverado — squared modern look — dark red
+- 2005-2010 Chevrolet Cobalt — compact economy sedan — dark blue
+- 2003-2009 Hummer H2 — massive military-styled SUV — gold
 Parked with gaps. Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: one nose-in close to the entrance; the rest spread across stalls toward the lot's far edge. No vehicle in the same spot as any other era.
+PLACEMENT: all parked in the lot, nose-in to marked stalls, with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: worn and faded, well past their last repainting
+- road markings: yellow center line, white edge lines, turn arrows
 - utilities: overhead power lines standard, cable and fiber lines on poles appearing
 
-DECAY
-- faded mansard shingles patched in mismatched colors
-- two blank white sign panels where tenants moved out
-Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - crepe myrtle tree at parking lot island near entrance: clearly smaller than in the base image — about 40% of its canopy there, thinner trunk
 - maple tree at landscape strip along the road: clearly smaller than in the base image — about 60% of its canopy there, thinner trunk
@@ -81,6 +82,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — early digital camera or Kodak/Fuji consumer film look.
 Color: neutral tones. Grain: low grain, early digital noise in shadows.
 Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

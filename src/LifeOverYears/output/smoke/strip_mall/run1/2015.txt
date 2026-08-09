@@ -27,29 +27,50 @@ distort the source geometry.
 TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 strip mall in the retail apocalypse — vacant units between a vape shop, a dollar store, and a low-cost gym.
 
-CONDITION: abandoned — closed business, boarded windows, weeds through pavement cracks, weathered surfaces
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- every storefront closed and dark — no lit signs, no menu boards, no open businesses
-- faded remains of old signage still on the facade, lettering weathered and partly missing
-- plywood over the ground-floor windows, doors chained shut
-- the unit where the store was, a rectangular patch of less-faded wall above the door where the sign board was removed, anchor holes still visible, no lettering at all
-No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.
+- a liquor store still open, its lit window the brightest thing in the row
+- a tax preparation and check-cashing office still open a few doors along, plain lettering, bars on the window
+- most of the other units dark behind the glass, several papered over from the inside
+- former video store unit now a vape shop with an LED 'VAPE' sign
+- thrift store with donation bins outside
+- Mexican taqueria with a hand-painted mural sign
+- window signs: 'SCREEN REPAIR $49', 'TACO TUESDAY — 3 FOR $5'
+- string lights over an outdoor seating nook
+- a food truck parked at the lot edge
+Typography: minimalist flat sans-serif, simplified modern logos.
+
+
+SIGNAGE RESTRICTION
+The only readable text anywhere in the image is:
+'VAPE'
+'SCREEN REPAIR $49'
+'TACO TUESDAY — 3 FOR $5'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-NO people anywhere — the place is completely deserted.
+EXACTLY 2 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block. Grouped in pairs, threes, and singles.
+- of these, 2 people waiting outside the liquor store for someone, not going in — keeping to themselves, not looking at the camera
+- a woman leaving the thrift store with a donation bag
+- a teenager filming a trick outside the gym entrance
+- a courier carrying an insulated food delivery bag
+Clothing: men in skinny jeans, henley shirts; women in yoga pants and leggings, ankle boots. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-NO vehicles anywhere — empty lot, no parked or moving cars.
+EXACTLY 1 period vehicles, all different:
+- 2011-2016 Chrysler Town & Country — chrome-trimmed minivan — pearl white
+Parked with gaps. Where a model is listed with a year range, render the 2015 model year specifically — only styling, trim and features available in 2015, nothing introduced later. No vehicle newer than 2015.
+Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
+PLACEMENT: two nose-in near the building; the rest angled into stalls at the far edge of the lot. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines common on wooden poles, fiber optic lines on poles
 
 DECAY
-- every sign panel blank or removed, empty frames left on the pylon
-- shattered storefront glass swept into the walkway corners
-- storefronts boarded with plywood behind bent security grilles
+- faded mansard shingles patched in mismatched colors
+- a FOR RENT sign taped inside a dark storefront window
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - crepe myrtle tree at parking lot island near entrance: clearly smaller than in the base image — about 60% of its canopy there, thinner trunk
@@ -61,6 +82,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — digital — DSLR or smartphone camera look.
 Color: high saturation. Grain: clean, minimal noise.
 Photorealistic — NOT black-and-white, no HDR.
+Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
 
 PRIVACY
 Blur all faces and license plates.

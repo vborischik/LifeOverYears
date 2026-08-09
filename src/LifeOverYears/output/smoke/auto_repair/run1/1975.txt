@@ -29,39 +29,39 @@ Post-Vietnam, oil crisis era. An independent auto repair garage in 1975 — hand
 
 PERIOD DETAILS
 - a hand-painted price board in the office window reading 'TUNE-UPS $19.95'
-- two service bay roll-up doors, one raised with a car up on the lift inside
-- painted sign band across the parapet reading 'TUNE-UPS — BRAKES — MUFFLERS'
-- window signs: 'FREE ESTIMATES', 'OIL CHANGE $4.95'
-- a chalkboard tally of the day's jobs propped in the office window
-- a wall-mounted air hose reel beside the bay door
+- a stack of tires piled against the side wall near the bay
+- simple rectangular forms
+- window signs: 'OIL CHANGE $4.95', 'FREE ESTIMATES'
+- a bell wire strung across the apron to announce arriving cars
+- a wrecker truck parked at the side of the lot
 Typography: bold sans-serif, slab serif, occasional script.
 
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 'TUNE-UPS $19.95'
-'TUNE-UPS — BRAKES — MUFFLERS'
-'FREE ESTIMATES'
 'OIL CHANGE $4.95'
+'FREE ESTIMATES'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 8 people TOTAL: 3 near sidewalk (largest, foreground), 3 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
-- a man in a work uniform checking a clipboard invoice with the owner
-- a young apprentice sweeping metal shavings out of a bay
+- a driver idling at the curb waiting for a bay to open up
+- a customer in a suit leaning in the office doorway waiting on his car
 - a grandmother in cat-eye glasses carrying a church bulletin
-Clothing: men in polyester suits, bell bottoms; women in earth tones, wide leg pants. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+Clothing: men in wide lapels, polyester suits; women in midi skirts, earth tones. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 5 period vehicles, all different:
-- 1973-1980 Chevrolet C10 — square body, chrome bumper
+EXACTLY 6 period vehicles, all different:
+- 1973-1979 Ford F-100 — square body, chrome grille
+- 1971-1976 Chevrolet G10 Sportvan — boxy windowed van, chrome bumper
+- 1975-1979 AMC Pacer — wide bubble-shaped compact, huge glass area
+- 1970-1976 Pontiac Firebird Trans Am — hood scoop, spoiler, bold graphics
+- 1973-1978 Datsun 610 — compact sedan/wagon, boxy
 - 1971-1976 Jeep Wagoneer — boxy full-size SUV, woodgrain trim optional
-- 1970-1978 AMC Gremlin — short stubby hatchback rear
-- 1974-1978 Cadillac DeVille — full-size luxury, formal roofline, chrome heavy
-- 1975-1978 Datsun 280Z — sleek fastback sports coupe
 Parked with gaps. Where a model is listed with a year range, render the 1975 model year specifically — only styling, trim and features available in 1975, nothing introduced later. No vehicle newer than 1975.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: two in stalls near the entrance; the rest spread across the lot with gaps. No vehicle in the same spot as any other era.
+PLACEMENT: three nose-in near the building; the rest in stalls at the far edge of the lot. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, no rumble strips
@@ -76,6 +76,7 @@ PHOTOGRAPHIC STYLE
 STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.
 Grain: visible fine grain. Style: documentary, natural light.
 Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.
+Light: bright open daylight, clear sky, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

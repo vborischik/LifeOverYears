@@ -10,7 +10,8 @@ parking spaces and sidewalks are bare. Buildings have blank storefronts — no
 business names, no logos, no brands, no advertisements, no signage text of any
 kind.
 
-Neutral overcast daylight, no strong shadows, no seasonal cues.
+Bright, open daylight under a high thin cloud layer — soft even light, gentle
+shadows, no heavy grey sky, no gloom, no fog, no rain, no seasonal cues.
 
 OUTPUT FORMAT
 A TRUE 9:16 vertical portrait with the full scene visible: sky above, street or

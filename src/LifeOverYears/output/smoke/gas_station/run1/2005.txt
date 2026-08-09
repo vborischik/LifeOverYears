@@ -30,38 +30,38 @@ Post-9/11 era. A 2005 gas station — big multi-island canopy, card readers at e
 CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
-- credit card readers at pump standard
-- wide multi-island canopy with branded fascia lighting
+- large convenience store with energy-drink and phone-card ads in the glass
+- covered walkways at lifestyle centers
 - price sign showing gas around $2.30
-- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
-- window signs: 'PHONE CARDS SOLD HERE', 'CAR WASH $6'
-- a free real-estate flyer box by the door
-- ribbon magnets on the door of the service office
+- main sign: "Chevron" branded gas station — Chevron pole sign with price display and Chevron colors on the canopy fascia
+- window signs: 'PHONE CARDS SOLD HERE', 'ENERGY DRINKS 2 FOR $4'
+- a windshield-washer fluid display rack by the pumps
+- trash cans with paper-towel dispensers between the pumps
 Typography: clean sans-serif, polished brand identities.
 
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Citgo'
+'Chevron'
 'PHONE CARDS SOLD HERE'
-'CAR WASH $6'
+'ENERGY DRINKS 2 FOR $4'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 5 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a woman waiting for her SUV to finish fueling, checking a shopping list
-- a kid pressing his face to the ice-cream freezer glass
-- a couple taking photos with a digital camera
-Clothing: men in trucker hats, graphic tees; women in velour tracksuits, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- a trucker paying cash through the store window at night
+- a teenager filling a bike tire at the coin-operated air machine
+- a teenager comparing camera phones with a friend
+Clothing: men in trucker hats, frosted tips hair; women in low-rise jeans, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 2002-2009 Chevrolet TrailBlazer — mid-size SUV boxy — black
-- 2001-2007 Ford Escape — compact boxy SUV — dark blue
-- 2000-2005 Ford Focus — European-styled compact — gray
+- 2003-2008 Toyota Corolla — conservative compact sedan — dark red
+- 2000-2005 Ford Focus — European-styled compact — white
+- 2004-2008 Chrysler 300 — bold boxy retro chrome grille — gold
 Parked with gaps. Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: two nose-in near the building; the rest angled into stalls at the far edge of the lot. No vehicle in the same spot as any other era.
+PLACEMENT: all parked in the lot, nose-in to marked stalls, with an empty stall between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn arrows
@@ -77,6 +77,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — early digital camera or Kodak/Fuji consumer film look.
 Color: neutral tones. Grain: low grain, early digital noise in shadows.
 Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

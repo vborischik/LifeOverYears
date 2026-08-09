@@ -28,28 +28,28 @@ TRANSFORM TO 1985
 Reagan era prosperity. An ordinary 1985 American commercial street — bold primary-color signage, boxy cars, the first franchise logos among local shops.
 
 PERIOD DETAILS
-- TOWN DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
-- pharmacy with backlit plastic channel letters
-- barber shop with its spinning barber pole
-- window signs: 'PERM SPECIAL $25', 'VHS OVERNIGHT RENTAL $2.99'
-- the painted ghost-sign wall ad, fading
-- a wall-mounted payphone
+- MARY'S DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
+- awnings with bold stripe patterns
+- large illuminated signage
+- window signs: 'VHS OVERNIGHT RENTAL $2.99', '2 SLICES $1.50'
+- arcade game posters in a window
+- a bike rack with BMX bikes
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 'HOT COFFEE 45¢'
-'PERM SPECIAL $25'
 'VHS OVERNIGHT RENTAL $2.99'
+'2 SLICES $1.50'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 22 people TOTAL: 9 in the foreground near the building entrance (largest), 8 mid-ground out on the lot, beside parked vehicles, 5 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
-- kids on BMX bikes by the curb
-- a woman using a wall-mounted payphone
-- a college student wheeling a mountain bike with a U-lock on the frame
-Clothing: men in acid wash jeans, polo shirts with collars up; women in leg warmers, bright neon colors. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a teenager with a boombox on his shoulder
+- a couple leaving the diner
+- a mall security guard in a blazer making rounds
+Clothing: men in polo shirts with collars up, shoulder pads in blazers; women in bright neon colors, big permed hair. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
@@ -73,6 +73,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — Kodacolor VR 200 or Fujicolor 100 look.
 Color: slightly cool tones compared to 1970s. Grain: moderate grain, cleaner than 1975.
 Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

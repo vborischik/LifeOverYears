@@ -30,38 +30,40 @@ Post-Vietnam, oil crisis era. A full-service neighborhood gas station in 1975 �
 CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
-- tire display rack near the service bay
-- oil-can rack stacked with quart cans beside the pump island
+- 'FREE MAPS' and trading-stamp decals on the office window
+- open service bay with a car raised on the lift inside
 - price sign showing gas around $0.57
-- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
+- main sign: "Shell" branded gas station — Shell pole sign with price display and Shell colors on the canopy fascia
 - window signs: 'MECHANIC ON DUTY', 'MOTOR OIL 55¢ QT'
-- a bicycle leaning against a utility pole
 - a folded newspaper stack tied with twine by the office door
+- a stack of used tires beside the service bay
 Typography: bold sans-serif, slab serif, occasional script.
 
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Citgo'
+'FREE MAPS'
+'Shell'
 'MECHANIC ON DUTY'
 'MOTOR OIL 55¢ QT'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 8 people TOTAL: 3 near sidewalk (largest, foreground), 3 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
+EXACTLY 10 people TOTAL: 4 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
 - an attendant writing up a claim ticket for a state inspection sticker
-- a driver waiting behind the wheel while the attendant works
-- a young man in a leisure suit adjusting his collar
-Clothing: men in polyester suits, plaid patterns; women in peasant blouses, wide leg pants. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+- an elderly man leaning on his cane, waiting by the office door for his ride
+- a man in a work uniform on a lunch break
+Clothing: men in turtlenecks, wide lapels; women in midi skirts, earth tones. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 3 period vehicles, all different:
-- 1963-1976 Dodge Dart — compact, boxy, reliable workhorse
-- 1970-1976 AMC Hornet — compact, simple boxy lines
-- 1974-1978 Oldsmobile Cutlass Supreme — best-selling car in America, formal roofline
+EXACTLY 4 period vehicles, all different:
+- 1968-1979 Chevrolet Nova — compact, simple three-box shape
+- 1975-1980 Ford Granada — compact luxury, Mercedes-inspired formal grille
+- 1975-1979 Chevrolet Monza — small hatchback, rare but present
+- 1971-1978 Dodge Tradesman — boxy full-size van
 Parked with gaps. Where a model is listed with a year range, render the 1975 model year specifically — only styling, trim and features available in 1975, nothing introduced later. No vehicle newer than 1975.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: all parked in the lot, nose-in to marked stalls, with an empty stall between them. No vehicle in the same spot as any other era.
+PLACEMENT: one nose-in close to the entrance; the rest spread across stalls toward the lot's far edge. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, no rumble strips
@@ -77,6 +79,7 @@ PHOTOGRAPHIC STYLE
 STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.
 Grain: visible fine grain. Style: documentary, natural light.
 Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.
+Light: bright open daylight, clear sky, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

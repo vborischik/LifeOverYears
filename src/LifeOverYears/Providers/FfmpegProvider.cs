@@ -15,7 +15,34 @@ public sealed class FfmpegProvider : IFfmpegProvider
     // Frame 0 is shown fully clean for this long before its wipe begins — a
     // short, punchy intro. Frames 1..n-1 share a uniform (longer) hold.
     public const double FirstCleanSeconds  = 1.8;
-    private const string TransitionType    = "radial";
+    // xfade offers 58 transitions. These five suit a fixed camera on one
+    // location: each changes the image without moving the frame, so the place
+    // stays put while the years change. slide*/cover*/reveal* are deliberately
+    // excluded — they push the scene sideways and break the "same spot, another
+    // decade" read that the whole video depends on.
+    public static readonly IReadOnlyList<string> TransitionTypes = new[]
+    {
+        "radial", "fade", "smoothleft", "smoothright", "circleopen"
+    };
+
+    // One transition per cut, drawn without repeats until the pool is used up —
+    // a 6-frame video therefore shows all five, in a different order each run.
+    // Longer videos reshuffle and continue.
+    public static IReadOnlyList<string> TransitionSequence(int count, Random rng)
+    {
+        var seq = new List<string>(count);
+        while (seq.Count < count)
+        {
+            var pool = TransitionTypes.ToList();
+            for (var i = pool.Count - 1; i > 0; i--)
+            {
+                var j = rng.Next(i + 1);
+                (pool[i], pool[j]) = (pool[j], pool[i]);
+            }
+            seq.AddRange(pool);
+        }
+        return seq.Take(count).ToList();
+    }
 
     // Middle frames carry a transition on BOTH sides, so their 'pure' viewing
     // time is hold - 2*TransitionSeconds. Keep it positive or wipes overlap and
@@ -60,8 +87,9 @@ public sealed class FfmpegProvider : IFfmpegProvider
 
     public async Task<Video?> ComposeAsync(IReadOnlyList<HistoricalImage> images, string outputPath)
     {
-        _logger.LogInformation("Composing video from {Count} images with {Transition} xfade transitions",
-            images.Count, TransitionType);
+        _logger.LogInformation(
+            "Composing video from {Count} images with xfade transitions drawn from: {Transitions}",
+            images.Count, string.Join(", ", TransitionTypes));
 
         Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(outputPath))!);
 
@@ -142,13 +170,14 @@ public sealed class FfmpegProvider : IFfmpegProvider
         else
         {
             var transition = TransitionSeconds.ToString("0.####", inv);
+            var kinds      = TransitionSequence(n - 1, Random.Shared);
             var prevLabel  = "v0";
             var offset     = firstHold - TransitionSeconds; // first wipe starts after frame 0's clean view
             for (var i = 1; i < n; i++)
             {
                 var stageLabel = i == n - 1 ? "outv" : $"x{i}";
                 filter.Append(
-                    $"[{prevLabel}][v{i}]xfade=transition={TransitionType}:duration={transition}:" +
+                    $"[{prevLabel}][v{i}]xfade=transition={kinds[i - 1]}:duration={transition}:" +
                     $"offset={offset.ToString("0.####", inv)}[{stageLabel}];");
                 prevLabel = stageLabel;
                 offset += holdSeconds - TransitionSeconds;  // subsequent wipes advance by the uniform hold

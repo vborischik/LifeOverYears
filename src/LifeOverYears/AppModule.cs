@@ -80,9 +80,14 @@ public sealed class AppModule : Module
                 $"Pipeline:BaseMode must be 'clean' or 'synthetic', got '{baseMode}'");
         }
 
+        // Chained eras must be generated one at a time, which removes the whole
+        // point of batch mode (all years submitted at once, up to a 24h window
+        // each). Off by default there; on elsewhere.
+        var eraChaining = _configuration.GetValue("Pipeline:EraChaining", true);
+
         _loggerFactory.CreateLogger<AppModule>().LogInformation(
-            "Image generation provider: enabled={Enabled}, mode={Mode}, baseMode={BaseMode}",
-            imagesEnabled, imagesMode, baseMode);
+            "Image generation provider: enabled={Enabled}, mode={Mode}, baseMode={BaseMode}, eraChaining={EraChaining}",
+            imagesEnabled, imagesMode, baseMode, eraChaining);
 
         if (!imagesEnabled)
         {
@@ -140,6 +145,7 @@ public sealed class AppModule : Module
                     _.Resolve<IVideoService>(),
                     _.Resolve<ICaptionService>(),
                     baseMode,
+                    eraChaining,
                     _loggerFactory.CreateLogger<Pipeline>()))
                .SingleInstance();
     }

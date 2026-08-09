@@ -30,43 +30,44 @@ Smartphone era fully arrived. A 2015 station — LED-lit canopy, digital price s
 CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- pay-at-pump with color screens and ads
-- large convenience store with fresh-coffee branding in the windows
+- LED message boards
+- air and vacuum island at the lot edge
 - price sign showing gas around $2.45
-- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
-- window signs: 'E-CIG STARTER KITS', 'ATM INSIDE'
+- main sign: "Shell" branded gas station — Shell pole sign with price display and Shell colors on the canopy fascia
+- window signs: 'ANY SIZE COFFEE $1', '2 ENERGY DRINKS $5'
+- an air-and-vacuum island at the lot edge
 - combined trash-and-squeegee stations between the pumps
-- a chalkboard A-frame sign advertising the coffee bar
 Typography: minimalist flat sans-serif, simplified modern logos.
 
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Citgo'
-'E-CIG STARTER KITS'
-'ATM INSIDE'
+'Shell'
+'ANY SIZE COFFEE $1'
+'2 ENERGY DRINKS $5'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a clerk restocking cold brew cans in the cooler
-- a driver self-serving at the pump
-- a dog walker with three dogs
-Clothing: men in henley shirts, skinny jeans; women in infinity scarves, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- a kid pressing his face against the DVD kiosk glass
+- a driver comparing gas app prices before choosing a pump
+- two kids on kick scooters
+Clothing: men in slim-fit plaid shirts, skinny jeans; women in infinity scarves, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 1 period vehicles, all different:
-- 2013-2016 Mazda CX-5 — flowing KODO-design crossover — white
+EXACTLY 2 period vehicles, all different:
+- 2007-2017 Jeep Wrangler — boxy off-roader, round headlights — pearl white
+- 2013-2016 Mazda CX-5 — flowing KODO-design crossover — gray
 Parked with gaps. Where a model is listed with a year range, render the 2015 model year specifically — only styling, trim and features available in 2015, nothing introduced later. No vehicle newer than 2015.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: one nose-in close to the entrance; the rest spread across stalls toward the lot's far edge. No vehicle in the same spot as any other era.
+PLACEMENT: all angled into stalls along the far edge of the lot, the near stalls left empty. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines common on wooden poles, fiber optic lines on poles
 
 DECAY
-- curb litter, an overflowing trash can
+- mismatched asphalt patches, cracks at the joints
 - chipped, stained curbs, weeds in the gutter
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
@@ -79,6 +80,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — digital — DSLR or smartphone camera look.
 Color: high saturation. Grain: clean, minimal noise.
 Photorealistic — NOT black-and-white, no HDR.
+Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
 
 PRIVACY
 Blur all faces and license plates.

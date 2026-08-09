@@ -27,46 +27,48 @@ distort the source geometry.
 TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 station — LED-lit canopy, digital price sign, video ads playing on every pump screen, and a big convenience store.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- convenience store with modern branding
-- modern canopy with white LED lighting
+- minimalist flat brand logos
+- LED accent lighting on buildings
 - price sign showing gas around $2.45
-- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
-- window signs: '2 ENERGY DRINKS $5', 'ANY SIZE COFFEE $1'
+- main sign: "Chevron" branded gas station — Chevron pole sign with price display and Chevron colors on the canopy fascia
+- window signs: 'ANY SIZE COFFEE $1', 'E-CIG STARTER KITS'
 - a red DVD-rental kiosk by the store entrance
-- card-skimmer warning stickers on the pumps
+- a chalkboard A-frame sign advertising the coffee bar
 Typography: minimalist flat sans-serif, simplified modern logos.
 
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Citgo'
-'2 ENERGY DRINKS $5'
+'Chevron'
 'ANY SIZE COFFEE $1'
+'E-CIG STARTER KITS'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 7 people TOTAL: 3 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
-- a man returning a disc at the DVD kiosk
-- a driver comparing gas app prices before choosing a pump
-- a dog walker with three dogs
-Clothing: men in slim-fit plaid shirts, skinny jeans; women in high-waisted skinny jeans, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+EXACTLY 2 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block. Grouped in pairs, threes, and singles.
+- a teenager filling a bike tire at the air station
+- a delivery driver grabbing a coffee before getting back on the road
+- a man in a beard and flannel ordering from a food truck window
+Clothing: men in slim-fit plaid shirts, henley shirts; women in infinity scarves, statement necklaces. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 3 period vehicles, all different:
-- 2011-2016 Kia Optima — stylish mid-size, sporty — dark red
-- 2013-2018 Hyundai Santa Fe — fluidic sculpture styling — pearl white
-- 2007-2017 Jeep Wrangler — boxy off-roader, round headlights — white
+EXACTLY 1 period vehicles, all different:
+- 2011-2016 Kia Optima — stylish mid-size, sporty — white
 Parked with gaps. Where a model is listed with a year range, render the 2015 model year specifically — only styling, trim and features available in 2015, nothing introduced later. No vehicle newer than 2015.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: all parked in the lot, nose-in to marked stalls, with an empty stall between them. No vehicle in the same spot as any other era.
+PLACEMENT: all angled into stalls along the far edge of the lot, the near stalls left empty. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: yellow center line, white edge lines, high-visibility crosswalks
+- road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines common on wooden poles, fiber optic lines on poles
 
+DECAY
+- chalky faded lane paint, ghost lines in the tracks
+- faded storefront paint, one window papered over
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - cottonwood tree at northeast corner of lot: clearly smaller than in the base image — about 80% of its canopy there, thinner trunk
 - elm tree at sidewalk edge left of entrance: clearly smaller than in the base image — about 60% of its canopy there, thinner trunk
@@ -77,6 +79,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — digital — DSLR or smartphone camera look.
 Color: high saturation. Grain: clean, minimal noise.
 Photorealistic — NOT black-and-white, no HDR.
+Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
 
 PRIVACY
 Blur all faces and license plates.

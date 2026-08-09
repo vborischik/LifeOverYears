@@ -142,6 +142,9 @@ public static class PromptSmokeTest
         DoC39(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
         await DoC40(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
         await DoC41(dataService, gasScene, downtownScene, stripMallScene, autoRepairScene, unknownScene, findings);
+        await DoC43(promptService, eras, gasScene, findings);
+        DoC44(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, eras, findings);
+        DoC45(eras, logger, findings);
         await DoC42(promptService, eras, findings);
 
         // e) Report
@@ -1108,9 +1111,10 @@ public static class PromptSmokeTest
         {
             if (!prompt.Text.Contains(populate))
                 errs.Add($"{label}/{year}: missing populate-empty-base header");
-            // An abandoned era is deserted — the PEOPLE block collapses to the
-            // no-people line and carries no sidewalk rule.
-            if (prompt.SceneCondition != "abandoned" && !prompt.Text.Contains(sidewalk))
+            // Derelict eras carry no sidewalk rule: abandoned collapses to the
+            // no-people line, and squatted places its handful of figures
+            // explicitly, so the generic zone rule has nothing to govern.
+            if (prompt.SceneCondition is not ("abandoned" or "squatted") && !prompt.Text.Contains(sidewalk))
                 errs.Add($"{label}/{year}: missing sidewalk rule");
         }
 
@@ -1224,6 +1228,23 @@ public static class PromptSmokeTest
                     errs.Add($"{label}/{year}: no sampled extras line present");
                 if (derelict && WindowSignsLine.IsMatch(prompt.Text))
                     errs.Add($"{label}/{year}: {prompt.SceneCondition} but still has a 'window signs:' line");
+
+                // people_activities are the customers and staff of a working
+                // business — a clerk restocking a cooler, someone refuelling. At a
+                // dead station they contradict the condition outright, and the
+                // image model resolves the contradiction by reopening the place.
+                // Nothing asserted this before, which is how a squatted 2025
+                // shipped with a woman refuelling and a man wiping a windshield.
+                if (derelict && sc.PeopleActivities is { Count: > 0 } acts)
+                    foreach (var a in acts.Where(a => prompt.Text.Contains($"- {a}")))
+                        errs.Add($"{label}/{year}: {prompt.SceneCondition} but still lists live-business activity '{a}'");
+                if (derelict && prompt.Text.Contains("Clothing:"))
+                    errs.Add($"{label}/{year}: {prompt.SceneCondition} but still specifies clothing");
+                if (derelict && prompt.Text.Contains("no one refuels without a car present"))
+                    errs.Add($"{label}/{year}: {prompt.SceneCondition} but still carries the refuelling rule");
+                // people_mix survives a squatted era: an ordinary passer-by still
+                // walks past a dead lot, they just have no business with it. Only
+                // abandoned drops the line, since it has no people at all.
                 if (prompt.SceneCondition != "abandoned" &&
                     eras[year].PeopleMix is { Count: > 0 } mix && !mix.Any(m => prompt.Text.Contains($"- {m}")))
                     errs.Add($"{label}/{year}: no people_mix line present");
@@ -2587,6 +2608,168 @@ public static class PromptSmokeTest
 
         f.Add(("C41", "Caption assembly produces a complete, fully substituted caption for every scene type; scene types differ; weekly rotation reaches every body; same-week scenes are separated by the id offset",
             errs.Count == 0, errs.Count == 0 ? "Caption assembly varied and fully substituted" : Join(errs)));
+    }
+
+    // Chained eras are generated on top of the previous year's finished image, so
+    // the uploaded photo already has that year's people and traffic in it. If the
+    // prompt does not say to clear them first, figures accumulate down the chain
+    // and the last year ends up with six eras' worth of people in one frame.
+    private static async Task DoC43(
+        IPromptService promptService,
+        Dictionary<int, EraProfile> eras,
+        SceneDna gasScene,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        const string clearing = "remove EVERY person, vehicle and bicycle already in it";
+        const string emptyClaim = "The street in the source\nis empty";
+
+        foreach (var chained in new[] { false, true })
+        {
+            var ctx = new GenerationContext
+            {
+                Random = new Random(42), TotalEras = Years.Length, Years = Years,
+                ChainedFromPreviousEra = chained
+            };
+            foreach (var year in Years)
+            {
+                var prompt = await promptService.BuildAsync(gasScene, eras[year], ctx);
+                var label  = $"chained={chained}/{year}";
+
+                if (prompt.Text.Contains("{BASE_NOTE}"))
+                    errs.Add($"{label}: unsubstituted {{BASE_NOTE}}");
+
+                if (chained)
+                {
+                    if (!prompt.Text.Contains(clearing))
+                        errs.Add($"{label}: chained prompt does not clear the previous era's people and vehicles");
+                    // Claiming the source is empty is false once chained, and the
+                    // model resolves the contradiction by keeping what it sees.
+                    if (prompt.Text.Contains(emptyClaim))
+                        errs.Add($"{label}: chained prompt still claims the source street is empty");
+                }
+                else
+                {
+                    if (!prompt.Text.Contains(emptyClaim))
+                        errs.Add($"{label}: unchained prompt lost the empty-source wording");
+                    if (prompt.Text.Contains(clearing))
+                        errs.Add($"{label}: unchained prompt carries the chained clearing instruction");
+                }
+            }
+        }
+
+        f.Add(("C43", "Chained eras are told to clear the previous year's people and vehicles; unchained eras keep the empty-source wording",
+            errs.Count == 0, errs.Count == 0 ? "Base note matches the chaining mode in every era" : Join(errs)));
+    }
+
+    // Weather carries the arc: living eras look like a day worth remembering,
+    // and only the dead ones go grey. A run that is overcast throughout reads as
+    // apocalyptic rather than nostalgic, and the loss at the end lands against
+    // nothing.
+    private static void DoC44(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
+        Prompt unknownPrompt,
+        Dictionary<int, EraProfile> eras,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt))
+        {
+            var light = prompt.Text.Split('\n').FirstOrDefault(l => l.StartsWith("Light:"));
+            if (light is null)
+            {
+                errs.Add($"{label}/{year}: no Light: line");
+                continue;
+            }
+
+            var derelict = prompt.SceneCondition is "abandoned" or "squatted";
+            var grey     = light.Contains("grey overcast");
+
+            if (derelict && !grey)
+                errs.Add($"{label}/{year}: {prompt.SceneCondition} but light is not the subdued variant");
+            if (!derelict && grey)
+                errs.Add($"{label}/{year}: {prompt.SceneCondition} (a living era) is shot under grey overcast");
+
+            // Never a mood piece: the frame has to stay a legible daytime record.
+            foreach (var banned in new[] { "fog", "rain", "storm", "night", "darkness" })
+                if (light.Contains(banned, StringComparison.OrdinalIgnoreCase)
+                    && !light.Contains($"no {banned}", StringComparison.OrdinalIgnoreCase))
+                    errs.Add($"{label}/{year}: light line calls for '{banned}'");
+
+            // A monochrome era must not be handed colour wording.
+            if (eras.TryGetValue(year, out var era)
+                && era.Photography.ColorMode == "black_and_white"
+                && (light.Contains("colour", StringComparison.OrdinalIgnoreCase)
+                    || light.Contains("warm", StringComparison.OrdinalIgnoreCase)))
+                errs.Add($"{label}/{year}: black-and-white era has colour wording in its light line");
+        }
+
+        f.Add(("C44", "Every prompt sets its light from the condition: living eras get open daylight, only derelict eras go grey, and no prompt asks for fog, rain or night",
+            errs.Count == 0, errs.Count == 0 ? "Light matches condition in every prompt" : Join(errs)));
+    }
+
+    // Condition variety across seeds. The arc used to collapse: "declining"
+    // forced the next era that offered "abandoned" to take it, so 2015 came out
+    // derelict in ~86% of runs and every video told the same story at the same
+    // moment. This measures the distribution rather than one run, because a
+    // single fixture can look fine while the policy behind it is degenerate.
+    private static void DoC45(
+        Dictionary<int, EraProfile> eras,
+        ILogger logger,
+        List<(string, string, bool?, string)> f)
+    {
+        const int seeds = 500;
+        const double maxAbandoned2015 = 0.35;
+        const double minEverDeclines  = 0.70;
+        const int    minTrajectories  = 20;
+
+        var errs = new List<string>();
+        var summary = new List<string>();
+
+        foreach (var sceneType in new[] { "downtown_street", "strip_mall", "auto_repair", "gas_station" })
+        {
+            var abandoned2015 = 0;
+            var everDeclined  = 0;
+            var trajectories  = new HashSet<string>();
+
+            for (var seed = 0; seed < seeds; seed++)
+            {
+                var ctx  = new GenerationContext
+                    { Random = new Random(seed), TotalEras = Years.Length, Years = Years };
+                var path = new List<string>();
+                foreach (var year in Years)
+                {
+                    ctx.BeginEra();
+                    path.Add(ctx.PickSceneCondition(eras[year].AllowedSceneConditions, sceneType));
+                }
+
+                if (path[Array.IndexOf(Years, 2015)] == "abandoned") abandoned2015++;
+                if (path.Any(c => c is "declining" or "abandoned" or "squatted")) everDeclined++;
+                trajectories.Add(string.Join(">", path));
+            }
+
+            var rate2015 = abandoned2015 / (double)seeds;
+            var declines = everDeclined  / (double)seeds;
+            summary.Add($"{sceneType}: 2015 abandoned {rate2015:P0}, ever declines {declines:P0}, {trajectories.Count} trajectories");
+
+            if (rate2015 > maxAbandoned2015)
+                errs.Add($"{sceneType}: 2015 is abandoned in {rate2015:P0} of runs (max {maxAbandoned2015:P0}) — the arc collapses to one story");
+            // The opposite failure: tuning decay away entirely leaves nothing to
+            // lose, and these videos exist for the loss.
+            if (declines < minEverDeclines)
+                errs.Add($"{sceneType}: only {declines:P0} of runs ever decline (min {minEverDeclines:P0})");
+            if (trajectories.Count < minTrajectories)
+                errs.Add($"{sceneType}: only {trajectories.Count} distinct trajectories across {seeds} seeds");
+        }
+
+        logger.LogInformation("[Smoke] C45 condition spread: {Summary}", string.Join(" | ", summary));
+
+        f.Add(("C45", $"Across {seeds} seeds no scene type abandons 2015 more than {maxAbandoned2015:P0} of the time, at least {minEverDeclines:P0} of runs still decline, and trajectories stay varied",
+            errs.Count == 0, errs.Count == 0 ? string.Join(" | ", summary) : Join(errs)));
     }
 
     // Mirrors CaptionService's own lookup: scene-specific file, else base.

@@ -30,12 +30,12 @@ Reagan era prosperity. A 1985 main street in transition — neon and backlit pla
 CONDITION: busy — customers present, high activity, all pumps in use
 
 PERIOD DETAILS
-- TOWN DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
+- MARY'S DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
 - video arcade with a 'GAMES 25¢' neon sign and posters in the window
-- electronics store with a red 'RADIOSHACK' style logo sign
-- window signs: '2 SLICES $1.50', 'CASSETTE TAPES $7.99'
-- the painted ghost-sign wall ad now noticeably fading, colors washing out
+- wider parking lots
+- window signs: 'PERM SPECIAL $25', '2 SLICES $1.50'
 - a wall-mounted payphone with a steel-cord handset and phone book shelf
+- a bike rack with BMX bikes
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 
 
@@ -43,28 +43,28 @@ SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 'HOT COFFEE 45¢'
 'GAMES 25¢'
-'RADIOSHACK'
+'PERM SPECIAL $25'
 '2 SLICES $1.50'
-'CASSETTE TAPES $7.99'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 12 people TOTAL: 5 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles.
-- a kid locking a BMX bike to a signpost
+EXACTLY 15 people TOTAL: 6 near sidewalk (largest, foreground), 5 opposite sidewalk mid-block, 4 distant, far end of block. Grouped in pairs, threes, and singles.
 - a woman in acid-wash jeans flipping through a rack of cassette singles
-- a construction worker in a hard hat crossing at the light
+- a man in a windbreaker reading a newspaper by the corner
+- a father in a polo shirt with the collar popped, walking briskly
 Clothing: men in windbreakers, shoulder pads in blazers; women in shoulder pads, bright neon colors. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 5 period vehicles, all different:
-- 1984-1987 Toyota Corolla — boxy compact, reliable look — beige
-- 1983-1987 Honda Accord — clean lines, pop-up headlights — light blue
-- 1978-1987 Chevrolet Monte Carlo — personal luxury coupe, long hood — charcoal gray
-- 1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline — silver
+EXACTLY 6 period vehicles, all different:
+- 1979-1985 Ford LTD Country Squire — full-size woodgrain wagon — beige
+- 1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan — charcoal gray
+- 1981-1985 Ford Escort — small boxy economy hatchback — light blue
+- 1980-1989 Lincoln Town Car — long boxy luxury sedan — red
+- 1978-1987 Chevrolet Monte Carlo — personal luxury coupe, long hood — silver
 - 1980-1985 Buick LeSabre — boxy full-size, chrome trim — burgundy
 Parked with gaps. Where a model is listed with a year range, render the 1985 model year specifically — only styling, trim and features available in 1985, nothing introduced later. No vehicle newer than 1985.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
+PLACEMENT: two parked on the LEFT side; the rest parked on the RIGHT side with gaps. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, painted crosswalks
@@ -79,6 +79,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — Kodacolor VR 200 or Fujicolor 100 look.
 Color: slightly cool tones compared to 1970s. Grain: moderate grain, cleaner than 1975.
 Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

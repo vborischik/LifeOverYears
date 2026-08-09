@@ -30,13 +30,15 @@ Post-9/11 era. A 2005 main street — cellular stores and chain coffee arriving,
 CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
+- a liquor store still open, its lit window the brightest thing in the row
+- a tax preparation and check-cashing office still open a few doors along, plain lettering, bars on the window
+- most of the other units dark behind the glass, several papered over from the inside
 - the video rental store closing down — 'EVERYTHING MUST GO — ALL MOVIES $3' banner across the window
-- BLUE PLATE DINER with a refreshed awning and a 'COFFEE $1.25' vinyl decal on the glass
-- espresso cafe with a chalkboard menu and a round-logo awning
-- a RadioShack store, red sign board with white lettering
-- window signs: 'EVERYTHING MUST GO — 50-70% OFF', 'RINGTONES $1.99'
-- a single scuffed payphone covered in stickers, rarely used
-- ribbon magnets on a lamppost
+- TOWN DINER with a refreshed awning and a 'COFFEE $1.25' vinyl decal on the glass
+- video game store with a 'USED GAMES' sign and a midnight-release poster
+- window signs: 'LATTE $2.95', 'DVDs $14.99'
+- a bike rack with a couple of mountain bikes
+- a sandwich-board sign for the espresso cafe
 Typography: clean sans-serif, polished brand identities.
 
 
@@ -44,23 +46,26 @@ SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 'EVERYTHING MUST GO — ALL MOVIES $3'
 'COFFEE $1.25'
-'EVERYTHING MUST GO — 50-70% OFF'
-'RINGTONES $1.99'
+'USED GAMES'
+'LATTE $2.95'
+'DVDs $14.99'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- of these, 3 people just out of the liquor store, a bottle in a black plastic bag — keeping to themselves, not looking at the camera
 - a man in a Bluetooth headset arguing about directions
-- a woman leaving the bank branch with a folder of papers
-- a delivery driver checking a handheld scanner before knocking
-Clothing: men in baggy jeans, graphic tees; women in velour tracksuits, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- two girls sharing earbuds from one MP3 player
+- a man loading a case of bottled water into a minivan
+Clothing: men in graphic tees, baggy jeans; women in trucker hats, velour tracksuits. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 1 period vehicles, all different:
-- 2001-2007 Toyota Highlander — early crossover — dark red
+EXACTLY 2 period vehicles, all different:
+- 2003-2007 Honda Accord — clean lines, sharper than 1990s — black
+- 2002-2006 Toyota Camry — smooth conservative mid-size — dark blue
 Parked with gaps. Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
+PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
@@ -68,7 +73,7 @@ ENVIRONMENT
 
 DECAY
 - cracked sidewalk squares, weeds at the tree pits
-- a sun-bleached awning, torn at one corner
+- an old sign band painted over, the previous lettering still faintly readable
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - oak tree at sidewalk left near corner: clearly smaller than in the base image — about 80% of its canopy there, thinner trunk
@@ -79,6 +84,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — early digital camera or Kodak/Fuji consumer film look.
 Color: neutral tones. Grain: low grain, early digital noise in shadows.
 Photorealistic — NOT black-and-white, no HDR.
+Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
 
 PRIVACY
 Blur all faces and license plates.

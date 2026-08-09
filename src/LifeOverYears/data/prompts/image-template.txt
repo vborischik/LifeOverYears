@@ -8,8 +8,7 @@ PRIORITY ORDER — when instructions conflict, the lower number wins
 5. Add nothing that is not asked for — no extra businesses, signs, vehicles,
    people, logos or advertisements.
 
-Use the uploaded photo as the exact base composition. The street in the source
-is empty — populate it with the people and vehicles specified below. Remove the
+{BASE_NOTE} Remove the
 modern businesses, logos, brands, storefront names, banners and advertisements
 visible in the source image, and replace them only with the period signage
 specified below.
