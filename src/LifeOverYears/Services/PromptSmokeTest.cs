@@ -2245,12 +2245,21 @@ public static class PromptSmokeTest
         const string genericPhrase = "an ordinary American location";
         var phrases = await dataService.LoadSceneTypePhrasesAsync();
 
+        // Every scene type that has a caption voice must also have a base-prompt
+        // phrase. Without this, a scene type added later silently falls back to
+        // the generic wording — the exact failure the phrase exists to prevent,
+        // and invisible if the hardcoded list below is all that drives the check.
+        foreach (var sceneType in CaptionService.AnglesByScene.Keys)
+            if (!phrases.ContainsKey(sceneType))
+                errs.Add($"scene type '{sceneType}' has a caption voice but no scene-types.txt entry");
+
         foreach (var (scene, label) in new[]
         {
             (gasScene,        "gas_station"),
             (downtownScene,   "downtown_street"),
             (stripMallScene,  "strip_mall"),
             (autoRepairScene, "auto_repair"),
+            (MakeMallScene(), "mall"),
         })
         {
             var text = await promptService.BuildBaseAsync(scene);

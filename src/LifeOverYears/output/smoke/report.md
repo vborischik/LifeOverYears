@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-08-08T04:16:46.2280770+00:00
+Generated: 2026-08-09T03:56:22.5505080+00:00
 
 ## Check Results
 
@@ -47,6 +47,7 @@ Generated: 2026-08-08T04:16:46.2280770+00:00
 | C39 | A 'new' condition prompt never pairs pristine surfaces with an unexplained weathered ghost sign | ✅ PASS | No unreconciled ghost-sign contradiction in any 'new' condition prompt |
 | C40 | image-template.txt carries the PRIORITY ORDER rule; every era prompt's SIGNAGE RESTRICTION whitelist lists exactly the quoted strings from its own scene block; the old blanket quotes-only line is gone | ✅ PASS | Priority order present; signage whitelist consistent everywhere; old line removed |
 | C41 | Caption assembly produces a complete, fully substituted caption for every scene type; scene types differ; weekly rotation reaches every body; same-week scenes are separated by the id offset | ✅ PASS | Caption assembly varied and fully substituted |
+| C42 | Packed-crowd mall scenes render crowd/lot wording, exactly 5 representative vehicles, no PLACEMENT line | ✅ PASS | Packed crowd rendering correct across 1975/1985/1995 |
 
 ## Vehicle Selections
 
