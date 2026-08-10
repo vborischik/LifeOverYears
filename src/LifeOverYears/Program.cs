@@ -83,6 +83,12 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
         return promptResult == 0 && folderResult == 0 ? 0 : 1;
     }
 
+    // 'vision-variance <folder> [--repeat N]' — diagnostic only: runs vision over
+    // a folder and reports which SceneDna fields fail to vary between photos.
+    if (args.Length >= 1 && args[0] == "vision-variance")
+        return await VisionVarianceTest.RunAsync(
+            args.Skip(1).ToArray(), launchDir, container, loggerFactory);
+
     // 'collect <runFolder> [--wait]' — fetches finished generation jobs into
     // images/, then assembles the video. Needs the DI container: the real
     // provider requires configuration.
