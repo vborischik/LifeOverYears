@@ -59,7 +59,10 @@ Rules:
   structure actually visible, not one entry total. A multi-tenant retail row
   with separate storefronts is still ONE building if it sits under a single
   continuous roof; a detached end unit sitting apart from that roofline is a
-  SECOND building.
+  SECOND building. A step in parapet or roofline height also ends one building
+  and starts another, even where the run is physically continuous: a retail
+  row whose parapet steps up over a larger unit and back down is several
+  buildings, not one.
 - parking is "lot" whenever a dedicated off-street paved area for customer
   parking is visible, even if street parking is also present; "on-street"
   only when parallel or angled bays along the roadway are the only parking.
@@ -69,3 +72,21 @@ Rules:
 - a building with service bays and roll-up doors is "auto_repair", even when
   its low flat-roofed shape resembles an old service station; choose
   "gas_station" only when pump islands or a fuel canopy are actually visible.
+- decide scene_type from the photo itself, not from how many entries you put
+  in the buildings array. Judge these three by looking at the roofline and the
+  units, and check them in this order:
+- "mall" only when the facade is a continuous windowless wall with no
+  individual storefront entrances spaced along it and the store name sits
+  high on a blank end-cap.
+- "shopping_center" when the open-air retail run is broken into several
+  building masses of differing heights or parapets AND at least one unit is
+  markedly larger than the rest with its own distinct facade treatment.
+  Any ONE of these is enough to call it shopping_center rather than
+  strip_mall: the parapet steps up or down anywhere along the run; one unit
+  is visibly taller or several times wider than its neighbours; one unit
+  carries a different facade material, colour, or sign band from the rest; a
+  larger unit has its own projecting entrance canopy. An anchor store this
+  way still counts even when the run reads as one continuous building.
+- "strip_mall" only when the open-air run sits under one continuous uniform
+  roofline with units of roughly equal width and no larger anchor unit. If
+  any part of the roofline steps, it is not a strip_mall.

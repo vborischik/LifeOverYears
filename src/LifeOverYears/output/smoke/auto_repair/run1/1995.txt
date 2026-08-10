@@ -27,39 +27,44 @@ distort the source geometry.
 TRANSFORM TO 1995
 Clinton era prosperity. An auto repair shop in 1995 — an alignment rack in one bay, an emissions-testing sticker in the window, and a national tire brand banner strung across the apron.
 
+CONDITION: busy — customers present, high activity, all pumps in use
+
 PERIOD DETAILS
 - a tire display rack near the office entrance with a hand-lettered '$39.95 ALIGNMENT' sign taped to it
-- an air conditioning service sign taped inside the office window
-- a parts counter through the glass, computer monitor visible on the desk
-- window signs: 'OIL CHANGE $19.95', 'TIRES — NATIONAL BRANDS'
+- office with plate glass window and a state emissions-testing sticker in the corner
+- sign band lettering reading 'AUTO REPAIR — EMISSIONS TESTING'
+- window signs: 'EMISSIONS TEST $24.95', 'OIL CHANGE $19.95'
 - a cordless phone base on the counter
-- a tire display rack near the entrance
+- a national tire brand banner strung along the eave
 Typography: clean geometric sans-serif, early digital influence.
 
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 '$39.95 ALIGNMENT'
+'AUTO REPAIR — EMISSIONS TESTING'
+'EMISSIONS TEST $24.95'
 'OIL CHANGE $19.95'
-'TIRES — NATIONAL BRANDS'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 5 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a woman in business attire dropping off a lease car
-- a mechanic guiding a car onto the alignment rack
-- an office worker eating a sandwich on a bench during lunch
-Clothing: men in baggy jeans, grunge style; women in slip dresses, high-waisted mom jeans. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- a man in a cap chatting with the owner at the counter
+- a man on a cordless phone pacing near the office door
+- a delivery driver in a brown uniform carrying a stack of packages
+Clothing: men in backwards caps, windbreakers; women in slip dresses, high-waisted mom jeans. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 1991-1996 Buick Roadmaster — large rounded wagon and sedan — navy blue
-- 1994-1997 Honda Accord — smooth rounded sedan — white
-- 1992-1996 Ford F-150 — rounded aero body — teal
-- 1994-2001 Dodge Ram — big rig style grille, bold — black
+EXACTLY 6 period vehicles, all different:
+- 1992-1995 Honda Civic — small rounded coupe and sedan — black
+- 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size — burgundy
+- 1991-1995 Dodge Caravan — rounded second-gen minivan — white
+- 1995-1999 Chevrolet Cavalier — compact, rounded — hunter green
+- 1986-1997 Ford Aerostar — boxy rear-drive minivan — navy blue
+- 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding — teal
 Parked with gaps. Where a model is listed with a year range, render the 1995 model year specifically — only styling, trim and features available in 1995, nothing introduced later. No vehicle newer than 1995.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: all angled into stalls along the far edge of the lot, the near stalls left empty. No vehicle in the same spot as any other era.
+PLACEMENT: two in stalls near the entrance; the rest spread across the lot with gaps. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn lane arrows
@@ -74,6 +79,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — Kodak Gold 200 or Fujifilm Superia 200 look.
 Color: neutral to slightly warm tones. Grain: fine grain, cleaner than 1985.
 Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

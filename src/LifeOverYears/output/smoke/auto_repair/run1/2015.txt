@@ -27,26 +27,46 @@ distort the source geometry.
 TRANSFORM TO 2015
 Smartphone era fully arrived. An independent auto repair shop in 2015 — a state inspection sticker machine on the counter, a tire-pressure sensor reset tool in the bay, and fewer cars in the lot than there used to be as quick-lube chains pull business away.
 
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
+
 PERIOD DETAILS
-- every storefront closed and dark — no lit signs, no menu boards, no open businesses
-- faded remains of old signage still on the facade, lettering weathered and partly missing
-- plywood over the ground-floor windows, doors chained shut
-No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.
+- a faded printed banner reading '$19.95 STATE INSPECTION' from a past promotion still hanging on the fascia
+- a tire-pressure sensor reset tool on a cart inside the open bay
+- renovated or vacant big box stores
+- window signs: 'BRAKES FROM $99.95', 'OIL CHANGE $29.95'
+- a state inspection sticker machine on the counter
+- a tablet propped beside the register
+Typography: minimalist flat sans-serif, simplified modern logos.
+
+
+SIGNAGE RESTRICTION
+The only readable text anywhere in the image is:
+'$19.95 STATE INSPECTION'
+'BRAKES FROM $99.95'
+'OIL CHANGE $29.95'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-NO people anywhere — the place is completely deserted.
+EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- a woman dropping off her car before walking to catch a bus
+- an older regular chatting with the owner about slow business
+- a group of friends comparing photos on their phones
+Clothing: men in skinny jeans, beards; women in ankle boots, infinity scarves. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-NO vehicles anywhere — empty lot, no parked or moving cars.
+EXACTLY 1 period vehicles, all different:
+- 2005-2015 Toyota Tacoma — capable mid-size pickup — dark red
+Parked with gaps. Where a model is listed with a year range, render the 2015 model year specifically — only styling, trim and features available in 2015, nothing introduced later. No vehicle newer than 2015.
+Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
+PLACEMENT: all parked in the lot, nose-in to marked stalls, with an empty stall between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines common on wooden poles, fiber optic lines on poles
 
 DECAY
-- a wrecked car with its hood off left sitting at a bay door
-- plywood over the office plate glass
-- every bay door rolled down, dented and streaked with rust
+- a stack of worn tires leaning against the side wall
+- a hand-lettered service sign taped inside the office glass
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - maple tree at street corner: clearly smaller than in the base image — about 80% of its canopy there, thinner trunk
@@ -57,6 +77,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — digital — DSLR or smartphone camera look.
 Color: high saturation. Grain: clean, minimal noise.
 Photorealistic — NOT black-and-white, no HDR.
+Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
 
 PRIVACY
 Blur all faces and license plates.

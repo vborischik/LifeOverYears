@@ -33,8 +33,6 @@ PERIOD DETAILS
 - every storefront closed and dark — no lit signs, no menu boards, no open businesses
 - faded remains of old signage still on the facade, lettering weathered and partly missing
 - plywood over the ground-floor windows, doors chained shut
-- the unit where the store was, a rectangular patch of less-faded wall above the door where the sign board was removed, anchor holes still visible, a lighter band along the top where the blue fascia ran, no lettering at all
-- the unit where the store was, a rectangular patch of less-faded wall above the door where the sign board was removed, anchor holes still visible, no lettering at all
 No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.
 
 PEOPLE
@@ -49,8 +47,8 @@ ENVIRONMENT
 
 DECAY
 - grass and saplings pushing up through the parking apron
-- shopping carts abandoned across the empty lot
-- every sign panel blank or removed, empty frames left on the pylon
+- storefronts boarded with plywood behind bent security grilles
+- the pylon sign stripped back to a rusted frame
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - crepe myrtle tree at parking lot island near entrance: clearly smaller than in the base image — about 60% of its canopy there, thinner trunk
@@ -62,6 +60,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — digital — DSLR or smartphone camera look.
 Color: high saturation. Grain: clean, minimal noise.
 Photorealistic — NOT black-and-white, no HDR.
+Light: flat, even light under a grey overcast — subdued and cheerless, but plainly daytime; no fog, no rain, no darkness.
 
 PRIVACY
 Blur all faces and license plates.

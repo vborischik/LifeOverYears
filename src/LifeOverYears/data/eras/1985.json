@@ -468,6 +468,58 @@
       ],
       "crowd": "packed"
     },
+    "shopping_center": {
+      "narrative": "A 1985 open-air shopping center at its busiest — the anchor repainted with a bold new sign, the inline units turned over to newer names.",
+      "storefronts": [
+        "the anchor block repainted with bold backlit letters across a new sign band",
+        "a stepped run of parapets at three different heights along the center",
+        "a shingled mansard awning added over the inline storefronts",
+        "an electronics store with a red-and-white plastic sign",
+        "a video rental unit with posters taped inside the glass",
+        "a card and gift shop with a striped fabric awning",
+        "individual aluminum-framed doors opening onto the lot",
+        "an updated pylon sign with interchangeable tenant strips",
+        "smoked glass replacing the older clear storefront glazing",
+        "a pizza counter at the short end of the run"
+      ],
+      "window_signs": [
+        "KMART",
+        "RADIO SHACK",
+        "OPEN 9-9",
+        "SALE"
+      ],
+      "people_activities": [
+        "a family loading shopping bags into a hatchback",
+        "two teenagers leaving the electronics store",
+        "a woman pushing a cart along the front of the anchor block",
+        "a man carrying a stereo box out to a sedan",
+        "kids gathered outside the video rental unit",
+        "a mother holding a toddler's hand across the lot",
+        "a teenager collecting carts in a long train",
+        "a couple reading the tenant strips on the pylon sign",
+        "a woman balancing a pizza box on one arm",
+        "two friends comparing purchases on the walkway",
+        "a man loading flattened boxes into a pickup bed",
+        "a girl waiting on the curb with a shopping bag",
+        "an older woman resting on a bench outside the anchor",
+        "a boy riding a bike along the edge of the lot",
+        "a man in a windbreaker holding the door for his wife",
+        "shoppers weaving between cars toward the anchor doors",
+        "a teenager filling out an application at a storefront window",
+        "a family splitting up at the middle of the run",
+        "a clerk carrying flattened cartons to the corral",
+        "an older man reading a flyer taped inside the glass"
+      ],
+      "extras": [
+        "cart corrals painted to match the new sign colors",
+        "lot light poles with squared-off fixtures",
+        "repainted stall lines over a resurfaced lot",
+        "a metal bench under the walkway near the anchor",
+        "a newspaper vending box beside the anchor entrance",
+        "planted islands with low shrubs and mulch"
+      ],
+      "crowd": "packed"
+    },
     "default": {
       "narrative": "An ordinary 1985 American commercial street — bold primary-color signage, boxy cars, the first franchise logos among local shops.",
       "storefronts": [

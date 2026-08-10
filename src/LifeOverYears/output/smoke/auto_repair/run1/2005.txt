@@ -27,44 +27,46 @@ distort the source geometry.
 TRANSFORM TO 2005
 Post-9/11 era. An auto repair shop in 2005 — a check-engine scanner plugged into a customer's dashboard, a wall of aftermarket wheels, and a printed vinyl banner where hand-painted lettering used to be.
 
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
+
 PERIOD DETAILS
 - a printed banner advertising tire brands and a '$24.95 OIL CHANGE' promo, replacing the old painted sign
-- two roll-up bay doors, one open with a laptop-style scan tool plugged into a dashboard
-- a display wall of aftermarket wheels visible through the office glass
-- window signs: 'OIL CHANGE $24.95', 'BRAKES FROM $89.95'
+- LED price signs at gas stations
+- electronic message boards common
+- window signs: 'CHECK ENGINE LIGHT $59.95', 'BRAKES FROM $89.95'
+- a wall display of aftermarket wheels
 - a printed vinyl banner advertising tire brands
-- a stack of take-off wheels behind the building
 Typography: clean sans-serif, polished brand identities.
 
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 '$24.95 OIL CHANGE'
-'OIL CHANGE $24.95'
+'CHECK ENGINE LIGHT $59.95'
 'BRAKES FROM $89.95'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a driver waiting in the office, laptop bag beside him
-- a woman dropping off a minivan with two kids in the back seat
-- a grandmother clutching a coupon flyer at a bus bench
-Clothing: men in baggy jeans, trucker hats; women in layered tank tops, chunky highlights. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a mechanic closing a bay door at the end of a job
+- a woman on a cell phone waiting by the office window
+- an office worker clipped to a Bluetooth headset mid-conversation
+Clothing: men in baggy jeans, trucker hats; women in velour tracksuits, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 1 period vehicles, all different:
-- 2004-2008 Chrysler 300 — bold boxy retro chrome grille — silver
+- 2000-2006 Chevrolet Tahoe — full-size SUV peak era — black
 Parked with gaps. Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: all parked in the lot, nose-in to marked stalls, with an empty stall between them. No vehicle in the same spot as any other era.
+PLACEMENT: two nose-in near the building; the rest angled into stalls at the far edge of the lot. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines standard, cable and fiber lines on poles appearing
 
 DECAY
-- a stack of worn tires leaning against the side wall
 - the painted sign band faded, letters flaking at the edges
+- a hand-lettered service sign taped inside the office glass
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - maple tree at street corner: clearly smaller than in the base image — about 60% of its canopy there, thinner trunk
@@ -75,6 +77,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — early digital camera or Kodak/Fuji consumer film look.
 Color: neutral tones. Grain: low grain, early digital noise in shadows.
 Photorealistic — NOT black-and-white, no HDR.
+Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
 
 PRIVACY
 Blur all faces and license plates.

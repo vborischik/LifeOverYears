@@ -12,6 +12,12 @@ public sealed class GenerationContext
     // degenerates to a single cached brand chosen at the first era it is asked for.
     public IReadOnlyList<int> Years { get; init; } = Array.Empty<int>();
 
+    // True when each era is generated on top of the previous era's image rather
+    // than on the shared empty base. The uploaded photo is then already
+    // populated, so the era prompt has to clear the previous era's people and
+    // vehicles before placing its own — otherwise they accumulate down the chain.
+    public bool ChainedFromPreviousEra { get; init; }
+
     // Stores normalized base model names, so variants of the same vehicle
     // ("Ford F-150" vs "Ford F-150 Lightning") cannot co-exist within a run.
     public HashSet<string> UsedCarModels { get; } = new(StringComparer.OrdinalIgnoreCase);
@@ -183,12 +189,26 @@ public sealed class GenerationContext
             return SceneCondition;
         }
 
-        // Once decline has started, prefer it deepening over flattening out:
-        // a place that was declining in 2005 should look worse in 2015.
+        // Abandonment ends the story: once a place is derelict, the rank filter
+        // pins every later era there, so a run that abandons early spends the
+        // rest of itself showing the same boarded-up frame. Before the final era
+        // it stays possible but uncommon — this is the main thing keeping runs
+        // from all looking alike.
+        if (!IsLastEra && pool.Count > 1 && Random.NextDouble() >= EarlyAbandonChance)
+        {
+            var survivable = pool.Where(c => RankOf(c) < 2).ToList();
+            if (survivable.Count > 0)
+                pool = survivable;
+        }
+
+        // Once decline has started, prefer it deepening over flattening out — but
+        // as a tendency, not a certainty. Forcing it turned "declining" into a
+        // one-way gate: the very next era that offered "abandoned" took it, which
+        // is how 2015 ended up derelict in ~86% of runs.
         if (_conditionRank > 0)
         {
             var worse = pool.Where(c => RankOf(c) > _conditionRank).ToList();
-            if (worse.Count > 0)
+            if (worse.Count > 0 && Random.NextDouble() < DeclineBias())
                 pool = worse;
         }
 
@@ -212,6 +232,11 @@ public sealed class GenerationContext
         if (_conditionRank >= 1) _everDecayed = true;
         return SceneCondition;
     }
+
+    // How often a pre-finale era is allowed to reach for "abandoned" at all.
+    // Deliberately low: it is a terminal state, and reaching it early costs the
+    // run every era after it.
+    private const double EarlyAbandonChance = 0.15;
 
     private double DeclineBias()
     {

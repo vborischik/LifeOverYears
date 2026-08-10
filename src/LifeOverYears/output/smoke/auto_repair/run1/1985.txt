@@ -27,39 +27,38 @@ distort the source geometry.
 TRANSFORM TO 1985
 Reagan era prosperity. A neighborhood auto repair shop in 1985 — backlit sign letters over the bays, radial tires stacked out front, and a shop moving from carburetors to the first electronic engine diagnostics.
 
+CONDITION: busy — customers present, high activity, all pumps in use
+
 PERIOD DETAILS
 - a faded price board from a previous era, papered over with a new one reading 'BRAKES $59.95'
-- backlit plastic channel letters spelling 'AUTO REPAIR' across the sign band
-- a stack of radial tires displayed just outside the office door
-- window signs: 'RADIAL TIRES — 4 FOR $199', 'COMPUTERIZED TUNE-UP'
-- a metal parts cabinet with catalog binders on top
-- a corded phone visible on the office counter
+- electronic marquee signs appearing
+- large logo signs on pylons
+- window signs: 'OIL CHANGE $12.95', 'BRAKES $59.95'
+- a bell hose stretched across the apron
+- a faded painted sign ghosted beneath the newer backlit letters
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 'BRAKES $59.95'
-'AUTO REPAIR'
-'RADIAL TIRES — 4 FOR $199'
-'COMPUTERIZED TUNE-UP'
+'OIL CHANGE $12.95'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 5 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a mechanic sliding out from under a car on a creeper
-- a young apprentice organizing tools on a pegboard
-- a businessman with a briefcase and wide tie
-Clothing: men in shoulder pads in blazers, polo shirts with collars up; women in leg warmers, bright neon colors. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a mechanic torquing wheel lugs after a brake job
+- a man in a tie waiting on a bench, checking his watch
+- a jogger in a tracksuit and headband
+Clothing: men in shoulder pads in blazers, polo shirts with collars up; women in big permed hair, high-waisted jeans. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 6 period vehicles, all different:
-- 1980-1985 Cadillac Seville — sharp formal lines, bustleback — light blue
-- 1982-1986 Nissan Sentra — small economy boxy sedan — beige
-- 1981-1985 Ford Escort — small boxy economy hatchback — red
-- 1982-1992 Chevrolet Camaro — wedge-shaped sporty coupe — white
-- 1984-1989 Plymouth Voyager — boxy first-generation minivan — silver
-- 1984-1990 Dodge Caravan — first minivan, boxy — charcoal gray
+EXACTLY 5 period vehicles, all different:
+- 1978-1986 Ford Bronco — full-size boxy SUV, round headlights — burgundy
+- 1983-1987 Honda Accord — clean lines, pop-up headlights — white
+- 1984-1988 Pontiac Fiero — small wedge two-seater — red
+- 1979-1985 Ford LTD Country Squire — full-size woodgrain wagon — beige
+- 1981-1985 Ford Escort — small boxy economy hatchback — charcoal gray
 Parked with gaps. Where a model is listed with a year range, render the 1985 model year specifically — only styling, trim and features available in 1985, nothing introduced later. No vehicle newer than 1985.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
 PLACEMENT: all parked in the lot, nose-in to marked stalls, with gaps between them. No vehicle in the same spot as any other era.
@@ -77,6 +76,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — Kodacolor VR 200 or Fujicolor 100 look.
 Color: slightly cool tones compared to 1970s. Grain: moderate grain, cleaner than 1975.
 Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

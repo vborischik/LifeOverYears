@@ -27,6 +27,8 @@ distort the source geometry.
 TRANSFORM TO 2025
 Post-pandemic era. A thinly staffed independent auto repair shop in 2025 — one bay open, one dark, and most of the signage now generic printed vinyl rather than anything custom.
 
+CONDITION: abandoned — closed business, boarded windows, weeds through pavement cracks, weathered surfaces
+
 PERIOD DETAILS
 - every storefront closed and dark — no lit signs, no menu boards, no open businesses
 - faded remains of old signage still on the facade, lettering weathered and partly missing
@@ -44,15 +46,16 @@ ENVIRONMENT
 - utilities: overhead lines on existing poles in older commercial areas, fiber optic widespread
 
 DECAY
-- roofing material torn loose along the parapet, debris at the roof edge
-- graffiti tagged across the painted sign band
 - weeds and grass pushing through cracks in the concrete apron
+- roofing material torn loose along the parapet, debris at the roof edge
+- a wrecked car with its hood off left sitting at a bay door
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — digital — smartphone or mirrorless camera look.
 Color: high saturation. Grain: very clean, minimal to no noise.
 Photorealistic — NOT black-and-white, no HDR.
+Light: flat, even light under a grey overcast — subdued and cheerless, but plainly daytime; no fog, no rain, no darkness.
 
 PRIVACY
 Blur all faces and license plates.

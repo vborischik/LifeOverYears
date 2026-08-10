@@ -482,6 +482,58 @@
       ],
       "crowd": "packed"
     },
+    "shopping_center": {
+      "narrative": "A 1995 open-air shopping center holding steady — the anchor block refaced with a taller parapet, a video store and a discount clothier in the middle units.",
+      "storefronts": [
+        "the anchor block refaced with a taller stucco parapet and a new sign band",
+        "a discount clothing store filling two former inline units",
+        "a video store with a bright blue-and-yellow plastic sign",
+        "a stepped roofline stepping down twice toward the short end",
+        "an EIFS band in a lighter color wrapping the inline units",
+        "a nail salon with a neon 'OPEN' sign in the glass",
+        "a national bagel chain unit with a small patio rail",
+        "an internally lit pylon sign with four tenant panels",
+        "aluminum storefront doors under individual awnings",
+        "a drop-off lane striped along the front of the anchor"
+      ],
+      "window_signs": [
+        "TJ MAXX",
+        "BLOCKBUSTER VIDEO",
+        "OPEN 9-9",
+        "SALE"
+      ],
+      "people_activities": [
+        "a family leaving the video store with a stack of tapes",
+        "a woman pushing a cart toward a minivan",
+        "two teenagers reading the new release wall through the glass",
+        "a man carrying clothing bags to a sedan",
+        "a mother buckling a child into a car seat",
+        "a teenager pushing a train of carts across the lot",
+        "a couple deciding between two units at the pylon sign",
+        "a woman checking a receipt outside the clothing store",
+        "kids waiting on the curb while a parent returns tapes",
+        "a man drinking coffee outside the bagel unit",
+        "two friends walking the row with shopping bags",
+        "an older couple crossing the drop-off lane slowly",
+        "a girl practicing on rollerblades at the lot edge",
+        "a clerk restocking a display just inside the glass",
+        "a man loading a bulk package into a hatchback",
+        "a woman leaving the nail salon with her hands raised",
+        "shoppers cutting between the planted islands",
+        "a teenager on a payphone at the end of the walkway",
+        "a family sharing a bag of bagels on a bench",
+        "a delivery driver wheeling boxes to a storefront door"
+      ],
+      "extras": [
+        "a mostly full cart corral near the anchor doors",
+        "sealed and restriped asphalt across the lot",
+        "taller lot light poles with shoebox fixtures",
+        "planted islands with young ornamental trees",
+        "a painted crosswalk from the islands to the anchor",
+        "a metal bench and trash can under the walkway"
+      ],
+      "crowd": "packed"
+    },
     "default": {
       "narrative": "An ordinary 1995 American commercial street — backlit box signs, rounded cars, the video store era at full strength.",
       "storefronts": [

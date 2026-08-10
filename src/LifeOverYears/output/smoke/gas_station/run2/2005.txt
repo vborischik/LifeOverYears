@@ -27,42 +27,41 @@ distort the source geometry.
 TRANSFORM TO 2005
 Post-9/11 era. A 2005 gas station — big multi-island canopy, card readers at every pump, LED price sign, and a convenience store doing most of the business.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: busy — customers present, high activity, all pumps in use
 
 PERIOD DETAILS
-- large multi-island canopies
-- large convenience store with energy-drink and phone-card ads in the glass
+- coin-operated air machine near the back of the lot
+- wide multi-island canopy with branded fascia lighting
 - price sign showing gas around $2.30
-- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
-- window signs: 'PHONE CARDS SOLD HERE', 'ANY SIZE FOUNTAIN DRINK 99¢'
-- ribbon magnets on the door of the service office
+- main sign: "Shell" branded gas station — Shell pole sign with price display and Shell colors on the canopy fascia
+- window signs: 'CIGARETTES $3.75 PACK', 'ENERGY DRINKS 2 FOR $4'
+- trash cans with paper-towel dispensers between the pumps
 - a windshield-washer fluid display rack by the pumps
 Typography: clean sans-serif, polished brand identities.
 
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Citgo'
-'PHONE CARDS SOLD HERE'
-'ANY SIZE FOUNTAIN DRINK 99¢'
+'Shell'
+'CIGARETTES $3.75 PACK'
+'ENERGY DRINKS 2 FOR $4'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 5 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a teenager filling tires at the coin-operated air machine
-- a clerk restocking the window display inside
-- a woman comparing ringtones on her flip phone with a friend
-Clothing: men in cargo shorts, graphic tees; women in layered tank tops, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+EXACTLY 6 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
+- a man topping off washer fluid from a jug in his trunk
+- a woman inserting her card at the pump reader
+- an office worker clipped to a Bluetooth headset mid-conversation
+Clothing: men in frosted tips hair, graphic tees; women in layered tank tops, chunky highlights. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2002-2006 Toyota Camry — smooth conservative mid-size — white
-- 2000-2006 Chevrolet Tahoe — full-size SUV peak era — gold
-- 2004-2008 Pontiac Grand Prix — sporty sedan plastic cladding — black
-- 2003-2009 Hummer H2 — massive military-styled SUV — dark red
+EXACTLY 3 period vehicles, all different:
+- 1998-2005 Volkswagen New Beetle — retro bubble shape — white
+- 2005-2010 Chevrolet Cobalt — compact economy sedan — gold
+- 2001-2007 Toyota Highlander — early crossover — dark blue
 Parked with gaps. Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: one nose-in close to the entrance; the rest spread across stalls toward the lot's far edge. No vehicle in the same spot as any other era.
+PLACEMENT: all parked in the lot, nose-in to marked stalls, with an empty stall between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn arrows
@@ -78,6 +77,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — early digital camera or Kodak/Fuji consumer film look.
 Color: neutral tones. Grain: low grain, early digital noise in shadows.
 Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

@@ -96,8 +96,8 @@ public static class PromptSmokeTest
         await SaveRun(unknownScene.SceneType,   1, new Dictionary<int, Prompt> { { 1985, unknownPrompt } });
 
         // d) Checks C1–C25
-        // Pass is tri-state: true PASS, false FAIL, null SKIP. A parked check
-        // reports SKIP so it stays visible in the report — never a silent PASS.
+        // Pass is tri-state: true PASS, false FAIL, null DISABLED. A parked check
+        // reports DISABLED so it stays visible in the report — never a silent PASS.
         var findings = new List<(string Id, string Desc, bool? Pass, string Detail)>();
 
         DoC1 (eras,                                                            findings);
@@ -136,29 +136,33 @@ public static class PromptSmokeTest
         DoC34(eras, findings);
         DoC35(eras, findings);
         DoC36(dtRun1, dtRun2, gasRun1, smRun1, arRun1, unknownPrompt, findings);
-        await DoC37(promptService, gasScene, downtownScene, stripMallScene, autoRepairScene, gasRun1, findings);
+        await DoC37(promptService, dataService, gasScene, downtownScene, stripMallScene, autoRepairScene, gasRun1, findings);
         await DoC38(promptService, gasScene, downtownScene, stripMallScene, autoRepairScene,
             gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
         DoC39(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
         await DoC40(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
         await DoC41(dataService, gasScene, downtownScene, stripMallScene, autoRepairScene, unknownScene, findings);
+        await DoC43(promptService, eras, gasScene, findings);
+        DoC44(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, eras, findings);
+        DoC45(eras, logger, findings);
         await DoC42(promptService, eras, findings);
-        DoC43(eras, findings);
+        await DoC46(promptService, eras, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, findings);
+        DoC47(eras, findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
 
         int passed  = findings.Count(f => f.Pass == true);
         int failed  = findings.Count(f => f.Pass == false);
-        int skipped = findings.Count(f => f.Pass is null);
-        int total   = findings.Count - skipped;   // skipped checks assert nothing
-        var skipNote = skipped > 0 ? $", {skipped} skipped" : "";
+        int disabled = findings.Count(f => f.Pass is null);
+        int total    = findings.Count - disabled;   // disabled checks assert nothing
+        var disabledNote = disabled > 0 ? $", {disabled} disabled" : "";
         Console.WriteLine();
-        Console.WriteLine($"Smoke test: {passed}/{total} checks passed{skipNote}" +
+        Console.WriteLine($"Smoke test: {passed}/{total} checks passed{disabledNote}" +
                           (failed == 0 ? "" : " — FAILURES DETECTED"));
         Console.WriteLine("See output/smoke/report.md for full details.");
-        logger.LogInformation("[Smoke] Done: {Passed}/{Total} checks passed, {Skipped} skipped",
-            passed, total, skipped);
+        logger.LogInformation("[Smoke] Done: {Passed}/{Total} checks passed, {Disabled} disabled",
+            passed, total, disabled);
 
         return failed == 0 ? 0 : 1;
     }
@@ -885,8 +889,8 @@ public static class PromptSmokeTest
         // f.Add(("C9", "PRESERVE block contains all building types and immutable elements verbatim",
         //     errs.Count == 0, errs.Count == 0 ? "All building types and immutable elements present" : Join(errs)));
 
-        f.Add(("C9", "PRESERVE block contains all building types and immutable elements verbatim",
-            null, "parked while the short era PRESERVE is evaluated — restore together with the BuildPreserveBlock call in PromptService line 89"));
+        f.Add(("C9", "DISABLED — PRESERVE block contains all building types and immutable elements verbatim",
+            null, "disabled while the short era PRESERVE is evaluated — restore together with the BuildPreserveBlock call in PromptService line 89"));
     }
 
     private static void DoC10(
@@ -1109,9 +1113,10 @@ public static class PromptSmokeTest
         {
             if (!prompt.Text.Contains(populate))
                 errs.Add($"{label}/{year}: missing populate-empty-base header");
-            // An abandoned era is deserted — the PEOPLE block collapses to the
-            // no-people line and carries no sidewalk rule.
-            if (prompt.SceneCondition != "abandoned" && !prompt.Text.Contains(sidewalk))
+            // Derelict eras carry no sidewalk rule: abandoned collapses to the
+            // no-people line, and squatted places its handful of figures
+            // explicitly, so the generic zone rule has nothing to govern.
+            if (prompt.SceneCondition is not ("abandoned" or "squatted") && !prompt.Text.Contains(sidewalk))
                 errs.Add($"{label}/{year}: missing sidewalk rule");
         }
 
@@ -1225,6 +1230,23 @@ public static class PromptSmokeTest
                     errs.Add($"{label}/{year}: no sampled extras line present");
                 if (derelict && WindowSignsLine.IsMatch(prompt.Text))
                     errs.Add($"{label}/{year}: {prompt.SceneCondition} but still has a 'window signs:' line");
+
+                // people_activities are the customers and staff of a working
+                // business — a clerk restocking a cooler, someone refuelling. At a
+                // dead station they contradict the condition outright, and the
+                // image model resolves the contradiction by reopening the place.
+                // Nothing asserted this before, which is how a squatted 2025
+                // shipped with a woman refuelling and a man wiping a windshield.
+                if (derelict && sc.PeopleActivities is { Count: > 0 } acts)
+                    foreach (var a in acts.Where(a => prompt.Text.Contains($"- {a}")))
+                        errs.Add($"{label}/{year}: {prompt.SceneCondition} but still lists live-business activity '{a}'");
+                if (derelict && prompt.Text.Contains("Clothing:"))
+                    errs.Add($"{label}/{year}: {prompt.SceneCondition} but still specifies clothing");
+                if (derelict && prompt.Text.Contains("no one refuels without a car present"))
+                    errs.Add($"{label}/{year}: {prompt.SceneCondition} but still carries the refuelling rule");
+                // people_mix survives a squatted era: an ordinary passer-by still
+                // walks past a dead lot, they just have no business with it. Only
+                // abandoned drops the line, since it has no people at all.
                 if (prompt.SceneCondition != "abandoned" &&
                     eras[year].PeopleMix is { Count: > 0 } mix && !mix.Any(m => prompt.Text.Contains($"- {m}")))
                     errs.Add($"{label}/{year}: no people_mix line present");
@@ -2245,11 +2267,23 @@ public static class PromptSmokeTest
     // byte-identical (asserted via their unchanged PRESERVE header).
     private static async Task DoC37(
         IPromptService promptService,
+        IDataService dataService,
         SceneDna gasScene, SceneDna downtownScene, SceneDna stripMallScene, SceneDna autoRepairScene,
         Dictionary<int, Prompt> gasRun1,
         List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
+
+        const string genericPhrase = "an ordinary American location";
+        var phrases = await dataService.LoadSceneTypePhrasesAsync();
+
+        // Every scene type that has a caption voice must also have a base-prompt
+        // phrase. Without this, a scene type added later silently falls back to
+        // the generic wording — the exact failure the phrase exists to prevent,
+        // and invisible if the hardcoded list below is all that drives the check.
+        foreach (var sceneType in CaptionService.AnglesByScene.Keys)
+            if (!phrases.ContainsKey(sceneType))
+                errs.Add($"scene type '{sceneType}' has a caption voice but no scene-types.txt entry");
 
         foreach (var (scene, label) in new[]
         {
@@ -2257,9 +2291,30 @@ public static class PromptSmokeTest
             (downtownScene,   "downtown_street"),
             (stripMallScene,  "strip_mall"),
             (autoRepairScene, "auto_repair"),
+            (MakeMallScene(), "mall"),
         })
         {
-            var text = await promptService.BuildBaseAsync(scene);
+            var text = await promptService.BuildBaseAsync(scene, Years[0]);
+
+            // The base is the only prompt that builds geometry from nothing, so it
+            // must name the kind of place. Without this the model infers the type
+            // from immutable elements that describe a canopy or a pylon without
+            // ever saying "gas station".
+            if (text.Contains("{SCENE_TYPE_PHRASE}"))
+                errs.Add($"{label}: base prompt still contains an unsubstituted {{SCENE_TYPE_PHRASE}}");
+            if (!phrases.TryGetValue(label, out var expectedPhrase))
+                errs.Add($"{label}: no scene-types.txt entry");
+            else if (!text.Contains(expectedPhrase))
+                errs.Add($"{label}: base prompt missing its scene type phrase '{expectedPhrase}'");
+            if (text.Contains(genericPhrase))
+                errs.Add($"{label}: base prompt still says '{genericPhrase}' for a known scene type");
+
+            // The base is dated from the run's earliest year, so an undated base
+            // does not render as present-day and force every early era to undo it.
+            if (text.Contains("{PERIOD_BLOCK}"))
+                errs.Add($"{label}: base prompt still contains an unsubstituted {{PERIOD_BLOCK}}");
+            if (!text.Contains($"PERIOD — build the scene as it stood in {Years[0]}"))
+                errs.Add($"{label}: base prompt is not dated to the base year {Years[0]}");
 
             // Geometry actually made it in, in the same shape BuildPreserveBlock emits.
             foreach (var b in scene.Geometry.Buildings)
@@ -2297,7 +2352,7 @@ public static class PromptSmokeTest
 
         // The base-prompt half above stays live and still asserts real behaviour;
         // only the era-header half is parked, so this reports PASS/FAIL as normal.
-        f.Add(("C37", "Synthetic base prompts carry scene geometry with no source-photo wording (era PRESERVE header assertion parked)",
+        f.Add(("C37", "Synthetic base prompts name their scene type and carry scene geometry, with no source-photo wording (era PRESERVE header assertion parked)",
             errs.Count == 0, errs.Count == 0
                 ? "Synthetic base prompts well-formed; era header assertion parked while the short era PRESERVE is evaluated — restore together with the BuildPreserveBlock call in PromptService line 89"
                 : Join(errs)));
@@ -2342,7 +2397,7 @@ public static class PromptSmokeTest
             (autoRepairScene, "auto_repair"),
         })
         {
-            var text = await promptService.BuildBaseAsync(scene);
+            var text = await promptService.BuildBaseAsync(scene, Years[0]);
             foreach (var tree in scene.Environment.Trees)
                 if (!text.Contains($"{tree.Type} tree at {tree.Position}"))
                     errs.Add($"{label}: synthetic base missing tree line for '{tree.Type}' at '{tree.Position}'");
@@ -2566,6 +2621,168 @@ public static class PromptSmokeTest
             errs.Count == 0, errs.Count == 0 ? "Caption assembly varied and fully substituted" : Join(errs)));
     }
 
+    // Chained eras are generated on top of the previous year's finished image, so
+    // the uploaded photo already has that year's people and traffic in it. If the
+    // prompt does not say to clear them first, figures accumulate down the chain
+    // and the last year ends up with six eras' worth of people in one frame.
+    private static async Task DoC43(
+        IPromptService promptService,
+        Dictionary<int, EraProfile> eras,
+        SceneDna gasScene,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        const string clearing = "remove EVERY person, vehicle and bicycle already in it";
+        const string emptyClaim = "The street in the source\nis empty";
+
+        foreach (var chained in new[] { false, true })
+        {
+            var ctx = new GenerationContext
+            {
+                Random = new Random(42), TotalEras = Years.Length, Years = Years,
+                ChainedFromPreviousEra = chained
+            };
+            foreach (var year in Years)
+            {
+                var prompt = await promptService.BuildAsync(gasScene, eras[year], ctx);
+                var label  = $"chained={chained}/{year}";
+
+                if (prompt.Text.Contains("{BASE_NOTE}"))
+                    errs.Add($"{label}: unsubstituted {{BASE_NOTE}}");
+
+                if (chained)
+                {
+                    if (!prompt.Text.Contains(clearing))
+                        errs.Add($"{label}: chained prompt does not clear the previous era's people and vehicles");
+                    // Claiming the source is empty is false once chained, and the
+                    // model resolves the contradiction by keeping what it sees.
+                    if (prompt.Text.Contains(emptyClaim))
+                        errs.Add($"{label}: chained prompt still claims the source street is empty");
+                }
+                else
+                {
+                    if (!prompt.Text.Contains(emptyClaim))
+                        errs.Add($"{label}: unchained prompt lost the empty-source wording");
+                    if (prompt.Text.Contains(clearing))
+                        errs.Add($"{label}: unchained prompt carries the chained clearing instruction");
+                }
+            }
+        }
+
+        f.Add(("C43", "Chained eras are told to clear the previous year's people and vehicles; unchained eras keep the empty-source wording",
+            errs.Count == 0, errs.Count == 0 ? "Base note matches the chaining mode in every era" : Join(errs)));
+    }
+
+    // Weather carries the arc: living eras look like a day worth remembering,
+    // and only the dead ones go grey. A run that is overcast throughout reads as
+    // apocalyptic rather than nostalgic, and the loss at the end lands against
+    // nothing.
+    private static void DoC44(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
+        Prompt unknownPrompt,
+        Dictionary<int, EraProfile> eras,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt))
+        {
+            var light = prompt.Text.Split('\n').FirstOrDefault(l => l.StartsWith("Light:"));
+            if (light is null)
+            {
+                errs.Add($"{label}/{year}: no Light: line");
+                continue;
+            }
+
+            var derelict = prompt.SceneCondition is "abandoned" or "squatted";
+            var grey     = light.Contains("grey overcast");
+
+            if (derelict && !grey)
+                errs.Add($"{label}/{year}: {prompt.SceneCondition} but light is not the subdued variant");
+            if (!derelict && grey)
+                errs.Add($"{label}/{year}: {prompt.SceneCondition} (a living era) is shot under grey overcast");
+
+            // Never a mood piece: the frame has to stay a legible daytime record.
+            foreach (var banned in new[] { "fog", "rain", "storm", "night", "darkness" })
+                if (light.Contains(banned, StringComparison.OrdinalIgnoreCase)
+                    && !light.Contains($"no {banned}", StringComparison.OrdinalIgnoreCase))
+                    errs.Add($"{label}/{year}: light line calls for '{banned}'");
+
+            // A monochrome era must not be handed colour wording.
+            if (eras.TryGetValue(year, out var era)
+                && era.Photography.ColorMode == "black_and_white"
+                && (light.Contains("colour", StringComparison.OrdinalIgnoreCase)
+                    || light.Contains("warm", StringComparison.OrdinalIgnoreCase)))
+                errs.Add($"{label}/{year}: black-and-white era has colour wording in its light line");
+        }
+
+        f.Add(("C44", "Every prompt sets its light from the condition: living eras get open daylight, only derelict eras go grey, and no prompt asks for fog, rain or night",
+            errs.Count == 0, errs.Count == 0 ? "Light matches condition in every prompt" : Join(errs)));
+    }
+
+    // Condition variety across seeds. The arc used to collapse: "declining"
+    // forced the next era that offered "abandoned" to take it, so 2015 came out
+    // derelict in ~86% of runs and every video told the same story at the same
+    // moment. This measures the distribution rather than one run, because a
+    // single fixture can look fine while the policy behind it is degenerate.
+    private static void DoC45(
+        Dictionary<int, EraProfile> eras,
+        ILogger logger,
+        List<(string, string, bool?, string)> f)
+    {
+        const int seeds = 500;
+        const double maxAbandoned2015 = 0.35;
+        const double minEverDeclines  = 0.70;
+        const int    minTrajectories  = 20;
+
+        var errs = new List<string>();
+        var summary = new List<string>();
+
+        foreach (var sceneType in new[] { "downtown_street", "strip_mall", "auto_repair", "gas_station" })
+        {
+            var abandoned2015 = 0;
+            var everDeclined  = 0;
+            var trajectories  = new HashSet<string>();
+
+            for (var seed = 0; seed < seeds; seed++)
+            {
+                var ctx  = new GenerationContext
+                    { Random = new Random(seed), TotalEras = Years.Length, Years = Years };
+                var path = new List<string>();
+                foreach (var year in Years)
+                {
+                    ctx.BeginEra();
+                    path.Add(ctx.PickSceneCondition(eras[year].AllowedSceneConditions, sceneType));
+                }
+
+                if (path[Array.IndexOf(Years, 2015)] == "abandoned") abandoned2015++;
+                if (path.Any(c => c is "declining" or "abandoned" or "squatted")) everDeclined++;
+                trajectories.Add(string.Join(">", path));
+            }
+
+            var rate2015 = abandoned2015 / (double)seeds;
+            var declines = everDeclined  / (double)seeds;
+            summary.Add($"{sceneType}: 2015 abandoned {rate2015:P0}, ever declines {declines:P0}, {trajectories.Count} trajectories");
+
+            if (rate2015 > maxAbandoned2015)
+                errs.Add($"{sceneType}: 2015 is abandoned in {rate2015:P0} of runs (max {maxAbandoned2015:P0}) — the arc collapses to one story");
+            // The opposite failure: tuning decay away entirely leaves nothing to
+            // lose, and these videos exist for the loss.
+            if (declines < minEverDeclines)
+                errs.Add($"{sceneType}: only {declines:P0} of runs ever decline (min {minEverDeclines:P0})");
+            if (trajectories.Count < minTrajectories)
+                errs.Add($"{sceneType}: only {trajectories.Count} distinct trajectories across {seeds} seeds");
+        }
+
+        logger.LogInformation("[Smoke] C45 condition spread: {Summary}", string.Join(" | ", summary));
+
+        f.Add(("C45", $"Across {seeds} seeds no scene type abandons 2015 more than {maxAbandoned2015:P0} of the time, at least {minEverDeclines:P0} of runs still decline, and trajectories stay varied",
+            errs.Count == 0, errs.Count == 0 ? string.Join(" | ", summary) : Join(errs)));
+    }
+
     // Mirrors CaptionService's own lookup: scene-specific file, else base.
     private static async Task<string> LoadBodiesFor(IDataService dataService, string? sceneType)
     {
@@ -2619,7 +2836,7 @@ public static class PromptSmokeTest
     // ends on "abandoned". Drives PickSceneCondition directly with each era's
     // real allowed_scene_conditions, exercising the same call order
     // PromptService uses (BeginEra then PickSceneCondition, once per era).
-    private static void DoC43(
+    private static void DoC47(
         Dictionary<int, EraProfile> eras,
         List<(string, string, bool?, string)> f)
     {
@@ -2657,8 +2874,44 @@ public static class PromptSmokeTest
             }
         }
 
-        f.Add(("C43", "Condition rank never skips 0 -> 2 between consecutive eras; a run that ever decayed never ends on 'abandoned'",
+        f.Add(("C47", "Condition rank never skips 0 -> 2 between consecutive eras; a run that ever decayed never ends on 'abandoned'",
             errs.Count == 0, errs.Count == 0 ? "Trajectory steps one rank at a time and resolves across 40 seeds x 4 scene types" : Join(errs)));
+    }
+
+    // The CONDITION line is what carries the decline arc into the image. Every
+    // scene type that picks a condition must print it — auto_repair once picked
+    // one and silently dropped the line, because the count logic and the
+    // emit-side list were two separate literals. Both now ask SupportsCondition,
+    // and this check fails if they ever diverge again. mall is the counter-case:
+    // it never picks a condition, so it must never print the line.
+    private static async Task DoC46(
+        IPromptService promptService,
+        Dictionary<int, EraProfile> eras,
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        const string conditionLine = "CONDITION: ";
+
+        // These four runs are exactly the scene types SupportsCondition covers.
+        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2))
+            if (!prompt.Text.Contains(conditionLine))
+                errs.Add($"{label}/{year}: condition-bearing scene type emitted no '{conditionLine}' line");
+
+        var mallScene = MakeMallScene();
+        foreach (var year in new[] { 1975, 1995 })
+        {
+            var ctx    = new GenerationContext { Random = new Random(42), TotalEras = 1 };
+            var prompt = await promptService.BuildAsync(mallScene, eras[year], ctx);
+            if (prompt.Text.Contains(conditionLine))
+                errs.Add($"mall/{year}: emitted a '{conditionLine}' line for a scene type that has no condition arc");
+        }
+
+        f.Add(("C46", "Every condition-bearing scene type prints its CONDITION line; mall (no condition arc) prints none",
+            errs.Count == 0, errs.Count == 0 ? "CONDITION line present for gas_station/downtown_street/strip_mall/auto_repair, absent for mall" : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────
@@ -2682,7 +2935,7 @@ public static class PromptSmokeTest
         sb.AppendLine("|-------|-------------|--------|--------|");
         foreach (var (id, desc, pass, detail) in findings)
         {
-            var status = pass switch { true => "✅ PASS", false => "❌ FAIL", null => "⏭️ SKIP" };
+            var status = pass switch { true => "✅ PASS", false => "❌ FAIL", null => "\u26D4 DISABLED" };
             var safeDetail = detail.Replace("|", "\\|");
             sb.AppendLine($"| {id} | {desc} | {status} | {safeDetail} |");
         }
@@ -2718,7 +2971,7 @@ public static class PromptSmokeTest
         logger.LogInformation("[Smoke] Check summary:");
         foreach (var (id, _, pass, detail) in findings)
             logger.LogInformation("[Smoke]   {Id} {Status}: {Detail}",
-                id, pass switch { true => "PASS", false => "FAIL", null => "SKIP" }, detail);
+                id, pass switch { true => "PASS", false => "FAIL", null => "DISABLED" }, detail);
     }
 
     private static string Join(IEnumerable<string> items) => string.Join("; ", items);

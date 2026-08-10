@@ -235,9 +235,11 @@ static async Task<int> RunCollectAsync(
         var pending = new List<int>();
         foreach (var year in years)
         {
-            var outputPath = Path.Combine(imagesDir, $"{year}.png");
-            if (File.Exists(outputPath))
+            // A hand-corrected "{year}-clean.png" counts as delivered too, so
+            // collect does not keep chasing a year that is already satisfied.
+            if (VideoAssemblyRunner.FindEraImage(imagesDir, year) is not null)
                 continue;
+            var outputPath = Path.Combine(imagesDir, $"{year}.png");
 
             if (await provider.TryCollectAsync(jobsDir, year, outputPath))
                 logger.LogInformation("Collected {Year}", year);

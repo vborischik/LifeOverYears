@@ -27,29 +27,53 @@ distort the source geometry.
 TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 main street mid-revival — the video store replaced by a phone repair shop, third-wave coffee and a vape shop, smartphones in every hand.
 
-CONDITION: abandoned — closed business, boarded windows, weeds through pavement cracks, weathered surfaces
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- every storefront closed and dark — no lit signs, no menu boards, no open businesses
-- faded remains of old signage still on the facade, lettering weathered and partly missing
-- plywood over the ground-floor windows, doors chained shut
-- the unit where the store was, a rectangular patch of less-faded wall above the door where the sign board was removed, anchor holes still visible, no lettering at all
-No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.
+- a liquor store still open, its lit window the brightest thing in the row
+- a tax preparation and check-cashing office still open a few doors along, plain lettering, bars on the window
+- most of the other units dark behind the glass, several papered over from the inside
+- TOWN DINER with 'COFFEE $2.25' chalked on a menu board
+- barber shop with its spinning barber pole, now billed as a 'classic barbershop'
+- vape shop with a bright 'VAPE — E-CIGS' LED window sign
+- window signs: 'BUY ONE GET ONE 50% OFF', 'CRAFT LATTE $4.50'
+- chalkboard sandwich-board signs outside the cafes
+- a food truck parked mid-block
+Typography: minimalist flat sans-serif, simplified modern logos.
+
+
+SIGNAGE RESTRICTION
+The only readable text anywhere in the image is:
+'COFFEE $2.25'
+'classic barbershop'
+'VAPE — E-CIGS'
+'BUY ONE GET ONE 50% OFF'
+'CRAFT LATTE $4.50'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-NO people anywhere — the place is completely deserted.
+EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- of these, 3 people waiting outside the liquor store for someone, not going in — keeping to themselves, not looking at the camera
+- a woman comparing yoga class schedules on the studio's window sign
+- a grandmother reading a menu posted outside the taproom
+- a grandmother video-chatting with a tablet held at arm's length
+Clothing: men in boat shoes, beards; women in infinity scarves, ankle boots. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-NO vehicles anywhere — empty lot, no parked or moving cars.
+EXACTLY 2 period vehicles, all different:
+- 2014-2019 Nissan Rogue — popular compact crossover — white
+- 2011-2016 Kia Optima — stylish mid-size, sporty — gray
+Parked with gaps. Where a model is listed with a year range, render the 2015 model year specifically — only styling, trim and features available in 2015, nothing introduced later. No vehicle newer than 2015.
+Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
+PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines still on wooden poles along the street, fiber optic and cable bundles added to the existing poles
 
 DECAY
-- an accordion scissor gate padlocked across a doorway
-- a torn vinyl banner sagging from the facade
-- rust streaks below the old cornice bolts
+- an old sign band painted over, the previous lettering still faintly readable
+- a faded painted wall ad showing through the brick
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - oak tree at sidewalk left near corner: slightly smaller than in the base image — about 90% of its canopy there
@@ -60,6 +84,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — digital — DSLR or smartphone camera look.
 Color: high saturation. Grain: clean, minimal noise.
 Photorealistic — NOT black-and-white, no HDR.
+Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
 
 PRIVACY
 Blur all faces and license plates.

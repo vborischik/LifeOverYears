@@ -17,6 +17,7 @@ public sealed class Pipeline
     private readonly IVideoService _video;
     private readonly ICaptionService _caption;
     private readonly string _baseMode;
+    private readonly bool _eraChaining;
     private readonly ILogger<Pipeline> _logger;
 
     public Pipeline(
@@ -29,6 +30,7 @@ public sealed class Pipeline
         IVideoService video,
         ICaptionService caption,
         string baseMode,
+        bool eraChaining,
         ILogger<Pipeline> logger)
     {
         _vision = vision;
@@ -40,6 +42,7 @@ public sealed class Pipeline
         _video = video;
         _caption = caption;
         _baseMode = baseMode;
+        _eraChaining = eraChaining;
         _logger = logger;
     }
 
@@ -67,7 +70,11 @@ public sealed class Pipeline
 
         // Step 2 — Prompt per year (one GenerationContext shared across all years:
         // guarantees no car model repeats between the images of the same scene)
-        var context = new GenerationContext { Random = new Random(), TotalEras = years.Count, Years = years };
+        var context = new GenerationContext
+        {
+            Random = new Random(), TotalEras = years.Count, Years = years,
+            ChainedFromPreviousEra = _eraChaining
+        };
         var prompts = new Dictionary<int, Prompt>();
         foreach (var year in years)
         {
@@ -87,7 +94,7 @@ public sealed class Pipeline
         string basePath;
         if (string.Equals(_baseMode, "synthetic", StringComparison.OrdinalIgnoreCase))
         {
-            var basePrompt = await _prompt.BuildBaseAsync(sceneDna);
+            var basePrompt = await _prompt.BuildBaseAsync(sceneDna, years.Min());
             await File.WriteAllTextAsync(Path.Combine(run.PromptsDir, "base_synthetic.txt"), basePrompt);
             basePath = Path.Combine(run.Root, "base_synthetic.png");
             await _images.SynthesizeBaseAsync(basePrompt, basePath);
@@ -102,46 +109,91 @@ public sealed class Pipeline
             _logger.LogInformation("Step 3a complete — clean base: {Path}", basePath);
         }
 
-        // Step 3b — submit one generation job per year; job state lives in
-        // run.JobsDir.
-        foreach (var year in years)
+        // Step 3b — chained mode: each era is generated on top of the previous
+        // era's finished image instead of the shared base, so the place carries
+        // forward and stays recognisable across the run. Necessarily sequential:
+        // year N+1 cannot be submitted until year N exists.
+        if (_eraChaining)
         {
-            await _images.SubmitEraAsync(basePath, prompts[year].Text, year, run.JobsDir);
-            _logger.LogInformation("Submitted {Year}", year);
-        }
-
-        // Step 3c — unbounded wait on the run-folder files. A year is done the
-        // moment images/{year}.png exists, regardless of who put it there: the
-        // provider's collect call or a human dropping the file in. A throwing
-        // provider call aborts the run with its error.
-        _logger.LogInformation(
-            "Waiting for era images in {ImagesDir} — drop files manually or let the provider deliver; checking every 60s",
-            run.ImagesDir);
-        List<int>? lastLogged = null;
-        while (true)
-        {
-            var missing = new List<int>();
+            string chainBase = basePath;
             foreach (var year in years)
             {
-                var imagePath = Path.Combine(run.ImagesDir, $"{year}.png");
-                if (File.Exists(imagePath))
+                // "{year}.png" or a hand-corrected "{year}-clean.png" — either
+                // counts as the year being done, and the chain continues from
+                // whichever is there.
+                var existing = VideoAssemblyRunner.FindEraImage(run.ImagesDir, year);
+                if (existing is not null)
+                {
+                    _logger.LogInformation("{Year} already present ({File}) — chaining from it",
+                        year, Path.GetFileName(existing));
+                    chainBase = existing;
                     continue;
-                if (!await _images.TryCollectAsync(run.JobsDir, year, imagePath))
-                    missing.Add(year);
+                }
+
+                await _images.SubmitEraAsync(chainBase, prompts[year].Text, year, run.JobsDir);
+                _logger.LogInformation("Submitted {Year} (chained from {Base})",
+                    year, Path.GetFileName(chainBase));
+
+                // Same escape hatch as the parallel path: the year is done the
+                // moment the file exists, whoever put it there.
+                var writeTarget = Path.Combine(run.ImagesDir, $"{year}.png");
+                while ((existing = VideoAssemblyRunner.FindEraImage(run.ImagesDir, year)) is null)
+                {
+                    if (await _images.TryCollectAsync(run.JobsDir, year, writeTarget))
+                        break;
+                    _logger.LogInformation("Waiting for {Year} before the next era can start", year);
+                    await Task.Delay(TimeSpan.FromSeconds(60));
+                }
+
+                chainBase = VideoAssemblyRunner.FindEraImage(run.ImagesDir, year) ?? writeTarget;
             }
 
-            if (missing.Count == 0)
-                break;
-
-            if (lastLogged is null || !missing.SequenceEqual(lastLogged))
-            {
-                _logger.LogInformation("Waiting for images: {Count} missing ({Years})",
-                    missing.Count, string.Join(", ", missing));
-                lastLogged = missing;
-            }
-            await Task.Delay(TimeSpan.FromSeconds(60));
+            _logger.LogInformation("Step 3 complete — all {Count} era images present (chained)", years.Count);
         }
-        _logger.LogInformation("Step 3 complete — all {Count} era images present", years.Count);
+        else
+        {
+            // Submit one generation job per year; job state lives in run.JobsDir.
+            foreach (var year in years)
+            {
+                await _images.SubmitEraAsync(basePath, prompts[year].Text, year, run.JobsDir);
+                _logger.LogInformation("Submitted {Year}", year);
+            }
+
+            // Step 3c — unbounded wait on the run-folder files. A year is done the
+            // moment images/{year}.png exists, regardless of who put it there: the
+            // provider's collect call or a human dropping the file in. A throwing
+            // provider call aborts the run with its error.
+            _logger.LogInformation(
+                "Waiting for era images in {ImagesDir} — drop files manually or let the provider deliver; checking every 60s",
+                run.ImagesDir);
+            List<int>? lastLogged = null;
+            while (true)
+            {
+                var missing = new List<int>();
+                foreach (var year in years)
+                {
+                    // A hand-corrected "{year}-clean.png" counts as the year
+                    // being delivered, exactly like "{year}.png".
+                    if (VideoAssemblyRunner.FindEraImage(run.ImagesDir, year) is not null)
+                        continue;
+                    var imagePath = Path.Combine(run.ImagesDir, $"{year}.png");
+                    if (!await _images.TryCollectAsync(run.JobsDir, year, imagePath))
+                        missing.Add(year);
+                }
+
+                if (missing.Count == 0)
+                    break;
+
+                if (lastLogged is null || !missing.SequenceEqual(lastLogged))
+                {
+                    _logger.LogInformation("Waiting for images: {Count} missing ({Years})",
+                        missing.Count, string.Join(", ", missing));
+                    lastLogged = missing;
+                }
+                await Task.Delay(TimeSpan.FromSeconds(60));
+            }
+            _logger.LogInformation("Step 3 complete — all {Count} era images present", years.Count);
+        }
 
         // Step 4 — stamp + assemble, the same tail 'collect' and 'assemble' use.
         var (_, video) = await VideoAssemblyRunner.RunAsync(

@@ -27,42 +27,42 @@ distort the source geometry.
 TRANSFORM TO 2025
 Post-pandemic era. A 2025 fuel stop — LED canopy, full-color digital price sign, and a convenience store selling fresh food.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: restored — renovated appearance, modern updates on original structure
 
 PERIOD DETAILS
-- pay-at-pump screens with video ads
-- drive-through coffee lane attached to the store
+- free air and vacuum station at the lot edge
+- drive-through digital menu boards with AI ordering
 - price sign showing gas around $3.40
-- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
-- window signs: 'MEMBERS SAVE 10¢/GAL', 'HOT PIZZA SLICES $2.99'
-- a kick scooter leaning by the store wall
-- stacked delivery boxes by the store door
+- main sign: "Chevron" branded gas station — Chevron pole sign with price display and Chevron colors on the canopy fascia
+- window signs: 'MEMBERS SAVE 10¢/GAL', 'SCAN & GO — SKIP THE LINE'
+- outdoor cafe barriers with planters by the coffee lane
+- QR-code stickers on the pump screens
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Citgo'
+'Chevron'
 'MEMBERS SAVE 10¢/GAL'
-'HOT PIZZA SLICES $2.99'
+'SCAN & GO — SKIP THE LINE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 7 people TOTAL: 3 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
-- a clerk restocking the grab-and-go cooler behind the glass
-- a teenager tapping a smartwatch to pay at the pump
-- a teenager gliding by on a skateboard
-Clothing: men in chunky sneakers, bucket hats; women in athleisure, chunky dad sneakers. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+EXACTLY 6 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
+- a woman scanning a loyalty QR code at the pump screen
+- a man topping off washer fluid from his trunk
+- a retiree couple with matching walking poles
+Clothing: men in bucket hats, techwear; women in leggings and oversized hoodies, high-waisted wide-leg jeans. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
-- 2022-2025 Honda Civic — clean mature compact — white
-- 2023-2025 Honda Accord — clean minimalist refresh — black
-- 2019-2025 Chevrolet Equinox — rounded compact crossover — dark green
-- 2017-2025 Honda CR-V — rounded best-selling crossover — silver
+- 2021-2025 Kia Telluride — boxy upscale three-row SUV — silver
+- 2019-2025 Toyota RAV4 — boxy rugged crossover, very common — white
+- 2022-2025 Chevrolet Silverado — refreshed bold grille — gray
+- 2021-2025 Nissan Rogue — squared-off crossover, floating roofline — blue
 Parked with gaps. Where a model is listed with a year range, render the 2025 model year specifically — only styling, trim and features available in 2025, nothing introduced later. No vehicle newer than 2025.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: all parked in the lot, nose-in to marked stalls, with an empty stall between them. No vehicle in the same spot as any other era.
+PLACEMENT: all angled into stalls along the far edge of the lot, the near stalls left empty. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks
@@ -72,6 +72,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — digital — smartphone or mirrorless camera look.
 Color: high saturation. Grain: very clean, minimal to no noise.
 Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.
