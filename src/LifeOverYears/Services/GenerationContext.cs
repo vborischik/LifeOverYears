@@ -113,8 +113,10 @@ public sealed class GenerationContext
 
     // ── Scene condition trajectory ────────────────────────────────────────
     // A run tells one story across its eras. Condition rank is monotonic: once
-    // a place starts declining it never quietly recovers in a later era. The
-    // only exception is the final era of a gas station, which resolves the arc.
+    // a place starts declining it never quietly recovers in a later era, and it
+    // worsens one step at a time — healthy never jumps straight to derelict.
+    // The only exception is the final era, which resolves the arc for every
+    // scene type that supports conditions.
     public int TotalEras { get; init; } = 6;
 
     private int _eraIndex = -1;
@@ -141,17 +143,16 @@ public sealed class GenerationContext
 
     public string PickSceneCondition(IReadOnlyList<string>? allowed, string sceneType)
     {
-        // Gas station finale: if the place ever fell apart, the last era
-        // resolves it — rebuilt, renovated, or taken over by squatters.
-        // Deliberately bypasses the era's allowed list, which has no "squatted".
-        if (sceneType == "gas_station" && IsLastEra && _conditionRank > 0)
+        // Finale: if the place ever fell apart, the last era resolves the arc.
+        // A gas station may be rebuilt, renovated, or taken over by squatters;
+        // every other scene type resolves to renovated or still-declining —
+        // "squatted" stays gas-station-only. Deliberately bypasses the era's
+        // allowed list, which has no "squatted".
+        if (IsLastEra && _conditionRank > 0)
         {
-            SceneCondition = Random.Next(3) switch
-            {
-                0 => "new",
-                1 => "restored",
-                _ => "squatted"
-            };
+            SceneCondition = sceneType == "gas_station"
+                ? Random.Next(3) switch { 0 => "new", 1 => "restored", _ => "squatted" }
+                : Random.Next(3) switch { 0 => "restored", 1 => "restored", _ => "declining" };
             _conditionRank = RankOf(SceneCondition);
             return SceneCondition;
         }
@@ -159,6 +160,15 @@ public sealed class GenerationContext
         var pool = (allowed ?? Array.Empty<string>())
             .Where(c => RankOf(c) >= _conditionRank)
             .ToList();
+
+        // Condition worsens one step at a time: a healthy scene can start
+        // declining, but it cannot skip straight to derelict.
+        if (_conditionRank == 0)
+        {
+            var oneStep = pool.Where(c => RankOf(c) <= 1).ToList();
+            if (oneStep.Count > 0)
+                pool = oneStep;
+        }
 
         // "new" = newly built — only credible in the run's first era. A rebuilt
         // finale sets "new" directly (before this pool), so it stays unaffected.

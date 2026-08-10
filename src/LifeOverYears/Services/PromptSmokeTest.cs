@@ -143,6 +143,7 @@ public static class PromptSmokeTest
         await DoC40(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
         await DoC41(dataService, gasScene, downtownScene, stripMallScene, autoRepairScene, unknownScene, findings);
         await DoC42(promptService, eras, findings);
+        DoC43(eras, findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -1490,6 +1491,8 @@ public static class PromptSmokeTest
         CheckCounts(smRun2,  "strip/run2");
         CheckCounts(arRun2,  "auto/run2");
 
+        // The finale now resolves the arc for every scene type that supports
+        // conditions, so a rank drop is legal on the last era regardless of type.
         void CheckMonotonic(Dictionary<int, Prompt> run, string label, bool isGasStation)
         {
             var prevRank = -1;
@@ -1497,9 +1500,9 @@ public static class PromptSmokeTest
             {
                 if (!run.TryGetValue(year, out var prompt)) continue;
                 var rank = ConditionRank.GetValueOrDefault(prompt.SceneCondition, 0);
-                var isFinale = isGasStation && year == Years[^1];
+                var isFinale = year == Years[^1];
                 if (prevRank >= 0 && rank < prevRank && !isFinale)
-                    errs.Add($"{label}/{year}: condition rank dropped from {prevRank} to {rank} ('{prompt.SceneCondition}') outside the gas-station finale exception");
+                    errs.Add($"{label}/{year}: condition rank dropped from {prevRank} to {rank} ('{prompt.SceneCondition}') outside the finale exception");
                 prevRank = rank;
             }
         }
@@ -1527,12 +1530,19 @@ public static class PromptSmokeTest
                 if (prompt.SceneCondition == "squatted" && year != Years[^1])
                     errs.Add($"{label}/{year}: 'squatted' outside the final era");
 
-        foreach (var (run, label) in new[] { (gasRun1, "gas/run1"), (gasRun2, "gas/run2") })
+        // "restored" is a finale resolution for every condition-supporting type,
+        // so it is legal only on the last era — for gas stations and the rest alike.
+        foreach (var (run, label) in new[]
+        {
+            (gasRun1, "gas/run1"), (gasRun2, "gas/run2"),
+            (dtRun1, "downtown/run1"), (dtRun2, "downtown/run2"),
+            (smRun1, "strip/run1"),    (smRun2, "strip/run2"), (arRun1, "auto/run1"), (arRun2, "auto/run2")
+        })
             foreach (var (year, prompt) in run)
                 if (prompt.SceneCondition == "restored" && year != Years[^1])
                     errs.Add($"{label}/{year}: 'restored' outside the final era");
 
-        f.Add(("C23", "default/unknown scenes always thriving; rank monotonic per run (gas-station finale may resolve to 'new' or 'restored'); abandoned/declining/squatted counts honored for gas_station, downtown_street and strip_mall; 'squatted' only on a gas_station's final era; 'restored' only on a gas_station's final era",
+        f.Add(("C23", "default/unknown scenes always thriving; rank monotonic per run (the final era may resolve the arc for any condition-supporting type); abandoned/declining/squatted counts honored for gas_station, downtown_street and strip_mall; 'squatted' only on a gas_station's final era; 'restored' only on a final era",
             errs.Count == 0, errs.Count == 0 ? "Condition trajectory invariants hold" : Join(errs)));
     }
 
@@ -2601,6 +2611,54 @@ public static class PromptSmokeTest
 
         f.Add(("C42", "Packed-crowd mall scenes render crowd/lot wording, exactly 5 representative vehicles, no PLACEMENT line",
             errs.Count == 0, errs.Count == 0 ? "Packed crowd rendering correct across 1975/1985/1995" : Join(errs)));
+    }
+
+    // Trajectory shape, swept over many seeds rather than the two fixture runs:
+    // (1) condition worsens one step at a time — no era pair jumps rank 0 -> 2;
+    // (2) a run that ever decayed resolves its arc in the finale, so it never
+    // ends on "abandoned". Drives PickSceneCondition directly with each era's
+    // real allowed_scene_conditions, exercising the same call order
+    // PromptService uses (BeginEra then PickSceneCondition, once per era).
+    private static void DoC43(
+        Dictionary<int, EraProfile> eras,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        var sceneTypes = new[] { "gas_station", "downtown_street", "strip_mall", "auto_repair" };
+
+        foreach (var sceneType in sceneTypes)
+        {
+            for (var seed = 1; seed <= 40; seed++)
+            {
+                var ctx = new GenerationContext { Random = new Random(seed), TotalEras = Years.Length };
+                var trajectory = new List<(int Year, string Condition, int Rank)>();
+
+                foreach (var year in Years)
+                {
+                    ctx.BeginEra();
+                    var condition = ctx.PickSceneCondition(eras[year].AllowedSceneConditions, sceneType);
+                    trajectory.Add((year, condition, ConditionRank.GetValueOrDefault(condition, 0)));
+                }
+
+                for (var i = 1; i < trajectory.Count; i++)
+                {
+                    var prev = trajectory[i - 1];
+                    var cur  = trajectory[i];
+                    if (prev.Rank == 0 && cur.Rank == 2)
+                        errs.Add($"{sceneType} seed={seed}: rank skipped 0 -> 2 between {prev.Year} ('{prev.Condition}') and {cur.Year} ('{cur.Condition}')");
+                }
+
+                // "Ever decayed" is judged before the finale: the last era is the
+                // resolution, so it is exactly what must not land on 'abandoned'.
+                var decayedBeforeFinale = trajectory.Take(trajectory.Count - 1).Any(t => t.Rank >= 1);
+                var final = trajectory[^1];
+                if (decayedBeforeFinale && final.Condition == "abandoned")
+                    errs.Add($"{sceneType} seed={seed}: run decayed then ended on 'abandoned' ({final.Year})");
+            }
+        }
+
+        f.Add(("C43", "Condition rank never skips 0 -> 2 between consecutive eras; a run that ever decayed never ends on 'abandoned'",
+            errs.Count == 0, errs.Count == 0 ? "Trajectory steps one rank at a time and resolves across 40 seeds x 4 scene types" : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────
