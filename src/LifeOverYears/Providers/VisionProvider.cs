@@ -180,6 +180,13 @@ public sealed class VisionProvider : IVisionProvider
                 Trees:     trees,
                 Landscape: dto?.Environment?.Landscape ?? []);
 
+            var composition = dto?.Composition is null
+                ? null
+                : new Composition(
+                    SubjectDistance: dto.Composition.SubjectDistance ?? "mid",
+                    FrameShare:      dto.Composition.FrameShare      ?? "moderate",
+                    Horizon:         dto.Composition.Horizon         ?? "middle");
+
             return new SceneDna(
                 Id:                Guid.NewGuid().ToString(),
                 CreatedAt:         DateTimeOffset.UtcNow.ToString("o"),
@@ -187,7 +194,9 @@ public sealed class VisionProvider : IVisionProvider
                 Camera:            camera,
                 Geometry:          geometry,
                 Environment:       environment,
-                ImmutableElements: dto?.ImmutableElements ?? []);
+                ImmutableElements: dto?.ImmutableElements ?? [],
+                Composition:       composition,
+                Distinctive:       dto?.Distinctive ?? []);
         }
         catch (Exception ex)
         {
@@ -208,12 +217,19 @@ public sealed class VisionProvider : IVisionProvider
         [property: JsonPropertyName("camera")]             CameraDto?      Camera,
         [property: JsonPropertyName("geometry")]           GeometryDto?    Geometry,
         [property: JsonPropertyName("environment")]        EnvironmentDto? Environment,
-        [property: JsonPropertyName("immutable_elements")] List<string>?   ImmutableElements);
+        [property: JsonPropertyName("immutable_elements")] List<string>?   ImmutableElements,
+        [property: JsonPropertyName("composition")]        CompositionDto? Composition,
+        [property: JsonPropertyName("distinctive")]        List<string>?   Distinctive);
 
     private record CameraDto(
         [property: JsonPropertyName("height")]    string? Height,
         [property: JsonPropertyName("direction")] string? Direction,
         [property: JsonPropertyName("fov")]       int?    Fov);
+
+    private record CompositionDto(
+        [property: JsonPropertyName("subject_distance")]    string? SubjectDistance,
+        [property: JsonPropertyName("subject_frame_share")] string? FrameShare,
+        [property: JsonPropertyName("horizon")]             string? Horizon);
 
     private record RoadDto(
         [property: JsonPropertyName("type")]     string?       Type,

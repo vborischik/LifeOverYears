@@ -295,6 +295,8 @@ public sealed class PromptService : IPromptService
             ? s.Camera.Direction
             : $"facing {s.Camera.Direction}";
         sb.AppendLine($"- camera: {s.Camera.Height}, {facingClause}, fov {s.Camera.Fov}");
+        if (s.Composition is { } comp)
+            sb.AppendLine($"- framing: subject at {comp.SubjectDistance} range, filling a {comp.FrameShare} share of the frame, horizon {comp.Horizon}");
         foreach (var r in s.Geometry.Roads)
             sb.AppendLine($"- {r.Type} road, {r.Lanes}-lane, {r.Surface}");
         sb.AppendLine($"- sidewalks {(s.Geometry.Sidewalks ? "present" : "absent")}, curbs {(s.Geometry.Curbs ? "present" : "absent")}");
@@ -321,6 +323,9 @@ public sealed class PromptService : IPromptService
         if (!includeTrees) immutable = DropTreeMentions(immutable);
         if (immutable.Count > 0)
             sb.AppendLine($"- immutable elements: {string.Join(", ", immutable)}");
+        var distinctive = s.Distinctive ?? [];
+        if (distinctive.Count > 0)
+            sb.AppendLine($"- specific to this exact place, reproduce faithfully: {string.Join("; ", distinctive)}");
         if (closing.Length > 0)
         {
             sb.Append(closing);

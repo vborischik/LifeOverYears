@@ -148,6 +148,7 @@ public static class PromptSmokeTest
         await DoC42(promptService, eras, findings);
         await DoC46(promptService, eras, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, findings);
         DoC47(eras, findings);
+        await DoC48(promptService, gasScene, findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -2828,6 +2829,41 @@ public static class PromptSmokeTest
 
         f.Add(("C42", "Packed-crowd mall scenes render crowd/lot wording, exactly 5 representative vehicles, no PLACEMENT line",
             errs.Count == 0, errs.Count == 0 ? "Packed crowd rendering correct across 1975/1985/1995" : Join(errs)));
+    }
+
+    // Composition and Distinctive are both optional SceneDna fields (vision may
+    // not always fill them), so no existing fixture sets them — this builds its
+    // own scenes via `with` to exercise BuildPreserveBlock's two new lines.
+    // BuildPreserveBlock is currently only reachable through BuildBaseAsync — the
+    // era path (BuildAsync) substitutes the fixed ShortPreserveBlock while C9's
+    // per-era geometry block stays parked (see the comment above ShortPreserveBlock).
+    private static async Task DoC48(
+        IPromptService promptService,
+        SceneDna gasScene,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        var distinctivePhrases = new[]
+        {
+            "canopy cantilevers far past its two slender columns with no support at the outer corner",
+            "eight pump islands in one long row"
+        };
+        var distinctiveScene = gasScene with { Distinctive = distinctivePhrases };
+        var distinctiveText  = await promptService.BuildBaseAsync(distinctiveScene, Years[0]);
+        foreach (var phrase in distinctivePhrases)
+            if (!distinctiveText.Contains(phrase))
+                errs.Add($"distinctive phrase missing verbatim from prompt: '{phrase}'");
+
+        var composition = new Composition(SubjectDistance: "close", FrameShare: "dominant", Horizon: "low");
+        var compositionScene = gasScene with { Composition = composition };
+        var compositionText  = await promptService.BuildBaseAsync(compositionScene, Years[0]);
+        var framingLine = $"- framing: subject at {composition.SubjectDistance} range, filling a {composition.FrameShare} share of the frame, horizon {composition.Horizon}";
+        if (!compositionText.Contains(framingLine))
+            errs.Add($"framing line missing from prompt: '{framingLine}'");
+
+        f.Add(("C48", "Distinctive phrases appear verbatim in the synthetic base prompt; a set Composition produces the framing line",
+            errs.Count == 0, errs.Count == 0 ? "Distinctive and Composition both render correctly" : Join(errs)));
     }
 
     // Trajectory shape, swept over many seeds rather than the two fixture runs:

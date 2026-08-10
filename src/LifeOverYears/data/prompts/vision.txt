@@ -9,6 +9,11 @@ Fill every field based on what you observe in the image. Use the exact schema be
     "direction": "<street|intersection|alley|facade|park>",
     "fov": <degrees, 20-120>
   },
+  "composition": {
+    "subject_distance": "<close|mid|far>",
+    "subject_frame_share": "<dominant|large|moderate|small>",
+    "horizon": "<low|middle|high>"
+  },
   "geometry": {
     "roads": [
       {
@@ -45,7 +50,9 @@ Fill every field based on what you observe in the image. Use the exact schema be
     "utilities": ["<power lines|utility poles|fire hydrant|street lamp|mailbox|bench|bus stop|pay phone|trash can>"],
     "landscape": ["<grass strip|planter|hedge|flower bed|mulch|bare soil|none>"]
   },
-  "immutable_elements": ["<permanent landmarks: bridge, church, river, mountain, water tower, freestanding pylon or monument sign, continuous storefront overhang or canopy, canopy support columns, parking lot islands, loading dock, etc.>"]
+  "immutable_elements": ["<permanent landmarks: bridge, church, river, mountain, water tower, freestanding pylon or monument sign, continuous storefront overhang or canopy, canopy support columns, parking lot islands, loading dock, etc.>"],
+  "distinctive": ["<2-4 short phrases naming what makes THIS place different
+    from any other example of its type>"]
 }
 
 Rules:
@@ -90,3 +97,16 @@ Rules:
 - "strip_mall" only when the open-air run sits under one continuous uniform
   roofline with units of roughly equal width and no larger anchor unit. If
   any part of the roofline steps, it is not a strip_mall.
+- composition describes how the scene sits in the frame, not what is in it.
+  subject_frame_share is how much of the image the main structure occupies:
+  "dominant" when it fills most of the frame, "small" when it sits far off
+  with sky or empty ground taking most of the picture.
+- distinctive is the only free-text field. Write what a person would use to
+  tell this place apart from a hundred others of the same type: proportions,
+  counts, unusual shapes, how parts sit relative to each other.
+  GOOD: "canopy cantilevers far past its two slender columns with no support
+  at the outer corner"; "eight pump islands in one long row"; "price pylon
+  stands detached at the far right edge of the lot".
+  BAD, never write these — they are true of every example of the type:
+  "flat roof"; "concrete building"; "asphalt parking lot"; "commercial signage".
+- never leave distinctive empty; if nothing stands out, describe proportions.

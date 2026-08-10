@@ -34,6 +34,8 @@ public record Environment(
     IReadOnlyList<Tree> Trees,
     IReadOnlyList<string> Landscape);
 
+public record Composition(string SubjectDistance, string FrameShare, string Horizon);
+
 public record SceneDna(
     string Id,
     string CreatedAt,
@@ -41,4 +43,6 @@ public record SceneDna(
     Camera Camera,
     Geometry Geometry,
     Environment Environment,
-    IReadOnlyList<string> ImmutableElements);
+    IReadOnlyList<string> ImmutableElements,
+    Composition? Composition = null,
+    IReadOnlyList<string>? Distinctive = null);
