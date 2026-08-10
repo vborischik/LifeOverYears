@@ -481,6 +481,64 @@
         "faded stall lines with asphalt patching between rows"
       ]
     },
+    "shopping_center": {
+      "narrative": "A 2005 open-air shopping center mid-turnover — the anchor changed hands again, two inline units dark behind papered glass, the lot busy only near the ends.",
+      "storefronts": [
+        "the anchor block under a third sign band, the previous outline still faintly visible",
+        "two dark inline units with brown paper taped across the glass",
+        "a beauty supply store with vinyl lettering on the window",
+        "a national tax preparation unit with a seasonal banner",
+        "a cell phone store in a former card shop unit",
+        "a stepped run of parapets, the tallest over the anchor",
+        "a pylon sign with one blank white panel among the tenants",
+        "aluminum doors with worn push bars opening onto the lot",
+        "a mattress showroom occupying a wide middle unit",
+        "a nail salon with a lit LED 'OPEN' sign"
+      ],
+      "window_signs": [
+        "NOW LEASING",
+        "OPEN 9-9",
+        "SALE"
+      ],
+      "people": {
+        "min": 10,
+        "max": 14
+      },
+      "people_activities": [
+        "a woman loading bags into an SUV near the anchor doors",
+        "a man talking on a flip phone outside the phone store",
+        "a family crossing the empty middle of the lot",
+        "a teenager pushing carts back toward the anchor",
+        "a woman reading the papered glass of a closed unit",
+        "a man carrying a mattress box strapped to a roof rack",
+        "two women leaving the beauty supply store",
+        "a couple checking the pylon sign for a tenant that has moved",
+        "a mother loading a child into a car seat",
+        "a delivery driver checking a clipboard at a storefront door",
+        "a man eating takeout in a parked car",
+        "a woman carrying a tax folder into the seasonal unit",
+        "two teenagers sitting on the curb near the short end",
+        "an older man walking the row past the dark units",
+        "a clerk stepping outside to smoke behind the building line",
+        "a woman comparing prices through the phone store glass",
+        "a man loading flattened boxes into a pickup",
+        "a family leaving the anchor with a single small bag",
+        "a teenager on a skateboard crossing the far end of the lot",
+        "an older woman resting on the bench outside the anchor"
+      ],
+      "vehicles": {
+        "min": 5,
+        "max": 7
+      },
+      "extras": [
+        "a cart corral with a bent rail near the anchor",
+        "patched asphalt with faded stall lines toward the middle",
+        "a 'NOW LEASING' banner zip-tied across two dark units",
+        "an overgrown planted island with sun-bleached mulch",
+        "a dumpster corral with a sagging wooden gate",
+        "a lot light pole with a discolored fixture"
+      ]
+    },
     "default": {
       "narrative": "An ordinary 2005 American commercial street — channel-letter signs, flip phones, SUVs at the curb.",
       "storefronts": [

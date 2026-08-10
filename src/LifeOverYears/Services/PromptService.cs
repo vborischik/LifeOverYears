@@ -62,10 +62,7 @@ public sealed class PromptService : IPromptService
         var isGasStation    = sceneType == "gas_station";
         var hasSidewalks    = sceneDna.Geometry.Sidewalks;
         var onStreetParking = IsOnStreetParking(sceneDna.Geometry.Parking);
-        // Gas stations, downtown streets, strip malls and auto repair shops all
-        // carry a condition arc — decline is the story these runs are for. Only
-        // default/unknown scenes stay thriving and use their base ranges untouched.
-        var supportsCondition = sceneType is "gas_station" or "downtown_street" or "strip_mall" or "auto_repair";
+        var supportsCondition = SupportsCondition(sceneType);
 
         var condition = supportsCondition
             ? context.PickSceneCondition(eraProfile.AllowedSceneConditions, sceneType)
@@ -536,6 +533,14 @@ public sealed class PromptService : IPromptService
 
     // Two or three concrete details per era, sampled so consecutive eras of the
     // same run don't repeat the same wording.
+    // Gas stations, downtown streets, strip malls and auto repair shops all
+    // carry a condition arc — decline is the story these runs are for. Only
+    // default/unknown scenes stay thriving and use their base ranges untouched.
+    // Single source of truth: the count logic and the CONDITION line both ask
+    // here, so they cannot drift apart.
+    private static bool SupportsCondition(string sceneType) =>
+        sceneType is "gas_station" or "downtown_street" or "strip_mall" or "auto_repair";
+
     // A retail row that is failing but not yet dead — the only state where a
     // surviving tenant makes sense. Squatted and abandoned stay fully closed.
     private static bool IsDecliningRetail(string condition, string sceneType) =>
@@ -568,7 +573,7 @@ public sealed class PromptService : IPromptService
 
         // Scene atmosphere — condition affects appearance/upkeep only, never the
         // physical geometry in the PRESERVE block.
-        if (sceneType is "gas_station" or "downtown_street" or "strip_mall")
+        if (SupportsCondition(sceneType))
         {
             sb.AppendLine();
             sb.AppendLine($"CONDITION: {condition} — {ConditionDescriptor(condition)}");

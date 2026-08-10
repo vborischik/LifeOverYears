@@ -69,6 +69,15 @@ public sealed class CaptionService : ICaptionService
             "walking the whole mall twice before buying anything",
             "the arcade tokens that never lasted as long as you wanted",
         },
+        ["shopping_center"] = new[]
+        {
+            "walking the whole row while a parent finished up at the anchor store",
+            "the tenant panels on the pylon sign out by the road",
+            "loading the trunk at the far end of the lot on a Saturday morning",
+            "the five-and-dime counter between two much wider stores",
+            "cutting across the parking lot instead of walking around it",
+            "the anchor store that everyone in town called by its old name",
+        },
     };
 
     public static IReadOnlyList<string> AnglesFor(string sceneType) =>

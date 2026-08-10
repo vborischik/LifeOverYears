@@ -27,6 +27,8 @@ distort the source geometry.
 TRANSFORM TO 1995
 Clinton era prosperity. An auto repair shop in 1995 — an alignment rack in one bay, an emissions-testing sticker in the window, and a national tire brand banner strung across the apron.
 
+CONDITION: busy — customers present, high activity, all pumps in use
+
 PERIOD DETAILS
 - a tire display rack near the office entrance with a hand-lettered '$39.95 ALIGNMENT' sign taped to it
 - office with plate glass window and a state emissions-testing sticker in the corner

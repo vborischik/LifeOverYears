@@ -470,6 +470,65 @@
         "stall lines almost entirely gone"
       ]
     },
+    "shopping_center": {
+      "narrative": "A 2025 open-air shopping center on its second life — a fitness gym filling the old anchor block behind a new full-height glass front, a discount variety store and a thrift shop inline, the lot moderately busy again but the tenants all cheaper than before.",
+      "storefronts": [
+        "a full-height glazed gym front with treadmills visible through the glass",
+        "a bright new fascia band over the old anchor block",
+        "a discount variety store with bold yellow-and-blue signage",
+        "a thrift shop with donation bins beside a side door",
+        "a stepped run of parapets, the anchor block now the brightest of them",
+        "a smoke shop with an LED sign in the window",
+        "a nail salon with a backlit acrylic sign",
+        "a pylon sign with fresh full-color tenant panels",
+        "channel letters mounted on a raceway above the gym entrance",
+        "one remaining unit with paper still taped inside the glass"
+      ],
+      "window_signs": [
+        "PLANET FITNESS",
+        "FIVE BELOW",
+        "DONATION CENTER",
+        "$5 AND BELOW"
+      ],
+      "people": {
+        "min": 10,
+        "max": 14
+      },
+      "people_activities": [
+        "a gym-goer with a duffel bag walking to the glass front",
+        "a woman carrying discount store bags to a crossover",
+        "a man unloading a donation bag at the thrift shop door",
+        "two teenagers leaving the variety store with snacks",
+        "a woman on a treadmill visible through the gym glass",
+        "a family parking near the middle of the run",
+        "a delivery driver checking an app before a storefront door",
+        "a man scrolling a phone beside an open car door",
+        "a woman loading a thrift shop find into a hatchback",
+        "a teenager filming a friend across the parking lot",
+        "an older couple walking the row for exercise",
+        "a mother buckling a child in beside the variety store",
+        "a man carrying a protein shake out of the gym",
+        "a woman reading the tenant panels on the pylon sign",
+        "two friends sorting through a donation box at the bins",
+        "a clerk carrying flattened boxes to the corral",
+        "a man in gym clothes stretching beside his car",
+        "a woman leaving the nail salon with her hands raised",
+        "a teenager pushing a cart of discount bags to the lot edge",
+        "an older man resting on a bench outside the gym"
+      ],
+      "vehicles": {
+        "min": 6,
+        "max": 8
+      },
+      "extras": [
+        "restriped stalls in front of the gym only",
+        "cracked asphalt with weeds still at the seams toward the far end",
+        "a row of donation bins beside the thrift shop",
+        "new LED lot lights on the old poles",
+        "a dumpster corral at the end of the run",
+        "a bike rack bolted to the walkway outside the gym"
+      ]
+    },
     "default": {
       "narrative": "An ordinary 2025 American commercial street — flat minimalist logos, QR codes and delivery drivers.",
       "storefronts": [

@@ -146,6 +146,7 @@ public static class PromptSmokeTest
         DoC44(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, eras, findings);
         DoC45(eras, logger, findings);
         await DoC42(promptService, eras, findings);
+        await DoC46(promptService, eras, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -2817,6 +2818,42 @@ public static class PromptSmokeTest
 
         f.Add(("C42", "Packed-crowd mall scenes render crowd/lot wording, exactly 5 representative vehicles, no PLACEMENT line",
             errs.Count == 0, errs.Count == 0 ? "Packed crowd rendering correct across 1975/1985/1995" : Join(errs)));
+    }
+
+    // The CONDITION line is what carries the decline arc into the image. Every
+    // scene type that picks a condition must print it — auto_repair once picked
+    // one and silently dropped the line, because the count logic and the
+    // emit-side list were two separate literals. Both now ask SupportsCondition,
+    // and this check fails if they ever diverge again. mall is the counter-case:
+    // it never picks a condition, so it must never print the line.
+    private static async Task DoC46(
+        IPromptService promptService,
+        Dictionary<int, EraProfile> eras,
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        const string conditionLine = "CONDITION: ";
+
+        // These four runs are exactly the scene types SupportsCondition covers.
+        foreach (var (year, prompt, label) in AllPrompts(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2))
+            if (!prompt.Text.Contains(conditionLine))
+                errs.Add($"{label}/{year}: condition-bearing scene type emitted no '{conditionLine}' line");
+
+        var mallScene = MakeMallScene();
+        foreach (var year in new[] { 1975, 1995 })
+        {
+            var ctx    = new GenerationContext { Random = new Random(42), TotalEras = 1 };
+            var prompt = await promptService.BuildAsync(mallScene, eras[year], ctx);
+            if (prompt.Text.Contains(conditionLine))
+                errs.Add($"mall/{year}: emitted a '{conditionLine}' line for a scene type that has no condition arc");
+        }
+
+        f.Add(("C46", "Every condition-bearing scene type prints its CONDITION line; mall (no condition arc) prints none",
+            errs.Count == 0, errs.Count == 0 ? "CONDITION line present for gas_station/downtown_street/strip_mall/auto_repair, absent for mall" : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────

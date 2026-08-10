@@ -485,6 +485,63 @@
         "faded stall lines barely readable"
       ]
     },
+    "shopping_center": {
+      "narrative": "A 2015 open-air shopping center after losing its anchor — the big end block empty behind papered glass, a rectangular patch of unfaded wall on its parapet where the sign was removed, anchor holes still visible, the smaller units still trading.",
+      "storefronts": [
+        "the anchor block dark behind full-width papered glass",
+        "a rectangular patch of unfaded wall on the anchor parapet where the sign was removed",
+        "rows of anchor holes still visible across the blank sign band",
+        "a dollar store trading steadily in a wide middle unit",
+        "a phone repair unit with a hand-lettered window sign",
+        "a nail salon with a purple LED 'OPEN' sign",
+        "a check cashing storefront with barred window glass",
+        "a pylon sign with the top panel blanked out white",
+        "a stepped run of parapets, the tallest one now unlit",
+        "two smaller units with 'SPACE AVAILABLE' banners across the glass"
+      ],
+      "window_signs": [
+        "NOW LEASING",
+        "SPACE AVAILABLE",
+        "DOLLAR TREE",
+        "$1"
+      ],
+      "people": {
+        "min": 8,
+        "max": 12
+      },
+      "people_activities": [
+        "a woman carrying dollar store bags to a compact car",
+        "a man scrolling a phone outside the repair unit",
+        "a family parking directly in front of the dollar store",
+        "an older man walking past the papered anchor glass",
+        "a woman leaving the nail salon with her hands raised",
+        "two teenagers sitting on the curb near the empty end",
+        "a delivery driver carrying a package to a storefront",
+        "a man checking the blanked panel on the pylon sign",
+        "a mother loading a stroller into a hatchback",
+        "a woman reading a leasing flyer taped to the anchor glass",
+        "a teenager cutting across the empty half of the lot",
+        "a man eating lunch in a parked pickup",
+        "a woman comparing repair prices through the window",
+        "an older couple walking slowly toward the dollar store",
+        "a clerk wheeling out flattened boxes to the corral",
+        "a man loading a case of water into a trunk",
+        "two friends talking beside an open car door",
+        "a girl riding a scooter along the vacant end of the walkway",
+        "a woman waiting in a car with the engine running",
+        "a man photographing the empty anchor on his phone"
+      ],
+      "vehicles": {
+        "min": 4,
+        "max": 6
+      },
+      "extras": [
+        "cracked asphalt with weeds at the seams",
+        "faded stall lines",
+        "a light pole with its fixture missing",
+        "a dumpster corral at the end of the run"
+      ]
+    },
     "default": {
       "narrative": "An ordinary 2015 American commercial street — LED signs, crossovers at the curb, smartphones out everywhere.",
       "storefronts": [

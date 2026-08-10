@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-08-09T17:11:21.6627960+00:00
+Generated: 2026-08-10T04:38:36.9337030+00:00
 
 ## Check Results
 
@@ -51,6 +51,7 @@ Generated: 2026-08-09T17:11:21.6627960+00:00
 | C44 | Every prompt sets its light from the condition: living eras get open daylight, only derelict eras go grey, and no prompt asks for fog, rain or night | ✅ PASS | Light matches condition in every prompt |
 | C45 | Across 500 seeds no scene type abandons 2015 more than 35% of the time, at least 70% of runs still decline, and trajectories stay varied | ✅ PASS | downtown_street: 2015 abandoned 10%, ever declines 99%, 100 trajectories \| strip_mall: 2015 abandoned 10%, ever declines 99%, 100 trajectories \| auto_repair: 2015 abandoned 10%, ever declines 99%, 100 trajectories \| gas_station: 2015 abandoned 7%, ever declines 89%, 205 trajectories |
 | C42 | Packed-crowd mall scenes render crowd/lot wording, exactly 5 representative vehicles, no PLACEMENT line | ✅ PASS | Packed crowd rendering correct across 1975/1985/1995 |
+| C46 | Every condition-bearing scene type prints its CONDITION line; mall (no condition arc) prints none | ✅ PASS | CONDITION line present for gas_station/downtown_street/strip_mall/auto_repair, absent for mall |
 
 ## Vehicle Selections
 

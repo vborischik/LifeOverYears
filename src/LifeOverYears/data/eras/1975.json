@@ -485,6 +485,58 @@
       ],
       "crowd": "packed"
     },
+    "shopping_center": {
+      "narrative": "A 1975 open-air shopping center still new — several stepped retail blocks under separate parapets, a supermarket anchoring the long end, small shops filling the rest, the lot busy all day.",
+      "storefronts": [
+        "a supermarket anchoring the long end behind a full-width plate glass front",
+        "a stepped parapet dropping down from the anchor block to the shorter inline units",
+        "a five-and-dime with gold leaf lettering across the transom",
+        "individual glass doors opening straight onto the parking lot, one per unit",
+        "a band of backlit plastic sign panels above each storefront",
+        "a barber shop with a striped pole mounted beside the door",
+        "a shoe repair counter in a narrow unit between two wider ones",
+        "a freestanding pylon sign at the lot entrance listing the tenants",
+        "a covered walkway running only along the anchor block",
+        "buff brick piers between the storefront glass"
+      ],
+      "window_signs": [
+        "GROCERIES",
+        "WOOLWORTH",
+        "OPEN 9-9",
+        "SALE"
+      ],
+      "people_activities": [
+        "a woman pushing a loaded cart out to a station wagon",
+        "two women stopping to talk between the anchor doors",
+        "a boy waiting on the curb outside the five-and-dime",
+        "a man carrying a paper grocery sack in each arm",
+        "a family crossing the lot toward the supermarket",
+        "a teenager collecting carts from the middle of the lot",
+        "a mother steadying a toddler on the walkway curb",
+        "an older man reading the tenant board at the pylon sign",
+        "a woman loading bags into a wood-paneled wagon",
+        "two kids trailing a parent along the storefronts",
+        "a man holding the anchor door for someone behind him",
+        "a woman checking a handwritten list under the walkway",
+        "a clerk sweeping the walk outside a narrow unit",
+        "a couple carrying a boxed appliance to a sedan",
+        "a girl counting change outside the five-and-dime",
+        "a man leaning on a fender waiting for his wife",
+        "shoppers cutting diagonally between parked cars",
+        "a woman folding a stroller at an open tailgate",
+        "two boys sitting on the walkway edge with bottles of soda",
+        "an older couple walking the row slowly end to end"
+      ],
+      "extras": [
+        "rows of tall lot light poles on square concrete bases",
+        "crisp freshly painted stall lines across the whole lot",
+        "wire cart corrals near the anchor doors",
+        "long planted islands splitting the parking rows",
+        "a painted crosswalk from the lot to the anchor entrance",
+        "a bicycle rack at the end of the walkway"
+      ],
+      "crowd": "packed"
+    },
     "default": {
       "narrative": "An ordinary American commercial street in 1975 — modest local businesses, bold simple signage, wide quiet pavement.",
       "storefronts": [

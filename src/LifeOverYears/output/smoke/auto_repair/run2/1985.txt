@@ -27,6 +27,8 @@ distort the source geometry.
 TRANSFORM TO 1985
 Reagan era prosperity. A neighborhood auto repair shop in 1985 — backlit sign letters over the bays, radial tires stacked out front, and a shop moving from carburetors to the first electronic engine diagnostics.
 
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+
 PERIOD DETAILS
 - a faded price board from a previous era, papered over with a new one reading 'BRAKES $59.95'
 - wider parking lots
