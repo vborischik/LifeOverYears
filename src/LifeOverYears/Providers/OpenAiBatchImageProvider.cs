@@ -106,25 +106,30 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
             year, Quality, Size);
     }
 
-    // Uploads the clean base image once per run and caches its file id in
-    // jobsDir/base-file.json, so the years submitted after the first read it
-    // back instead of re-uploading the same bytes.
+    // Uploads a base image once per distinct basePath and caches its file id in
+    // jobsDir/base-file.json, keyed by the base image's full path — NOT once per
+    // run. Chained mode generates a fresh base per era, so a single run can
+    // submit several distinct base images; each one is uploaded exactly once
+    // and reused only by the eras that share that same basePath.
     private async Task<string> GetOrUploadBaseFileAsync(string basePath, string jobsDir)
     {
         var cachePath = Path.Combine(jobsDir, BaseFileFileName);
-        if (File.Exists(cachePath))
-        {
-            var cached = JsonSerializer.Deserialize<BaseFileCache>(
-                await File.ReadAllTextAsync(cachePath), ReadJson);
-            if (cached is { FileId.Length: > 0 })
-                return cached.FileId;
-        }
+        var key = Path.GetFullPath(basePath);
+
+        var cache = File.Exists(cachePath)
+            ? JsonSerializer.Deserialize<Dictionary<string, string>>(
+                  await File.ReadAllTextAsync(cachePath), ReadJson)
+              ?? new Dictionary<string, string>()
+            : new Dictionary<string, string>();
+
+        if (cache.TryGetValue(key, out var cachedFileId) && cachedFileId.Length > 0)
+            return cachedFileId;
 
         var bytes = await File.ReadAllBytesAsync(basePath);
-        var fileId = await _openai.UploadFileAsync(bytes, "base.png", "vision");
-        await File.WriteAllTextAsync(cachePath,
-            JsonSerializer.Serialize(new BaseFileCache(fileId), JobJson));
-        _logger.LogInformation("Uploaded clean base image, file id {FileId}", fileId);
+        var fileId = await _openai.UploadFileAsync(bytes, Path.GetFileName(basePath), "vision");
+        cache[key] = fileId;
+        await File.WriteAllTextAsync(cachePath, JsonSerializer.Serialize(cache, JobJson));
+        _logger.LogInformation("Uploaded base image {BasePath}, file id {FileId}", basePath, fileId);
         return fileId;
     }
 
@@ -227,6 +232,5 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
         return results;
     }
 
-    private sealed record BaseFileCache(string FileId);
     private sealed record BatchCache(string BatchId, string CreatedAt);
 }
