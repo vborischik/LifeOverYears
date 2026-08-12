@@ -150,9 +150,9 @@ public static class VideoSmokeTest
         // V6: confirm the xfade path was actually taken, not a hard-cut concat —
         // detecting a wipe vs. a cut from pixels alone is out of scope for a
         // smoke test, so this asserts on the ffmpeg command FfmpegProvider
-        // logged at Debug level. Transitions are now drawn per cut, so this also
-        // checks every one is from the pool and that a 6-frame video uses all
-        // five distinct kinds rather than repeating one.
+        // logged at Debug level. One transition kind is now picked per run and
+        // reused for every cut, so this also checks that kind is from the pool
+        // and that every cut in this one video uses the exact same kind.
         var commandLine = logCapture.Messages.FirstOrDefault(m =>
             m.Contains("ffmpeg command:", StringComparison.OrdinalIgnoreCase));
         var v6Errors = new List<string>();
@@ -172,13 +172,12 @@ public static class VideoSmokeTest
                 v6Errors.Add($"{used.Count} transitions for {Years.Length} frames (expected {Years.Length - 1})");
             foreach (var t in used.Where(t => !Providers.FfmpegProvider.TransitionTypes.Contains(t)))
                 v6Errors.Add($"transition '{t}' is not in the pool");
-            if (used.Count == Providers.FfmpegProvider.TransitionTypes.Count
-                && used.Distinct().Count() != used.Count)
-                v6Errors.Add($"transitions repeat within one video: {string.Join(", ", used)}");
+            if (used.Distinct().Count() > 1)
+                v6Errors.Add($"transitions differ within one video, expected the same kind throughout: {string.Join(", ", used)}");
         }
 
         findings.Add(("V6",
-            $"ffmpeg used filter_complex xfade (not concat) with one pooled transition per cut, all distinct across {Years.Length} frames",
+            $"ffmpeg used filter_complex xfade (not concat) with the same pooled transition kind reused for every cut across {Years.Length} frames",
             v6Errors.Count == 0,
             v6Errors.Count == 0 ? commandLine! : string.Join("; ", v6Errors)));
 
