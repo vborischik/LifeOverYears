@@ -101,12 +101,19 @@ Rules:
   subject_frame_share is how much of the image the main structure occupies:
   "dominant" when it fills most of the frame, "small" when it sits far off
   with sky or empty ground taking most of the picture.
-- distinctive is the only free-text field. Write what a person would use to
-  tell this place apart from a hundred others of the same type: proportions,
-  counts, unusual shapes, how parts sit relative to each other.
-  GOOD: "canopy cantilevers far past its two slender columns with no support
-  at the outer corner"; "eight pump islands in one long row"; "price pylon
-  stands detached at the far right edge of the lot".
-  BAD, never write these — they are true of every example of the type:
-  "flat roof"; "concrete building"; "asphalt parking lot"; "commercial signage".
-- never leave distinctive empty; if nothing stands out, describe proportions.
+- distinctive is the only free-text field, and every phrase must name
+  something you can actually see in THIS image. Write what a person would
+  use to tell this place apart from a hundred others of the same type:
+  proportions, counts, unusual shapes, brand names and text actually
+  legible in the photo, how parts sit relative to each other, weather or
+  ground conditions visible on the day.
+- the examples below describe a completely different photograph, a rural
+  grain elevator. They show the LEVEL OF DETAIL expected, nothing more.
+  Never reuse their wording, their objects or their sentence shapes:
+    "two silos of unequal height joined by an enclosed conveyor bridge"
+    "loading chute hangs over the rail siding rather than the road"
+    "faded lettering reads FARMERS CO-OP across the taller silo"
+- if a phrase you are about to write would be equally true of a different
+  photograph of the same kind of place, delete it and look again.
+- never leave distinctive empty. If nothing stands out, describe the
+  proportions and the counts of whatever is in front of you.
