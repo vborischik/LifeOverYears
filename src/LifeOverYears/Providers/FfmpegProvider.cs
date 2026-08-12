@@ -25,24 +25,10 @@ public sealed class FfmpegProvider : IFfmpegProvider
         "radial", "fade", "smoothleft", "smoothright", "circleopen"
     };
 
-    // One transition per cut, drawn without repeats until the pool is used up —
-    // a 6-frame video therefore shows all five, in a different order each run.
-    // Longer videos reshuffle and continue.
-    public static IReadOnlyList<string> TransitionSequence(int count, Random rng)
-    {
-        var seq = new List<string>(count);
-        while (seq.Count < count)
-        {
-            var pool = TransitionTypes.ToList();
-            for (var i = pool.Count - 1; i > 0; i--)
-            {
-                var j = rng.Next(i + 1);
-                (pool[i], pool[j]) = (pool[j], pool[i]);
-            }
-            seq.AddRange(pool);
-        }
-        return seq.Take(count).ToList();
-    }
+    // One transition type for the WHOLE video — every cut in a single run uses
+    // the same kind, so the visual grammar stays consistent across the run.
+    // A different type may still be picked from one run to the next.
+    public static string PickTransitionType(Random rng) => TransitionTypes[rng.Next(TransitionTypes.Count)];
 
     // Middle frames carry a transition on BOTH sides, so their 'pure' viewing
     // time is hold - 2*TransitionSeconds. Keep it positive or wipes overlap and
@@ -87,9 +73,10 @@ public sealed class FfmpegProvider : IFfmpegProvider
 
     public async Task<Video?> ComposeAsync(IReadOnlyList<HistoricalImage> images, string outputPath)
     {
+        var transitionKind = PickTransitionType(Random.Shared);
         _logger.LogInformation(
-            "Composing video from {Count} images with xfade transitions drawn from: {Transitions}",
-            images.Count, string.Join(", ", TransitionTypes));
+            "Composing video from {Count} images — transition: {Transition} (same kind used for every cut in this run)",
+            images.Count, transitionKind);
 
         Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(outputPath))!);
 
@@ -111,7 +98,7 @@ public sealed class FfmpegProvider : IFfmpegProvider
                 TargetTotalSeconds, expectedDuration, 2 * TransitionSeconds + MinPureSecondsPerMiddleFrame);
         }
 
-        var args = BuildArgs(images, outputPath, firstHold, holdSeconds);
+        var args = BuildArgs(images, outputPath, firstHold, holdSeconds, transitionKind);
         _logger.LogDebug("ffmpeg command: {Args}", args);
 
         _logger.LogInformation(
@@ -140,11 +127,12 @@ public sealed class FfmpegProvider : IFfmpegProvider
     }
 
     // Clip 0 is a firstHold still; clips 1..n-1 are holdSeconds stills. Each is
-    // normalized to 1080x1920/yuv420p/30fps, then chained with radial wipes. The
-    // first wipe begins at (firstHold - transition); each subsequent wipe advances
-    // by (hold - transition).
+    // normalized to 1080x1920/yuv420p/30fps, then chained with one transitionKind
+    // wipe, repeated for every cut. The first wipe begins at
+    // (firstHold - transition); each subsequent wipe advances by (hold - transition).
     private static string BuildArgs(
-        IReadOnlyList<HistoricalImage> images, string outputPath, double firstHold, double holdSeconds)
+        IReadOnlyList<HistoricalImage> images, string outputPath, double firstHold, double holdSeconds,
+        string transitionKind)
     {
         var inv = System.Globalization.CultureInfo.InvariantCulture;
         var n = images.Count;
@@ -170,14 +158,13 @@ public sealed class FfmpegProvider : IFfmpegProvider
         else
         {
             var transition = TransitionSeconds.ToString("0.####", inv);
-            var kinds      = TransitionSequence(n - 1, Random.Shared);
             var prevLabel  = "v0";
             var offset     = firstHold - TransitionSeconds; // first wipe starts after frame 0's clean view
             for (var i = 1; i < n; i++)
             {
                 var stageLabel = i == n - 1 ? "outv" : $"x{i}";
                 filter.Append(
-                    $"[{prevLabel}][v{i}]xfade=transition={kinds[i - 1]}:duration={transition}:" +
+                    $"[{prevLabel}][v{i}]xfade=transition={transitionKind}:duration={transition}:" +
                     $"offset={offset.ToString("0.####", inv)}[{stageLabel}];");
                 prevLabel = stageLabel;
                 offset += holdSeconds - TransitionSeconds;  // subsequent wipes advance by the uniform hold

@@ -54,6 +54,14 @@ public static class VideoSmokeTest
         Directory.CreateDirectory(imagesDir);
         Directory.CreateDirectory(videoDir);
 
+        // V7 — pure C# logic, no ffmpeg binary involved, so it runs unconditionally
+        // and is never in the ffmpeg-missing skip list. V6 below only observes the
+        // one transition kind Random.Shared happens to draw for this one process's
+        // single video; this sweeps many seeds and frame counts directly against
+        // the real BuildArgs (via reflection, since it's private) so the "same
+        // kind for every cut in a run" invariant is checked far more thoroughly.
+        findings.Add(CheckTransitionConsistency());
+
         // V5 first — every other check depends on these binaries existing.
         var ffmpegOk  = await BinaryAvailable("ffmpeg", logger);
         var ffprobeOk = await BinaryAvailable("ffprobe", logger);
@@ -150,9 +158,9 @@ public static class VideoSmokeTest
         // V6: confirm the xfade path was actually taken, not a hard-cut concat —
         // detecting a wipe vs. a cut from pixels alone is out of scope for a
         // smoke test, so this asserts on the ffmpeg command FfmpegProvider
-        // logged at Debug level. Transitions are now drawn per cut, so this also
-        // checks every one is from the pool and that a 6-frame video uses all
-        // five distinct kinds rather than repeating one.
+        // logged at Debug level. One transition kind is now picked per run and
+        // reused for every cut, so this also checks that kind is from the pool
+        // and that every cut in this one video uses the exact same kind.
         var commandLine = logCapture.Messages.FirstOrDefault(m =>
             m.Contains("ffmpeg command:", StringComparison.OrdinalIgnoreCase));
         var v6Errors = new List<string>();
@@ -172,13 +180,12 @@ public static class VideoSmokeTest
                 v6Errors.Add($"{used.Count} transitions for {Years.Length} frames (expected {Years.Length - 1})");
             foreach (var t in used.Where(t => !Providers.FfmpegProvider.TransitionTypes.Contains(t)))
                 v6Errors.Add($"transition '{t}' is not in the pool");
-            if (used.Count == Providers.FfmpegProvider.TransitionTypes.Count
-                && used.Distinct().Count() != used.Count)
-                v6Errors.Add($"transitions repeat within one video: {string.Join(", ", used)}");
+            if (used.Distinct().Count() > 1)
+                v6Errors.Add($"transitions differ within one video, expected the same kind throughout: {string.Join(", ", used)}");
         }
 
         findings.Add(("V6",
-            $"ffmpeg used filter_complex xfade (not concat) with one pooled transition per cut, all distinct across {Years.Length} frames",
+            $"ffmpeg used filter_complex xfade (not concat) with the same pooled transition kind reused for every cut across {Years.Length} frames",
             v6Errors.Count == 0,
             v6Errors.Count == 0 ? commandLine! : string.Join("; ", v6Errors)));
 
@@ -298,6 +305,58 @@ public static class VideoSmokeTest
         PrintSummary(findings);
 
         return findings.All(f => f.Pass) ? 0 : 1;
+    }
+
+    // Sweeps many seeds and frame counts directly against the real BuildArgs
+    // (private, reached via reflection so this exercises the actual
+    // implementation rather than a reimplementation that could drift from it).
+    // No ffmpeg process involved — pure string assembly — so this always runs.
+    private static (string, string, bool, string) CheckTransitionConsistency()
+    {
+        var errs = new List<string>();
+        var ffmpegType = typeof(Providers.FfmpegProvider);
+        var buildArgs = ffmpegType.GetMethod("BuildArgs",
+            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)
+            ?? throw new InvalidOperationException("FfmpegProvider.BuildArgs not found via reflection");
+
+        var frameCounts = new[] { 2, 3, 6, 10 };
+        for (var seed = 1; seed <= 30; seed++)
+        {
+            foreach (var frameCount in frameCounts)
+            {
+                var rng  = new Random(seed);
+                var kind = Providers.FfmpegProvider.PickTransitionType(rng);
+
+                var images = Enumerable.Range(0, frameCount)
+                    .Select(i => new HistoricalImage(
+                        Id: $"img{i}", PromptId: $"prompt{i}", Year: 1975 + i * 10,
+                        FilePath: $"fake{i}.png", Provider: "test", CreatedAt: "2025-01-01T00:00:00Z"))
+                    .ToList();
+
+                var (firstHold, holdSeconds, _, _) = Providers.FfmpegProvider.PlanTimeline(frameCount);
+                var args = (string)buildArgs.Invoke(null,
+                    new object[] { images, "out.mp4", firstHold, holdSeconds, kind })!;
+
+                var used = System.Text.RegularExpressions.Regex
+                    .Matches(args, @"xfade=transition=([a-z]+)")
+                    .Select(m => m.Groups[1].Value)
+                    .ToList();
+
+                if (used.Count != frameCount - 1)
+                    errs.Add($"seed={seed} frames={frameCount}: {used.Count} transitions (expected {frameCount - 1})");
+                else if (used.Distinct().Count() > 1)
+                    errs.Add($"seed={seed} frames={frameCount}: transitions differ within one run: {string.Join(", ", used)}");
+                else if (used.Count > 0 && used[0] != kind)
+                    errs.Add($"seed={seed} frames={frameCount}: used '{used[0]}' but PickTransitionType picked '{kind}'");
+            }
+        }
+
+        return ("V7",
+            "BuildArgs uses the exact same transition kind for every cut within one run, across many seeds and frame counts",
+            errs.Count == 0,
+            errs.Count == 0
+                ? $"Transition kind stayed constant across 30 seeds x {frameCounts.Length} frame counts"
+                : string.Join("; ", errs));
     }
 
     private static IEnumerable<(string Id, string Desc)> SkippedChecks() => new[]
