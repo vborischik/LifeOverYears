@@ -12,6 +12,15 @@ namespace LifeOverYears.Providers;
 // 'collect' CLI mode exists for. Trades per-year latency (the Batch API has
 // up to a 24h completion window) for that resumability plus OpenAI's lower
 // batch pricing.
+//
+// One batch per era, not one batch per run. A shared batch would have to be
+// created at some point after every SubmitEraAsync had happened, which the
+// provider cannot detect — and in chained mode it never happens at all, since
+// each era is submitted only after the previous one's image exists. Per-era
+// batches make submit self-contained: the batch is created inside
+// SubmitEraAsync and its id is the job's real jobId. Non-chained runs submit
+// all years back to back, so their batches still run concurrently and finish
+// in the same wall-clock time a single combined batch would.
 public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
 {
     private const string Size = "1024x1536";   // 2:3 portrait, non-experimental
@@ -19,8 +28,13 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
     private const string Endpoint = "/v1/images/edits";
 
     private const string BaseFileFileName = "base-file.json";
-    private const string BatchInputFileName = "batch-input.jsonl";
-    private const string BatchFileName = "batch.json";
+
+    // Job ids written by the pre-per-era-batch format: a placeholder, never a
+    // real batch id. Treated as "not submitted yet" so an old run folder
+    // re-submits cleanly instead of polling an id that never existed.
+    private const string LegacyPendingJobIdPrefix = "batch-pending-";
+
+    private static string InputFileNameFor(int year) => $"batch-input-{year}.jsonl";
 
     private static readonly JsonSerializerOptions JobJson =
         new(JsonSerializerDefaults.Web) { WriteIndented = true };
@@ -69,10 +83,23 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
     {
         Directory.CreateDirectory(jobsDir);
 
+        // Re-submitting a year that already has a live batch would create a
+        // second one and orphan the first — paid for, then never collected,
+        // because the job file can only hold one id. Resume instead.
+        if (await ReadJobAsync(jobsDir, year) is { } existing
+            && !string.IsNullOrEmpty(existing.JobId)
+            && !existing.JobId.StartsWith(LegacyPendingJobIdPrefix, StringComparison.Ordinal))
+        {
+            _logger.LogInformation("{Year} already submitted as batch {BatchId} — reusing it",
+                year, existing.JobId);
+            return;
+        }
+
         var baseFileId = await GetOrUploadBaseFileAsync(basePath, jobsDir);
 
-        // custom_id is how results are matched back to a year later — output
-        // line order is not guaranteed to match input order.
+        // custom_id is how the result is matched back to the year later — output
+        // line order is not guaranteed to match input order, even in a one-line
+        // batch.
         var line = JsonSerializer.Serialize(new
         {
             custom_id = $"era-{year}",
@@ -87,23 +114,28 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
                 quality = Quality
             }
         });
-        await File.AppendAllTextAsync(Path.Combine(jobsDir, BatchInputFileName), line + "\n");
 
-        var job = new
-        {
-            year,
-            provider    = "openai-batch",
-            jobId       = $"batch-pending-{year}",
-            size        = Size,
-            quality     = Quality,
-            submittedAt = DateTimeOffset.UtcNow.ToString("o")
-        };
-        await File.WriteAllTextAsync(
-            Path.Combine(jobsDir, $"{year}.json"),
-            JsonSerializer.Serialize(job, JobJson));
+        // Written, not appended: the file holds exactly this year's one line, so
+        // a re-submit after a failure replaces it rather than producing a batch
+        // with a duplicate custom_id, which OpenAI rejects outright.
+        var inputPath = Path.Combine(jobsDir, InputFileNameFor(year));
+        await File.WriteAllTextAsync(inputPath, line + "\n");
 
-        _logger.LogInformation("Queued {Year} for batch submission (gpt-image-2, {Quality}, {Size})",
-            year, Quality, Size);
+        var inputFileId = await _openai.UploadFileAsync(
+            await File.ReadAllBytesAsync(inputPath), InputFileNameFor(year), "batch");
+        var batchId = await _openai.CreateBatchAsync(inputFileId, Endpoint);
+
+        await WriteJobAsync(jobsDir, new BatchJob(
+            Year:        year,
+            Provider:    "openai-batch",
+            JobId:       batchId,
+            Size:        Size,
+            Quality:     Quality,
+            SubmittedAt: DateTimeOffset.UtcNow.ToString("o")));
+
+        _logger.LogInformation(
+            "Submitted {Year} as batch {BatchId} over {InputFileId} (gpt-image-2, {Quality}, {Size})",
+            year, batchId, inputFileId, Quality, Size);
     }
 
     // Uploads a base image once per distinct basePath and caches its file id in
@@ -135,38 +167,20 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
 
     public async Task<bool> TryCollectAsync(string jobsDir, int year, string outputPath)
     {
-        var jobPath = Path.Combine(jobsDir, $"{year}.json");
-        if (!File.Exists(jobPath))
-            throw new InvalidOperationException(
+        var job = await ReadJobAsync(jobsDir, year)
+            ?? throw new InvalidOperationException(
                 $"No job state for year {year} in {jobsDir} — was this year ever submitted?");
 
         if (File.Exists(outputPath))
             return true;
 
-        var batchPath = Path.Combine(jobsDir, BatchFileName);
-        if (!File.Exists(batchPath))
-        {
-            // First collect call for this run: every SubmitEraAsync has already
-            // happened (Pipeline submits all years before it starts waiting),
-            // so the input file is complete — create the batch now. The
-            // provider intentionally didn't do this in SubmitEraAsync, since it
-            // has no way to know how many years were still coming.
-            var inputPath = Path.Combine(jobsDir, BatchInputFileName);
-            var inputBytes = await File.ReadAllBytesAsync(inputPath);
-            var inputFileId = await _openai.UploadFileAsync(inputBytes, "batch-input.jsonl", "batch");
-            var batchId = await _openai.CreateBatchAsync(inputFileId, Endpoint);
+        if (string.IsNullOrEmpty(job.JobId)
+            || job.JobId.StartsWith(LegacyPendingJobIdPrefix, StringComparison.Ordinal))
+            throw new InvalidOperationException(
+                $"Job state for year {year} in {jobsDir} carries no batch id ('{job.JobId}') — " +
+                "it predates per-era batches; re-submit this run.");
 
-            await File.WriteAllTextAsync(batchPath, JsonSerializer.Serialize(
-                new BatchCache(batchId, DateTimeOffset.UtcNow.ToString("o")), JobJson));
-            _logger.LogInformation("Created batch {BatchId} over {InputFileId}", batchId, inputFileId);
-            return false;
-        }
-
-        var batchCache = JsonSerializer.Deserialize<BatchCache>(
-            await File.ReadAllTextAsync(batchPath), ReadJson)
-            ?? throw new InvalidOperationException($"Could not read batch state from {batchPath}");
-
-        var (status, outputFileId, errorFileId) = await _openai.GetBatchAsync(batchCache.BatchId);
+        var (status, outputFileId, errorFileId) = await _openai.GetBatchAsync(job.JobId);
 
         switch (status)
         {
@@ -182,13 +196,13 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
                     ? await _openai.DownloadFileContentAsync(errorFileId)
                     : null;
                 throw new InvalidOperationException(
-                    $"OpenAI batch {batchCache.BatchId} ended with status '{status}'" +
+                    $"OpenAI batch {job.JobId} ended with status '{status}'" +
                     (errorText is not null ? $": {errorText}" : ""));
 
             case "completed":
                 if (outputFileId is null)
                     throw new InvalidOperationException(
-                        $"OpenAI batch {batchCache.BatchId} completed with no output_file_id");
+                        $"OpenAI batch {job.JobId} completed with no output_file_id");
 
                 if (!_parsedOutputs.TryGetValue(outputFileId, out var results))
                 {
@@ -210,7 +224,7 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
 
             default:
                 _logger.LogWarning("Unknown batch status '{Status}' for {BatchId} — treating as pending",
-                    status, batchCache.BatchId);
+                    status, job.JobId);
                 return false;
         }
     }
@@ -232,5 +246,22 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
         return results;
     }
 
-    private sealed record BatchCache(string BatchId, string CreatedAt);
+    // {jobsDir}/{year}.json — the whole per-era state. JobId is the OpenAI batch
+    // id, so a fresh process can collect with nothing else on disk.
+    private static async Task<BatchJob?> ReadJobAsync(string jobsDir, int year)
+    {
+        var jobPath = Path.Combine(jobsDir, $"{year}.json");
+        if (!File.Exists(jobPath))
+            return null;
+        return JsonSerializer.Deserialize<BatchJob>(await File.ReadAllTextAsync(jobPath), ReadJson)
+            ?? throw new InvalidOperationException($"Could not read job state from {jobPath}");
+    }
+
+    private static Task WriteJobAsync(string jobsDir, BatchJob job) =>
+        File.WriteAllTextAsync(
+            Path.Combine(jobsDir, $"{job.Year}.json"),
+            JsonSerializer.Serialize(job, JobJson));
+
+    private sealed record BatchJob(
+        int Year, string Provider, string JobId, string Size, string Quality, string SubmittedAt);
 }

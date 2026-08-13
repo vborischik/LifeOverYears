@@ -80,9 +80,11 @@ public sealed class AppModule : Module
                 $"Pipeline:BaseMode must be 'clean' or 'synthetic', got '{baseMode}'");
         }
 
-        // Chained eras must be generated one at a time, which removes the whole
-        // point of batch mode (all years submitted at once, up to a 24h window
-        // each). Off by default there; on elsewhere.
+        // Chained eras are generated one at a time, so under batch mode each era
+        // gets its own batch and waits out its own completion window rather than
+        // riding along in one combined submission. Supported in both modes; the
+        // cost is latency, not correctness — a chained batch run is as slow as
+        // the sum of its windows.
         var eraChaining = _configuration.GetValue("Pipeline:EraChaining", true);
 
         _loggerFactory.CreateLogger<AppModule>().LogInformation(

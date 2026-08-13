@@ -39,6 +39,15 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
         return await FolderSmokeTest.RunAsync(folderLoggerFactory.CreateLogger("FolderSmokeTest"));
     }
 
+    // TODO: remove smoke test
+    // Fully isolated: no appsettings, no DI container, no network. Drives the
+    // real OpenAiBatchImageProvider against a fake IOpenAiProvider.
+    if (args.Contains("--smoke-batch"))
+    {
+        using var batchLoggerFactory = LoggerFactory.Create(b => b.AddConsole().SetMinimumLevel(LogLevel.Debug));
+        return await BatchSmokeTest.RunAsync(batchLoggerFactory, batchLoggerFactory.CreateLogger("BatchSmokeTest"));
+    }
+
     // 'assemble <folderPath> [years...]' — manual testing only: no vision, no
     // prompts, no image provider call. Points overlay+assembly at images that
     // are already sitting in {folderPath}/images/. Isolated like --smoke-video:
