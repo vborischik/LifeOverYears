@@ -149,6 +149,11 @@ public static class PromptSmokeTest
         await DoC46(promptService, eras, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, findings);
         DoC47(eras, findings);
         await DoC48(promptService, gasScene, findings);
+        await DoC49(promptService, eras, downtownScene, stripMallScene, findings);
+        await DoC50(promptService, eras, downtownScene, stripMallScene, findings);
+        await DoC51(promptService, eras, downtownScene, stripMallScene, findings);
+        await DoC52(promptService, eras, downtownScene, stripMallScene, findings);
+        await DoC53(promptService, eras, downtownScene, stripMallScene, gasScene, findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -2948,6 +2953,278 @@ public static class PromptSmokeTest
 
         f.Add(("C46", "Every condition-bearing scene type prints its CONDITION line; mall (no condition arc) prints none",
             errs.Count == 0, errs.Count == 0 ? "CONDITION line present for gas_station/downtown_street/strip_mall/auto_repair, absent for mall" : Join(errs)));
+    }
+
+    // Seeds swept by the condition-arc checks below. One seed proves nothing
+    // about a randomised arc — these walk enough of them that a rule which only
+    // usually holds shows up as a failure.
+    private static readonly int[] ArcSeeds = Enumerable.Range(1, 40).ToArray();
+
+    // An era rewritten to offer exactly one condition, used to drive the arc to a
+    // known rank instead of hoping a seed gets there. "abandoned" is mapped to
+    // "squatted" inside PickSceneCondition, so this is also how a rank-2 run is
+    // reached now that abandonment is disabled.
+    private static EraProfile Forcing(EraProfile era, params string[] conditions) =>
+        era with { AllowedSceneConditions = conditions };
+
+    // "abandoned" is disabled: a sealed empty ruin is dead air on screen, so no
+    // era of any run may land on it however the dice fall.
+    private static async Task DoC49(
+        IPromptService promptService,
+        Dictionary<int, EraProfile> eras,
+        SceneDna downtownScene, SceneDna stripMallScene,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        foreach (var (scene, label) in new[] { (downtownScene, "downtown_street"), (stripMallScene, "strip_mall") })
+            foreach (var seed in ArcSeeds)
+            {
+                var run = await BuildRun(promptService, scene, eras, seed, Years);
+                foreach (var (year, prompt) in run)
+                {
+                    if (prompt.SceneCondition == "abandoned")
+                        errs.Add($"{label}/seed {seed}/{year}: condition 'abandoned'");
+                    if (prompt.Text.Contains("CONDITION: abandoned", StringComparison.Ordinal))
+                        errs.Add($"{label}/seed {seed}/{year}: prompt carries a CONDITION: abandoned line");
+                }
+            }
+
+        f.Add(("C49", $"No era of any run reaches 'abandoned' ({ArcSeeds.Length} seeds x 6 eras x 2 retail scene types)",
+            errs.Count == 0, errs.Count == 0
+                ? $"{ArcSeeds.Length * Years.Length * 2} era conditions sampled, none abandoned"
+                : Join(errs.Take(5))));
+    }
+
+    // Squatted retail is a half-dead row, not a sealed one: cheap survivors still
+    // trading, dereliction carried at ground level. The fully-closed wording is
+    // what this state exists to replace, so it must not appear.
+    private static async Task DoC50(
+        IPromptService promptService,
+        Dictionary<int, EraProfile> eras,
+        SceneDna downtownScene, SceneDna stripMallScene,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        const string fullyClosed = "every storefront closed and dark";
+
+        // Structural: the squatted pool is the heavy pool plus the ground
+        // details, while abandoned keeps the sealed pool untouched.
+        foreach (var sceneType in new[] { "downtown_street", "strip_mall" })
+        {
+            var squattedPool = PromptService.DecayPoolFor(sceneType, "squatted") ?? [];
+            foreach (var ground in PromptService.SquattedGroundDetails)
+                if (!squattedPool.Contains(ground))
+                    errs.Add($"{sceneType}: squatted decay pool is missing ground detail '{ground}'");
+
+            var abandonedPool = PromptService.DecayPoolFor(sceneType, "abandoned") ?? [];
+            if (PromptService.SquattedGroundDetails.Any(abandonedPool.Contains))
+                errs.Add($"{sceneType}: abandoned decay pool picked up squatted ground details");
+        }
+
+        // Prompt level: every squatted retail prompt carries a surviving tenant
+        // and never the fully-closed line; ground details are sampled, so they
+        // are asserted across the sweep rather than per prompt.
+        var groundSeen = false;
+        foreach (var (scene, label) in new[] { (downtownScene, "downtown_street"), (stripMallScene, "strip_mall") })
+            foreach (var seed in ArcSeeds)
+            {
+                var ctx = new GenerationContext { Random = new Random(seed), TotalEras = 2 };
+                var prompt = await promptService.BuildAsync(
+                    scene, Forcing(eras[2015], "abandoned"), ctx);
+
+                if (prompt.SceneCondition != "squatted")
+                {
+                    errs.Add($"{label}/seed {seed}: forced era gave '{prompt.SceneCondition}', expected squatted");
+                    continue;
+                }
+
+                if (!PromptService.PoorTenantBusinesses.Any(t => prompt.Text.Contains(t, StringComparison.Ordinal)))
+                    errs.Add($"{label}/seed {seed}: squatted prompt names no surviving tenant");
+                if (prompt.Text.Contains(fullyClosed, StringComparison.Ordinal))
+                    errs.Add($"{label}/seed {seed}: squatted prompt still says '{fullyClosed}'");
+                if (prompt.Text.Length > MaxPromptChars)
+                    errs.Add($"{label}/seed {seed}: squatted prompt is {prompt.Text.Length} chars (max {MaxPromptChars})");
+
+                groundSeen |= PromptService.SquattedGroundDetails.Any(g => prompt.Text.Contains(g, StringComparison.Ordinal));
+            }
+
+        if (!groundSeen)
+            errs.Add($"no squatted prompt across {ArcSeeds.Length} seeds sampled a ground detail");
+
+        f.Add(("C50", "Squatted retail prompts carry a surviving tenant and ground-level decay, never the fully-closed wording",
+            errs.Count == 0, errs.Count == 0
+                ? "survivors present, ground details reachable, fully-closed line absent"
+                : Join(errs.Take(5))));
+    }
+
+    // Once a retail row has fallen to rank 2 the finale holds it there. A place
+    // does not go derelict and reopen inside one era, and showing that is the one
+    // beat in the arc that reads as false.
+    private static async Task DoC51(
+        IPromptService promptService,
+        Dictionary<int, EraProfile> eras,
+        SceneDna downtownScene, SceneDna stripMallScene,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        foreach (var (scene, label) in new[] { (downtownScene, "downtown_street"), (stripMallScene, "strip_mall") })
+            foreach (var seed in ArcSeeds)
+            {
+                var ctx = new GenerationContext { Random = new Random(seed), TotalEras = 2 };
+
+                var preFinale = await promptService.BuildAsync(
+                    scene, Forcing(eras[2015], "abandoned"), ctx);
+                if (preFinale.SceneCondition != "squatted")
+                {
+                    errs.Add($"{label}/seed {seed}: setup era gave '{preFinale.SceneCondition}', expected rank 2");
+                    continue;
+                }
+
+                var finale = await promptService.BuildAsync(scene, eras[2025], ctx);
+                if (finale.SceneCondition != "squatted")
+                    errs.Add($"{label}/seed {seed}: finale resurrected to '{finale.SceneCondition}'");
+            }
+
+        f.Add(("C51", "A run that reached rank 2 before the finale ends squatted — never restored or declining",
+            errs.Count == 0, errs.Count == 0
+                ? $"{ArcSeeds.Length * 2} rank-2 runs all held their finale at squatted"
+                : Join(errs.Take(5))));
+    }
+
+    // "restored" means the same shell taken back into use, not a gut renovation:
+    // a rebuilt-looking building stops being the building the run has followed.
+    private static async Task DoC52(
+        IPromptService promptService,
+        Dictionary<int, EraProfile> eras,
+        SceneDna downtownScene, SceneDna stripMallScene,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        var restoredSeen = 0;
+
+        foreach (var (scene, label) in new[] { (downtownScene, "downtown_street"), (stripMallScene, "strip_mall") })
+            foreach (var seed in ArcSeeds)
+            {
+                var ctx = new GenerationContext { Random = new Random(seed), TotalEras = 2 };
+
+                // Rank 1 only, so the finale is free to choose restored.
+                await promptService.BuildAsync(scene, Forcing(eras[2005], "declining"), ctx);
+                var finale = await promptService.BuildAsync(scene, eras[2025], ctx);
+                if (finale.SceneCondition != "restored")
+                    continue;
+
+                restoredSeen++;
+                var line = finale.Text.Split('\n')
+                    .FirstOrDefault(l => l.StartsWith("CONDITION: restored", StringComparison.Ordinal));
+                if (line is null)
+                {
+                    errs.Add($"{label}/seed {seed}: restored prompt has no CONDITION line");
+                    continue;
+                }
+                if (!line.Contains("reoccupied", StringComparison.Ordinal))
+                    errs.Add($"{label}/seed {seed}: restored descriptor does not say 'reoccupied': {line}");
+                if (line.Contains("renovated appearance", StringComparison.Ordinal))
+                    errs.Add($"{label}/seed {seed}: restored descriptor still says 'renovated appearance'");
+                if (finale.Text.Length > MaxPromptChars)
+                    errs.Add($"{label}/seed {seed}: restored prompt is {finale.Text.Length} chars (max {MaxPromptChars})");
+            }
+
+        if (restoredSeen == 0)
+            errs.Add($"no finale across {ArcSeeds.Length} seeds x 2 scene types resolved to 'restored' — the branch is unreachable");
+
+        f.Add(("C52", "The 'restored' descriptor reads as reoccupation of the same shell, not a renovation",
+            errs.Count == 0, errs.Count == 0
+                ? $"{restoredSeen} restored finales, all reoccupation wording"
+                : Join(errs.Take(5))));
+    }
+
+    // The squatted split has to reach the people and vehicle blocks too. A row
+    // whose open units are "clearly trading" alongside "nothing here is open" and
+    // an empty lot is the contradiction the whole state was reworked to remove —
+    // and the image model resolves such a conflict by picking one side.
+    private static async Task DoC53(
+        IPromptService promptService,
+        Dictionary<int, EraProfile> eras,
+        SceneDna downtownScene, SceneDna stripMallScene, SceneDna gasScene,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        const string deadLine = "No staff, no customers, nobody working — nothing here is open.";
+        const string noVehicles = "NO vehicles anywhere";
+
+        foreach (var (scene, label) in new[] { (downtownScene, "downtown_street"), (stripMallScene, "strip_mall") })
+            foreach (var seed in ArcSeeds)
+            {
+                var ctx = new GenerationContext { Random = new Random(seed), TotalEras = 2 };
+                var p = await promptService.BuildAsync(scene, Forcing(eras[2015], "abandoned"), ctx);
+                if (p.SceneCondition != "squatted") continue;
+
+                if (p.Text.Contains(deadLine, StringComparison.Ordinal))
+                    errs.Add($"{label}/seed {seed}: trading row still carries the dead-forecourt people line");
+                if (p.Text.Contains(noVehicles, StringComparison.Ordinal))
+                    errs.Add($"{label}/seed {seed}: trading row has an empty lot");
+                if (p.SelectedVehicles.Count is < 2 or > 3)
+                    errs.Add($"{label}/seed {seed}: {p.SelectedVehicles.Count} vehicles, expected 2-3");
+
+                var people = PeopleTotal(p.Text);
+                if (people is null || people < 4 || people > 6)
+                    errs.Add($"{label}/seed {seed}: people total {people?.ToString() ?? "absent"}, expected 4-6");
+
+                // "of these, N ..." plus "the rest ..." already partitions the
+                // total; a third figure bullet describes people the count has no
+                // room for.
+                var figureLines = PeopleSection(p.Text)
+                    .Split('\n')
+                    .Count(l => l.StartsWith("- ", StringComparison.Ordinal));
+                if (figureLines != 2)
+                    errs.Add($"{label}/seed {seed}: {figureLines} figure lines in the people block, expected 2");
+            }
+
+        // The forecourt keeps the dead treatment, and its enumerated figures must
+        // sum to the exact total it states — a plural people_mix entry there
+        // describes more people than the count allows.
+        foreach (var seed in ArcSeeds)
+        {
+            var ctx = new GenerationContext { Random = new Random(seed), TotalEras = 2 };
+            var p = await promptService.BuildAsync(gasScene, Forcing(eras[2015], "abandoned"), ctx);
+            if (p.SceneCondition != "squatted") continue;
+
+            if (!p.Text.Contains(deadLine, StringComparison.Ordinal))
+                errs.Add($"gas_station/seed {seed}: squatted forecourt lost its dead-forecourt people line");
+
+            var passerBy = p.Text.Split('\n')
+                .FirstOrDefault(l => l.Contains("passing by along the far edge", StringComparison.Ordinal));
+            if (passerBy is null)
+                errs.Add($"gas_station/seed {seed}: no passer-by line");
+            else
+            {
+                var figure = passerBy.TrimStart('-', ' ');
+                if (!PromptService.IsSinglePersonForTests(figure))
+                    errs.Add($"gas_station/seed {seed}: passer-by describes more than one person: {figure}");
+            }
+        }
+
+        f.Add(("C53", "Squatted retail gets trading-row people and vehicles; the squatted forecourt stays dead and its figures sum to its stated total",
+            errs.Count == 0, errs.Count == 0
+                ? "retail rows populated and parked, forecourts dead with single-figure passers-by"
+                : Join(errs.Take(5))));
+    }
+
+    private static string PeopleSection(string promptText)
+    {
+        var i = promptText.IndexOf("PEOPLE\n", StringComparison.Ordinal);
+        if (i < 0) return "";
+        var j = promptText.IndexOf("\n\n", i, StringComparison.Ordinal);
+        return j < 0 ? promptText[i..] : promptText[i..j];
+    }
+
+    // "EXACTLY N people TOTAL" — the count the prompt commits to.
+    private static int? PeopleTotal(string promptText)
+    {
+        var m = System.Text.RegularExpressions.Regex.Match(promptText, @"EXACTLY (\d+) people TOTAL");
+        return m.Success ? int.Parse(m.Groups[1].Value) : null;
     }
 
     // ── Report ────────────────────────────────────────────────────────────────
