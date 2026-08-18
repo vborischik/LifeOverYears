@@ -358,14 +358,15 @@ public sealed class GenerationContext
     // describes a stripped shell, so returning a name here would put lettering
     // on a shop the prompt has just closed down.
     public CornerShopSign ResolveCornerShop(
-        IReadOnlyDictionary<string, IReadOnlyList<string>> names, int year, string condition)
+        IReadOnlyDictionary<string, IReadOnlyList<string>> names, int year, string condition,
+        string sceneType)
     {
         if (!_cornerShopPlanBuilt)
         {
             _cornerShopPlanBuilt = true;
             _originKind = Random.Next(2) == 0 ? CornerShopKind.Grocery : CornerShopKind.Pharmacy;
-            _originName = PickName(names, _originKind);
-            _liquorName = PickName(names, CornerShopKind.Liquor);
+            _originName = PickName(names, _originKind, sceneType);
+            _liquorName = PickName(names, CornerShopKind.Liquor, sceneType);
         }
 
         var turnedOver = year >= LiquorFromYear;
@@ -379,13 +380,46 @@ public sealed class GenerationContext
             : new CornerShopSign(kind, _originName, null);
     }
 
-    private string? PickName(
-        IReadOnlyDictionary<string, IReadOnlyList<string>> names, CornerShopKind kind)
+    public const string LiquorUrbanKey    = "liquor_urban";
+    public const string LiquorSuburbanKey = "liquor_suburban";
+
+    // Scene types whose frontage sets the register of the liquor name. Dense
+    // walkable corridors read urban; arterial strips with parking in front read
+    // suburban.
+    public static readonly IReadOnlyList<string> UrbanLiquorScenes =
+        new[] { "downtown_street", "corner_shop" };
+    public static readonly IReadOnlyList<string> SuburbanLiquorScenes =
+        new[] { "strip_mall", "shopping_center" };
+
+    // Which liquor pool a scene type draws from — public so the smoke checks can
+    // assert the split without duplicating the mapping.
+    public static IReadOnlyList<string> LiquorKeysFor(string sceneType)
     {
-        var key = kind.ToString().ToLowerInvariant();
-        return names.TryGetValue(key, out var pool) && pool.Count > 0
-            ? pool[Random.Next(pool.Count)]
-            : null;
+        if (UrbanLiquorScenes.Contains(sceneType, StringComparer.OrdinalIgnoreCase))
+            return new[] { LiquorUrbanKey };
+        if (SuburbanLiquorScenes.Contains(sceneType, StringComparer.OrdinalIgnoreCase))
+            return new[] { LiquorSuburbanKey };
+        return new[] { LiquorUrbanKey, LiquorSuburbanKey };
+    }
+
+    private string? PickName(
+        IReadOnlyDictionary<string, IReadOnlyList<string>> names, CornerShopKind kind, string sceneType)
+    {
+        // The liquor name is sign text, and a warehouse-scale name on a narrow
+        // pre-war frontage reads as the wrong building — which is the one thing
+        // this scene type cannot afford, since the whole arc is that the building
+        // never changes and only the trade does. So the register follows the
+        // scene's density rather than one flat pool. An unlisted scene type draws
+        // from both, which is the old behaviour and never worse than failing.
+        var keys = kind == CornerShopKind.Liquor
+            ? LiquorKeysFor(sceneType)
+            : new[] { kind.ToString().ToLowerInvariant() };
+
+        var pool = keys
+            .SelectMany(k => names.TryGetValue(k, out var p) ? p : Array.Empty<string>())
+            .ToList();
+
+        return pool.Count > 0 ? pool[Random.Next(pool.Count)] : null;
     }
 
     private bool _gasPlanBuilt;

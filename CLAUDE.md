@@ -140,6 +140,16 @@ never earlier. From 2015 the people outside are regulars, not shoppers. Locked
 by C60, which measures that spread over 500 seeds rather than trusting the two
 fixtures.
 
+**Liquor names** — `corner-shop-names.txt` splits them by urban register:
+`liquor_urban` (numbered avenues, proprietor surnames, combined trades,
+initials — the narrow pre-war frontage) and `liquor_suburban` (discount,
+warehouse, beverage, plaza and highway names — the wider unit with parking).
+`GenerationContext.LiquorKeysFor` maps scene type to pool: urban for
+`downtown_street`/`corner_shop`, suburban for `strip_mall`/`shopping_center`,
+both for anything else. The name is sign text, so a warehouse name on a narrow
+frontage reads as the wrong building — which is exactly what the corner-shop arc
+cannot afford. Locked by C61.
+
 **Conditions** — `thriving/busy/new/declining/abandoned/squatted/restored`,
 picked per era in `GenerationContext.PickSceneCondition` for gas_station,
 downtown_street, strip_mall, auto_repair and corner_shop. The rank is monotonic across a run

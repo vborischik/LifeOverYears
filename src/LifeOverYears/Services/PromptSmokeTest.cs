@@ -165,6 +165,7 @@ public static class PromptSmokeTest
         await DoC57(dataService, findings);
         await DoC58(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, csRun1, csRun2, unknownPrompt, findings);
         DoC60(csRun1, csRun2, eras, logger, findings);
+        await DoC61(dataService, findings);
         await DoC59(dataService, findings);
 
         // e) Report
@@ -3837,6 +3838,125 @@ public static class PromptSmokeTest
             errs.Count == 0, errs.Count == 0
                 ? $"both runs hold the trade arc, the decline and the prompt budgets; across {seeds} seeds it ends boarded up {closedFinale * 100.0 / seeds:F0}% of the time and never earlier"
                 : Join(errs)));
+    }
+
+    // The liquor name is sign text, so its register has to match the frontage it
+    // is bolted to: a warehouse name on a narrow pre-war shopfront reads as the
+    // wrong building. The two pools therefore have to stay genuinely separate —
+    // both populated, no name in both, and no scene type drawing across the
+    // split. Drives ResolveCornerShop directly rather than reading prompts, so
+    // the mapping is checked independently of what any fixture happens to sample.
+    private static async Task DoC61(
+        IDataService dataService,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        IReadOnlyDictionary<string, IReadOnlyList<string>> names;
+        try
+        {
+            names = await dataService.LoadCornerShopNamesAsync();
+        }
+        catch (Exception ex)
+        {
+            f.Add(("C61", "Liquor names are split by urban register and no scene type draws across the split",
+                false, $"LoadCornerShopNamesAsync threw: {ex.Message}"));
+            return;
+        }
+
+        // 1. Both kinds load and carry enough names to be worth splitting.
+        const int minPerPool = 20;
+        var urban    = names.TryGetValue(GenerationContext.LiquorUrbanKey,    out var u) ? u : Array.Empty<string>();
+        var suburban = names.TryGetValue(GenerationContext.LiquorSuburbanKey, out var s) ? s : Array.Empty<string>();
+
+        if (urban.Count == 0)    errs.Add($"{GenerationContext.LiquorUrbanKey} did not load");
+        if (suburban.Count == 0) errs.Add($"{GenerationContext.LiquorSuburbanKey} did not load");
+        if (urban.Count is > 0 and < minPerPool)
+            errs.Add($"{GenerationContext.LiquorUrbanKey} has only {urban.Count} names, expected at least {minPerPool}");
+        if (suburban.Count is > 0 and < minPerPool)
+            errs.Add($"{GenerationContext.LiquorSuburbanKey} has only {suburban.Count} names, expected at least {minPerPool}");
+
+        // A flat "liquor" key left behind would silently be dead data.
+        if (names.ContainsKey("liquor"))
+            errs.Add("the old flat 'liquor' key is still in the file — it is no longer read");
+
+        // 2. No name in both pools: a shared name makes the register meaningless
+        // and would let a scene type appear to draw across the split.
+        foreach (var shared in urban.Intersect(suburban, StringComparer.OrdinalIgnoreCase).OrderBy(n => n))
+            errs.Add($"\"{shared}\" appears in both liquor pools");
+
+        // Duplicates inside one pool shrink it invisibly, same as the caption pools.
+        foreach (var dupe in urban.GroupBy(n => n, StringComparer.OrdinalIgnoreCase).Where(g => g.Count() > 1))
+            errs.Add($"{GenerationContext.LiquorUrbanKey} lists \"{dupe.Key}\" {dupe.Count()} times");
+        foreach (var dupe in suburban.GroupBy(n => n, StringComparer.OrdinalIgnoreCase).Where(g => g.Count() > 1))
+            errs.Add($"{GenerationContext.LiquorSuburbanKey} lists \"{dupe.Key}\" {dupe.Count()} times");
+
+        // 3. Scene type never draws across the split. Swept over seeds so the
+        // result does not depend on one lucky sample.
+        const int seeds = 60;
+        var expectations = new (string SceneType, IReadOnlyList<string> Allowed, IReadOnlyList<string> Forbidden, string Register)[]
+        {
+            ("downtown_street",  urban,    suburban, "urban"),
+            ("corner_shop",      urban,    suburban, "urban"),
+            ("strip_mall",       suburban, urban,    "suburban"),
+            ("shopping_center",  suburban, urban,    "suburban"),
+        };
+
+        var drawn = new Dictionary<string, HashSet<string>>();
+        foreach (var (sceneType, allowed, forbidden, register) in expectations)
+        {
+            var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            for (var seed = 1; seed <= seeds; seed++)
+            {
+                var ctx = new GenerationContext
+                {
+                    Random = new Random(seed), TotalEras = Years.Length, Years = Years
+                };
+                // LiquorFromYear onward is the era that actually carries a liquor name.
+                var sign = ctx.ResolveCornerShop(
+                    names, GenerationContext.LiquorFromYear, "declining", sceneType);
+
+                if (sign.Name is null)
+                {
+                    errs.Add($"{sceneType}/seed {seed}: no liquor name resolved");
+                    continue;
+                }
+                seen.Add(sign.Name);
+
+                if (forbidden.Contains(sign.Name, StringComparer.OrdinalIgnoreCase))
+                    errs.Add($"{sceneType} drew \"{sign.Name}\" from the wrong register (seed {seed})");
+                else if (!allowed.Contains(sign.Name, StringComparer.OrdinalIgnoreCase))
+                    errs.Add($"{sceneType} drew \"{sign.Name}\", which is in neither liquor pool (seed {seed})");
+            }
+            drawn[$"{sceneType} ({register})"] = seen;
+
+            // A pool that only ever yields one or two names is split but not varied.
+            if (seen.Count < 5)
+                errs.Add($"{sceneType}: only {seen.Count} distinct names across {seeds} seeds");
+        }
+
+        // 4. An unlisted scene type falls back to the combined pool — it must be
+        // able to reach both registers rather than silently getting nothing.
+        var fallbackSeen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        for (var seed = 1; seed <= 200; seed++)
+        {
+            var ctx = new GenerationContext
+            {
+                Random = new Random(seed), TotalEras = Years.Length, Years = Years
+            };
+            var sign = ctx.ResolveCornerShop(
+                names, GenerationContext.LiquorFromYear, "declining", "gas_station");
+            if (sign.Name is not null) fallbackSeen.Add(sign.Name);
+        }
+        if (!fallbackSeen.Overlaps(urban) || !fallbackSeen.Overlaps(suburban))
+            errs.Add("an unlisted scene type does not reach both liquor pools — the combined fallback is not combined");
+
+        var summary = string.Join(" | ",
+            new[] { $"urban {urban.Count}, suburban {suburban.Count}, no overlap" }
+                .Concat(drawn.Select(kv => $"{kv.Key}: {kv.Value.Count} distinct")));
+
+        f.Add(("C61", "Liquor names are split by urban register: both pools load, no name is in both, downtown/corner_shop draw only urban names and strip_mall/shopping_center only suburban, and an unlisted scene type still reaches both",
+            errs.Count == 0, errs.Count == 0 ? summary : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────

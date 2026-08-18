@@ -147,7 +147,7 @@ public sealed class PromptService : IPromptService
         var placement = !isPacked && vehicles.Count > 0 ? context.NextPlacement(vehicles.Count, onStreetParking) : "";
         var gasSign   = isGasStation ? await ResolveGasSignAsync(context, year, condition) : default;
         var cornerShop = IsCornerShop(sceneType)
-            ? await ResolveCornerShopAsync(context, year, condition)
+            ? await ResolveCornerShopAsync(context, year, condition, sceneType)
             : default;
 
         var sceneBlock = BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, gasSign, cornerShop, rng, context);
@@ -259,12 +259,12 @@ public sealed class PromptService : IPromptService
     // unreadable file must not take a run down. Without names the sign line is
     // simply omitted and the shop reads from its era content alone.
     private async Task<GenerationContext.CornerShopSign> ResolveCornerShopAsync(
-        GenerationContext context, int year, string condition)
+        GenerationContext context, int year, string condition, string sceneType)
     {
         try
         {
             var names = await _data.LoadCornerShopNamesAsync();
-            return context.ResolveCornerShop(names, year, condition);
+            return context.ResolveCornerShop(names, year, condition, sceneType);
         }
         catch (Exception ex)
         {
