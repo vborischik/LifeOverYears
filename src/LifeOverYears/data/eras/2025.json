@@ -535,6 +535,52 @@
         "a bike rack bolted to the walkway outside the gym"
       ]
     },
+    "corner_shop": {
+      "narrative": "A 2025 liquor store on the corner where the shop used to be — everything sold through a barred window and a buzzer door, the block around it quieter every year.",
+      "storefronts": [
+        "heavy steel mesh over the windows, bolted flat to the frames",
+        "an LED beer sign in the upper glass, one segment dead",
+        "a buzzer entry plate screwed beside the door handle",
+        "printed price sheets taped up in rows inside the glass",
+        "a no-loitering placard weathered past reading",
+        "cameras front and side, cabling run openly down the brick",
+        "the old lettering still faintly readable above the box sign",
+        "an ice chest padlocked shut against the front wall"
+      ],
+      "window_signs": [
+        "BEER WINE LIQUOR",
+        "LOTTO",
+        "ATM INSIDE",
+        "ICE",
+        "NO LOITERING"
+      ],
+      "people": {
+        "min": 1,
+        "max": 3
+      },
+      "people_activities": [
+        "a man waiting for the door buzzer with a hand on the handle",
+        "two men standing off to the side of the entrance, saying little",
+        "someone coming out with a bag held low, walking straight off",
+        "a woman scrolling a phone against the wall by the window",
+        "a man sitting on the step with a can beside him",
+        "someone stopping at the corner of the building, then moving on",
+        "a delivery driver checking an app before carrying a case in",
+        "a man reading the price sheets through the mesh",
+        "two people talking across the roof of a parked car",
+        "someone leaving a bicycle unlocked against the wall for a minute"
+      ],
+      "vehicles": {
+        "min": 1,
+        "max": 2
+      },
+      "extras": [
+        "a padlocked ice chest with a faded drinks decal",
+        "cigarette ends and bottle caps in the gutter along the curb",
+        "a scuffed steel kick plate on the door",
+        "a bare bracket where the payphone was taken off the wall"
+      ]
+    },
     "default": {
       "narrative": "An ordinary 2025 American commercial street — flat minimalist logos, QR codes and delivery drivers.",
       "storefronts": [

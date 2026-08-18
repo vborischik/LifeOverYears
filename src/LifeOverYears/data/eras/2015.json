@@ -548,6 +548,52 @@
         "a dumpster corral at the end of the run"
       ]
     },
+    "corner_shop": {
+      "narrative": "By 2015 the shop sells bottles — the same building, the same door, a liquor store now, with bars over the glass, neon in the window and the old lettering still ghosting on the brick above the new sign.",
+      "storefronts": [
+        "steel bars across every pane of the front glass",
+        "neon beer signs glowing in the upper window",
+        "a lottery placard and an ATM decal filling the door glass",
+        "a security camera on each side of the entrance",
+        "a printed no-loitering placard screwed beside the door",
+        "an ice chest and a stack of empty crates against the front wall",
+        "the old sign band still visible behind the new box sign",
+        "a hand-lettered card about single-can prices taped inside the glass"
+      ],
+      "window_signs": [
+        "COLD BEER",
+        "LOTTO",
+        "ICE",
+        "ATM",
+        "CIGARETTES"
+      ],
+      "people": {
+        "min": 1,
+        "max": 3
+      },
+      "people_activities": [
+        "a man coming out with a bottle in a paper bag, not stopping",
+        "two men standing at the corner of the building, talking",
+        "someone leaning on the bracket where the payphone used to be",
+        "a woman getting straight back into a car left running at the curb",
+        "a man smoking beside the door, watching the street",
+        "someone crossing to the door without looking up",
+        "a regular nodding to the clerk through the barred window",
+        "two people sitting on the low wall beside the entrance",
+        "a man checking a lottery ticket against the sheet in the window",
+        "someone waiting by the ice chest for a friend still inside"
+      ],
+      "vehicles": {
+        "min": 1,
+        "max": 2
+      },
+      "extras": [
+        "a plastic no-loitering placard already sun-bleached",
+        "empty crates stacked beside the door awaiting collection",
+        "cigarette ends banked along the base of the front wall",
+        "a security camera cable stapled down the brick to the door"
+      ]
+    },
     "default": {
       "narrative": "An ordinary 2015 American commercial street — LED signs, crossovers at the curb, smartphones out everywhere.",
       "storefronts": [

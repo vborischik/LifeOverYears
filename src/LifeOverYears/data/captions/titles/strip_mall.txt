@@ -6,3 +6,11 @@ Every Unit Was Rented in {firstYear}. Now Look at {lastYear}.
 Watch This Strip Mall Go Dark, {firstYear} to {lastYear}
 Friday Night Here in {firstYear} Hit Different
 Your Whole Childhood Happened in This Parking Lot
+The Video Store Was Still Open Here in {firstYear}
+{firstYear} to {lastYear}: Every Unit Went Dark One at a Time
+Your Whole Friday Night Happened in This Row
+The Anchor Store Closed and Took the Row With It
+Nobody Photographed the Strip Mall You Grew Up At
+This Lot Was Full Every Saturday in {firstYear}
+Watch the Sign Panels Go Blank, {firstYear} to {lastYear}
+The Chinese Place at the End Lasted Longer Than Anything

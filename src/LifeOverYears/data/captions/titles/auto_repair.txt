@@ -6,3 +6,11 @@ One Bay, One Mechanic, {firstYear} to {lastYear} 🔧
 Watch This Corner Garage Disappear in 30 Seconds
 Every Town Had a Shop Like This. Here's What Happened.
 When the Mechanic Knew Your Car Better Than You Did
+Everybody Had a Guy. This Was His Shop.
+{firstYear} to {lastYear}: The Garage That Kept Your Town Running
+He Fixed Your Father's Car and Then Yours
+The Bay Doors Went Up at Seven Every Morning Until {lastYear}
+This Shop Told You What Your Car Didn't Need
+Watch a Family Garage Disappear, {firstYear} to {lastYear}
+There Was Always One Car That Never Left the Lot
+The Last Honest Mechanic in Town, {firstYear} to {lastYear}

@@ -65,7 +65,7 @@ public sealed class PromptService : IPromptService
         var supportsCondition = SupportsCondition(sceneType);
 
         var condition = supportsCondition
-            ? context.PickSceneCondition(eraProfile.AllowedSceneConditions, sceneType)
+            ? context.PickSceneCondition(eraProfile.AllowedSceneConditions, sceneType, year)
             : "thriving";
         _logger.LogInformation(
             "Scene condition for SceneDna {Id}, year {Year} (era {Index}): {Condition}",
@@ -146,8 +146,11 @@ public sealed class PromptService : IPromptService
         // to arrange either, so it skips placement the same way.
         var placement = !isPacked && vehicles.Count > 0 ? context.NextPlacement(vehicles.Count, onStreetParking) : "";
         var gasSign   = isGasStation ? await ResolveGasSignAsync(context, year, condition) : default;
+        var cornerShop = IsCornerShop(sceneType)
+            ? await ResolveCornerShopAsync(context, year, condition)
+            : default;
 
-        var sceneBlock = BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, gasSign, rng, context);
+        var sceneBlock = BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, gasSign, cornerShop, rng, context);
         sceneBlock = AppendPlacementRule(sceneBlock);
         sceneBlock = AppendSignageRestriction(sceneBlock);
 
@@ -160,7 +163,7 @@ public sealed class PromptService : IPromptService
             .Replace("{BASE_NOTE}",         context.ChainedFromPreviousEra ? ChainedBaseNote : FreshBaseNote)
             .Replace("{PRESERVE_BLOCK}",    ShortPreserveBlock)
             .Replace("{SCENE_BLOCK}",       sceneBlock)
-            .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, hasSidewalks, rng, context, isPacked, isSquatted, IsDecliningRetail(condition, sceneType), isSquattedRetail))
+            .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, hasSidewalks, rng, context, isPacked, isSquatted, IsDecliningRetail(condition, sceneType), isSquattedRetail, IsLiquorEra(sceneType, year)))
             .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation, onStreetParking, isPacked, derelictCount))
             .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year, sceneType, condition, rng, context))
             .Replace("{STYLE_BLOCK}",       BuildStyleBlock(eraProfile.Photography, condition));
@@ -252,6 +255,24 @@ public sealed class PromptService : IPromptService
     // Run-wide gas-station sign spec: one brand held across the run (with at most
     // one rebrand), a dead stripped board when abandoned/squatted, and a fresh
     // brand on a rebuilt finale. Brand-timeline state lives on GenerationContext.
+    // Same shape as the gas sign resolver: the name file is data, so a missing or
+    // unreadable file must not take a run down. Without names the sign line is
+    // simply omitted and the shop reads from its era content alone.
+    private async Task<GenerationContext.CornerShopSign> ResolveCornerShopAsync(
+        GenerationContext context, int year, string condition)
+    {
+        try
+        {
+            var names = await _data.LoadCornerShopNamesAsync();
+            return context.ResolveCornerShop(names, year, condition);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Could not load corner shop names — the shop sign line is skipped for {Year}", year);
+            return default;
+        }
+    }
+
     private async Task<GenerationContext.GasSign> ResolveGasSignAsync(
         GenerationContext context, int year, string condition)
     {
@@ -517,6 +538,30 @@ public sealed class PromptService : IPromptService
         "shattered storefront glass swept into the walkway corners"
     };
 
+    // A corner shop has no row to lose tenants from and no forecourt to crack —
+    // it is one small unit that keeps trading while everything about it gets
+    // cheaper. The decay is in what the owner bolts on to stay open: bars, a
+    // security camera, hand-painted board over the old sign band.
+    internal static readonly string[] CornerShopDecayModerate =
+    {
+        "steel bars fitted across the lower windows, newer than everything around them",
+        "the old sign band painted over, a hand-lettered board screwed on beneath it",
+        "a cracked window pane held with tape at one corner",
+        "milk crates and flattened boxes stacked by the side door",
+        "an ice cooler chained to the wall beside the entrance",
+        "peeling paint down the corner pilaster, brick showing through"
+    };
+
+    internal static readonly string[] CornerShopDecayHeavy =
+    {
+        "plywood screwed over the storefront glass, the door frame boarded flush",
+        "a padlocked steel grille pulled across the entrance",
+        "the sign band stripped bare, anchor holes left in the brick",
+        "graffiti across the boarded window and the lower brick",
+        "a dead security camera hanging off its bracket above the door",
+        "litter and broken glass banked against the base of the wall"
+    };
+
     // An independent auto repair shop decays through its own working surfaces:
     // the bay doors, the sign band, the apron — never geometry, and never a
     // feature (pump island, canopy) that might not exist in a given SceneDna.
@@ -584,6 +629,7 @@ public sealed class PromptService : IPromptService
             "downtown_street" => DowntownDecayModerate,
             "strip_mall"      => StripMallDecayModerate,
             "auto_repair"     => AutoRepairDecayModerate,
+            "corner_shop"     => CornerShopDecayModerate,
             _                 => DecayModerate
         },
         // Squatted retail is no longer the sealed-up Heavy pool on its own: that
@@ -595,6 +641,7 @@ public sealed class PromptService : IPromptService
             "downtown_street" => DowntownSquattedPool,
             "strip_mall"      => StripMallSquattedPool,
             "auto_repair"     => AutoRepairDecayHeavy,
+            "corner_shop"     => CornerShopDecayHeavy,
             _                 => DecayHeavy
         },
         "abandoned" => sceneType switch
@@ -602,6 +649,7 @@ public sealed class PromptService : IPromptService
             "downtown_street" => DowntownDecayHeavy,
             "strip_mall"      => StripMallDecayHeavy,
             "auto_repair"     => AutoRepairDecayHeavy,
+            "corner_shop"     => CornerShopDecayHeavy,
             _                 => DecayHeavy
         },
         _ => null
@@ -615,7 +663,16 @@ public sealed class PromptService : IPromptService
     // Single source of truth: the count logic and the CONDITION line both ask
     // here, so they cannot drift apart.
     private static bool SupportsCondition(string sceneType) =>
-        sceneType is "gas_station" or "downtown_street" or "strip_mall" or "auto_repair";
+        sceneType is "gas_station" or "downtown_street" or "strip_mall" or "auto_repair" or "corner_shop";
+
+    // The corner shop's whole story is what the building ends up selling, so
+    // from LiquorFromYear its trade is fixed and the people outside change with
+    // it. Asked here rather than inline so the sign, the people block and the
+    // checks all read the same year.
+    private static bool IsCornerShop(string sceneType) => sceneType == "corner_shop";
+
+    private static bool IsLiquorEra(string sceneType, int year) =>
+        IsCornerShop(sceneType) && year >= GenerationContext.LiquorFromYear;
 
     // A retail row that is failing but not yet dead — the only state where a
     // surviving tenant makes sense. Squatted and abandoned stay fully closed.
@@ -644,7 +701,7 @@ public sealed class PromptService : IPromptService
         return sb.ToString().TrimEnd();
     }
 
-    private static string BuildSceneBlock(EraProfile era, SceneContent? content, string sceneType, string condition, GenerationContext.GasSign gasSign, Random rng, GenerationContext context)
+    private static string BuildSceneBlock(EraProfile era, SceneContent? content, string sceneType, string condition, GenerationContext.GasSign gasSign, GenerationContext.CornerShopSign cornerShop, Random rng, GenerationContext context)
     {
         var sb = new StringBuilder();
         sb.AppendLine($"TRANSFORM TO {era.Year}");
@@ -703,6 +760,8 @@ public sealed class PromptService : IPromptService
             sb.AppendLine("- plywood over the ground-floor windows, doors chained shut");
             if (isGasStation)
                 sb.AppendLine("- main sign: a bare stripped sign frame — rusted metal posts, an empty price panel with no digits, no lit letters, no logo, all branding gone");
+            if (IsCornerShop(sceneType))
+                sb.AppendLine("- main sign: the sign board gone from the band over the door, anchor holes and a lighter unfaded rectangle left where it hung, no lettering at all");
             // A ghost sign is exactly the remnant this branch already describes —
             // only Ghost belongs here. Named/Generic would be live business, which
             // is what this branch exists to keep out of a derelict scene.
@@ -819,6 +878,9 @@ public sealed class PromptService : IPromptService
             }
         }
 
+        if (IsCornerShop(sceneType))
+            AppendCornerShopSign(sb, cornerShop);
+
         if (content is not null)
         {
             var signs = Sample(content.WindowSigns, 2, rng);
@@ -836,6 +898,36 @@ public sealed class PromptService : IPromptService
 
         sb.AppendLine($"Typography: {era.Business.Signage.TypographyStyle}.");
         return sb.ToString();
+    }
+
+    // The one storefront in the frame, so its sign carries the era outright. The
+    // trade is stated in plain words rather than left to the name: "PARK LIQUORS"
+    // alone renders as any shop with that name on it, and the turnover from
+    // groceries to bottles is the only thing this scene type has to say. The
+    // previous owner's lettering stays visible above the new sign in the liquor
+    // era — that ghost is what makes it read as the same building rather than a
+    // different one.
+    private static void AppendCornerShopSign(StringBuilder sb, GenerationContext.CornerShopSign shop)
+    {
+        if (shop.Name is null) return;
+
+        var line = shop.Kind switch
+        {
+            GenerationContext.CornerShopKind.Grocery =>
+                $"- main sign: \"{shop.Name}\" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window",
+            GenerationContext.CornerShopKind.Pharmacy =>
+                $"- main sign: \"{shop.Name}\" — a neighbourhood pharmacy, painted sign board over the door with a mortar-and-pestle emblem beside the lettering",
+            GenerationContext.CornerShopKind.Liquor =>
+                $"- main sign: \"{shop.Name}\" — a neighbourhood liquor store, a plastic backlit box sign bolted over the old sign band, steel bars across the windows",
+            _ => null
+        };
+        if (line is null) return;
+        sb.AppendLine(line);
+
+        if (shop.PriorName is not null)
+            sb.AppendLine(
+                $"- above the new sign the previous business's lettering still ghosts on the brick: \"{shop.PriorName}\" — " +
+                "weathered, partly gone, plainly older than the sign bolted beneath it");
     }
 
     // Matches text inside straight quotes ('...' or "...") or typographic quotes
@@ -934,7 +1026,7 @@ public sealed class PromptService : IPromptService
     private static bool IsSinglePerson(string mixEntry) =>
         !PluralMixMarkers.Any(m => mixEntry.TrimStart().StartsWith(m, StringComparison.OrdinalIgnoreCase));
 
-    private static string BuildPeopleBlock(EraProfile era, SceneContent? content, int peopleCount, bool isGasStation, bool hasSidewalks, Random rng, GenerationContext context, bool isPacked, bool isSquatted, bool isDecliningRetail, bool isSquattedRetail)
+    private static string BuildPeopleBlock(EraProfile era, SceneContent? content, int peopleCount, bool isGasStation, bool hasSidewalks, Random rng, GenerationContext context, bool isPacked, bool isSquatted, bool isDecliningRetail, bool isSquattedRetail, bool isLiquorEra)
     {
         var sb = new StringBuilder();
         sb.AppendLine("PEOPLE");
@@ -1008,6 +1100,24 @@ public sealed class PromptService : IPromptService
                 _ => "standing around outside the liquor store with nothing to do"
             };
             sb.AppendLine($"- of these, {who} {doing} — keeping to themselves, not looking at the camera");
+        }
+
+        // Once the corner shop is a liquor store there is no shopping trip left
+        // to draw: nobody walks up with a list. Either the sidewalk in front of
+        // it is empty, or the few people there are the regulars who stand around
+        // outside it — and that difference is the whole read of the era, so it is
+        // stated instead of left to the era's activity pool, which still has
+        // grocery customers in it.
+        if (isLiquorEra)
+        {
+            var doing = rng.Next(4) switch
+            {
+                0 => "standing around outside the store door with nothing to do, talking",
+                1 => "sitting on the step beside the door, a bottle in a paper bag between them",
+                2 => "leaning against the wall by the barred window, not going in",
+                _ => "gathered at the corner of the building, keeping out of the way of the door"
+            };
+            sb.AppendLine($"- the people here are regulars of this store, not shoppers: {doing} — keeping to themselves, nobody carrying groceries, nobody looking at the camera");
         }
 
         // A half-dead row's customers belong to the cheap survivors, not to the

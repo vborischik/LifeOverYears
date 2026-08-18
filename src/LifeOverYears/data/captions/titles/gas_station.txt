@@ -6,3 +6,11 @@ When Somebody Came Out to Meet You: {firstYear} to {lastYear}
 The Last Full-Service Station in Town, {firstYear}-{lastYear} ⛽
 Watch This Corner Station Disappear in 30 Seconds
 Every Small Town Had This Station. Here's What Happened to It.
+Someone Pumped Your Gas Here in {firstYear} ⛽
+{firstYear} vs {lastYear}: Watch This Station Go Dark
+Gas Was How Much in {firstYear}?! Watch This.
+This Station Served the Same Town From {firstYear} to {lastYear}
+The Bell Rang When You Pulled In. Watch What Happened to It.
+Every Small Town Had This Station Until It Didn't
+{firstYear} to {lastYear}: The Corner Everyone Filled Up At
+They Checked Your Oil for Free in {firstYear} 😢

@@ -534,6 +534,52 @@
       ],
       "crowd": "packed"
     },
+    "corner_shop": {
+      "narrative": "A 1995 corner shop squeezed by the supermarkets — money orders and phone cards on the window now, and a cash machine put in where the magazine rack used to be.",
+      "storefronts": [
+        "a backlit plastic sign panel, one tube out at the left end",
+        "a phone-card poster and a money-order decal filling the lower window",
+        "a security camera bracket newly fitted above the door",
+        "an ATM decal on the glass beside the entrance",
+        "a chest cooler on the sidewalk under a plastic drinks banner",
+        "the awning gone, only its steel frame left across the front",
+        "a hand-lettered sign about a two-item limit taped to the glass",
+        "the old painted band showing at the edges of the plastic panel"
+      ],
+      "window_signs": [
+        "LOTTO",
+        "MONEY ORDERS",
+        "PHONE CARDS",
+        "ATM INSIDE",
+        "ICE"
+      ],
+      "people": {
+        "min": 3,
+        "max": 4
+      },
+      "people_activities": [
+        "a man checking a lottery ticket against the sheet in the window",
+        "a woman coming out with one small plastic bag",
+        "a teenager holding the door for someone on their way out",
+        "the clerk carrying flattened boxes to the side of the building",
+        "a man counting bills at the door before going back inside",
+        "a woman waiting at the curb with a bag while a car pulls up",
+        "two men talking beside the ice chest, neither going in",
+        "a delivery driver leaving cases stacked by the door",
+        "a boy on a bicycle stopped at the step, one foot down",
+        "a man buying a paper from the rack without going inside"
+      ],
+      "vehicles": {
+        "min": 2,
+        "max": 3
+      },
+      "extras": [
+        "a bare awning frame with the fabric long gone",
+        "a phone-card rack visible through the glass by the register",
+        "a hand-lettered notice taped inside the door glass",
+        "an ice chest with a faded plastic drinks banner across it"
+      ]
+    },
     "default": {
       "narrative": "An ordinary 1995 American commercial street — backlit box signs, rounded cars, the video store era at full strength.",
       "storefronts": [

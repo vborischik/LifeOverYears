@@ -6,3 +6,11 @@ Every Panel on the Sign Was Filled in {firstYear}
 Watch This Shopping Center Empty Out, {firstYear} to {lastYear}
 Saturday Morning Here in {firstYear} Was Something Else
 Your Town Had a Center Like This. Here's How It Ended.
+Saturday Errands All Happened Right Here in {firstYear}
+{firstYear} to {lastYear}: The Center That Replaced Downtown
+The Santa Line Was in Front of That Store Every December
+Watch the Anchor Close and Take the Row With It
+Back-to-School Shopping Took an Entire Day Here
+This Parking Lot Was the Town Square, {firstYear} to {lastYear}
+A Newer Center Opened Three Miles Out. Watch What Happened.
+The Pylon Sign Told the Whole Story, {firstYear} to {lastYear}

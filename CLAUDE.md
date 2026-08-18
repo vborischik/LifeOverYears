@@ -89,7 +89,11 @@ outside `src/LifeOverYears/data/`. Bodies are separated by a line that is exactl
 `{condition}`, must carry the years and the condition (checked by C41/C55), must
 end on a question, and must not contain hashtags — those are appended.
 Which body a scene gets is deterministic: ISO week + a stable hash of the scene
-id. `data/prompts/caption-*.txt` are legacy LLM system prompts, not the live path.
+id, so a pool of N bodies rotates over N weeks. Pool floors, both checked: 15
+bodies per scene type (C26) and 12 titles in `data/captions/titles/{type}.txt`
+(C59); duplicates inside either pool fail too, since they shrink it invisibly.
+A caption's variety is bodies × `AnglesByScene` anchors (22 per type) × titles.
+`data/prompts/caption-*.txt` are legacy LLM system prompts, not the live path.
 
 **Titles** — `data/captions/titles/{sceneType}.txt`, same `base.txt` fallback: one
 YouTube hook per line, no `---` separators, only `{firstYear}` `{lastYear}` (a
@@ -115,12 +119,30 @@ get benches standing in the road. Locked by C58; add the same "or omit it"
 wording to any new list of props.
 
 **Scene types** — `gas_station`, `downtown_street`, `strip_mall`, `auto_repair`,
-`mall`, `shopping_center`, plus a `default`/`unknown` fallback. Era JSONs key
-`scene_content` by these names.
+`corner_shop`, `mall`, `shopping_center`, plus a `default`/`unknown` fallback.
+Era JSONs key `scene_content` by these names, Vision classifies into them
+(`data/prompts/vision.txt`), and the synthetic base needs a phrase in
+`data/prompts/scene-types.txt`. Adding one means touching all of those plus a
+`CaptionService.AnglesByScene` entry, a `data/captions/{type}.txt` file and
+`data/captions/titles/{type}.txt` — C1, C26 and C59 fail loudly if any is
+missing.
+
+**Corner shop** — the one scene type with a scripted story rather than a sampled
+one: it opens as a grocery or a pharmacy (drawn once per run from
+`data/brands/corner-shop-names.txt`) and from `LiquorFromYear` (2015) the same
+building is a liquor store under a new name, the old lettering ghosting above
+it. `GenerationContext.ResolveCornerShop` holds the trajectory,
+`PromptService.AppendCornerShopSign` writes the sign, and `PickSceneCondition`
+gives the type a floor (never in good repair from `DeclineFromYear`, 2005) and a
+ceiling (never boarded before the last era, or the turnover the scene exists to
+show never appears on screen). It ends boarded up in about a third of runs and
+never earlier. From 2015 the people outside are regulars, not shoppers. Locked
+by C60, which measures that spread over 500 seeds rather than trusting the two
+fixtures.
 
 **Conditions** — `thriving/busy/new/declining/abandoned/squatted/restored`,
 picked per era in `GenerationContext.PickSceneCondition` for gas_station,
-downtown_street, strip_mall and auto_repair. The rank is monotonic across a run
+downtown_street, strip_mall, auto_repair and corner_shop. The rank is monotonic across a run
 (a place never quietly recovers mid-arc); only the last era resolves it.
 Derelict eras replace the live-business PERIOD DETAILS block entirely.
 

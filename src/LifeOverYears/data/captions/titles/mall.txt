@@ -6,3 +6,11 @@ Center Court in {firstYear} vs Today 🛍️
 Watch This Mall Go Empty, {firstYear} to {lastYear}
 Everyone Met by the Fountain. Here's What Happened to It.
 The Arcade Was Still Open in {firstYear}. Watch What Happens.
+You Got Dropped Off Here With No Phone in {firstYear}
+{firstYear} to {lastYear}: Watch This Mall Empty Out
+The Food Court Was Full Every Friday in {firstYear}
+This Was Where the Whole High School Went
+Watch the Anchor Stores Go One by One
+The Fountain in Center Court Ran Until {lastYear}
+A Whole Generation Grew Up in This Building 😢
+Nobody Thought a Mall Could Close in {firstYear}

@@ -47,3 +47,153 @@ For me it was {angle}.
 The place today: {condition}.
 Home was never one building. It was a handful of ordinary places, and most of them are gone.
 Which one would you go back to for an hour?
+---
+📷 Nobody took a photograph of this place on purpose.
+It's in the background of other people's pictures.
+Behind a birthday. Off to the side of a graduation.
+That's the only reason we know what it looked like.
+From {firstYear} to {lastYear}, here it is on its own.
+Some of you will remember {angle}.
+The place today: {condition}.
+The buildings we use every day are the ones nobody documents, and then one day there's nothing to look at.
+What's the place from your town nobody photographed?
+---
+📷 You gave people directions using this place.
+Turn left after it. It's just past it. You can't miss it.
+It wasn't a landmark. It was just always there.
+Then it wasn't, and the directions stopped working.
+{firstYear} to {lastYear}, watch it go.
+For a lot of folks it was {angle}.
+Today it's {condition}.
+A town's real map is made of places you point at, and it gets rewritten without anybody voting on it.
+What did people use for directions where you grew up?
+---
+📷 Everyone assumed this would outlast them.
+It had been there before you were born.
+Your parents remembered it looking exactly the same.
+Permanent is a feeling, not a fact.
+Watch it go from {firstYear} to {lastYear}.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+Nothing here was built to last forever. It just lasted long enough that we stopped thinking about it.
+What did you assume would always be there?
+---
+📷 This place employed people you knew by name.
+Somebody's father. Somebody's aunt. The kid two years above you.
+When it went, those jobs didn't move — they ended.
+The building is the easy part to see. The rest doesn't photograph.
+This place stood from {firstYear} to {lastYear}.
+What people remember most: {angle}.
+And today — {condition}.
+We talk about buildings closing because it's simpler than talking about what happened to everybody inside them.
+Who worked at the place you remember?
+---
+📷 The whole thing happened over decades and nobody noticed a single day of it.
+No announcement. No last day anybody marked.
+You just drove past one afternoon and it was different.
+Then you tried to remember what had been there and couldn't.
+{firstYear} to {lastYear}, all at once.
+Some of you will remember {angle}.
+The place today: {condition}.
+Change is invisible at the speed it actually happens. That's why these look like a shock.
+What's gone from your town that you can't picture anymore?
+---
+📷 There's a version of this place that only exists in people's heads now.
+No photos. No record. Just a few thousand people who were there.
+Every year there are fewer of them.
+When they go, so does the building, for good.
+From {firstYear} to {lastYear}, one place.
+For a lot of people it was {angle}.
+Today it's {condition}.
+Memory is the last archive, and it's the one nobody's backing up.
+What do you remember that isn't written down anywhere?
+---
+📷 Your parents took this place completely for granted.
+So did you. So did everyone.
+It was too ordinary to talk about, let alone photograph.
+Now the ordinary part is the part that's hard to believe.
+Watch it from {firstYear} to {lastYear}.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+What makes an old photo hit isn't the special stuff. It's the normal stuff, exactly as it was.
+What was normal then that would stop you now?
+---
+📷 There was a time when everything you needed was inside a mile.
+Now it's a drive, and nobody thinks that's strange.
+That change happened without a single decision anybody voted on.
+It just happened, building by building.
+This place ran from {firstYear} to {lastYear}.
+What people remember most: {angle}.
+And today — {condition}.
+The distance between your front door and everything else is the quietest thing a town ever loses.
+How far is the nearest shop from your house now?
+---
+📷 Somebody built this and thought it would be their life's work.
+For a while it was. They knew every customer.
+Then a decade came along that didn't need what they made.
+The building stayed. The reason for it went.
+{firstYear} to {lastYear}, watch it change.
+Some of you will remember {angle}.
+The place today: {condition}.
+Every empty building in America was somebody's plan that worked for a while.
+Whose place was it where you grew up?
+---
+📷 A place is really a set of habits, and the habits went first.
+People stopped coming on Saturdays.
+Then they stopped coming at all, without deciding to.
+The closing was just the paperwork catching up.
+From {firstYear} to {lastYear}, watch the habit end.
+For a lot of folks it was {angle}.
+Today it's {condition}.
+Nothing closes because of one bad year. It closes because a thousand people quietly changed their routine.
+What routine did your family stop without noticing?
+---
+📷 You can tell what a town used to be by what's still standing empty.
+The buildings outlive the reason they were built.
+Big windows for a business nobody does anymore.
+A sign band with nothing on it.
+Watch this one from {firstYear} to {lastYear}.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+An empty building is a piece of evidence. It tells you what people used to need here.
+What's standing empty in your town?
+---
+📷 The last time you were here, you didn't know it was the last time.
+Nobody ever does.
+You had somewhere to be. You'd come back next month.
+That was the visit that turned out to be the end of it.
+This place stood from {firstYear} to {lastYear}.
+What people remember most: {angle}.
+And today — {condition}.
+There's no warning on the day something becomes a memory. That's the whole problem.
+When were you last at the place you miss?
+---
+📷 Somebody's whole childhood is in this frame.
+Not an event. Just the background of a few thousand ordinary afternoons.
+The place you passed on the way to everywhere else.
+That's what a hometown actually is.
+{firstYear} to {lastYear}, one ordinary place.
+Some of you will remember {angle}.
+The place today: {condition}.
+You don't remember the landmarks. You remember the route.
+What was on your route every day?
+---
+📷 This looked modern once. That's the part people forget.
+It was the new place. The clean place. The one that replaced something older.
+Somebody complained when it was built.
+Forty years on, it's the thing being missed.
+From {firstYear} to {lastYear}, watch it age.
+For a lot of people it was {angle}.
+Today it's {condition}.
+Everything we're nostalgic for replaced something that somebody else was nostalgic for.
+What was here before the place you miss?
+---
+📷 If you know this place, you know exactly where you were standing.
+The angle. The light. The time of day.
+It comes back all at once and you can't explain why.
+That's not the building doing that. That's you.
+Watch it go from {firstYear} to {lastYear}.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+Places hold time for us. That's the only reason losing one feels like losing a year of your life.
+What place brings your childhood straight back?

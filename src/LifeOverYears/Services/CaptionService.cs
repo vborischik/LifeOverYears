@@ -17,6 +17,11 @@ public sealed class CaptionService : ICaptionService
         "the way the light looked there late on a summer evening",
         "running into someone you knew every single time",
         "the last time anyone remembers going there before it closed",
+        "the exact route you took to get there without thinking about it",
+        "how quiet the whole street went on a Sunday",
+        "being sent out on an errand you were proud to be trusted with",
+        "waiting in the car while somebody ran in for one thing",
+        "the smell of the place, which you would still know today",
     };
 
     // Scene-specific anchors. Feeding forecourt memories (pumping gas, checking
@@ -32,6 +37,12 @@ public sealed class CaptionService : ICaptionService
             "an attendant who knew every regular by name",
             "checking the oil and washing the windshield by hand",
             "a cold bottle of soda from the machine out front",
+            "the sound of the pump handle clicking off when the tank was full",
+            "counting out exact change through the window",
+            "the map rack by the door that nobody has needed since",
+            "waiting in the car with the windows down while the tank filled",
+            "the vending machine out front that took dimes",
+            "getting your first job pumping gas at sixteen",
         },
         ["downtown_street"] = new[]
         {
@@ -41,6 +52,12 @@ public sealed class CaptionService : ICaptionService
             "the parade coming down the main street",
             "the smell of the bakery on the corner",
             "meeting friends under the theater marquee",
+            "walking the whole block to see who was out",
+            "the record shop where you spent your first paycheck",
+            "buying your school shoes at the same store every August",
+            "the bell over the door of every shop on the street",
+            "meeting your parents outside the bank at a set time",
+            "how long it took to walk two blocks because everyone stopped you",
         },
         ["strip_mall"] = new[]
         {
@@ -50,6 +67,12 @@ public sealed class CaptionService : ICaptionService
             "pushing a cart out to the car at the anchor supermarket",
             "sitting on the curb in the parking lot with friends",
             "the hum of the fluorescent lights under the storefront overhang",
+            "the laundromat lit up at night when everything else was dark",
+            "sitting on the curb outside waiting for a ride",
+            "the dry cleaner rack turning behind the window",
+            "your mother's standing appointment at the salon in the row",
+            "the smell of the pizza place at the end of the row",
+            "learning to drive in that parking lot on a Sunday morning",
         },
         ["auto_repair"] = new[]
         {
@@ -59,6 +82,27 @@ public sealed class CaptionService : ICaptionService
             "the parts calendar hanging behind the counter",
             "handing the keys to the same man who worked on your father's car",
             "the sound of the impact wrench through the open bay door",
+            "the calendar behind the counter that never got changed",
+            "the four chairs in the waiting room and the coffee nobody drank",
+            "the handwritten invoice with carbon paper underneath",
+            "the shop dog asleep in the office window",
+            "the one car that sat in the lot for years",
+            "being told what your car did not need",
+        },
+        ["corner_shop"] = new[]
+        {
+            "being sent up to the corner for a loaf of bread and told to keep the change",
+            "the shopkeeper who knew your family's name and let it go on the tab",
+            "the screen door banging shut behind everyone who went in",
+            "buying penny candy with coins counted out on the counter",
+            "the bench out front where the same men sat every afternoon",
+            "when the whole block could get by without ever driving anywhere",
+            "the bell over the door announcing you before you were inside",
+            "the freezer by the door that you could hear from outside",
+            "the tab your family kept until payday",
+            "buying the Sunday paper for the whole house",
+            "the phone behind the counter you were allowed to use",
+            "how close it was — four minutes, and you went alone",
         },
         ["mall"] = new[]
         {
@@ -68,6 +112,12 @@ public sealed class CaptionService : ICaptionService
             "meeting up by the fountain in center court",
             "walking the whole mall twice before buying anything",
             "the arcade tokens that never lasted as long as you wanted",
+            "being dropped off with your friends and no way to be reached",
+            "the pet store window that stopped every kid who walked past",
+            "the department store perfume counter you had to walk through",
+            "seeing a teacher out of school and not knowing what to say",
+            "the bookstore where you read half a book without buying it",
+            "the last lap of the whole mall before anybody went home",
         },
         ["shopping_center"] = new[]
         {
@@ -77,6 +127,12 @@ public sealed class CaptionService : ICaptionService
             "the five-and-dime counter between two much wider stores",
             "cutting across the parking lot instead of walking around it",
             "the anchor store that everyone in town called by its old name",
+            "the Santa line in front of the anchor store every December",
+            "back-to-school shopping that took an entire Saturday",
+            "the coin ride outside the door that barely moved",
+            "the buffet where your family went after church",
+            "the snow pile at the edge of the lot that lasted into March",
+            "seeing three people you knew between the car and the door",
         },
     };
 

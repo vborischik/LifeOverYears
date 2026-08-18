@@ -9,6 +9,7 @@ public interface IDataService
     Task SaveSceneDnaAsync(SceneDna sceneDna);
     Task<string> LoadPromptAsync(string name);
     Task<IReadOnlyList<(string Name, int From, int To)>> LoadGasBrandsAsync();
+    Task<IReadOnlyDictionary<string, IReadOnlyList<string>>> LoadCornerShopNamesAsync();
 
     // data/prompts/scene-types.txt — "key = phrase" per line, naming each scene
     // type and its defining physical parts for the synthetic base prompt.

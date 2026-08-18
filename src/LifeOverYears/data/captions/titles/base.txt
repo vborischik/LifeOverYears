@@ -6,3 +6,11 @@ This Corner in {firstYear} — You Won't Recognize {lastYear} 😳
 The Most Ordinary Place in Town, {firstYear} to {lastYear}
 Watch a Lifetime Happen on One Corner
 Everyone Knew This Spot. Almost Nobody Remembers It Now.
+Nobody Photographed This Place. Here's What It Looked Like.
+{firstYear} to {lastYear}: The Place You Drove Past Every Day
+You Gave People Directions Using This Building
+This Was Still Here in {firstYear}. Watch What Happens.
+Everyone Assumed This Would Always Be There 😔
+What {lastYear} Did to a Place That Stood Since {firstYear}
+You Won't Remember This Until You See It
+The Building Is Still There. Everything Else Went.

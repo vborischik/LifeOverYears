@@ -520,6 +520,52 @@
       ],
       "crowd": "packed"
     },
+    "corner_shop": {
+      "narrative": "A 1985 corner shop holding its own — a video rental rack inside the door, lottery tickets at the counter and a chest freezer humming against the back wall.",
+      "storefronts": [
+        "a plastic backlit sign panel fitted over the old painted band",
+        "beer and soft-drink posters taped inside the window glass",
+        "an aluminium-framed glass door with a metal kick plate",
+        "a video rental rack visible through the window just inside the door",
+        "a lottery placard suction-cupped to the glass beside the door",
+        "an ice chest standing on the sidewalk against the front wall",
+        "a faded striped awning, one corner sagging",
+        "a hand-lettered card taped over the old price board"
+      ],
+      "window_signs": [
+        "OPEN 7 DAYS",
+        "LOTTERY TICKETS",
+        "ICE",
+        "VIDEO RENTAL",
+        "CIGARETTES 95¢"
+      ],
+      "people": {
+        "min": 3,
+        "max": 5
+      },
+      "people_activities": [
+        "a teenager coming out with a video tape under one arm",
+        "a man filling out a lottery slip against the window ledge",
+        "a woman loading two plastic bags into the back seat of a car",
+        "the clerk propping the door open with a crate on a warm afternoon",
+        "two kids at the ice chest with the lid half up",
+        "a man reading the back of a video box by the door",
+        "a woman counting change into a child's hand outside the step",
+        "a delivery driver stacking cases on the sidewalk beside the door",
+        "a man in work clothes stopping in on his way home",
+        "two neighbours talking with bags in hand a few feet apart"
+      ],
+      "vehicles": {
+        "min": 2,
+        "max": 3
+      },
+      "extras": [
+        "an ice chest chained to a bracket on the front wall",
+        "a stack of flattened cardboard tied up beside the side door",
+        "a lottery decal in the corner of the door glass",
+        "a payphone mounted on the brick around the corner of the building"
+      ]
+    },
     "default": {
       "narrative": "An ordinary 1985 American commercial street — bold primary-color signage, boxy cars, the first franchise logos among local shops.",
       "storefronts": [

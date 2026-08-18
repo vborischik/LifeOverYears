@@ -46,3 +46,153 @@ For me it was {angle}.
 The place today: {condition}.
 He kept a lot of us on the road when we had no business being there.
 What was the first car you couldn't afford to keep running?
+---
+🔧 The waiting room had four chairs and a coffee pot nobody cleaned.
+A calendar from a parts supplier on the wall.
+A radio playing whatever the guys in the bay wanted.
+You waited because there was nowhere else to be.
+This shop ran from {firstYear} to {lastYear}.
+Some of you will remember {angle}.
+The place today: {condition}.
+He could have made you drop the car and come back. He knew you couldn't, so he did it while you waited.
+Where did you wait while your car got fixed?
+---
+🔧 He fixed your father's car, then yours, then almost your kid's.
+Same building. Same two bays. Same handwriting on the invoice.
+He knew the whole family by which car pulled in.
+Forty years of the same driveway.
+{firstYear} to {lastYear}, one shop, one man.
+For a lot of folks it was {angle}.
+Today it's {condition}.
+Nobody replaced him. The work went to a place with a computer and a hundred locations.
+Did your family have a mechanic for a generation?
+---
+🔧 The first car you ever owned came here more than it went anywhere else.
+Two hundred dollars and a prayer, every couple of months.
+He kept it running long past when he should have told you to give up.
+He knew what you could afford, and that was the actual repair.
+Watch it go from {firstYear} to {lastYear}.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+There's a kind of mechanic who keeps a teenager on the road because he remembers being one.
+What was your first car, and who kept it alive?
+---
+🔧 The smell hit you before you got out of the car.
+Motor oil, hot rubber, and whatever was in the parts washer.
+Half the floor stained black from twenty years of the same work.
+You'd know it anywhere for the rest of your life.
+This place stood from {firstYear} to {lastYear}.
+What people remember most: {angle}.
+And today — {condition}.
+Smells outlast buildings. That one's gone from the town and still in your head.
+What did the garage in your town smell like?
+---
+🔧 There was always one car that had been sitting there for years.
+Nobody came for it. Nobody towed it.
+Grass grew up around the tires a little more every summer.
+It became part of the property, like the sign.
+{firstYear} to {lastYear}, watch the lot change.
+Some of you will remember {angle}.
+The place today: {condition}.
+Every shop had one. It stayed because throwing it out meant admitting the owner was never coming back.
+Was there a car that never left the shop in your town?
+---
+🔧 He told you what it didn't need more often than what it did.
+That's why the lot was full and he never advertised.
+No coupons. No specials. No sign but the one over the door.
+Just twenty years of people telling their neighbours.
+From {firstYear} to {lastYear}, one shop's whole life.
+For a lot of people it was {angle}.
+Today it's {condition}.
+A reputation in a small town is worth more than any marketing budget, and it takes a hundred times longer to build.
+Who did people in your town trust with their car?
+---
+🔧 Snow mornings, the phone in that office rang all day.
+Nobody's car started. Everybody called the same number.
+He'd come out with cables and a thermos and get you going in your own driveway.
+Then charge you almost nothing for it.
+Watch this place from {firstYear} to {lastYear}.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+Half of what a small-town garage sold was showing up. You can't buy that at a chain.
+Who came out when your car wouldn't start?
+---
+🔧 The parts man came through twice a day in a brown van.
+Boxes stacked on the counter with someone's name on each.
+Your repair depended on whether the right box came before four.
+Nobody had a computer telling them where anything was.
+This shop ran from {firstYear} to {lastYear}.
+What people remember most: {angle}.
+And today — {condition}.
+The whole thing ran on phone calls, memory and a man in a van, and somehow the cars got fixed.
+Do you remember waiting on a part to come in?
+---
+🔧 The sign said the hours, and the hours meant nothing.
+He was there before it and after it and most Saturdays.
+If your car quit on a Sunday, he'd meet you at the shop.
+It wasn't service. It was the same as helping a neighbour, because you were one.
+{firstYear} to {lastYear}, watch it change.
+Some of you will remember {angle}.
+The place today: {condition}.
+There was no policy for that. It just wasn't a question anybody asked.
+Did your mechanic ever open up for you after hours?
+---
+🔧 The invoice was handwritten on a pad with carbon paper underneath.
+Parts on one line. Labor on another. His initials at the bottom.
+You paid at the counter and he made change out of his own pocket.
+No estimate, no service package, no upsell.
+From {firstYear} to {lastYear}, watch the shop change.
+For a lot of folks it was {angle}.
+Today it's {condition}.
+The bill was short because the business was simple. Both of those went away together.
+Do you still remember what a repair used to cost?
+---
+🔧 A dog lived in that office for about fifteen years.
+Slept in the sun by the window. Got up for exactly nobody.
+Customers brought him things. He was on the calendar photo one year.
+When he went, half the town heard about it.
+This place stood from {firstYear} to {lastYear}.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+Businesses used to have animals in them, and that told you everything about how the place was run.
+Was there a shop dog where you grew up?
+---
+🔧 The tire stack against the side wall never got smaller.
+It was there in every photograph anybody ever took of the place.
+Rain filled the top ones. Weeds came up through the bottom.
+It outlasted two paint jobs on the building.
+{firstYear} to {lastYear}, one property, one pile.
+What people remember most: {angle}.
+And today — {condition}.
+The things that never change are the things you stop seeing, right up until they're gone.
+What was the thing that was always there at your local shop?
+---
+🔧 He kept a tab for people who were having a bad year.
+No paperwork. A name and a number on a page by the register.
+Everybody settled up eventually. Almost everybody.
+He never once mentioned it to anyone.
+Watch it go from {firstYear} to {lastYear}.
+Some of you will remember {angle}.
+The place today: {condition}.
+That's a kind of credit no institution offers, and it kept more families working than anybody counted.
+Did a business in your town ever carry your family?
+---
+🔧 His son worked summers in the bay and swore he'd never take it over.
+Went away. Came back. Took it over.
+Same sign, same bays, his own name added underneath.
+Then the second generation ran out of time too.
+This shop ran from {firstYear} to {lastYear}.
+For a lot of people it was {angle}.
+Today it's {condition}.
+A family business is a thirty-year bet that the town will still be there. Plenty of them lost it.
+Did anyone take over the shop in your town?
+---
+🔧 You could hear which bay door was open from down the street.
+Impact wrench, then quiet, then the compressor kicking in.
+That noise was the sound of the block being open for business.
+When it stopped, the street felt different before anyone noticed why.
+From {firstYear} to {lastYear}, listen to it go quiet.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+A working street has a sound. Losing it is the part nobody photographs.
+What did your street sound like on a weekday morning?

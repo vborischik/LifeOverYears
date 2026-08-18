@@ -75,6 +75,42 @@ public sealed class DataService : IDataService
         return brands;
     }
 
+    // Corner shop names, grouped by the kind of shop they belong to
+    // ("grocery", "pharmacy", "liquor"). Unlike gas brands these carry no year
+    // range: which kind is on the sign follows the run's own arc, not history.
+    // Blank lines and '#' comments are skipped so the file can explain itself.
+    public async Task<IReadOnlyDictionary<string, IReadOnlyList<string>>> LoadCornerShopNamesAsync()
+    {
+        var path = Path.Combine("data", "brands", "corner-shop-names.txt");
+        _logger.LogInformation("Loading corner shop names from {Path}", path);
+        var text = await _fs.ReadAllTextAsync(path);
+
+        var byKind = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
+        foreach (var line in text.Split('\n'))
+        {
+            var trimmed = line.Trim();
+            if (trimmed.Length == 0 || trimmed.StartsWith('#'))
+                continue;
+            var parts = trimmed.Split('|');
+            if (parts.Length != 2
+                || string.IsNullOrWhiteSpace(parts[0])
+                || string.IsNullOrWhiteSpace(parts[1]))
+            {
+                _logger.LogWarning("Skipping malformed corner shop name line: {Line}", trimmed);
+                continue;
+            }
+            var kind = parts[0].Trim();
+            if (!byKind.TryGetValue(kind, out var names))
+                byKind[kind] = names = new List<string>();
+            names.Add(parts[1].Trim());
+        }
+
+        return byKind.ToDictionary(
+            kv => kv.Key,
+            kv => (IReadOnlyList<string>)kv.Value,
+            StringComparer.OrdinalIgnoreCase);
+    }
+
     public async Task<IReadOnlyDictionary<string, string>> LoadSceneTypePhrasesAsync()
     {
         var path = Path.Combine("data", "prompts", "scene-types.txt");

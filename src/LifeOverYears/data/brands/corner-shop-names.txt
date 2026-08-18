@@ -1,0 +1,35 @@
+# Corner shop names, one per line: kind|NAME
+#
+# A corner_shop run picks one origin kind (grocery or pharmacy) and keeps that
+# name from the first era through 2005. From 2015 the shop is a liquor store
+# under a new name, with the old one left as a ghost above it — the same
+# building, a different business, which is the whole arc of this scene type.
+#
+# Names are rendered as sign text, so they must read as a real small-town
+# storefront: no adjectives, no descriptions, nothing that could be mistaken
+# for an instruction to the image model.
+
+grocery|SANTINI'S MARKET
+grocery|CORNER GROCERY
+grocery|PARK STREET MARKET
+grocery|DELUCA'S MARKET
+grocery|HILLSIDE MARKET
+grocery|FIFTH STREET GROCERY
+grocery|RIVERSIDE FOOD MARKET
+grocery|KOWALSKI'S GROCERY
+
+pharmacy|OAK STREET PHARMACY
+pharmacy|WHELAN DRUGS
+pharmacy|BAYVIEW PHARMACY
+pharmacy|SCHMIDT'S DRUG STORE
+pharmacy|LINCOLN PHARMACY
+pharmacy|HOLLAND DRUGS
+
+liquor|PARK LIQUORS
+liquor|CORNER WINE & LIQUOR
+liquor|DISCOUNT LIQUOR
+liquor|LUCKY LIQUORS
+liquor|K & S LIQUORS
+liquor|BOTTLE SHOP
+liquor|CITY LIQUOR MART
+liquor|STATE STREET LIQUORS

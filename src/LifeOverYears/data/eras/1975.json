@@ -537,6 +537,52 @@
       ],
       "crowd": "packed"
     },
+    "corner_shop": {
+      "narrative": "A neighbourhood corner shop in 1975 — one small unit serving the blocks around it, hand-lettered specials taped inside the glass and a screen door that bangs shut behind every customer.",
+      "storefronts": [
+        "a painted sign band running the full width of the storefront above the door",
+        "large plate glass windows with hand-lettered specials taped up from the inside",
+        "a wooden screen door with a metal push bar across the middle",
+        "a striped canvas awning cranked out over the sidewalk",
+        "a painted soft-drink advert covering most of the brick side wall",
+        "a wooden bench under the window with room for two",
+        "a newspaper rack standing beside the entrance step",
+        "a hand-lettered price card propped in the corner of the window"
+      ],
+      "window_signs": [
+        "OPEN 7 DAYS",
+        "ICE COLD DRINKS",
+        "CIGARETTES 45¢",
+        "PHONE INSIDE",
+        "WE DELIVER"
+      ],
+      "people": {
+        "min": 3,
+        "max": 5
+      },
+      "people_activities": [
+        "a woman coming out with a paper sack held against one hip",
+        "two kids at the door counting change out of a palm",
+        "the shopkeeper in an apron sweeping the sidewalk in front of the step",
+        "an old man reading a folded newspaper on the bench under the window",
+        "a boy leaning a bicycle against the wall beside the door",
+        "a woman holding the screen door open with her foot, both hands full",
+        "two neighbours stopped to talk a few feet from the entrance",
+        "a delivery man rolling a hand truck of crates toward the side door",
+        "a girl waiting by the newspaper rack while her mother pays inside",
+        "a man carrying a case of bottles out to a car at the curb"
+      ],
+      "vehicles": {
+        "min": 2,
+        "max": 3
+      },
+      "extras": [
+        "a chalked price board propped against the wall by the door",
+        "wire crates of empty glass bottles stacked beside the step",
+        "a hand-painted arrow on the side wall pointing to the delivery door",
+        "a bicycle rack bolted into the sidewalk near the corner"
+      ]
+    },
     "default": {
       "narrative": "An ordinary American commercial street in 1975 — modest local businesses, bold simple signage, wide quiet pavement.",
       "storefronts": [

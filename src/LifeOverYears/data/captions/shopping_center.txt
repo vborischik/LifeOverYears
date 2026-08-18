@@ -47,3 +47,153 @@ For me it was {angle}.
 The place today: {condition}.
 This is the strangest kind of nostalgia — missing a place that was built to be replaceable and never once pretended otherwise.
 What do you remember about the one you grew up with?
+---
+🏬 Saturday morning, this lot was full by nine.
+Everybody's errands happened in one trip, in one place.
+Bank, groceries, hardware, haircut, home.
+Nobody thought of it as a destination. It was just where the week got done.
+From {firstYear} to {lastYear}, watch it change.
+Some of you will remember {angle}.
+The place today: {condition}.
+This was built to replace walking downtown, and for about thirty years it worked exactly as promised.
+What did your family do here every Saturday?
+---
+🏬 The department store had an escalator and that was a big deal.
+Kids rode it up and down while their parents shopped.
+There was a lunch counter on the second floor with a menu that never changed.
+You dressed up a little to come here, and nobody found that strange.
+{firstYear} to {lastYear}, all in one place.
+For a lot of folks it was {angle}.
+Today it's {condition}.
+Shopping was an outing before it was a delivery. That's the part that actually disappeared.
+What was the big store at your center?
+---
+🏬 Santa was set up in front of the anchor store every December.
+A folding backdrop, a plastic chair, a line halfway down the walkway.
+Somebody's photograph from that line is still in a box somewhere.
+The same setup, the same corner, for twenty years.
+Watch it go from {firstYear} to {lastYear}.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+Whole childhoods got documented in one corner of a shopping center that isn't there anymore.
+Do you have a photo from a line like that?
+---
+🏬 Back-to-school here was an entire day.
+Shoes at one store, notebooks at another, clothes you'd grow into.
+Everybody from your class was in the same aisles.
+You saw your teacher out of school and it was mildly shocking.
+This center ran from {firstYear} to {lastYear}.
+What people remember most: {angle}.
+And today — {condition}.
+There was one week a year when the whole town shopped at once, and this is where it happened.
+Where did your family go for school shopping?
+---
+🏬 The buffet at the end of the row was where every family celebration went.
+Birthdays. After church. Report cards, if they were good.
+Same booth if you got there early enough.
+Nobody ever left hungry and nobody ever left impressed.
+{firstYear} to {lastYear}, watch it all change.
+Some of you will remember {angle}.
+The place today: {condition}.
+It wasn't good food. It was where your family sat down together, and that's why you remember it.
+What restaurant did your family celebrate at?
+---
+🏬 The pet store window stopped every kid who walked past it.
+Puppies in the front. A wall of fish tanks glowing at the back.
+You asked every single time. The answer was no every single time.
+Except one time, and you still remember the drive home.
+From {firstYear} to {lastYear}, one row of stores.
+For a lot of people it was {angle}.
+Today it's {condition}.
+Every shopping center had one window that was really for children, and nobody planned it that way.
+What window did you stop at as a kid?
+---
+🏬 The anchor store closing was the day the center changed.
+It didn't announce it. A sign went up on a Tuesday.
+Liquidation, then paper on the glass, then nothing.
+The rest of the row had two years, maybe three.
+Watch it from {firstYear} to {lastYear}.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+When the biggest employer in a shopping center closes, the town loses jobs and a habit at the same time.
+Which store closing changed things where you lived?
+---
+🏬 There was a photo booth or a coin ride outside one of these doors.
+A quarter got you a horse that barely moved.
+Kids sat on it long after they were too big.
+Parents used it to buy two more minutes of quiet.
+This row stood from {firstYear} to {lastYear}.
+What people remember most: {angle}.
+And today — {condition}.
+The cheapest thing in the whole center is the one people describe in the most detail forty years later.
+Do you remember the ride outside the store?
+---
+🏬 The parking lot was the biggest flat space in town.
+Driving lessons happened here on Sunday mornings.
+So did the fireworks stand, the carnival, the fire department car wash.
+It was the town square, and it was made of asphalt.
+{firstYear} to {lastYear}, one lot.
+Some of you will remember {angle}.
+The place today: {condition}.
+We never called it public space, but that's exactly what it was for about forty years.
+What happened in the big parking lot in your town?
+---
+🏬 You met people here without arranging to.
+Same stores, same hours, same faces.
+You'd run into three people you knew between the car and the door.
+Nobody planned any of it and it happened every week.
+From {firstYear} to {lastYear}, watch the row empty out.
+For a lot of folks it was {angle}.
+Today it's {condition}.
+Online shopping gave us everything except the part where you bump into your neighbour.
+Who did you always run into out shopping?
+---
+🏬 The stores at the far end never lasted.
+Fabric store, then a video place, then a church, then paper on the windows.
+Each one hung a new sign over the same frame.
+The frame outlived all of them.
+Watch it go from {firstYear} to {lastYear}.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+A unit like that eats somebody's savings every four years, and the sign is the only thing that changes.
+What kept turning over in the center near you?
+---
+🏬 The center had a theater for a while, and everyone went.
+Two screens. Sticky floor. Popcorn in a paper bag.
+You saw whatever was playing because there was nothing else on.
+The whole high school ended up in the same two rooms.
+This place ran from {firstYear} to {lastYear}.
+What people remember most: {angle}.
+And today — {condition}.
+When there's one screen in town, everybody sees the same film and talks about it on Monday. That doesn't happen anymore.
+Where did you see movies growing up?
+---
+🏬 The lot lights came on at dusk and the whole place looked busy again.
+Long shadows across the empty stalls.
+A couple of cars parked near the doors of whatever was still open.
+It looked like a place waiting for people who weren't coming.
+{firstYear} to {lastYear}, one center, one long evening.
+Some of you will remember {angle}.
+The place today: {condition}.
+Half-empty at night is when you can actually see what a place used to be.
+Have you driven past yours after dark lately?
+---
+🏬 A new center opened three miles out and this one had eighteen months.
+Same stores, newer buildings, more parking.
+Everyone said they'd still shop here. Nobody did.
+The tenants moved out one lease at a time.
+From {firstYear} to {lastYear}, watch it happen.
+For a lot of people it was {angle}.
+Today it's {condition}.
+Nothing failed here. It was just outbuilt, and the town only had enough shoppers for one of them.
+Did a newer center take the traffic from yours?
+---
+🏬 The sign by the road listed every tenant on its own panel.
+You could read the whole center's health at forty miles an hour.
+Full board, then gaps, then blanks left in place for years.
+By the end it listed three businesses and a phone number for leasing.
+This center stood from {firstYear} to {lastYear}.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+The pylon sign is the honest part of a shopping center. It stops pretending long before the buildings do.
+What was on the sign at yours?

@@ -47,3 +47,153 @@ For me it was {angle}.
 The place today: {condition}.
 This is the strangest kind of nostalgia — missing a place that was never even supposed to be special.
 What's in that building now where you live?
+---
+🛒 The anchor at the end held the whole row up.
+When it was open, every unit beside it was rented.
+When it closed, the row went one at a time, from that end down.
+Nobody connected the two until it was over.
+From {firstYear} to {lastYear}, watch it go dark.
+Some of you will remember {angle}.
+The place today: {condition}.
+A row like this is one business wearing eight signs. Take the big one away and the rest stop making sense.
+What was the anchor store at the end of your row?
+---
+🛒 Every one of these had a Chinese place at the end.
+Same red sign. Same lunch special taped to the glass.
+Same styrofoam containers in the car on the way home.
+You didn't know the owner's name and he knew your order.
+{firstYear} to {lastYear}, one row of stores.
+For a lot of folks it was {angle}.
+Today it's {condition}.
+That family worked twelve hours a day for twenty years so you could have Thursday dinner. Nobody ever wrote that down.
+What was the takeout place in your row?
+---
+🛒 The laundromat was open when nothing else was.
+Fluorescent light spilling across the pavement at eleven at night.
+One person folding. A row of machines running for nobody.
+It was the last lit window in the row for years.
+Watch it from {firstYear} to {lastYear}.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+The businesses that stay open latest are usually the ones people need most and talk about least.
+Was there a laundromat in the row near you?
+---
+🛒 The video store was the whole reason to come here.
+Two aisles of tapes and a wall of new releases with nothing left on it.
+The kid behind the counter knew what you'd rented last time.
+You paid the late fee and pretended to be surprised.
+This row ran from {firstYear} to {lastYear}.
+What people remember most: {angle}.
+And today — {condition}.
+It didn't close because the movies got worse. It closed because we stopped needing a reason to leave the house.
+What was the last movie you rented on a Friday?
+---
+🛒 The grocery at one end set the rhythm of the whole week.
+Carts crossing the lot. Bags into trunks.
+Somebody's mother stopping to talk halfway across.
+Everything else in the row lived off that traffic.
+{firstYear} to {lastYear}, all in one parking lot.
+Some of you will remember {angle}.
+The place today: {condition}.
+When the big store opened out by the highway, this lot didn't empty overnight. It just got quieter every year until it was.
+What grocery store did your family shop at?
+---
+🛒 The pizza place had four tables nobody ever used.
+Everything went out the door in a box.
+The oven made the whole end of the row smell like Friday.
+The high school team ate there after games, still in uniform.
+From {firstYear} to {lastYear}, watch the row change.
+For a lot of people it was {angle}.
+Today it's {condition}.
+Chains sell you the same slice everywhere. This place sold you the one from your town.
+What was the pizza place in your row called?
+---
+🛒 There were bikes against that wall every day after school.
+Dropped, not parked. Nobody locked anything.
+An hour of standing around doing absolutely nothing.
+Then home before the streetlights.
+Watch it go from {firstYear} to {lastYear}.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+Kids need somewhere to be that isn't home or school. This was it, and nobody ever planned it that way.
+Where did you hang out after school?
+---
+🛒 The pylon sign out by the road told you how the row was doing.
+Full panels meant everyone was renting.
+Then one panel went white. Then two.
+By the end you could read the whole story from the turn lane.
+{firstYear} to {lastYear}, one sign, one row.
+Some of you will remember {angle}.
+The place today: {condition}.
+Nobody announces a decline. They just stop replacing the panels.
+Do you remember the sign at the road for yours?
+---
+🛒 Somebody sold Christmas trees in this lot every December.
+A string of bulbs, a trailer, a man in a folding chair.
+The whole corner smelled like pine for three weeks.
+Then January came and it was just pavement again.
+This lot ran from {firstYear} to {lastYear}.
+What people remember most: {angle}.
+And today — {condition}.
+Half of what made a place feel like home was temporary and came back every year.
+What showed up in your parking lot every December?
+---
+🛒 The hair salon had the same four chairs for thirty years.
+Your mother's appointment was the same time every third Saturday.
+You sat in the corner reading magazines older than you were.
+Everyone in there knew everything about everybody.
+From {firstYear} to {lastYear}, watch it all change.
+For a lot of folks it was {angle}.
+Today it's {condition}.
+A town's news travelled through that room faster than it ever travelled through the paper.
+Where did your mother get her hair done?
+---
+🛒 The units at the far end were always the first to go dark.
+Farthest from the anchor, farthest from the road.
+Paper went up inside the glass and stayed up.
+A new tenant would try, last eighteen months, and leave.
+{firstYear} to {lastYear}, one row losing tenants.
+Some of you will remember {angle}.
+The place today: {condition}.
+Every empty unit was somebody's savings and somebody's idea. We only ever see the paper in the window.
+What kept opening and closing in the row near you?
+---
+🛒 The arcade was three machines and a change machine that ate quarters.
+That was enough. That was plenty.
+You could make two dollars last an entire afternoon if you were good.
+Somebody was always watching over your shoulder waiting for a turn.
+Watch it from {firstYear} to {lastYear}.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+We had to leave the house to play, and that meant we had to see each other.
+What game did you put your quarters in?
+---
+🛒 Snow got plowed into one enormous pile at the edge of this lot.
+It sat there grey and solid into March.
+Kids climbed it. Parents told them not to.
+It was the tallest thing for blocks.
+This row stood from {firstYear} to {lastYear}.
+What people remember most: {angle}.
+And today — {condition}.
+Nobody builds a memory into a parking lot on purpose. It just happens where the kids are.
+Did you climb the snow pile at your local lot?
+---
+🛒 The dry cleaner had a rotating rack you could see through the window.
+Plastic bags going by like a parade.
+Somebody's suit. Somebody's wedding dress. Somebody's uniform.
+The whole neighborhood's good clothes, circling.
+From {firstYear} to {lastYear}, watch the row turn over.
+For a lot of people it was {angle}.
+Today it's {condition}.
+There used to be a shop for every part of your life. Now there's an app, and it isn't the same thing.
+What shops were in the row where you grew up?
+---
+🛒 This row was new once, and it was the exciting place to go.
+It took the traffic off main street in about five years.
+People said downtown had it coming.
+Then a bigger lot opened two miles out and did the same thing to this.
+{firstYear} to {lastYear}, the whole cycle in one place.
+Some of you will remember {angle}.
+The place today: {condition}.
+Nothing here was killed. It was just replaced by the next convenient thing, exactly the way it replaced what came before.
+Do you remember when the strip mall in your town was the new place?

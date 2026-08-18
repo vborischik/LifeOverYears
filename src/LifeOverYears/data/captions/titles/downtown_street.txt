@@ -6,3 +6,11 @@ Every Storefront Was Open in {firstYear}. Watch What Happens.
 The Theater Marquee Was Still Lit in {firstYear} 🎬
 Watch This Main Street Empty Out, {firstYear} to {lastYear}
 Your Town Had a Street Like This. Here's How It Ended.
+Main Street Was Packed in {firstYear}. Watch {lastYear}.
+{firstYear} to {lastYear}: How a Downtown Empties Out
+Every Store Here Had a Family Name in {firstYear}
+You Couldn't Park on This Street in {firstYear} 😳
+Saturday Downtown Meant Everybody, {firstYear} to {lastYear}
+The Theater Marquee Was Lit Every Night Until It Wasn't
+Watch This Main Street Lose Its Whole Town
+This Block Was the Center of Everything in {firstYear}

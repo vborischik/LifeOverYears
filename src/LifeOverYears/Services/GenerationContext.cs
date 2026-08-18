@@ -147,7 +147,7 @@ public sealed class GenerationContext
         _                         => 0
     };
 
-    public string PickSceneCondition(IReadOnlyList<string>? allowed, string sceneType)
+    public string PickSceneCondition(IReadOnlyList<string>? allowed, string sceneType, int year)
     {
         // Finale: if the place ever fell apart, the last era resolves the arc.
         // A gas station may be rebuilt, renovated, or taken over by squatters.
@@ -159,13 +159,24 @@ public sealed class GenerationContext
         // for downtown and strip malls it now means a half-dead row — some units
         // boarded, the cheap survivors still lit — not a sealed ruin.
         // Deliberately bypasses the era's allowed list, which has no "squatted".
+        // A corner shop has no comeback in it: the trade that ends up in the
+        // building is the last one it gets, so the finale resolves down rather
+        // than either way. Renovating it would undo the arc the scene type
+        // exists to show.
         if (IsLastEra && _conditionRank > 0)
         {
-            SceneCondition = sceneType == "gas_station"
-                ? Random.Next(3) switch { 0 => "new", 1 => "restored", _ => "squatted" }
-                : _conditionRank >= 2
+            SceneCondition = sceneType switch
+            {
+                "gas_station" => Random.Next(3) switch { 0 => "new", 1 => "restored", _ => "squatted" },
+                // The turnover has already been shown by the finale, so the last
+                // era is free to close the shop for good — one run in three does,
+                // which is the difference between "this is what it is now" and
+                // "this is where it ended".
+                "corner_shop" => _conditionRank >= 2 || Random.Next(3) == 0 ? "squatted" : "declining",
+                _             => _conditionRank >= 2
                     ? "squatted"
-                    : Random.Next(3) switch { 0 => "restored", 1 => "restored", _ => "declining" };
+                    : Random.Next(3) switch { 0 => "restored", 1 => "restored", _ => "declining" }
+            };
             _conditionRank = RankOf(SceneCondition);
             return SceneCondition;
         }
@@ -181,6 +192,34 @@ public sealed class GenerationContext
         // instead of falling through to the empty-pool branch. Distinct() keeps
         // an era that lists both from weighting squatted twice.
         pool = pool.Select(c => c == "abandoned" ? "squatted" : c).Distinct().ToList();
+
+        // The corner shop is the one scene type whose arc is scripted rather
+        // than sampled, and it needs a floor and a ceiling to stay legible.
+        //
+        // Floor: from DeclineFromYear it is never in good repair again. The era
+        // pools still offer "thriving" that late, and taking it left runs where
+        // the shop was spotless in 2005 and a liquor store in 2015 with nothing
+        // in between — the decline has to be visible before the turnover, or the
+        // turnover reads as a cut rather than an ending.
+        //
+        // Ceiling: it must not board up before the last era. The shop becoming a
+        // liquor store is the beat the scene type exists for, and a derelict
+        // 2015 shows a stripped sign instead of ever putting that store on
+        // screen. It can still be squatted at the end, once the turnover has
+        // been seen.
+        if (sceneType == "corner_shop")
+        {
+            if (year >= DeclineFromYear)
+            {
+                var worn = pool.Where(c => RankOf(c) >= 1).ToList();
+                if (worn.Count > 0) pool = worn;
+            }
+            if (!IsLastEra)
+            {
+                var survivable = pool.Where(c => RankOf(c) < 2).ToList();
+                if (survivable.Count > 0) pool = survivable;
+            }
+        }
 
         // Condition worsens one step at a time: a healthy scene can start
         // declining, but it cannot skip straight to derelict.
@@ -234,7 +273,7 @@ public sealed class GenerationContext
         // a place can plausibly stay healthy into the 2000s, then climbing hard
         // toward the end so the fall still lands. Gas stations are excluded:
         // they already resolve their arc through the new/squatted finale.
-        if (sceneType is "downtown_street" or "strip_mall" or "auto_repair" && pool.Count > 1)
+        if (sceneType is "downtown_street" or "strip_mall" or "auto_repair" or "corner_shop" && pool.Count > 1)
         {
             var worstRank = pool.Max(RankOf);
             var worst = pool.Where(c => RankOf(c) == worstRank).ToList();
@@ -278,6 +317,76 @@ public sealed class GenerationContext
 
     public enum ChainSignKind { Generic, Named, Ghost }
     public readonly record struct ChainTenant(string Name, ChainSignKind Kind, string Text);
+
+    // ── Corner shop trajectory ────────────────────────────────────────────────
+    // A corner shop tells one story and only one: the neighbourhood shop that
+    // ends up a liquor store. It opens the run as a grocery or a pharmacy —
+    // decided once per run — keeps that name and that trade through 2005, and
+    // from LiquorFromYear the same building trades as a liquor store under a new
+    // name, with the old lettering still ghosting above it. The building never
+    // changes; only what it sells does, which is the point of the scene type.
+    public enum CornerShopKind { Grocery, Pharmacy, Liquor }
+
+    // PriorName is the previous business's name once the shop has turned over —
+    // null while the original trade is still in the window.
+    public readonly record struct CornerShopSign(CornerShopKind Kind, string? Name, string? PriorName);
+
+    public const int LiquorFromYear = 2015;
+
+    // The era the shop stops being in good repair — one era before the trade
+    // turns over, so the decline is already on screen when the bottles arrive.
+    public const int DeclineFromYear = 2005;
+
+    private bool _cornerShopPlanBuilt;
+    private CornerShopKind _originKind;
+    private string? _originName;
+    private string? _liquorName;
+
+    public CornerShopKind CornerShopOriginKind
+    {
+        get
+        {
+            if (!_cornerShopPlanBuilt)
+                throw new InvalidOperationException(
+                    "Corner shop plan is not built yet — call ResolveCornerShop first");
+            return _originKind;
+        }
+    }
+
+    // Resolves what this era's corner shop sells and what its sign says. A
+    // derelict era has no live sign at all: the scene block's derelict branch
+    // describes a stripped shell, so returning a name here would put lettering
+    // on a shop the prompt has just closed down.
+    public CornerShopSign ResolveCornerShop(
+        IReadOnlyDictionary<string, IReadOnlyList<string>> names, int year, string condition)
+    {
+        if (!_cornerShopPlanBuilt)
+        {
+            _cornerShopPlanBuilt = true;
+            _originKind = Random.Next(2) == 0 ? CornerShopKind.Grocery : CornerShopKind.Pharmacy;
+            _originName = PickName(names, _originKind);
+            _liquorName = PickName(names, CornerShopKind.Liquor);
+        }
+
+        var turnedOver = year >= LiquorFromYear;
+        var kind = turnedOver ? CornerShopKind.Liquor : _originKind;
+
+        if (condition is "abandoned" or "squatted")
+            return new CornerShopSign(kind, null, null);
+
+        return turnedOver
+            ? new CornerShopSign(kind, _liquorName, _originName)
+            : new CornerShopSign(kind, _originName, null);
+    }
+
+    private string? PickName(
+        IReadOnlyDictionary<string, IReadOnlyList<string>> names, CornerShopKind kind)
+    {
+        var key = kind.ToString().ToLowerInvariant();
+        return names.TryGetValue(key, out var pool) && pool.Count > 0
+            ? pool[Random.Next(pool.Count)]
+            : null;
+    }
 
     private bool _gasPlanBuilt;
     private string? _brandX;            // initial brand

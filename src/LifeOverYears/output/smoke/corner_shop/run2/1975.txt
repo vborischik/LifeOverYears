@@ -1,0 +1,82 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+PRIORITY ORDER — when instructions conflict, the lower number wins
+1. The uploaded image's composition and geometry.
+2. The exact people and vehicle counts given below.
+3. The historical transformation for the target year.
+4. The specific period details listed — each only where the geometry has room
+   for it; one with nowhere to go is left out, never forced into the roadway.
+5. Add nothing that is not asked for — no extra businesses, signs, vehicles,
+   people, logos or advertisements.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove the
+modern businesses, logos, brands, storefront names, banners and advertisements
+visible in the source image, and replace them only with the period signage
+specified below.
+
+PRESERVE
+Keep the uploaded image's composition, camera angle, geometry, buildings,
+roads and permanent structures exactly as they are. Do not redraw,
+reposition or restyle them. Change only what the sections below ask for.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
+
+TRANSFORM TO 1975
+Post-Vietnam, oil crisis era. A neighbourhood corner shop in 1975 — one small unit serving the blocks around it, hand-lettered specials taped inside the glass and a screen door that bangs shut behind every customer.
+
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+
+PERIOD DETAILS
+- a painted soft-drink advert covering most of the brick side wall
+- large plate glass windows with hand-lettered specials taped up from the inside
+- mechanical price boards at gas stations
+- main sign: "PARK STREET MARKET" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
+- window signs: 'WE DELIVER', 'PHONE INSIDE'
+- wire crates of empty glass bottles stacked beside the step
+- a chalked price board propped against the wall by the door
+Typography: bold sans-serif, slab serif, occasional script.
+Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
+
+SIGNAGE RESTRICTION
+The only readable text anywhere in the image is:
+'PARK STREET MARKET'
+'WE DELIVER'
+'PHONE INSIDE'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
+
+PEOPLE
+EXACTLY 6 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
+- a woman holding the screen door open with her foot, both hands full
+- a man carrying a case of bottles out to a car at the curb
+- a boy selling newspapers on the corner, coins jingling in his pouch
+Clothing: men in turtlenecks, polyester suits; women in midi skirts, peasant blouses. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+
+VEHICLES
+EXACTLY 3 period vehicles, all different:
+- 1968-1979 Chevrolet Nova — compact, simple three-box shape
+- 1975-1980 Ford Granada — compact luxury, Mercedes-inspired formal grille
+- 1975-1979 Chevrolet Monza — small hatchback, rare but present
+Parked with gaps. Where a model is listed with a year range, render the 1975 model year specifically — only styling, trim and features available in 1975, nothing introduced later. No vehicle newer than 1975.
+Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
+PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, no rumble strips
+- utilities: overhead power lines everywhere, wooden utility poles standard
+
+TREES
+- honey locust tree at sidewalk beside the entrance: a young tree, only about 10% of its canopy in the base image, thin trunk
+Tree sizes MUST follow this specification even where they differ from the base image.
+
+PHOTOGRAPHIC STYLE
+STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.
+Grain: visible fine grain. Style: documentary, natural light.
+Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.
+Light: bright open daylight, clear sky, soft natural shadows — a fine, ordinary day.
+
+PRIVACY
+Blur all faces and license plates.

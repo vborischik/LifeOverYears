@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-08-18T05:05:27.5087389+00:00
+Generated: 2026-08-18T14:39:58.4522610+00:00
 
 ## Check Results
 
@@ -49,7 +49,7 @@ Generated: 2026-08-18T05:05:27.5087389+00:00
 | C41 | Caption assembly produces a complete, fully substituted caption for every scene type; scene types differ; weekly rotation reaches every body; same-week scenes are separated by the id offset | ✅ PASS | Caption assembly varied and fully substituted |
 | C43 | Chained eras are told to clear the previous year's people and vehicles; unchained eras keep the empty-source wording | ✅ PASS | Base note matches the chaining mode in every era |
 | C44 | Every prompt sets its light from the condition: living eras get open daylight, only derelict eras go grey, and no prompt asks for fog, rain or night | ✅ PASS | Light matches condition in every prompt |
-| C45 | Across 500 seeds no scene type abandons 2015 more than 35 % of the time, at least 70 % of runs still decline, and trajectories stay varied | ✅ PASS | downtown_street: 2015 abandoned 0 %, ever declines 99 %, 99 trajectories \| strip_mall: 2015 abandoned 0 %, ever declines 99 %, 99 trajectories \| auto_repair: 2015 abandoned 0 %, ever declines 99 %, 99 trajectories \| gas_station: 2015 abandoned 0 %, ever declines 82 %, 151 trajectories |
+| C45 | Across 500 seeds no scene type abandons 2015 more than 35% of the time, at least 70% of runs still decline, and trajectories stay varied | ✅ PASS | downtown_street: 2015 abandoned 0%, ever declines 99%, 99 trajectories \| strip_mall: 2015 abandoned 0%, ever declines 99%, 99 trajectories \| auto_repair: 2015 abandoned 0%, ever declines 99%, 99 trajectories \| gas_station: 2015 abandoned 0%, ever declines 82%, 151 trajectories |
 | C42 | Packed-crowd mall scenes render crowd/lot wording, exactly 5 representative vehicles, no PLACEMENT line | ✅ PASS | Packed crowd rendering correct across 1975/1985/1995 |
 | C46 | Every condition-bearing scene type prints its CONDITION line; mall (no condition arc) prints none | ✅ PASS | CONDITION line present for gas_station/downtown_street/strip_mall/auto_repair, absent for mall |
 | C47 | Condition rank never skips 0 -> 2 between consecutive eras; a run that ever decayed never ends on 'abandoned' | ✅ PASS | Trajectory steps one rank at a time and resolves across 40 seeds x 4 scene types |
@@ -62,9 +62,10 @@ Generated: 2026-08-18T05:05:27.5087389+00:00
 | C54 | Chained eras size trees as growth against the uploaded previous era, never as a fraction of the base | ✅ PASS | every era after the first grows its trees by the per-decade ratio for its size |
 | C55 | The caption tail runs from run-folder state alone, so a resumed batch run is captioned too | ✅ PASS | narrative.json and scene.json round-trip; caption.txt written with years and hashtags |
 | C56 | Downtown and strip-mall poles and wires are explicitly removed from 2015 on; other scene types keep theirs | ✅ PASS | wires stay through 2005, then go underground on main street and at the strip mall only |
-| C57 | A weighted hashtag (#nostalgia 70%) hits its declared share of captions, spends a sampled slot, and never ships its weight suffix | ✅ PASS | #nostalgia in ~70.8% of 4000 draws; pinned set and tag count unchanged |
+| C57 | A weighted hashtag (#nostalgia 70%) hits its declared share of captions, spends a sampled slot, and never ships its weight suffix | ✅ PASS | #nostalgia in ~71.5% of 4000 draws; pinned set and tag count unchanged |
 | C58 | Period details are conditional on the geometry: every prompt states that a detail with no plausible place is left out, and nothing is placed in the roadway | ✅ PASS | placement rule present in every era prompt, ahead of the signage whitelist |
-| C59 | Title templates load for base and every scene type; every line substitutes with no leftover placeholder and stays non-empty and inside YouTube's 100-char limit | ✅ PASS | base: 8 titles, longest 59 \| gas_station: 8 titles, longest 62 \| downtown_street: 8 titles, longest 54 \| strip_mall: 8 titles, longest 59 \| auto_repair: 8 titles, longest 54 \| mall: 8 titles, longest 57 \| shopping_center: 8 titles, longest 60 |
+| C60 | The corner shop opens as one grocery or pharmacy, turns over to a liquor store from 2015 with the old name ghosting above it, draws regulars rather than shoppers after that, and never recovers | ✅ PASS | both runs hold the trade arc, the decline and the prompt budgets; across 500 seeds it ends boarded up 33% of the time and never earlier |
+| C59 | Title templates load for base and every scene type; every line substitutes with no leftover placeholder and stays non-empty and inside YouTube's 100-char limit | ✅ PASS | gas_station: 16 titles, longest 62 \| downtown_street: 16 titles, longest 55 \| strip_mall: 16 titles, longest 59 \| auto_repair: 16 titles, longest 55 \| corner_shop: 16 titles, longest 62 \| mall: 16 titles, longest 57 \| shopping_center: 16 titles, longest 60 \| base: 16 titles, longest 59 |
 
 ## Vehicle Selections
 

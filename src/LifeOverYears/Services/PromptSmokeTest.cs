@@ -61,6 +61,7 @@ public static class PromptSmokeTest
         var downtownScene  = MakeDowntownScene();
         var stripMallScene = MakeStripMallScene();
         var autoRepairScene = MakeAutoRepairScene();
+        var cornerShopScene = MakeCornerShopScene();
         var unknownScene   = MakeUnknownScene();
 
         // Load all era profiles
@@ -77,6 +78,8 @@ public static class PromptSmokeTest
         var arRun1  = await BuildRun(promptService, autoRepairScene, eras, 42,   Years);
         var smRun2  = await BuildRun(promptService, stripMallScene, eras, 1337, Years);
         var arRun2  = await BuildRun(promptService, autoRepairScene, eras, 1337, Years);
+        var csRun1  = await BuildRun(promptService, cornerShopScene, eras, 42,   Years);
+        var csRun2  = await BuildRun(promptService, cornerShopScene, eras, 1337, Years);
 
         // c) Unknown scene — 1985 only, must not throw
         var unknownCtx    = new GenerationContext { Random = new Random(42), TotalEras = 1 };
@@ -93,6 +96,8 @@ public static class PromptSmokeTest
         await SaveRun(autoRepairScene.SceneType, 1, arRun1);
         await SaveRun(stripMallScene.SceneType, 2, smRun2);
         await SaveRun(autoRepairScene.SceneType, 2, arRun2);
+        await SaveRun(cornerShopScene.SceneType, 1, csRun1);
+        await SaveRun(cornerShopScene.SceneType, 2, csRun2);
         await SaveRun(unknownScene.SceneType,   1, new Dictionary<int, Prompt> { { 1985, unknownPrompt } });
 
         // d) Checks C1–C25
@@ -158,7 +163,8 @@ public static class PromptSmokeTest
         await DoC55(dataService, gasScene, findings);
         DoC56(dtRun1, dtRun2, smRun1, smRun2, gasRun1, arRun1, findings);
         await DoC57(dataService, findings);
-        await DoC58(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
+        await DoC58(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, csRun1, csRun2, unknownPrompt, findings);
+        DoC60(csRun1, csRun2, eras, logger, findings);
         await DoC59(dataService, findings);
 
         // e) Report
@@ -401,6 +407,49 @@ public static class PromptSmokeTest
             "concrete apron in front of the service bays"
         ]);
 
+    private static SceneDna MakeCornerShopScene() => new(
+        Id:        "smoke-corner-shop",
+        CreatedAt: "2025-01-01T00:00:00Z",
+        SceneType: "corner_shop",
+        Camera: new Camera(Height: "eye-level", Direction: "facade", Fov: 74),
+        Geometry: new Geometry(
+            Roads:
+            [
+                new Road(
+                    Type:     "residential",
+                    Lanes:    2,
+                    Markings: ["center line", "crosswalk at the corner"],
+                    Surface:  "asphalt")
+            ],
+            Sidewalks: true,
+            Curbs:     true,
+            Buildings:
+            [
+                new Building(
+                    Type:      "two-story corner building with a shop at street level",
+                    Position:  "on the corner, facade to the sidewalk",
+                    Stories:   2,
+                    Materials: ["red brick", "plate glass"],
+                    Roof:      "flat parapet",
+                    Setback:   "at-street")
+            ],
+            Driveways: [],
+            Parking:   "parallel street parking along the curb"),
+        Environment: new Environment(
+            Terrain:   "urban flat",
+            Utilities: ["overhead power lines", "utility pole at the corner"],
+            Trees:
+            [
+                new Tree(Position: "sidewalk beside the entrance", Size: "small", Type: "honey locust")
+            ],
+            Landscape: ["concrete sidewalk squares", "granite curb at the corner"]),
+        ImmutableElements:
+        [
+            "sign band above the storefront",
+            "blank brick side wall along the side street",
+            "entrance door on the corner chamfer"
+        ]);
+
     private static SceneDna MakeMallScene() => new(
         Id:        "smoke-mall",
         CreatedAt: "2025-01-01T00:00:00Z",
@@ -521,7 +570,7 @@ public static class PromptSmokeTest
         List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
-        string[] requiredKeys = { "downtown_street", "gas_station", "strip_mall", "auto_repair", "default" };
+        string[] requiredKeys = { "downtown_street", "gas_station", "strip_mall", "auto_repair", "corner_shop", "default" };
         string[] poolsRequiring20 = { "downtown_street", "gas_station", "strip_mall", "auto_repair" };
         const int minPoolSize = 20;
 
@@ -1749,7 +1798,11 @@ public static class PromptSmokeTest
         // actually reads. (data/prompts/caption-*.txt are the retired LLM system
         // prompts, kept in the repo but no longer read at runtime, so asserting
         // on them would only guard dead files.)
-        const int MinBodies = 5;
+        // Raised from 5 once the thin pools were filled out: five bodies means a
+        // scene type repeats itself within five weeks, and three of the types
+        // already carried 30. Anything below this is a pool that was started and
+        // never finished.
+        const int MinBodies = 15;
         var allowedPlaceholders = new HashSet<string>(StringComparer.Ordinal)
             { "firstYear", "lastYear", "angle", "condition" };
         var placeholder = new System.Text.RegularExpressions.Regex(@"\{(\w+)\}");
@@ -1770,6 +1823,13 @@ public static class PromptSmokeTest
             var bodies = CaptionService.SplitBodies(rawBodies);
             if (bodies.Count < MinBodies)
                 errs.Add($"captions/{name}.txt: {bodies.Count} bodies (need >= {MinBodies})");
+
+            // A duplicated body is pool size on paper only: the rotation still
+            // visits it twice and the feed repeats itself sooner than the count
+            // suggests.
+            foreach (var dupe in bodies.GroupBy(b => b, StringComparer.OrdinalIgnoreCase)
+                                       .Where(g => g.Count() > 1))
+                errs.Add($"captions/{name}.txt: duplicated body — \"{dupe.Key.Split('\n')[0]}\"");
 
             for (var i = 0; i < bodies.Count; i++)
             {
@@ -2147,8 +2207,12 @@ public static class PromptSmokeTest
             ?? throw new InvalidOperationException("PromptService.BuildSceneBlock not found");
 
         var gasSign = new GenerationContext.GasSign(GenerationContext.GasSignKind.DeadBoard, null);
+        // A derelict corner shop has no live sign, which is exactly what the
+        // default (no name) carries — the same state ResolveCornerShop returns
+        // for these conditions.
+        var cornerShop = default(GenerationContext.CornerShopSign);
         var rng = new Random(1); // unused by the derelict branch — no sampling happens there
-        var args = new object?[] { era, content, sceneType, condition, gasSign, rng, context };
+        var args = new object?[] { era, content, sceneType, condition, gasSign, cornerShop, rng, context };
         return (string)method.Invoke(null, args)!;
     }
 
@@ -2768,7 +2832,7 @@ public static class PromptSmokeTest
                 foreach (var year in Years)
                 {
                     ctx.BeginEra();
-                    path.Add(ctx.PickSceneCondition(eras[year].AllowedSceneConditions, sceneType));
+                    path.Add(ctx.PickSceneCondition(eras[year].AllowedSceneConditions, sceneType, year));
                 }
 
                 if (path[Array.IndexOf(Years, 2015)] == "abandoned") abandoned2015++;
@@ -2901,7 +2965,7 @@ public static class PromptSmokeTest
                 foreach (var year in Years)
                 {
                     ctx.BeginEra();
-                    var condition = ctx.PickSceneCondition(eras[year].AllowedSceneConditions, sceneType);
+                    var condition = ctx.PickSceneCondition(eras[year].AllowedSceneConditions, sceneType, year);
                     trajectory.Add((year, condition, ConditionRank.GetValueOrDefault(condition, 0)));
                 }
 
@@ -3504,6 +3568,7 @@ public static class PromptSmokeTest
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
         Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
+        Dictionary<int, Prompt> csRun1,  Dictionary<int, Prompt> csRun2,
         Prompt unknownPrompt,
         List<(string, string, bool?, string)> f)
     {
@@ -3536,6 +3601,7 @@ public static class PromptSmokeTest
             (dtRun1,  "downtown_street/run1"), (dtRun2, "downtown_street/run2"),
             (smRun1,  "strip_mall/run1"), (smRun2, "strip_mall/run2"),
             (arRun1,  "auto_repair/run1"), (arRun2, "auto_repair/run2"),
+            (csRun1,  "corner_shop/run1"), (csRun2, "corner_shop/run2"),
         })
             foreach (var (year, prompt) in run)
                 Check(prompt, $"{label}/{year}");
@@ -3561,12 +3627,10 @@ public static class PromptSmokeTest
         var errs = new List<string>();
         var summary = new List<string>();
 
-        // base plus every scene type that has its own angle vocabulary.
-        var names = new[]
-        {
-            "base", "gas_station", "downtown_street", "strip_mall",
-            "auto_repair", "mall", "shopping_center",
-        };
+        // base plus every scene type that has its own angle vocabulary. Derived
+        // from AnglesByScene rather than listed by hand: this list had already
+        // gone stale once, and a scene type missing here has no titles to post.
+        var names = CaptionService.AnglesByScene.Keys.Append("base").ToArray();
 
         foreach (var name in names)
         {
@@ -3587,6 +3651,14 @@ public static class PromptSmokeTest
                 errs.Add($"{name}: no title lines");
                 continue;
             }
+
+            foreach (var dupe in titles.GroupBy(t => t, StringComparer.OrdinalIgnoreCase)
+                                       .Where(g => g.Count() > 1))
+                errs.Add($"{name}: duplicated title — \"{dupe.Key}\"");
+
+            const int minTitles = 12;
+            if (titles.Count < minTitles)
+                errs.Add($"{name}: {titles.Count} titles (need >= {minTitles}) — the title is the most visible line of a post");
 
             var longest = 0;
             foreach (var template in titles)
@@ -3609,6 +3681,162 @@ public static class PromptSmokeTest
 
         f.Add(("C59", "Title templates load for base and every scene type; every line substitutes with no leftover placeholder and stays non-empty and inside YouTube's 100-char limit",
             errs.Count == 0, errs.Count == 0 ? string.Join(" | ", summary) : Join(errs)));
+    }
+
+    // The corner shop is the one scene type with a scripted ending: the shop the
+    // block walked to becomes the liquor store it drives past. Everything here
+    // guards that arc, because the parts that carry it are spread across three
+    // files — the name pools, the sign builder and the era content — and any one
+    // of them going quiet would leave a scene that still renders, just without
+    // the story. Its own budget checks live here too: C11 and C22 take a fixed
+    // list of runs, and this scene type is guarded where it is built instead.
+    private static void DoC60(
+        Dictionary<int, Prompt> csRun1, Dictionary<int, Prompt> csRun2,
+        Dictionary<int, EraProfile> eras,
+        ILogger logger,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        const int maxWords = 920;
+
+        int WordCount(string text) =>
+            text.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries)
+                .Count(t => t.Any(char.IsLetterOrDigit));
+
+        void Check(Dictionary<int, Prompt> run, string label)
+        {
+            var rank = 0;
+
+            foreach (var year in Years)
+            {
+                var prompt = run[year];
+                var text   = prompt.Text;
+                var live   = prompt.SceneCondition is not ("abandoned" or "squatted");
+                var where  = $"{label}/{year}";
+
+                if (WordCount(text) >= maxWords)
+                    errs.Add($"{where}: {WordCount(text)} words (limit {maxWords})");
+                if (text.Length > MaxPromptChars)
+                    errs.Add($"{where}: {text.Length} chars (max {MaxPromptChars})");
+
+                // A corner shop never comes back: the era that reopens it
+                // renovated is the one beat this scene type must not play.
+                if (prompt.SceneCondition is "restored" or "new" && year != Years[0])
+                    errs.Add($"{where}: condition '{prompt.SceneCondition}' — the arc only goes down");
+
+                var thisRank = prompt.SceneCondition switch
+                {
+                    "declining"               => 1,
+                    "abandoned" or "squatted" => 2,
+                    _                         => 0
+                };
+                if (thisRank < rank)
+                    errs.Add($"{where}: condition recovered from rank {rank} to {thisRank}");
+                rank = Math.Max(rank, thisRank);
+
+                var liquor   = text.Contains("a neighbourhood liquor store", StringComparison.Ordinal);
+                var original = text.Contains("a neighbourhood grocery", StringComparison.Ordinal)
+                            || text.Contains("a neighbourhood pharmacy", StringComparison.Ordinal);
+
+                if (!live)
+                {
+                    // Closed means closed: a live sign here would light up a shop
+                    // the same prompt has just boarded over.
+                    if (liquor || original)
+                        errs.Add($"{where}: derelict era still hangs a live shop sign");
+                    continue;
+                }
+
+                if (year >= GenerationContext.LiquorFromYear)
+                {
+                    if (!liquor)
+                        errs.Add($"{where}: no liquor store sign from {GenerationContext.LiquorFromYear} on");
+                    if (original)
+                        errs.Add($"{where}: still selling groceries after the turnover");
+                    // The ghost of the old name is what makes it the same building.
+                    if (!text.Contains("the previous business's lettering still ghosts", StringComparison.Ordinal))
+                        errs.Add($"{where}: liquor era does not carry the previous owner's ghost sign");
+                    if (!text.Contains("regulars of this store, not shoppers", StringComparison.Ordinal)
+                        && !text.Contains("NO people anywhere", StringComparison.Ordinal))
+                        errs.Add($"{where}: liquor era still draws ordinary shoppers");
+                }
+                else
+                {
+                    if (!original)
+                        errs.Add($"{where}: no grocery or pharmacy sign before the turnover");
+                    if (liquor)
+                        errs.Add($"{where}: liquor store appears before {GenerationContext.LiquorFromYear}");
+                }
+            }
+
+            // One shop, one identity: the trade it opens with is the trade it
+            // keeps until the turnover, so a run must not drift between grocery
+            // and pharmacy on the way there.
+            var kinds = Years
+                .Where(y => y < GenerationContext.LiquorFromYear)
+                .Select(y => run[y].Text.Contains("a neighbourhood grocery", StringComparison.Ordinal) ? "grocery"
+                           : run[y].Text.Contains("a neighbourhood pharmacy", StringComparison.Ordinal) ? "pharmacy"
+                           : null)
+                .Where(k => k is not null)
+                .Distinct()
+                .ToList();
+            if (kinds.Count > 1)
+                errs.Add($"{label}: the shop changes trade mid-run: {string.Join(", ", kinds)}");
+        }
+
+        Check(csRun1, "corner_shop/run1");
+        Check(csRun2, "corner_shop/run2");
+
+        // Two fixtures cannot show what the policy does, only what it did twice.
+        // The floor and the ceiling are distribution claims, so they are measured
+        // across seeds the way C45 measures the general condition spread.
+        const int seeds = 500;
+        const double minClosedFinale = 0.25, maxClosedFinale = 0.45;
+        var closedEarly = 0;
+        var repairedLate = 0;
+        var closedFinale = 0;
+
+        for (var seed = 0; seed < seeds; seed++)
+        {
+            var ctx = new GenerationContext
+                { Random = new Random(seed), TotalEras = Years.Length, Years = Years };
+            var path = new List<string>();
+            foreach (var year in Years)
+            {
+                ctx.BeginEra();
+                path.Add(ctx.PickSceneCondition(eras[year].AllowedSceneConditions, "corner_shop", year));
+            }
+
+            for (var i = 0; i < Years.Length; i++)
+            {
+                var derelict = path[i] is "abandoned" or "squatted";
+                var healthy  = path[i] is not ("declining" or "abandoned" or "squatted");
+
+                // Boarded up before the last era would hide the turnover.
+                if (derelict && i < Years.Length - 1) closedEarly++;
+                // In good repair after the decline is supposed to have started.
+                if (healthy && Years[i] >= GenerationContext.DeclineFromYear) repairedLate++;
+            }
+            if (path[^1] is "abandoned" or "squatted") closedFinale++;
+        }
+
+        if (closedEarly > 0)
+            errs.Add($"{closedEarly} of {seeds} seeds board the shop up before the last era — the liquor store is never seen");
+        if (repairedLate > 0)
+            errs.Add($"{repairedLate} of {seeds} seeds still show it in good repair from {GenerationContext.DeclineFromYear} on");
+
+        var closedRate = closedFinale / (double)seeds;
+        if (closedRate < minClosedFinale || closedRate > maxClosedFinale)
+            errs.Add($"the shop ends boarded up in {closedRate:P0} of runs, expected {minClosedFinale:P0}-{maxClosedFinale:P0}");
+
+        logger.LogInformation(
+            "[Smoke] C60 corner shop spread across {Seeds} seeds: ends boarded {Rate:P0}, never derelict before the last era",
+            seeds, closedRate);
+
+        f.Add(("C60", "The corner shop opens as one grocery or pharmacy, turns over to a liquor store from 2015 with the old name ghosting above it, draws regulars rather than shoppers after that, and never recovers",
+            errs.Count == 0, errs.Count == 0
+                ? $"both runs hold the trade arc, the decline and the prompt budgets; across {seeds} seeds it ends boarded up {closedFinale * 100.0 / seeds:F0}% of the time and never earlier"
+                : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────
