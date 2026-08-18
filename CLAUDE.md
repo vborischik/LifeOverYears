@@ -140,7 +140,8 @@ never earlier. From 2015 the people outside are regulars, not shoppers. Locked
 by C60, which measures that spread over 500 seeds rather than trusting the two
 fixtures.
 
-**Liquor names** — `corner-shop-names.txt` splits them by urban register:
+**Liquor names** — `data/brands/corner-shop-liquor-names.txt`, kept apart from the
+origin trades in `corner-shop-names.txt` and split by urban register:
 `liquor_urban` (numbered avenues, proprietor surnames, combined trades,
 initials — the narrow pre-war frontage) and `liquor_suburban` (discount,
 warehouse, beverage, plaza and highway names — the wider unit with parking).

@@ -1,0 +1,87 @@
+# Liquor store names for the corner_shop turnover, one per line: kind|NAME
+#
+# Split by urban register, because the name is sign text and the register has
+# to match the frontage it is bolted to: a warehouse name on a narrow pre-war
+# shopfront reads as the wrong building, and the whole corner-shop arc is that
+# the building never changes and only the trade does.
+#
+#   liquor_urban     the independent shop on a dense, walkable pre-war
+#                    commercial corridor — narrow frontage, the sign band is
+#                    the whole storefront. Numbered avenues and streets,
+#                    proprietor surnames, combined trades (liquor & deli,
+#                    wine & spirits, liquor & grocery), initials, plain
+#                    one-word trade names.
+#
+#   liquor_suburban  the wider unit with parking in front, on a strip mall or
+#                    an arterial road. Trade-descriptive names — discount,
+#                    warehouse, beverage — plus plaza and highway references.
+#
+# Scene type picks the pool: see GenerationContext.LiquorKeysFor. Locked by C61.
+#
+# Names are rendered as sign text, so they must read as a real small-town or
+# city storefront: no adjectives, no descriptions, no invented national chains,
+# nothing that could be mistaken for an instruction to the image model.
+
+liquor_urban|PARK LIQUORS
+liquor_urban|CORNER WINE & LIQUOR
+liquor_urban|LUCKY LIQUORS
+liquor_urban|K & S LIQUORS
+liquor_urban|BOTTLE SHOP
+liquor_urban|CITY LIQUOR MART
+liquor_urban|STATE STREET LIQUORS
+liquor_urban|11TH AVE LIQUOR
+liquor_urban|3RD AVENUE WINE & LIQUOR
+liquor_urban|5TH STREET WINE & LIQUOR
+liquor_urban|7TH AVE WINE & SPIRITS
+liquor_urban|8TH STREET LIQUORS
+liquor_urban|JACKSON LIQUOR
+liquor_urban|TOP SHELF LIQUORS
+liquor_urban|MURPHY'S WINE & SPIRITS
+liquor_urban|DELANEY'S LIQUORS
+liquor_urban|ROSSI WINE & LIQUOR
+liquor_urban|GRAND AVENUE LIQUORS
+liquor_urban|FULTON LIQUOR & DELI
+liquor_urban|J & M LIQUOR & DELI
+liquor_urban|A & J LIQUORS
+liquor_urban|D & L LIQUOR
+liquor_urban|MORAN'S LIQUOR STORE
+liquor_urban|BROADWAY WINE & SPIRITS
+liquor_urban|KAMINSKI'S LIQUORS
+liquor_urban|CORK & BOTTLE
+liquor_urban|HERNANDEZ LIQUOR & GROCERY
+liquor_urban|MARKET STREET LIQUORS
+liquor_urban|PARKER'S WINE & SPIRITS
+liquor_urban|UNION AVENUE LIQUORS
+liquor_urban|CAPITOL LIQUORS
+liquor_urban|NOWAK LIQUOR & DELI
+liquor_urban|O'CONNELL'S LIQUORS
+liquor_urban|CENTRAL LIQUOR
+liquor_urban|VITALE'S WINE & LIQUOR
+liquor_urban|LIBERTY LIQUORS
+liquor_urban|WASHINGTON STREET LIQUOR
+
+liquor_suburban|DISCOUNT LIQUOR
+liquor_suburban|DISCOUNT LIQUOR WAREHOUSE
+liquor_suburban|BEVERAGE BARN
+liquor_suburban|PLAZA WINE & LIQUOR
+liquor_suburban|ROUTE 9 LIQUORS
+liquor_suburban|ROUTE 22 WINE & LIQUOR
+liquor_suburban|ROUTE 30 BEVERAGE
+liquor_suburban|TOWN & COUNTRY LIQUORS
+liquor_suburban|LIQUOR DEPOT
+liquor_suburban|BEVERAGE CENTER
+liquor_suburban|HIGHWAY LIQUORS
+liquor_suburban|VILLAGE PLAZA LIQUORS
+liquor_suburban|WINE & SPIRITS WAREHOUSE
+liquor_suburban|FAMILY LIQUORS
+liquor_suburban|CROSSROADS LIQUORS
+liquor_suburban|BEVERAGE WAREHOUSE
+liquor_suburban|LIQUOR MART
+liquor_suburban|EASTGATE LIQUORS
+liquor_suburban|WESTGATE WINE & LIQUOR
+liquor_suburban|COUNTY LINE LIQUORS
+liquor_suburban|SHOPPERS LIQUOR
+liquor_suburban|MEADOWBROOK LIQUORS
+liquor_suburban|PARKWAY LIQUORS
+liquor_suburban|FAIRGROUND BEVERAGE
+liquor_suburban|NORTHSIDE LIQUOR WAREHOUSE

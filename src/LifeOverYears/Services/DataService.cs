@@ -75,17 +75,33 @@ public sealed class DataService : IDataService
         return brands;
     }
 
-    // Corner shop names, grouped by the kind of shop they belong to
-    // ("grocery", "pharmacy", "liquor"). Unlike gas brands these carry no year
-    // range: which kind is on the sign follows the run's own arc, not history.
-    // Blank lines and '#' comments are skipped so the file can explain itself.
+    // Corner shop names, grouped by the kind of shop they belong to. The origin
+    // trades ("grocery", "pharmacy") and the liquor names the shop turns over to
+    // ("liquor_urban", "liquor_suburban") live in two files, because the liquor
+    // pool is split by urban register and carries its own rules about which
+    // register belongs on which frontage. Both parse the same way and merge into
+    // one map, so callers see a single set of kinds. Unlike gas brands these
+    // carry no year range: which kind is on the sign follows the run's own arc,
+    // not history.
     public async Task<IReadOnlyDictionary<string, IReadOnlyList<string>>> LoadCornerShopNamesAsync()
     {
-        var path = Path.Combine("data", "brands", "corner-shop-names.txt");
+        var byKind = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
+        await ReadCornerShopNamesInto(byKind, "corner-shop-names.txt");
+        await ReadCornerShopNamesInto(byKind, "corner-shop-liquor-names.txt");
+
+        return byKind.ToDictionary(
+            kv => kv.Key,
+            kv => (IReadOnlyList<string>)kv.Value,
+            StringComparer.OrdinalIgnoreCase);
+    }
+
+    // Blank lines and '#' comments are skipped so each file can explain itself.
+    private async Task ReadCornerShopNamesInto(Dictionary<string, List<string>> byKind, string fileName)
+    {
+        var path = Path.Combine("data", "brands", fileName);
         _logger.LogInformation("Loading corner shop names from {Path}", path);
         var text = await _fs.ReadAllTextAsync(path);
 
-        var byKind = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
         foreach (var line in text.Split('\n'))
         {
             var trimmed = line.Trim();
@@ -104,11 +120,6 @@ public sealed class DataService : IDataService
                 byKind[kind] = names = new List<string>();
             names.Add(parts[1].Trim());
         }
-
-        return byKind.ToDictionary(
-            kv => kv.Key,
-            kv => (IReadOnlyList<string>)kv.Value,
-            StringComparer.OrdinalIgnoreCase);
     }
 
     public async Task<IReadOnlyDictionary<string, string>> LoadSceneTypePhrasesAsync()
