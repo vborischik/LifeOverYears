@@ -165,7 +165,7 @@ public static class PromptSmokeTest
         await DoC57(dataService, findings);
         await DoC58(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, csRun1, csRun2, unknownPrompt, findings);
         DoC60(csRun1, csRun2, eras, logger, findings);
-        await DoC61(dataService, findings);
+        await DoC61(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
         await DoC59(dataService, findings);
 
         // e) Report
@@ -3840,14 +3840,25 @@ public static class PromptSmokeTest
                 : Join(errs)));
     }
 
-    // The liquor name is sign text, so its register has to match the frontage it
-    // is bolted to: a warehouse name on a narrow pre-war shopfront reads as the
-    // wrong building. The two pools therefore have to stay genuinely separate —
-    // both populated, no name in both, and no scene type drawing across the
-    // split. Drives ResolveCornerShop directly rather than reading prompts, so
-    // the mapping is checked independently of what any fixture happens to sample.
+    // The named liquor store belongs to the corner_shop arc and nothing else: it
+    // is the beat that scene type exists for, and no other scene type resolves a
+    // sign name at all — a declining row mentions an unnamed liquor store and
+    // stops there. So the live invariant is narrow: corner_shop always draws from
+    // liquor_urban, and no other scene type ever renders a name from either pool.
+    //
+    // liquor_suburban is deliberately dormant. corner_shop is always the narrow
+    // pre-war frontage (Vision sends the wider unit with parking to strip_mall),
+    // so nothing reaches the suburban register today. It stays wired through
+    // LiquorKeysFor and checked for rot, ready for a scene type that later gains
+    // a named liquor store; the mapping assertion below is intent, not live
+    // behaviour, and is labelled as such so it is not mistaken for one.
     private static async Task DoC61(
         IDataService dataService,
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
+        Prompt unknownPrompt,
         List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
@@ -3859,12 +3870,12 @@ public static class PromptSmokeTest
         }
         catch (Exception ex)
         {
-            f.Add(("C61", "Liquor names are split by urban register and no scene type draws across the split",
+            f.Add(("C61", "The named liquor store is corner_shop-only and always urban; the suburban pool stays wired but dormant",
                 false, $"LoadCornerShopNamesAsync threw: {ex.Message}"));
             return;
         }
 
-        // 1. Both kinds load and carry enough names to be worth splitting.
+        // 1. Both pools load from corner-shop-liquor-names.txt and stay healthy.
         const int minPerPool = 20;
         var urban    = names.TryGetValue(GenerationContext.LiquorUrbanKey,    out var u) ? u : Array.Empty<string>();
         var suburban = names.TryGetValue(GenerationContext.LiquorSuburbanKey, out var s) ? s : Array.Empty<string>();
@@ -3880,83 +3891,84 @@ public static class PromptSmokeTest
         if (names.ContainsKey("liquor"))
             errs.Add("the old flat 'liquor' key is still in the file — it is no longer read");
 
-        // 2. No name in both pools: a shared name makes the register meaningless
-        // and would let a scene type appear to draw across the split.
+        // 2. No name in both pools, and none duplicated inside one — a duplicate
+        // shrinks the pool invisibly, same as the caption pools.
         foreach (var shared in urban.Intersect(suburban, StringComparer.OrdinalIgnoreCase).OrderBy(n => n))
             errs.Add($"\"{shared}\" appears in both liquor pools");
-
-        // Duplicates inside one pool shrink it invisibly, same as the caption pools.
         foreach (var dupe in urban.GroupBy(n => n, StringComparer.OrdinalIgnoreCase).Where(g => g.Count() > 1))
             errs.Add($"{GenerationContext.LiquorUrbanKey} lists \"{dupe.Key}\" {dupe.Count()} times");
         foreach (var dupe in suburban.GroupBy(n => n, StringComparer.OrdinalIgnoreCase).Where(g => g.Count() > 1))
             errs.Add($"{GenerationContext.LiquorSuburbanKey} lists \"{dupe.Key}\" {dupe.Count()} times");
 
-        // 3. Scene type never draws across the split. Swept over seeds so the
-        // result does not depend on one lucky sample.
+        // 3. Live behaviour: corner_shop resolves a name and it is always urban.
         const int seeds = 60;
-        var expectations = new (string SceneType, IReadOnlyList<string> Allowed, IReadOnlyList<string> Forbidden, string Register)[]
-        {
-            ("downtown_street",  urban,    suburban, "urban"),
-            ("corner_shop",      urban,    suburban, "urban"),
-            ("strip_mall",       suburban, urban,    "suburban"),
-            ("shopping_center",  suburban, urban,    "suburban"),
-        };
-
-        var drawn = new Dictionary<string, HashSet<string>>();
-        foreach (var (sceneType, allowed, forbidden, register) in expectations)
-        {
-            var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            for (var seed = 1; seed <= seeds; seed++)
-            {
-                var ctx = new GenerationContext
-                {
-                    Random = new Random(seed), TotalEras = Years.Length, Years = Years
-                };
-                // LiquorFromYear onward is the era that actually carries a liquor name.
-                var sign = ctx.ResolveCornerShop(
-                    names, GenerationContext.LiquorFromYear, "declining", sceneType);
-
-                if (sign.Name is null)
-                {
-                    errs.Add($"{sceneType}/seed {seed}: no liquor name resolved");
-                    continue;
-                }
-                seen.Add(sign.Name);
-
-                if (forbidden.Contains(sign.Name, StringComparer.OrdinalIgnoreCase))
-                    errs.Add($"{sceneType} drew \"{sign.Name}\" from the wrong register (seed {seed})");
-                else if (!allowed.Contains(sign.Name, StringComparer.OrdinalIgnoreCase))
-                    errs.Add($"{sceneType} drew \"{sign.Name}\", which is in neither liquor pool (seed {seed})");
-            }
-            drawn[$"{sceneType} ({register})"] = seen;
-
-            // A pool that only ever yields one or two names is split but not varied.
-            if (seen.Count < 5)
-                errs.Add($"{sceneType}: only {seen.Count} distinct names across {seeds} seeds");
-        }
-
-        // 4. An unlisted scene type falls back to the combined pool — it must be
-        // able to reach both registers rather than silently getting nothing.
-        var fallbackSeen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        for (var seed = 1; seed <= 200; seed++)
+        var drawn = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        for (var seed = 1; seed <= seeds; seed++)
         {
             var ctx = new GenerationContext
             {
                 Random = new Random(seed), TotalEras = Years.Length, Years = Years
             };
+            // LiquorFromYear onward is the era that actually carries a liquor name.
             var sign = ctx.ResolveCornerShop(
-                names, GenerationContext.LiquorFromYear, "declining", "gas_station");
-            if (sign.Name is not null) fallbackSeen.Add(sign.Name);
+                names, GenerationContext.LiquorFromYear, "declining", "corner_shop");
+
+            if (sign.Name is null)
+            {
+                errs.Add($"corner_shop/seed {seed}: no liquor name resolved");
+                continue;
+            }
+            drawn.Add(sign.Name);
+
+            if (suburban.Contains(sign.Name, StringComparer.OrdinalIgnoreCase))
+                errs.Add($"corner_shop drew suburban name \"{sign.Name}\" (seed {seed}) — the frontage is always the narrow pre-war one");
+            else if (!urban.Contains(sign.Name, StringComparer.OrdinalIgnoreCase))
+                errs.Add($"corner_shop drew \"{sign.Name}\", which is in neither liquor pool (seed {seed})");
         }
-        if (!fallbackSeen.Overlaps(urban) || !fallbackSeen.Overlaps(suburban))
-            errs.Add("an unlisted scene type does not reach both liquor pools — the combined fallback is not combined");
+        if (drawn.Count < 5)
+            errs.Add($"corner_shop: only {drawn.Count} distinct names across {seeds} seeds");
 
-        var summary = string.Join(" | ",
-            new[] { $"urban {urban.Count}, suburban {suburban.Count}, no overlap" }
-                .Concat(drawn.Select(kv => $"{kv.Key}: {kv.Value.Count} distinct")));
+        // 4. Live behaviour: no other scene type renders a liquor name. Checked
+        // against the generated prompts rather than the resolver, because this is
+        // a property of where PromptService calls it from, not of the mapping.
+        // Case-sensitive: the names are sign text in capitals, while the era pools
+        // describe an unnamed liquor store in lower-case prose.
+        var allLiquorNames = urban.Concat(suburban).ToList();
+        void CheckNoName(Prompt prompt, string label)
+        {
+            foreach (var name in allLiquorNames)
+                if (prompt.Text.Contains(name, StringComparison.Ordinal))
+                    errs.Add($"{label}: renders liquor name \"{name}\" — only corner_shop may carry one");
+        }
 
-        f.Add(("C61", "Liquor names are split by urban register: both pools load, no name is in both, downtown/corner_shop draw only urban names and strip_mall/shopping_center only suburban, and an unlisted scene type still reaches both",
-            errs.Count == 0, errs.Count == 0 ? summary : Join(errs)));
+        foreach (var (run, label) in new[]
+        {
+            (gasRun1, "gas/run1"), (gasRun2, "gas/run2"),
+            (dtRun1,  "downtown/run1"), (dtRun2, "downtown/run2"),
+            (smRun1,  "strip_mall/run1"), (smRun2, "strip_mall/run2"),
+            (arRun1,  "auto_repair/run1"), (arRun2, "auto_repair/run2"),
+        })
+            foreach (var (year, prompt) in run)
+                CheckNoName(prompt, $"{label}/{year}");
+
+        CheckNoName(unknownPrompt, "unknown");
+
+        // 5. Dormant-but-wired: the mapping still routes the suburban registers,
+        // so the pool is one call site away from being live rather than orphaned.
+        // Asserted on LiquorKeysFor alone — no scene type reaches it today.
+        foreach (var scene in new[] { "downtown_street", "corner_shop" })
+            if (!GenerationContext.LiquorKeysFor(scene).SequenceEqual(new[] { GenerationContext.LiquorUrbanKey }))
+                errs.Add($"LiquorKeysFor(\"{scene}\") no longer maps to the urban pool");
+        foreach (var scene in new[] { "strip_mall", "shopping_center" })
+            if (!GenerationContext.LiquorKeysFor(scene).SequenceEqual(new[] { GenerationContext.LiquorSuburbanKey }))
+                errs.Add($"LiquorKeysFor(\"{scene}\") no longer maps to the suburban pool");
+        if (GenerationContext.LiquorKeysFor("gas_station").Count != 2)
+            errs.Add("LiquorKeysFor no longer falls back to both pools for an unlisted scene type");
+
+        f.Add(("C61", "The named liquor store is corner_shop-only and always drawn from liquor_urban; no other scene type renders a liquor name; liquor_suburban stays wired through LiquorKeysFor but is dormant",
+            errs.Count == 0, errs.Count == 0
+                ? $"urban {urban.Count}, suburban {suburban.Count} (dormant), no overlap; corner_shop drew {drawn.Count} distinct urban names across {seeds} seeds; no liquor name in any other scene type"
+                : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────

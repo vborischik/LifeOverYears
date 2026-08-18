@@ -18,6 +18,13 @@
 #
 # Scene type picks the pool: see GenerationContext.LiquorKeysFor. Locked by C61.
 #
+# NOTE: only corner_shop resolves a liquor name today, and a corner shop is
+# always the narrow pre-war frontage — Vision sends the wider unit with parking
+# to strip_mall instead. So liquor_suburban is currently DORMANT: it is wired
+# through LiquorKeysFor and checked for rot, but nothing renders it until some
+# other scene type gains a named liquor store. Adding a suburban name here will
+# not make it appear in a prompt on its own.
+#
 # Names are rendered as sign text, so they must read as a real small-town or
 # city storefront: no adjectives, no descriptions, no invented national chains,
 # nothing that could be mistaken for an instruction to the image model.

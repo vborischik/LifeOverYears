@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-08-18T21:13:24.4536775+00:00
+Generated: 2026-08-18T21:23:09.9403806+00:00
 
 ## Check Results
 
@@ -62,10 +62,10 @@ Generated: 2026-08-18T21:13:24.4536775+00:00
 | C54 | Chained eras size trees as growth against the uploaded previous era, never as a fraction of the base | ✅ PASS | every era after the first grows its trees by the per-decade ratio for its size |
 | C55 | The caption tail runs from run-folder state alone, so a resumed batch run is captioned too | ✅ PASS | narrative.json and scene.json round-trip; caption.txt written with years and hashtags |
 | C56 | Downtown and strip-mall poles and wires are explicitly removed from 2015 on; other scene types keep theirs | ✅ PASS | wires stay through 2005, then go underground on main street and at the strip mall only |
-| C57 | A weighted hashtag (#nostalgia 70%) hits its declared share of captions, spends a sampled slot, and never ships its weight suffix | ✅ PASS | #nostalgia in ~70.2% of 4000 draws; pinned set and tag count unchanged |
+| C57 | A weighted hashtag (#nostalgia 70%) hits its declared share of captions, spends a sampled slot, and never ships its weight suffix | ✅ PASS | #nostalgia in ~68.4% of 4000 draws; pinned set and tag count unchanged |
 | C58 | Period details are conditional on the geometry: every prompt states that a detail with no plausible place is left out, and nothing is placed in the roadway | ✅ PASS | placement rule present in every era prompt, ahead of the signage whitelist |
 | C60 | The corner shop opens as one grocery or pharmacy, turns over to a liquor store from 2015 with the old name ghosting above it, draws regulars rather than shoppers after that, and never recovers | ✅ PASS | both runs hold the trade arc, the decline and the prompt budgets; across 500 seeds it ends boarded up 33% of the time and never earlier |
-| C61 | Liquor names are split by urban register: both pools load, no name is in both, downtown/corner_shop draw only urban names and strip_mall/shopping_center only suburban, and an unlisted scene type still reaches both | ✅ PASS | urban 37, suburban 25, no overlap \| downtown_street (urban): 30 distinct \| corner_shop (urban): 30 distinct \| strip_mall (suburban): 23 distinct \| shopping_center (suburban): 23 distinct |
+| C61 | The named liquor store is corner_shop-only and always drawn from liquor_urban; no other scene type renders a liquor name; liquor_suburban stays wired through LiquorKeysFor but is dormant | ✅ PASS | urban 37, suburban 25 (dormant), no overlap; corner_shop drew 30 distinct urban names across 60 seeds; no liquor name in any other scene type |
 | C59 | Title templates load for base and every scene type; every line substitutes with no leftover placeholder and stays non-empty and inside YouTube's 100-char limit | ✅ PASS | gas_station: 16 titles, longest 62 \| downtown_street: 16 titles, longest 55 \| strip_mall: 16 titles, longest 59 \| auto_repair: 16 titles, longest 55 \| corner_shop: 16 titles, longest 62 \| mall: 16 titles, longest 57 \| shopping_center: 16 titles, longest 60 \| base: 16 titles, longest 59 |
 
 ## Vehicle Selections

@@ -149,7 +149,11 @@ warehouse, beverage, plaza and highway names — the wider unit with parking).
 `downtown_street`/`corner_shop`, suburban for `strip_mall`/`shopping_center`,
 both for anything else. The name is sign text, so a warehouse name on a narrow
 frontage reads as the wrong building — which is exactly what the corner-shop arc
-cannot afford. Locked by C61.
+cannot afford. Only `corner_shop` resolves a liquor name at all (other scene
+types mention an unnamed liquor store and stop there), and a corner shop is
+always the narrow frontage — so `liquor_suburban` is wired but **dormant**:
+adding a name to it will not make it appear until another scene type gains a
+named liquor store. Locked by C61, which asserts exactly that.
 
 **Conditions** — `thriving/busy/new/declining/abandoned/squatted/restored`,
 picked per era in `GenerationContext.PickSceneCondition` for gas_station,
