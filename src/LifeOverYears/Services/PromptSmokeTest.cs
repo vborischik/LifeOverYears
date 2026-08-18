@@ -165,6 +165,7 @@ public static class PromptSmokeTest
         await DoC57(dataService, findings);
         await DoC58(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, csRun1, csRun2, unknownPrompt, findings);
         DoC60(csRun1, csRun2, eras, logger, findings);
+        DoC62(csRun1, csRun2, gasRun1, dtRun1, smRun1, arRun1, findings);
         await DoC61(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
         await DoC59(dataService, findings);
 
@@ -3968,6 +3969,89 @@ public static class PromptSmokeTest
         f.Add(("C61", "The named liquor store is corner_shop-only and always drawn from liquor_urban; no other scene type renders a liquor name; liquor_suburban stays wired through LiquorKeysFor but is dormant",
             errs.Count == 0, errs.Count == 0
                 ? $"urban {urban.Count}, suburban {suburban.Count} (dormant), no overlap; corner_shop drew {drawn.Count} distinct urban names across {seeds} seeds; no liquor name in any other scene type"
+                : Join(errs)));
+    }
+
+    // A tree that is only ever given a size reads as dead, and era chaining makes
+    // that permanent — so the corner shop's street tree has to say it is alive in
+    // every era, and its state has to track the shop's own arc rather than sitting
+    // frozen. The other scene types deliberately carry no state clause: there is no
+    // scripted arc for it to follow there and no prompt budget to spend on it.
+    private static void DoC62(
+        Dictionary<int, Prompt> csRun1, Dictionary<int, Prompt> csRun2,
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> dtRun1,
+        Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> arRun1,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        const string healthy   = "in full summer leaf";
+        const string declining = "in leaf but untrimmed";
+        const string derelict  = "half of it dead";
+        var states = new[] { healthy, declining, derelict };
+
+        var seen = new HashSet<string>();
+
+        void CheckCorner(Dictionary<int, Prompt> run, string label)
+        {
+            foreach (var (year, prompt) in run)
+            {
+                var text = prompt.Text;
+                // 2025 unchained shows the trees at base size already, so the whole
+                // section is dropped — nothing to assert for that era.
+                if (!text.Contains("\nTREES\n", StringComparison.Ordinal))
+                    continue;
+
+                var where   = $"{label}/{year}";
+                var present = states.Where(st => text.Contains(st, StringComparison.Ordinal)).ToList();
+
+                if (present.Count == 0)
+                {
+                    errs.Add($"{where}: TREES states a size but never says the tree is alive");
+                    continue;
+                }
+                if (present.Count > 1)
+                    errs.Add($"{where}: TREES carries {present.Count} conflicting tree states");
+                seen.Add(present[0]);
+
+                // The tree's state has to agree with the era it is standing in.
+                var expected = prompt.SceneCondition switch
+                {
+                    "abandoned" or "squatted" => derelict,
+                    "declining"               => declining,
+                    _                         => healthy,
+                };
+                if (!text.Contains(expected, StringComparison.Ordinal))
+                    errs.Add($"{where}: condition '{prompt.SceneCondition}' but the tree does not read as \"{expected}\"");
+
+                // Growth must still be there — the state clause is an addition to
+                // the size line, not a replacement for it.
+                if (!text.Contains("% of its canopy", StringComparison.Ordinal))
+                    errs.Add($"{where}: tree state replaced the canopy sizing instead of adding to it");
+            }
+        }
+
+        CheckCorner(csRun1, "corner_shop/run1");
+        CheckCorner(csRun2, "corner_shop/run2");
+
+        // Across the two fixture runs the arc has to actually move — a tree stuck
+        // on one state for every era is the bug this check exists for.
+        if (seen.Count < 2)
+            errs.Add($"the tree holds one state ({string.Join(", ", seen)}) across every corner_shop era — the arc is not moving");
+
+        // Scoping: no other scene type spends words on a tree state.
+        foreach (var (run, label) in new[]
+        {
+            (gasRun1, "gas"), (dtRun1, "downtown"), (smRun1, "strip_mall"), (arRun1, "auto_repair"),
+        })
+            foreach (var (year, prompt) in run)
+                foreach (var st in states)
+                    if (prompt.Text.Contains(st, StringComparison.Ordinal))
+                        errs.Add($"{label}/{year}: carries the corner_shop tree state \"{st}\"");
+
+        f.Add(("C62", "The corner shop's street tree reads as a living tree in every era and its state follows the shop's arc (leafy while trading, untrimmed while declining, half dead once derelict); other scene types carry no tree state",
+            errs.Count == 0, errs.Count == 0
+                ? $"corner_shop tree moves through {seen.Count} states across the run, canopy sizing intact, no other scene type affected"
                 : Join(errs)));
     }
 

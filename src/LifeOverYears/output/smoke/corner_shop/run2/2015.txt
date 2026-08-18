@@ -75,7 +75,7 @@ DECAY
 - an ice cooler chained to the wall beside the entrance
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
-- honey locust tree at sidewalk beside the entrance: clearly smaller than in the base image — about 65% of its canopy there, thinner trunk
+- honey locust tree at sidewalk beside the entrance: clearly smaller than in the base image — about 65% of its canopy there, thinner trunk, in leaf but untrimmed, suckers at the base and one dead limb
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE

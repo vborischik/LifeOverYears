@@ -71,6 +71,16 @@ base image. The two paths are exact inverses — change retention, not one branc
 Percentages round to the nearest 5%. The source year (2025) emits no TREES
 section at all.
 
+**Tree state** — `PromptService.DescribeTreeState`, appended to each TREES line.
+Size alone never said the tree was *alive*, and every adjective it carried was
+subtractive ("thinner trunk", "a young tree"); under `EraChaining` that is
+self-sealing, so whatever the first frame drew stood there dead for fifty years.
+Only `corner_shop` gets a state, and it tracks that scene type's own arc — in
+full leaf while the shop trades, untrimmed with a dead limb once `declining`,
+half dead with weeds in the pit when derelict. Scoped there on purpose: no other
+type has an arc for it to follow, and the prompt budget is 25 words from the C11
+limit at worst case while corner_shop runs 84–188 clear. Locked by C62.
+
 **Utilities / poles / wires** — `PromptService.BuildEnvironmentBlock` plus
 `utilities` in each `data/eras/{year}.json`. Only the **first two** entries of a
 pool ever reach the prompt. Pool selection: `downtown_characteristics` for

@@ -1333,10 +1333,11 @@ public sealed class PromptService : IPromptService
         // base and to deviate from it in the same breath. Chained, that shortcut
         // does not apply: the newest era still has to grow its trees back out of
         // whatever the era before it showed.
+        var treeState = DescribeTreeState(condition, sceneType);
         var treeLines = scene.Environment.Trees
             .Select(t => (Tree: t, Size: DescribeTreeSize(t.Size, year, chainedFrom)))
             .Where(x => x.Size.Length > 0)
-            .Select(x => $"- {x.Tree.Type} tree at {x.Tree.Position}: {x.Size}")
+            .Select(x => $"- {x.Tree.Type} tree at {x.Tree.Position}: {x.Size}{treeState}")
             .ToList();
 
         if (treeLines.Count > 0)
@@ -1379,6 +1380,34 @@ public sealed class PromptService : IPromptService
     //
     // chainedFromYear is the year of the image actually being edited, or null
     // when the era is edited from the shared base.
+    // TREES only ever stated a size, so nothing in any prompt said the tree was
+    // alive — and every adjective it did carry was subtractive ("thinner trunk",
+    // "a young tree"). Under era chaining that is self-sealing: whatever the
+    // first frame drew from those words carries forward untouched, because a
+    // later block that merely omits foliage cannot add it. The result is one
+    // dead-looking stick standing through fifty years.
+    //
+    // Scoped to corner_shop on purpose. It is the scene type with a scripted arc
+    // — one building going downhill — so its street tree can track that arc
+    // instead of needing a story of its own, and it is the one type whose frame
+    // is narrow enough that the tree is always readable. The other types have no
+    // arc for it to follow and no prompt budget to spare (worst case sits 25
+    // words under the C11 limit); corner_shop runs 84-188 words clear.
+    private static string DescribeTreeState(string condition, string sceneType) =>
+        IsCornerShop(sceneType)
+            ? condition switch
+            {
+                // Stated as what IS there, never as absent leaves: a bare negation
+                // is the one thing the image model reliably ignores.
+                "abandoned" or "squatted" =>
+                    ", half of it dead — bare limbs down one side, the rest in sparse leaf, weeds through the tree pit",
+                "declining" =>
+                    ", in leaf but untrimmed, suckers at the base and one dead limb",
+                _ =>
+                    ", in full summer leaf, an even healthy crown, the tree pit swept clear",
+            }
+            : "";
+
     private static string DescribeTreeSize(string size, int year, int? chainedFromYear)
     {
         var retention = size.ToLowerInvariant() switch

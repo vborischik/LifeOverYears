@@ -72,7 +72,7 @@ DECAY
 - the old sign band painted over, a hand-lettered board screwed on beneath it
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
-- honey locust tree at sidewalk beside the entrance: clearly smaller than in the base image — about 45% of its canopy there, thinner trunk
+- honey locust tree at sidewalk beside the entrance: clearly smaller than in the base image — about 45% of its canopy there, thinner trunk, in leaf but untrimmed, suckers at the base and one dead limb
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE
