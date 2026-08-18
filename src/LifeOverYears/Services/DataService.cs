@@ -121,6 +121,13 @@ public sealed class DataService : IDataService
         return await _fs.ReadAllTextAsync(path);
     }
 
+    public async Task<string> LoadTitleTemplatesAsync(string name)
+    {
+        var path = Path.Combine("data", "captions", "titles", $"{name}.txt");
+        _logger.LogInformation("Loading title templates {Name} from {Path}", name, path);
+        return await _fs.ReadAllTextAsync(path);
+    }
+
     public async Task<IReadOnlyList<string>> LoadHashtagsAsync()
     {
         var path = Path.Combine("data", "captions", "hashtags.txt");

@@ -192,7 +192,12 @@ photoPath
 data/prompts/{name}.txt    plain text prompts, loaded at runtime
 data/eras/{year}.json      EraProfile for a given year
 data/scenes/{id}.json      SceneDna persisted after analysis
+data/captions/{type}.txt         caption bodies per scene type, base.txt as fallback
+data/captions/titles/{type}.txt  YouTube title hooks per scene type, base.txt as fallback
 ```
+
+Step 5 writes the description and hashtags to `caption.txt` for Facebook/Instagram,
+and the YouTube title separately to `title.txt` in the run root.
 
 ---
 

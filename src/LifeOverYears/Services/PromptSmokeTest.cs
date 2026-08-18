@@ -151,6 +151,7 @@ public static class PromptSmokeTest
         await DoC48(promptService, gasScene, findings);
         DoC49(eras, findings);
         DoC50(findings);
+        await DoC59(dataService, findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -2930,6 +2931,65 @@ public static class PromptSmokeTest
 
         f.Add(("C49", "A squatted downtown_street/strip_mall prompt draws from both PoorTenantBusinesses and SquattedGroundDetails, and never falls back to the fully-dead 'every storefront closed and dark' wording",
             errs.Count == 0, errs.Count == 0 ? "Half-dead squatted retail draws from both pools across 30 seeds x 2 scene types" : Join(errs)));
+    }
+
+    // YouTube titles are a separate pool from the caption bodies and are posted
+    // as-is into a field with a hard length limit, so every line in every title
+    // file has to survive substitution on its own: no placeholder may be left
+    // behind, and none may exceed what YouTube will show.
+    private static async Task DoC59(IDataService dataService, List<(string, string, bool?, string)> f)
+    {
+        const int YouTubeTitleLimit = 100;
+        var errs = new List<string>();
+        var summary = new List<string>();
+
+        var names = new[]
+        {
+            "base", "gas_station", "downtown_street", "strip_mall",
+            "auto_repair", "mall", "shopping_center",
+        };
+
+        foreach (var name in names)
+        {
+            string raw;
+            try
+            {
+                raw = await dataService.LoadTitleTemplatesAsync(name);
+            }
+            catch (Exception ex)
+            {
+                errs.Add($"{name}: LoadTitleTemplatesAsync threw: {ex.Message}");
+                continue;
+            }
+
+            var titles = CaptionService.SplitTitles(raw);
+            if (titles.Count == 0)
+            {
+                errs.Add($"{name}: no title lines");
+                continue;
+            }
+
+            var longest = 0;
+            foreach (var template in titles)
+            {
+                var title = CaptionService.SubstituteTitle(template, 1975, 2025);
+
+                if (string.IsNullOrWhiteSpace(title))
+                    errs.Add($"{name}: empty title after substitution: \"{template}\"");
+                // Any surviving brace means a placeholder would be posted literally.
+                if (title.Contains('{') || title.Contains('}'))
+                    errs.Add($"{name}: unsubstituted placeholder in title: \"{title}\"");
+                if (title.Length > YouTubeTitleLimit)
+                    errs.Add($"{name}: title is {title.Length} chars, over the {YouTubeTitleLimit}-char limit: \"{title}\"");
+
+                longest = Math.Max(longest, title.Length);
+            }
+
+            summary.Add($"{name}: {titles.Count} titles, longest {longest} chars");
+        }
+
+        f.Add(("C59", "Title templates load for every scene type plus base; every line substitutes with no leftover placeholder and stays non-empty and under the 100-char YouTube limit",
+            errs.Count == 0, errs.Count == 0 ? string.Join(" | ", summary) : Join(errs)));
     }
 
     // "restored" is a reoccupation, not a rebuild — it must read as the same

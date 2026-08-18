@@ -229,6 +229,21 @@ public sealed class Pipeline
             await File.WriteAllTextAsync(captionPath, captionText);
             captionWritten = true;
             _logger.LogInformation("Step 5 complete — caption: {Path}", captionPath);
+
+            // The YouTube title goes to its own file: caption.txt stays exactly the
+            // Facebook/Instagram payload. Failing to write it must not undo the
+            // caption that is already on disk, so it gets its own guard.
+            try
+            {
+                var titlePath = Path.Combine(run.Root, "title.txt");
+                await File.WriteAllTextAsync(titlePath, caption.Title);
+                _logger.LogInformation("Step 5 — title: {Path}", titlePath);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex,
+                    "Step 5 — title.txt not written; caption.txt is unaffected: {Root}", run.Root);
+            }
         }
         catch (Exception ex)
         {

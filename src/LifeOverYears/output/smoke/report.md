@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-08-12T14:15:45.5620975+00:00
+Generated: 2026-08-18T04:47:19.0034171+00:00
 
 ## Check Results
 
@@ -56,6 +56,7 @@ Generated: 2026-08-12T14:15:45.5620975+00:00
 | C48 | Distinctive phrases appear verbatim in the synthetic base prompt; a set Composition produces the framing line | ✅ PASS | Distinctive and Composition both render correctly |
 | C49 | A squatted downtown_street/strip_mall prompt draws from both PoorTenantBusinesses and SquattedGroundDetails, and never falls back to the fully-dead 'every storefront closed and dark' wording | ✅ PASS | Half-dead squatted retail draws from both pools across 30 seeds x 2 scene types |
 | C50 | The 'restored' condition descriptor reads as reoccupation, not a renovated rebuild | ✅ PASS | restored descriptor contains 'reoccupied', never 'renovated appearance' |
+| C59 | Title templates load for every scene type plus base; every line substitutes with no leftover placeholder and stays non-empty and under the 100-char YouTube limit | ✅ PASS | base: 8 titles, longest 59 chars \| gas_station: 8 titles, longest 62 chars \| downtown_street: 8 titles, longest 54 chars \| strip_mall: 8 titles, longest 59 chars \| auto_repair: 8 titles, longest 54 chars \| mall: 8 titles, longest 57 chars \| shopping_center: 8 titles, longest 60 chars |
 
 ## Vehicle Selections
 

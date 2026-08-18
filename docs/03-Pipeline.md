@@ -190,6 +190,11 @@ Generates a social media caption with title, description, and hashtags.
         → returns Caption
 ```
 
+The description body comes from `data/captions/{sceneType}.txt` and the YouTube title
+from `data/captions/titles/{sceneType}.txt`, both falling back to `base.txt`; the run
+root gets `caption.txt` (description + hashtags, for Facebook/Instagram) and `title.txt`
+(the YouTube title) as separate files.
+
 ---
 
 ## Step 6 — Publication (planned)
