@@ -124,6 +124,35 @@ Technology
 
 ---
 
+# Infrastructure — Utilities
+
+Utilities are the one part of Infrastructure that varies by scene type, because
+a main street and a forecourt on the edge of town were not wired the same way,
+and were not rebuilt on the same schedule.
+
+```json
+"utilities": {
+  "characteristics":            ["…"],   // every scene type
+  "downtown_characteristics":   ["…"],   // downtown_street only, optional
+  "strip_mall_characteristics": ["…"],   // strip_mall only, optional
+  "undergrounded": true                  // optional, default false
+}
+```
+
+Only the **first two** entries of the selected list reach the prompt, so the
+lead entries carry the era; the rest is reference material.
+
+`undergrounded` marks the scene-specific lists as describing buried utilities.
+From that era on, those scene types carry no poles and no overhead spans, and
+the prompt says so as an explicit removal — a list that merely omits poles does
+not take them out of the picture, because the base image is built in the run's
+earliest year and every chained era inherits the previous decade's frame.
+
+Set from 2015 for `downtown_street` and `strip_mall`. Gas stations and auto
+repair shops keep their overhead lines through 2025.
+
+---
+
 # Relationship to SceneDNA
 
 SceneDNA and EraProfile are independent.

@@ -47,3 +47,478 @@ For me it was {angle}.
 The place today: {condition}.
 Drive down it now and the bones are still there. That's what makes it hard to look at.
 What's left of your main street?
+---
+🏙️👣 Remember when everybody in town was on one street on a Saturday?
+
+You could not walk a block without stopping twice, and getting from the bank to the corner took half an hour.
+
+Sidewalks full from curb to storefront.
+Cars parked nose in the whole way down.
+Somebody calling out from across the street.
+Doors opening and closing all afternoon.
+
+Nobody organized it. Saturday just meant downtown.
+
+Now the same block has eleven cars on it and you can hear the light change from the far end.
+
+A crowd is a thing a town has to keep making, or it simply stops happening.
+
+Watch it go from {firstYear} to {lastYear}. The place today: {condition}.
+
+What was Saturday like on the main street where you grew up?
+---
+🎄🪟 There was a time when the store windows were the whole show in December.
+
+They covered them with paper for a week and then unveiled them, and people drove in from the county to look.
+
+Glass fogged from the crowd outside.
+A mechanical figure turning on a base.
+Cotton snow banked in the corners.
+Small bulbs strung around the frame.
+
+Nobody bought anything on that trip. Looking was the point.
+
+Now the windows are vinyl decals over an empty floor, and no one slows down.
+
+Wonder used to be free, and you had to stand outside in the cold to get it.
+
+{firstYear} to {lastYear}, one frame a decade. Today it's {condition}.
+
+Did your town have windows people came to see?
+---
+🥤🍨 Remember sitting at a counter in a drugstore for something that was not medicine?
+
+Twelve stools, a marble top, and a man in a white apron who made it in front of you.
+
+Chrome stools bolted to the floor.
+A scoop dipped in a well of water.
+Syrup pumped twice into a tall glass.
+A paper napkin under everything.
+
+Nobody hurried you out. The stool was yours for as long as it took.
+
+Now the building is a nail salon and the counter went out in a dumpster in the eighties.
+
+The counter was never really about the food.
+
+From {firstYear} to {lastYear} — and now, {condition}.
+
+Was there a fountain counter in your town? What did you order?
+---
+🎭🔤 There was a time when the marquee told you what week it was.
+
+They changed the letters on a Thursday with a long pole, and that was how the town knew a new one had come in.
+
+Black letters set in a white track.
+Bulbs chasing around the edge.
+A man on a ladder at dusk.
+A price on a small board by the glass.
+
+Nobody had to advertise it. The building announced itself.
+
+Now the track is empty and the bulbs are out and the doors have been chained since a year nobody agrees on.
+
+A town used to be able to tell you the date without you asking.
+
+This is {firstYear} to {lastYear}. Where it ended up: {condition}.
+
+What was the name of the theater in your town?
+---
+🥁🎺 Remember standing on the curb waiting for the sirens to start?
+
+You got there an hour early with a folding chair and the whole street was already three deep.
+
+A drumline heard before it was seen.
+Candy thrown out to the curb.
+A fire truck creeping with its lights on.
+Somebody's grandmother waving from a chair.
+
+Nobody thought it was a small thing. The entire town turned out for it.
+
+Now it runs twenty minutes and half the chairs are empty and it is over before you park.
+
+Everybody watching the same thing at the same time is most of what a town even is.
+
+{firstYear} through {lastYear}. The place today: {condition}.
+
+What parade did your town turn out for?
+---
+💈✂️ There was a time when a haircut took an hour because of the talking.
+
+Four chairs, a row of men waiting who were not all waiting for a haircut, and a pole turning out front.
+
+A striped pole turning by the door.
+Hot lather worked up in a mug.
+Clippings swept into a corner.
+A newspaper passed down the row.
+
+Nobody made an appointment. You came in and you sat until it was you.
+
+Now it is twenty minutes, booked on an app, and nobody says much of anything.
+
+Some rooms were never really about the service you paid for.
+
+Watch it go from {firstYear} to {lastYear}. The place today: {condition}.
+
+Who cut your hair when you were a kid?
+---
+☕🍳 Remember when breakfast came with the news of the whole town?
+
+Six in the morning, every stool taken, and by the time you left you knew who was sick and who had sold what.
+
+A cup filled without being asked.
+Ticket pads stacked by the register.
+A window into the kitchen with plates waiting.
+The same men in the same three seats.
+
+Nobody was there just to eat. The food was almost beside the point.
+
+Now the building is a franchise with a drive through and everybody eats in the car.
+
+You can eat alone in a full room and still not be alone.
+
+{firstYear} to {lastYear}, one frame a decade. Today it's {condition}.
+
+Where did the early crowd eat breakfast in your town?
+---
+🪙🛒 There was a time when a dollar in your pocket made you rich on this block.
+
+You walked in with change and came out with three things and still had something left over.
+
+Wooden bins of loose hardware.
+Candy sold by the piece from a case.
+A worn spot in the floor by the register.
+A paper sack folded over at the top.
+
+Nobody was buying anything important. That was what made it fun.
+
+Now nothing on any shelf costs a dollar and there is nowhere left to spend change.
+
+Small money went a long way when the store was built for small money.
+
+From {firstYear} to {lastYear} — and now, {condition}.
+
+What did you buy with your allowance downtown?
+---
+🏛️🕐 Remember when the bank had a clock and people set their watches by it?
+
+It stood on the corner in stone, the biggest thing on the street, and it was open until three and not a minute after.
+
+A clock face mounted on the corner.
+Brass rails at the teller windows.
+Marble worn smooth in the doorway.
+A calendar sign with the temperature.
+
+Nobody questioned it. It was the most permanent thing in town.
+
+Now the windows are dark, the clock stopped at some hour nobody noticed, and the branch moved to a strip out by the highway.
+
+A town's heart used to keep time out loud.
+
+This is {firstYear} to {lastYear}. Where it ended up: {condition}.
+
+Is the old bank building in your town still standing?
+---
+📰🗞️ There was a time when you found out what happened by buying it on a corner.
+
+A stack on a folding table, a man who knew what you took every morning, and change made out of an apron.
+
+Papers weighted down with a brick.
+Ink coming off on your thumb.
+A coin box with a slot in the lid.
+Headlines read over somebody's shoulder.
+
+Nobody knew anything before the paper came. Everybody found out together.
+
+Now it arrives all day long, all of it at once, and none of it is shared with anyone.
+
+News used to arrive in your hands instead of your pocket.
+
+{firstYear} through {lastYear}. The place today: {condition}.
+
+Did your town have a paper? Do you remember its name?
+---
+🥖🌅 Remember knowing what time it was by what the street smelled like?
+
+Bread at five, coffee by seven, and by the afternoon the whole block smelled like sugar from the corner.
+
+Flour dusted across a back step.
+Trays sliding out of a rack.
+A screen propped open with a brick.
+Warm air pushing out at the sidewalk.
+
+Nobody thought about it. It was just what morning was on this street.
+
+Now the ovens are gone and the street smells like nothing in particular at any hour.
+
+A street used to have a schedule you could smell.
+
+Watch it go from {firstYear} to {lastYear}. The place today: {condition}.
+
+What did the main street in your town smell like?
+---
+👞🪡 There was a time when you fixed a thing instead of replacing it.
+
+You dropped the shoes off, got a paper ticket with a number, and picked them up Friday better than new.
+
+Lasts lined up along a back wall.
+A machine buzzing behind a counter.
+Tickets on a nail by the register.
+Shoes tied together by the laces.
+
+Nobody threw out a good pair over a heel. That would have been strange.
+
+Now the shop is gone and the shoes go in the trash and another pair comes in a box.
+
+We stopped mending things, and then after a while we stopped knowing how.
+
+{firstYear} to {lastYear}, one frame a decade. Today it's {condition}.
+
+What did your family get repaired that people just replace now?
+---
+🕳️🪟 Remember when there was not a single dark window on this block?
+
+Every door had a name on it and every name had a family behind it, and they were all open at nine.
+
+Paper taped up on the inside of glass.
+A phone number written on a card.
+Fixtures left standing in an empty room.
+An awning frame with the fabric gone.
+
+Nobody thought the block could empty. It happened one lease at a time.
+
+Now there are four dark storefronts in a row and the ones still open close at four.
+
+A dark window is a sentence that nobody finished.
+
+From {firstYear} to {lastYear} — and now, {condition}.
+
+Which storefront in your town has been empty the longest?
+---
+🚌🎫 There was a time when you could get anywhere in town without a car.
+
+You stood on the corner, it came every twenty minutes, and it took you to the two or three places anyone needed.
+
+A metal sign bolted to a pole.
+A bench with an ad painted on the back.
+Coins dropped into a fare box.
+A cord pulled to ring for the stop.
+
+Nobody in the house needed a second car. Some houses did not need one at all.
+
+Now there is no route and no bench and everything is a fifteen minute drive.
+
+A town is only as big as the part of it you can reach without a car.
+
+This is {firstYear} to {lastYear}. Where it ended up: {condition}.
+
+Could you get around your town without driving?
+---
+⚖️🌳 Remember when the middle of town was actually the middle of everything?
+
+The courthouse in the center, four streets around it, and every important thing within sight of the lawn.
+
+A war memorial with names on it.
+Benches facing in toward the square.
+Big trees shading the whole lawn.
+Men standing in twos near the steps.
+
+Nobody had to explain where to meet. You met at the square.
+
+Now the offices moved to a building by the interstate and the square is a place you park.
+
+Every town used to have a middle, and the middle was a real place.
+
+{firstYear} through {lastYear}. The place today: {condition}.
+
+What was at the center of your town?
+---
+🔩🪛 There was a time when a man behind a counter knew exactly which screw you needed.
+
+You brought the broken piece in your hand, he looked at it for four seconds, and he walked straight to the drawer.
+
+Small wooden drawers labeled by hand.
+A scoop of loose nails on a scale.
+Keys cut on a machine by the window.
+A brown bag folded shut with a number on it.
+
+Nobody read a manual. You asked somebody who had done it before.
+
+Now you stand in an aisle a quarter mile long looking at your phone, trying to figure out what you are holding.
+
+Knowing which one you need is a kind of wealth we let go of cheap.
+
+Watch it go from {firstYear} to {lastYear}. The place today: {condition}.
+
+Was there a hardware store in your town where they knew everything?
+---
+⛪🌤️ Remember how quiet this street was on a Sunday morning?
+
+Everything closed, nobody parked, and the only sound was bells from two blocks over.
+
+Empty parking spaces the whole length.
+A closed sign turned in a door.
+Light coming down the street sideways.
+Church clothes on the far sidewalk.
+
+Nobody thought about opening. It simply was not done.
+
+Now every day is the same day and nothing has a rhythm anybody can feel.
+
+Quiet is a different thing when it is a rest and not an absence.
+
+{firstYear} to {lastYear}, one frame a decade. Today it's {condition}.
+
+Was your town closed on Sundays?
+---
+🌃💡 There was a time when the whole block glowed after dark.
+
+Every business had its own sign and they were all lit, and the street was brighter than the sky above it.
+
+Neon script buzzing over a doorway.
+Red light laid down on wet pavement.
+A bulb out in the middle of a word.
+Signs reflected in the glass across the street.
+
+Nobody coordinated any of it. Everyone lit their own and it added up.
+
+Now there are two lit signs on the block and the rest of it is dark by six.
+
+We used to light streets to invite people in, not to keep them safe.
+
+From {firstYear} to {lastYear} — and now, {condition}.
+
+What sign in your town do you still picture lit up?
+---
+🧵📏 Remember when clothes were altered instead of returned?
+
+She measured you standing on a box, wrote it on a card with your name, and kept the card for the next time.
+
+A tape measure hung around a neck.
+Chalk marks along an inside seam.
+Pins held between closed lips.
+A card file kept behind the counter.
+
+Nobody sent anything back. It was made to fit you and it fit.
+
+Now three sizes come to the door and two go back in the same bag they came in.
+
+Things made to fit one person outlast things made to fit everyone.
+
+This is {firstYear} to {lastYear}. Where it ended up: {condition}.
+
+Did somebody in your town do alterations?
+---
+🚲🧭 There was a time when kids were sent downtown alone and nobody worried about it.
+
+Your mother gave you a list and some money and told you when to be back, and that was all of the planning involved.
+
+A bike left leaning on a wall.
+A list folded into a pocket.
+Change counted out on a counter.
+A shopkeeper who knew whose kid you were.
+
+Nobody was watching you and everybody was watching you at the same time.
+
+Now a child cannot walk four blocks without somebody calling somebody about it.
+
+Trust used to be the infrastructure a town ran on.
+
+{firstYear} through {lastYear}. The place today: {condition}.
+
+How far were you allowed to go by yourself?
+---
+💵🕔 Remember when Friday afternoon filled these sidewalks?
+
+The shift let out, the checks got cashed at the window, and every store on the block had a line in it by five.
+
+A line out the door at the bank.
+Envelopes opened on the sidewalk.
+Bags carried in both hands.
+Somebody buying a round two doors down.
+
+Nobody saved much of it. It got spent within a block of where it was earned.
+
+Now the plant is closed, the check is a deposit, and the money leaves town the second it lands.
+
+A paycheck used to move through a town instead of straight over it.
+
+Watch it go from {firstYear} to {lastYear}. The place today: {condition}.
+
+Where did people in your town work?
+---
+🪑🗣️ There was a time when sitting outside doing nothing was a normal way to spend an hour.
+
+The same bench, the same three men, every afternoon, watching the street and commenting on it.
+
+A bench with the paint worn off the arms.
+A cane hooked over a knee.
+Hands raised at cars going past.
+A conversation with long gaps in it.
+
+Nobody thought they were wasting time. They were keeping an eye on the town.
+
+Now the benches came out because of what somebody might do on them.
+
+Doing nothing in public was once a completely respectable activity.
+
+{firstYear} to {lastYear}, one frame a decade. Today it's {condition}.
+
+Who sat outside all afternoon in your town?
+---
+❄️🏘️ Remember the first snow on a street that was full of people?
+
+It came down through the lights in the afternoon and nobody went home, they just kept shopping in it.
+
+Footprints crossing in every direction.
+Snow banked along the parked cars.
+Wreaths up on the light poles.
+Breath showing under a lit window.
+
+Nobody stayed in. There was too much still to do downtown.
+
+Now the first snow falls on an empty block and gets plowed to the curb by a truck at four in the morning.
+
+The first snow finds out exactly how much a street is being used.
+
+From {firstYear} to {lastYear} — and now, {condition}.
+
+What did winter look like on your main street?
+---
+🧱🕊️ There was a time when the biggest building in town stood right here.
+
+Four stories of brick with the name cut into stone at the top, and everyone in town had been inside it.
+
+A cornice line against the sky.
+Tall windows in even rows.
+A name carved above the entrance.
+Stone steps worn down in the middle.
+
+Nobody believed they would take it down. Then it was a weekend and it was gone.
+
+Now it is a lot with a chain across it and people park there without knowing what they are parked on.
+
+You do not really miss a building until you try to point at where it stood.
+
+This is {firstYear} to {lastYear}. Where it ended up: {condition}.
+
+What building is gone from your town that should not be?
+---
+🚶‍♂️🏪 Remember when everything you needed was inside four blocks?
+
+The grocery, the pharmacy, the shoe store and the doctor, and you walked to all of them in one morning.
+
+A cart pushed along the sidewalk.
+Packages left at a counter for pickup.
+A hat tipped at somebody passing.
+Errands finished before lunch on foot.
+
+Nobody thought of it as convenient. There was no other way it was done.
+
+Now the same four errands are a nineteen mile loop and you sit in the car for most of it.
+
+Distance is what happens to a town once it forgets how to be walked.
+
+{firstYear} through {lastYear}. The place today: {condition}.
+
+How much of your town could you get to on foot?

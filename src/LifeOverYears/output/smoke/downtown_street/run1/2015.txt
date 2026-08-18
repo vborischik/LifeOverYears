@@ -4,7 +4,8 @@ PRIORITY ORDER — when instructions conflict, the lower number wins
 1. The uploaded image's composition and geometry.
 2. The exact people and vehicle counts given below.
 3. The historical transformation for the target year.
-4. The specific period details listed.
+4. The specific period details listed — each only where the geometry has room
+   for it; one with nowhere to go is left out, never forced into the roadway.
 5. Add nothing that is not asked for — no extra businesses, signs, vehicles,
    people, logos or advertisements.
 
@@ -37,7 +38,7 @@ PERIOD DETAILS
 - a modern bike-share style rack
 - a dog water bowl outside a cafe door
 Typography: minimalist flat sans-serif, simplified modern logos.
-
+Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
@@ -66,10 +67,11 @@ PLACEMENT: the first one parked on the LEFT side near the corner; the rest parke
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks
-- utilities: overhead power lines still on wooden poles along the street, fiber optic and cable bundles added to the existing poles
+- utilities: power, phone and fiber routed underground along the main commercial block, clean open sky above the street — no poles, no wires; pad-mounted transformer cabinets and pull boxes at the curb
+- overhead utilities are gone in this era — the one exception to PRESERVE: remove every utility pole, crossarm, pole transformer and wire span along the street, and rebuild the clean sky and the facades behind them. Everything else stays exactly as it is.
 
 TREES
-- oak tree at sidewalk left near corner: slightly smaller than in the base image — about 90% of its canopy there
+- oak tree at sidewalk left near corner: slightly smaller than in the base image — about 95% of its canopy there
 - maple tree at sidewalk center in front of retail: clearly smaller than in the base image — about 80% of its canopy there, thinner trunk
 Tree sizes MUST follow this specification even where they differ from the base image.
 

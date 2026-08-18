@@ -4,7 +4,8 @@ PRIORITY ORDER — when instructions conflict, the lower number wins
 1. The uploaded image's composition and geometry.
 2. The exact people and vehicle counts given below.
 3. The historical transformation for the target year.
-4. The specific period details listed.
+4. The specific period details listed — each only where the geometry has room
+   for it; one with nowhere to go is left out, never forced into the roadway.
 5. Add nothing that is not asked for — no extra businesses, signs, vehicles,
    people, logos or advertisements.
 
@@ -40,7 +41,7 @@ PERIOD DETAILS
 - ribbon magnets on a lamppost
 - a cart corral in the lot
 Typography: clean sans-serif, polished brand identities.
-
+Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
@@ -75,9 +76,9 @@ DECAY
 - a FOR RENT sign taped inside a dark storefront window
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
-- crepe myrtle tree at parking lot island near entrance: clearly smaller than in the base image — about 40% of its canopy there, thinner trunk
-- maple tree at landscape strip along the road: clearly smaller than in the base image — about 60% of its canopy there, thinner trunk
-- oak tree at back property line: clearly smaller than in the base image — about 80% of its canopy there, thinner trunk
+- crepe myrtle tree at parking lot island near entrance: clearly smaller than in the base image — about 45% of its canopy there, thinner trunk
+- maple tree at landscape strip along the road: clearly smaller than in the base image — about 65% of its canopy there, thinner trunk
+- oak tree at back property line: slightly smaller than in the base image — about 90% of its canopy there
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE

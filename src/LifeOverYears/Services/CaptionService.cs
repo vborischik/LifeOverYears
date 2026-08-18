@@ -188,24 +188,51 @@ public sealed class CaptionService : ICaptionService
     private const int PinnedCount = 3;
     private const int RandomCount = 2;
 
-    // The first three lines of hashtags.txt are pinned reach tags and stay
-    // in file order; the rest is a pool we sample from so posts do not
-    // repeat the same trailing tags every time. Reordering the file is how
-    // the pinned set is changed — no code edit needed.
-    private static IReadOnlyList<string> SelectHashtags(IReadOnlyList<string> all)
+    // A line in hashtags.txt may carry a weight — "#nostalgia 70%" — meaning the
+    // tag appears in that share of posts instead of taking its chances in the
+    // pool. Weighted lines sit out both the pinned set and the sample; each is
+    // rolled on its own, and a winner takes one of the sampled slots so the tag
+    // count per post does not drift.
+    private static readonly System.Text.RegularExpressions.Regex WeightedTag =
+        new(@"^(?<tag>\S+)\s+(?<chance>\d{1,3})%$", System.Text.RegularExpressions.RegexOptions.Compiled);
+
+    // The first three unweighted lines of hashtags.txt are pinned reach tags and
+    // stay in file order; the rest is a pool we sample from so posts do not
+    // repeat the same trailing tags every time. Reordering the file is how the
+    // pinned set is changed, and a "NN%" suffix is how a tag is boosted — no
+    // code edit needed for either.
+    public static IReadOnlyList<string> SelectHashtags(IReadOnlyList<string> all)
     {
+        var plain    = new List<string>(all.Count);
+        var weighted = new List<(string Tag, int Chance)>();
+        foreach (var line in all)
+        {
+            var m = WeightedTag.Match(line);
+            if (m.Success)
+                weighted.Add((m.Groups["tag"].Value, int.Parse(m.Groups["chance"].Value)));
+            else
+                plain.Add(line);
+        }
+
         // Too short to split into pinned + sampled: hand back what there is
         // rather than throwing on a trimmed-down file.
-        if (all.Count <= PinnedCount + RandomCount)
-            return all;
+        if (plain.Count <= PinnedCount + RandomCount)
+            return plain.Concat(weighted.Select(w => w.Tag)).ToList();
 
         var selected = new List<string>(PinnedCount + RandomCount);
-        selected.AddRange(all.Take(PinnedCount));
+        selected.AddRange(plain.Take(PinnedCount));
 
-        // Partial Fisher-Yates over the remainder: draws RandomCount distinct
-        // entries without shuffling or copying the whole pool.
-        var pool = all.Skip(PinnedCount).ToArray();
-        for (var i = 0; i < RandomCount; i++)
+        foreach (var (tag, chance) in weighted)
+            if (Random.Shared.Next(100) < chance)
+                selected.Add(tag);
+
+        // Partial Fisher-Yates over the remainder: draws distinct entries
+        // without shuffling or copying the whole pool. Weighted winners have
+        // already taken their slots, so this tops the post back up to
+        // PinnedCount + RandomCount and no further.
+        var draws = Math.Min(PinnedCount + RandomCount - selected.Count, RandomCount);
+        var pool  = plain.Skip(PinnedCount).ToArray();
+        for (var i = 0; i < draws; i++)
         {
             var j = Random.Shared.Next(i, pool.Length);
             (pool[i], pool[j]) = (pool[j], pool[i]);

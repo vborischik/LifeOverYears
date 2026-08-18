@@ -87,9 +87,15 @@ public record TrafficSigns(
 public record StreetFurniture(
     [property: JsonPropertyName("items")] IReadOnlyList<string> Items);
 
+// Undergrounded marks the scene-specific pools (downtown/strip mall) as
+// describing buried utilities: from that era on those scenes carry no poles and
+// no overhead spans, so the prompt has to say so out loud — the base image and
+// every earlier era in a chained run still show them.
 public record Utilities(
     [property: JsonPropertyName("characteristics")] IReadOnlyList<string> Characteristics,
-    [property: JsonPropertyName("downtown_characteristics")] IReadOnlyList<string>? DowntownCharacteristics = null);
+    [property: JsonPropertyName("downtown_characteristics")] IReadOnlyList<string>? DowntownCharacteristics = null,
+    [property: JsonPropertyName("strip_mall_characteristics")] IReadOnlyList<string>? StripMallCharacteristics = null,
+    [property: JsonPropertyName("undergrounded")] bool Undergrounded = false);
 
 // ── Society ───────────────────────────────────────────────────────────────────
 

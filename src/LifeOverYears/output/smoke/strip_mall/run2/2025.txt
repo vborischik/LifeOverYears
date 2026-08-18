@@ -4,7 +4,8 @@ PRIORITY ORDER — when instructions conflict, the lower number wins
 1. The uploaded image's composition and geometry.
 2. The exact people and vehicle counts given below.
 3. The historical transformation for the target year.
-4. The specific period details listed.
+4. The specific period details listed — each only where the geometry has room
+   for it; one with nowhere to go is left out, never forced into the roadway.
 5. Add nothing that is not asked for — no extra businesses, signs, vehicles,
    people, logos or advertisements.
 
@@ -27,35 +28,53 @@ distort the source geometry.
 TRANSFORM TO 2025
 Post-pandemic era. A 2025 strip mall rebuilt around services and food — nail studios, phone stores, and pickup-driven restaurants where retail used to be.
 
-CONDITION: abandoned — closed business, boarded windows, weeds through pavement cracks, weathered surfaces
+CONDITION: restored — the same building reoccupied — plywood off the windows, litter and weeds cleared, surfaces cleaned, a modest working business again; structure, footprint and signband shape unchanged
 
 PERIOD DETAILS
-- every storefront closed and dark — no lit signs, no menu boards, no open businesses
-- faded remains of old signage still on the facade, lettering weathered and partly missing
-- plywood over the ground-floor windows, doors chained shut
-No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.
+- vacant storefront and ghost signs common
+- simplified flat brand logos
+- full color digital displays
+- window signs: 'ORDER ON THE APP', 'FREE TRIAL CLASS'
+- 'CURBSIDE PICKUP' signed parking spots
+- a kick scooter leaning by a wall
+Typography: minimalist geometric sans-serif, heavily simplified flat logos.
+Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
+
+SIGNAGE RESTRICTION
+The only readable text anywhere in the image is:
+'ORDER ON THE APP'
+'FREE TRIAL CLASS'
+'CURBSIDE PICKUP'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-NO people anywhere — the place is completely deserted.
+EXACTLY 9 people TOTAL: 4 near sidewalk (largest, foreground), 3 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
+- an older man reading a flyer taped to a storefront window
+- a family sharing boba teas at an outdoor table
+- a teenager gliding by on a skateboard
+Clothing: men in techwear, bucket hats; women in high-waisted wide-leg jeans, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-NO vehicles anywhere — empty lot, no parked or moving cars.
+EXACTLY 5 period vehicles, all different:
+- 2022-2025 Ford Maverick — small unibody pickup — dark green
+- 2021-2025 Toyota Camry — sleek sedan, aggressive front fascia — black
+- 2019-2025 Ram 1500 — crew cab pickup, large grille — silver
+- 2019-2025 Subaru Outback — rugged wagon crossover — gray
+- 2021-2025 Chevrolet Tahoe — huge full-size SUV — blue
+Parked with gaps. Where a model is listed with a year range, render the 2025 model year specifically — only styling, trim and features available in 2025, nothing introduced later. No vehicle newer than 2025.
+Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
+PLACEMENT: three nose-in near the building; the rest in stalls at the far edge of the lot. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: worn and faded, well past their last repainting
-- utilities: overhead lines on existing poles in older commercial areas, fiber optic widespread
-
-DECAY
-- the pylon sign stripped back to a rusted frame
-- storefronts boarded with plywood behind bent security grilles
-- shopping carts abandoned across the empty lot
-Wear is surfaces only — road, curbs, footprints, camera unchanged.
+- road markings: yellow center line, white edge lines, high-visibility crosswalks
+- utilities: power, phone and fiber fully undergrounded across the site, clean open sky above the lot — no poles, no wires; ground level transformer cabinets at the lot edge
+- overhead utilities are gone in this era — the one exception to PRESERVE: remove every utility pole, crossarm, pole transformer and wire span over the lot, and rebuild the clean sky and the facades behind them. Everything else stays exactly as it is.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — digital — smartphone or mirrorless camera look.
 Color: high saturation. Grain: very clean, minimal to no noise.
 Photorealistic — NOT black-and-white, no HDR.
-Light: flat, even light under a grey overcast — subdued and cheerless, but plainly daytime; no fog, no rain, no darkness.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

@@ -46,3 +46,478 @@ For me it was {angle}.
 The place today: {condition}.
 The pumps were never the point. The point was that somebody looked up when you drove in.
 Is the one from your town still standing?
+---
+⛽🚗 Remember when someone else pumped your gas?
+
+You pulled up to the island and stayed in your seat. A man came out to your window before you had your wallet open.
+
+The ding of the bell hose under the tires.
+Gasoline on a pair of worn gloves.
+A red rag hanging from a back pocket.
+The squeak of a squeegee across the glass.
+
+Nobody called it service. It was just how the day went.
+
+Now you stand out in the wind holding a nozzle while a screen plays an ad at you.
+
+We never notice the small kindnesses until somebody stops doing them.
+
+Watch it go from {firstYear} to {lastYear}. The place today: {condition}.
+
+Was there a station in your town where they still came out to the car? What was it called?
+---
+🛢️💵 There was a time when you could fill the tank for less than a movie ticket.
+
+Two dollars got you across three counties and back, with change left in the ashtray.
+
+White numerals on a black changeable sign.
+Dials spinning past the dimes.
+A hand-lettered card taped inside the window.
+Coins counted out on a metal counter.
+
+Nobody thought the number would climb and never come back down.
+
+Now the price moves twice in a day and you check an app before you decide where to turn in.
+
+Prices are just dates wearing a disguise.
+
+{firstYear} to {lastYear}, one frame a decade. Today it's {condition}.
+
+What is the cheapest gas you can still remember paying?
+---
+🗺️🚙 Remember stopping here on the way to somewhere better?
+
+It was never the destination. It was where you stretched your legs while the tank filled.
+
+A cooler of pop sweating by the door.
+Bugs baked across the windshield.
+A screen door slapping shut behind you.
+Heat coming up off the pavement in waves.
+
+Nobody took a picture of it. It was only the middle of the trip.
+
+Now the trip is a blue line on a phone and the middle is something you get through.
+
+The places we passed through hold more than the places we were going.
+
+From {firstYear} to {lastYear} — and now, {condition}.
+
+Where were you headed the last time you stopped at a place like this?
+---
+🔧🚘 There was a time when the man who sold you gas could also fix your car.
+
+You dropped it off in the morning and he told you Thursday, and it was Thursday.
+
+Two bays with the doors rolled up.
+A car resting up on the lift.
+Sockets laid out on a rolling cart.
+An impact wrench going off somewhere inside.
+
+Nobody worried about it. There was always somebody who could fix a thing.
+
+Now the light comes on and a computer decides what it costs, and no one on the lot can explain it.
+
+A town loses its skills a long time before it loses its buildings.
+
+This is {firstYear} to {lastYear}. Where it ended up: {condition}.
+
+Who worked on your family's car? Did you trust him?
+---
+📍🛻 Remember when the map was free and the directions were a conversation?
+
+You went inside and somebody drew on the paper with a pen and told you to watch for the water tower.
+
+A rack of folded state maps by the register.
+Creases going soft at the corners.
+A finger tracing a county road.
+The map spread across the hood outside.
+
+Nobody thought getting lost was a real problem. Somebody always knew.
+
+Now a voice tells you where to turn and you arrive without ever learning the way.
+
+We traded knowing the road for being told the road.
+
+{firstYear} through {lastYear}. The place today: {condition}.
+
+Is there still a paper map in your glovebox?
+---
+🥤🧊 There was a time when a cold bottle came out of a chest, not a wall.
+
+You lifted the lid and reached down into the cold water and pulled one out by the neck.
+
+A metal lid heavy on its hinge.
+Bottles standing in rows in the cold.
+A cap dropping into the opener box.
+Glass sweating in your hand by the pump.
+
+Nobody thought a bottle was worth remembering. It was just what you drank.
+
+Now it is a plastic case with a door that beeps and forty things that all taste the same.
+
+Thirst never changed. Everything we built around it did.
+
+Watch it go from {firstYear} to {lastYear}. The place today: {condition}.
+
+What did you always get at a place like this?
+---
+🌙💡 Remember how the lights looked from a mile down the highway?
+
+You had been driving in the dark for an hour and then there it was, glowing under the canopy.
+
+A canopy lit white against the black.
+Moths circling the fixtures.
+One car idling at the far island.
+Somebody reading a magazine behind the counter.
+
+Nobody thought of it as comfort. It was just the only thing open.
+
+Now the whole road is lit the same and nothing out there means you are almost home.
+
+Some places were lighthouses and no one ever called them that.
+
+{firstYear} to {lastYear}, one frame a decade. Today it's {condition}.
+
+What was the last place still lit on your road home?
+---
+🔑⛽ There was a time when learning to pump gas was something you were finally allowed to do.
+
+Somebody handed you the nozzle and stood a step back and let you figure out the trigger.
+
+The weight of the handle in both hands.
+A little kick when the pump shut off.
+Fumes coming up in the cold air.
+A cap threaded back on slow and careful.
+
+Nobody made a ceremony of it. You just got to do it from then on.
+
+Now a kid grows up doing it from the first day and it never means anything at all.
+
+Growing up is mostly a series of small permissions.
+
+From {firstYear} to {lastYear} — and now, {condition}.
+
+Who taught you to pump gas?
+---
+👦🚙 Remember watching the numbers spin from the back seat?
+
+You had nothing to do for four minutes so you watched the dials go around and tried to guess where they would stop.
+
+Numbers rolling behind a glass window.
+A hand resting on the roof of the car.
+The door left open with the radio on.
+Somebody counting bills at the window.
+
+Nobody was making a memory. It was an errand on the way home.
+
+Now the kid in the back is looking down at a screen and will not remember any of it.
+
+Children keep the waiting, not the errand.
+
+This is {firstYear} to {lastYear}. Where it ended up: {condition}.
+
+What did you watch out the car window when you were small?
+---
+💼⛽ There was a time when a first paycheck smelled like gasoline.
+
+Sixteen years old, a uniform shirt with somebody else's name still stitched on it, and a boss who did not go easy.
+
+A time card punched at the door.
+Grease worked into the creases of your hands.
+A cash drawer that stuck unless you lifted it.
+Sweeping the apron at the end of a shift.
+
+Nobody thought a summer job was anything to hold onto.
+
+Now the first job is an app and a rating and nobody ever learns your name.
+
+First jobs teach you far more than they ever pay you.
+
+{firstYear} through {lastYear}. The place today: {condition}.
+
+What was your first job, and what did it teach you?
+---
+❄️🚗 Remember scraping the windshield while the tank filled?
+
+Your breath hung in the air and the pump ran slow because everything ran slow when it was that cold.
+
+Ice coming off the glass in curls.
+A scraper with a cracked yellow handle.
+Exhaust hanging low around the tires.
+Fingers going numb through thin gloves.
+
+Nobody complained much. It was February and that was February.
+
+Now you sit inside with the seat warmer on and you have forgotten what your hands used to feel like.
+
+Cold mornings stay with you longer than the warm ones ever do.
+
+Watch it go from {firstYear} to {lastYear}. The place today: {condition}.
+
+What is the coldest you ever stood outside pumping gas?
+---
+🐕⛽ There was a time when a station had an animal that lived there.
+
+He belonged to nobody in particular and he was there every day, asleep in the shade by the bay door.
+
+A dog stretched out on warm concrete.
+A water bowl by the office step.
+Somebody scratching his ears mid sentence.
+Him getting up slow when a car pulled in.
+
+Nobody put him on the sign. He was just part of the place.
+
+Now the lot is a chain and nothing lives there and nobody stays long enough to notice.
+
+The details nobody wrote down are the ones we end up missing.
+
+{firstYear} to {lastYear}, one frame a decade. Today it's {condition}.
+
+Was there an animal at the station in your town? What was his name?
+---
+🥃🎁 Remember when filling up came with a free glass?
+
+You collected them one tank at a time and eventually you had a set, and your mother actually used them.
+
+A stack of tumblers behind the counter.
+Green stamps licked into a little book.
+A cardboard sign about this week's offer.
+A glass wrapped in newspaper for the ride home.
+
+Nobody thought of them as collectible. They were just what you got.
+
+Now you get a point in an app that expires and you never see anything you can hold.
+
+We keep the giveaways much longer than we keep the receipts.
+
+From {firstYear} to {lastYear} — and now, {condition}.
+
+Do you still have any of them in a cabinet somewhere?
+---
+☎️🛣️ There was a time when the phone on the wall out front was how you said you would be late.
+
+You dug for a dime and stood with your back to the wind and shouted over the traffic.
+
+A steel cord worn shiny in the middle.
+A phone book hanging by a chain.
+Numbers scratched into the metal shelf.
+The coin dropping through when it was done.
+
+Nobody could reach you between here and home, and that was normal.
+
+Now you are reachable in every second of your life and you have not felt unreachable since.
+
+Every generation quietly loses a way of being out of touch.
+
+This is {firstYear} to {lastYear}. Where it ended up: {condition}.
+
+Who did you call from a payphone, and what did you have to tell them?
+---
+🪧🚗 Remember when the sign changed and everyone kept calling it the old name?
+
+New colors went up over a weekend and by Monday nobody in town had changed a word.
+
+A brand new plastic face on an old pole.
+The bracket from the last sign still bolted on.
+Fresh paint stopping at an old line.
+An outline the sun left behind on the wall.
+
+Nobody argued about it. It was simply still the old place.
+
+Now the sign has changed four more times and there is no one left who remembers the first one.
+
+A name outlives its own sign by about a generation.
+
+{firstYear} through {lastYear}. The place today: {condition}.
+
+What did people in your town refuse to stop calling something?
+---
+☀️🛣️ There was a time when the pavement shimmered and nobody was in a hurry.
+
+August, four in the afternoon, and the whole town moving at about half speed.
+
+Heat rising off the asphalt.
+A fan going in the office doorway.
+Sunlight coming white off a chrome bumper.
+Cicadas loud in the trees behind the lot.
+
+Nobody was checking the time. There was nowhere anybody had to be.
+
+Now the same afternoon is spent in the car with the air on, going somewhere on a schedule.
+
+Slow summers only feel long once you are looking back at them.
+
+Watch it go from {firstYear} to {lastYear}. The place today: {condition}.
+
+Where did you go on the hot afternoons when you were young?
+---
+🧊🚙 Remember dragging a bag of ice out of the chest by the door?
+
+You hauled it to the trunk with both arms and it soaked through your shirt before you got there.
+
+A freezer chest humming beside the entrance.
+A block of ice broken loose with a fist.
+Cold coming off the bag in the heat.
+Water running out the corner in the trunk.
+
+Nobody planned the day around it. It meant somebody was going somewhere good.
+
+Now it is a bag from a machine in a parking lot and it does not mean anything at all.
+
+Ordinary errands turn into the clearest pictures we keep.
+
+{firstYear} to {lastYear}, one frame a decade. Today it's {condition}.
+
+What were you filling the cooler for?
+---
+🏚️⛽ There was a time when this was one of six in town. It ended up being the last.
+
+The others closed one at a time over about fifteen years and hardly anybody noticed the order.
+
+A pole sign with two panels missing.
+One working pump and one bagged over.
+A handwritten note taped to the door.
+The same man behind the counter for thirty years.
+
+Nobody thought this one would go too. It had always been there.
+
+Now there is nothing on this stretch of road, and you drive eleven miles to fill up.
+
+The last of anything ends up carrying the weight of all the rest.
+
+From {firstYear} to {lastYear} — and now, {condition}.
+
+What was the last one standing in your town before it closed?
+---
+🌾🛣️ Remember when there was something on this corner?
+
+You drive past it now and there is just grass and a curb cut that does not lead anywhere.
+
+Two rectangles of fresh asphalt where the tanks came out.
+Concrete stubs where the island stood.
+Weeds pushing up through a seam.
+A driveway apron going into nothing.
+
+Nobody marked the day it came down. It happened on a Tuesday.
+
+Now people who moved here five years ago have never known there was anything here.
+
+Empty lots are the quietest kind of history there is.
+
+This is {firstYear} to {lastYear}. Where it ended up: {condition}.
+
+What used to be on a corner you drive past without thinking?
+---
+🛠️🚗 There was a time when somebody lifted your hood without being asked.
+
+He checked the oil, looked at the belts, and told you the left front was low, and he did not charge for any of it.
+
+A dipstick wiped on a rag.
+The hood propped up on its rod.
+A tire gauge pulled from a shirt pocket.
+Air hose dragged over from the island.
+
+Nobody thought of it as extra. It came with the gas.
+
+Now nobody looks at your car until something on it has already broken.
+
+Care used to be included in the price of ordinary things.
+
+{firstYear} through {lastYear}. The place today: {condition}.
+
+Did anyone ever check your oil for you without being asked?
+---
+🔔🚙 Remember the sound that told them a customer had come in?
+
+A rubber hose ran across the concrete and when your tires crossed it a bell went off inside the office.
+
+A black hose stretched across the apron.
+Two quick rings through an open door.
+Somebody standing up from a chair.
+A screen door pushed open with a shoulder.
+
+Nobody thought of it as a sound worth keeping. It was just how they knew.
+
+Now you pull in and nothing happens at all, because nobody in there needs to know you are out here.
+
+Some sounds stopped existing and no one ever announced it.
+
+Watch it go from {firstYear} to {lastYear}. The place today: {condition}.
+
+What sound from your town does not exist anymore?
+---
+🚦⛽ There was a time when you sat in line for an hour just to fill the tank.
+
+The line went out of the lot and down the block and you turned the engine off and waited with everybody else.
+
+Cars backed up past the corner.
+A sign in the window about the limit.
+Somebody walking the line with news.
+An engine started again after twenty minutes.
+
+Nobody knew how long it would last. People talked about it like weather.
+
+Now you complain if there is one car ahead of you and you pull out and go somewhere else.
+
+We forget the hard years a good deal faster than the easy ones.
+
+{firstYear} to {lastYear}, one frame a decade. Today it's {condition}.
+
+Do you remember waiting in the lines? How long did you sit?
+---
+☕🔧 Remember the little office with the calendar and the coffee pot?
+
+Two chairs, a desk covered in paper, and a smell of coffee and rubber that you would know anywhere.
+
+A parts calendar turned to the wrong month.
+A pot that had been on since six.
+Receipts on a spike beside the register.
+A radio playing low on a shelf.
+
+Nobody decorated it. It just filled up over twenty years.
+
+Now the waiting room is beige and clean and there is a television bolted in the corner nobody watches.
+
+Rooms hold their years better than photographs do.
+
+From {firstYear} to {lastYear} — and now, {condition}.
+
+What did the office look like at the shop your family used?
+---
+🚗🌄 There was a time when a drive with nowhere to be was the entire plan.
+
+Sunday afternoon, a full tank, and three hours of roads nobody in the car had a reason to be on.
+
+An arm out the window in the wind.
+A tank topped off before leaving town.
+Gravel popping under the tires.
+The turn taken because of how it looked.
+
+Nobody called it anything. You just went for a drive.
+
+Now every trip has a destination typed in before the car is out of the driveway.
+
+We used to spend time. Now we try to save it.
+
+This is {firstYear} to {lastYear}. Where it ended up: {condition}.
+
+Where did your family drive on Sunday afternoons?
+---
+👨‍🔧⛽ There was a time when you knew the name of every person who worked here.
+
+You knew which one was quick, which one talked too long, and which one would stay late if you were stuck.
+
+A name stitched in red on a shirt.
+A hand raised at a car going by.
+A conversation finished on the way out.
+Somebody's kid doing homework in the office.
+
+Nobody thought of them as important. They were just who was there.
+
+Now the person at the counter is new again and they will be gone by spring.
+
+A town is a set of faces long before it is a set of buildings.
+
+{firstYear} through {lastYear}. The place today: {condition}.
+
+Whose name from a place like this do you still remember?

@@ -192,10 +192,16 @@
         "rooftop solar panels common"
       ],
       "downtown_characteristics": [
-        "overhead power lines still on the original poles along the street",
-        "fiber optic bundles and 5G small cell nodes mounted on the existing poles",
-        "ground level transformer cabinets, LED streetlight heads on the old poles"
-      ]
+        "power, phone and fiber fully undergrounded along the main commercial block",
+        "clean open sky above the street — no poles, no wires; ground level transformer cabinets and smart conduits below grade",
+        "discreet 5G nodes integrated into the LED streetlight fixtures"
+      ],
+      "strip_mall_characteristics": [
+        "power, phone and fiber fully undergrounded across the site",
+        "clean open sky above the lot — no poles, no wires; ground level transformer cabinets at the lot edge",
+        "LED lot lighting on its own standards, discreet 5G nodes on nearby rooftops"
+      ],
+      "undergrounded": true
     }
   },
 

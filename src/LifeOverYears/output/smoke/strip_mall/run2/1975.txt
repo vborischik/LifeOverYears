@@ -4,7 +4,8 @@ PRIORITY ORDER — when instructions conflict, the lower number wins
 1. The uploaded image's composition and geometry.
 2. The exact people and vehicle counts given below.
 3. The historical transformation for the target year.
-4. The specific period details listed.
+4. The specific period details listed — each only where the geometry has room
+   for it; one with nowhere to go is left out, never forced into the roadway.
 5. Add nothing that is not asked for — no extra businesses, signs, vehicles,
    people, logos or advertisements.
 
@@ -37,7 +38,7 @@ PERIOD DETAILS
 - a coin-operated kiddie ride by a storefront door
 - a telephone booth at the edge of the parking lot
 Typography: bold sans-serif, slab serif, occasional script.
-
+Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
@@ -73,8 +74,8 @@ ENVIRONMENT
 
 TREES
 - crepe myrtle tree at parking lot island near entrance: a young tree, only about 10% of its canopy in the base image, thin trunk
-- maple tree at landscape strip along the road: a young tree, only about 30% of its canopy in the base image, thin trunk
-- oak tree at back property line: clearly smaller than in the base image — about 60% of its canopy there, thinner trunk
+- maple tree at landscape strip along the road: clearly smaller than in the base image — about 35% of its canopy there, thinner trunk
+- oak tree at back property line: clearly smaller than in the base image — about 75% of its canopy there, thinner trunk
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE

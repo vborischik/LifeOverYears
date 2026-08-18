@@ -148,6 +148,7 @@ public sealed class PromptService : IPromptService
         var gasSign   = isGasStation ? await ResolveGasSignAsync(context, year, condition) : default;
 
         var sceneBlock = BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, gasSign, rng, context);
+        sceneBlock = AppendPlacementRule(sceneBlock);
         sceneBlock = AppendSignageRestriction(sceneBlock);
 
         var text = template
@@ -161,7 +162,7 @@ public sealed class PromptService : IPromptService
             .Replace("{SCENE_BLOCK}",       sceneBlock)
             .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, hasSidewalks, rng, context, isPacked, isSquatted, IsDecliningRetail(condition, sceneType), isSquattedRetail))
             .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation, onStreetParking, isPacked, derelictCount))
-            .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year, sceneType, condition, rng))
+            .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year, sceneType, condition, rng, context))
             .Replace("{STYLE_BLOCK}",       BuildStyleBlock(eraProfile.Photography, condition));
 
         // Scene content refers to recurring businesses (diner, drug store, etc.) by
@@ -882,6 +883,22 @@ public sealed class PromptService : IPromptService
         return result;
     }
 
+    // Period details come from era pools that know nothing about the geometry in
+    // front of them, so in any given scene some entry has nowhere to stand. Given
+    // a list and no way out, the model places it anyway — a bench ends up in the
+    // middle of the road, a rack in a driving lane — because dropping a line it
+    // was handed is not an option it considers. Naming omission as the correct
+    // answer is what makes the details conditional rather than mandatory; it
+    // costs one sentence and applies to every condition, derelict scenes
+    // included, where the decay pools list free-standing props of their own.
+    public const string PlacementRule =
+        "Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an " +
+        "overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a " +
+        "driving lane.";
+
+    private static string AppendPlacementRule(string sceneBlock) =>
+        sceneBlock.TrimEnd() + "\n" + PlacementRule;
+
     // Replaces the old blanket "sign text is only what appears in quotes" line
     // with an explicit whitelist of exactly the strings this era's scene block
     // quoted. A bare whitelist would forbid a ghost sign's own weathered-but-
@@ -1149,7 +1166,7 @@ public sealed class PromptService : IPromptService
 
     private static string BuildEnvironmentBlock(
         SceneDna scene, EraProfile era, int year, string sceneType,
-        string condition, Random rng)
+        string condition, Random rng, GenerationContext context)
     {
         var infra = era.Infrastructure;
         var sb = new StringBuilder();
@@ -1160,18 +1177,54 @@ public sealed class PromptService : IPromptService
         else
             sb.AppendLine($"- road markings: {Join(infra.Roads.Markings.Take(3).ToList())}");
         var isDowntown = sceneType == "downtown_street";
-        var utilitiesPool = isDowntown && era.Infrastructure.Utilities.DowntownCharacteristics is { Count: > 0 } dc
-            ? dc
-            : infra.Utilities.Characteristics;
+        // A main street and a strip mall each get their own utilities pool where
+        // the era defines one; every other scene type takes the general list.
+        var scenePool = sceneType switch
+        {
+            "downtown_street" => infra.Utilities.DowntownCharacteristics,
+            "strip_mall"      => infra.Utilities.StripMallCharacteristics,
+            _                 => null
+        };
+        var usingScenePool = scenePool is { Count: > 0 };
+        var utilitiesPool  = usingScenePool ? scenePool! : infra.Utilities.Characteristics;
         sb.AppendLine($"- utilities: {Join(utilitiesPool.Take(2).ToList())}");
+
+        // Buried utilities are the one thing an era may take away from the image
+        // it is handed. PRESERVE tells the model to keep every permanent
+        // structure, the base image is built with poles and wires, and a chained
+        // era is handed the previous decade's frame that still has them — so
+        // listing "conduits below grade" under utilities is not enough on its
+        // own. The removal has to be stated as an explicit exception, or the
+        // poles simply carry through.
+        if (usingScenePool && infra.Utilities.Undergrounded)
+            sb.AppendLine(
+                "- overhead utilities are gone in this era — the one exception to PRESERVE: remove every " +
+                $"utility pole, crossarm, pole transformer and wire span {(isDowntown ? "along the street" : "over the lot")}, " +
+                "and rebuild the clean sky and the facades behind them. Everything else stays exactly as it is.");
         sb.Append(BuildDecayBlock(condition, sceneType, rng));
+
+        // What the model is actually looking at. Unchained, every era edits the
+        // shared base, so the base is the comparator. Chained, the uploaded image
+        // is the PREVIOUS era — and since the run walks forward in time, a tree
+        // there is smaller than it should be now, so the instruction is growth
+        // against that image, not a fraction of the base. Stating a fraction of
+        // the base while showing the previous era compounds the shrink every
+        // step: a small tree drops to a tenth of the base by 1975 and keeps
+        // being cut to a fraction of that.
+        var chainedFrom = context.ChainedFromPreviousEra
+                          && context.EraIndex > 0
+                          && context.EraIndex < context.Years.Count
+            ? context.Years[context.EraIndex - 1]
+            : (int?)null;
 
         // In the source year the base image already shows the trees at their
         // current size, so every DescribeTreeSize comes back empty and the whole
         // section is omitted. Emitting it there would tell the model to match the
-        // base and to deviate from it in the same breath.
+        // base and to deviate from it in the same breath. Chained, that shortcut
+        // does not apply: the newest era still has to grow its trees back out of
+        // whatever the era before it showed.
         var treeLines = scene.Environment.Trees
-            .Select(t => (Tree: t, Size: DescribeTreeSize(t.Size, year)))
+            .Select(t => (Tree: t, Size: DescribeTreeSize(t.Size, year, chainedFrom)))
             .Where(x => x.Size.Length > 0)
             .Select(x => $"- {x.Tree.Type} tree at {x.Tree.Position}: {x.Size}")
             .ToList();
@@ -1182,7 +1235,9 @@ public sealed class PromptService : IPromptService
             sb.AppendLine("TREES");
             foreach (var line in treeLines)
                 sb.AppendLine(line);
-            sb.Append("Tree sizes MUST follow this specification even where they differ from the base image.");
+            sb.Append(chainedFrom is null
+                ? "Tree sizes MUST follow this specification even where they differ from the base image."
+                : "Tree sizes MUST follow this specification even where they differ from the uploaded photo.");
         }
 
         return sb.ToString().TrimEnd();
@@ -1199,10 +1254,22 @@ public sealed class PromptService : IPromptService
     // photo is never sent to those calls at all.
     private const int SourceYear = 2025; // newest era — the base image already shows trees at this size
 
-    // Returns "" for the source year: the base already shows the trees at their
-    // current size, so there is nothing to instruct. The caller drops the whole
-    // TREES section in that case.
-    private static string DescribeTreeSize(string size, int year)
+    // The raw retention rates below grew trees faster than the scenes read as
+    // true — a decade step popped the canopy visibly. Every per-decade step is
+    // damped by 5%: dividing the retention rate by this factor raises it, so a
+    // decade forward grows 5% less and a decade back shrinks correspondingly
+    // less. Applying it to retention keeps the backward fraction the exact
+    // inverse of the forward growth, so chained and unchained runs stay
+    // consistent with each other.
+    private const double GrowthDamping = 0.95;
+
+    // Returns "" when the uploaded image already shows the tree at the right
+    // size: the source year against the base, or a chained era whose comparator
+    // is the same year. The caller drops the whole TREES section in that case.
+    //
+    // chainedFromYear is the year of the image actually being edited, or null
+    // when the era is edited from the shared base.
+    private static string DescribeTreeSize(string size, int year, int? chainedFromYear)
     {
         var retention = size.ToLowerInvariant() switch
         {
@@ -1210,7 +1277,26 @@ public sealed class PromptService : IPromptService
             "medium" => 0.78,
             "small"  => 0.62,
             _        => 0.78
-        };
+        } / GrowthDamping;
+
+        if (chainedFromYear is { } from)
+        {
+            // Growth between two eras of the same run. The ratio depends only on
+            // the gap, so a decade step is the same multiplier wherever it falls
+            // on the run — 153% for a small tree, 106% for a large one, after
+            // GrowthDamping.
+            var decadesForward = (year - from) / 10;
+            if (decadesForward == 0)
+                return "";
+
+            var growth = Math.Pow(retention, -decadesForward);
+            var grownPct = (int)(Math.Round(growth * 20.0, MidpointRounding.AwayFromZero) * 5);
+
+            return growth <= 1.15
+                ? $"slightly larger than in the uploaded photo — about {grownPct}% of its canopy there"
+                : $"clearly larger than in the uploaded photo — about {grownPct}% of its canopy there, thicker trunk";
+        }
+
         var decadesBack = (SourceYear - year) / 10;
         if (decadesBack == 0)
             return "";

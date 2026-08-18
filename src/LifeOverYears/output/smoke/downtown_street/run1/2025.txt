@@ -4,7 +4,8 @@ PRIORITY ORDER — when instructions conflict, the lower number wins
 1. The uploaded image's composition and geometry.
 2. The exact people and vehicle counts given below.
 3. The historical transformation for the target year.
-4. The specific period details listed.
+4. The specific period details listed — each only where the geometry has room
+   for it; one with nowhere to go is left out, never forced into the roadway.
 5. Add nothing that is not asked for — no extra businesses, signs, vehicles,
    people, logos or advertisements.
 
@@ -27,35 +28,59 @@ distort the source geometry.
 TRANSFORM TO 2025
 Post-pandemic era. A 2025 main street — minimalist flat-logo storefronts, QR codes on the glass, delivery culture in plain view.
 
-CONDITION: abandoned — closed business, boarded windows, weeds through pavement cracks, weathered surfaces
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- every storefront closed and dark — no lit signs, no menu boards, no open businesses
-- faded remains of old signage still on the facade, lettering weathered and partly missing
-- plywood over the ground-floor windows, doors chained shut
-No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.
+- a liquor store still open, its lit window the brightest thing in the row
+- a tax preparation and check-cashing office still open a few doors along, plain lettering, bars on the window
+- most of the other units dark behind the glass, several papered over from the inside
+- MARY'S DINER with 'COFFEE $3.50' shown on a small digital menu screen in the window
+- delivery-only ghost kitchen storefront with pickup shelves visible through the glass
+- the old video store space now a specialty coffee bar with a minimalist flat logo
+- window signs: 'LASHES FROM $79', 'NOW HIRING — APPLY ONLINE'
+- the ghost-sign wall now a commissioned mural with bold flat graphics
+- a stack of delivery packages waiting at a shop door
+Typography: minimalist geometric sans-serif, heavily simplified flat logos.
+Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
+
+SIGNAGE RESTRICTION
+The only readable text anywhere in the image is:
+'COFFEE $3.50'
+'LASHES FROM $79'
+'NOW HIRING — APPLY ONLINE'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-NO people anywhere — the place is completely deserted.
+EXACTLY 2 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block. Grouped in pairs, threes, and singles.
+- of these, 3 people waiting outside the liquor store for someone, not going in — keeping to themselves, not looking at the camera
+- a teenager gliding past on an e-scooter
+- a woman comparing prices on the boba shop's QR menu
+- a teenager filming a friend for a short-form video
+Clothing: men in bucket hats, techwear; women in athleisure, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-NO vehicles anywhere — empty lot, no parked or moving cars.
+EXACTLY 2 period vehicles, all different:
+- 2022-2025 Toyota Tundra — massive grille, muscular stance — black
+- 2021-2025 Kia Telluride — boxy upscale three-row SUV — white
+Parked with gaps. Where a model is listed with a year range, render the 2025 model year specifically — only styling, trim and features available in 2025, nothing introduced later. No vehicle newer than 2025.
+Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
+PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
-- utilities: overhead power lines still on the original poles along the street, fiber optic bundles and 5G small cell nodes mounted on the existing poles
+- utilities: power, phone and fiber fully undergrounded along the main commercial block, clean open sky above the street — no poles, no wires; ground level transformer cabinets and smart conduits below grade
+- overhead utilities are gone in this era — the one exception to PRESERVE: remove every utility pole, crossarm, pole transformer and wire span along the street, and rebuild the clean sky and the facades behind them. Everything else stays exactly as it is.
 
 DECAY
-- roll-down steel security shutters closed over the storefronts
-- a ghost sign for a long-gone business bleeding through the brickwork
-- upper-floor windows still curtained above dead ground-floor storefronts
+- a faded painted wall ad showing through the brick
+- an old sign band painted over, the previous lettering still faintly readable
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — digital — smartphone or mirrorless camera look.
 Color: high saturation. Grain: very clean, minimal to no noise.
 Photorealistic — NOT black-and-white, no HDR.
-Light: flat, even light under a grey overcast — subdued and cheerless, but plainly daytime; no fog, no rain, no darkness.
+Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
 
 PRIVACY
 Blur all faces and license plates.

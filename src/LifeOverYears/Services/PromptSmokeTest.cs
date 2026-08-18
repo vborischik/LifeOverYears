@@ -154,6 +154,11 @@ public static class PromptSmokeTest
         await DoC51(promptService, eras, downtownScene, stripMallScene, findings);
         await DoC52(promptService, eras, downtownScene, stripMallScene, findings);
         await DoC53(promptService, eras, downtownScene, stripMallScene, gasScene, findings);
+        await DoC54(promptService, eras, stripMallScene, findings);
+        await DoC55(dataService, gasScene, findings);
+        DoC56(dtRun1, dtRun2, smRun1, smRun2, gasRun1, arRun1, findings);
+        await DoC57(dataService, findings);
+        await DoC58(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -702,18 +707,19 @@ public static class PromptSmokeTest
 
         void CheckLadder(Dictionary<int, Prompt> run, string label)
         {
-            // 1975 (5 decades back): the small and medium trees in gasScene both
-            // land in the youngest bucket, but at distinct percentages — unlike
-            // the old absolute-rung ladder, the large tree does NOT clamp to the
-            // same floor here (that flattening was exactly the bug being fixed).
+            // 1975 (5 decades back): the small tree in gasScene lands in the
+            // youngest bucket and the medium one just above it — unlike the old
+            // absolute-rung ladder, the large tree does NOT clamp to the same
+            // floor here (that flattening was exactly the bug being fixed).
+            // Percentages here are post-GrowthDamping.
             if (!run[1975].Text.Contains("a young tree, only about 10% of its canopy in the base image, thin trunk"))
                 errs.Add($"{label}/1975: missing small-tree young-canopy phrasing (10%)");
-            if (!run[1975].Text.Contains("a young tree, only about 30% of its canopy in the base image, thin trunk"))
-                errs.Add($"{label}/1975: missing medium-tree young-canopy phrasing (30%)");
+            if (!run[1975].Text.Contains("clearly smaller than in the base image — about 35% of its canopy there, thinner trunk"))
+                errs.Add($"{label}/1975: missing medium-tree canopy phrasing (35%)");
 
-            // 2005 (2 decades back): the mature (large) tree reads "clearly smaller".
-            if (!run[2005].Text.Contains("clearly smaller than in the base image — about 80% of its canopy there, thinner trunk"))
-                errs.Add($"{label}/2005: missing mature-tree mid-life phrasing (80%)");
+            // 2005 (2 decades back): the mature (large) tree is barely down.
+            if (!run[2005].Text.Contains("slightly smaller than in the base image — about 90% of its canopy there"))
+                errs.Add($"{label}/2005: missing mature-tree mid-life phrasing (90%)");
 
             // 2025 (source year, 0 decades back): the base image already shows the
             // trees at their current size, so there is no TREES section at all —
@@ -3212,6 +3218,14 @@ public static class PromptSmokeTest
                 : Join(errs.Take(5))));
     }
 
+    private static string TreesSection(string promptText)
+    {
+        var i = promptText.IndexOf("TREES\n", StringComparison.Ordinal);
+        if (i < 0) return "";
+        var j = promptText.IndexOf("\n\n", i, StringComparison.Ordinal);
+        return j < 0 ? promptText[i..] : promptText[i..j];
+    }
+
     private static string PeopleSection(string promptText)
     {
         var i = promptText.IndexOf("PEOPLE\n", StringComparison.Ordinal);
@@ -3225,6 +3239,312 @@ public static class PromptSmokeTest
     {
         var m = System.Text.RegularExpressions.Regex.Match(promptText, @"EXACTLY (\d+) people TOTAL");
         return m.Success ? int.Parse(m.Groups[1].Value) : null;
+    }
+
+    // Chained eras edit the PREVIOUS era's image, not the shared base, so a tree
+    // instruction phrased as a fraction of the base is read against the wrong
+    // picture and compounds: each step cuts the canopy again instead of growing
+    // it. Walking forward in time, every era after the first must ask for growth
+    // against what it was actually given.
+    private static async Task DoC54(
+        IPromptService promptService,
+        Dictionary<int, EraProfile> eras,
+        SceneDna stripMallScene,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        var ctx = new GenerationContext
+        {
+            Random = new Random(42), TotalEras = Years.Length, Years = Years,
+            ChainedFromPreviousEra = true
+        };
+
+        // One decade of growth, as a percentage of the image being edited. Depends
+        // only on the recorded size, so it is the same at every step of the run.
+        // Each rate carries PromptService.GrowthDamping, then rounds to 5%.
+        var expected = new Dictionary<string, string>
+        {
+            ["small"]  = "155%",   // 0.95 / 0.62
+            ["medium"] = "120%",   // 0.95 / 0.78
+            ["large"]  = "105%",   // 0.95 / 0.90
+        };
+
+        foreach (var year in Years)
+        {
+            var prompt = await promptService.BuildAsync(stripMallScene, eras[year], ctx);
+            var isFirst = year == Years[0];
+
+            // Scoped to the section: "uploaded photo" also appears in the chained
+            // base note at the top of every prompt.
+            var trees = TreesSection(prompt.Text);
+
+            if (isFirst)
+            {
+                // Era one really is edited from the base, so it keeps the
+                // shrink-from-base wording.
+                if (!trees.Contains("of its canopy there", StringComparison.Ordinal))
+                    errs.Add($"{year}: first chained era has no tree sizing at all");
+                if (trees.Contains("uploaded photo", StringComparison.Ordinal))
+                    errs.Add($"{year}: first chained era compares to the uploaded photo, but it is edited from the base");
+                continue;
+            }
+
+            if (trees.Length == 0)
+            {
+                errs.Add($"{year}: chained era has no TREES section — its trees stay at the previous era's size");
+                continue;
+            }
+            if (trees.Contains("in the base image", StringComparison.Ordinal))
+                errs.Add($"{year}: chained era still sizes trees against the base image");
+            if (!trees.Contains("larger than in the uploaded photo", StringComparison.Ordinal))
+                errs.Add($"{year}: chained era does not ask for growth against the uploaded photo");
+            if (trees.Contains("smaller than in the uploaded photo", StringComparison.Ordinal))
+                errs.Add($"{year}: chained era shrinks trees while moving forward in time");
+
+            foreach (var tree in stripMallScene.Environment.Trees)
+            {
+                var line = trees.Split('\n')
+                    .FirstOrDefault(l => l.StartsWith($"- {tree.Type} tree at {tree.Position}:", StringComparison.Ordinal));
+                if (line is null)
+                {
+                    errs.Add($"{year}: no tree line for {tree.Type}");
+                    continue;
+                }
+                if (!line.Contains(expected[tree.Size], StringComparison.Ordinal))
+                    errs.Add($"{year}: {tree.Size} tree should grow to {expected[tree.Size]} per decade, got: {line.Trim()}");
+            }
+        }
+
+        f.Add(("C54", "Chained eras size trees as growth against the uploaded previous era, never as a fraction of the base",
+            errs.Count == 0, errs.Count == 0
+                ? "every era after the first grows its trees by the per-decade ratio for its size"
+                : Join(errs.Take(5))));
+    }
+
+    // A batch run normally finishes through 'collect', not inside Pipeline, so
+    // the caption tail has to work from nothing but the run folder. Everything
+    // it needs must survive the process that built the prompts: the arc facts
+    // live in the GenerationContext and cannot be recomputed later.
+    private static async Task DoC55(
+        IDataService dataService,
+        SceneDna gasScene,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        var runRoot = Path.Combine(Path.GetTempPath(), "loy-caption-tail-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(runRoot);
+
+        try
+        {
+            var narrative = new SceneNarrative(
+                FirstYear: 1975, LastYear: 2025, FinalCondition: "squatted",
+                FirstBrand: "Texaco", LastBrand: "Sinclair", RebrandOccurred: true);
+
+            await CaptionRunner.SaveNarrativeAsync(runRoot, narrative);
+            var readBack = await CaptionRunner.ReadNarrativeAsync(runRoot);
+            if (readBack != narrative)
+                errs.Add($"narrative.json did not round-trip: wrote {narrative}, read {readBack?.ToString() ?? "null"}");
+
+            // scene.json is written by RunService with the same Web casing; the
+            // reader has to agree with it or collect silently skips captioning.
+            await File.WriteAllTextAsync(
+                Path.Combine(runRoot, "scene.json"),
+                JsonSerializer.Serialize(gasScene, new JsonSerializerOptions(JsonSerializerDefaults.Web)));
+            var scene = await CaptionRunner.ReadSceneAsync(runRoot);
+            if (scene is null)
+                errs.Add("scene.json did not deserialize");
+            else if (scene.SceneType != gasScene.SceneType)
+                errs.Add($"scene.json round-tripped to sceneType '{scene.SceneType}', expected '{gasScene.SceneType}'");
+
+            if (errs.Count == 0)
+            {
+                var captions = new CaptionService(
+                    dataService, Microsoft.Extensions.Logging.Abstractions.NullLogger<CaptionService>.Instance);
+                var written = await CaptionRunner.WriteAsync(
+                    captions, scene!, narrative, runRoot,
+                    Microsoft.Extensions.Logging.Abstractions.NullLogger.Instance);
+
+                var captionPath = Path.Combine(runRoot, "caption.txt");
+                if (!written || !File.Exists(captionPath))
+                    errs.Add("caption.txt was not written from run-folder state alone");
+                else
+                {
+                    var text = await File.ReadAllTextAsync(captionPath);
+                    if (text.Contains('{') || text.Contains('}'))
+                        errs.Add("caption.txt still contains an unsubstituted placeholder");
+                    if (!text.Contains("1975", StringComparison.Ordinal) || !text.Contains("2025", StringComparison.Ordinal))
+                        errs.Add("caption.txt does not carry the run's first and last year");
+                    if (!text.Contains('#'))
+                        errs.Add("caption.txt has no hashtags appended");
+                }
+            }
+        }
+        finally
+        {
+            try { Directory.Delete(runRoot, recursive: true); } catch { /* temp dir, best effort */ }
+        }
+
+        f.Add(("C55", "The caption tail runs from run-folder state alone, so a resumed batch run is captioned too",
+            errs.Count == 0, errs.Count == 0
+                ? "narrative.json and scene.json round-trip; caption.txt written with years and hashtags"
+                : Join(errs)));
+    }
+
+    // Downtown and strip-mall utilities go underground from 2015 on, and every
+    // image the era is handed still shows poles: the shared base is built in the
+    // first era, and a chained era edits the previous decade's frame. Listing
+    // "conduits below grade" under utilities does not take a pole out of the
+    // picture on its own — without the explicit removal line the wires simply
+    // carry through to the newest frames. The other scene types keep theirs: a
+    // forecourt or a repair yard on the edge of town never got undergrounded.
+    private static void DoC56(
+        Dictionary<int, Prompt> dtRun1, Dictionary<int, Prompt> dtRun2,
+        Dictionary<int, Prompt> smRun1, Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> arRun1,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        const string removal = "overhead utilities are gone in this era";
+        int[] undergroundYears = { 2015, 2025 };
+
+        void CheckBuried(Dictionary<int, Prompt> run, string label)
+        {
+            foreach (var (year, prompt) in run)
+            {
+                var buried = undergroundYears.Contains(year);
+                var hasRemoval = prompt.Text.Contains(removal, StringComparison.Ordinal);
+
+                if (buried && !hasRemoval)
+                    errs.Add($"{label}/{year}: utilities are undergrounded but the prompt never asks for the poles to go");
+                if (!buried && hasRemoval)
+                    errs.Add($"{label}/{year}: pre-undergrounding era already removes the poles");
+                if (buried && prompt.Text.Contains("overhead power lines", StringComparison.OrdinalIgnoreCase))
+                    errs.Add($"{label}/{year}: still asks for overhead power lines");
+            }
+        }
+
+        CheckBuried(dtRun1, "downtown_street/run1");
+        CheckBuried(dtRun2, "downtown_street/run2");
+        CheckBuried(smRun1, "strip_mall/run1");
+        CheckBuried(smRun2, "strip_mall/run2");
+
+        foreach (var (run, label) in new[] { (gasRun1, "gas_station/run1"), (arRun1, "auto_repair/run1") })
+            foreach (var year in undergroundYears)
+                if (run[year].Text.Contains(removal, StringComparison.Ordinal))
+                    errs.Add($"{label}/{year}: scene type has no undergrounding, but the poles are removed anyway");
+
+        f.Add(("C56", "Downtown and strip-mall poles and wires are explicitly removed from 2015 on; other scene types keep theirs",
+            errs.Count == 0, errs.Count == 0
+                ? "wires stay through 2005, then go underground on main street and at the strip mall only"
+                : Join(errs)));
+    }
+
+    // A "NN%" suffix in hashtags.txt boosts one tag out of the sampled pool and
+    // onto its own roll — #nostalgia is the reach tag for this account, and at
+    // pool odds it showed up in roughly one post in eight. The suffix must never
+    // reach a caption, and a winning roll spends a sampled slot rather than
+    // making the post longer.
+    private static async Task DoC57(
+        IDataService dataService,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        var lines = await dataService.LoadHashtagsAsync();
+
+        var weighted = lines.Where(l => System.Text.RegularExpressions.Regex.IsMatch(l, @"\s\d{1,3}%$")).ToList();
+        if (weighted.Count == 0)
+            errs.Add("hashtags.txt carries no weighted tag — the boost is silently off");
+
+        const int draws = 4000;
+        const int expectedPct = 70, tolerancePct = 4;
+        var pinned = lines.Where(l => !weighted.Contains(l)).Take(3).ToList();
+        var hits = 0;
+
+        for (var i = 0; i < draws; i++)
+        {
+            var tags = CaptionService.SelectHashtags(lines);
+
+            if (tags.Count != 5)
+                errs.Add($"draw {i}: {tags.Count} tags, expected 5 — a boosted tag must spend a sampled slot");
+            if (tags.Distinct().Count() != tags.Count)
+                errs.Add($"draw {i}: duplicate tag in {string.Join(" ", tags)}");
+            if (!tags.Take(3).SequenceEqual(pinned))
+                errs.Add($"draw {i}: pinned tags missing or reordered: {string.Join(" ", tags)}");
+            if (tags.Any(t => t.Contains('%')))
+                errs.Add($"draw {i}: a weight suffix leaked into the caption: {string.Join(" ", tags)}");
+            if (tags.Contains("#nostalgia"))
+                hits++;
+
+            if (errs.Count > 0) break;   // one bad draw is the whole story
+        }
+
+        if (errs.Count == 0)
+        {
+            var pct = hits * 100.0 / draws;
+            if (Math.Abs(pct - expectedPct) > tolerancePct)
+                errs.Add($"#nostalgia landed in {pct:F1}% of {draws} captions, expected {expectedPct}% ±{tolerancePct}");
+        }
+
+        f.Add(("C57", "A weighted hashtag (#nostalgia 70%) hits its declared share of captions, spends a sampled slot, and never ships its weight suffix",
+            errs.Count == 0, errs.Count == 0
+                ? $"#nostalgia in ~{hits * 100.0 / draws:F1}% of {draws} draws; pinned set and tag count unchanged"
+                : Join(errs)));
+    }
+
+    // Period details are era-pool text applied to a geometry that never agreed to
+    // hold them. Without an explicit way out the model plants every listed prop
+    // somewhere — the failure Vlad hit was a bench standing in the road — so the
+    // escape clause has to be in every prompt, in the scene block where the
+    // details are listed, and the priority order has to agree that geometry wins.
+    private static async Task DoC58(
+        IDataService dataService,
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
+        Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
+        Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
+        Dictionary<int, Prompt> arRun1,  Dictionary<int, Prompt> arRun2,
+        Prompt unknownPrompt,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        var template = await dataService.LoadPromptAsync("image-template");
+        if (!template.Contains("one with nowhere to go is left out", StringComparison.Ordinal))
+            errs.Add("image-template.txt: PRIORITY ORDER no longer subordinates period details to the geometry");
+
+        void Check(Prompt prompt, string label)
+        {
+            var text = prompt.Text;
+            if (!text.Contains(PromptService.PlacementRule, StringComparison.Ordinal))
+            {
+                errs.Add($"{label}: scene block carries no placement rule — every listed detail reads as mandatory");
+                return;
+            }
+
+            // It belongs to PERIOD DETAILS, not to the signage whitelist that
+            // follows: past the restriction it reads as a rule about sign text.
+            var rule = text.IndexOf(PromptService.PlacementRule, StringComparison.Ordinal);
+            var restriction = text.IndexOf("SIGNAGE RESTRICTION", StringComparison.Ordinal);
+            if (restriction >= 0 && rule > restriction)
+                errs.Add($"{label}: placement rule sits after the SIGNAGE RESTRICTION block");
+        }
+
+        foreach (var (run, label) in new[]
+        {
+            (gasRun1, "gas_station/run1"), (gasRun2, "gas_station/run2"),
+            (dtRun1,  "downtown_street/run1"), (dtRun2, "downtown_street/run2"),
+            (smRun1,  "strip_mall/run1"), (smRun2, "strip_mall/run2"),
+            (arRun1,  "auto_repair/run1"), (arRun2, "auto_repair/run2"),
+        })
+            foreach (var (year, prompt) in run)
+                Check(prompt, $"{label}/{year}");
+
+        Check(unknownPrompt, "unknown");
+
+        f.Add(("C58", "Period details are conditional on the geometry: every prompt states that a detail with no plausible place is left out, and nothing is placed in the roadway",
+            errs.Count == 0, errs.Count == 0
+                ? "placement rule present in every era prompt, ahead of the signage whitelist"
+                : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────

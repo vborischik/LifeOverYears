@@ -45,7 +45,7 @@ Historical Images
       ▼  Step 4 — VideoService → FfmpegProvider
 Video
       │
-      ▼  Step 5 — CaptionService → XaiProvider
+      ▼  Step 5 — CaptionService → data/captions/
 Caption
       │
       ▼  Step 6 — PublicationService → TelegramProvider
@@ -105,19 +105,25 @@ Builds era-specific image generation prompts by combining SceneDna geometry with
              cross-era vehicle dedup (UsedCarModels HashSet)
              placement pattern dedup per run
              per-run DinerName (stable across all eras)
-             per-era SceneCondition — gas stations only
+             per-era SceneCondition, on a monotonic decay arc
         → builds PRESERVE / SCENE / PEOPLE / VEHICLES /
-          ENVIRONMENT / STYLE blocks into the template
+          ENVIRONMENT / TREES / STYLE blocks into the template
         → resolves gas brand from data/brands/gas-brands.txt
           filtered by era year (era JSON gas_brands is fallback)
 3. DataService.SavePromptAsync(prompt)
 ```
 
-Conditions (`thriving` / `busy` / `new` / `declining` / `abandoned` / `restored`) are a gas-station-only concept: `abandoned` forces zero people and vehicles, `declining` clamps counts to sparse activity. Other scene types always use their base scene_content ranges.
+Conditions (`thriving` / `busy` / `new` / `declining` / `abandoned` / `squatted` / `restored`) apply to `gas_station`, `downtown_street`, `strip_mall` and `auto_repair`; other scene types always use their base scene_content ranges. `abandoned` forces zero people and vehicles, `declining` clamps counts to sparse activity, and derelict eras swap the live-business PERIOD DETAILS block for a closed-down one — a boarded block must not advertise. The rank only ever worsens across a run, one step at a time, and the final era resolves the arc.
+
+Period details (storefronts, window signs, extras) are sampled from era pools that know nothing about the photographed geometry, so the scene block closes with an explicit escape clause — place each detail where it plausibly belongs, and leave out anything with nowhere to go, never in the roadway or a driving lane — echoed by PRIORITY ORDER item 4 in the template. A list without that clause reads as mandatory and the image model plants every prop somewhere, which is how a bench ends up standing in the road.
+
+Tree sizes are sized in `DescribeTreeSize` from a per-decade retention rate for the size Vision recorded (large/medium/small), damped 5% by `GrowthDamping`. Under `EraChaining` each era asks for growth against the previous era's image; unchained, each era states a fraction of the shared base. The two are exact inverses of one another, and the source year (the newest era) emits no TREES section at all — the base already shows the trees at that size.
 
 ### Smoke Tests
 
-`dotnet run -- --smoke-prompts` executes `PromptSmokeTest` with checks C1–C23 (placeholder resolution, vehicle dedup, seed variance, tree ladder, color mode, price anchors, PRESERVE fidelity, prompt length ≤ 4850 chars, condition isolation) and writes a markdown report to `output/smoke/report.md`.
+`dotnet run -- --smoke-prompts` executes `PromptSmokeTest` with checks C1–C56 (placeholder resolution, vehicle dedup, seed variance, tree sizing, color mode, price anchors, PRESERVE fidelity, prompt length ≤ `MaxPromptChars`, condition arcs, chained-era wording, utility undergrounding) plus `FolderSmokeTest`, and writes a markdown report to `output/smoke/report.md` alongside the full generated prompts under `output/smoke/{sceneType}/run{n}/{year}.json|.txt`.
+
+Those files are committed, so a run rewrites them: a large `output/smoke/` diff after changing `PromptService` or `data/eras` is the expected result, not stray output. Run it after every prompt-affecting change.
 
 ---
 
@@ -148,6 +154,12 @@ Target model: **OpenAI GPT Image 1.5** — decision confirmed by direct image te
    VideoService assembles video/timeline.mp4
 ```
 
+### Era chaining
+
+`Pipeline:EraChaining` (default **true**) changes what each era is generated from. Chained, the run walks forward in time and every era edits the *previous era's finished image* rather than the shared base, so the place carries forward and stays recognisable; necessarily sequential, since year N+1 cannot be submitted until year N exists (under batch mode that means one batch and one completion window per era). Unchained, every era edits the same base in parallel.
+
+The consequence worth remembering when reading any prompt: anything visible in the first frame propagates through the whole run unless a later era explicitly asks for its removal. A block that simply stops mentioning a feature does not delete it — that is why the undergrounded utilities carry an explicit removal line, and why tree sizes are phrased as growth against the uploaded image rather than as a fraction of the base.
+
 The run folder (`runs/{sceneId}_{timestamp}/`) contains `run.json` (manifest: sceneDnaId, sourcePath, years, createdAt), `prompts/`, `jobs/`, `images/`, `stamped/`, `video/`.
 
 The `collect <runFolder> [--wait]` and `assemble <folderPath>` CLI modes remain as recovery/debug tools — e.g. resuming the tail of a run whose process was interrupted — not part of the normal flow.
@@ -176,19 +188,32 @@ Used by both `Pipeline` (after real generation) and the `assemble` CLI mode, whi
 
 ---
 
-## Step 5 — Caption (planned)
+## Step 5 — Caption ✅ implemented
 
-Generates a social media caption with title, description, and hashtags.
+Assembles a social media caption from files. No LLM call — `XaiProvider` and its interface stay in the repo unwired, so the generated path can be restored, but nothing calls it.
 
-**Input:** `SceneDna` + `EraProfile` list  
-**Output:** `Caption`
+**Input:** `SceneDna` + `SceneNarrative` (persisted as `narrative.json`, so a resumed `collect` can still caption)  
+**Output:** `Caption`, written to `caption.txt` in the run folder
 
 ```
-1. CaptionService.GenerateAsync(sceneDna, eras)
-        → XaiProvider.CompleteAsync(contextPrompt)
-        → parses title, description, hashtags
-        → returns Caption
+1. CaptionService.GenerateAsync(sceneDna, narrative)
+        → DataService.LoadCaptionBodiesAsync(sceneType),
+          falling back to captions/base.txt
+        → SplitBodies on lines that are exactly "---"
+        → picks one body: (ISO week + stable hash of the scene id)
+          % bodyCount — deterministic, and a run of bodyCount
+          consecutive weeks visits every body exactly once
+        → substitutes {firstYear} {lastYear} {angle} {condition}
+             angle:     AnglesFor(sceneType) = scene-specific
+                        anchors, then CommonAngles
+             condition: MapFinalCondition(narrative.FinalCondition)
+        → SelectHashtags(captions/hashtags.txt)
+2. CaptionRunner.WriteAsync → caption.txt (body, blank line, tags)
 ```
+
+All caption text lives under `src/LifeOverYears/data/captions/` — bodies per scene type plus the shared `hashtags.txt`. A body must carry the years and the condition, end on a question, and contain no hashtags of its own; the checks enforce all three, because a body that skips the placeholders posts a caption that never says which years the video covers.
+
+In `hashtags.txt` the first three unweighted lines are pinned and ship in file order, two more are sampled from the rest, and a `NN%` suffix (`#nostalgia 70%`) takes a tag out of the pool and gives it its own roll at that probability — a winner spends one of the sampled slots, so every post carries five tags. The file is the whole interface: repinning, reweighting and adding tags need no code change.
 
 ---
 

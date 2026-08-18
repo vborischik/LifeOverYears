@@ -4,7 +4,8 @@ PRIORITY ORDER — when instructions conflict, the lower number wins
 1. The uploaded image's composition and geometry.
 2. The exact people and vehicle counts given below.
 3. The historical transformation for the target year.
-4. The specific period details listed.
+4. The specific period details listed — each only where the geometry has room
+   for it; one with nowhere to go is left out, never forced into the roadway.
 5. Add nothing that is not asked for — no extra businesses, signs, vehicles,
    people, logos or advertisements.
 
@@ -38,7 +39,7 @@ PERIOD DETAILS
 - an air-and-vacuum island at the lot edge
 - combined trash-and-squeegee stations between the pumps
 Typography: minimalist flat sans-serif, simplified modern logos.
-
+Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
@@ -72,8 +73,8 @@ DECAY
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - cottonwood tree at northeast corner of lot: clearly smaller than in the base image — about 80% of its canopy there, thinner trunk
-- elm tree at sidewalk edge left of entrance: clearly smaller than in the base image — about 60% of its canopy there, thinner trunk
-- cedar tree at back fence line: slightly smaller than in the base image — about 90% of its canopy there
+- elm tree at sidewalk edge left of entrance: clearly smaller than in the base image — about 65% of its canopy there, thinner trunk
+- cedar tree at back fence line: slightly smaller than in the base image — about 95% of its canopy there
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE

@@ -4,7 +4,8 @@ PRIORITY ORDER — when instructions conflict, the lower number wins
 1. The uploaded image's composition and geometry.
 2. The exact people and vehicle counts given below.
 3. The historical transformation for the target year.
-4. The specific period details listed.
+4. The specific period details listed — each only where the geometry has room
+   for it; one with nowhere to go is left out, never forced into the roadway.
 5. Add nothing that is not asked for — no extra businesses, signs, vehicles,
    people, logos or advertisements.
 
@@ -27,7 +28,7 @@ distort the source geometry.
 TRANSFORM TO 2025
 Post-pandemic era. A 2025 fuel stop — LED canopy, full-color digital price sign, and a convenience store selling fresh food.
 
-CONDITION: restored — renovated appearance, modern updates on original structure
+CONDITION: restored — the same building reoccupied — plywood off the windows, litter and weeds cleared, surfaces cleaned, a modest working business again; structure, footprint and signband shape unchanged
 
 PERIOD DETAILS
 - free air and vacuum station at the lot edge
@@ -38,7 +39,7 @@ PERIOD DETAILS
 - outdoor cafe barriers with planters by the coffee lane
 - QR-code stickers on the pump screens
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
-
+Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:

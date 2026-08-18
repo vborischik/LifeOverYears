@@ -1,5 +1,9 @@
 # LifeOverYears — Claude Context
 
+Architecture and layering rules live here. For day-to-day work — commands, the
+smoke-test loop, and where the prompt tuning knobs are — see `CLAUDE.md` at the
+repo root.
+
 ## Project Summary
 
 AI-powered platform that transforms modern photographs into historically inspired videos.

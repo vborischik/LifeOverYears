@@ -198,10 +198,16 @@
         "small cell nodes appearing"
       ],
       "downtown_characteristics": [
-        "overhead power lines still on wooden poles along the street",
-        "fiber optic and cable bundles added to the existing poles",
-        "transformer boxes on poles, cellular antennas on nearby rooftops"
-      ]
+        "power, phone and fiber routed underground along the main commercial block",
+        "clean open sky above the street — no poles, no wires; pad-mounted transformer cabinets and pull boxes at the curb",
+        "cellular antennas on nearby rooftops, not on the street"
+      ],
+      "strip_mall_characteristics": [
+        "power, phone and fiber routed underground across the site",
+        "clean open sky above the lot — no poles, no wires; a pad-mounted transformer cabinet at the lot edge",
+        "lot lighting on its own standards, cellular antennas on nearby rooftops"
+      ],
+      "undergrounded": true
     }
   },
 
