@@ -149,6 +149,8 @@ public static class PromptSmokeTest
         await DoC46(promptService, eras, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, findings);
         DoC47(eras, findings);
         await DoC48(promptService, gasScene, findings);
+        DoC49(eras, findings);
+        DoC50(findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -1459,13 +1461,14 @@ public static class PromptSmokeTest
     // Verifies: (1) default/unknown scenes (exercised by unknownPrompt, the only
     // scene type left outside supportsCondition) always stay "thriving";
     // (2) rank is monotonic across one run's eras, with the single allowed
-    // exception of a gas station's final era dropping back to "new" or
-    // "restored" — downtown_street and strip_mall both follow the plain
-    // monotonic path with no finale exception; (3) abandoned/declining/squatted
-    // carry the counts they imply, for all three scene types that support
-    // conditions; (4) "squatted" and "restored" are gas-station-only finale
-    // resolutions — "squatted" is never legal for downtown_street or
-    // strip_mall, and "restored" may appear only on a gas station's final era.
+    // exception of the final era resolving the arc for any condition-supporting
+    // type; (3) declining/squatted carry the counts they imply, for every scene
+    // type that supports conditions; (4) "abandoned" never appears as a
+    // SceneCondition at all — it is mapped to "squatted" in GenerationContext —
+    // and "restored" is legal only on the final era, for every type alike.
+    // "squatted" is no longer gas-station- or finale-only: PickSceneCondition
+    // maps a still-live "abandoned" era entry to "squatted" for any type, so it
+    // can surface well before the last era too.
     private static void DoC23(
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
@@ -1475,8 +1478,6 @@ public static class PromptSmokeTest
         List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
-        const string noVehicles = "NO vehicles anywhere";
-        const string noPeople   = "NO people anywhere";
 
         if (unknownPrompt.SceneCondition != "thriving")
             errs.Add($"unknown(default)/1985: SceneCondition '{unknownPrompt.SceneCondition}' (expected 'thriving')");
@@ -1487,12 +1488,7 @@ public static class PromptSmokeTest
             foreach (var (year, prompt) in run)
             {
                 if (prompt.SceneCondition == "abandoned")
-                {
-                    if (!prompt.Text.Contains(noVehicles))
-                        errs.Add($"{label}/{year}: abandoned but missing '{noVehicles}'");
-                    if (!prompt.Text.Contains(noPeople))
-                        errs.Add($"{label}/{year}: abandoned but missing '{noPeople}'");
-                }
+                    errs.Add($"{label}/{year}: resolved to 'abandoned' — this must never happen, EarlyAbandonChance is 0 and the pool maps it to 'squatted'");
                 else if (prompt.SceneCondition is "declining" or "squatted")
                 {
                     var m = peopleLine.Match(prompt.Text);
@@ -1539,20 +1535,6 @@ public static class PromptSmokeTest
         CheckMonotonic(smRun2,  "strip/run2", isGasStation: false);
         CheckMonotonic(arRun2,  "auto/run2", isGasStation: false);
 
-        foreach (var (run, label) in new[]
-        {
-            (dtRun1, "downtown/run1"), (dtRun2, "downtown/run2"),
-            (smRun1, "strip/run1"),    (smRun2, "strip/run2"), (arRun1, "auto/run1"), (arRun2, "auto/run2")
-        })
-            foreach (var (year, prompt) in run)
-                if (prompt.SceneCondition == "squatted")
-                    errs.Add($"{label}/{year}: resolved to 'squatted' (gas-station-only)");
-
-        foreach (var (run, label) in new[] { (gasRun1, "gas/run1"), (gasRun2, "gas/run2") })
-            foreach (var (year, prompt) in run)
-                if (prompt.SceneCondition == "squatted" && year != Years[^1])
-                    errs.Add($"{label}/{year}: 'squatted' outside the final era");
-
         // "restored" is a finale resolution for every condition-supporting type,
         // so it is legal only on the last era — for gas stations and the rest alike.
         foreach (var (run, label) in new[]
@@ -1565,7 +1547,7 @@ public static class PromptSmokeTest
                 if (prompt.SceneCondition == "restored" && year != Years[^1])
                     errs.Add($"{label}/{year}: 'restored' outside the final era");
 
-        f.Add(("C23", "default/unknown scenes always thriving; rank monotonic per run (the final era may resolve the arc for any condition-supporting type); abandoned/declining/squatted counts honored for gas_station, downtown_street and strip_mall; 'squatted' only on a gas_station's final era; 'restored' only on a final era",
+        f.Add(("C23", "default/unknown scenes always thriving; rank monotonic per run (the final era may resolve the arc for any condition-supporting type); 'abandoned' never appears as a SceneCondition; declining/squatted counts honored for every condition-supporting type; 'restored' only on a final era",
             errs.Count == 0, errs.Count == 0 ? "Condition trajectory invariants hold" : Join(errs)));
     }
 
@@ -2135,9 +2117,34 @@ public static class PromptSmokeTest
             ?? throw new InvalidOperationException("PromptService.BuildSceneBlock not found");
 
         var gasSign = new GenerationContext.GasSign(GenerationContext.GasSignKind.DeadBoard, null);
-        var rng = new Random(1); // unused by the derelict branch — no sampling happens there
+        // Fixed seed: unused by the fully-dead derelict branch (no sampling
+        // happens there), but the half-dead squatted-retail branch does sample
+        // 3 PoorTenantBusinesses entries from it.
+        var rng = new Random(1);
         var args = new object?[] { era, content, sceneType, condition, gasSign, rng, context };
         return (string)method.Invoke(null, args)!;
+    }
+
+    // BuildDecayBlock is private — reached via reflection so the sampled DECAY
+    // wording can be checked against the real implementation for a caller-chosen
+    // rng, rather than only whatever the fixture prompts happened to draw.
+    private static string InvokeBuildDecayBlock(string condition, string sceneType, Random rng)
+    {
+        var method = typeof(PromptService).GetMethod("BuildDecayBlock",
+            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)
+            ?? throw new InvalidOperationException("PromptService.BuildDecayBlock not found");
+        return (string)method.Invoke(null, new object[] { condition, sceneType, rng })!;
+    }
+
+    // ConditionDescriptor is private — reached via reflection to check its exact
+    // wording per (condition, sceneType) pair directly, independent of whether a
+    // fixture run happens to sample that condition.
+    private static string InvokeConditionDescriptor(string condition, string sceneType)
+    {
+        var method = typeof(PromptService).GetMethod("ConditionDescriptor",
+            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)
+            ?? throw new InvalidOperationException("PromptService.ConditionDescriptor not found");
+        return (string)method.Invoke(null, new object[] { condition, sceneType })!;
     }
 
     // A derelict era must still surface a ghost sign when the run has that chain
@@ -2160,6 +2167,14 @@ public static class PromptSmokeTest
                 foreach (var year in Years)
                 foreach (var condition in derelictConditions)
                 {
+                    // squatted downtown_street/strip_mall now renders the
+                    // half-dead retail block, which deliberately omits chain
+                    // tenants entirely (PoorTenantBusinesses fills that role
+                    // instead) — only the fully-dead block still surfaces a
+                    // ghost line.
+                    if (condition == "squatted" && sceneType is "downtown_street" or "strip_mall")
+                        continue;
+
                     var text = InvokeBuildSceneBlock(eras[year], ContentFor(eras, year, sceneType), sceneType, condition, ctx);
                     var tenants = ctx.ResolveChainTenants(year, sceneType, condition);
 
@@ -2173,7 +2188,7 @@ public static class PromptSmokeTest
                 }
             }
 
-        f.Add(("C34", "A derelict era emits the ghost line whenever the run's chain schedule calls for one",
+        f.Add(("C34", "A fully-dead derelict era emits the ghost line whenever the run's chain schedule calls for one (squatted downtown_street/strip_mall's half-dead block omits chain tenants by design)",
             errs.Count == 0, errs.Count == 0 ? "Ghost lines present wherever the schedule calls for them" : Join(errs)));
     }
 
@@ -2240,7 +2255,7 @@ public static class PromptSmokeTest
             foreach (var year in Years)
             {
                 if (!run.TryGetValue(year, out var prompt)) continue;
-                if (prompt.SceneCondition != "abandoned" && !prompt.Text.Contains("stay on sidewalks"))
+                if (prompt.SceneCondition is not ("abandoned" or "squatted") && !prompt.Text.Contains("stay on sidewalks"))
                     errs.Add($"{label}/{year}: on-street prompt missing 'stay on sidewalks'");
                 if (prompt.SelectedVehicles.Count > 0 && !prompt.Text.Contains("hug the curb"))
                     errs.Add($"{label}/{year}: on-street prompt missing 'hug the curb'");
@@ -2729,13 +2744,16 @@ public static class PromptSmokeTest
     // derelict in ~86% of runs and every video told the same story at the same
     // moment. This measures the distribution rather than one run, because a
     // single fixture can look fine while the policy behind it is degenerate.
+    // "abandoned" itself can no longer appear (EarlyAbandonChance is 0 and the
+    // pool maps it straight to "squatted"), so the same collapse risk is now
+    // tracked as the rate of "squatted" at 2015.
     private static void DoC45(
         Dictionary<int, EraProfile> eras,
         ILogger logger,
         List<(string, string, bool?, string)> f)
     {
         const int seeds = 500;
-        const double maxAbandoned2015 = 0.35;
+        const double maxSquatted2015 = 0.35;
         const double minEverDeclines  = 0.70;
         const int    minTrajectories  = 20;
 
@@ -2744,9 +2762,9 @@ public static class PromptSmokeTest
 
         foreach (var sceneType in new[] { "downtown_street", "strip_mall", "auto_repair", "gas_station" })
         {
-            var abandoned2015 = 0;
-            var everDeclined  = 0;
-            var trajectories  = new HashSet<string>();
+            var squatted2015 = 0;
+            var everDeclined = 0;
+            var trajectories = new HashSet<string>();
 
             for (var seed = 0; seed < seeds; seed++)
             {
@@ -2756,20 +2774,23 @@ public static class PromptSmokeTest
                 foreach (var year in Years)
                 {
                     ctx.BeginEra();
-                    path.Add(ctx.PickSceneCondition(eras[year].AllowedSceneConditions, sceneType));
+                    var condition = ctx.PickSceneCondition(eras[year].AllowedSceneConditions, sceneType);
+                    if (condition == "abandoned")
+                        errs.Add($"{sceneType} seed={seed} year={year}: resolved to 'abandoned' — this must never happen");
+                    path.Add(condition);
                 }
 
-                if (path[Array.IndexOf(Years, 2015)] == "abandoned") abandoned2015++;
-                if (path.Any(c => c is "declining" or "abandoned" or "squatted")) everDeclined++;
+                if (path[Array.IndexOf(Years, 2015)] == "squatted") squatted2015++;
+                if (path.Any(c => c is "declining" or "squatted")) everDeclined++;
                 trajectories.Add(string.Join(">", path));
             }
 
-            var rate2015 = abandoned2015 / (double)seeds;
-            var declines = everDeclined  / (double)seeds;
-            summary.Add($"{sceneType}: 2015 abandoned {rate2015:P0}, ever declines {declines:P0}, {trajectories.Count} trajectories");
+            var rate2015 = squatted2015 / (double)seeds;
+            var declines = everDeclined / (double)seeds;
+            summary.Add($"{sceneType}: 2015 squatted {rate2015:P0}, ever declines {declines:P0}, {trajectories.Count} trajectories");
 
-            if (rate2015 > maxAbandoned2015)
-                errs.Add($"{sceneType}: 2015 is abandoned in {rate2015:P0} of runs (max {maxAbandoned2015:P0}) — the arc collapses to one story");
+            if (rate2015 > maxSquatted2015)
+                errs.Add($"{sceneType}: 2015 is squatted in {rate2015:P0} of runs (max {maxSquatted2015:P0}) — the arc collapses to one story");
             // The opposite failure: tuning decay away entirely leaves nothing to
             // lose, and these videos exist for the loss.
             if (declines < minEverDeclines)
@@ -2780,7 +2801,7 @@ public static class PromptSmokeTest
 
         logger.LogInformation("[Smoke] C45 condition spread: {Summary}", string.Join(" | ", summary));
 
-        f.Add(("C45", $"Across {seeds} seeds no scene type abandons 2015 more than {maxAbandoned2015:P0} of the time, at least {minEverDeclines:P0} of runs still decline, and trajectories stay varied",
+        f.Add(("C45", $"Across {seeds} seeds no scene type is squatted at 2015 more than {maxSquatted2015:P0} of the time, at least {minEverDeclines:P0} of runs still decline, trajectories stay varied, and 'abandoned' never appears",
             errs.Count == 0, errs.Count == 0 ? string.Join(" | ", summary) : Join(errs)));
     }
 
@@ -2866,12 +2887,81 @@ public static class PromptSmokeTest
             errs.Count == 0, errs.Count == 0 ? "Distinctive and Composition both render correctly" : Join(errs)));
     }
 
+    // A squatted downtown_street/strip_mall scene is a half-dead row, not a
+    // sealed ruin: BuildSceneBlock's half-dead branch always samples 3
+    // PoorTenantBusinesses entries and never falls back to the fully-dead
+    // wording, while BuildDecayBlock's DECAY section (a separate block) draws
+    // from a pool layering SquattedGroundDetails on top of the heavy storefront
+    // decay — sampled 3-of-16, so a single call can miss it. Swept over many
+    // seeds so the pool wiring is actually exercised, not just present.
+    private static void DoC49(Dictionary<int, EraProfile> eras, List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        const string fullyDeadMarker = "every storefront closed and dark";
+        var sceneTypes = new[] { "downtown_street", "strip_mall" };
+
+        foreach (var sceneType in sceneTypes)
+        {
+            var sawPoorTenant     = false;
+            var sawSquattedGround = false;
+
+            for (var seed = 1; seed <= 30; seed++)
+            {
+                var ctx = new GenerationContext { Random = new Random(seed) };
+                _ = ctx.BlockbusterPresent;
+                _ = ctx.RadioShackPresent;
+
+                var sceneText = InvokeBuildSceneBlock(eras[Years[0]], ContentFor(eras, Years[0], sceneType), sceneType, "squatted", ctx);
+                if (sceneText.Contains(fullyDeadMarker))
+                    errs.Add($"{sceneType} seed={seed}: squatted half-dead block contains '{fullyDeadMarker}'");
+                if (PromptService.PoorTenantBusinesses.Any(b => sceneText.Contains(b)))
+                    sawPoorTenant = true;
+
+                var decayText = InvokeBuildDecayBlock("squatted", sceneType, new Random(seed));
+                if (PromptService.SquattedGroundDetails.Any(g => decayText.Contains(g)))
+                    sawSquattedGround = true;
+            }
+
+            if (!sawPoorTenant)
+                errs.Add($"{sceneType}: no PoorTenantBusinesses entry appeared in 30 seeds of squatted scene blocks");
+            if (!sawSquattedGround)
+                errs.Add($"{sceneType}: no SquattedGroundDetails entry appeared in 30 seeds of squatted DECAY blocks");
+        }
+
+        f.Add(("C49", "A squatted downtown_street/strip_mall prompt draws from both PoorTenantBusinesses and SquattedGroundDetails, and never falls back to the fully-dead 'every storefront closed and dark' wording",
+            errs.Count == 0, errs.Count == 0 ? "Half-dead squatted retail draws from both pools across 30 seeds x 2 scene types" : Join(errs)));
+    }
+
+    // "restored" is a reoccupation, not a rebuild — it must read as the same
+    // building cleaned up and back in modest use, never as a renovation with
+    // modern updates (that wording describes a DIFFERENT, no-longer-used state).
+    private static void DoC50(List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        foreach (var sceneType in new[] { "gas_station", "downtown_street", "strip_mall", "auto_repair" })
+        {
+            var descriptor = InvokeConditionDescriptor("restored", sceneType);
+            if (!descriptor.Contains("reoccupied"))
+                errs.Add($"{sceneType}: 'restored' descriptor missing 'reoccupied': \"{descriptor}\"");
+            if (descriptor.Contains("renovated appearance"))
+                errs.Add($"{sceneType}: 'restored' descriptor still contains 'renovated appearance': \"{descriptor}\"");
+        }
+
+        f.Add(("C50", "The 'restored' condition descriptor reads as reoccupation, not a renovated rebuild",
+            errs.Count == 0, errs.Count == 0 ? "restored descriptor contains 'reoccupied', never 'renovated appearance'" : Join(errs)));
+    }
+
     // Trajectory shape, swept over many seeds rather than the two fixture runs:
     // (1) condition worsens one step at a time — no era pair jumps rank 0 -> 2;
-    // (2) a run that ever decayed resolves its arc in the finale, so it never
-    // ends on "abandoned". Drives PickSceneCondition directly with each era's
-    // real allowed_scene_conditions, exercising the same call order
-    // PromptService uses (BeginEra then PickSceneCondition, once per era).
+    // (2) a run that reached full derelict rank pre-finale always resolves to
+    // "squatted" — no resurrection to "restored" or "declining"; (3) "abandoned"
+    // never appears anywhere in any trajectory. Drives PickSceneCondition
+    // directly with each era's real allowed_scene_conditions, exercising the
+    // same call order PromptService uses (BeginEra then PickSceneCondition,
+    // once per era). This also covers the "no era ever has condition
+    // 'abandoned', across a full 6-era run, for downtown_street and
+    // strip_mall" requirement — both are among the swept scene types.
     private static void DoC47(
         Dictionary<int, EraProfile> eras,
         List<(string, string, bool?, string)> f)
@@ -2901,16 +2991,20 @@ public static class PromptSmokeTest
                         errs.Add($"{sceneType} seed={seed}: rank skipped 0 -> 2 between {prev.Year} ('{prev.Condition}') and {cur.Year} ('{cur.Condition}')");
                 }
 
-                // "Ever decayed" is judged before the finale: the last era is the
-                // resolution, so it is exactly what must not land on 'abandoned'.
-                var decayedBeforeFinale = trajectory.Take(trajectory.Count - 1).Any(t => t.Rank >= 1);
+                // Judged before the finale: the last era is the resolution. A run
+                // that reached full derelict rank (2) pre-finale must resolve to
+                // 'squatted' — no resurrection to 'restored' or 'declining', and
+                // 'abandoned' itself must never appear anywhere in the trajectory.
+                var reachedDerelictBeforeFinale = trajectory.Take(trajectory.Count - 1).Any(t => t.Rank >= 2);
                 var final = trajectory[^1];
-                if (decayedBeforeFinale && final.Condition == "abandoned")
-                    errs.Add($"{sceneType} seed={seed}: run decayed then ended on 'abandoned' ({final.Year})");
+                if (reachedDerelictBeforeFinale && final.Condition != "squatted")
+                    errs.Add($"{sceneType} seed={seed}: run reached derelict rank pre-finale but finale condition is '{final.Condition}' (expected 'squatted')");
+                if (trajectory.Any(t => t.Condition == "abandoned"))
+                    errs.Add($"{sceneType} seed={seed}: 'abandoned' appeared in the trajectory — this must never happen");
             }
         }
 
-        f.Add(("C47", "Condition rank never skips 0 -> 2 between consecutive eras; a run that ever decayed never ends on 'abandoned'",
+        f.Add(("C47", "Condition rank never skips 0 -> 2 between consecutive eras; a run that reached derelict rank pre-finale always resolves to 'squatted', never 'restored' or 'declining'; 'abandoned' never appears",
             errs.Count == 0, errs.Count == 0 ? "Trajectory steps one rank at a time and resolves across 40 seeds x 4 scene types" : Join(errs)));
     }
 

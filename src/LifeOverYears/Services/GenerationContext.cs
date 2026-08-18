@@ -150,15 +150,20 @@ public sealed class GenerationContext
     public string PickSceneCondition(IReadOnlyList<string>? allowed, string sceneType)
     {
         // Finale: if the place ever fell apart, the last era resolves the arc.
-        // A gas station may be rebuilt, renovated, or taken over by squatters;
-        // every other scene type resolves to renovated or still-declining —
-        // "squatted" stays gas-station-only. Deliberately bypasses the era's
-        // allowed list, which has no "squatted".
+        // A gas station may be rebuilt, renovated, or taken over by squatters.
+        // Every other scene type may renovate or keep declining if it only
+        // reached "declining" — but if it reached full derelict rank (2), it
+        // stays squatted: no resurrection. "squatted" is no longer gas-station-
+        // only; for downtown_street/strip_mall it now means a half-dead row of
+        // survivors, not a sealed ruin. Deliberately bypasses the era's allowed
+        // list, which has no "squatted".
         if (IsLastEra && _conditionRank > 0)
         {
             SceneCondition = sceneType == "gas_station"
                 ? Random.Next(3) switch { 0 => "new", 1 => "restored", _ => "squatted" }
-                : Random.Next(3) switch { 0 => "restored", 1 => "restored", _ => "declining" };
+                : _conditionRank >= 2
+                    ? "squatted"
+                    : Random.Next(3) switch { 0 => "restored", 1 => "restored", _ => "declining" };
             _conditionRank = RankOf(SceneCondition);
             return SceneCondition;
         }
@@ -166,6 +171,10 @@ public sealed class GenerationContext
         var pool = (allowed ?? Array.Empty<string>())
             .Where(c => RankOf(c) >= _conditionRank)
             .ToList();
+
+        // "abandoned" must never be selected — squatted covers the same rank
+        // (2) with survivors instead of a sealed ruin.
+        pool = pool.Select(c => c == "abandoned" ? "squatted" : c).Distinct().ToList();
 
         // Condition worsens one step at a time: a healthy scene can start
         // declining, but it cannot skip straight to derelict.
@@ -184,7 +193,7 @@ public sealed class GenerationContext
         if (pool.Count == 0)
         {
             // Era offers nothing at or above the reached rank — hold the arc.
-            SceneCondition = _conditionRank >= 2 ? "abandoned" : "declining";
+            SceneCondition = _conditionRank >= 2 ? "squatted" : "declining";
             _everDecayed = true;
             return SceneCondition;
         }
@@ -236,7 +245,10 @@ public sealed class GenerationContext
     // How often a pre-finale era is allowed to reach for "abandoned" at all.
     // Deliberately low: it is a terminal state, and reaching it early costs the
     // run every era after it.
-    private const double EarlyAbandonChance = 0.15;
+    // Abandoned is disabled entirely — a bare empty ruin reads as dead air on
+    // screen. Kept at 0.0 rather than deleted so the behaviour can be restored
+    // by changing one number.
+    private const double EarlyAbandonChance = 0.0;
 
     private double DeclineBias()
     {

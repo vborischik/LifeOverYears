@@ -27,35 +27,58 @@ distort the source geometry.
 TRANSFORM TO 2025
 Post-pandemic era. A 2025 strip mall rebuilt around services and food — nail studios, phone stores, and pickup-driven restaurants where retail used to be.
 
-CONDITION: abandoned — closed business, boarded windows, weeds through pavement cracks, weathered surfaces
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- every storefront closed and dark — no lit signs, no menu boards, no open businesses
-- faded remains of old signage still on the facade, lettering weathered and partly missing
-- plywood over the ground-floor windows, doors chained shut
-No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.
+- a liquor store still open, its lit window the brightest thing in the row
+- a tax preparation and check-cashing office still open a few doors along, plain lettering, bars on the window
+- most of the other units dark behind the glass, several papered over from the inside
+- urgent care clinic with red-and-white minimal branding
+- dollar store anchor with green signage
+- delivery ghost kitchen with 'DRIVER PICKUP ONLY' parking signs
+- window signs: 'SWITCH & SAVE — 3 LINES $90', 'EVERYTHING $1.25'
+- QR-code stickers on glass
+- outdoor barriers with planters along the walkway
+Typography: minimalist geometric sans-serif, heavily simplified flat logos.
+
+
+SIGNAGE RESTRICTION
+The only readable text anywhere in the image is:
+'DRIVER PICKUP ONLY'
+'SWITCH & SAVE — 3 LINES $90'
+'EVERYTHING $1.25'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-NO people anywhere — the place is completely deserted.
+EXACTLY 2 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block. Grouped in pairs, threes, and singles.
+- of these, one person just out of the liquor store, a bottle in a black plastic bag — keeping to themselves, not looking at the camera
+- a teenager scrolling a phone while waiting on a bench
+- a family heading into the trampoline park
+- a retiree scrolling a tablet while sitting on a bench
+Clothing: men in wide-leg pants, bucket hats; women in chunky dad sneakers, high-waisted wide-leg jeans. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-NO vehicles anywhere — empty lot, no parked or moving cars.
+EXACTLY 2 period vehicles, all different:
+- 2020-2025 Hyundai Tucson — sharp parametric grille design — silver
+- 2023-2025 Honda Accord — clean minimalist refresh — white
+Parked with gaps. Where a model is listed with a year range, render the 2025 model year specifically — only styling, trim and features available in 2025, nothing introduced later. No vehicle newer than 2025.
+Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
+PLACEMENT: all angled into stalls along the far edge of the lot, the near stalls left empty. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
 - utilities: overhead lines on existing poles in older commercial areas, fiber optic widespread
 
 DECAY
-- grass and saplings pushing up through the parking apron
-- every sign panel blank or removed, empty frames left on the pylon
-- shattered storefront glass swept into the walkway corners
+- a FOR RENT sign taped inside a dark storefront window
+- weeds along the base of the storefront walkway
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — digital — smartphone or mirrorless camera look.
 Color: high saturation. Grain: very clean, minimal to no noise.
 Photorealistic — NOT black-and-white, no HDR.
-Light: flat, even light under a grey overcast — subdued and cheerless, but plainly daytime; no fog, no rain, no darkness.
+Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
 
 PRIVACY
 Blur all faces and license plates.

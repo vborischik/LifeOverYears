@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-08-10T04:38:36.9337030+00:00
+Generated: 2026-08-12T14:15:45.5620975+00:00
 
 ## Check Results
 
@@ -28,7 +28,7 @@ Generated: 2026-08-10T04:38:36.9337030+00:00
 | C20 | Every live prompt has a two-sign 'window signs:' line, >=1 extras line, and a people_mix line; derelict eras carry none of them | ✅ PASS | All three sampling axes present in every prompt |
 | C21 | Run1 vs Run2: >=3 of 6 years differ in sampled extras or window signs | ✅ PASS | Sufficient sampling variance between seeds |
 | C22 | Every prompt is at most 6000 characters | ✅ PASS | All prompts within 6000 chars |
-| C23 | default/unknown scenes always thriving; rank monotonic per run (gas-station finale may resolve to 'new' or 'restored'); abandoned/declining/squatted counts honored for gas_station, downtown_street and strip_mall; 'squatted' only on a gas_station's final era; 'restored' only on a gas_station's final era | ✅ PASS | Condition trajectory invariants hold |
+| C23 | default/unknown scenes always thriving; rank monotonic per run (the final era may resolve the arc for any condition-supporting type); 'abandoned' never appears as a SceneCondition; declining/squatted counts honored for every condition-supporting type; 'restored' only on a final era | ✅ PASS | Condition trajectory invariants hold |
 | C24 | Every business-name token resolves to a member of its own pool and stays identical across all six eras of a run | ✅ PASS | All 8 business tokens resolve correctly and remain stable per run |
 | C25 | DECAY present iff condition is declining/abandoned/squatted; healthy conditions keep verbatim era road markings with no DECAY; DECAY never precedes OUTPUT FORMAT (i.e. never inside PRESERVE) and never mentions geometry terms; bullets are drawn from the correct severity pool | ✅ PASS | Decay section invariants hold |
 | C26 | Caption body files load and parse (>=5 bodies, known placeholders only, no hashtags, ends on a question); every scene_content type has a caption voice; anchor pools are well-formed and non-leaking; AnglesFor() composition holds; every reachable condition maps to a real phrase | ✅ PASS | Caption body files and voice coverage hold |
@@ -39,7 +39,7 @@ Generated: 2026-08-10T04:38:36.9337030+00:00
 | C31 | Blockbuster never appears in a downtown_street prompt, in any form | ✅ PASS | No Blockbuster content in any downtown_street prompt |
 | C32 | Neither chain ever appears Named in an abandoned or squatted era | ✅ PASS | No named chain tenants in derelict eras |
 | C33 | Chain tenant presence is stable across a run: no flicker between schedule-eligible eras | ✅ PASS | No presence flicker across 20 seeds x 6 eras |
-| C34 | A derelict era emits the ghost line whenever the run's chain schedule calls for one | ✅ PASS | Ghost lines present wherever the schedule calls for them |
+| C34 | A fully-dead derelict era emits the ghost line whenever the run's chain schedule calls for one (squatted downtown_street/strip_mall's half-dead block omits chain tenants by design) | ✅ PASS | Ghost lines present wherever the schedule calls for them |
 | C35 | A derelict era never emits a Named or Generic chain tenant line | ✅ PASS | No Named/Generic chain content in any derelict block |
 | C36 | Street-shaped placement language (sidewalk zones, curb-hugging, PLACEMENT wording) is gated on SceneDna geometry | ✅ PASS | Street language present only where geometry supports it |
 | C37 | Synthetic base prompts name their scene type and carry scene geometry, with no source-photo wording (era PRESERVE header assertion parked) | ✅ PASS | Synthetic base prompts well-formed; era header assertion parked while the short era PRESERVE is evaluated — restore together with the BuildPreserveBlock call in PromptService line 89 |
@@ -49,9 +49,13 @@ Generated: 2026-08-10T04:38:36.9337030+00:00
 | C41 | Caption assembly produces a complete, fully substituted caption for every scene type; scene types differ; weekly rotation reaches every body; same-week scenes are separated by the id offset | ✅ PASS | Caption assembly varied and fully substituted |
 | C43 | Chained eras are told to clear the previous year's people and vehicles; unchained eras keep the empty-source wording | ✅ PASS | Base note matches the chaining mode in every era |
 | C44 | Every prompt sets its light from the condition: living eras get open daylight, only derelict eras go grey, and no prompt asks for fog, rain or night | ✅ PASS | Light matches condition in every prompt |
-| C45 | Across 500 seeds no scene type abandons 2015 more than 35% of the time, at least 70% of runs still decline, and trajectories stay varied | ✅ PASS | downtown_street: 2015 abandoned 10%, ever declines 99%, 100 trajectories \| strip_mall: 2015 abandoned 10%, ever declines 99%, 100 trajectories \| auto_repair: 2015 abandoned 10%, ever declines 99%, 100 trajectories \| gas_station: 2015 abandoned 7%, ever declines 89%, 205 trajectories |
+| C45 | Across 500 seeds no scene type is squatted at 2015 more than 35 % of the time, at least 70 % of runs still decline, trajectories stay varied, and 'abandoned' never appears | ✅ PASS | downtown_street: 2015 squatted 0 %, ever declines 99 %, 99 trajectories \| strip_mall: 2015 squatted 0 %, ever declines 99 %, 99 trajectories \| auto_repair: 2015 squatted 0 %, ever declines 99 %, 99 trajectories \| gas_station: 2015 squatted 0 %, ever declines 82 %, 151 trajectories |
 | C42 | Packed-crowd mall scenes render crowd/lot wording, exactly 5 representative vehicles, no PLACEMENT line | ✅ PASS | Packed crowd rendering correct across 1975/1985/1995 |
 | C46 | Every condition-bearing scene type prints its CONDITION line; mall (no condition arc) prints none | ✅ PASS | CONDITION line present for gas_station/downtown_street/strip_mall/auto_repair, absent for mall |
+| C47 | Condition rank never skips 0 -> 2 between consecutive eras; a run that reached derelict rank pre-finale always resolves to 'squatted', never 'restored' or 'declining'; 'abandoned' never appears | ✅ PASS | Trajectory steps one rank at a time and resolves across 40 seeds x 4 scene types |
+| C48 | Distinctive phrases appear verbatim in the synthetic base prompt; a set Composition produces the framing line | ✅ PASS | Distinctive and Composition both render correctly |
+| C49 | A squatted downtown_street/strip_mall prompt draws from both PoorTenantBusinesses and SquattedGroundDetails, and never falls back to the fully-dead 'every storefront closed and dark' wording | ✅ PASS | Half-dead squatted retail draws from both pools across 30 seeds x 2 scene types |
+| C50 | The 'restored' condition descriptor reads as reoccupation, not a renovated rebuild | ✅ PASS | restored descriptor contains 'reoccupied', never 'renovated appearance' |
 
 ## Vehicle Selections
 
@@ -83,7 +87,7 @@ Generated: 2026-08-10T04:38:36.9337030+00:00
 | 1995 | 4 | 1992-1996 Toyota Camry — rounded, understated, 1992-1995 Honda Civic — small rounded coupe and sedan, 1993-1997 Toyota Corolla — rounded compact sedan, 1991-1995 Dodge Caravan — rounded second-gen minivan |
 | 2005 | 5 | 2003-2007 Nissan Altima — sporty mid-size, 2002-2008 Dodge Ram — big rig grille evolved, 2005-2010 Ford Mustang — retro muscle revival, 2004-2008 Chrysler 300 — bold boxy retro chrome grille, 1998-2004 Nissan Frontier — compact pickup |
 | 2015 | 4 | 2011-2016 Chrysler Town & Country — chrome-trimmed minivan, 2013-2017 Honda Accord — clean modern lines, 2011-2016 Kia Optima — stylish mid-size, sporty, 2013-2018 Hyundai Santa Fe — fluidic sculpture styling |
-| 2025 | 0 |  |
+| 2025 | 2 | 2022-2025 Toyota Tundra — massive grille, muscular stance, 2021-2025 Kia Telluride — boxy upscale three-row SUV |
 
 ### downtown_street / Run 2 (seed=1337)
 | Year | Count | Vehicles |
@@ -93,5 +97,5 @@ Generated: 2026-08-10T04:38:36.9337030+00:00
 | 1995 | 5 | 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size, 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding, 1990-1994 Chevrolet Lumina — rounded mid-size sedan, 1994-1998 Ford Mustang — rounded SN95 pony car, 1991-1996 Buick Roadmaster — large rounded wagon and sedan |
 | 2005 | 2 | 2003-2007 Honda Accord — clean lines, sharper than 1990s, 2002-2006 Toyota Camry — smooth conservative mid-size |
 | 2015 | 2 | 2014-2019 Nissan Rogue — popular compact crossover, 2011-2016 Kia Optima — stylish mid-size, sporty |
-| 2025 | 0 |  |
+| 2025 | 2 | 2022-2025 Honda Civic — clean mature compact, 2021-2025 Chrysler Pacifica — sleek minivan, thin lights |
 

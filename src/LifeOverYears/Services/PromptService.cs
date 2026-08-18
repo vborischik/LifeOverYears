@@ -121,6 +121,10 @@ public sealed class PromptService : IPromptService
         // dumped years ago, described rather than drawn from the era's model pool
         // (those are current, running cars — exactly what must not appear here).
         var isSquatted    = supportsCondition && condition == "squatted";
+        // downtown_street/strip_mall squatted is a half-dead row with trading
+        // survivors, not a sealed ruin — the PEOPLE block must not flatly claim
+        // nothing is open when the scene block is describing open, trading units.
+        var isSquattedRetail = isSquatted && sceneType is "downtown_street" or "strip_mall";
         var derelictCount = isSquatted ? vehicleCount : 0;
 
         var vehicles = isSquatted
@@ -144,7 +148,7 @@ public sealed class PromptService : IPromptService
             .Replace("{BASE_NOTE}",         context.ChainedFromPreviousEra ? ChainedBaseNote : FreshBaseNote)
             .Replace("{PRESERVE_BLOCK}",    ShortPreserveBlock)
             .Replace("{SCENE_BLOCK}",       sceneBlock)
-            .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, hasSidewalks, rng, context, isPacked, isSquatted, IsDecliningRetail(condition, sceneType)))
+            .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, hasSidewalks, rng, context, isPacked, isSquatted, isSquattedRetail, IsDecliningRetail(condition, sceneType)))
             .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation, onStreetParking, isPacked, derelictCount))
             .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year, sceneType, condition, rng))
             .Replace("{STYLE_BLOCK}",       BuildStyleBlock(eraProfile.Photography, condition));
@@ -389,17 +393,27 @@ public sealed class PromptService : IPromptService
 
     // Short appearance/upkeep descriptor per sampled scene condition. Affects how
     // the place looks, never its geometry (kept out of the PRESERVE block).
-    private static string ConditionDescriptor(string condition) => condition switch
+    private static string ConditionDescriptor(string condition, string sceneType) => condition switch
     {
         "thriving"  => "well-maintained, freshly painted, active business, clean lot",
         "busy"      => "customers present, high activity, all pumps in use",
         "new"       => "recently built appearance, pristine surfaces, new signage",
         "declining" => "faded paint, minor wear, aging signage, sparse activity",
         "abandoned" => "closed business, boarded windows, weeds through pavement cracks, weathered surfaces",
-        // No shelters, carts or belongings: nobody lives here. The place is dead
-        // and someone has just walked in to drink out of sight.
-        "squatted"  => "closed and derelict, boarded entrance, weeds through the pavement, litter blown against the kerb",
-        "restored"  => "renovated appearance, modern updates on original structure",
+        "squatted"  => sceneType switch
+        {
+            // Retail squatted is a half-dead row now, not a sealed ruin — some
+            // survivors are still trading.
+            "downtown_street" or "strip_mall" =>
+                "half the storefronts closed and boarded, the survivors are cheap poor-neighbourhood businesses still trading; broken asphalt, shattered glass and litter across the lot and sidewalk",
+            // gas_station/auto_repair/default: no shelters, carts or belongings —
+            // nobody lives here, the place is dead and someone has just walked in
+            // to drink out of sight.
+            _ => "closed and derelict, boarded entrance, weeds through the pavement, litter blown against the kerb"
+        },
+        // Reoccupation, not a rebuild: the same structure, cleaned up and back
+        // in modest use — never a "restored" claim of modern updates.
+        "restored"  => "the same building reoccupied — plywood off the windows, litter and weeds cleared, surfaces cleaned, a modest working business again; structure, footprint and signband shape unchanged",
         _           => "well-maintained, freshly painted, active business, clean lot"
     };
 
@@ -515,6 +529,40 @@ public sealed class PromptService : IPromptService
         "a wrecked car with its hood off left sitting at a bay door"
     };
 
+    // The businesses that survive in a squatted retail row — cheap,
+    // poor-neighbourhood tenants, never anything upscale.
+    internal static readonly string[] PoorTenantBusinesses =
+    {
+        "a tax preparation and check-cashing office, plain vinyl lettering, bars on the window",
+        "a pawn shop with a hand-painted sign and a grated door",
+        "a dollar store with faded banner signage taped across the glass",
+        "a wig and beauty supply shop, handwritten prices in the window",
+        "a phone repair and prepaid wireless counter in a half-sized unit",
+        "a bail bonds office with a lit plastic sign and no window display",
+        "a coin laundromat, fluorescent-lit, most machines idle",
+        "a liquor store still open, its lit window the brightest thing in the row"
+    };
+
+    // Ground-level squalor for a squatted retail row — layered on top of the
+    // storefront-level DecayHeavy wording, since the row reads as half-dead
+    // rather than a sealed ruin.
+    internal static readonly string[] SquattedGroundDetails =
+    {
+        "asphalt broken into loose slabs with weeds forcing through the seams",
+        "shattered glass swept into the gutter and glinting along the kerb",
+        "litter and fast-food wrappers blown against the storefront bases",
+        "a rusted shopping cart on its side at the edge of the lot",
+        "potholes standing with dirty water after rain",
+        "faded parking stripes almost gone under grit and debris"
+    };
+
+    // squatted retail no longer uses the fully-sealed Heavy pool alone — it
+    // layers in ground-level squalor around the same heavy storefront decay,
+    // since the row now has open, trading survivors rather than reading as
+    // completely dead. Cached so Concat is not rebuilt on every call.
+    private static readonly string[] DowntownSquattedDecay = DowntownDecayHeavy.Concat(SquattedGroundDetails).ToArray();
+    private static readonly string[] StripMallSquattedDecay = StripMallDecayHeavy.Concat(SquattedGroundDetails).ToArray();
+
     // Pool selection lives here (not at the call site) so the smoke test can
     // assert against exactly the pool the builder would have used.
     internal static string[]? DecayPoolFor(string sceneType, string condition) => condition switch
@@ -526,7 +574,14 @@ public sealed class PromptService : IPromptService
             "auto_repair"     => AutoRepairDecayModerate,
             _                 => DecayModerate
         },
-        "abandoned" or "squatted" => sceneType switch
+        "squatted" => sceneType switch
+        {
+            "downtown_street" => DowntownSquattedDecay,
+            "strip_mall"      => StripMallSquattedDecay,
+            "auto_repair"     => AutoRepairDecayHeavy,
+            _                 => DecayHeavy
+        },
+        "abandoned" => sceneType switch
         {
             "downtown_street" => DowntownDecayHeavy,
             "strip_mall"      => StripMallDecayHeavy,
@@ -581,18 +636,24 @@ public sealed class PromptService : IPromptService
         if (SupportsCondition(sceneType))
         {
             sb.AppendLine();
-            sb.AppendLine($"CONDITION: {condition} — {ConditionDescriptor(condition)}");
+            sb.AppendLine($"CONDITION: {condition} — {ConditionDescriptor(condition, sceneType)}");
         }
 
         sb.AppendLine();
         sb.AppendLine("PERIOD DETAILS");
+
+        // squatted downtown_street/strip_mall is a half-dead row now, not a
+        // sealed ruin — some survivors are still trading. Everything else
+        // (gas_station, auto_repair, and squatted's own former "abandoned"
+        // twin) keeps the fully-closed block below.
+        var isHalfDeadSquattedRetail = condition == "squatted" && sceneType is "downtown_street" or "strip_mall";
 
         // A closed-down block must not advertise. The era's scene_content lists
         // live businesses, promos and street props; emitting them alongside
         // "CONDITION: abandoned" is a direct contradiction, and the image model
         // resolves it by rendering the businesses. Derelict eras get their own
         // short block instead, and skip window signs and extras entirely.
-        if (condition is "abandoned" or "squatted")
+        if (condition is "abandoned" or "squatted" && !isHalfDeadSquattedRetail)
         {
             sb.AppendLine("- every storefront closed and dark — no lit signs, no menu boards, no open businesses");
             sb.AppendLine("- faded remains of old signage still on the facade, lettering weathered and partly missing");
@@ -605,6 +666,20 @@ public sealed class PromptService : IPromptService
             foreach (var tenant in context.ResolveChainTenants(era.Year, sceneType, condition))
                 if (tenant.Kind == GenerationContext.ChainSignKind.Ghost)
                     sb.AppendLine($"- {tenant.Text}");
+            sb.Append("No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.");
+            return sb.ToString();
+        }
+
+        // Half-dead squatted retail: about half the row is dark, but the
+        // survivors are real, cheap, trading businesses — never the era's
+        // normal Storefronts pool or window signs, same as the fully-closed
+        // branch above.
+        if (isHalfDeadSquattedRetail)
+        {
+            sb.AppendLine("- about half the storefronts closed — plywood over the glass, roll-down shutters padlocked, empty sign frames above them");
+            foreach (var business in Sample(PoorTenantBusinesses, 3, rng))
+                sb.AppendLine($"- {business}");
+            sb.AppendLine("- the open units are lit and clearly trading — cheap signage, barred windows, a few customers");
             sb.Append("No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.");
             return sb.ToString();
         }
@@ -800,7 +875,7 @@ public sealed class PromptService : IPromptService
         return sb.ToString();
     }
 
-    private static string BuildPeopleBlock(EraProfile era, SceneContent? content, int peopleCount, bool isGasStation, bool hasSidewalks, Random rng, GenerationContext context, bool isPacked, bool isSquatted, bool isDecliningRetail)
+    private static string BuildPeopleBlock(EraProfile era, SceneContent? content, int peopleCount, bool isGasStation, bool hasSidewalks, Random rng, GenerationContext context, bool isPacked, bool isSquatted, bool isSquattedRetail, bool isDecliningRetail)
     {
         var sb = new StringBuilder();
         sb.AppendLine("PEOPLE");
@@ -830,7 +905,9 @@ public sealed class PromptService : IPromptService
                     sb.AppendLine($"- {mixPick[0]} — passing by along the far edge, not stopping, nothing to do with this place");
             }
 
-            sb.AppendLine("No staff, no customers, nobody working — nothing here is open.");
+            sb.AppendLine(isSquattedRetail
+                ? "These three are the only people rendered up close — no other named figures here. A few unnamed customers may be visible at the open trading units described elsewhere in this scene."
+                : "No staff, no customers, nobody working — nothing here is open.");
             sb.Append("The two have only come in to drink out of sight: no tents, no tarps, no bedding, no shopping carts, no belongings laid out — nobody lives here.");
             return sb.ToString();
         }

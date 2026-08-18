@@ -27,35 +27,58 @@ distort the source geometry.
 TRANSFORM TO 2025
 Post-pandemic era. A 2025 main street — minimalist flat-logo storefronts, QR codes on the glass, delivery culture in plain view.
 
-CONDITION: abandoned — closed business, boarded windows, weeds through pavement cracks, weathered surfaces
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- every storefront closed and dark — no lit signs, no menu boards, no open businesses
-- faded remains of old signage still on the facade, lettering weathered and partly missing
-- plywood over the ground-floor windows, doors chained shut
-No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.
+- a liquor store still open, its lit window the brightest thing in the row
+- a tax preparation and check-cashing office still open a few doors along, plain lettering, bars on the window
+- most of the other units dark behind the glass, several papered over from the inside
+- TOWN DINER with 'COFFEE $3.50' shown on a small digital menu screen in the window
+- plant and gift shop with a hand-lettered kraft-paper window display
+- delivery-only ghost kitchen storefront with pickup shelves visible through the glass
+- window signs: 'ORDER AHEAD — SCAN THE QR CODE', 'NOW HIRING — APPLY ONLINE'
+- a shared e-scooter and e-bike dock at the curb
+- the ghost-sign wall now a commissioned mural with bold flat graphics
+Typography: minimalist geometric sans-serif, heavily simplified flat logos.
+
+
+SIGNAGE RESTRICTION
+The only readable text anywhere in the image is:
+'COFFEE $3.50'
+'ORDER AHEAD — SCAN THE QR CODE'
+'NOW HIRING — APPLY ONLINE'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-NO people anywhere — the place is completely deserted.
+EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- of these, one person already drinking, sitting along the wall a few doors down from the liquor store — keeping to themselves, not looking at the camera
+- two friends comparing photos on their phones at an outdoor table
+- an older couple reading the diner's digital menu in the window
+- a man in techwear walking a dog in a cooling vest
+Clothing: men in bucket hats, chunky sneakers; women in athleisure, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-NO vehicles anywhere — empty lot, no parked or moving cars.
+EXACTLY 2 period vehicles, all different:
+- 2022-2025 Honda Civic — clean mature compact — silver
+- 2021-2025 Chrysler Pacifica — sleek minivan, thin lights — black
+Parked with gaps. Where a model is listed with a year range, render the 2025 model year specifically — only styling, trim and features available in 2025, nothing introduced later. No vehicle newer than 2025.
+Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
+PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines still on the original poles along the street, fiber optic bundles and 5G small cell nodes mounted on the existing poles
 
 DECAY
-- plywood over a broken transom window, the glass long gone
-- rust streaks below the old cornice bolts
-- graffiti tags across the lower brick and boarded panels
+- one storefront papered over from inside, a handwritten sign taped to the glass
+- cracked sidewalk squares, weeds at the tree pits
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — digital — smartphone or mirrorless camera look.
 Color: high saturation. Grain: very clean, minimal to no noise.
 Photorealistic — NOT black-and-white, no HDR.
-Light: flat, even light under a grey overcast — subdued and cheerless, but plainly daytime; no fog, no rain, no darkness.
+Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
 
 PRIVACY
 Blur all faces and license plates.
