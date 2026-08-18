@@ -49,7 +49,6 @@ Do not render any other readable words, business names, slogans, advertisements,
 PEOPLE
 EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
 - a mechanic sliding a creeper out from under a car
-- a delivery driver dropping off a tire shipment
 - a mom loading groceries into a minivan
 Clothing: men in windbreakers, grunge style; women in crop tops, floral dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 

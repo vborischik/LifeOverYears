@@ -953,7 +953,7 @@ public sealed class PromptService : IPromptService
         }
 
         if (content is not null)
-            foreach (var activity in SampleUnused(content.PeopleActivities, 2, rng, context))
+            foreach (var activity in SampleUnused(content.PeopleActivities, 1, rng, context))
                 sb.AppendLine($"- {activity}");
 
         if (era.PeopleMix is { Count: > 0 })

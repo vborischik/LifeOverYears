@@ -50,7 +50,6 @@ Do not render any other readable words, business names, slogans, advertisements,
 PEOPLE
 EXACTLY 8 people TOTAL: 3 near sidewalk (largest, foreground), 3 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
 - a mechanic wiping his hands on a shop rag walking between bays
-- a man in a work uniform checking a clipboard invoice with the owner
 - an elderly couple walking arm in arm
 Clothing: men in bell bottoms, polyester suits; women in midi skirts, earth tones. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
