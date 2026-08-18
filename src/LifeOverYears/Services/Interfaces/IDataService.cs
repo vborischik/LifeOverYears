@@ -19,4 +19,8 @@ public interface IDataService
     // data/captions/{name}.txt — the caption bodies for one scene type.
     // Throws FileNotFoundException when absent, so callers can fall back.
     Task<string> LoadCaptionBodiesAsync(string name);
+
+    // data/captions/titles/{name}.txt — the YouTube title hooks for one scene
+    // type. Throws FileNotFoundException when absent, so callers can fall back.
+    Task<string> LoadTitleTemplatesAsync(string name);
 }

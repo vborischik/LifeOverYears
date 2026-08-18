@@ -159,6 +159,7 @@ public static class PromptSmokeTest
         DoC56(dtRun1, dtRun2, smRun1, smRun2, gasRun1, arRun1, findings);
         await DoC57(dataService, findings);
         await DoC58(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
+        await DoC59(dataService, findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -3545,6 +3546,69 @@ public static class PromptSmokeTest
             errs.Count == 0, errs.Count == 0
                 ? "placement rule present in every era prompt, ahead of the signage whitelist"
                 : Join(errs)));
+    }
+
+    // YouTube titles are a separate pool from the caption bodies and get posted
+    // straight into a field with a hard length limit, so every line in every
+    // title file has to stand on its own: it must substitute completely, stay
+    // non-empty, and fit. A title is one line and carries only the two year
+    // placeholders — {angle}/{condition} are too long to survive here.
+    private static async Task DoC59(
+        IDataService dataService,
+        List<(string, string, bool?, string)> f)
+    {
+        const int youTubeTitleLimit = 100;
+        var errs = new List<string>();
+        var summary = new List<string>();
+
+        // base plus every scene type that has its own angle vocabulary.
+        var names = new[]
+        {
+            "base", "gas_station", "downtown_street", "strip_mall",
+            "auto_repair", "mall", "shopping_center",
+        };
+
+        foreach (var name in names)
+        {
+            string raw;
+            try
+            {
+                raw = await dataService.LoadTitleTemplatesAsync(name);
+            }
+            catch (Exception ex)
+            {
+                errs.Add($"{name}: LoadTitleTemplatesAsync threw: {ex.Message}");
+                continue;
+            }
+
+            var titles = CaptionService.SplitTitles(raw);
+            if (titles.Count == 0)
+            {
+                errs.Add($"{name}: no title lines");
+                continue;
+            }
+
+            var longest = 0;
+            foreach (var template in titles)
+            {
+                var title = CaptionService.SubstituteTitle(template, 1975, 2025);
+
+                if (string.IsNullOrWhiteSpace(title))
+                    errs.Add($"{name}: empty title after substitution: \"{template}\"");
+                // Any surviving brace means a placeholder would be posted literally.
+                if (title.Contains('{') || title.Contains('}'))
+                    errs.Add($"{name}: unsubstituted placeholder in title: \"{title}\"");
+                if (title.Length > youTubeTitleLimit)
+                    errs.Add($"{name}: title is {title.Length} chars, over the {youTubeTitleLimit}-char limit: \"{title}\"");
+
+                longest = Math.Max(longest, title.Length);
+            }
+
+            summary.Add($"{name}: {titles.Count} titles, longest {longest}");
+        }
+
+        f.Add(("C59", "Title templates load for base and every scene type; every line substitutes with no leftover placeholder and stays non-empty and inside YouTube's 100-char limit",
+            errs.Count == 0, errs.Count == 0 ? string.Join(" | ", summary) : Join(errs)));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────

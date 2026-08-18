@@ -91,6 +91,12 @@ end on a question, and must not contain hashtags — those are appended.
 Which body a scene gets is deterministic: ISO week + a stable hash of the scene
 id. `data/prompts/caption-*.txt` are legacy LLM system prompts, not the live path.
 
+**Titles** — `data/captions/titles/{sceneType}.txt`, same `base.txt` fallback: one
+YouTube hook per line, no `---` separators, only `{firstYear}` `{lastYear}` (a
+title is too short for `{angle}`/`{condition}`), each under 100 chars and checked
+by C59. `CaptionRunner` writes it to `title.txt`, kept apart from `caption.txt`,
+which stays the Facebook/Instagram payload.
+
 **Hashtags** — `data/captions/hashtags.txt`. The first three unweighted lines are
 pinned and ship in file order; two more are sampled from the rest. A `NN%` suffix
 (`#nostalgia 70%`) pulls a tag out of the pool onto its own roll at that

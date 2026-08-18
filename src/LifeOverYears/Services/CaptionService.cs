@@ -125,6 +125,26 @@ public sealed class CaptionService : ICaptionService
         var index = SelectBodyIndex(week, sceneDna.Id, bodies.Count);
         var body  = bodies[index];
 
+        // YouTube titles come from their own pool, data/captions/titles/{sceneType}.txt,
+        // with the same base.txt fallback. A title is one line and far shorter than a
+        // body, so it only ever carries the year placeholders — no angle, no condition.
+        string rawTitles;
+        try
+        {
+            rawTitles = await _data.LoadTitleTemplatesAsync(sceneType);
+            _logger.LogInformation("Caption: using scene-specific titles {SceneType}.txt", sceneType);
+        }
+        catch (FileNotFoundException)
+        {
+            rawTitles = await _data.LoadTitleTemplatesAsync("base");
+            _logger.LogInformation("Caption: no titles/{SceneType}.txt, falling back to titles/base.txt", sceneType);
+        }
+
+        var titles = SplitTitles(rawTitles);
+        if (titles.Count == 0)
+            throw new InvalidOperationException(
+                $"Caption: data/captions/titles/{sceneType}.txt contains no titles");
+
         var angles = AnglesFor(sceneType);
         var angle  = angles[Random.Shared.Next(angles.Count)];
 
@@ -139,15 +159,21 @@ public sealed class CaptionService : ICaptionService
         // couple of sampled tags.
         var hashtags = SelectHashtags(await _data.LoadHashtagsAsync());
 
+        var title = SubstituteTitle(
+            titles[Random.Shared.Next(titles.Count)], narrative.FirstYear, narrative.LastYear);
+
         var caption = new Caption(
             Id: Guid.NewGuid().ToString("N"),
-            Title: string.Empty,
+            Title: title,
             Description: description,
             Hashtags: hashtags);
 
         _logger.LogInformation(
             "Caption assembled: {Length} chars, body {Index}/{Count} (week {Week}), {Tags} hashtags, angle=\"{Angle}\"",
             description.Length, index + 1, bodies.Count, week, caption.Hashtags.Count, angle);
+        _logger.LogInformation(
+            "Title assembled: {Length} chars, from {Count} candidates — \"{Title}\"",
+            title.Length, titles.Count, title);
         return caption;
     }
 
@@ -166,6 +192,20 @@ public sealed class CaptionService : ICaptionService
            .Select(b => b.Trim())
            .Where(b => b.Length > 0)
            .ToList();
+
+    // Title files are a plain one-per-line list — no body separators, since a
+    // title is always a single line. Blank lines are dropped.
+    public static IReadOnlyList<string> SplitTitles(string raw) =>
+        raw.Replace("\r\n", "\n")
+           .Split('\n')
+           .Select(t => t.Trim())
+           .Where(t => t.Length > 0)
+           .ToList();
+
+    public static string SubstituteTitle(string template, int firstYear, int lastYear) =>
+        template
+            .Replace("{firstYear}", firstYear.ToString())
+            .Replace("{lastYear}",  lastYear.ToString());
 
     // string.GetHashCode is randomized per process in .NET, which would make the
     // body choice differ between runs of the same scene in the same week. FNV-1a

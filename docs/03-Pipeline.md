@@ -193,7 +193,7 @@ Used by both `Pipeline` (after real generation) and the `assemble` CLI mode, whi
 Assembles a social media caption from files. No LLM call — `XaiProvider` and its interface stay in the repo unwired, so the generated path can be restored, but nothing calls it.
 
 **Input:** `SceneDna` + `SceneNarrative` (persisted as `narrative.json`, so a resumed `collect` can still caption)  
-**Output:** `Caption`, written to `caption.txt` in the run folder
+**Output:** `Caption`, written to `caption.txt` (description + hashtags) and `title.txt` (the YouTube title) in the run folder
 
 ```
 1. CaptionService.GenerateAsync(sceneDna, narrative)
@@ -208,10 +208,16 @@ Assembles a social media caption from files. No LLM call — `XaiProvider` and i
                         anchors, then CommonAngles
              condition: MapFinalCondition(narrative.FinalCondition)
         → SelectHashtags(captions/hashtags.txt)
+        → DataService.LoadTitleTemplatesAsync(sceneType),
+          falling back to captions/titles/base.txt
+        → picks one line, substitutes {firstYear} {lastYear}
 2. CaptionRunner.WriteAsync → caption.txt (body, blank line, tags)
+                            → title.txt  (the YouTube title)
 ```
 
-All caption text lives under `src/LifeOverYears/data/captions/` — bodies per scene type plus the shared `hashtags.txt`. A body must carry the years and the condition, end on a question, and contain no hashtags of its own; the checks enforce all three, because a body that skips the placeholders posts a caption that never says which years the video covers.
+All caption text lives under `src/LifeOverYears/data/captions/` — bodies per scene type, YouTube title hooks under `titles/`, plus the shared `hashtags.txt`. A body must carry the years and the condition, end on a question, and contain no hashtags of its own; the checks enforce all three, because a body that skips the placeholders posts a caption that never says which years the video covers.
+
+Titles are a separate pool from bodies: `titles/{sceneType}.txt` is a plain one-per-line list with the same `base.txt` fallback, carrying only `{firstYear}`/`{lastYear}` and staying inside YouTube's 100-character limit, so `caption.txt` remains exactly the Facebook/Instagram payload while YouTube gets its own hook.
 
 In `hashtags.txt` the first three unweighted lines are pinned and ship in file order, two more are sampled from the rest, and a `NN%` suffix (`#nostalgia 70%`) takes a tag out of the pool and gives it its own roll at that probability — a winner spends one of the sampled slots, so every post carries five tags. The file is the whole interface: repinning, reweighting and adding tags need no code change.
 

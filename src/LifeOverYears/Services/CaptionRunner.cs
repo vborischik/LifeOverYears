@@ -14,6 +14,7 @@ public static class CaptionRunner
 {
     private const string NarrativeFileName = "narrative.json";
     private const string CaptionFileName   = "caption.txt";
+    private const string TitleFileName     = "title.txt";
 
     private static readonly JsonSerializerOptions Json =
         new(JsonSerializerDefaults.Web) { WriteIndented = true };
@@ -56,6 +57,22 @@ public static class CaptionRunner
             await File.WriteAllTextAsync(path,
                 caption.Description + "\n\n" + string.Join("\n", caption.Hashtags));
             logger.LogInformation("Caption written: {Path}", path);
+
+            // The YouTube title is a separate artefact: caption.txt stays exactly
+            // the Facebook/Instagram payload. Guarded on its own so a failed title
+            // write cannot undo the caption already on disk or fail the run.
+            try
+            {
+                var titlePath = Path.Combine(runRoot, TitleFileName);
+                await File.WriteAllTextAsync(titlePath, caption.Title);
+                logger.LogInformation("Title written: {Path}", titlePath);
+            }
+            catch (Exception ex)
+            {
+                logger.LogWarning(ex,
+                    "Title not written; caption.txt is unaffected: {Root}", runRoot);
+            }
+
             return true;
         }
         catch (Exception ex)
