@@ -239,30 +239,93 @@ static async Task<int> RunCollectAsync(
             folder, string.Join(", ", years));
     }
 
-    var imagesDir = Path.Combine(folder, "images");
-    var jobsDir   = Path.Combine(folder, "jobs");
-    var provider  = container.Resolve<IImageGenerationProvider>();
+    var imagesDir  = Path.Combine(folder, "images");
+    var jobsDir    = Path.Combine(folder, "jobs");
+    var promptsDir = Path.Combine(folder, "prompts");
+    var provider   = container.Resolve<IImageGenerationProvider>();
+    var chained    = container.Resolve<IConfiguration>().GetValue("Pipeline:EraChaining", true);
+
+    // The shared base every non-chained era edits, and the starting point of a
+    // chained run. Whichever mode produced this run, its file is already here.
+    var sharedBase = new[] { "base_synthetic.png", "base_clean.png" }
+        .Select(name => Path.Combine(folder, name))
+        .FirstOrDefault(File.Exists);
 
     // State is entirely on disk (jobs/ + images/), so Ctrl+C at any point is
     // safe — rerunning collect resumes where it left off.
     while (true)
     {
         var pending = new List<int>();
+
+        // Chained runs walk forward: each era edits the previous era's finished
+        // image, so a year cannot be submitted until the one before it exists.
+        var chainBase = sharedBase;
+
         foreach (var year in years)
         {
             // A hand-corrected "{year}-clean.png" counts as delivered too, so
             // collect does not keep chasing a year that is already satisfied.
-            if (VideoAssemblyRunner.FindEraImage(imagesDir, year) is not null)
+            if (VideoAssemblyRunner.FindEraImage(imagesDir, year) is { } done)
+            {
+                chainBase = done;
                 continue;
+            }
             var outputPath = Path.Combine(imagesDir, $"{year}.png");
 
-            if (await provider.TryCollectAsync(jobsDir, year, outputPath))
-                logger.LogInformation("Collected {Year}", year);
-            else
+            // A year with no job state was never submitted — either the run died
+            // before reaching it, or its job file was deleted because the batch
+            // behind it was dead. Everything needed to submit it is on disk:
+            // the prompt was written at build time and the base is either the
+            // shared one or the previous era's image.
+            var jobPath    = Path.Combine(jobsDir, $"{year}.json");
+            var promptPath = Path.Combine(promptsDir, $"{year}.txt");
+            if (!File.Exists(jobPath))
             {
-                logger.LogInformation("Pending {Year}", year);
-                pending.Add(year);
+                if (!File.Exists(promptPath))
+                {
+                    logger.LogError("collect: {Year} has no job state and no prompts/{Year}.txt to resubmit from", year, year);
+                    return 1;
+                }
+                if (chainBase is null)
+                {
+                    logger.LogError("collect: {Year} needs resubmitting but the run has no base image", year);
+                    return 1;
+                }
+
+                logger.LogInformation("collect: {Year} was never submitted — submitting from {Base}",
+                    year, Path.GetFileName(chainBase));
+                await provider.SubmitEraAsync(chainBase, await File.ReadAllTextAsync(promptPath), year, jobsDir);
             }
+
+            bool collected;
+            try
+            {
+                collected = await provider.TryCollectAsync(jobsDir, year, outputPath);
+            }
+            catch (Exception ex)
+            {
+                // A dead job is not retried automatically: resubmitting costs
+                // money and only the operator can tell a spent batch from a
+                // transient fault. Say exactly what to delete to retry.
+                logger.LogError(ex,
+                    "collect: {Year} cannot be collected. If its job is spent, delete {JobPath} and rerun collect to submit it again",
+                    year, jobPath);
+                return 1;
+            }
+
+            if (collected)
+            {
+                logger.LogInformation("Collected {Year}", year);
+                chainBase = VideoAssemblyRunner.FindEraImage(imagesDir, year) ?? outputPath;
+                continue;
+            }
+
+            logger.LogInformation("Pending {Year}", year);
+            pending.Add(year);
+
+            // Nothing after this year can even be submitted until it lands.
+            if (chained)
+                break;
         }
 
         if (pending.Count == 0)
@@ -294,7 +357,22 @@ static async Task<int> RunCollectAsync(
     if (missing.Count > 0 || video is null)
         return 1;
 
-    logger.LogInformation("collect complete — video: {Path}", video.FilePath);
+    // The same step 5 the pipeline runs. A batch run normally finishes here
+    // rather than inside Pipeline, so without this every resumed run ends up
+    // with a video and no caption.
+    var captionState = "NOT written";
+    var narrative = await CaptionRunner.ReadNarrativeAsync(folder);
+    var scene     = await CaptionRunner.ReadSceneAsync(folder);
+    if (narrative is null || scene is null)
+        logger.LogWarning(
+            "collect: no {Missing} in {Folder} — caption skipped. Runs built before narrative.json existed cannot be captioned after the fact.",
+            narrative is null ? "narrative.json" : "scene.json", folder);
+    else if (await CaptionRunner.WriteAsync(
+                 container.Resolve<ICaptionService>(), scene, narrative, folder, logger))
+        captionState = "written";
+
+    logger.LogInformation("collect complete — video: {Path}, caption.txt: {CaptionState}",
+        video.FilePath, captionState);
     return 0;
 }
 

@@ -87,6 +87,18 @@ public sealed class Pipeline
                 year, prompt.Id, prompt.Text.Length);
         }
 
+        // Every arc fact the caption needs is settled once the last prompt is
+        // built, and all of it lives in the GenerationContext, which dies with
+        // this process. Persist it now so a later 'collect' — the normal way a
+        // batch run finishes — can still write the caption.
+        await CaptionRunner.SaveNarrativeAsync(run.Root, new SceneNarrative(
+            FirstYear:       years.Min(),
+            LastYear:        years.Max(),
+            FinalCondition:  context.SceneCondition,
+            FirstBrand:      context.FirstBrand,
+            LastBrand:       context.LastBrand,
+            RebrandOccurred: context.RebrandOccurred));
+
         // Step 3a — the base every era image is generated from. Either the
         // source photo emptied of people and vehicles ("clean"), or the scene
         // rebuilt from SceneDna text with the photo never sent at all
@@ -211,30 +223,16 @@ public sealed class Pipeline
         // already on disk by this point, so a caption failure (a network blip, an
         // empty model response) must not discard a finished run. The caption is
         // the one artefact that can be regenerated on its own afterwards.
-        var captionWritten = false;
-        try
-        {
-            var narrative = new SceneNarrative(
+        var narrative = await CaptionRunner.ReadNarrativeAsync(run.Root)
+            ?? new SceneNarrative(
                 FirstYear:       years.Min(),
                 LastYear:        years.Max(),
                 FinalCondition:  context.SceneCondition,
                 FirstBrand:      context.FirstBrand,
                 LastBrand:       context.LastBrand,
                 RebrandOccurred: context.RebrandOccurred);
-            var caption = await _caption.GenerateAsync(sceneDna, narrative);
-            var captionPath = Path.Combine(run.Root, "caption.txt");
-            var captionText = caption.Description
-                + "\n\n"
-                + string.Join("\n", caption.Hashtags);
-            await File.WriteAllTextAsync(captionPath, captionText);
-            captionWritten = true;
-            _logger.LogInformation("Step 5 complete — caption: {Path}", captionPath);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogWarning(ex,
-                "Step 5 failed — caption not written; the run is otherwise complete: {Root}", run.Root);
-        }
+        var captionWritten = await CaptionRunner.WriteAsync(
+            _caption, sceneDna, narrative, run.Root, _logger);
 
         _logger.LogInformation("Pipeline complete — video: {Path}, caption.txt: {CaptionState}",
             video.FilePath, captionWritten ? "written" : "NOT written");

@@ -35,6 +35,11 @@ public sealed class AppModule : Module
         var nvidiaKey = _configuration["Nvidia:ApiKey"]
             ?? throw new InvalidOperationException("Nvidia:ApiKey is not configured in appsettings.json");
 
+        // The standalone 'collect' mode needs Pipeline:EraChaining to know
+        // whether a resubmitted era chains from the previous image or from the
+        // shared base — it has no Pipeline instance to ask.
+        builder.RegisterInstance(_configuration).As<IConfiguration>().SingleInstance();
+
         builder.RegisterInstance(new FileSystemProvider(_loggerFactory.CreateLogger<FileSystemProvider>()))
                .As<IFileSystemProvider>().SingleInstance();
 

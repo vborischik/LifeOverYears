@@ -34,6 +34,7 @@ public static class BatchSmokeTest
             await DoB7(loggerFactory, sandbox, findings);
             await DoB8(loggerFactory, sandbox, findings);
             await DoB9(loggerFactory, sandbox, findings);
+            await DoB10(loggerFactory, sandbox, findings);
         }
         finally
         {
@@ -88,8 +89,21 @@ public static class BatchSmokeTest
                 var body = root.GetProperty("body");
                 if (body.GetProperty("prompt").GetString() != "prompt for 1975")
                     errs.Add("prompt not carried into the batch body");
-                if (!body.GetProperty("image").GetString()!.StartsWith("file-", StringComparison.Ordinal))
-                    errs.Add("image is not an uploaded file id");
+                // On application/json the image is "images": an array of objects
+                // keyed by file_id. A bare string, or the singular "image", is
+                // rejected with a 400 that only ever surfaces in the batch's
+                // error file — hours later, and only if someone goes looking.
+                if (!body.TryGetProperty("images", out var images) || images.ValueKind != JsonValueKind.Array)
+                    errs.Add("body has no 'images' array (the JSON form of the parameter)");
+                else if (images.GetArrayLength() != 1)
+                    errs.Add($"images has {images.GetArrayLength()} entries, expected 1");
+                else if (images[0].ValueKind != JsonValueKind.Object)
+                    errs.Add($"images[0] is {images[0].ValueKind}, expected an object");
+                else if (!images[0].TryGetProperty("file_id", out var fileId)
+                         || !fileId.GetString()!.StartsWith("file-", StringComparison.Ordinal))
+                    errs.Add("images[0].file_id is missing or is not an uploaded file id");
+                if (body.TryGetProperty("image", out _))
+                    errs.Add("body still carries the multipart-only 'image' parameter");
             }
         }
 
@@ -346,6 +360,62 @@ public static class BatchSmokeTest
 
         Add(f, "B9", "An era image already on disk collects with no API call and is not overwritten", errs,
             "existing file honoured, zero provider calls");
+    }
+
+    // A batch completes even when its lines failed — those go to the error file,
+    // never the output file. Reported as "no result", the operator has to fetch
+    // the real complaint from the dashboard by hand, which is exactly how the
+    // 'image' vs 'images' parameter bug stayed invisible for a whole run.
+    private static async Task DoB10(
+        ILoggerFactory lf, string sandbox, List<(string, string, bool, string)> f)
+    {
+        var (provider, fake, jobsDir) = NewCase(lf, sandbox, nameof(DoB10));
+        var basePath = await WriteBaseAsync(jobsDir, "base.png");
+        await provider.SubmitEraAsync(basePath, "prompt", 1975, jobsDir);
+
+        // The shape OpenAI actually returns, taken from a real error file.
+        const string message = "Unknown parameter: 'image'. For application/json on /v1/images/edits, use 'images' (array).";
+        var errorLine = JsonSerializer.Serialize(new
+        {
+            custom_id = "era-1975",
+            response = new
+            {
+                status_code = 400,
+                body = new { error = new { message, type = "invalid_request_error", param = "image", code = "invalid_value" } }
+            }
+        });
+
+        var batchId = (await ReadJobAsync(jobsDir, 1975))!.Value.JobId;
+        var errs = new List<string>();
+
+        // Two shapes reach this, and both have to read the error file. An empty
+        // output file is what a mixed batch leaves behind; no output file at all
+        // is what a batch produces when every line failed — the ordinary case
+        // for a bad payload, and the one a one-line era batch always hits.
+        foreach (var (outputFileId, label) in new[]
+        {
+            (fake.AddFile(""), "empty output file"),
+            ((string?)null,    "no output file"),
+        })
+        {
+            fake.SetStatus(batchId, "completed", outputFileId, fake.AddFile(errorLine + "\n"));
+
+            try
+            {
+                await provider.TryCollectAsync(jobsDir, 1975, Path.Combine(jobsDir, "1975.png"));
+                errs.Add($"{label}: a completed batch with no result did not throw");
+            }
+            catch (InvalidOperationException ex)
+            {
+                if (!ex.Message.Contains(message, StringComparison.Ordinal))
+                    errs.Add($"{label}: error text does not carry the provider's own message: {ex.Message}");
+                if (!ex.Message.Contains("era-1975", StringComparison.Ordinal))
+                    errs.Add($"{label}: error text does not name the failing custom_id");
+            }
+        }
+
+        Add(f, "B10", "A completed batch whose line failed reports the provider's message, with or without an output file", errs,
+            "rejection surfaced with the API's own wording in both shapes");
     }
 
     // ── Harness ───────────────────────────────────────────────────────────────

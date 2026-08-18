@@ -9,4 +9,7 @@ src/LifeOverYears/output/prompts/
 src/LifeOverYears/testImage/
 src/LifeOverYears/testFolder/
 src/LifeOverYears/processed/
+src/LifeOverYears/failed/
+src/LifeOverYears/output/errors/
+src/LifeOverYears/output/vision-variance/
 

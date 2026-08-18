@@ -23,8 +23,8 @@ namespace LifeOverYears.Providers;
 // in the same wall-clock time a single combined batch would.
 public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
 {
-    private const string Size = "1024x1536";   // 2:3 portrait, non-experimental
-    private const string Quality = "medium";
+    private const string Size =  "720x1280";   
+    private const string Quality = "low";
     private const string Endpoint = "/v1/images/edits";
 
     private const string BaseFileFileName = "base-file.json";
@@ -108,7 +108,16 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
             body = new
             {
                 model = "gpt-image-2",
-                image = baseFileId,
+                // On application/json — which every batch line is — the image is
+                // "images": an array of objects, each one {"file_id": "..."}.
+                // Both other spellings are rejected outright:
+                //   image: "file-..."   -> Unknown parameter: 'image'. For
+                //                          application/json use 'images' (array).
+                //   images: ["file-..."] -> Invalid type for 'images[0]':
+                //                          expected an object, got a string.
+                // "type", "url" and "image_url" inside the object are all
+                // unknown parameters — file_id is the only accepted key.
+                images = new object[] { new { file_id = baseFileId } },
                 prompt,
                 size = Size,
                 quality = Quality
@@ -200,9 +209,22 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
                     (errorText is not null ? $": {errorText}" : ""));
 
             case "completed":
+                // Every line failed: OpenAI produces no output file at all, only
+                // an error file. This is the ordinary shape of a bad payload —
+                // a one-line batch that is rejected lands here, not in the
+                // missing-custom_id branch below — so the complaint has to be
+                // read here too.
                 if (outputFileId is null)
-                    throw new InvalidOperationException(
-                        $"OpenAI batch {job.JobId} completed with no output_file_id");
+                {
+                    var onlyErrors = errorFileId is not null
+                        ? ErrorFor($"era-{year}", await _openai.DownloadFileContentAsync(errorFileId))
+                        : null;
+
+                    throw new InvalidOperationException(onlyErrors is not null
+                        ? $"OpenAI rejected era-{year}: {onlyErrors}"
+                        : $"OpenAI batch {job.JobId} completed with no output_file_id" +
+                          (errorFileId is null ? " and no error file" : ""));
+                }
 
                 if (!_parsedOutputs.TryGetValue(outputFileId, out var results))
                 {
@@ -214,8 +236,21 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
 
                 var customId = $"era-{year}";
                 if (!results.TryGetValue(customId, out var b64))
-                    throw new InvalidOperationException(
-                        $"No result for {customId} in batch output {outputFileId}");
+                {
+                    // A batch completes even when individual lines failed: those
+                    // go to the error file, never the output file. Without this
+                    // the only symptom is a missing custom_id, and the actual
+                    // complaint (a rejected parameter, a moderation block) has to
+                    // be fetched by hand from the dashboard.
+                    var lineError = errorFileId is not null
+                        ? ErrorFor(customId, await _openai.DownloadFileContentAsync(errorFileId))
+                        : null;
+
+                    throw new InvalidOperationException(lineError is not null
+                        ? $"OpenAI rejected {customId}: {lineError}"
+                        : $"No result for {customId} in batch output {outputFileId}" +
+                          (errorFileId is null ? " and the batch reported no error file" : ""));
+                }
 
                 Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(outputPath))!);
                 await File.WriteAllBytesAsync(outputPath, Convert.FromBase64String(b64));
@@ -227,6 +262,37 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
                     status, job.JobId);
                 return false;
         }
+    }
+
+    // The error file has the same shape as the output file: one line per failed
+    // request, keyed by custom_id. Returns the provider's own message for this
+    // year, or null if this year is not in there.
+    private static string? ErrorFor(string customId, string jsonl)
+    {
+        foreach (var line in jsonl.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+        {
+            JsonDocument doc;
+            try { doc = JsonDocument.Parse(line); }
+            catch (JsonException) { continue; }
+
+            using (doc)
+            {
+                var root = doc.RootElement;
+                if (!root.TryGetProperty("custom_id", out var id) || id.GetString() != customId)
+                    continue;
+
+                if (root.TryGetProperty("response", out var resp)
+                    && resp.TryGetProperty("body", out var body)
+                    && body.TryGetProperty("error", out var err)
+                    && err.TryGetProperty("message", out var msg))
+                    return msg.GetString();
+
+                // Shape differed from the documented one — the raw line still
+                // says more than "no result".
+                return root.ToString();
+            }
+        }
+        return null;
     }
 
     // Output line order is not guaranteed to match input order — always key

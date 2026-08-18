@@ -1,3 +1,4 @@
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using LifeOverYears.Models;
@@ -13,7 +14,9 @@ public sealed class VisionProvider : IVisionProvider
     private readonly ILogger<VisionProvider> _logger;
 
     private const string Url   = "https://integrate.api.nvidia.com/v1/chat/completions";
-    private const string Model = "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning";
+     private const string Model = "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning";
+    // private const string Model = "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning";
+    //private const string Model = "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning";
 
     private static readonly JsonSerializerOptions JsonOpts = new() { PropertyNameCaseInsensitive = true };
 
@@ -39,22 +42,36 @@ public sealed class VisionProvider : IVisionProvider
                 new
                 {
                     role = "user",
+                    // Image before text, matching the model card. The model is
+                    // sensitive to this ordering: with the prompt first it reads
+                    // as answering from the schema, with the image first as
+                    // describing what it sees.
                     content = new object[]
                     {
-                        new { type = "text", text = prompt },
-                        new { type = "image_url", image_url = new { url = $"data:{mimeType};base64,{b64}" } }
+                        new { type = "image_url", image_url = new { url = $"data:{mimeType};base64,{b64}" } },
+                        new { type = "text", text = prompt }
                     }
                 }
             },
-            temperature          = 0.6,
-            top_p                = 0.95,
-            max_tokens           = 65536,
+            // Every value below matches the vendor's Python sample verbatim.
+            temperature      = 0.2,
+            top_p            = 0.95,
+            max_tokens       = 65536,
+            seed             = 12,
+            // The sample pairs a 16384 reasoning budget with thinking switched
+            // off, which looks contradictory but is what the vendor ships and
+            // what is known to work — the budget is the allocation, the kwarg is
+            // the switch. Do not "simplify" one away without retesting.
+            reasoning_budget = 16384,
             chat_template_kwargs = new { enable_thinking = false },
-            reasoning_budget     = 0
+            // Streamed: a non-streaming call makes the gateway hold the
+            // connection for the whole generation, which is how a long reasoning
+            // answer turns into a 502 that says nothing about the request.
+            stream           = true
         };
 
-        var json = await _nvidia.PostAsync(Url, body);
-        var text = ExtractContent(json);
+        var chunks = await _nvidia.PostStreamAsync(Url, body);
+        var text   = ExtractStreamedContent(chunks);
         return ParseSceneDna(text, _logger);
     }
 
@@ -82,39 +99,67 @@ public sealed class VisionProvider : IVisionProvider
                 new
                 {
                     role = "user",
+                    // Image first, same as AnalyzeImageAsync above.
                     content = new object[]
                     {
-                        new { type = "text", text = enrichPrompt },
-                        new { type = "image_url", image_url = new { url = $"data:{mimeType};base64,{b64}" } }
+                        new { type = "image_url", image_url = new { url = $"data:{mimeType};base64,{b64}" } },
+                        new { type = "text", text = enrichPrompt }
                     }
                 }
             },
-            temperature          = 0.6,
-            top_p                = 0.95,
-            max_tokens           = 65536,
+            // Every value below matches the vendor's Python sample verbatim.
+            temperature      = 0.2,
+            top_p            = 0.95,
+            max_tokens       = 65536,
+            seed             = 12,
+            // The sample pairs a 16384 reasoning budget with thinking switched
+            // off, which looks contradictory but is what the vendor ships and
+            // what is known to work — the budget is the allocation, the kwarg is
+            // the switch. Do not "simplify" one away without retesting.
+            reasoning_budget = 16384,
             chat_template_kwargs = new { enable_thinking = false },
-            reasoning_budget     = 0
+            // Streamed: a non-streaming call makes the gateway hold the
+            // connection for the whole generation, which is how a long reasoning
+            // answer turns into a 502 that says nothing about the request.
+            stream           = true
         };
 
-        var json = await _nvidia.PostAsync(Url, body);
-        var text = ExtractContent(json);
+        var chunks = await _nvidia.PostStreamAsync(Url, body);
+        var text   = ExtractStreamedContent(chunks);
 
         var enriched  = ParseSceneDna(text, _logger);
         var sceneType = missingFields.Contains("scene_type") ? enriched.SceneType : current.SceneType;
         return enriched with { Id = current.Id, CreatedAt = current.CreatedAt, SceneType = sceneType };
     }
 
-    private static string ExtractContent(string json)
+    // A streamed completion arrives as deltas: every chunk carries the next
+    // fragment of the answer in choices[0].delta.content, and the answer only
+    // exists once they are concatenated in order. Reasoning tokens come back on
+    // a separate delta field (reasoning_content) and are deliberately dropped —
+    // ParseSceneDna wants the answer, and an inline <think> block it strips
+    // itself. Chunks that carry only a role or a finish_reason have no content
+    // and contribute nothing.
+    private static string ExtractStreamedContent(IReadOnlyList<string> chunks)
     {
-        var msg = JsonDocument.Parse(json)
-            .RootElement
-            .GetProperty("choices")[0]
-            .GetProperty("message");
+        var sb = new StringBuilder();
 
-        if (msg.TryGetProperty("content", out var content) && content.ValueKind != JsonValueKind.Null)
-            return content.GetString()?.Trim() ?? "{}";
+        foreach (var chunk in chunks)
+        {
+            using var doc = JsonDocument.Parse(chunk);
+            if (!doc.RootElement.TryGetProperty("choices", out var choices)
+                || choices.ValueKind != JsonValueKind.Array
+                || choices.GetArrayLength() == 0)
+                continue;
 
-        return "{}";
+            if (!choices[0].TryGetProperty("delta", out var delta))
+                continue;
+
+            if (delta.TryGetProperty("content", out var content)
+                && content.ValueKind == JsonValueKind.String)
+                sb.Append(content.GetString());
+        }
+
+        return sb.ToString().Trim();
     }
 
     private static SceneDna ParseSceneDna(string text, ILogger logger)
