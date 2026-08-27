@@ -520,6 +520,52 @@
       ],
       "crowd": "packed"
     },
+    "motel": {
+      "narrative": "A 1985 motel still filling most nights — a backlit plastic sign at the road, a soft-drink machine glowing outside the office, and the walkway swept.",
+      "storefronts": [
+        "numbered room doors in a uniform row, repainted a darker color than the trim",
+        "a paired window beside each door with a through-wall air unit below it",
+        "a backlit plastic pylon sign at the road, panels lit from inside",
+        "a soft-drink vending machine lit beside the office door",
+        "a concrete walkway the length of the wing, the overhang posts freshly painted",
+        "an ice machine in an alcove with a lit panel above it",
+        "a mansard shingle band running along the top of the wing",
+        "the office window with its hours decal on the glass"
+      ],
+      "window_signs": [
+        "VACANCY",
+        "FREE HBO",
+        "PHONES IN ROOM",
+        "OFFICE",
+        "TRUCK PARKING"
+      ],
+      "people": {
+        "min": 1,
+        "max": 4
+      },
+      "people_activities": [
+        "a man setting a hard-sided case down to open a room door",
+        "a woman carrying a plastic ice bucket back along the walkway",
+        "two salesmen talking between their cars in the lot",
+        "someone feeding coins into the drink machine by the office",
+        "a family carrying bags in from a station wagon",
+        "a clerk propping the office door open with a wedge",
+        "a man leaning on a railing with a cigarette, watching the road",
+        "a woman loading a suitcase into a trunk before checkout",
+        "someone reading the rate card taped inside the office glass",
+        "a couple walking back from the road with takeout bags"
+      ],
+      "vehicles": {
+        "min": 2,
+        "max": 4
+      },
+      "extras": [
+        "a drink machine with one dead selection button",
+        "a painted sheet-metal room number on each door",
+        "a bucket and mop left standing outside an open room",
+        "a plastic patio chair beside a door, sun-faded on one side"
+      ]
+    },
     "corner_shop": {
       "narrative": "A 1985 corner shop holding its own — a video rental rack inside the door, lottery tickets at the counter and a chest freezer humming against the back wall.",
       "storefronts": [

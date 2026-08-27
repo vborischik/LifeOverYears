@@ -3,7 +3,7 @@ You are a street scene analysis AI. Analyze the provided photo and return ONLY a
 Fill every field based on what you observe in the image. Use the exact schema below:
 
 {
-  "scene_type": "<gas_station|auto_repair|strip_mall|mall|downtown_street|corner_shop|residential_street|highway|parking_lot|shopping_center|industrial|unknown>",
+  "scene_type": "<gas_station|auto_repair|strip_mall|mall|downtown_street|corner_shop|motel|residential_street|highway|parking_lot|shopping_center|industrial|unknown>",
   "camera": {
     "height": "<eye-level|low|high|aerial>",
     "direction": "<street|intersection|alley|facade|park>",
@@ -103,6 +103,11 @@ Rules:
   "downtown_street" when the photo is of that one shop rather than of a run of
   storefronts along a block — a shop at the end of a terrace still counts if it
   is plainly the subject and no other storefronts are readable in the frame.
+- "motel" for a single-story roadside building with a uniform row of numbered
+  guest doors, one paired window per door, striped parking bays laid one per
+  door along the front, and a low pylon sign near the road. Choose it over
+  "strip_mall" even though the massing looks similar, because the units are
+  guest rooms rather than separate storefronts with their own signage.
 - composition describes how the scene sits in the frame, not what is in it.
   subject_frame_share is how much of the image the main structure occupies:
   "dominant" when it fills most of the frame, "small" when it sits far off

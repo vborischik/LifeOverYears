@@ -149,8 +149,11 @@ public sealed class PromptService : IPromptService
         var cornerShop = IsCornerShop(sceneType)
             ? await ResolveCornerShopAsync(context, year, condition, sceneType)
             : default;
+        var motelSign = IsMotel(sceneType)
+            ? await ResolveMotelSignAsync(context, year, condition)
+            : default;
 
-        var sceneBlock = BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, gasSign, cornerShop, rng, context);
+        var sceneBlock = BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, gasSign, cornerShop, motelSign, rng, context);
         sceneBlock = AppendPlacementRule(sceneBlock);
         sceneBlock = AppendSignageRestriction(sceneBlock);
 
@@ -270,6 +273,24 @@ public sealed class PromptService : IPromptService
         {
             _logger.LogWarning(ex, "Could not load corner shop names — the shop sign line is skipped for {Year}", year);
             return default;
+        }
+    }
+
+    // Same shape as the gas sign resolver: the brand file is data, so a missing
+    // or unreadable file must not take a run down. Without a flag the pylon falls
+    // back to an unbranded independent sign in BuildSceneBlock.
+    private async Task<GenerationContext.MotelSign> ResolveMotelSignAsync(
+        GenerationContext context, int year, string condition)
+    {
+        try
+        {
+            var brands = await _data.LoadMotelBrandsAsync();
+            return context.ResolveMotelSign(brands, year, condition);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Could not load motel brands file — the pylon falls back to an unbranded sign");
+            return new GenerationContext.MotelSign(GenerationContext.MotelSignKind.Flagged, null);
         }
     }
 
@@ -542,6 +563,26 @@ public sealed class PromptService : IPromptService
     // it is one small unit that keeps trading while everything about it gets
     // cheaper. The decay is in what the owner bolts on to stay open: bars, a
     // security camera, hand-painted board over the old sign band.
+    internal static readonly string[] MotelDecayModerate =
+    {
+        "a sun-bleached panel in the pylon sign, cracked through one corner",
+        "room doors gone chalky, patched unevenly from one door to the next",
+        "a length of walkway fascia lifting away from its fixings",
+        "weeds standing in the cracks along the edge of the parking bays",
+        "rust streaked down the wall below a through-wall air unit",
+        "bay striping worn thin and repainted once in a paler white"
+    };
+
+    internal static readonly string[] MotelDecayHeavy =
+    {
+        "plywood screwed over the windows of the rooms at the far end",
+        "the pylon frame stripped, empty channels where the panels sat",
+        "a room door kicked in at the lock and battened shut across the frame",
+        "the walkway overhang sagging where one post has gone",
+        "grass grown through the parking bays in broken lines",
+        "graffiti along the lower wall of the wing, tags overlapping"
+    };
+
     internal static readonly string[] CornerShopDecayModerate =
     {
         "steel bars fitted across the lower windows, newer than everything around them",
@@ -630,6 +671,7 @@ public sealed class PromptService : IPromptService
             "strip_mall"      => StripMallDecayModerate,
             "auto_repair"     => AutoRepairDecayModerate,
             "corner_shop"     => CornerShopDecayModerate,
+            "motel"           => MotelDecayModerate,
             _                 => DecayModerate
         },
         // Squatted retail is no longer the sealed-up Heavy pool on its own: that
@@ -642,6 +684,7 @@ public sealed class PromptService : IPromptService
             "strip_mall"      => StripMallSquattedPool,
             "auto_repair"     => AutoRepairDecayHeavy,
             "corner_shop"     => CornerShopDecayHeavy,
+            "motel"           => MotelDecayHeavy,
             _                 => DecayHeavy
         },
         "abandoned" => sceneType switch
@@ -650,6 +693,7 @@ public sealed class PromptService : IPromptService
             "strip_mall"      => StripMallDecayHeavy,
             "auto_repair"     => AutoRepairDecayHeavy,
             "corner_shop"     => CornerShopDecayHeavy,
+            "motel"           => MotelDecayHeavy,
             _                 => DecayHeavy
         },
         _ => null
@@ -663,13 +707,32 @@ public sealed class PromptService : IPromptService
     // Single source of truth: the count logic and the CONDITION line both ask
     // here, so they cannot drift apart.
     private static bool SupportsCondition(string sceneType) =>
-        sceneType is "gas_station" or "downtown_street" or "strip_mall" or "auto_repair" or "corner_shop";
+        sceneType is "gas_station" or "downtown_street" or "strip_mall" or "auto_repair" or "corner_shop" or "motel";
+
+    // The pylon by the road is the only place a motel's identity is written, so
+    // it carries the flag and the vacancy state together. A closed motel keeps
+    // the frame and loses the panels — stated as what is left standing, since an
+    // empty frame is something the model can draw and "no sign" is not.
+    private static void AppendMotelSign(StringBuilder sb, GenerationContext.MotelSign sign)
+    {
+        if (sign.Kind == GenerationContext.MotelSignKind.DeadBoard)
+        {
+            sb.AppendLine("- main sign: a stripped pylon frame out by the road — empty sign channels, no lit panels, no chain name, the vacancy panel gone");
+            return;
+        }
+
+        sb.AppendLine(sign.Brand is not null
+            ? $"- main sign: \"{sign.Brand}\" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it"
+            : "- main sign: an independent motel pylon out by the road, the motel's own name across the panel and a lit VACANCY panel below it");
+    }
 
     // The corner shop's whole story is what the building ends up selling, so
     // from LiquorFromYear its trade is fixed and the people outside change with
     // it. Asked here rather than inline so the sign, the people block and the
     // checks all read the same year.
     private static bool IsCornerShop(string sceneType) => sceneType == "corner_shop";
+
+    private static bool IsMotel(string sceneType) => sceneType == "motel";
 
     private static bool IsLiquorEra(string sceneType, int year) =>
         IsCornerShop(sceneType) && year >= GenerationContext.LiquorFromYear;
@@ -701,7 +764,7 @@ public sealed class PromptService : IPromptService
         return sb.ToString().TrimEnd();
     }
 
-    private static string BuildSceneBlock(EraProfile era, SceneContent? content, string sceneType, string condition, GenerationContext.GasSign gasSign, GenerationContext.CornerShopSign cornerShop, Random rng, GenerationContext context)
+    private static string BuildSceneBlock(EraProfile era, SceneContent? content, string sceneType, string condition, GenerationContext.GasSign gasSign, GenerationContext.CornerShopSign cornerShop, GenerationContext.MotelSign motelSign, Random rng, GenerationContext context)
     {
         var sb = new StringBuilder();
         sb.AppendLine($"TRANSFORM TO {era.Year}");
@@ -877,6 +940,9 @@ public sealed class PromptService : IPromptService
                 }
             }
         }
+
+        if (IsMotel(sceneType))
+            AppendMotelSign(sb, motelSign);
 
         if (IsCornerShop(sceneType))
             AppendCornerShopSign(sb, cornerShop);

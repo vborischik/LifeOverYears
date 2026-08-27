@@ -535,6 +535,52 @@
         "a bike rack bolted to the walkway outside the gym"
       ]
     },
+    "motel": {
+      "narrative": "A 2025 motel that is really long-term housing — an LED panel at the road advertising the month, doors that stay shut all day, and a lot of cars that belong to residents.",
+      "storefronts": [
+        "numbered room doors in a uniform row, the numbers replaced in stick-on figures on several",
+        "a paired window beside each door, most screened from inside with sheets or blinds shut flat",
+        "an LED panel in the old pylon frame, one row of pixels dead across it",
+        "a buzzer plate and a payment slot at the office, the glass otherwise blocked",
+        "a concrete walkway with the overhang fascia patched in a different color",
+        "cameras along the fascia, cabling stapled down the wall in runs",
+        "a laminated notice zip-tied to the pylon post at eye height",
+        "an ice alcove closed off with a screwed-on panel"
+      ],
+      "window_signs": [
+        "WEEKLY & MONTHLY",
+        "OFFICE",
+        "NO VISITORS AFTER 10",
+        "FREE WI-FI",
+        "ROOMS AVAILABLE"
+      ],
+      "people": {
+        "min": 1,
+        "max": 3
+      },
+      "people_activities": [
+        "a man carrying groceries along the walkway to a door near the end",
+        "a woman sitting outside her door on a folding chair with a phone",
+        "someone loading a car that is plainly lived out of",
+        "a man talking through the office payment slot",
+        "two people smoking at the end of the walkway, saying little",
+        "a woman carrying a laundry basket back from the road",
+        "someone checking a phone against the notice on the pylon post",
+        "a delivery driver reading door numbers along the row",
+        "a man moving a tub of belongings from a car to a room",
+        "someone standing in an open doorway looking out at the lot"
+      ],
+      "vehicles": {
+        "min": 1,
+        "max": 3
+      },
+      "extras": [
+        "a plastic storage tub and a folding chair set outside one door",
+        "a bicycle and a child's scooter leaned against the walkway wall",
+        "a satellite dish left bolted to the roof with its cable cut",
+        "a laminated notice cable-tied to the pylon post, corners curling"
+      ]
+    },
     "corner_shop": {
       "narrative": "A 2025 liquor store on the corner where the shop used to be — everything sold through a barred window and a buzzer door, the block around it quieter every year.",
       "storefronts": [

@@ -1,0 +1,81 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+PRIORITY ORDER — when instructions conflict, the lower number wins
+1. The uploaded image's composition and geometry.
+2. The exact people and vehicle counts given below.
+3. The historical transformation for the target year.
+4. The specific period details listed — each only where the geometry has room
+   for it; one with nowhere to go is left out, never forced into the roadway.
+5. Add nothing that is not asked for — no extra businesses, signs, vehicles,
+   people, logos or advertisements.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove the
+modern businesses, logos, brands, storefront names, banners and advertisements
+visible in the source image, and replace them only with the period signage
+specified below.
+
+PRESERVE
+Keep the uploaded image's composition, camera angle, geometry, buildings,
+roads and permanent structures exactly as they are. Do not redraw,
+reposition or restyle them. Change only what the sections below ask for.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
+
+TRANSFORM TO 2025
+Post-pandemic era. A 2025 motel that is really long-term housing — an LED panel at the road advertising the month, doors that stay shut all day, and a lot of cars that belong to residents.
+
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
+
+PERIOD DETAILS
+- outdoor dining structures from pandemic era
+- drive-through digital menu boards with AI ordering
+- digital display signage
+- main sign: "Ramada" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
+- window signs: 'NO VISITORS AFTER 10', 'ROOMS AVAILABLE'
+- a laminated notice cable-tied to the pylon post, corners curling
+- a plastic storage tub and a folding chair set outside one door
+Typography: minimalist geometric sans-serif, heavily simplified flat logos.
+Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
+
+SIGNAGE RESTRICTION
+The only readable text anywhere in the image is:
+'Ramada'
+'NO VISITORS AFTER 10'
+'ROOMS AVAILABLE'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
+
+PEOPLE
+EXACTLY 3 people TOTAL: 1 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
+- two people smoking at the end of the walkway, saying little
+- a man moving a tub of belongings from a car to a room
+- a retiree couple with matching walking poles
+Clothing: men in techwear, chunky sneakers; women in oversized blazers, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+
+VEHICLES
+EXACTLY 1 period vehicles, all different:
+- 2019-2025 Subaru Outback — rugged wagon crossover — silver
+Parked with gaps. Where a model is listed with a year range, render the 2025 model year specifically — only styling, trim and features available in 2025, nothing introduced later. No vehicle newer than 2025.
+Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
+PLACEMENT: one nose-in close to the entrance; the rest spread across stalls toward the lot's far edge. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: worn and faded, well past their last repainting
+- utilities: overhead lines on existing poles in older commercial areas, fiber optic widespread
+
+DECAY
+- weeds standing in the cracks along the edge of the parking bays
+- room doors gone chalky, patched unevenly from one door to the next
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — digital — smartphone or mirrorless camera look.
+Color: high saturation. Grain: very clean, minimal to no noise.
+Photorealistic — NOT black-and-white, no HDR.
+Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
+
+PRIVACY
+Blur all faces and license plates.

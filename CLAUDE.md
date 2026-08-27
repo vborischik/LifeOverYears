@@ -129,7 +129,7 @@ get benches standing in the road. Locked by C58; add the same "or omit it"
 wording to any new list of props.
 
 **Scene types** — `gas_station`, `downtown_street`, `strip_mall`, `auto_repair`,
-`corner_shop`, `mall`, `shopping_center`, plus a `default`/`unknown` fallback.
+`corner_shop`, `motel`, `mall`, `shopping_center`, plus a `default`/`unknown` fallback.
 Era JSONs key `scene_content` by these names, Vision classifies into them
 (`data/prompts/vision.txt`), and the synthetic base needs a phrase in
 `data/prompts/scene-types.txt`. Adding one means touching all of those plus a
@@ -165,9 +165,20 @@ always the narrow frontage — so `liquor_suburban` is wired but **dormant**:
 adding a name to it will not make it appear until another scene type gains a
 named liquor store. Locked by C61, which asserts exactly that.
 
+**Motel** — the second scene type with a dated brand file. `data/brands/motel-brands.txt`
+is `Name|from|to` exactly like `gas-brands.txt` and shares its parser
+(`DataService.ReadBrandTimelineAsync`). `GenerationContext.ResolveMotelSign`
+mirrors `ResolveGasSign` in its own fields — a run has one scene type, so they
+never both run, and aliasing them would let a change to one move the other.
+Reflagging is the norm rather than the exception a gas rebrand is (2 in 3 runs
+vs 1 in 2): the chains that signed these buildings mostly stopped existing, so a
+fifty-year run holding one flag is the unlikely case. A derelict motel shows a
+stripped pylon frame, not a lit panel. Locked by C63, which sweeps 120 seeds and
+fails if any flag falls outside its own year window.
+
 **Conditions** — `thriving/busy/new/declining/abandoned/squatted/restored`,
 picked per era in `GenerationContext.PickSceneCondition` for gas_station,
-downtown_street, strip_mall, auto_repair and corner_shop. The rank is monotonic across a run
+downtown_street, strip_mall, auto_repair, corner_shop and motel. The rank is monotonic across a run
 (a place never quietly recovers mid-arc); only the last era resolves it.
 Derelict eras replace the live-business PERIOD DETAILS block entirely.
 

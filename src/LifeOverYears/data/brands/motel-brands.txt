@@ -1,0 +1,20 @@
+Howard Johnson's|1954|1995
+Holiday Inn|1952|2025
+Motel 6|1962|2025
+Best Western|1946|2025
+Ramada|1954|2025
+Days Inn|1970|2025
+Super 8|1974|2025
+Econo Lodge|1969|2025
+Travelodge|1939|2025
+Rodeway Inn|1962|2025
+Red Roof Inn|1973|2025
+Quality Courts|1939|1963
+Quality Inn|1963|2025
+Comfort Inn|1981|2025
+Knights Inn|1972|2025
+La Quinta Inn|1968|2025
+Hampton Inn|1984|2025
+Sleep Inn|1987|2025
+Microtel|1989|2025
+Vagabond Inn|1958|2025

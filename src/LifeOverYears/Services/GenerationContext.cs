@@ -273,7 +273,7 @@ public sealed class GenerationContext
         // a place can plausibly stay healthy into the 2000s, then climbing hard
         // toward the end so the fall still lands. Gas stations are excluded:
         // they already resolve their arc through the new/squatted finale.
-        if (sceneType is "downtown_street" or "strip_mall" or "auto_repair" or "corner_shop" && pool.Count > 1)
+        if (sceneType is "downtown_street" or "strip_mall" or "auto_repair" or "corner_shop" or "motel" && pool.Count > 1)
         {
             var worstRank = pool.Max(RankOf);
             var worst = pool.Where(c => RankOf(c) == worstRank).ToList();
@@ -509,6 +509,88 @@ public sealed class GenerationContext
 
         if (brand is not null) _lastLiveBrand = brand;
         return new GasSign(GasSignKind.Branded, brand);
+    }
+
+    // ── Motel chain timeline ──────────────────────────────────────────────
+    // A motel flies one chain's flag for years at a time and reflags when that
+    // chain dies out from under it — the same shape as the gas brand timeline
+    // above, and it reuses the same eligibility helper. The state is kept in its
+    // own fields rather than shared with gas: a run has one scene type, so the
+    // two never both run, and aliasing them would let a change to one silently
+    // move the other.
+    public enum MotelSignKind { Flagged, DeadBoard }
+    public readonly record struct MotelSign(MotelSignKind Kind, string? Brand);
+
+    private bool _motelPlanBuilt;
+    private string? _motelBrandX;
+    private string? _motelBrandY;
+    private int _motelReflagYear = int.MaxValue;
+    private string? _lastLiveMotelBrand;
+
+    private void BuildMotelPlan(IReadOnlyList<(string Name, int From, int To)> brands)
+    {
+        _motelPlanBuilt = true;
+        if (Years.Count == 0) return; // no span — single cached flag in ResolveMotelSign
+
+        var ordered = Years.OrderBy(y => y).ToList();
+        var first = ordered[0];
+        var last  = ordered[^1];
+
+        // Reflagging is the norm for a motel rather than the exception a gas
+        // rebrand is: the chains that signed these buildings in the sixties and
+        // seventies mostly stopped existing, so a fifty-year run that never
+        // changes its flag is the unlikely case, not the safe one.
+        var doReflag = (last - first) >= 25 && Random.Next(3) > 0;
+        if (doReflag)
+        {
+            var target = first + 20 + Random.Next(11);           // 20..30 years in
+            var switchYear = ordered.FirstOrDefault(y => y >= target);
+            if (switchYear > first) _motelReflagYear = switchYear;
+        }
+
+        if (_motelReflagYear == int.MaxValue)
+        {
+            _motelBrandX = PickEligibleAcross(brands, first, last, exclude: null);
+        }
+        else
+        {
+            _motelBrandX = PickEligibleAcross(brands, first, _motelReflagYear - 1, exclude: null);
+            _motelBrandY = PickEligibleAcross(brands, _motelReflagYear, last, exclude: _motelBrandX);
+            if (_motelBrandY is null) _motelReflagYear = int.MaxValue; // no successor — hold X
+        }
+    }
+
+    // Resolves the flag to render on the motel's pylon this era, given its condition.
+    public MotelSign ResolveMotelSign(
+        IReadOnlyList<(string Name, int From, int To)> brands, int year, string condition)
+    {
+        if (!_motelPlanBuilt) BuildMotelPlan(brands);
+
+        // Closed motel: the panels come out of the pylon frame and nothing is lit.
+        if (condition is "abandoned" or "squatted")
+            return new MotelSign(MotelSignKind.DeadBoard, null);
+
+        // Rebuilt finale: reopens under a different flag from the one it wore out.
+        if (condition == "new" && IsLastEra && _everDecayed)
+        {
+            var z = PickEligibleAcross(brands, year, year, exclude: _lastLiveMotelBrand);
+            if (z is not null) _lastLiveMotelBrand = z;
+            return new MotelSign(MotelSignKind.Flagged, z);
+        }
+
+        // Restored finale: the same business cleaned up, so it re-hangs its own
+        // last live flag rather than adopting a new one.
+        if (condition == "restored" && IsLastEra && _everDecayed && _lastLiveMotelBrand is not null)
+            return new MotelSign(MotelSignKind.Flagged, _lastLiveMotelBrand);
+
+        string? brand;
+        if (Years.Count > 0)
+            brand = (year >= _motelReflagYear && _motelBrandY is not null) ? _motelBrandY : _motelBrandX;
+        else
+            brand = _motelBrandX ??= PickEligibleAcross(brands, year, year, exclude: null);
+
+        if (brand is not null) _lastLiveMotelBrand = brand;
+        return new MotelSign(MotelSignKind.Flagged, brand);
     }
 
     // ── Chain tenant plan ──────────────────────────────────────────────────

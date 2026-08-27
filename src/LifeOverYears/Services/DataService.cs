@@ -49,10 +49,18 @@ public sealed class DataService : IDataService
         return await _fs.ReadAllTextAsync(path);
     }
 
-    public async Task<IReadOnlyList<(string Name, int From, int To)>> LoadGasBrandsAsync()
+    public Task<IReadOnlyList<(string Name, int From, int To)>> LoadGasBrandsAsync() =>
+        ReadBrandTimelineAsync("gas-brands.txt");
+
+    // Motel chains carry the same shape as gas brands — a name and the years it
+    // was on the road — so they share one parser rather than two that can drift.
+    public Task<IReadOnlyList<(string Name, int From, int To)>> LoadMotelBrandsAsync() =>
+        ReadBrandTimelineAsync("motel-brands.txt");
+
+    private async Task<IReadOnlyList<(string Name, int From, int To)>> ReadBrandTimelineAsync(string fileName)
     {
-        var path = Path.Combine("data", "brands", "gas-brands.txt");
-        _logger.LogInformation("Loading gas brands from {Path}", path);
+        var path = Path.Combine("data", "brands", fileName);
+        _logger.LogInformation("Loading brand timeline from {Path}", path);
         var text = await _fs.ReadAllTextAsync(path);
 
         var brands = new List<(string Name, int From, int To)>();
@@ -67,7 +75,7 @@ public sealed class DataService : IDataService
                 || !int.TryParse(parts[1], out var from)
                 || !int.TryParse(parts[2], out var to))
             {
-                _logger.LogWarning("Skipping malformed gas brand line: {Line}", trimmed);
+                _logger.LogWarning("Skipping malformed brand line in {File}: {Line}", fileName, trimmed);
                 continue;
             }
             brands.Add((parts[0].Trim(), from, to));

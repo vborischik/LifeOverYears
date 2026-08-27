@@ -3,6 +3,7 @@ auto_repair = an auto repair shop, with a row of service bays under one continuo
 strip_mall = a strip mall, a single-story retail row under a continuous storefront overhang, fronted by a parking lot
 downtown_street = a downtown commercial street, storefronts meeting the sidewalk on both sides
 corner_shop = a single small neighbourhood shop on a street corner, one storefront with its entrance on the corner, a blank brick side wall, and low buildings around it
+motel = a single-story roadside motel, one long wing of numbered guest doors each with a paired window, parking bays marked one per door along the front, and a low pylon sign out by the road
 mall = an enclosed shopping mall seen from outside, a long windowless single-story box set well back behind a large surface parking lot
 shopping_center = an open-air shopping center, several stepped retail blocks of differing heights under separate parapets with one larger anchor store, each unit entered directly from a large surface parking lot
 unknown = an ordinary American location

@@ -9,6 +9,10 @@ public interface IDataService
     Task SaveSceneDnaAsync(SceneDna sceneDna);
     Task<string> LoadPromptAsync(string name);
     Task<IReadOnlyList<(string Name, int From, int To)>> LoadGasBrandsAsync();
+
+    // data/brands/motel-brands.txt — motel chains and the years each was on
+    // the road, same Name|from|to shape as the gas brands.
+    Task<IReadOnlyList<(string Name, int From, int To)>> LoadMotelBrandsAsync();
     Task<IReadOnlyDictionary<string, IReadOnlyList<string>>> LoadCornerShopNamesAsync();
 
     // data/prompts/scene-types.txt — "key = phrase" per line, naming each scene

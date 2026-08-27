@@ -104,6 +104,21 @@ public sealed class CaptionService : ICaptionService
             "the phone behind the counter you were allowed to use",
             "how close it was — four minutes, and you went alone",
         },
+        ["motel"] = new[]
+        {
+            "the sound of a car pulling in late with its headlights across the curtains",
+            "carrying a suitcase along the walkway to a door with a number on it",
+            "the ice machine you could hear from two doors down",
+            "a room key on a plastic diamond fob you were told not to lose",
+            "the pool out front that was open for exactly one summer",
+            "stopping here because it was the last place with a lit sign",
+            "the smell of the room when you first opened the door",
+            "watching the road from a plastic chair outside the door",
+            "a family trip that broke down into one night here",
+            "the neon VACANCY sign you could see from the highway",
+            "checking out early because nobody could sleep",
+            "the television bolted to the dresser with three channels",
+        },
         ["mall"] = new[]
         {
             "the smell of Cinnabon drifting through the food court",

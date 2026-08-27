@@ -548,6 +548,52 @@
         "a dumpster corral at the end of the run"
       ]
     },
+    "motel": {
+      "narrative": "A 2015 motel running on weekly lets — an LED panel where the neon was, cars that never move parked in the same bays, and the office glass down to a slot.",
+      "storefronts": [
+        "numbered room doors in a uniform row, two of them fitted with newer locks",
+        "a paired window beside each door, several backed with foil or a hung sheet",
+        "an LED panel bolted into the old pylon frame, brighter than everything around it",
+        "a payment slot cut into the office glass, the rest of it screened",
+        "a concrete walkway with the overhang posts patched in bare filler",
+        "a padlocked utility door at the end of the wing",
+        "cameras at both ends of the walkway, cabling run openly along the fascia",
+        "a printed sheet of house rules taped inside the office window"
+      ],
+      "window_signs": [
+        "VACANCY",
+        "WEEKLY RATES",
+        "FREE WI-FI",
+        "OFFICE",
+        "NO VISITORS"
+      ],
+      "people": {
+        "min": 1,
+        "max": 3
+      },
+      "people_activities": [
+        "a man sitting on the walkway kerb outside his door with a phone",
+        "a woman carrying laundry in a plastic basket toward the far end",
+        "someone smoking beside a car that has not moved in weeks",
+        "a man speaking into the payment slot at the office",
+        "two people unloading bags from a back seat without hurrying",
+        "someone leaving a room door propped with a shoe",
+        "a woman walking a small dog along the edge of the lot",
+        "a man carrying a case of water along the walkway",
+        "someone standing at the end of the building, watching the road",
+        "a person moving a folding chair from one door to the next"
+      ],
+      "vehicles": {
+        "min": 1,
+        "max": 3
+      },
+      "extras": [
+        "a bicycle chained to a walkway post outside one door",
+        "a stack of flattened boxes wedged behind the ice alcove",
+        "a plastic tub of belongings set outside a door",
+        "a satellite dish still bolted to the roof, cable hanging loose"
+      ]
+    },
     "corner_shop": {
       "narrative": "By 2015 the shop sells bottles — the same building, the same door, a liquor store now, with bars over the glass, neon in the window and the old lettering still ghosting on the brick above the new sign.",
       "storefronts": [

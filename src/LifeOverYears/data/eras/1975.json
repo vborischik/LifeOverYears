@@ -537,6 +537,52 @@
       ],
       "crowd": "packed"
     },
+    "motel": {
+      "narrative": "A 1975 roadside motel in steady trade — a neon VACANCY sign out at the road, cars nosed in one to a door, and the office light on at the end of the wing.",
+      "storefronts": [
+        "numbered metal room doors in a uniform row, every one the same painted color",
+        "a paired window beside each door, curtains drawn halfway",
+        "a neon sign on the pylon out by the road, the NO above VACANCY unlit",
+        "a concrete walkway running the length of the wing under a shallow overhang",
+        "window air-conditioning units set under alternate windows",
+        "aluminium lawn chairs put out beside a few of the doors",
+        "an ice machine in a lit alcove near the office end",
+        "the office at the end of the wing, its own sign lit over the door"
+      ],
+      "window_signs": [
+        "VACANCY",
+        "COLOR TV",
+        "AIR CONDITIONED",
+        "OFFICE",
+        "POOL"
+      ],
+      "people": {
+        "min": 1,
+        "max": 4
+      },
+      "people_activities": [
+        "a man carrying a suitcase from his car to a room door",
+        "a woman working a key on a diamond fob into a lock",
+        "a family unloading a trunk two bays along",
+        "someone filling an ice bucket at the machine by the office",
+        "a driver checking a folded paper map flat against the wall",
+        "a boy running the walkway ahead of his parents",
+        "a woman smoking in a lawn chair outside an open door",
+        "a man in shirtsleeves talking to the clerk in the office doorway",
+        "someone hosing down the walkway at the far end",
+        "a couple waiting at the office window to register"
+      ],
+      "vehicles": {
+        "min": 2,
+        "max": 4
+      },
+      "extras": [
+        "a coiled hose at a spigot on the end wall",
+        "a metal ashtray stand outside the office door",
+        "room numbers screwed to the doors in painted metal figures",
+        "a folded luggage cart parked against the office wall"
+      ]
+    },
     "corner_shop": {
       "narrative": "A neighbourhood corner shop in 1975 — one small unit serving the blocks around it, hand-lettered specials taped inside the glass and a screen door that bangs shut behind every customer.",
       "storefronts": [

@@ -534,6 +534,52 @@
       ],
       "crowd": "packed"
     },
+    "motel": {
+      "narrative": "A 1995 motel trading on price — a rate painted straight onto the sign panel, a fresh coat on the doors, and the lot half full by evening.",
+      "storefronts": [
+        "numbered room doors in a uniform row, the paint even and recent",
+        "a paired window beside each door, blackout curtains behind the glass",
+        "a plastic pylon sign at the road with the nightly rate on its lower panel",
+        "a printed rate card taped inside the office window",
+        "a concrete walkway under the overhang, the kerb line freshly painted",
+        "an ice and vending alcove lit at the office end of the wing",
+        "a satellite dish bolted to the roof at the office end",
+        "parking bays restriped one to a door across the frontage"
+      ],
+      "window_signs": [
+        "VACANCY",
+        "FREE HBO",
+        "$29.95",
+        "OFFICE",
+        "TRUCKERS WELCOME"
+      ],
+      "people": {
+        "min": 1,
+        "max": 4
+      },
+      "people_activities": [
+        "a man wheeling a soft bag along the walkway to his door",
+        "a driver stretching beside a car with out-of-state plates",
+        "a woman carrying a cup of coffee back from the office",
+        "someone loading a cooler into a back seat",
+        "two people comparing directions printed on a sheet of paper",
+        "a clerk carrying folded towels along the walkway",
+        "a man on a payphone at the end of the building",
+        "a family walking back from the road with takeout",
+        "someone shaking out a floor mat outside an open room",
+        "a woman checking the rate on the sign before pulling in"
+      ],
+      "vehicles": {
+        "min": 2,
+        "max": 5
+      },
+      "extras": [
+        "a payphone on the wall at the far end of the wing",
+        "a housekeeping cart parked outside an open door",
+        "a cigarette bin standing at the office entrance",
+        "a hand-lettered card in the office glass giving the check-out time"
+      ]
+    },
     "corner_shop": {
       "narrative": "A 1995 corner shop squeezed by the supermarkets — money orders and phone cards on the window now, and a cash machine put in where the magazine rack used to be.",
       "storefronts": [

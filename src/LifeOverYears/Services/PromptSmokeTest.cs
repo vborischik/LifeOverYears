@@ -62,6 +62,7 @@ public static class PromptSmokeTest
         var stripMallScene = MakeStripMallScene();
         var autoRepairScene = MakeAutoRepairScene();
         var cornerShopScene = MakeCornerShopScene();
+        var motelScene      = MakeMotelScene();
         var unknownScene   = MakeUnknownScene();
 
         // Load all era profiles
@@ -80,6 +81,8 @@ public static class PromptSmokeTest
         var arRun2  = await BuildRun(promptService, autoRepairScene, eras, 1337, Years);
         var csRun1  = await BuildRun(promptService, cornerShopScene, eras, 42,   Years);
         var csRun2  = await BuildRun(promptService, cornerShopScene, eras, 1337, Years);
+        var mtRun1  = await BuildRun(promptService, motelScene,      eras, 42,   Years);
+        var mtRun2  = await BuildRun(promptService, motelScene,      eras, 1337, Years);
 
         // c) Unknown scene — 1985 only, must not throw
         var unknownCtx    = new GenerationContext { Random = new Random(42), TotalEras = 1 };
@@ -98,6 +101,8 @@ public static class PromptSmokeTest
         await SaveRun(autoRepairScene.SceneType, 2, arRun2);
         await SaveRun(cornerShopScene.SceneType, 1, csRun1);
         await SaveRun(cornerShopScene.SceneType, 2, csRun2);
+        await SaveRun(motelScene.SceneType,      1, mtRun1);
+        await SaveRun(motelScene.SceneType,      2, mtRun2);
         await SaveRun(unknownScene.SceneType,   1, new Dictionary<int, Prompt> { { 1985, unknownPrompt } });
 
         // d) Checks C1–C25
@@ -167,6 +172,7 @@ public static class PromptSmokeTest
         DoC60(csRun1, csRun2, eras, logger, findings);
         DoC62(csRun1, csRun2, gasRun1, dtRun1, smRun1, arRun1, findings);
         await DoC61(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
+        await DoC63(dataService, findings);
         await DoC59(dataService, findings);
 
         // e) Report
@@ -452,6 +458,49 @@ public static class PromptSmokeTest
             "entrance door on the corner chamfer"
         ]);
 
+    private static SceneDna MakeMotelScene() => new(
+        Id:        "smoke-motel",
+        CreatedAt: "2025-01-01T00:00:00Z",
+        SceneType: "motel",
+        Camera: new Camera(Height: "eye-level", Direction: "facade", Fov: 80),
+        Geometry: new Geometry(
+            Roads:
+            [
+                new Road(
+                    Type:     "two-lane highway",
+                    Lanes:    2,
+                    Markings: ["yellow center line", "white edge lines"],
+                    Surface:  "asphalt")
+            ],
+            Sidewalks: false,
+            Curbs:     false,
+            Buildings:
+            [
+                new Building(
+                    Type:      "single-story motel wing of numbered guest rooms",
+                    Position:  "set back behind the parking apron, long face to the road",
+                    Stories:   1,
+                    Materials: ["painted concrete block", "painted metal doors"],
+                    Roof:      "low pitch with a shallow walkway overhang",
+                    Setback:   "deep")
+            ],
+            Driveways: ["asphalt apron in front of the room doors"],
+            Parking:   "marked bays one per room door across the frontage"),
+        Environment: new Environment(
+            Terrain:   "flat roadside",
+            Utilities: ["overhead power lines", "utility pole at the lot edge"],
+            Trees:
+            [
+                new Tree(Position: "lot edge beside the pylon sign", Size: "medium", Type: "silver maple")
+            ],
+            Landscape: ["gravel strip along the building base", "grass verge out to the road"]),
+        ImmutableElements:
+        [
+            "uniform row of numbered guest doors",
+            "paired window beside each door",
+            "freestanding pylon sign out by the road"
+        ]);
+
     private static SceneDna MakeMallScene() => new(
         Id:        "smoke-mall",
         CreatedAt: "2025-01-01T00:00:00Z",
@@ -572,7 +621,7 @@ public static class PromptSmokeTest
         List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
-        string[] requiredKeys = { "downtown_street", "gas_station", "strip_mall", "auto_repair", "corner_shop", "default" };
+        string[] requiredKeys = { "downtown_street", "gas_station", "strip_mall", "auto_repair", "corner_shop", "motel", "default" };
         string[] poolsRequiring20 = { "downtown_street", "gas_station", "strip_mall", "auto_repair" };
         const int minPoolSize = 20;
 
@@ -2213,8 +2262,11 @@ public static class PromptSmokeTest
         // default (no name) carries — the same state ResolveCornerShop returns
         // for these conditions.
         var cornerShop = default(GenerationContext.CornerShopSign);
+        // Same for a derelict motel: the stripped-pylon state is what the resolver
+        // returns for these conditions, and it is what the default carries.
+        var motelSign = new GenerationContext.MotelSign(GenerationContext.MotelSignKind.DeadBoard, null);
         var rng = new Random(1); // unused by the derelict branch — no sampling happens there
-        var args = new object?[] { era, content, sceneType, condition, gasSign, cornerShop, rng, context };
+        var args = new object?[] { era, content, sceneType, condition, gasSign, cornerShop, motelSign, rng, context };
         return (string)method.Invoke(null, args)!;
     }
 
@@ -4052,6 +4104,110 @@ public static class PromptSmokeTest
         f.Add(("C62", "The corner shop's street tree reads as a living tree in every era and its state follows the shop's arc (leafy while trading, untrimmed while declining, half dead once derelict); other scene types carry no tree state",
             errs.Count == 0, errs.Count == 0
                 ? $"corner_shop tree moves through {seen.Count} states across the run, canopy sizing intact, no other scene type affected"
+                : Join(errs)));
+    }
+
+    // A motel flag is sign text with a date on it: putting a chain on the pylon in
+    // a year it did not exist is the one error this data can produce, and it is
+    // invisible unless the eligibility window is checked against the era actually
+    // being rendered. Swept over seeds and driven through ResolveMotelSign
+    // directly, so the result does not depend on what the two fixtures sampled.
+    private static async Task DoC63(
+        IDataService dataService,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        IReadOnlyList<(string Name, int From, int To)> brands;
+        try
+        {
+            brands = await dataService.LoadMotelBrandsAsync();
+        }
+        catch (Exception ex)
+        {
+            f.Add(("C63", "Every motel flag is a chain that existed in the era it is rendered in",
+                false, $"LoadMotelBrandsAsync threw: {ex.Message}"));
+            return;
+        }
+
+        if (brands.Count == 0)
+            errs.Add("motel-brands.txt loaded no brands");
+        foreach (var b in brands.Where(b => b.From > b.To))
+            errs.Add($"\"{b.Name}\" has an inverted year window ({b.From}-{b.To})");
+        foreach (var dupe in brands.GroupBy(b => b.Name, StringComparer.OrdinalIgnoreCase).Where(g => g.Count() > 1))
+            errs.Add($"motel-brands.txt lists \"{dupe.Key}\" {dupe.Count()} times");
+
+        const int seeds = 120;
+        var flagged = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var reflaggedRuns = 0;
+
+        for (var seed = 1; seed <= seeds; seed++)
+        {
+            var ctx = new GenerationContext
+            {
+                Random = new Random(seed), TotalEras = Years.Length, Years = Years
+            };
+            var perYear = new List<string?>();
+
+            foreach (var year in Years)
+            {
+                ctx.BeginEra();
+                var sign = ctx.ResolveMotelSign(brands, year, "thriving");
+
+                if (sign.Kind != GenerationContext.MotelSignKind.Flagged)
+                {
+                    errs.Add($"seed {seed}/{year}: a trading motel rendered a stripped pylon");
+                    continue;
+                }
+                if (sign.Brand is null)
+                {
+                    errs.Add($"seed {seed}/{year}: no flag resolved for a trading motel");
+                    continue;
+                }
+
+                perYear.Add(sign.Brand);
+                flagged.Add(sign.Brand);
+
+                // The whole point: the chain has to have existed in this year.
+                var match = brands.FirstOrDefault(b =>
+                    string.Equals(b.Name, sign.Brand, StringComparison.OrdinalIgnoreCase));
+                if (match.Name is null)
+                    errs.Add($"seed {seed}/{year}: flag \"{sign.Brand}\" is not in motel-brands.txt");
+                else if (year < match.From || year > match.To)
+                    errs.Add($"seed {seed}/{year}: \"{sign.Brand}\" ran {match.From}-{match.To} — wrong era");
+            }
+
+            if (perYear.Distinct(StringComparer.OrdinalIgnoreCase).Count() > 1)
+                reflaggedRuns++;
+        }
+
+        // A dead motel shows the stripped frame regardless of the plan.
+        foreach (var condition in new[] { "abandoned", "squatted" })
+        {
+            var ctx = new GenerationContext
+            {
+                Random = new Random(7), TotalEras = Years.Length, Years = Years
+            };
+            ctx.BeginEra();
+            var sign = ctx.ResolveMotelSign(brands, 2015, condition);
+            if (sign.Kind != GenerationContext.MotelSignKind.DeadBoard || sign.Brand is not null)
+                errs.Add($"condition '{condition}' still hangs a lit flag on the pylon");
+        }
+
+        // The timeline has to actually move: a motel that never reflags across
+        // fifty years means the plan collapsed to one brand and the era windows
+        // are doing nothing.
+        var reflagRate = reflaggedRuns * 1.0 / seeds;
+        if (reflagRate < 0.30)
+            errs.Add($"only {reflagRate:P0} of runs ever reflag — the brand timeline is not moving");
+
+        // And the pool has to be wide enough to be worth having.
+        if (flagged.Count < 8)
+            errs.Add($"only {flagged.Count} distinct flags across {seeds} seeds");
+
+        f.Add(("C63", "Every motel flag is a chain that existed in the era it is rendered in, a derelict motel shows a stripped pylon instead, and the flag actually changes across a run",
+            errs.Count == 0, errs.Count == 0
+                ? $"{brands.Count} chains, {flagged.Count} distinct flags across {seeds} seeds, {reflagRate:P0} of runs reflag, every flag inside its own year window"
                 : Join(errs)));
     }
 
