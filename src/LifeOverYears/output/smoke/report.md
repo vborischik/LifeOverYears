@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-08-27T14:35:15.8408930+00:00
+Generated: 2026-08-27T14:35:37.5854294+00:00
 
 ## Check Results
 
@@ -62,7 +62,7 @@ Generated: 2026-08-27T14:35:15.8408930+00:00
 | C54 | Chained eras size trees as growth against the uploaded previous era, never as a fraction of the base | ✅ PASS | every era after the first grows its trees by the per-decade ratio for its size |
 | C55 | The caption tail runs from run-folder state alone, so a resumed batch run is captioned too | ✅ PASS | narrative.json and scene.json round-trip; caption.txt written with years and hashtags |
 | C56 | Downtown and strip-mall poles and wires are explicitly removed from 2015 on; other scene types keep theirs | ✅ PASS | wires stay through 2005, then go underground on main street and at the strip mall only |
-| C57 | A weighted hashtag (#nostalgia 70%) hits its declared share of captions, spends a sampled slot, and never ships its weight suffix | ✅ PASS | #nostalgia in ~69.6% of 4000 draws; pinned set and tag count unchanged |
+| C57 | A weighted hashtag (#nostalgia 70%) hits its declared share of captions, spends a sampled slot, and never ships its weight suffix | ✅ PASS | #nostalgia in ~70.1% of 4000 draws; pinned set and tag count unchanged |
 | C58 | Period details are conditional on the geometry: every prompt states that a detail with no plausible place is left out, and nothing is placed in the roadway | ✅ PASS | placement rule present in every era prompt, ahead of the signage whitelist |
 | C60 | The corner shop opens as one grocery or pharmacy, turns over to a liquor store from 2015 with the old name ghosting above it, draws regulars rather than shoppers after that, and never recovers | ✅ PASS | both runs hold the trade arc, the decline and the prompt budgets; across 500 seeds it ends boarded up 33% of the time and never earlier |
 | C63 | SceneContentKey splits highway into urban/rural content keys by terrain — urban, suburban and industrial all take the corridor flavor, only rural and unrecognized or missing values take the countryside one — and leaves every other scene type unchanged | ✅ PASS | content key resolution holds for every terrain and scene type |
