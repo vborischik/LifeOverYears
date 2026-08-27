@@ -707,6 +707,54 @@
         "a folded luggage cart parked against the office wall"
       ]
     },
+    "freestanding_shop": {
+      "narrative": "A 1975 standalone shop set back from the road on its own paved apron — a handful of cars nosed in facing the door, and the parking lot doing the job a sidewalk crowd would do downtown.",
+      "storefronts": [
+        "a low ground sign at the edge of the apron, lit letters spelling out the trade",
+        "a plate-glass window on either side of the entrance, hand-lettered specials taped up inside",
+        "a flat aluminium canopy over the walk-up entrance, no wider than the doorway",
+        "a painted concrete block wall along the side with no windows in it",
+        "a wooden bench against the front wall, facing out over the apron",
+        "a newspaper rack chained beside the entrance step",
+        "a delivery door at the side with its own small paved pull-in",
+        "a hand-lettered price card taped in the corner of the window"
+      ],
+      "window_signs": [
+        "OPEN 7 DAYS",
+        "ICE COLD DRINKS",
+        "CIGARETTES 45¢",
+        "PHONE INSIDE",
+        "WE DELIVER"
+      ],
+      "people": {
+        "min": 4,
+        "max": 6
+      },
+      "people_activities": [
+        "a woman carrying a bag of groceries out to a car parked facing the door",
+        "a man holding the door for someone coming out",
+        "two kids on bikes leaned against the wall by the entrance",
+        "a driver backing out of a space while someone waits to pull in",
+        "a delivery man wheeling a hand truck in through the side door",
+        "someone reading the price card taped in the window",
+        "a woman with a stroller crossing the apron toward the entrance",
+        "two men talking beside a parked car, in no hurry",
+        "a boy running ahead of his mother across the lot",
+        "someone loading a case of bottles into a trunk",
+        "a man counting change at the counter through the open door",
+        "a woman waving to a driver pulling into the next space"
+      ],
+      "vehicles": {
+        "min": 3,
+        "max": 5
+      },
+      "extras": [
+        "a chalked price board propped just inside the entrance",
+        "wire crates of empty glass bottles stacked by the delivery door",
+        "a bicycle rack bolted into the apron near the walkway",
+        "a painted arrow on the side wall pointing round to the delivery door"
+      ]
+    },
     "corner_shop": {
       "narrative": "A neighbourhood corner shop in 1975 — one small unit serving the blocks around it, hand-lettered specials taped inside the glass and a screen door that bangs shut behind every customer.",
       "storefronts": [

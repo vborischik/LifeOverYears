@@ -694,6 +694,54 @@
         "a plastic patio chair beside a door, sun-faded on one side"
       ]
     },
+    "freestanding_shop": {
+      "narrative": "A 1985 standalone shop still pulling a steady trade — the apron out front rarely empty, a plastic sign panel lit over the door where the painted one used to be.",
+      "storefronts": [
+        "a plastic backlit ground sign at the edge of the apron, one letter dimmer than the rest",
+        "beer and soft-drink posters taped inside the entrance windows",
+        "an aluminium-framed glass door with a metal kick plate",
+        "a video rental rack visible through the window just inside the door",
+        "a lottery placard suction-cupped to the glass beside the door",
+        "an ice chest standing on the apron against the front wall",
+        "a flat canopy over the entrance, one panel light burnt out",
+        "a hand-lettered card taped over the old price board"
+      ],
+      "window_signs": [
+        "OPEN 7 DAYS",
+        "LOTTERY TICKETS",
+        "ICE",
+        "VIDEO RENTAL",
+        "CIGARETTES 95¢"
+      ],
+      "people": {
+        "min": 4,
+        "max": 6
+      },
+      "people_activities": [
+        "a woman loading grocery bags into a car facing the entrance",
+        "two teenagers leaning against a parked car near the door",
+        "a man carrying a video case back out to his car",
+        "someone circling the apron looking for a space near the door",
+        "a delivery driver backing a van up to the side entrance",
+        "a woman checking a lottery ticket against the placard in the window",
+        "a boy on a bike weaving between the parked cars",
+        "a man holding the door for a woman with a stroller",
+        "two people talking across the roof of a parked car",
+        "someone carrying a chest cooler bag out to a station wagon",
+        "a clerk stepping out to flip the ice-chest sign",
+        "a driver waiting with the engine running while someone runs in"
+      ],
+      "vehicles": {
+        "min": 3,
+        "max": 5
+      },
+      "extras": [
+        "an ice chest chained to a bracket on the front wall",
+        "a stack of flattened cardboard tied up beside the side door",
+        "a lottery decal in the corner of the entrance glass",
+        "a payphone mounted on the wall at the edge of the apron"
+      ]
+    },
     "corner_shop": {
       "narrative": "A 1985 corner shop holding its own — a video rental rack inside the door, lottery tickets at the counter and a chest freezer humming against the back wall.",
       "storefronts": [

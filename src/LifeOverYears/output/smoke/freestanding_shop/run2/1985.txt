@@ -1,0 +1,84 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+PRIORITY ORDER — when instructions conflict, the lower number wins
+1. The uploaded image's composition and geometry.
+2. The exact people and vehicle counts given below.
+3. The historical transformation for the target year.
+4. The specific period details listed — each only where the geometry has room
+   for it; one with nowhere to go is left out, never forced into the roadway.
+5. Add nothing that is not asked for — no extra businesses, signs, vehicles,
+   people, logos or advertisements.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove the
+modern businesses, logos, brands, storefront names, banners and advertisements
+visible in the source image, and replace them only with the period signage
+specified below.
+
+PRESERVE
+Keep the uploaded image's composition, camera angle, geometry, buildings,
+roads and permanent structures exactly as they are. Do not redraw,
+reposition or restyle them. Change only what the sections below ask for.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
+
+TRANSFORM TO 1985
+Reagan era prosperity. A 1985 standalone shop still pulling a steady trade — the apron out front rarely empty, a plastic sign panel lit over the door where the painted one used to be.
+
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+
+PERIOD DETAILS
+- backlit plastic channel letters standard
+- an aluminium-framed glass door with a metal kick plate
+- awnings with bold stripe patterns
+- main sign: "PARK STREET MARKET" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
+- window signs: 'VIDEO RENTAL', 'ICE'
+- an ice chest chained to a bracket on the front wall
+- a lottery decal in the corner of the entrance glass
+Typography: bold geometric sans-serif, early computer-influenced fonts.
+Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
+
+SIGNAGE RESTRICTION
+The only readable text anywhere in the image is:
+'PARK STREET MARKET'
+'VIDEO RENTAL'
+'ICE'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
+
+PEOPLE
+EXACTLY 5 people TOTAL: 2 in the foreground near the building entrance (largest), 2 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
+- two teenagers leaning against a parked car near the door
+- a woman loading grocery bags into a car facing the entrance
+- a grandmother clutching a coupon flyer
+Clothing: men in shoulder pads in blazers, polo shirts with collars up; women in bright neon colors, shoulder pads. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+
+VEHICLES
+EXACTLY 5 period vehicles, all different:
+- 1982-1986 Nissan Sentra — small economy boxy sedan — silver
+- 1979-1985 Ford Mustang — Fox body, angular hatchback coupe — beige
+- 1984-1990 Dodge Caravan — first minivan, boxy — charcoal gray
+- 1983-1988 Ford Thunderbird — aero coupe, rounded — light blue
+- 1980-1989 Lincoln Town Car — long boxy luxury sedan — red
+Parked with gaps. Where a model is listed with a year range, render the 1985 model year specifically — only styling, trim and features available in 1985, nothing introduced later. No vehicle newer than 1985.
+Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
+PLACEMENT: two parked on the LEFT side; the rest parked on the RIGHT side with gaps. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, painted crosswalks
+- utilities: overhead power lines standard, wooden utility poles
+
+TREES
+- honey locust tree at lot edge beside the ground sign: a young tree, only about 20% of its canopy in the base image, thin trunk, in full summer leaf, an even healthy crown, the tree pit swept clear
+Tree sizes MUST follow this specification even where they differ from the base image.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — Kodacolor VR 200 or Fujicolor 100 look.
+Color: slightly cool tones compared to 1970s. Grain: moderate grain, cleaner than 1975.
+Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+
+PRIVACY
+Blur all faces and license plates.

@@ -712,6 +712,52 @@
         "a hand-lettered card in the office glass giving the check-out time"
       ]
     },
+    "freestanding_shop": {
+      "narrative": "A 1995 standalone shop holding on against the chains — the apron still gets used, but half the spaces sit empty most afternoons now.",
+      "storefronts": [
+        "a backlit plastic ground sign, one tube out at the left end",
+        "a phone-card poster and a money-order decal filling the lower window",
+        "a security camera bracket newly fitted above the entrance",
+        "an ATM decal on the glass beside the door",
+        "a chest cooler on the apron under a plastic drinks banner",
+        "the entrance canopy showing bare steel where a panel is missing",
+        "a hand-lettered sign about a two-item limit taped to the glass",
+        "faded apron striping still marking out spaces nobody uses anymore"
+      ],
+      "window_signs": [
+        "LOTTO",
+        "MONEY ORDERS",
+        "PHONE CARDS",
+        "ATM INSIDE",
+        "ICE"
+      ],
+      "people": {
+        "min": 3,
+        "max": 5
+      },
+      "people_activities": [
+        "a man parked at an angle instead of in a marked space",
+        "a woman checking a phone-card poster before going in",
+        "someone waiting by a car with the door open, engine off",
+        "a delivery driver checking a clipboard against the side door",
+        "a man reading the money-order rates taped to the glass",
+        "two people talking beside a car parked near the entrance",
+        "a boy sent in alone while a parent waits outside",
+        "a woman carrying a single bag straight back to her car",
+        "someone circling once before finding a space close to the door",
+        "a man loading an ice chest into the back of a pickup"
+      ],
+      "vehicles": {
+        "min": 2,
+        "max": 4
+      },
+      "extras": [
+        "a bare canopy frame where a light panel used to sit",
+        "a phone-card rack visible through the glass by the register",
+        "a hand-lettered notice taped inside the entrance glass",
+        "faded striping on the apron marking spaces half the cars ignore"
+      ]
+    },
     "corner_shop": {
       "narrative": "A 1995 corner shop squeezed by the supermarkets — money orders and phone cards on the window now, and a cash machine put in where the magazine rack used to be.",
       "storefronts": [

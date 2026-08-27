@@ -104,6 +104,21 @@ public sealed class CaptionService : ICaptionService
             "the phone behind the counter you were allowed to use",
             "how close it was — four minutes, and you went alone",
         },
+        ["freestanding_shop"] = new[]
+        {
+            "pulling straight up to the door instead of parking down the block",
+            "the whole family waiting in the car while one person ran in",
+            "knowing the lot would have a space even on a Saturday",
+            "the ground sign lit up before you could read what it said",
+            "backing out while somebody else was already pulling in",
+            "the smell of the place hitting you before the door even shut",
+            "leaving the engine running for just a minute, then staying longer",
+            "the one shop everyone drove to instead of walking",
+            "circling once before finding a spot close to the door",
+            "the delivery truck backed up to the side while you waited",
+            "a five-minute stop that turned into standing around by the cars",
+            "the apron lights coming on before the streetlights did",
+        },
         ["motel"] = new[]
         {
             "the sound of a car pulling in late with its headlights across the curtains",

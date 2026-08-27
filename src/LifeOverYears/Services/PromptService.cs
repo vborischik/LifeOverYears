@@ -704,6 +704,30 @@ public sealed class PromptService : IPromptService
         "litter and broken glass banked against the base of the wall"
     };
 
+    // Same arc as corner_shop, same wear pattern — bars, a camera, a hand-painted
+    // board over the old sign — but on a standalone building with an apron in
+    // front rather than a sidewalk frontage, so the one line that named a
+    // pilaster is swapped for the parking apron this scene type actually has.
+    internal static readonly string[] FreestandingShopDecayModerate =
+    {
+        "steel bars fitted across the lower windows, newer than everything around them",
+        "the old sign band painted over, a hand-lettered board screwed on beneath it",
+        "a cracked window pane held with tape at one corner",
+        "milk crates and flattened boxes stacked by the side door",
+        "an ice cooler chained to the wall beside the entrance",
+        "the parking apron cracked and patched, weeds through the seams"
+    };
+
+    internal static readonly string[] FreestandingShopDecayHeavy =
+    {
+        "plywood screwed over the storefront glass, the door frame boarded flush",
+        "a padlocked steel grille pulled across the entrance",
+        "the sign band stripped bare, anchor holes left in the brick",
+        "graffiti across the boarded window and the lower brick",
+        "a dead security camera hanging off its bracket above the door",
+        "litter blown against the base of the wall, the apron gone to weeds"
+    };
+
     // An independent auto repair shop decays through its own working surfaces:
     // the bay doors, the sign band, the apron — never geometry, and never a
     // feature (pump island, canopy) that might not exist in a given SceneDna.
@@ -772,6 +796,7 @@ public sealed class PromptService : IPromptService
             "strip_mall"      => StripMallDecayModerate,
             "auto_repair"     => AutoRepairDecayModerate,
             "corner_shop"     => CornerShopDecayModerate,
+            "freestanding_shop" => FreestandingShopDecayModerate,
             "motel"           => MotelDecayModerate,
             _                 => DecayModerate
         },
@@ -785,6 +810,7 @@ public sealed class PromptService : IPromptService
             "strip_mall"      => StripMallSquattedPool,
             "auto_repair"     => AutoRepairDecayHeavy,
             "corner_shop"     => CornerShopDecayHeavy,
+            "freestanding_shop" => FreestandingShopDecayHeavy,
             "motel"           => MotelDecayHeavy,
             _                 => DecayHeavy
         },
@@ -794,6 +820,7 @@ public sealed class PromptService : IPromptService
             "strip_mall"      => StripMallDecayHeavy,
             "auto_repair"     => AutoRepairDecayHeavy,
             "corner_shop"     => CornerShopDecayHeavy,
+            "freestanding_shop" => FreestandingShopDecayHeavy,
             "motel"           => MotelDecayHeavy,
             _                 => DecayHeavy
         },
@@ -808,7 +835,7 @@ public sealed class PromptService : IPromptService
     // Single source of truth: the count logic and the CONDITION line both ask
     // here, so they cannot drift apart.
     private static bool SupportsCondition(string sceneType) =>
-        sceneType is "gas_station" or "downtown_street" or "strip_mall" or "auto_repair" or "corner_shop" or "motel";
+        sceneType is "gas_station" or "downtown_street" or "strip_mall" or "auto_repair" or "corner_shop" or "motel" or "freestanding_shop";
 
     // The pylon by the road is the only place a motel's identity is written, so
     // it carries the flag and the vacancy state together. A closed motel keeps
@@ -831,7 +858,14 @@ public sealed class PromptService : IPromptService
     // from LiquorFromYear its trade is fixed and the people outside change with
     // it. Asked here rather than inline so the sign, the people block and the
     // checks all read the same year.
-    private static bool IsCornerShop(string sceneType) => sceneType == "corner_shop";
+    //
+    // Despite the name this gates the shared scripted-turnover arc, not the
+    // literal corner_shop scene type: freestanding_shop runs the identical
+    // trajectory (same CornerShopKind/CornerShopSign, same ResolveCornerShop)
+    // on a standalone building with a parking apron instead of a sidewalk
+    // storefront. Kept as one name rather than two aliases, because aliasing
+    // it would let a change to one predicate silently stop covering the other.
+    private static bool IsCornerShop(string sceneType) => sceneType is "corner_shop" or "freestanding_shop";
 
     private static bool IsMotel(string sceneType) => sceneType == "motel";
 

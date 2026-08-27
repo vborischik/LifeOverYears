@@ -1,29 +1,34 @@
-# Liquor store names for the corner_shop turnover, one per line: kind|NAME
+# Liquor store names for the corner_shop / freestanding_shop turnover, one per
+# line: kind|NAME
 #
 # Split by urban register, because the name is sign text and the register has
 # to match the frontage it is bolted to: a warehouse name on a narrow pre-war
-# shopfront reads as the wrong building, and the whole corner-shop arc is that
-# the building never changes and only the trade does.
+# shopfront reads as the wrong building, and the whole turnover arc (shared by
+# both scene types) is that the building never changes and only the trade does.
 #
 #   liquor_urban     the independent shop on a dense, walkable pre-war
 #                    commercial corridor — narrow frontage, the sign band is
 #                    the whole storefront. Numbered avenues and streets,
 #                    proprietor surnames, combined trades (liquor & deli,
 #                    wine & spirits, liquor & grocery), initials, plain
-#                    one-word trade names.
+#                    one-word trade names. Drawn by corner_shop.
 #
-#   liquor_suburban  the wider unit with parking in front, on a strip mall or
-#                    an arterial road. Trade-descriptive names — discount,
-#                    warehouse, beverage — plus plaza and highway references.
+#   liquor_suburban  the wider unit with parking in front, on a strip mall, an
+#                    arterial road, or a standalone building with its own
+#                    apron. Trade-descriptive names — discount, warehouse,
+#                    beverage — plus plaza and highway references. Drawn by
+#                    freestanding_shop.
 #
 # Scene type picks the pool: see GenerationContext.LiquorKeysFor. Locked by C61.
 #
-# NOTE: only corner_shop resolves a liquor name today, and a corner shop is
-# always the narrow pre-war frontage — Vision sends the wider unit with parking
-# to strip_mall instead. So liquor_suburban is currently DORMANT: it is wired
-# through LiquorKeysFor and checked for rot, but nothing renders it until some
-# other scene type gains a named liquor store. Adding a suburban name here will
-# not make it appear in a prompt on its own.
+# NOTE: corner_shop and freestanding_shop are the only two callers today — both
+# resolve a liquor name from LiquorFromYear, corner_shop always from
+# liquor_urban and freestanding_shop always from liquor_suburban, since a
+# freestanding shop is by definition the wider unit with a parking apron in
+# front. strip_mall and shopping_center are still mapped to liquor_suburban in
+# LiquorKeysFor (for whenever one of them gains a named liquor store) but
+# neither calls the resolver yet, so the mapping for those two remains intent
+# rather than live behaviour.
 #
 # Names are rendered as sign text, so they must read as a real small-town or
 # city storefront: no adjectives, no descriptions, no invented national chains,

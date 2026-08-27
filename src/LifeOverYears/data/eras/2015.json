@@ -741,6 +741,52 @@
         "a satellite dish still bolted to the roof, cable hanging loose"
       ]
     },
+    "freestanding_shop": {
+      "narrative": "By 2015 the building sells bottles — the same apron, the same walk-up entrance, a liquor store now, bars over the glass and the old ground sign still ghosting behind the new one.",
+      "storefronts": [
+        "heavy steel mesh over the entrance windows, bolted flat to the frames",
+        "an LED beer sign in the upper glass, one segment dead",
+        "a buzzer entry plate screwed beside the door handle",
+        "printed price sheets taped up in rows inside the glass",
+        "a no-loitering placard weathered past reading",
+        "cameras at both corners of the building, cabling run openly down the wall",
+        "the old ground sign still faintly readable behind the new panel",
+        "an ice chest padlocked shut against the front wall"
+      ],
+      "window_signs": [
+        "BEER WINE LIQUOR",
+        "LOTTO",
+        "ATM INSIDE",
+        "ICE",
+        "NO LOITERING"
+      ],
+      "people": {
+        "min": 1,
+        "max": 3
+      },
+      "people_activities": [
+        "a man waiting for the door buzzer with a hand on the handle",
+        "two men standing off to the side of the entrance, saying little",
+        "someone coming out with a bag held low, walking straight to a car",
+        "a woman scrolling a phone against the wall by the window",
+        "a man sitting on a concrete parking bumper with a can beside him",
+        "someone parked at the edge of the apron, not going in",
+        "a delivery driver checking an app before carrying a case in",
+        "a man reading the price sheets through the mesh",
+        "two people talking across the roof of a parked car",
+        "someone leaving a bicycle unlocked against the wall for a minute"
+      ],
+      "vehicles": {
+        "min": 1,
+        "max": 3
+      },
+      "extras": [
+        "a padlocked ice chest with a faded drinks decal",
+        "cigarette ends and bottle caps scattered near the parking bumpers",
+        "a scuffed steel kick plate on the door",
+        "a bare bracket where a payphone was taken off the wall"
+      ]
+    },
     "corner_shop": {
       "narrative": "By 2015 the shop sells bottles — the same building, the same door, a liquor store now, with bars over the glass, neon in the window and the old lettering still ghosting on the brick above the new sign.",
       "storefronts": [

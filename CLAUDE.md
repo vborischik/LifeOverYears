@@ -144,8 +144,8 @@ get benches standing in the road. Locked by C58; add the same "or omit it"
 wording to any new list of props.
 
 **Scene types** — `gas_station`, `downtown_street`, `strip_mall`, `auto_repair`,
-`corner_shop`, `motel`, `highway`, `mall`, `shopping_center`, plus a `default`/`unknown`
-fallback.
+`corner_shop`, `freestanding_shop`, `motel`, `highway`, `mall`, `shopping_center`,
+plus a `default`/`unknown` fallback.
 Era JSONs key `scene_content` by these names, Vision classifies into them
 (`data/prompts/vision.txt`), and the synthetic base needs a phrase in
 `data/prompts/scene-types.txt`. Adding one means touching all of those plus a
@@ -182,18 +182,27 @@ through untouched. Same rationale as the era brand pinning. Locked by C65.
 Note this only reaches a prompt through the synthetic base today: the era
 PRESERVE block is the short fixed form.
 
-**Corner shop** — the one scene type with a scripted story rather than a sampled
-one: it opens as a grocery or a pharmacy (drawn once per run from
-`data/brands/corner-shop-names.txt`) and from `LiquorFromYear` (2015) the same
-building is a liquor store under a new name, the old lettering ghosting above
-it. `GenerationContext.ResolveCornerShop` holds the trajectory,
-`PromptService.AppendCornerShopSign` writes the sign, and `PickSceneCondition`
-gives the type a floor (never in good repair from `DeclineFromYear`, 2005) and a
-ceiling (never boarded before the last era, or the turnover the scene exists to
-show never appears on screen). It ends boarded up in about a third of runs and
-never earlier. From 2015 the people outside are regulars, not shoppers. Locked
-by C60, which measures that spread over 500 seeds rather than trusting the two
-fixtures.
+**Corner shop / freestanding shop** — the two scene types with a scripted story
+rather than a sampled one, sharing a single state machine
+(`GenerationContext.CornerShopKind`/`CornerShopSign`/`ResolveCornerShop`,
+`PromptService.IsCornerShop` gates both). Each opens as a grocery or a pharmacy
+(drawn once per run from `data/brands/corner-shop-names.txt`) and from
+`LiquorFromYear` (2015) the same building is a liquor store under a new name,
+the old lettering ghosting above it. `PromptService.AppendCornerShopSign`
+writes the sign (scene-type-agnostic — it only reads the resolved kind and
+name), and `PickSceneCondition` gives both a floor (never in good repair from
+`DeclineFromYear`, 2005) and a ceiling (never boarded before the last era, or
+the turnover the scene exists to show never appears on screen). Each ends
+boarded up in about a third of runs and never earlier. From 2015 the people
+outside are regulars, not shoppers. Locked by C60, which measures that spread
+over 500 seeds per scene type rather than trusting the fixtures.
+
+The two differ only in footprint and hence in liquor-name register:
+`corner_shop` is the narrow shop built to the sidewalk with no parking lot of
+its own (Vision: `data/prompts/vision.txt`); `freestanding_shop` is the
+standalone building with its own paved apron facing the entrance, chosen over
+`strip_mall` because it has no neighbouring storefronts under a shared roof.
+Same enum, same resolver, same turnover — only the building it sits on differs.
 
 **Liquor names** — `data/brands/corner-shop-liquor-names.txt`, kept apart from the
 origin trades in `corner-shop-names.txt` and split by urban register:
@@ -201,14 +210,20 @@ origin trades in `corner-shop-names.txt` and split by urban register:
 initials — the narrow pre-war frontage) and `liquor_suburban` (discount,
 warehouse, beverage, plaza and highway names — the wider unit with parking).
 `GenerationContext.LiquorKeysFor` maps scene type to pool: urban for
-`downtown_street`/`corner_shop`, suburban for `strip_mall`/`shopping_center`,
-both for anything else. The name is sign text, so a warehouse name on a narrow
-frontage reads as the wrong building — which is exactly what the corner-shop arc
-cannot afford. Only `corner_shop` resolves a liquor name at all (other scene
-types mention an unnamed liquor store and stop there), and a corner shop is
-always the narrow frontage — so `liquor_suburban` is wired but **dormant**:
-adding a name to it will not make it appear until another scene type gains a
-named liquor store. Locked by C61, which asserts exactly that.
+`downtown_street`/`corner_shop`, suburban for
+`strip_mall`/`shopping_center`/`freestanding_shop`, both for anything else. The
+name is sign text, so a warehouse name on a narrow frontage reads as the wrong
+building — which is exactly what this arc cannot afford. `corner_shop` and
+`freestanding_shop` are the only two scene types that resolve a liquor name at
+all (other types mention an unnamed liquor store and stop there); `strip_mall`
+and `shopping_center` stay mapped to `liquor_suburban` for whenever one of them
+gains a named liquor store, but neither calls the resolver today, so that half
+of the mapping is intent rather than observed. Locked by C61, which asserts the
+live half against both scene types' own resolved names and the dormant half
+against the mapping alone. C72 sweeps 300 seeds per scene type and logs the
+full per-name draw table plus the grocery/pharmacy split, so the actual shape
+of the randomness — not just pool membership — is visible in a `--smoke-prompts`
+run.
 
 **Motel** — the second scene type with a dated brand file. `data/brands/motel-brands.txt`
 is `Name|from|to` exactly like `gas-brands.txt` and shares its parser

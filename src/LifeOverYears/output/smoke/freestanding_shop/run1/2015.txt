@@ -1,0 +1,88 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+PRIORITY ORDER — when instructions conflict, the lower number wins
+1. The uploaded image's composition and geometry.
+2. The exact people and vehicle counts given below.
+3. The historical transformation for the target year.
+4. The specific period details listed — each only where the geometry has room
+   for it; one with nowhere to go is left out, never forced into the roadway.
+5. Add nothing that is not asked for — no extra businesses, signs, vehicles,
+   people, logos or advertisements.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove the
+modern businesses, logos, brands, storefront names, banners and advertisements
+visible in the source image, and replace them only with the period signage
+specified below.
+
+PRESERVE
+Keep the uploaded image's composition, camera angle, geometry, buildings,
+roads and permanent structures exactly as they are. Do not redraw,
+reposition or restyle them. Change only what the sections below ask for.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
+
+TRANSFORM TO 2015
+Smartphone era fully arrived. By 2015 the building sells bottles — the same apron, the same walk-up entrance, a liquor store now, bars over the glass and the old ground sign still ghosting behind the new one.
+
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
+
+PERIOD DETAILS
+- LED illuminated channel letters
+- a buzzer entry plate screwed beside the door handle
+- printed price sheets taped up in rows inside the glass
+- main sign: "PARKWAY LIQUORS" — a neighbourhood liquor store, a plastic backlit box sign bolted over the old sign band, steel bars across the windows
+- above the new sign the previous business's lettering still ghosts on the brick: "PARK STREET MARKET" — weathered, partly gone, plainly older than the sign bolted beneath it
+- window signs: 'NO LOITERING', 'LOTTO'
+- a padlocked ice chest with a faded drinks decal
+- a scuffed steel kick plate on the door
+Typography: minimalist flat sans-serif, simplified modern logos.
+Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
+
+SIGNAGE RESTRICTION
+The only readable text anywhere in the image is:
+'PARKWAY LIQUORS'
+'PARK STREET MARKET'
+'NO LOITERING'
+'LOTTO'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
+
+PEOPLE
+EXACTLY 4 people TOTAL: 2 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
+- the people here are regulars of this store, not shoppers: leaning against the wall by the barred window, not going in — keeping to themselves, nobody carrying groceries, nobody looking at the camera
+- a man waiting for the door buzzer with a hand on the handle
+- a delivery driver checking an app before carrying a case in
+- a woman power-walking while listening to a podcast through earbuds
+Clothing: men in henley shirts, boat shoes; women in high-waisted skinny jeans, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+
+VEHICLES
+EXACTLY 2 period vehicles, all different:
+- 2011-2016 Honda CR-V — rounded compact crossover — pearl white
+- 2013-2016 Ford Escape — rounded compact crossover — silver
+Parked with gaps. Where a model is listed with a year range, render the 2015 model year specifically — only styling, trim and features available in 2015, nothing introduced later. No vehicle newer than 2015.
+Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
+PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: worn and faded, well past their last repainting
+- utilities: overhead power lines common on wooden poles, fiber optic lines on poles
+
+DECAY
+- the parking apron cracked and patched, weeds through the seams
+- a cracked window pane held with tape at one corner
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
+TREES
+- honey locust tree at lot edge beside the ground sign: clearly smaller than in the base image — about 65% of its canopy there, thinner trunk, in leaf but untrimmed, suckers at the base and one dead limb
+Tree sizes MUST follow this specification even where they differ from the base image.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — digital — DSLR or smartphone camera look.
+Color: high saturation. Grain: clean, minimal noise.
+Photorealistic — NOT black-and-white, no HDR.
+Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
+
+PRIVACY
+Blur all faces and license plates.

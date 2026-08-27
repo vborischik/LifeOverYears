@@ -3,7 +3,7 @@ You are a street scene analysis AI. Analyze the provided photo and return ONLY a
 Fill every field based on what you observe in the image. Use the exact schema below:
 
 {
-  "scene_type": "<gas_station|auto_repair|strip_mall|mall|downtown_street|corner_shop|motel|residential_street|highway|parking_lot|shopping_center|industrial|unknown>",
+  "scene_type": "<gas_station|auto_repair|strip_mall|mall|downtown_street|corner_shop|freestanding_shop|motel|residential_street|highway|parking_lot|shopping_center|industrial|unknown>",
   "camera": {
     "height": "<eye-level|low|high|aerial>",
     "direction": "<street|intersection|alley|facade|park>",
@@ -103,6 +103,12 @@ Rules:
   "downtown_street" when the photo is of that one shop rather than of a run of
   storefronts along a block — a shop at the end of a terrace still counts if it
   is plainly the subject and no other storefronts are readable in the frame.
+- "freestanding_shop" is a small standalone one-story building sitting apart
+  from the street with its own dedicated parking apron facing the entrance,
+  regardless of what business currently occupies it. Choose it over
+  "corner_shop" whenever off-street parking spaces face the facade;
+  "corner_shop" is reserved for a shop built to the sidewalk or street edge
+  with no parking lot of its own between the building and the road.
 - "motel" for a single-story roadside building with a uniform row of numbered
   guest doors, one paired window per door, striped parking bays laid one per
   door along the front, and a low pylon sign near the road. Choose it over

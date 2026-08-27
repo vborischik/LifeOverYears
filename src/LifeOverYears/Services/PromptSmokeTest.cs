@@ -62,6 +62,7 @@ public static class PromptSmokeTest
         var stripMallScene = MakeStripMallScene();
         var autoRepairScene = MakeAutoRepairScene();
         var cornerShopScene = MakeCornerShopScene();
+        var freestandingShopScene = MakeFreestandingShopScene();
         var motelScene      = MakeMotelScene();
         var highwayUrbanScene = MakeHighwayScene("urban");
         var highwayRuralScene = MakeHighwayScene("rural");
@@ -86,6 +87,8 @@ public static class PromptSmokeTest
         var csRun2  = await BuildRun(promptService, cornerShopScene, eras, 1337, Years);
         var mtRun1  = await BuildRun(promptService, motelScene,      eras, 42,   Years);
         var mtRun2  = await BuildRun(promptService, motelScene,      eras, 1337, Years);
+        var fsRun1  = await BuildRun(promptService, freestandingShopScene, eras, 42,   Years);
+        var fsRun2  = await BuildRun(promptService, freestandingShopScene, eras, 1337, Years);
         var hwUrban = await BuildRun(promptService, highwayUrbanScene, eras, 42, Years);
         var hwRural = await BuildRun(promptService, highwayRuralScene, eras, 42, Years);
         var hwBuilt = await BuildRun(promptService, highwayBuiltScene, eras, 42, Years);
@@ -109,6 +112,8 @@ public static class PromptSmokeTest
         await SaveRun(cornerShopScene.SceneType, 2, csRun2);
         await SaveRun(motelScene.SceneType,      1, mtRun1);
         await SaveRun(motelScene.SceneType,      2, mtRun2);
+        await SaveRun(freestandingShopScene.SceneType, 1, fsRun1);
+        await SaveRun(freestandingShopScene.SceneType, 2, fsRun2);
         // Named by content key, not scene type: both are "highway" and would
         // otherwise overwrite each other's output.
         await SaveRun("highway_urban", 1, hwUrban);
@@ -182,7 +187,7 @@ public static class PromptSmokeTest
         DoC56(dtRun1, dtRun2, smRun1, smRun2, gasRun1, arRun1, findings);
         await DoC57(dataService, findings);
         await DoC58(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, csRun1, csRun2, unknownPrompt, findings);
-        DoC60(csRun1, csRun2, eras, logger, findings);
+        DoC60(csRun1, csRun2, fsRun1, fsRun2, eras, logger, findings);
         DoC63(findings);
         await DoC64(promptService, eras, highwayUrbanScene, hwUrban, hwRural, findings);
         await DoC65(promptService, dataService, eras, highwayBuiltScene, findings);
@@ -193,6 +198,7 @@ public static class PromptSmokeTest
         await DoC70(promptService, eras, highwayUrbanScene, downtownScene, findings);
         DoC62(csRun1, csRun2, gasRun1, dtRun1, smRun1, arRun1, findings);
         await DoC61(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
+        await DoC72(dataService, logger, findings);
         await DoC71(dataService, findings);
         await DoC59(dataService, findings);
 
@@ -479,6 +485,52 @@ public static class PromptSmokeTest
             "entrance door on the corner chamfer"
         ]);
 
+    // Same scripted trade arc as corner_shop, on the other footprint that arc
+    // supports: a standalone building set back from the road with its own
+    // parking apron facing the entrance, rather than a sidewalk storefront.
+    private static SceneDna MakeFreestandingShopScene() => new(
+        Id:        "smoke-freestanding-shop",
+        CreatedAt: "2025-01-01T00:00:00Z",
+        SceneType: "freestanding_shop",
+        Camera: new Camera(Height: "eye-level", Direction: "facade", Fov: 76),
+        Geometry: new Geometry(
+            Roads:
+            [
+                new Road(
+                    Type:     "commercial arterial",
+                    Lanes:    2,
+                    Markings: ["yellow center line", "white edge lines"],
+                    Surface:  "asphalt")
+            ],
+            Sidewalks: false,
+            Curbs:     false,
+            Buildings:
+            [
+                new Building(
+                    Type:      "one-story standalone shop set back from the road",
+                    Position:  "centered on its own lot, facade facing the parking apron",
+                    Stories:   1,
+                    Materials: ["painted concrete block", "plate glass"],
+                    Roof:      "flat parapet",
+                    Setback:   "deep")
+            ],
+            Driveways: ["paved apron directly in front of the entrance"],
+            Parking:   "off-street apron facing the facade, no on-street parking"),
+        Environment: new Environment(
+            Terrain:   "suburban flat",
+            Utilities: ["overhead power lines", "utility pole at the lot edge"],
+            Trees:
+            [
+                new Tree(Position: "lot edge beside the ground sign", Size: "small", Type: "honey locust")
+            ],
+            Landscape: ["painted parking bays", "grass strip along the road frontage"]),
+        ImmutableElements:
+        [
+            "low ground sign at the edge of the apron",
+            "paved parking apron facing the entrance",
+            "no neighbouring storefronts under a shared roof"
+        ]);
+
     // Both highway fixtures carry SceneType "highway" — the flavor comes from
     // terrain alone, which is exactly the split SceneContentKey exists to make.
     private static SceneDna MakeHighwayScene(string terrain, bool withBuildings = false) => new(
@@ -714,7 +766,7 @@ public static class PromptSmokeTest
         List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
-        string[] requiredKeys = { "downtown_street", "gas_station", "strip_mall", "auto_repair", "corner_shop", "motel", "default" };
+        string[] requiredKeys = { "downtown_street", "gas_station", "strip_mall", "auto_repair", "corner_shop", "motel", "freestanding_shop", "default" };
         string[] poolsRequiring20 = { "downtown_street", "gas_station", "strip_mall", "auto_repair" };
         const int minPoolSize = 20;
 
@@ -3840,6 +3892,7 @@ public static class PromptSmokeTest
     // list of runs, and this scene type is guarded where it is built instead.
     private static void DoC60(
         Dictionary<int, Prompt> csRun1, Dictionary<int, Prompt> csRun2,
+        Dictionary<int, Prompt> fsRun1, Dictionary<int, Prompt> fsRun2,
         Dictionary<int, EraProfile> eras,
         ILogger logger,
         List<(string, string, bool?, string)> f)
@@ -3934,71 +3987,86 @@ public static class PromptSmokeTest
 
         Check(csRun1, "corner_shop/run1");
         Check(csRun2, "corner_shop/run2");
+        Check(fsRun1, "freestanding_shop/run1");
+        Check(fsRun2, "freestanding_shop/run2");
 
         // Two fixtures cannot show what the policy does, only what it did twice.
         // The floor and the ceiling are distribution claims, so they are measured
-        // across seeds the way C45 measures the general condition spread.
+        // across seeds the way C45 measures the general condition spread. Swept
+        // for both scene types that share this scripted arc — corner_shop and
+        // freestanding_shop resolve PickSceneCondition through the exact same
+        // code (GenerationContext.cs:210), so a bug that only shows up for one
+        // sceneType string is exactly the kind of thing this doubles up to catch.
         const int seeds = 500;
         const double minClosedFinale = 0.25, maxClosedFinale = 0.45;
-        var closedEarly = 0;
-        var repairedLate = 0;
-        var closedFinale = 0;
+        var summaries = new List<string>();
 
-        for (var seed = 0; seed < seeds; seed++)
+        foreach (var sceneType in new[] { "corner_shop", "freestanding_shop" })
         {
-            var ctx = new GenerationContext
-                { Random = new Random(seed), TotalEras = Years.Length, Years = Years };
-            var path = new List<string>();
-            foreach (var year in Years)
+            var closedEarly = 0;
+            var repairedLate = 0;
+            var closedFinale = 0;
+
+            for (var seed = 0; seed < seeds; seed++)
             {
-                ctx.BeginEra();
-                path.Add(ctx.PickSceneCondition(eras[year].AllowedSceneConditions, "corner_shop", year));
+                var ctx = new GenerationContext
+                    { Random = new Random(seed), TotalEras = Years.Length, Years = Years };
+                var path = new List<string>();
+                foreach (var year in Years)
+                {
+                    ctx.BeginEra();
+                    path.Add(ctx.PickSceneCondition(eras[year].AllowedSceneConditions, sceneType, year));
+                }
+
+                for (var i = 0; i < Years.Length; i++)
+                {
+                    var derelict = path[i] is "abandoned" or "squatted";
+                    var healthy  = path[i] is not ("declining" or "abandoned" or "squatted");
+
+                    // Boarded up before the last era would hide the turnover.
+                    if (derelict && i < Years.Length - 1) closedEarly++;
+                    // In good repair after the decline is supposed to have started.
+                    if (healthy && Years[i] >= GenerationContext.DeclineFromYear) repairedLate++;
+                }
+                if (path[^1] is "abandoned" or "squatted") closedFinale++;
             }
 
-            for (var i = 0; i < Years.Length; i++)
-            {
-                var derelict = path[i] is "abandoned" or "squatted";
-                var healthy  = path[i] is not ("declining" or "abandoned" or "squatted");
+            if (closedEarly > 0)
+                errs.Add($"{sceneType}: {closedEarly} of {seeds} seeds board the shop up before the last era — the liquor store is never seen");
+            if (repairedLate > 0)
+                errs.Add($"{sceneType}: {repairedLate} of {seeds} seeds still show it in good repair from {GenerationContext.DeclineFromYear} on");
 
-                // Boarded up before the last era would hide the turnover.
-                if (derelict && i < Years.Length - 1) closedEarly++;
-                // In good repair after the decline is supposed to have started.
-                if (healthy && Years[i] >= GenerationContext.DeclineFromYear) repairedLate++;
-            }
-            if (path[^1] is "abandoned" or "squatted") closedFinale++;
+            var closedRate = closedFinale / (double)seeds;
+            if (closedRate < minClosedFinale || closedRate > maxClosedFinale)
+                errs.Add($"{sceneType}: the shop ends boarded up in {closedRate:P0} of runs, expected {minClosedFinale:P0}-{maxClosedFinale:P0}");
+
+            logger.LogInformation(
+                "[Smoke] C60 {SceneType} spread across {Seeds} seeds: ends boarded {Rate:P0}, never derelict before the last era",
+                sceneType, seeds, closedRate);
+            summaries.Add($"{sceneType} ends boarded {closedRate * 100.0:F0}% of the time");
         }
 
-        if (closedEarly > 0)
-            errs.Add($"{closedEarly} of {seeds} seeds board the shop up before the last era — the liquor store is never seen");
-        if (repairedLate > 0)
-            errs.Add($"{repairedLate} of {seeds} seeds still show it in good repair from {GenerationContext.DeclineFromYear} on");
-
-        var closedRate = closedFinale / (double)seeds;
-        if (closedRate < minClosedFinale || closedRate > maxClosedFinale)
-            errs.Add($"the shop ends boarded up in {closedRate:P0} of runs, expected {minClosedFinale:P0}-{maxClosedFinale:P0}");
-
-        logger.LogInformation(
-            "[Smoke] C60 corner shop spread across {Seeds} seeds: ends boarded {Rate:P0}, never derelict before the last era",
-            seeds, closedRate);
-
-        f.Add(("C60", "The corner shop opens as one grocery or pharmacy, turns over to a liquor store from 2015 with the old name ghosting above it, draws regulars rather than shoppers after that, and never recovers",
+        f.Add(("C60", "The corner shop and the freestanding shop each open as one grocery or pharmacy, turn over to a liquor store from 2015 with the old name ghosting above it, draw regulars rather than shoppers after that, and never recover",
             errs.Count == 0, errs.Count == 0
-                ? $"both runs hold the trade arc, the decline and the prompt budgets; across {seeds} seeds it ends boarded up {closedFinale * 100.0 / seeds:F0}% of the time and never earlier"
+                ? $"all four runs hold the trade arc, the decline and the prompt budgets; across {seeds} seeds each, {string.Join("; ", summaries)}, never earlier"
                 : Join(errs)));
     }
 
-    // The named liquor store belongs to the corner_shop arc and nothing else: it
-    // is the beat that scene type exists for, and no other scene type resolves a
-    // sign name at all — a declining row mentions an unnamed liquor store and
-    // stops there. So the live invariant is narrow: corner_shop always draws from
-    // liquor_urban, and no other scene type ever renders a name from either pool.
+    // The named liquor store belongs to the shared corner_shop/freestanding_shop
+    // turnover arc and nothing else: no other scene type resolves a sign name at
+    // all — a declining row mentions an unnamed liquor store and stops there. So
+    // the live invariant is: corner_shop always draws from liquor_urban,
+    // freestanding_shop always draws from liquor_suburban, and no other scene
+    // type ever renders a name from either pool.
     //
-    // liquor_suburban is deliberately dormant. corner_shop is always the narrow
-    // pre-war frontage (Vision sends the wider unit with parking to strip_mall),
-    // so nothing reaches the suburban register today. It stays wired through
-    // LiquorKeysFor and checked for rot, ready for a scene type that later gains
-    // a named liquor store; the mapping assertion below is intent, not live
-    // behaviour, and is labelled as such so it is not mistaken for one.
+    // liquor_suburban used to be wired-but-dormant before freestanding_shop
+    // existed — corner_shop is always the narrow pre-war frontage, so nothing
+    // reached the suburban register. freestanding_shop is by definition the
+    // wider unit with a parking apron, so it is the live suburban caller now.
+    // strip_mall and shopping_center stay mapped in LiquorKeysFor for whenever
+    // one of them gains a named liquor store, but neither calls the resolver
+    // today — that half of the mapping assertion below is still intent, not
+    // live behaviour, and is labelled as such.
     private static async Task DoC61(
         IDataService dataService,
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
@@ -4017,7 +4085,7 @@ public static class PromptSmokeTest
         }
         catch (Exception ex)
         {
-            f.Add(("C61", "The named liquor store is corner_shop-only and always urban; the suburban pool stays wired but dormant",
+            f.Add(("C61", "corner_shop draws from liquor_urban and freestanding_shop draws from liquor_suburban; no other scene type renders a liquor name",
                 false, $"LoadCornerShopNamesAsync threw: {ex.Message}"));
             return;
         }
@@ -4047,33 +4115,59 @@ public static class PromptSmokeTest
         foreach (var dupe in suburban.GroupBy(n => n, StringComparer.OrdinalIgnoreCase).Where(g => g.Count() > 1))
             errs.Add($"{GenerationContext.LiquorSuburbanKey} lists \"{dupe.Key}\" {dupe.Count()} times");
 
-        // 3. Live behaviour: corner_shop resolves a name and it is always urban.
+        // 3. Live behaviour: corner_shop resolves a name and it is always urban;
+        // freestanding_shop resolves a name and it is always suburban. Same
+        // sweep, opposite register, run for both since they share one resolver.
         const int seeds = 60;
-        var drawn = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var drawnUrban    = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var drawnSuburban = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         for (var seed = 1; seed <= seeds; seed++)
         {
-            var ctx = new GenerationContext
+            var csCtx = new GenerationContext
             {
                 Random = new Random(seed), TotalEras = Years.Length, Years = Years
             };
             // LiquorFromYear onward is the era that actually carries a liquor name.
-            var sign = ctx.ResolveCornerShop(
+            var csSign = csCtx.ResolveCornerShop(
                 names, GenerationContext.LiquorFromYear, "declining", "corner_shop");
 
-            if (sign.Name is null)
+            if (csSign.Name is null)
             {
                 errs.Add($"corner_shop/seed {seed}: no liquor name resolved");
-                continue;
             }
-            drawn.Add(sign.Name);
+            else
+            {
+                drawnUrban.Add(csSign.Name);
+                if (suburban.Contains(csSign.Name, StringComparer.OrdinalIgnoreCase))
+                    errs.Add($"corner_shop drew suburban name \"{csSign.Name}\" (seed {seed}) — the frontage is always the narrow pre-war one");
+                else if (!urban.Contains(csSign.Name, StringComparer.OrdinalIgnoreCase))
+                    errs.Add($"corner_shop drew \"{csSign.Name}\", which is in neither liquor pool (seed {seed})");
+            }
 
-            if (suburban.Contains(sign.Name, StringComparer.OrdinalIgnoreCase))
-                errs.Add($"corner_shop drew suburban name \"{sign.Name}\" (seed {seed}) — the frontage is always the narrow pre-war one");
-            else if (!urban.Contains(sign.Name, StringComparer.OrdinalIgnoreCase))
-                errs.Add($"corner_shop drew \"{sign.Name}\", which is in neither liquor pool (seed {seed})");
+            var fsCtx = new GenerationContext
+            {
+                Random = new Random(seed), TotalEras = Years.Length, Years = Years
+            };
+            var fsSign = fsCtx.ResolveCornerShop(
+                names, GenerationContext.LiquorFromYear, "declining", "freestanding_shop");
+
+            if (fsSign.Name is null)
+            {
+                errs.Add($"freestanding_shop/seed {seed}: no liquor name resolved");
+            }
+            else
+            {
+                drawnSuburban.Add(fsSign.Name);
+                if (urban.Contains(fsSign.Name, StringComparer.OrdinalIgnoreCase))
+                    errs.Add($"freestanding_shop drew urban name \"{fsSign.Name}\" (seed {seed}) — the footprint is always the wider unit with an apron");
+                else if (!suburban.Contains(fsSign.Name, StringComparer.OrdinalIgnoreCase))
+                    errs.Add($"freestanding_shop drew \"{fsSign.Name}\", which is in neither liquor pool (seed {seed})");
+            }
         }
-        if (drawn.Count < 5)
-            errs.Add($"corner_shop: only {drawn.Count} distinct names across {seeds} seeds");
+        if (drawnUrban.Count < 5)
+            errs.Add($"corner_shop: only {drawnUrban.Count} distinct names across {seeds} seeds");
+        if (drawnSuburban.Count < 5)
+            errs.Add($"freestanding_shop: only {drawnSuburban.Count} distinct names across {seeds} seeds");
 
         // 4. Live behaviour: no other scene type renders a liquor name. Checked
         // against the generated prompts rather than the resolver, because this is
@@ -4085,7 +4179,7 @@ public static class PromptSmokeTest
         {
             foreach (var name in allLiquorNames)
                 if (prompt.Text.Contains(name, StringComparison.Ordinal))
-                    errs.Add($"{label}: renders liquor name \"{name}\" — only corner_shop may carry one");
+                    errs.Add($"{label}: renders liquor name \"{name}\" — only corner_shop or freestanding_shop may carry one");
         }
 
         foreach (var (run, label) in new[]
@@ -4100,21 +4194,126 @@ public static class PromptSmokeTest
 
         CheckNoName(unknownPrompt, "unknown");
 
-        // 5. Dormant-but-wired: the mapping still routes the suburban registers,
-        // so the pool is one call site away from being live rather than orphaned.
-        // Asserted on LiquorKeysFor alone — no scene type reaches it today.
+        // 5. Mapping correctness. corner_shop and freestanding_shop are asserted
+        // as live callers (both actually reach the resolver, checked in 3 above);
+        // strip_mall and shopping_center are asserted only on LiquorKeysFor,
+        // since neither calls ResolveCornerShop today — that pairing stays
+        // intent, not observed behaviour.
         foreach (var scene in new[] { "downtown_street", "corner_shop" })
             if (!GenerationContext.LiquorKeysFor(scene).SequenceEqual(new[] { GenerationContext.LiquorUrbanKey }))
                 errs.Add($"LiquorKeysFor(\"{scene}\") no longer maps to the urban pool");
-        foreach (var scene in new[] { "strip_mall", "shopping_center" })
+        foreach (var scene in new[] { "strip_mall", "shopping_center", "freestanding_shop" })
             if (!GenerationContext.LiquorKeysFor(scene).SequenceEqual(new[] { GenerationContext.LiquorSuburbanKey }))
                 errs.Add($"LiquorKeysFor(\"{scene}\") no longer maps to the suburban pool");
         if (GenerationContext.LiquorKeysFor("gas_station").Count != 2)
             errs.Add("LiquorKeysFor no longer falls back to both pools for an unlisted scene type");
 
-        f.Add(("C61", "The named liquor store is corner_shop-only and always drawn from liquor_urban; no other scene type renders a liquor name; liquor_suburban stays wired through LiquorKeysFor but is dormant",
+        f.Add(("C61", "corner_shop always draws from liquor_urban and freestanding_shop always draws from liquor_suburban; no other scene type renders a liquor name; strip_mall/shopping_center stay mapped to suburban for later, still unused today",
             errs.Count == 0, errs.Count == 0
-                ? $"urban {urban.Count}, suburban {suburban.Count} (dormant), no overlap; corner_shop drew {drawn.Count} distinct urban names across {seeds} seeds; no liquor name in any other scene type"
+                ? $"urban {urban.Count}, suburban {suburban.Count}, no overlap; corner_shop drew {drawnUrban.Count} distinct urban names and freestanding_shop drew {drawnSuburban.Count} distinct suburban names across {seeds} seeds each; no liquor name in any other scene type"
+                : Join(errs)));
+    }
+
+    // C61 only checks pool membership — every drawn name is in the right
+    // register, never in the wrong one. It says nothing about the shape of the
+    // randomness itself: which names actually come up, how evenly, whether the
+    // origin-kind coin flip is really 50/50 in practice. This check exists to
+    // make that visible rather than just asserted — the full per-name table for
+    // both scene types is logged so it can be read straight out of a
+    // --smoke-prompts run, not just inferred from a pass/fail line.
+    private static async Task DoC72(
+        IDataService dataService,
+        ILogger logger,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        IReadOnlyDictionary<string, IReadOnlyList<string>> names;
+        try
+        {
+            names = await dataService.LoadCornerShopNamesAsync();
+        }
+        catch (Exception ex)
+        {
+            f.Add(("C72", "Liquor-name and origin-kind randomness for corner_shop and freestanding_shop is visible and healthy across many seeds",
+                false, $"LoadCornerShopNamesAsync threw: {ex.Message}"));
+            return;
+        }
+
+        const int seeds = 300;
+
+        // Draws (sceneType, urban vs suburban pool) and logs the full
+        // distribution — which brand names actually come up, and how the
+        // grocery/pharmacy coin flip landed — for one scene type.
+        (int Distinct, double CoveragePct) SweepAndLog(string sceneType, IReadOnlyList<string> pool, IReadOnlyList<string> otherRegister, string registerLabel)
+        {
+            var nameCounts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+            var groceryCount = 0;
+            var pharmacyCount = 0;
+
+            for (var seed = 1; seed <= seeds; seed++)
+            {
+                var ctx = new GenerationContext
+                {
+                    Random = new Random(seed), TotalEras = Years.Length, Years = Years
+                };
+                // LiquorFromYear is the era that actually carries the liquor name;
+                // condition "declining" keeps the shop alive long enough to have one.
+                var sign = ctx.ResolveCornerShop(names, GenerationContext.LiquorFromYear, "declining", sceneType);
+
+                if (ctx.CornerShopOriginKind == GenerationContext.CornerShopKind.Grocery)
+                    groceryCount++;
+                else
+                    pharmacyCount++;
+
+                if (sign.Name is null)
+                {
+                    errs.Add($"{sceneType}/seed {seed}: no liquor name resolved");
+                    continue;
+                }
+                if (otherRegister.Contains(sign.Name, StringComparer.OrdinalIgnoreCase))
+                    errs.Add($"{sceneType}/seed {seed}: drew \"{sign.Name}\" from the wrong register");
+
+                nameCounts[sign.Name] = nameCounts.GetValueOrDefault(sign.Name) + 1;
+            }
+
+            var table = string.Join(" | ", nameCounts
+                .OrderByDescending(kv => kv.Value)
+                .ThenBy(kv => kv.Key, StringComparer.OrdinalIgnoreCase)
+                .Select(kv => $"{kv.Key}={kv.Value}"));
+
+            logger.LogInformation(
+                "[Smoke] C72 {SceneType} liquor draws across {Seeds} seeds ({Register} pool, origin {Grocery} grocery / {Pharmacy} pharmacy): {Table}",
+                sceneType, seeds, registerLabel, groceryCount, pharmacyCount, table);
+
+            var distinct = nameCounts.Count;
+            var coverage = pool.Count == 0 ? 0.0 : distinct * 100.0 / pool.Count;
+
+            // A healthy pool gets sampled close to fully over this many draws —
+            // coupon-collector math says a 37-name pool converges well inside 300
+            // seeds. A low number here means something is silently narrowing the
+            // pool (a filter bug, a broken seed) rather than the RNG being unlucky.
+            if (coverage < 85.0)
+                errs.Add($"{sceneType}: only {distinct}/{pool.Count} names hit ({coverage:F0}%) across {seeds} seeds — the pool is not being sampled evenly");
+
+            // The origin-kind pick is a plain coin flip (Random.Next(2)); over 300
+            // seeds a real 50/50 split should not land anywhere near all-one-side.
+            var minSide = Math.Min(groceryCount, pharmacyCount);
+            if (minSide < seeds * 0.35)
+                errs.Add($"{sceneType}: origin kind split {groceryCount} grocery / {pharmacyCount} pharmacy is too lopsided for a 50/50 pick");
+
+            return (distinct, coverage);
+        }
+
+        var urban    = names.TryGetValue(GenerationContext.LiquorUrbanKey,    out var u) ? u : Array.Empty<string>();
+        var suburban = names.TryGetValue(GenerationContext.LiquorSuburbanKey, out var s) ? s : Array.Empty<string>();
+
+        var (csDistinct, csCoverage) = SweepAndLog("corner_shop", urban, suburban, "urban");
+        var (fsDistinct, fsCoverage) = SweepAndLog("freestanding_shop", suburban, urban, "suburban");
+
+        f.Add(("C72", "Liquor-name and origin-kind randomness for corner_shop and freestanding_shop is visible and healthy across many seeds",
+            errs.Count == 0, errs.Count == 0
+                ? $"corner_shop: {csDistinct}/{urban.Count} urban names hit ({csCoverage:F0}%); freestanding_shop: {fsDistinct}/{suburban.Count} suburban names hit ({fsCoverage:F0}%) — full tables in the log above"
                 : Join(errs)));
     }
 

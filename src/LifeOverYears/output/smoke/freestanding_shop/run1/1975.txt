@@ -1,0 +1,83 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+PRIORITY ORDER — when instructions conflict, the lower number wins
+1. The uploaded image's composition and geometry.
+2. The exact people and vehicle counts given below.
+3. The historical transformation for the target year.
+4. The specific period details listed — each only where the geometry has room
+   for it; one with nowhere to go is left out, never forced into the roadway.
+5. Add nothing that is not asked for — no extra businesses, signs, vehicles,
+   people, logos or advertisements.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove the
+modern businesses, logos, brands, storefront names, banners and advertisements
+visible in the source image, and replace them only with the period signage
+specified below.
+
+PRESERVE
+Keep the uploaded image's composition, camera angle, geometry, buildings,
+roads and permanent structures exactly as they are. Do not redraw,
+reposition or restyle them. Change only what the sections below ask for.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
+
+TRANSFORM TO 1975
+Post-Vietnam, oil crisis era. A 1975 standalone shop set back from the road on its own paved apron — a handful of cars nosed in facing the door, and the parking lot doing the job a sidewalk crowd would do downtown.
+
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+
+PERIOD DETAILS
+- a flat aluminium canopy over the walk-up entrance, no wider than the doorway
+- low single-story buildings
+- parking lots directly in front of stores
+- main sign: "PARK STREET MARKET" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
+- window signs: 'WE DELIVER', 'OPEN 7 DAYS'
+- a bicycle rack bolted into the apron near the walkway
+- a painted arrow on the side wall pointing round to the delivery door
+Typography: bold sans-serif, slab serif, occasional script.
+Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
+
+SIGNAGE RESTRICTION
+The only readable text anywhere in the image is:
+'PARK STREET MARKET'
+'WE DELIVER'
+'OPEN 7 DAYS'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
+
+PEOPLE
+EXACTLY 8 people TOTAL: 3 in the foreground near the building entrance (largest), 3 mid-ground out on the lot, beside parked vehicles, 2 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
+- a man holding the door for someone coming out
+- someone reading the price card taped in the window
+- a mailman in a USPS uniform with a leather satchel
+Clothing: men in wide lapels, polyester suits; women in earth tones, midi skirts. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+
+VEHICLES
+EXACTLY 4 period vehicles, all different:
+- 1973-1979 Ford F-100 — square body, chrome grille
+- 1971-1976 Chevrolet G10 Sportvan — boxy windowed van, chrome bumper
+- 1975-1979 AMC Pacer — wide bubble-shaped compact, huge glass area
+- 1970-1976 Pontiac Firebird Trans Am — hood scoop, spoiler, bold graphics
+Parked with gaps. Where a model is listed with a year range, render the 1975 model year specifically — only styling, trim and features available in 1975, nothing introduced later. No vehicle newer than 1975.
+Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
+PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, no rumble strips
+- utilities: overhead power lines everywhere, wooden utility poles standard
+
+TREES
+- honey locust tree at lot edge beside the ground sign: a young tree, only about 10% of its canopy in the base image, thin trunk, in full summer leaf, an even healthy crown, the tree pit swept clear
+Tree sizes MUST follow this specification even where they differ from the base image.
+
+PHOTOGRAPHIC STYLE
+STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.
+Grain: visible fine grain. Style: documentary, natural light.
+Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.
+Light: bright open daylight, clear sky, soft natural shadows — a fine, ordinary day.
+
+PRIVACY
+Blur all faces and license plates.

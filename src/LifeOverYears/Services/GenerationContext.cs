@@ -171,8 +171,9 @@ public sealed class GenerationContext
                 // The turnover has already been shown by the finale, so the last
                 // era is free to close the shop for good — one run in three does,
                 // which is the difference between "this is what it is now" and
-                // "this is where it ended".
-                "corner_shop" => _conditionRank >= 2 || Random.Next(3) == 0 ? "squatted" : "declining",
+                // "this is where it ended". Shared with freestanding_shop, which
+                // runs the identical scripted arc.
+                "corner_shop" or "freestanding_shop" => _conditionRank >= 2 || Random.Next(3) == 0 ? "squatted" : "declining",
                 _             => _conditionRank >= 2
                     ? "squatted"
                     : Random.Next(3) switch { 0 => "restored", 1 => "restored", _ => "declining" }
@@ -207,7 +208,10 @@ public sealed class GenerationContext
         // 2015 shows a stripped sign instead of ever putting that store on
         // screen. It can still be squatted at the end, once the turnover has
         // been seen.
-        if (sceneType == "corner_shop")
+        //
+        // freestanding_shop shares this floor and ceiling — same arc, different
+        // footprint.
+        if (sceneType is "corner_shop" or "freestanding_shop")
         {
             if (year >= DeclineFromYear)
             {
@@ -273,7 +277,7 @@ public sealed class GenerationContext
         // a place can plausibly stay healthy into the 2000s, then climbing hard
         // toward the end so the fall still lands. Gas stations are excluded:
         // they already resolve their arc through the new/squatted finale.
-        if (sceneType is "downtown_street" or "strip_mall" or "auto_repair" or "corner_shop" or "motel" && pool.Count > 1)
+        if (sceneType is "downtown_street" or "strip_mall" or "auto_repair" or "corner_shop" or "motel" or "freestanding_shop" && pool.Count > 1)
         {
             var worstRank = pool.Max(RankOf);
             var worst = pool.Where(c => RankOf(c) == worstRank).ToList();
@@ -325,6 +329,14 @@ public sealed class GenerationContext
     // from LiquorFromYear the same building trades as a liquor store under a new
     // name, with the old lettering still ghosting above it. The building never
     // changes; only what it sells does, which is the point of the scene type.
+    //
+    // freestanding_shop runs the identical arc on a different footprint — a
+    // standalone building with its own parking apron instead of a sidewalk
+    // storefront. Nothing here is duplicated for it: the enum, the struct, and
+    // ResolveCornerShop below are shared, and every call site that gates on
+    // "corner_shop" gates on freestanding_shop the same way. Only the register
+    // the liquor name is drawn from differs (LiquorKeysFor, below), because that
+    // is a property of the frontage, not of the arc.
     public enum CornerShopKind { Grocery, Pharmacy, Liquor }
 
     // PriorName is the previous business's name once the shop has turned over —
@@ -384,12 +396,15 @@ public sealed class GenerationContext
     public const string LiquorSuburbanKey = "liquor_suburban";
 
     // Scene types whose frontage sets the register of the liquor name. Dense
-    // walkable corridors read urban; arterial strips with parking in front read
-    // suburban.
+    // walkable corridors read urban; arterial strips and standalone buildings
+    // with parking in front read suburban. freestanding_shop is the first of
+    // these two lists to actually reach a name at generation time — strip_mall
+    // and shopping_center are mapped for when one of them does, but neither
+    // calls ResolveCornerShop today.
     public static readonly IReadOnlyList<string> UrbanLiquorScenes =
         new[] { "downtown_street", "corner_shop" };
     public static readonly IReadOnlyList<string> SuburbanLiquorScenes =
-        new[] { "strip_mall", "shopping_center" };
+        new[] { "strip_mall", "shopping_center", "freestanding_shop" };
 
     // Which liquor pool a scene type draws from — public so the smoke checks can
     // assert the split without duplicating the mapping.

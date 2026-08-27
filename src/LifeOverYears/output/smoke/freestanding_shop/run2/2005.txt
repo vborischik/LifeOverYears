@@ -1,0 +1,84 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+PRIORITY ORDER — when instructions conflict, the lower number wins
+1. The uploaded image's composition and geometry.
+2. The exact people and vehicle counts given below.
+3. The historical transformation for the target year.
+4. The specific period details listed — each only where the geometry has room
+   for it; one with nowhere to go is left out, never forced into the roadway.
+5. Add nothing that is not asked for — no extra businesses, signs, vehicles,
+   people, logos or advertisements.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove the
+modern businesses, logos, brands, storefront names, banners and advertisements
+visible in the source image, and replace them only with the period signage
+specified below.
+
+PRESERVE
+Keep the uploaded image's composition, camera angle, geometry, buildings,
+roads and permanent structures exactly as they are. Do not redraw,
+reposition or restyle them. Change only what the sections below ask for.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
+
+TRANSFORM TO 2005
+Post-9/11 era. A 2005 standalone shop down to the last things people still drive over for — bars going up over the windows, and the apron patched rather than repaved.
+
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
+
+PERIOD DETAILS
+- covered walkways at lifestyle centers
+- steel bars fitted across the entrance windows
+- a security camera aimed down at the entrance
+- main sign: "PARK STREET MARKET" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
+- window signs: 'ATM', 'LOTTO'
+- a taped-up notice about the check-cashing fee in the window
+- a cigarette-brand panel faded on the sun side
+Typography: clean sans-serif, polished brand identities.
+Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
+
+SIGNAGE RESTRICTION
+The only readable text anywhere in the image is:
+'PARK STREET MARKET'
+'ATM'
+'LOTTO'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
+
+PEOPLE
+EXACTLY 2 people TOTAL: 1 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles. Grouped in pairs, threes, and singles.
+- two people talking low near a car at the far edge of the apron
+- someone reading the check-cashing fee notice through the bars
+- a jogger checking a heart-rate monitor watch mid-stride
+Clothing: men in baggy jeans, trucker hats; women in trucker hats, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+
+VEHICLES
+EXACTLY 1 period vehicle:
+- 2003-2007 Honda Accord — clean lines, sharper than 1990s — white
+Parked with gaps. Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
+Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
+PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: worn and faded, well past their last repainting
+- utilities: overhead power lines standard, cable and fiber lines on poles appearing
+
+DECAY
+- the parking apron cracked and patched, weeds through the seams
+- an ice cooler chained to the wall beside the entrance
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
+TREES
+- honey locust tree at lot edge beside the ground sign: clearly smaller than in the base image — about 45% of its canopy there, thinner trunk, in leaf but untrimmed, suckers at the base and one dead limb
+Tree sizes MUST follow this specification even where they differ from the base image.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — early digital camera or Kodak/Fuji consumer film look.
+Color: neutral tones. Grain: low grain, early digital noise in shadows.
+Photorealistic — NOT black-and-white, no HDR.
+Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
+
+PRIVACY
+Blur all faces and license plates.
