@@ -56,7 +56,7 @@ EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewa
 Clothing: men in trucker hats, frosted tips hair; women in chunky highlights, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 1 period vehicles, all different:
+EXACTLY 1 period vehicle:
 - 2002-2009 Chevrolet TrailBlazer — mid-size SUV boxy — dark red
 Parked with gaps. Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.

@@ -1,10 +1,12 @@
-{ 
+{
   "year": 1975,
   "label": "Mid-1970s America",
   "description": "Post-Vietnam, oil crisis era. Suburban sprawl at peak. American cars dominated. Brands were bold and simple.",
-
-  "allowed_scene_conditions": ["thriving", "busy", "new"],
-
+  "allowed_scene_conditions": [
+    "thriving",
+    "busy",
+    "new"
+  ],
   "people_mix": [
     "an elderly couple walking arm in arm",
     "a mailman in a USPS uniform with a leather satchel",
@@ -27,10 +29,17 @@
     "an older man walking a beagle on a leash",
     "a construction worker in a hard hat eating a sandwich on a low wall"
   ],
-
   "transportation": {
     "cars": {
-      "dominant_makes": ["Chevrolet", "Ford", "Dodge", "Plymouth", "Buick", "Oldsmobile", "Pontiac"],
+      "dominant_makes": [
+        "Chevrolet",
+        "Ford",
+        "Dodge",
+        "Plymouth",
+        "Buick",
+        "Oldsmobile",
+        "Pontiac"
+      ],
       "specific_models": [
         "1973-1977 Chevrolet Caprice Classic — full-size, chrome bumpers, vinyl roof",
         "1973-1979 Ford LTD — full-size sedan, wide body, bench seat",
@@ -66,7 +75,12 @@
         "1972-1976 Lincoln Continental Mark IV — long hood personal luxury coupe",
         "1974-1978 Chrysler New Yorker — full-size luxury sedan, formal lines"
       ],
-      "body_styles": ["full-size sedan", "station wagon", "hardtop coupe", "pickup truck"],
+      "body_styles": [
+        "full-size sedan",
+        "station wagon",
+        "hardtop coupe",
+        "pickup truck"
+      ],
       "visual_characteristics": [
         "long and wide body proportions",
         "chrome bumpers front and rear",
@@ -78,11 +92,30 @@
         "two-tone paint schemes",
         "opera windows on coupes"
       ],
-      "colors": ["avocado green", "harvest gold", "burnt orange", "dark brown", "tan", "powder blue", "maroon"],
-      "absent": ["minivans", "SUVs", "Japanese imports common", "plastic bumpers", "hatchbacks dominant", "front-wheel drive"]
+      "colors": [
+        "avocado green",
+        "harvest gold",
+        "burnt orange",
+        "dark brown",
+        "tan",
+        "powder blue",
+        "maroon"
+      ],
+      "absent": [
+        "minivans",
+        "SUVs",
+        "Japanese imports common",
+        "plastic bumpers",
+        "hatchbacks dominant",
+        "front-wheel drive"
+      ]
     },
     "trucks": {
-      "dominant_makes": ["Ford F-Series", "Chevrolet C/K", "Dodge D-Series"],
+      "dominant_makes": [
+        "Ford F-Series",
+        "Chevrolet C/K",
+        "Dodge D-Series"
+      ],
       "specific_models": [
         "1973-1979 Ford F-100 — square body, chrome grille",
         "1973-1980 Chevrolet C10 — square body, chrome bumper",
@@ -108,11 +141,20 @@
       "context": "Post-1973 oil embargo, prices had risen sharply from $0.36 in 1972"
     }
   },
-
   "architecture": {
     "commercial": {
-      "styles": ["flat roof strip mall", "mansard roof facade", "exposed brick", "concrete block"],
-      "materials": ["brick", "concrete block", "wood paneling", "aluminum cladding"],
+      "styles": [
+        "flat roof strip mall",
+        "mansard roof facade",
+        "exposed brick",
+        "concrete block"
+      ],
+      "materials": [
+        "brick",
+        "concrete block",
+        "wood paneling",
+        "aluminum cladding"
+      ],
       "characteristics": [
         "low single-story buildings",
         "large plate glass storefronts",
@@ -133,20 +175,46 @@
       ]
     }
   },
-
   "business": {
-    "gas_brands": ["Texaco", "Gulf", "Phillips 66", "Sinclair", "Standard"],
+    "gas_brands": [
+      "Texaco",
+      "Gulf",
+      "Phillips 66",
+      "Sinclair",
+      "Standard"
+    ],
     "active_brands": [
-      "Shell", "Texaco", "Gulf", "Mobil", "Exxon", "Standard Oil",
-      "Kmart", "Sears", "JCPenney", "Woolworth",
-      "McDonald's", "Burger King", "Kentucky Fried Chicken", "Dairy Queen",
-      "A&P", "Safeway", "Kroger",
-      "RadioShack", "Western Auto"
+      "Shell",
+      "Texaco",
+      "Gulf",
+      "Mobil",
+      "Exxon",
+      "Standard Oil",
+      "Kmart",
+      "Sears",
+      "JCPenney",
+      "Woolworth",
+      "McDonald's",
+      "Burger King",
+      "Kentucky Fried Chicken",
+      "Dairy Queen",
+      "A&P",
+      "Safeway",
+      "Kroger",
+      "RadioShack",
+      "Western Auto"
     ],
     "absent_brands": [
-      "Walmart Supercenter", "Target", "Starbucks", "Home Depot",
-      "Blockbuster", "Best Buy", "Costco", "Amazon",
-      "Wendy's widespread", "Taco Bell widespread"
+      "Walmart Supercenter",
+      "Target",
+      "Starbucks",
+      "Home Depot",
+      "Blockbuster",
+      "Best Buy",
+      "Costco",
+      "Amazon",
+      "Wendy's widespread",
+      "Taco Bell widespread"
     ],
     "signage": {
       "characteristics": [
@@ -161,11 +229,18 @@
       "typography_style": "bold sans-serif, slab serif, occasional script"
     }
   },
-
   "infrastructure": {
     "roads": {
-      "markings": ["yellow center line", "white edge lines", "no rumble strips", "painted crosswalks"],
-      "materials": ["asphalt", "concrete in older areas"],
+      "markings": [
+        "yellow center line",
+        "white edge lines",
+        "no rumble strips",
+        "painted crosswalks"
+      ],
+      "materials": [
+        "asphalt",
+        "concrete in older areas"
+      ],
       "characteristics": [
         "wider lanes than modern standard",
         "fewer traffic control devices",
@@ -197,22 +272,49 @@
         "wooden utility poles standard",
         "no fiber optic infrastructure",
         "large transformer boxes on poles"
+      ],
+      "highway_characteristics": [
+        "tall steel lattice transmission towers following the roadway",
+        "wooden distribution poles along the frontage",
+        "sodium-vapor lighting on tall standards",
+        "no fiber optic infrastructure of any kind"
       ]
     }
   },
-
   "society": {
     "fashion": {
-      "men": ["wide lapels", "bell bottoms", "polyester suits", "plaid patterns", "turtlenecks"],
-      "women": ["midi skirts", "wide leg pants", "earth tones", "peasant blouses"],
-      "colors": ["avocado", "harvest gold", "burnt orange", "brown", "tan", "rust"]
+      "men": [
+        "wide lapels",
+        "bell bottoms",
+        "polyester suits",
+        "plaid patterns",
+        "turtlenecks"
+      ],
+      "women": [
+        "midi skirts",
+        "wide leg pants",
+        "earth tones",
+        "peasant blouses"
+      ],
+      "colors": [
+        "avocado",
+        "harvest gold",
+        "burnt orange",
+        "brown",
+        "tan",
+        "rust"
+      ]
     },
     "advertising": {
       "style": "bold graphic, hand-illustrated elements, limited photography in signage",
-      "media": ["billboard", "painted wall murals", "window posters", "hanging banners"]
+      "media": [
+        "billboard",
+        "painted wall murals",
+        "window posters",
+        "hanging banners"
+      ]
     }
   },
-
   "environment": {
     "vegetation": {
       "characteristics": [
@@ -227,7 +329,6 @@
       "signs": "neon and backlit plastic"
     }
   },
-
   "photography": {
     "film_stock": "Kodachrome 64 or Ektachrome",
     "color_characteristics": [
@@ -240,7 +341,6 @@
     "style": "documentary, slightly desaturated, natural light",
     "color_mode": "black_and_white"
   },
-
   "scene_content": {
     "downtown_street": {
       "narrative": "A working small-town main street in 1975 — locally owned shops with hand-painted and neon signs, a five & dime, and not a single modern chain in sight.",
@@ -262,7 +362,10 @@
         "MILK 69¢ HALF GALLON",
         "TV REPAIR — FREE ESTIMATES"
       ],
-      "people": { "min": 16, "max": 22 },
+      "people": {
+        "min": 16,
+        "max": 22
+      },
       "people_activities": [
         "a woman in a midi skirt window-shopping at the five & dime",
         "two men in wide-lapel jackets talking outside the diner",
@@ -285,7 +388,10 @@
         "a saleswoman adjusting a mannequin in the dress shop window",
         "an off-duty man in coveralls grabbing coffee at the diner counter"
       ],
-      "vehicles": { "min": 4, "max": 6 },
+      "vehicles": {
+        "min": 4,
+        "max": 6
+      },
       "extras": [
         "2-3 bicycles leaned against a storefront wall",
         "a glass-and-aluminum telephone booth on the corner",
@@ -315,7 +421,10 @@
         "FLATS FIXED $2",
         "WE HONOR BANKAMERICARD"
       ],
-      "people": { "min": 4, "max": 7 },
+      "people": {
+        "min": 4,
+        "max": 7
+      },
       "people_activities": [
         "a uniformed attendant actively fueling a vehicle at the pump",
         "a second attendant wiping a customer's windshield",
@@ -338,7 +447,10 @@
         "a mechanic test-driving a car in a slow loop around the lot",
         "an elderly man leaning on his cane, waiting by the office door for his ride"
       ],
-      "vehicles": { "min": 3, "max": 4 },
+      "vehicles": {
+        "min": 3,
+        "max": 4
+      },
       "extras": [
         "an air hose with a driveway service bell line across the apron",
         "a stack of used tires beside the service bay",
@@ -367,7 +479,10 @@
         "OIL CHANGE $4.95",
         "FREE ESTIMATES"
       ],
-      "people": { "min": 4, "max": 6 },
+      "people": {
+        "min": 4,
+        "max": 6
+      },
       "people_activities": [
         "a mechanic in oil-stained coveralls wheeling a creeper out from under a car",
         "the shop owner writing up a work order on a clipboard at the counter",
@@ -390,7 +505,10 @@
         "a mechanic carrying a battery across the apron",
         "an older man in a cap chatting with the owner by the office door"
       ],
-      "vehicles": { "min": 5, "max": 7 },
+      "vehicles": {
+        "min": 5,
+        "max": 7
+      },
       "extras": [
         "a hand-cranked hydraulic lift visible through the open bay",
         "a metal parts cabinet against the office wall, visible through the glass",
@@ -419,7 +537,10 @@
         "BACK TO SCHOOL — JEANS $6",
         "COLD POP 20¢"
       ],
-      "people": { "min": 8, "max": 12 },
+      "people": {
+        "min": 8,
+        "max": 12
+      },
       "people_activities": [
         "a woman pushing a shopping cart across the parking lot",
         "a man loading paper grocery bags into a car trunk",
@@ -442,7 +563,10 @@
         "a woman waiting on a bench outside the beauty salon",
         "a security guard making rounds through the parking lot at dusk"
       ],
-      "vehicles": { "min": 5, "max": 7 },
+      "vehicles": {
+        "min": 5,
+        "max": 7
+      },
       "extras": [
         "a coin-operated kiddie ride by a storefront door",
         "a row of nested shopping carts near the grocery entrance",
@@ -583,6 +707,62 @@
         "a bicycle rack bolted into the sidewalk near the corner"
       ]
     },
+    "highway_urban": {
+      "narrative": "A 1975 urban interstate cut through the city a decade earlier — concrete lanes, steel guardrail and green overhead signs, the traffic still light enough to see the pavement between cars.",
+      "storefronts": [],
+      "window_signs": [],
+      "people": {
+        "min": 0,
+        "max": 0
+      },
+      "people_activities": [],
+      "vehicles": {
+        "min": 3,
+        "max": 5
+      },
+      "extras": [
+        "corrugated steel W-beam guardrail on wooden posts",
+        "flat non-reflective green overhead sign panels with white lettering",
+        "concrete pavement laid in slabs with visible expansion joints",
+        "tall steel lattice transmission towers running alongside the roadway",
+        "55 mph speed limit signs on plain steel posts",
+        "sodium-vapor light standards on a wide central spacing"
+      ],
+      "background_tenants": [
+        "a low warehouse with a painted trade name on the end wall, the lettering weathered past reading",
+        "a plumbing supply building, its painted sign faded and illegible from the roadway",
+        "a printing works with a plain painted board over the loading door, too far to read",
+        "a machine shop with stencilled lettering beside the roller door, worn and unreadable",
+        "a beverage distributor's shed with painted lettering along the parapet, sun-bleached past reading"
+      ]
+    },
+    "highway_rural": {
+      "narrative": "A 1975 rural two-lane highway running out through open country — narrow asphalt, painted centre line and wooden guardrail posts, with a car passing every few minutes.",
+      "storefronts": [],
+      "window_signs": [],
+      "people": {
+        "min": 0,
+        "max": 0
+      },
+      "people_activities": [],
+      "vehicles": {
+        "min": 1,
+        "max": 3
+      },
+      "extras": [
+        "wooden guardrail posts with corrugated steel rail on the curves",
+        "a painted yellow centre line, faded to a soft edge",
+        "flat non-reflective route markers on wooden posts",
+        "wooden utility poles carrying a single line of wire along the shoulder",
+        "55 mph speed limit signs on plain steel posts",
+        "a lone billboard for a business still miles down the road"
+      ],
+      "background_tenants": [
+        "a grain elevator with a co-op name painted down its side, weathered past reading",
+        "a farm supply shed with hand-painted lettering, faded and illegible",
+        "a feed dealer's metal building with lettering across the end, too worn to read"
+      ]
+    },
     "default": {
       "narrative": "An ordinary American commercial street in 1975 — modest local businesses, bold simple signage, wide quiet pavement.",
       "storefronts": [
@@ -601,7 +781,10 @@
         "PERMANENTS $10",
         "TV REPAIR — FREE ESTIMATES"
       ],
-      "people": { "min": 8, "max": 12 },
+      "people": {
+        "min": 8,
+        "max": 12
+      },
       "people_activities": [
         "a shopkeeper in an apron sweeping the sidewalk",
         "a woman in a midi skirt window-shopping",
@@ -612,7 +795,10 @@
         "a mail carrier making rounds with a leather bag",
         "a man in a polyester suit checking his watch at the bus stop"
       ],
-      "vehicles": { "min": 4, "max": 6 },
+      "vehicles": {
+        "min": 4,
+        "max": 6
+      },
       "extras": [
         "a glass telephone booth on the corner",
         "a painted ghost-sign wall advertisement, weathered but readable",

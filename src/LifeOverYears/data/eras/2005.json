@@ -2,9 +2,11 @@
   "year": 2005,
   "label": "Mid-2000s America",
   "description": "Post-9/11 era. SUVs and trucks at peak size. Flip phones everywhere, smartphones not yet. Big box retail dominant. Strip malls aging.",
-
-  "allowed_scene_conditions": ["thriving", "busy", "declining"],
-
+  "allowed_scene_conditions": [
+    "thriving",
+    "busy",
+    "declining"
+  ],
   "people_mix": [
     "a UPS driver wheeling packages on a hand truck",
     "a group of college kids with messenger bags",
@@ -27,10 +29,18 @@
     "a grandmother clutching a coupon flyer at a bus bench",
     "a jogger checking a heart-rate monitor watch mid-stride"
   ],
-
   "transportation": {
     "cars": {
-      "dominant_makes": ["Ford", "Chevrolet", "Toyota", "Honda", "Nissan", "Dodge", "Chrysler", "Pontiac"],
+      "dominant_makes": [
+        "Ford",
+        "Chevrolet",
+        "Toyota",
+        "Honda",
+        "Nissan",
+        "Dodge",
+        "Chrysler",
+        "Pontiac"
+      ],
       "specific_models": [
         "2000-2007 Ford Taurus — rounded, aging fleet-look sedan",
         "2002-2006 Toyota Camry — smooth conservative mid-size",
@@ -56,7 +66,13 @@
         "2002-2007 Jeep Liberty — round-headlight compact SUV",
         "2003-2009 Hummer H2 — massive military-styled SUV"
       ],
-      "body_styles": ["mid-size sedan", "full-size SUV", "minivan", "crossover beginning", "pickup truck"],
+      "body_styles": [
+        "mid-size sedan",
+        "full-size SUV",
+        "minivan",
+        "crossover beginning",
+        "pickup truck"
+      ],
       "visual_characteristics": [
         "smooth rounded body shapes",
         "larger headlight clusters",
@@ -66,11 +82,31 @@
         "projector headlights on premium models",
         "side body cladding fading"
       ],
-      "colors": ["silver", "black", "white", "dark blue", "gray", "dark red", "gold"],
-      "absent": ["large touchscreens", "LED daytime running lights", "backup cameras standard", "electric vehicles common", "full LED tail lights"]
+      "colors": [
+        "silver",
+        "black",
+        "white",
+        "dark blue",
+        "gray",
+        "dark red",
+        "gold"
+      ],
+      "absent": [
+        "large touchscreens",
+        "LED daytime running lights",
+        "backup cameras standard",
+        "electric vehicles common",
+        "full LED tail lights"
+      ]
     },
     "trucks": {
-      "dominant_makes": ["Ford F-150", "Chevrolet Silverado", "Dodge Ram", "Toyota Tundra", "GMC Sierra"],
+      "dominant_makes": [
+        "Ford F-150",
+        "Chevrolet Silverado",
+        "Dodge Ram",
+        "Toyota Tundra",
+        "GMC Sierra"
+      ],
       "specific_models": [
         "2004-2008 Ford F-150 — bigger, bolder grille",
         "1999-2006 Chevrolet Silverado — squared modern look",
@@ -102,11 +138,21 @@
       "context": "Rising prices, Hurricane Katrina spike in late 2005, SUV size at peak"
     }
   },
-
   "architecture": {
     "commercial": {
-      "styles": ["lifestyle center", "big box retail", "power center", "mixed-use"],
-      "materials": ["EIFS stucco", "brick veneer", "metal panels", "concrete tilt-up", "stone veneer accents"],
+      "styles": [
+        "lifestyle center",
+        "big box retail",
+        "power center",
+        "mixed-use"
+      ],
+      "materials": [
+        "EIFS stucco",
+        "brick veneer",
+        "metal panels",
+        "concrete tilt-up",
+        "stone veneer accents"
+      ],
       "characteristics": [
         "large big box anchor stores",
         "faux-traditional facade details",
@@ -127,21 +173,55 @@
       ]
     }
   },
-
   "business": {
-    "gas_brands": ["Shell", "BP", "ExxonMobil", "Chevron", "Marathon"],
+    "gas_brands": [
+      "Shell",
+      "BP",
+      "ExxonMobil",
+      "Chevron",
+      "Marathon"
+    ],
     "active_brands": [
-      "Shell", "BP", "Exxon", "Mobil", "Chevron", "Citgo", "Sunoco",
-      "Walmart", "Target", "Kmart", "Sears", "Costco",
-      "McDonald's", "Burger King", "Wendy's", "Taco Bell", "Subway", "Starbucks", "Chipotle",
-      "Kroger", "Safeway", "Publix", "Whole Foods",
-      "Blockbuster Video", "Best Buy", "Circuit City", "RadioShack",
-      "Home Depot", "Lowe's", "Bed Bath & Beyond",
-      "7-Eleven", "Walgreens", "CVS"
+      "Shell",
+      "BP",
+      "Exxon",
+      "Mobil",
+      "Chevron",
+      "Citgo",
+      "Sunoco",
+      "Walmart",
+      "Target",
+      "Kmart",
+      "Sears",
+      "Costco",
+      "McDonald's",
+      "Burger King",
+      "Wendy's",
+      "Taco Bell",
+      "Subway",
+      "Starbucks",
+      "Chipotle",
+      "Kroger",
+      "Safeway",
+      "Publix",
+      "Whole Foods",
+      "Blockbuster Video",
+      "Best Buy",
+      "Circuit City",
+      "RadioShack",
+      "Home Depot",
+      "Lowe's",
+      "Bed Bath & Beyond",
+      "7-Eleven",
+      "Walgreens",
+      "CVS"
     ],
     "absent_brands": [
-      "Amazon retail stores", "Five Guys widespread", "smartphone carrier stores",
-      "vaping shops", "Tesla showrooms"
+      "Amazon retail stores",
+      "Five Guys widespread",
+      "smartphone carrier stores",
+      "vaping shops",
+      "Tesla showrooms"
     ],
     "signage": {
       "characteristics": [
@@ -155,11 +235,18 @@
       "typography_style": "clean sans-serif, polished brand identities"
     }
   },
-
   "infrastructure": {
     "roads": {
-      "markings": ["yellow center line", "white edge lines", "turn arrows", "reflective crosswalks"],
-      "materials": ["asphalt", "concrete"],
+      "markings": [
+        "yellow center line",
+        "white edge lines",
+        "turn arrows",
+        "reflective crosswalks"
+      ],
+      "materials": [
+        "asphalt",
+        "concrete"
+      ],
       "characteristics": [
         "well maintained roads",
         "more advanced traffic signals",
@@ -192,22 +279,50 @@
         "transformer boxes on poles",
         "small satellite dishes on homes common",
         "early cellular towers visible"
+      ],
+      "highway_characteristics": [
+        "transmission towers alongside the roadway",
+        "sodium-vapor lighting with a few whiter lamps replaced in",
+        "cellular towers standing back from the interchange",
+        "fiber optic marker posts along the right-of-way"
       ]
     }
   },
-
   "society": {
     "fashion": {
-      "men": ["baggy jeans", "graphic tees", "trucker hats", "frosted tips hair", "cargo shorts"],
-      "women": ["low-rise jeans", "trucker hats", "velour tracksuits", "layered tank tops", "chunky highlights"],
-      "colors": ["denim", "pink", "white", "black", "metallic accents", "pastels"]
+      "men": [
+        "baggy jeans",
+        "graphic tees",
+        "trucker hats",
+        "frosted tips hair",
+        "cargo shorts"
+      ],
+      "women": [
+        "low-rise jeans",
+        "trucker hats",
+        "velour tracksuits",
+        "layered tank tops",
+        "chunky highlights"
+      ],
+      "colors": [
+        "denim",
+        "pink",
+        "white",
+        "black",
+        "metallic accents",
+        "pastels"
+      ]
     },
     "advertising": {
       "style": "glossy digital photography, polished corporate brand imagery",
-      "media": ["billboard", "backlit bus shelters", "early digital billboards rare", "vinyl banners"]
+      "media": [
+        "billboard",
+        "backlit bus shelters",
+        "early digital billboards rare",
+        "vinyl banners"
+      ]
     }
   },
-
   "environment": {
     "vegetation": {
       "characteristics": [
@@ -222,7 +337,6 @@
       "signs": "LED price signs, backlit plastic channel letters"
     }
   },
-
   "photography": {
     "film_stock": "early digital camera or Kodak/Fuji consumer film",
     "color_characteristics": [
@@ -235,7 +349,6 @@
     "style": "transitional film-to-digital, daylight snapshot, slightly soft focus",
     "color_mode": "color"
   },
-
   "scene_content": {
     "downtown_street": {
       "narrative": "A 2005 main street — cellular stores and chain coffee arriving, the video store in its final days, flip phones in every hand.",
@@ -256,7 +369,10 @@
         "TANNING — 1 MONTH UNLIMITED $29",
         "RINGTONES $1.99"
       ],
-      "people": { "min": 10, "max": 15 },
+      "people": {
+        "min": 10,
+        "max": 15
+      },
       "people_activities": [
         "a teenager texting on a flip phone with both thumbs",
         "a woman in low-rise jeans talking on a flip phone",
@@ -279,7 +395,10 @@
         "a teenager skateboarding past the closing video store",
         "a grandmother window-shopping with a small dog on a leash"
       ],
-      "vehicles": { "min": 4, "max": 6 },
+      "vehicles": {
+        "min": 4,
+        "max": 6
+      },
       "extras": [
         "the ghost-sign reduced to a faint trace of paint on the brick",
         "a single scuffed payphone covered in stickers, rarely used",
@@ -308,7 +427,10 @@
         "ANY SIZE FOUNTAIN DRINK 99¢",
         "CIGARETTES $3.75 PACK"
       ],
-      "people": { "min": 4, "max": 7 },
+      "people": {
+        "min": 4,
+        "max": 7
+      },
       "people_activities": [
         "a driver self-serving at the pump",
         "a woman inserting her card at the pump reader",
@@ -331,7 +453,10 @@
         "a driver comparing gas prices on his phone before pulling in",
         "a clerk sweeping the apron near the trash cans"
       ],
-      "vehicles": { "min": 3, "max": 4 },
+      "vehicles": {
+        "min": 3,
+        "max": 4
+      },
       "extras": [
         "'NO SMOKING — TURN OFF ENGINE' decals on each pump",
         "trash cans with paper-towel dispensers between the pumps",
@@ -359,7 +484,10 @@
         "AFTERMARKET WHEELS IN STOCK",
         "OIL CHANGE $24.95"
       ],
-      "people": { "min": 3, "max": 4 },
+      "people": {
+        "min": 3,
+        "max": 4
+      },
       "people_activities": [
         "a mechanic plugging a scan tool into a car's diagnostic port",
         "the owner ringing up a repair at a barcode register",
@@ -382,7 +510,10 @@
         "a woman picking up her car and checking the paperwork",
         "a mechanic closing a bay door at the end of a job"
       ],
-      "vehicles": { "min": 4, "max": 6 },
+      "vehicles": {
+        "min": 4,
+        "max": 6
+      },
       "extras": [
         "a wall display of aftermarket wheels",
         "a laptop-style scan tool on a rolling cart",
@@ -411,7 +542,10 @@
         "NO CREDIT? NO PROBLEM!",
         "RINGTONES $1.99"
       ],
-      "people": { "min": 8, "max": 12 },
+      "people": {
+        "min": 8,
+        "max": 12
+      },
       "people_activities": [
         "a man loading shopping bags into an SUV's tailgate",
         "teenagers gathered outside the game store",
@@ -434,7 +568,10 @@
         "a family piling out of an SUV near the entrance",
         "an older man reading a paper on a bench outside the tax office"
       ],
-      "vehicles": { "min": 5, "max": 7 },
+      "vehicles": {
+        "min": 5,
+        "max": 7
+      },
       "extras": [
         "a 'STORE CLOSING' A-frame sign on the walkway",
         "a cart corral in the lot",
@@ -460,7 +597,10 @@
         "MACY'S",
         "DILLARD'S"
       ],
-      "people": { "min": 12, "max": 16 },
+      "people": {
+        "min": 12,
+        "max": 16
+      },
       "people_activities": [
         "a family crossing the lot toward the entrance",
         "two women carrying department store bags to a station wagon",
@@ -471,7 +611,10 @@
         "kids cutting diagonally across the lot",
         "an older couple resting on a bench by the doors"
       ],
-      "vehicles": { "min": 7, "max": 9 },
+      "vehicles": {
+        "min": 7,
+        "max": 9
+      },
       "extras": [
         "rows of tall lot light poles on concrete bases",
         "long low planter islands splitting the parking rows",
@@ -585,6 +728,59 @@
         "a milk crate left out by the step as a seat"
       ]
     },
+    "highway_urban": {
+      "narrative": "A 2005 urban interstate running at capacity through the middle of the day — barrier walls both sides, a full sign gantry overhead, and no gap left between the cars.",
+      "storefronts": [],
+      "window_signs": [],
+      "people": {
+        "min": 0,
+        "max": 0
+      },
+      "people_activities": [],
+      "extras": [
+        "the same sound barrier walls as before, now running both sides of the carriageway",
+        "a full-width overhead gantry carrying green sign panels with white borders",
+        "the existing median barrier, reflective delineators added along its top",
+        "sodium-vapor lighting, a few heads already replaced with a whiter lamp",
+        "65 mph speed limit signs on reflective sheeting",
+        "a high-tension cable barrier added along the outer shoulder, in addition to the existing guardrail, which stays exactly as it is"
+      ],
+      "crowd": "packed",
+      "background_tenants": [
+        "a distribution centre with channel letters across the front, unreadable from the roadway",
+        "a self-storage facility with an illuminated sign panel, its wording indistinct",
+        "a logistics building with a monument sign at the drive, too far to read",
+        "a regional office park sign in flat corporate styling, lettering not legible from here",
+        "a beverage distributor with a modern sign panel on the wall, the mark unreadable"
+      ]
+    },
+    "highway_rural": {
+      "narrative": "A 2005 rural two-lane highway carrying the same handful of vehicles it always did — wider stripes, better signs, and open country in every direction.",
+      "storefronts": [],
+      "window_signs": [],
+      "people": {
+        "min": 0,
+        "max": 0
+      },
+      "people_activities": [],
+      "vehicles": {
+        "min": 1,
+        "max": 3
+      },
+      "extras": [
+        "wide reflective edge lines with a milled rumble strip",
+        "diamond-grade warning signs on galvanized posts",
+        "the existing guardrail at every curve, reflective delineators added to its posts",
+        "65 mph speed limit signs on reflective sheeting",
+        "wooden utility poles with a newer cable strung beneath the wire",
+        "a weathered billboard with a peeling panel"
+      ],
+      "background_tenants": [
+        "a grain elevator with lettering fading on the concrete, unreadable",
+        "a farm supply store with a modern printed sign, its words indistinct",
+        "an equipment dealer with a sign panel by the drive, too far to resolve"
+      ]
+    },
     "default": {
       "narrative": "An ordinary 2005 American commercial street — channel-letter signs, flip phones, SUVs at the curb.",
       "storefronts": [
@@ -601,7 +797,10 @@
         "RINGTONES $1.99",
         "TANNING $29/MONTH"
       ],
-      "people": { "min": 8, "max": 12 },
+      "people": {
+        "min": 8,
+        "max": 12
+      },
       "people_activities": [
         "a teenager texting on a flip phone",
         "a man with a Bluetooth earpiece",
@@ -610,7 +809,10 @@
         "a shopper with big-box store bags",
         "a mother pushing a jogging stroller"
       ],
-      "vehicles": { "min": 4, "max": 6 },
+      "vehicles": {
+        "min": 4,
+        "max": 6
+      },
       "extras": [
         "a faint trace of the old ghost-sign on the brick",
         "a single scuffed payphone",

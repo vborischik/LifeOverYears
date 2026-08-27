@@ -59,7 +59,7 @@ EXACTLY 2 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewa
 Clothing: men in techwear, oversized fit tees; women in athleisure, oversized blazers. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 1 period vehicles, all different:
+EXACTLY 1 period vehicle:
 - 2019-2025 Subaru Outback — rugged wagon crossover — gray
 Parked with gaps. Where a model is listed with a year range, render the 2025 model year specifically — only styling, trim and features available in 2025, nothing introduced later. No vehicle newer than 2025.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.

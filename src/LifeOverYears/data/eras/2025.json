@@ -2,9 +2,11 @@
   "year": 2025,
   "label": "Mid-2020s America",
   "description": "Post-pandemic era. Retail apocalypse mature — many vacant big boxes. Delivery culture. LED and screens everywhere. Minimalist branding.",
-
-  "allowed_scene_conditions": ["thriving", "declining", "abandoned"],
-
+  "allowed_scene_conditions": [
+    "thriving",
+    "declining",
+    "abandoned"
+  ],
   "people_mix": [
     "a delivery courier with a large insulated backpack",
     "a retiree couple with matching walking poles",
@@ -27,10 +29,17 @@
     "a woman walking a dog while balancing a phone gimbal",
     "a delivery cyclist weaving carefully around pedestrians"
   ],
-
   "transportation": {
     "cars": {
-      "dominant_makes": ["Toyota", "Honda", "Ford", "Chevrolet", "Hyundai", "Kia", "Subaru"],
+      "dominant_makes": [
+        "Toyota",
+        "Honda",
+        "Ford",
+        "Chevrolet",
+        "Hyundai",
+        "Kia",
+        "Subaru"
+      ],
       "specific_models": [
         "2021-2025 Toyota Camry — sleek sedan, aggressive front fascia",
         "2023-2025 Honda Accord — clean minimalist refresh",
@@ -55,7 +64,12 @@
         "2021-2025 Kia Carnival — boxy SUV-styled minivan",
         "2021-2025 Chrysler Pacifica — sleek minivan, thin lights"
       ],
-      "body_styles": ["crossover SUV", "pickup truck", "compact crossover", "sedan declining"],
+      "body_styles": [
+        "crossover SUV",
+        "pickup truck",
+        "compact crossover",
+        "sedan declining"
+      ],
       "visual_characteristics": [
         "smooth aerodynamic shapes",
         "full-width LED light bars front and rear",
@@ -65,11 +79,28 @@
         "two-tone roof options",
         "digital displays visible through windshield"
       ],
-      "colors": ["white", "gray", "black", "silver", "blue", "dark green"],
-      "absent": ["chrome bumpers", "vinyl roofs", "boxy 1990s shapes", "incandescent tail lights", "pop-up headlights"]
+      "colors": [
+        "white",
+        "gray",
+        "black",
+        "silver",
+        "blue",
+        "dark green"
+      ],
+      "absent": [
+        "chrome bumpers",
+        "vinyl roofs",
+        "boxy 1990s shapes",
+        "incandescent tail lights",
+        "pop-up headlights"
+      ]
     },
     "trucks": {
-      "dominant_makes": ["Ford F-150", "Chevrolet Silverado", "Ram 1500"],
+      "dominant_makes": [
+        "Ford F-150",
+        "Chevrolet Silverado",
+        "Ram 1500"
+      ],
       "specific_models": [
         "2021-2025 Ford F-150 — full-width LED bar, bold",
         "2022-2025 Toyota Tundra — massive grille, muscular stance",
@@ -101,11 +132,21 @@
       "context": "gas prices volatile, pay-at-pump standard everywhere"
     }
   },
-
   "architecture": {
     "commercial": {
-      "styles": ["mixed-use", "modern minimalist", "adaptive reuse", "vacant big box conversion"],
-      "materials": ["metal panels", "glass curtain wall", "fiber cement", "stone veneer", "exposed steel"],
+      "styles": [
+        "mixed-use",
+        "modern minimalist",
+        "adaptive reuse",
+        "vacant big box conversion"
+      ],
+      "materials": [
+        "metal panels",
+        "glass curtain wall",
+        "fiber cement",
+        "stone veneer",
+        "exposed steel"
+      ],
       "characteristics": [
         "clean flat minimalist facades",
         "large glass storefronts",
@@ -124,22 +165,62 @@
       ]
     }
   },
-
   "business": {
-    "gas_brands": ["Shell", "Marathon", "Casey's", "QuikTrip", "Chevron"],
+    "gas_brands": [
+      "Shell",
+      "Marathon",
+      "Casey's",
+      "QuikTrip",
+      "Chevron"
+    ],
     "active_brands": [
-      "Shell", "BP", "Exxon", "Chevron", "Mobil", "Speedway", "Wawa", "QuikTrip", "Buc-ee's",
-      "Walmart", "Target", "Costco", "Amazon Fresh",
-      "McDonald's", "Burger King", "Wendy's", "Chick-fil-A", "Starbucks", "Chipotle", "Raising Cane's", "Crumbl",
-      "Kroger", "Publix", "Whole Foods", "Trader Joe's", "Aldi",
-      "Best Buy", "GameStop",
-      "Home Depot", "Lowe's",
-      "Walgreens", "CVS", "7-Eleven", "Dollar General", "Dollar Tree",
-      "AT&T", "Verizon", "T-Mobile"
+      "Shell",
+      "BP",
+      "Exxon",
+      "Chevron",
+      "Mobil",
+      "Speedway",
+      "Wawa",
+      "QuikTrip",
+      "Buc-ee's",
+      "Walmart",
+      "Target",
+      "Costco",
+      "Amazon Fresh",
+      "McDonald's",
+      "Burger King",
+      "Wendy's",
+      "Chick-fil-A",
+      "Starbucks",
+      "Chipotle",
+      "Raising Cane's",
+      "Crumbl",
+      "Kroger",
+      "Publix",
+      "Whole Foods",
+      "Trader Joe's",
+      "Aldi",
+      "Best Buy",
+      "GameStop",
+      "Home Depot",
+      "Lowe's",
+      "Walgreens",
+      "CVS",
+      "7-Eleven",
+      "Dollar General",
+      "Dollar Tree",
+      "AT&T",
+      "Verizon",
+      "T-Mobile"
     ],
     "absent_brands": [
-      "Blockbuster Video", "Sears most locations", "Kmart nearly all closed",
-      "RadioShack", "Circuit City", "Toys R Us", "Bed Bath & Beyond closed"
+      "Blockbuster Video",
+      "Sears most locations",
+      "Kmart nearly all closed",
+      "RadioShack",
+      "Circuit City",
+      "Toys R Us",
+      "Bed Bath & Beyond closed"
     ],
     "signage": {
       "characteristics": [
@@ -153,11 +234,19 @@
       "typography_style": "minimalist geometric sans-serif, heavily simplified flat logos"
     }
   },
-
   "infrastructure": {
     "roads": {
-      "markings": ["yellow center line", "white edge lines", "high-visibility crosswalks", "bike lanes common", "green painted bike lanes"],
-      "materials": ["asphalt", "concrete"],
+      "markings": [
+        "yellow center line",
+        "white edge lines",
+        "high-visibility crosswalks",
+        "bike lanes common",
+        "green painted bike lanes"
+      ],
+      "materials": [
+        "asphalt",
+        "concrete"
+      ],
       "characteristics": [
         "LED traffic signals standard",
         "smart traffic systems in cities",
@@ -201,22 +290,50 @@
         "clean open sky above the lot — no poles, no wires; ground level transformer cabinets at the lot edge",
         "LED lot lighting on its own standards, discreet 5G nodes on nearby rooftops"
       ],
-      "undergrounded": true
+      "undergrounded": true,
+      "highway_characteristics": [
+        "transmission towers alongside the roadway, unchanged in decades",
+        "LED lighting throughout, cool white and evenly spaced",
+        "5G equipment cabinets at the base of the taller masts",
+        "camera and sensor mounts on the light standards"
+      ]
     }
   },
-
   "society": {
     "fashion": {
-      "men": ["oversized fit tees", "wide-leg pants", "chunky sneakers", "bucket hats", "techwear"],
-      "women": ["high-waisted wide-leg jeans", "oversized blazers", "athleisure", "leggings and oversized hoodies", "chunky dad sneakers"],
-      "colors": ["sage green", "beige", "cream", "earth tones", "black", "muted pastels"]
+      "men": [
+        "oversized fit tees",
+        "wide-leg pants",
+        "chunky sneakers",
+        "bucket hats",
+        "techwear"
+      ],
+      "women": [
+        "high-waisted wide-leg jeans",
+        "oversized blazers",
+        "athleisure",
+        "leggings and oversized hoodies",
+        "chunky dad sneakers"
+      ],
+      "colors": [
+        "sage green",
+        "beige",
+        "cream",
+        "earth tones",
+        "black",
+        "muted pastels"
+      ]
     },
     "advertising": {
       "style": "digital, social media native, video-first, minimalist clean design",
-      "media": ["digital billboards", "video displays", "QR codes", "minimal vinyl banners"]
+      "media": [
+        "digital billboards",
+        "video displays",
+        "QR codes",
+        "minimal vinyl banners"
+      ]
     }
   },
-
   "environment": {
     "vegetation": {
       "characteristics": [
@@ -232,7 +349,6 @@
       "signs": "full color LED digital displays everywhere"
     }
   },
-
   "photography": {
     "film_stock": "digital — smartphone or mirrorless camera",
     "color_characteristics": [
@@ -246,7 +362,6 @@
     "style": "ultra sharp computational photography, vivid HDR, smartphone social media aesthetic",
     "color_mode": "color"
   },
-
   "scene_content": {
     "downtown_street": {
       "narrative": "A 2025 main street — minimalist flat-logo storefronts, QR codes on the glass, delivery culture in plain view.",
@@ -267,7 +382,10 @@
         "BOBA — BUY ONE GET ONE FRIDAYS",
         "NOW HIRING — APPLY ONLINE"
       ],
-      "people": { "min": 10, "max": 15 },
+      "people": {
+        "min": 10,
+        "max": 15
+      },
       "people_activities": [
         "a delivery courier with an insulated backpack picking up an order",
         "a woman in athleisure carrying a boba tea",
@@ -290,7 +408,10 @@
         "a woman power-walking with wireless earbuds in",
         "a man scanning a QR code taped to a storefront window"
       ],
-      "vehicles": { "min": 4, "max": 6 },
+      "vehicles": {
+        "min": 4,
+        "max": 6
+      },
       "extras": [
         "the ghost-sign wall now a commissioned mural with bold flat graphics",
         "a shared e-scooter and e-bike dock at the curb",
@@ -317,7 +438,10 @@
         "HOT PIZZA SLICES $2.99",
         "SCAN & GO — SKIP THE LINE"
       ],
-      "people": { "min": 4, "max": 7 },
+      "people": {
+        "min": 4,
+        "max": 7
+      },
       "people_activities": [
         "a driver self-serving at the pump",
         "a delivery van driver walking out with a coffee",
@@ -340,7 +464,10 @@
         "a delivery van driver checking a route app before pulling out",
         "a kid pressing his face to the fresh-food case glass"
       ],
-      "vehicles": { "min": 3, "max": 4 },
+      "vehicles": {
+        "min": 3,
+        "max": 4
+      },
       "extras": [
         "digital menu screens glowing in the store windows",
         "stacked bags of ice and firewood outside",
@@ -367,7 +494,10 @@
         "STATE INSPECTION $24.99",
         "APPOINTMENT ONLY — CALL AHEAD"
       ],
-      "people": { "min": 2, "max": 3 },
+      "people": {
+        "min": 2,
+        "max": 3
+      },
       "people_activities": [
         "the sole mechanic on duty working alone in the one open bay",
         "the owner checking a tablet at the counter for the day's appointments",
@@ -390,7 +520,10 @@
         "a driver idling briefly, unsure if the shop is open",
         "a mechanic taking a short break outside the one open bay"
       ],
-      "vehicles": { "min": 2, "max": 4 },
+      "vehicles": {
+        "min": 2,
+        "max": 4
+      },
       "extras": [
         "a QR-code payment sign taped near the register",
         "a small digital tablet at the checkout counter",
@@ -419,7 +552,10 @@
         "EVERYTHING $1.25",
         "ORDER ON THE APP"
       ],
-      "people": { "min": 8, "max": 12 },
+      "people": {
+        "min": 8,
+        "max": 12
+      },
       "people_activities": [
         "a courier loading insulated delivery bags into a hatchback",
         "a woman in athleisure carrying a yoga mat",
@@ -442,7 +578,10 @@
         "a teenager filming a friend on a scooter across the lot",
         "a woman balancing a smoothie and a gym bag outside the trampoline park"
       ],
-      "vehicles": { "min": 5, "max": 7 },
+      "vehicles": {
+        "min": 5,
+        "max": 7
+      },
       "extras": [
         "'CURBSIDE PICKUP' signed parking spots",
         "an e-scooter parked by the walkway",
@@ -458,7 +597,10 @@
         "entrance doors papered over and chained, no lit signage anywhere"
       ],
       "window_signs": [],
-      "people": { "min": 0, "max": 0 },
+      "people": {
+        "min": 0,
+        "max": 0
+      },
       "people_activities": [
         "a family crossing the lot toward the entrance",
         "two women carrying department store bags to a station wagon",
@@ -469,7 +611,10 @@
         "kids cutting diagonally across the lot",
         "an older couple resting on a bench by the doors"
       ],
-      "vehicles": { "min": 0, "max": 0 },
+      "vehicles": {
+        "min": 0,
+        "max": 0
+      },
       "extras": [
         "weeds through wide asphalt cracks",
         "a toppled lot light pole",
@@ -581,6 +726,59 @@
         "a bare bracket where the payphone was taken off the wall"
       ]
     },
+    "highway_urban": {
+      "narrative": "A 2025 urban interstate widened as far as the right-of-way allows — LED everything, gantries every mile, and traffic that fills every lane it was given.",
+      "storefronts": [],
+      "window_signs": [],
+      "people": {
+        "min": 0,
+        "max": 0
+      },
+      "people_activities": [],
+      "extras": [
+        "LED lighting throughout, cool white and evenly spaced",
+        "overhead gantries carrying electronic lane-control and message signs",
+        "the same concrete sound barrier walls, stained and weathered along the base",
+        "wide reflective edge lines with a milled rumble strip",
+        "cable barrier and concrete median barrier running together, both kept, neither replacing the other",
+        "camera and sensor mounts on the light standards"
+      ],
+      "crowd": "packed",
+      "background_tenants": [
+        "a fulfilment centre with a large illuminated sign on the wall, unreadable from the roadway",
+        "a last-mile delivery depot with an abstract logo panel and no legible words",
+        "a self-storage facility in bright modern corporate colours, its sign indistinct",
+        "a data centre behind a fence with only a small unreadable plaque at the drive",
+        "an office park sign panel with lettering too small to resolve from the road"
+      ]
+    },
+    "highway_rural": {
+      "narrative": "A 2025 rural two-lane highway that has outlived most of what stood along it — good pavement, LED at the one intersection, and the same empty road ahead.",
+      "storefronts": [],
+      "window_signs": [],
+      "people": {
+        "min": 0,
+        "max": 0
+      },
+      "people_activities": [],
+      "vehicles": {
+        "min": 1,
+        "max": 3
+      },
+      "extras": [
+        "fresh asphalt with sharp reflective edge and centre lines",
+        "an LED light head at the crossroads, the only lighting for miles",
+        "cable barrier and reflective delineators through the curves, the original guardrail still there behind them",
+        "green mile marker posts, some faded to pale",
+        "wooden utility poles leaning slightly out of true",
+        "a long-empty roadside building set back from the shoulder"
+      ],
+      "background_tenants": [
+        "a grain elevator with corporate lettering on the silo, indistinct from the roadway",
+        "a farm supply store with a bright modern sign panel, its wording unreadable",
+        "a shuttered farm building with lettering still on it, weathered past reading"
+      ]
+    },
     "default": {
       "narrative": "An ordinary 2025 American commercial street — flat minimalist logos, QR codes and delivery drivers.",
       "storefronts": [
@@ -597,7 +795,10 @@
         "NOW HIRING — APPLY ONLINE",
         "LASHES FROM $79"
       ],
-      "people": { "min": 8, "max": 12 },
+      "people": {
+        "min": 8,
+        "max": 12
+      },
       "people_activities": [
         "a delivery courier with an insulated backpack",
         "several people looking at smartphones",
@@ -606,7 +807,10 @@
         "a couple filming a vertical video",
         "a rideshare driver picking up an order at the curb"
       ],
-      "vehicles": { "min": 4, "max": 6 },
+      "vehicles": {
+        "min": 4,
+        "max": 6
+      },
       "extras": [
         "a mural where the old ghost-sign used to be",
         "an e-scooter dock at the curb",

@@ -62,6 +62,9 @@ public static class PromptSmokeTest
         var stripMallScene = MakeStripMallScene();
         var autoRepairScene = MakeAutoRepairScene();
         var cornerShopScene = MakeCornerShopScene();
+        var highwayUrbanScene = MakeHighwayScene("urban");
+        var highwayRuralScene = MakeHighwayScene("rural");
+        var highwayBuiltScene = MakeHighwayScene("urban", withBuildings: true);
         var unknownScene   = MakeUnknownScene();
 
         // Load all era profiles
@@ -80,6 +83,9 @@ public static class PromptSmokeTest
         var arRun2  = await BuildRun(promptService, autoRepairScene, eras, 1337, Years);
         var csRun1  = await BuildRun(promptService, cornerShopScene, eras, 42,   Years);
         var csRun2  = await BuildRun(promptService, cornerShopScene, eras, 1337, Years);
+        var hwUrban = await BuildRun(promptService, highwayUrbanScene, eras, 42, Years);
+        var hwRural = await BuildRun(promptService, highwayRuralScene, eras, 42, Years);
+        var hwBuilt = await BuildRun(promptService, highwayBuiltScene, eras, 42, Years);
 
         // c) Unknown scene — 1985 only, must not throw
         var unknownCtx    = new GenerationContext { Random = new Random(42), TotalEras = 1 };
@@ -98,6 +104,13 @@ public static class PromptSmokeTest
         await SaveRun(autoRepairScene.SceneType, 2, arRun2);
         await SaveRun(cornerShopScene.SceneType, 1, csRun1);
         await SaveRun(cornerShopScene.SceneType, 2, csRun2);
+        // Named by content key, not scene type: both are "highway" and would
+        // otherwise overwrite each other's output.
+        await SaveRun("highway_urban", 1, hwUrban);
+        await SaveRun("highway_rural", 1, hwRural);
+        // The same urban flavor with buildings in frame — the only run that
+        // carries background tenants, kept separate so both cases are readable.
+        await SaveRun("highway_urban_buildings", 1, hwBuilt);
         await SaveRun(unknownScene.SceneType,   1, new Dictionary<int, Prompt> { { 1985, unknownPrompt } });
 
         // d) Checks C1–C25
@@ -165,6 +178,14 @@ public static class PromptSmokeTest
         await DoC57(dataService, findings);
         await DoC58(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, csRun1, csRun2, unknownPrompt, findings);
         DoC60(csRun1, csRun2, eras, logger, findings);
+        DoC63(findings);
+        await DoC64(promptService, eras, highwayUrbanScene, hwUrban, hwRural, findings);
+        await DoC65(promptService, dataService, eras, highwayBuiltScene, findings);
+        DoC66(eras, hwUrban, hwBuilt, findings);
+        DoC67(gasRun1, dtRun1, smRun1, arRun1, csRun1, hwUrban, hwRural, hwBuilt, unknownPrompt, eras, findings);
+        DoC68(gasRun1, dtRun1, hwUrban, hwRural, hwBuilt, findings);
+        await DoC69(promptService, highwayUrbanScene, highwayBuiltScene, downtownScene, findings);
+        await DoC70(promptService, eras, highwayUrbanScene, downtownScene, findings);
         DoC62(csRun1, csRun2, gasRun1, dtRun1, smRun1, arRun1, findings);
         await DoC61(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
         await DoC59(dataService, findings);
@@ -450,6 +471,78 @@ public static class PromptSmokeTest
             "sign band above the storefront",
             "blank brick side wall along the side street",
             "entrance door on the corner chamfer"
+        ]);
+
+    // Both highway fixtures carry SceneType "highway" — the flavor comes from
+    // terrain alone, which is exactly the split SceneContentKey exists to make.
+    private static SceneDna MakeHighwayScene(string terrain, bool withBuildings = false) => new(
+        Id:        $"smoke-highway-{terrain}{(withBuildings ? "-buildings" : "")}",
+        CreatedAt: "2025-01-01T00:00:00Z",
+        SceneType: "highway",
+        Camera: new Camera(Height: "eye-level", Direction: "street", Fov: 70),
+        Geometry: new Geometry(
+            Roads:
+            [
+                new Road(
+                    Type:     terrain == "urban" ? "urban interstate" : "rural two-lane highway",
+                    Lanes:    terrain == "urban" ? 6 : 2,
+                    Markings: terrain == "urban"
+                        ? ["white lane lines", "wide white edge lines"]
+                        : ["yellow centre line", "white edge lines"],
+                    Surface:  terrain == "urban" ? "concrete" : "asphalt")
+            ],
+            Sidewalks: false,
+            Curbs:     false,
+            Buildings: withBuildings
+                ?
+                [
+                    new Building(
+                        Type:      "industrial warehouse",
+                        Position:  "background, beyond the far shoulder",
+                        Stories:   1,
+                        Materials: ["concrete panels", "corrugated metal"],
+                        Roof:      "flat",
+                        Setback:   "200 feet from the roadway"),
+                    new Building(
+                        Type:      "low industrial unit",
+                        Position:  "background, further along the same side",
+                        Stories:   1,
+                        Materials: ["concrete block"],
+                        Roof:      "flat",
+                        Setback:   "260 feet from the roadway")
+                ]
+                : [],
+            Driveways: [],
+            Parking:   ""),
+        Environment: new Environment(
+            Terrain:   terrain,
+            Utilities: terrain == "urban"
+                ? ["overhead sign gantry", "tall light standards on mast arms"]
+                : ["wooden utility poles along the shoulder", "transmission towers across the fields"],
+            Trees:
+            [
+                // "background" verbatim — this is what Vision wrote for the real
+                // highway photo, and it is the position the tighter growth rate
+                // keys off.
+                new Tree(Position: "background", Size: "medium", Type: "oak")
+            ],
+            Landscape: terrain == "urban"
+                ? ["mown embankment", "concrete median barrier"]
+                : ["open fields both sides", "gravel shoulder"]),
+        ImmutableElements:
+        [
+            terrain == "urban" ? "guardrail along the shoulder" : "guardrail on the curve",
+            "the road alignment and lane count"
+        ],
+        // Deliberately numbered: this is what Vision writes when it reads a sign
+        // in the photo, and it is what must not survive into the prompt.
+        Distinctive:
+        [
+            "overhead green sign gantry reading I-95 NORTH",
+            "the I-80 overpass crossing above the roadway",
+            "Exit 4B signage on the right shoulder",
+            "mile marker 118 at the start of the curve",
+            "a distinctive curved concrete overpass with exposed beams"
         ]);
 
     private static SceneDna MakeMallScene() => new(
@@ -2214,7 +2307,8 @@ public static class PromptSmokeTest
         // for these conditions.
         var cornerShop = default(GenerationContext.CornerShopSign);
         var rng = new Random(1); // unused by the derelict branch — no sampling happens there
-        var args = new object?[] { era, content, sceneType, condition, gasSign, cornerShop, rng, context };
+        // Derelict retail, not a highway: no background buildings to name.
+        var args = new object?[] { era, content, sceneType, condition, gasSign, cornerShop, false, rng, context };
         return (string)method.Invoke(null, args)!;
     }
 
@@ -4052,6 +4146,552 @@ public static class PromptSmokeTest
         f.Add(("C62", "The corner shop's street tree reads as a living tree in every era and its state follows the shop's arc (leafy while trading, untrimmed while declining, half dead once derelict); other scene types carry no tree state",
             errs.Count == 0, errs.Count == 0
                 ? $"corner_shop tree moves through {seen.Count} states across the run, canopy sizing intact, no other scene type affected"
+                : Join(errs)));
+    }
+
+    // One Vision-facing scene type, two content vocabularies. The split is a
+    // pure function of terrain, so it is checked as one — including the values
+    // Vision can emit that nobody planned for: a rural highway is the safe
+    // default because an unrecognised terrain on an open road is far more often
+    // country than city, and the urban content assumes a skyline and barrier
+    // walls that would be wrong to invent.
+    private static void DoC63(List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        void Expect(string sceneType, string? terrain, string want)
+        {
+            var got = SceneContentKey.Resolve(sceneType, terrain);
+            if (got != want)
+                errs.Add($"Resolve(\"{sceneType}\", {terrain ?? "null"}) = \"{got}\", expected \"{want}\"");
+        }
+
+        // Suburban and industrial corridors are built like the urban flavor —
+        // multiple lanes, barriers, warehouses — not like a road through farmland.
+        foreach (var terrain in new[] { "urban", "suburban", "industrial" })
+            Expect("highway", terrain, "highway_urban");
+
+        // Only literal "rural" and anything Vision was not supposed to emit.
+        // "URBAN" is here on purpose: the match is ordinal, and Vision's schema
+        // emits these values lowercase.
+        foreach (var terrain in new[] { "rural", "", "URBAN", "Suburban", "anything-else" })
+            Expect("highway", terrain, "highway_rural");
+        Expect("highway", null, "highway_rural");
+
+        // Every other scene type is its own key: the structural type and the
+        // content key only diverge for highway.
+        foreach (var sceneType in new[] { "gas_station", "downtown_street", "strip_mall", "auto_repair", "corner_shop", "mall", "shopping_center", "default", "unknown" })
+        {
+            Expect(sceneType, "urban", sceneType);
+            Expect(sceneType, null, sceneType);
+        }
+
+        f.Add(("C63", "SceneContentKey splits highway into urban/rural content keys by terrain — urban, suburban and industrial all take the corridor flavor, only rural and unrecognized or missing values take the countryside one — and leaves every other scene type unchanged",
+            errs.Count == 0, errs.Count == 0 ? "content key resolution holds for every terrain and scene type" : Join(errs)));
+    }
+
+    // A highway is the first scene type with no storefront and no stationary
+    // traffic, and both of those are worded into blocks written for lots and
+    // shopfronts. The vocabulary is what breaks: a parked car on an interstate
+    // or a shop front on the shoulder both render as a different place
+    // entirely, so the wording is asserted rather than assumed. The traffic arc
+    // is the content half — urban fills up and goes packed, rural never does.
+    private static async Task DoC64(
+        IPromptService promptService,
+        Dictionary<int, EraProfile> eras,
+        SceneDna highwayUrbanScene,
+        Dictionary<int, Prompt> hwUrban,
+        Dictionary<int, Prompt> hwRural,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        string VehiclesSection(string text)
+        {
+            var start = text.IndexOf("VEHICLES\n", StringComparison.Ordinal);
+            if (start < 0) return "";
+            var end = text.IndexOf("\n\n", start, StringComparison.Ordinal);
+            return end < 0 ? text[start..] : text[start..end];
+        }
+
+        foreach (var (run, label) in new[] { (hwUrban, "highway_urban"), (hwRural, "highway_rural") })
+            foreach (var (year, prompt) in run)
+            {
+                var vehicles = VehiclesSection(prompt.Text);
+                if (vehicles.Length == 0)
+                {
+                    errs.Add($"{label}/{year}: no VEHICLES section");
+                    continue;
+                }
+
+                foreach (var word in new[] { "parked", "curb", "stall" })
+                    if (vehicles.Contains(word, StringComparison.OrdinalIgnoreCase))
+                        errs.Add($"{label}/{year}: vehicles section says '{word}' — this is moving traffic");
+                if (vehicles.Contains("PLACEMENT:", StringComparison.Ordinal))
+                    errs.Add($"{label}/{year}: vehicles section carries a PLACEMENT line");
+
+                // Nobody is on foot, but the road is not deserted either.
+                if (prompt.Text.Contains("completely deserted", StringComparison.Ordinal))
+                    errs.Add($"{label}/{year}: reads as deserted rather than as a road with no pedestrians");
+
+                foreach (var chain in new[] { "Blockbuster", "RadioShack" })
+                    if (prompt.Text.Contains(chain, StringComparison.Ordinal))
+                        errs.Add($"{label}/{year}: chain tenant '{chain}' on a highway");
+                if (prompt.Text.Contains("window signs:", StringComparison.Ordinal))
+                    errs.Add($"{label}/{year}: emits a window-signs line");
+            }
+
+        // Traffic arc: urban fills up and stops being countable, rural never
+        // does. Asserted on the wording each path actually emits.
+        foreach (var year in new[] { 1975, 1985, 1995 })
+            if (!hwUrban[year].Text.Contains("EXACTLY", StringComparison.Ordinal))
+                errs.Add($"highway_urban/{year}: expected an exact vehicle count before the traffic fills in");
+        foreach (var year in new[] { 2005, 2015, 2025 })
+        {
+            if (!hwUrban[year].Text.Contains("DENSE MOVING TRAFFIC", StringComparison.Ordinal))
+                errs.Add($"highway_urban/{year}: expected packed traffic from 2005 on");
+            if (hwUrban[year].Text.Contains("EXACTLY", StringComparison.Ordinal))
+                errs.Add($"highway_urban/{year}: still gives an exact vehicle count while packed");
+        }
+
+        foreach (var (year, prompt) in hwRural)
+        {
+            if (prompt.Text.Contains("DENSE MOVING TRAFFIC", StringComparison.Ordinal))
+                errs.Add($"highway_rural/{year}: rural traffic went packed — the volume never grew out here");
+            var m = System.Text.RegularExpressions.Regex.Match(prompt.Text, @"EXACTLY (\d+) period vehicle");
+            if (!m.Success)
+                errs.Add($"highway_rural/{year}: no exact vehicle count");
+            else if (int.Parse(m.Groups[1].Value) is var n && (n < 1 || n > 3))
+                errs.Add($"highway_rural/{year}: {n} vehicles, expected 1-3");
+        }
+
+        // Real highway data ships with empty storefronts, so the guard would
+        // pass on an empty pool whether or not it was there. Feed it a stub era
+        // that does carry them: that is the regression this catches.
+        var era = eras[1985];
+        var content = era.SceneContent!["highway_urban"];
+        var stubbed = new Dictionary<string, SceneContent>(era.SceneContent!)
+        {
+            ["highway_urban"] = content with
+            {
+                Storefronts = ["SMOKE-STOREFRONT-MARKER visible from the roadway"],
+                WindowSigns = ["SMOKE-WINDOW-SIGN"],
+            }
+        };
+        var stubEra = era with { SceneContent = stubbed };
+        var stubCtx = new GenerationContext { Random = new Random(7), TotalEras = 1 };
+        var stubPrompt = await promptService.BuildAsync(highwayUrbanScene, stubEra, stubCtx);
+
+        // Only the storefront/architecture/signage pool is guarded. Window signs
+        // ride the shared path and stay there deliberately: highway data ships
+        // them empty, so the line never appears (asserted on the real runs
+        // above) without a second branch to keep in sync.
+        if (stubPrompt.Text.Contains("SMOKE-STOREFRONT-MARKER", StringComparison.Ordinal))
+            errs.Add("storefront content reached a highway prompt");
+
+        f.Add(("C64", "A highway prompt describes moving traffic and no storefronts: no parked/curb/stall wording, no PLACEMENT line, no shop content even when the era offers some, and the urban flavor goes packed from 2005 while the rural one never does",
+            errs.Count == 0, errs.Count == 0
+                ? "both flavors hold the traffic wording and the density arc"
+                : Join(errs)));
+    }
+
+    // Vision reads the signs in the photo, so Distinctive comes back with the
+    // route number and exit mile printed on them — and that line is repeated
+    // verbatim into every era of the run. A number that is right for the photo
+    // is a falsifiable claim about 1975, and wrong in the way a comment section
+    // catches. The sign has to survive as geometry; the numbering does not.
+    private static async Task DoC65(
+        IPromptService promptService,
+        IDataService dataService,
+        Dictionary<int, EraProfile> eras,
+        SceneDna highwayScene,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        // Distinctive only reaches a prompt through the synthetic base — the era
+        // prompts run the short fixed PRESERVE block — so that is where this is
+        // asserted, plus every era prompt as a regression guard in case the
+        // generated block is switched back on.
+        var texts = new List<(string Label, string Text)>
+        {
+            ("base_synthetic", await promptService.BuildBaseAsync(highwayScene, Years[0])),
+        };
+        var ctx = new GenerationContext { Random = new Random(11), TotalEras = Years.Length, Years = Years };
+        foreach (var year in Years)
+            texts.Add(($"era/{year}", (await promptService.BuildAsync(highwayScene, eras[year], ctx)).Text));
+
+        var numbered = new (string Name, System.Text.RegularExpressions.Regex Pattern)[]
+        {
+            ("interstate route", new(@"\bI-\d+\b", System.Text.RegularExpressions.RegexOptions.IgnoreCase)),
+            ("exit number",      new(@"\bexit\s*\d+", System.Text.RegularExpressions.RegexOptions.IgnoreCase)),
+            ("route number",     new(@"\b(?:route|rte\.?|hwy\.?|highway|us)\s*-?\s*\d+\b", System.Text.RegularExpressions.RegexOptions.IgnoreCase)),
+            ("mile marker",      new(@"\bmile\s*(?:marker|post)?\s*\d+\b", System.Text.RegularExpressions.RegexOptions.IgnoreCase)),
+        };
+
+        foreach (var (label, text) in texts)
+            foreach (var (name, pattern) in numbered)
+            {
+                var m = pattern.Match(text);
+                if (m.Success)
+                    errs.Add($"{label}: carries a {name} — \"{m.Value}\"");
+            }
+
+        // The point is genericization, not deletion: the gantry is real geometry
+        // and has to stay, or it appears and vanishes between decades.
+        var basePrompt = texts[0].Text;
+        if (!basePrompt.Contains("green directional guide sign overhead", StringComparison.Ordinal))
+            errs.Add("base_synthetic: the overhead sign was dropped instead of genericized");
+        // A landmark with no numbering in it is not signage and must survive intact.
+        if (!basePrompt.Contains("a distinctive curved concrete overpass with exposed beams", StringComparison.Ordinal))
+            errs.Add("base_synthetic: an unnumbered physical landmark was filtered out");
+
+        f.Add(("C65", "Route numbers, exit numbers and mile markers are genericized out of Distinctive while the sign itself and every unnumbered landmark survive",
+            errs.Count == 0, errs.Count == 0
+                ? "numbered route signage genericized; gantry and landmark kept"
+                : Join(errs)));
+    }
+
+    // A highway with buildings in frame has to age them, or six decades pass
+    // with the background untouched and the run reads as a still. A highway with
+    // nothing in frame must stay empty: inventing a business on an open road is
+    // the failure this branch is gated to avoid.
+    private static void DoC66(
+        Dictionary<int, EraProfile> eras,
+        Dictionary<int, Prompt> hwOpenRoad,
+        Dictionary<int, Prompt> hwWithBuildings,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        int TenantLines(string text, IReadOnlyList<string>? pool) =>
+            pool is null ? 0 : pool.Count(t => text.Contains(t, StringComparison.Ordinal));
+
+        foreach (var year in Years)
+        {
+            var pool = eras[year].SceneContent?["highway_urban"].BackgroundTenants;
+            if (pool is not { Count: > 0 })
+            {
+                errs.Add($"{year}: highway_urban has no background_tenants pool");
+                continue;
+            }
+
+            var withBuildings = TenantLines(hwWithBuildings[year].Text, pool);
+            if (withBuildings != 1)
+                errs.Add($"{year}: a highway with buildings in frame emitted {withBuildings} background tenant lines, expected exactly 1");
+
+            var openRoad = TenantLines(hwOpenRoad[year].Text, pool);
+            if (openRoad != 0)
+                errs.Add($"{year}: an open-road highway named {openRoad} background businesses");
+        }
+
+        f.Add(("C66", "A highway names exactly one generic background business per era when buildings are in frame, and none at all on open road",
+            errs.Count == 0, errs.Count == 0
+                ? "background tenants follow the buildings, one per era, never on an empty road"
+                : Join(errs)));
+    }
+
+    // Every prompt has to say what may be readable in the frame. The whitelist
+    // covers scenes that quote their signage; the scene type that quotes nothing
+    // used to get no restriction at all, and the model filled that silence by
+    // reading the road — a place name on a guide sign, then a skyline to match
+    // it, then a city that was never in the photograph. So the absence of a
+    // whitelist has to be stated as one.
+    //
+    // The other half is upstream: a prompt must not ask for lettering it cannot
+    // specify. "with exit numbering" or "a name across the front" is an
+    // instruction to invent text, and no downstream restriction fully undoes it.
+    private static void DoC67(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> dtRun1,
+        Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> arRun1,
+        Dictionary<int, Prompt> csRun1,
+        Dictionary<int, Prompt> hwUrban, Dictionary<int, Prompt> hwRural,
+        Dictionary<int, Prompt> hwBuilt,
+        Prompt unknownPrompt,
+        Dictionary<int, EraProfile> eras,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        // 1. No prompt may ship without a statement about readable text.
+        var all = new List<(string Label, Prompt Prompt)> { ("unknown", unknownPrompt) };
+        foreach (var (run, label) in new[]
+        {
+            (gasRun1, "gas_station"), (dtRun1, "downtown_street"), (smRun1, "strip_mall"),
+            (arRun1, "auto_repair"), (csRun1, "corner_shop"),
+            (hwUrban, "highway_urban"), (hwRural, "highway_rural"), (hwBuilt, "highway_urban_buildings"),
+        })
+            foreach (var (year, prompt) in run)
+                all.Add(($"{label}/{year}", prompt));
+
+        foreach (var (label, prompt) in all)
+        {
+            var hasWhitelist   = prompt.Text.Contains("The only readable text anywhere in the image is:", StringComparison.Ordinal);
+            var hasNoTextRule  = prompt.Text.Contains("NO readable text anywhere", StringComparison.Ordinal)
+                              || prompt.Text.Contains("No sign text anywhere", StringComparison.Ordinal)
+                              || prompt.Text.Contains("do not turn words from this prompt into signage", StringComparison.OrdinalIgnoreCase);
+            if (!hasWhitelist && !hasNoTextRule)
+                errs.Add($"{label}: no signage restriction at all — lettering is unconstrained");
+        }
+
+        // 2. A highway names no place and asks for no numbered signage. Checked
+        // on the prompt text rather than the data so a new entry anywhere in the
+        // pipeline is caught.
+        var geographic = new (string Name, System.Text.RegularExpressions.Regex Pattern)[]
+        {
+            ("skyline",          new(@"\bskylines?\b", System.Text.RegularExpressions.RegexOptions.IgnoreCase)),
+            ("downtown",         new(@"\bdowntown\b", System.Text.RegularExpressions.RegexOptions.IgnoreCase)),
+            ("exit numbering",   new(@"\bexit\s*(?:number|numbering|sign)", System.Text.RegularExpressions.RegexOptions.IgnoreCase)),
+            ("destination name", new(@"\bdestination\s+name", System.Text.RegularExpressions.RegexOptions.IgnoreCase)),
+        };
+
+        foreach (var (run, label) in new[]
+        {
+            (hwUrban, "highway_urban"), (hwRural, "highway_rural"), (hwBuilt, "highway_urban_buildings"),
+        })
+            foreach (var (year, prompt) in run)
+            {
+                // The restriction itself legitimately names what must not appear.
+                var body = prompt.Text.Split("SIGNAGE RESTRICTION", StringSplitOptions.None)[0];
+                foreach (var (name, pattern) in geographic)
+                {
+                    var m = pattern.Match(body);
+                    if (m.Success)
+                        errs.Add($"{label}/{year}: asks for {name} — \"{m.Value}\"");
+                }
+            }
+
+        // 3. Background trades name a building and a sign technology, never a
+        // readable business name.
+        foreach (var year in Years)
+            foreach (var key in new[] { "highway_urban", "highway_rural" })
+                foreach (var tenant in eras[year].SceneContent?[key].BackgroundTenants ?? [])
+                {
+                    // Matched on markers, not on whole phrases: the wording of
+                    // these entries is meant to vary, but every one of them has
+                    // to say somewhere that the text cannot be read.
+                    string[] illegible =
+                    {
+                        "to read", "past reading", "illegible", "unreadable", "indistinct",
+                        "no legible", "no readable", "no sign at all", "to resolve", "to make out",
+                        "not readable", "not legible", "neither legible",
+                    };
+                    var legible = illegible.Any(m => tenant.Contains(m, StringComparison.OrdinalIgnoreCase));
+                    if (!legible)
+                        errs.Add($"{year}/{key}: background trade invites a readable name — \"{tenant}\"");
+                }
+
+        f.Add(("C67", "Every prompt states what may be read in the frame — a whitelist or an explicit none — and a highway asks for no skyline, no exit numbering and no legible business name",
+            errs.Count == 0, errs.Count == 0
+                ? "signage is constrained in every prompt; highway invents no geography"
+                : Join(errs)));
+    }
+
+    // The blanket "NO readable text anywhere" was read as "no text": the gantry
+    // came back as an empty dark rectangle in every era, which looks broken
+    // rather than distant. A highway states the sign positively — green face,
+    // white border, illegible legend — so the object survives and only the words
+    // are withheld. Every other scene type keeps the blanket rule.
+    private static void DoC68(
+        Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> dtRun1,
+        Dictionary<int, Prompt> hwUrban, Dictionary<int, Prompt> hwRural,
+        Dictionary<int, Prompt> hwBuilt,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        const string blanket = "NO readable text anywhere";
+        const string greenFace = "keeps its green face and white border";
+        const string softShapes = "soft white shapes that never resolve into words";
+
+        foreach (var (run, label) in new[]
+        {
+            (hwUrban, "highway_urban"), (hwRural, "highway_rural"), (hwBuilt, "highway_urban_buildings"),
+        })
+            foreach (var (year, prompt) in run)
+            {
+                if (prompt.Text.Contains(blanket, StringComparison.Ordinal))
+                    errs.Add($"{label}/{year}: still carries the blanket no-text block — the guide sign renders blank");
+                if (!prompt.Text.Contains(greenFace, StringComparison.Ordinal))
+                    errs.Add($"{label}/{year}: guide sign is not described as keeping its face");
+                if (!prompt.Text.Contains(softShapes, StringComparison.Ordinal))
+                    errs.Add($"{label}/{year}: legend is not held to unreadable shapes");
+                // The whole point is that the words stay withheld.
+                foreach (var phrase in new[] { "no place names", "no route or exit numbers" })
+                    if (!prompt.Text.Contains(phrase, StringComparison.OrdinalIgnoreCase))
+                        errs.Add($"{label}/{year}: signage block dropped \"{phrase}\"");
+                // Nothing may describe the sign as turned away or unreadable as
+                // an object — that is what produced the empty rectangle.
+                foreach (var kill in new[] { "angled away", "angled too far", "unreadable from here" })
+                    if (prompt.Text.Contains(kill, StringComparison.OrdinalIgnoreCase))
+                        errs.Add($"{label}/{year}: a period detail deletes the sign — \"{kill}\"");
+            }
+
+        // A scene that quotes no signage and is not a highway keeps the blanket
+        // rule; one that quotes its signage keeps the whitelist.
+        foreach (var (run, label) in new[] { (gasRun1, "gas_station"), (dtRun1, "downtown_street") })
+            foreach (var (year, prompt) in run)
+                if (prompt.Text.Contains(greenFace, StringComparison.Ordinal))
+                    errs.Add($"{label}/{year}: got the highway signage variant");
+
+        f.Add(("C68", "A highway keeps its guide sign as a green-faced object with an illegible legend instead of the blanket no-text block; no period detail turns the sign away, and no other scene type gets the highway variant",
+            errs.Count == 0, errs.Count == 0
+                ? "highway signage stays visible and wordless; other scene types unchanged"
+                : Join(errs)));
+    }
+
+    // Era architecture is scene-blind: it names commercial styles and storefront
+    // materials for whatever is being built. On a scene with no buildings that
+    // is an instruction to invent some, and the synthetic base came back with a
+    // retail row behind the median of an empty interstate. Where nothing stands,
+    // the prompt has to describe the frontage instead — otherwise the model
+    // fills the gap on its own.
+    private static async Task DoC69(
+        IPromptService promptService,
+        SceneDna highwayOpenRoad,
+        SceneDna highwayWithBuildings,
+        SceneDna downtownScene,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        string[] architectureLines = { "- commercial architecture:", "- building materials:" };
+
+        var openRoad = await promptService.BuildBaseAsync(highwayOpenRoad, Years[0]);
+        foreach (var line in architectureLines)
+            if (openRoad.Contains(line, StringComparison.Ordinal))
+                errs.Add($"open-road base still emits \"{line.Trim()}\" with no buildings in the scene");
+        if (!openRoad.Contains("roadway frontage", StringComparison.Ordinal))
+            errs.Add("open-road base names no frontage — nothing describes what borders the road");
+        if (!openRoad.Contains("no buildings anywhere in the frame", StringComparison.Ordinal))
+            errs.Add("open-road base does not state that nothing is built");
+
+        // The same scene type with real buildings keeps the architecture lines:
+        // the gate is the building list, not the scene type.
+        var withBuildings = await promptService.BuildBaseAsync(highwayWithBuildings, Years[0]);
+        foreach (var line in architectureLines)
+            if (!withBuildings.Contains(line, StringComparison.Ordinal))
+                errs.Add($"highway with buildings lost \"{line.Trim()}\"");
+
+        var downtown = await promptService.BuildBaseAsync(downtownScene, Years[0]);
+        foreach (var line in architectureLines)
+            if (!downtown.Contains(line, StringComparison.Ordinal))
+                errs.Add($"downtown base lost \"{line.Trim()}\"");
+
+        f.Add(("C69", "The synthetic base emits architecture only where buildings exist; an open-road scene gets a frontage description and an explicit nothing-is-built line instead",
+            errs.Count == 0, errs.Count == 0
+                ? "architecture follows the building list, not the scene type"
+                : Join(errs)));
+    }
+
+    // A background tree sized by the ordinary per-size rate tripled across the
+    // run and ended up covering the sign gantry it stands behind. Distance
+    // compresses growth as the frame sees it, so a background tree grows on its
+    // own flatter curve — and the ceiling is what this asserts, because the
+    // failure was visual dominance in the last era, not the rate itself.
+    private static async Task DoC70(
+        IPromptService promptService,
+        Dictionary<int, EraProfile> eras,
+        SceneDna highwayScene,
+        SceneDna downtownScene,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        const int ceilingPct = 165;   // 160% plus one 5% rounding step
+
+        var canopy = new System.Text.RegularExpressions.Regex(
+            @"about (\d+)% of its canopy",
+            System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+        int? FirstCanopyPct(string promptText)
+        {
+            var trees = TreesSection(promptText);
+            if (trees.Length == 0) return null;
+            var m = canopy.Match(trees);
+            return m.Success ? int.Parse(m.Groups[1].Value) : null;
+        }
+
+        // Unchained: every era states a fraction of the base image, which is the
+        // source year. Growth across the whole run is therefore the reciprocal
+        // of the earliest era's fraction.
+        var unchained = new GenerationContext { Random = new Random(5), TotalEras = Years.Length, Years = Years };
+        var firstEraPct = 0;
+        foreach (var year in Years)
+        {
+            var prompt = await promptService.BuildAsync(highwayScene, eras[year], unchained);
+            if (year != Years[0]) continue;
+            firstEraPct = FirstCanopyPct(prompt.Text) ?? 0;
+        }
+        if (firstEraPct == 0)
+            errs.Add("unchained: the first era states no canopy fraction for the background tree");
+        else
+        {
+            var acrossRun = (int)Math.Round(100.0 / firstEraPct * 100);
+            if (acrossRun > ceilingPct)
+                errs.Add($"unchained: background tree ends the run at {acrossRun}% of its first-era canopy " +
+                         $"(first era {firstEraPct}% of base, ceiling {ceilingPct}%)");
+        }
+
+        // Chained: each era states growth against the era before it, so the run
+        // total is the product of the steps. The two paths are inverses, so this
+        // must land on the same ceiling.
+        var chained = new GenerationContext
+        {
+            Random = new Random(5), TotalEras = Years.Length, Years = Years,
+            ChainedFromPreviousEra = true
+        };
+        double product = 1.0;
+        var steps = new List<string>();
+        foreach (var year in Years)
+        {
+            var prompt = await promptService.BuildAsync(highwayScene, eras[year], chained);
+            if (year == Years[0]) continue;      // first era is edited from the base
+            var pct = FirstCanopyPct(prompt.Text);
+            if (pct is null)
+            {
+                errs.Add($"chained/{year}: no canopy percentage for the background tree");
+                continue;
+            }
+            steps.Add($"{year}:{pct}%");
+            product *= pct.Value / 100.0;
+            if (pct > 125)
+                errs.Add($"chained/{year}: background tree grows {pct}% in a single decade");
+        }
+        var chainedTotal = (int)Math.Round(product * 100);
+        if (chainedTotal > ceilingPct)
+            errs.Add($"chained: background tree reaches {chainedTotal}% across the run (ceiling {ceilingPct}%): {string.Join(" ", steps)}");
+
+        // The point of the separate rate is that it is flatter than a kerbside
+        // tree of the SAME recorded size — without this the check would pass on a
+        // run where every tree was slowed down. Matched on the medium tree by
+        // name: comparing against whichever tree happens to be listed first
+        // compares against a large one, which is legitimately flatter than any
+        // background rate and would make this assertion meaningless.
+        var foreground = new GenerationContext { Random = new Random(5), TotalEras = Years.Length, Years = Years };
+        var downtownText = (await promptService.BuildAsync(downtownScene, eras[Years[0]], foreground)).Text;
+        var mediumTree = downtownScene.Environment.Trees
+            .FirstOrDefault(t => t.Size.Equals("medium", StringComparison.OrdinalIgnoreCase));
+        if (mediumTree is null)
+            errs.Add("the comparison scene has no medium tree to measure the background rate against");
+        else
+        {
+            var line = TreesSection(downtownText).Split('\n')
+                .FirstOrDefault(l => l.StartsWith($"- {mediumTree.Type} tree at {mediumTree.Position}:", StringComparison.Ordinal));
+            var m = line is null ? null : canopy.Match(line);
+            if (m is null || !m.Success)
+                errs.Add("could not read the kerbside medium tree's canopy percentage");
+            else
+            {
+                // Backward path: a HIGHER remaining fraction means the tree
+                // shrank less, i.e. it grows flatter.
+                var kerbside = int.Parse(m.Groups[1].Value);
+                if (firstEraPct > 0 && kerbside >= firstEraPct)
+                    errs.Add($"a kerbside medium tree keeps {kerbside}% of its canopy in the first era and the " +
+                             $"background one {firstEraPct}% — the background rate is not actually flatter");
+            }
+        }
+
+        f.Add(("C70", $"A background tree grows on a flatter curve than a kerbside one and ends the run at no more than ~{ceilingPct}% of its first-era canopy, in both the chained and unchained paths",
+            errs.Count == 0, errs.Count == 0
+                ? $"background tree: first era {firstEraPct}% of base, {chainedTotal}% across the chained run ({string.Join(" ", steps)})"
                 : Join(errs)));
     }
 

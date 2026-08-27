@@ -65,7 +65,12 @@ frame unless a prompt explicitly asks for its removal. A block that merely
 
 **Tree size** — `PromptService.DescribeTreeSize`. Per-decade retention rates by
 recorded size (large .90 / medium .78 / small .62), all divided by
-`GrowthDamping` (0.95, a deliberate 5% slowdown, Aug 2026). Chained runs read as
+`GrowthDamping` (0.95, a deliberate 5% slowdown, Aug 2026). A tree whose
+position contains "background" ignores its recorded size and takes
+`BackgroundRetention` (0.92, already damped) instead: on the ordinary rate a
+background medium tree tripled across the run and covered the sign gantry
+behind it. That path ends the run at ~155-160% of the first era, and C70
+asserts the ceiling in both the chained and unchained branches. Chained runs read as
 growth against the uploaded previous era; unchained runs as a fraction of the
 base image. The two paths are exact inverses — change retention, not one branch.
 Percentages round to the nearest 5%. The source year (2025) emits no TREES
@@ -129,13 +134,43 @@ get benches standing in the road. Locked by C58; add the same "or omit it"
 wording to any new list of props.
 
 **Scene types** — `gas_station`, `downtown_street`, `strip_mall`, `auto_repair`,
-`corner_shop`, `mall`, `shopping_center`, plus a `default`/`unknown` fallback.
+`corner_shop`, `highway`, `mall`, `shopping_center`, plus a `default`/`unknown`
+fallback.
 Era JSONs key `scene_content` by these names, Vision classifies into them
 (`data/prompts/vision.txt`), and the synthetic base needs a phrase in
 `data/prompts/scene-types.txt`. Adding one means touching all of those plus a
 `CaptionService.AnglesByScene` entry, a `data/captions/{type}.txt` file and
 `data/captions/titles/{type}.txt` — C1, C26 and C59 fail loudly if any is
 missing.
+
+**Highway** — one Vision-facing scene type split into two content flavors by
+`SceneDna.Environment.Terrain`: `SceneContentKey.Resolve` maps `urban`,
+`suburban` and `industrial` to `highway_urban` and only `rural` (or an
+unrecognized/missing value) to `highway_rural`, and every *data* lookup
+(era `scene_content`, caption bodies, titles, angle pools, the base-prompt
+phrase) goes through it while *structural* code keeps the raw `highway`. Like
+`mall` and `shopping_center` it has no condition or decay arc; unlike any other
+type it has no storefronts (that pool is skipped) and no stationary vehicles —
+traffic is moving, so there is no PLACEMENT line. It is also the one scene type
+with its own SIGNAGE RESTRICTION: the blanket "no readable text" wording made
+the model render the guide sign as an empty dark rectangle, so a highway states
+the sign positively — green face, white border, legend as unreadable shapes —
+and withholds only the words (C68). Nothing in the era data may describe that
+sign as turned away or unreadable as an object; that deletes it. When `Geometry.Buildings` is
+non-empty it names exactly one generic background trade per era from
+`background_tenants` in the era data (never a real brand, aged from painted
+lettering to illuminated wordmarks); on open road it names none — C66. Urban goes `crowd: packed`
+from 2005 as congestion lands; rural stays 1-3 vehicles in every era. Locked by
+C63/C64.
+
+**Distinctive / route numbers** — `SceneDna.Distinctive` is repeated verbatim
+into every era, so anything falsifiable in it is a claim about all six decades.
+`GenericizeRouteSignage` in `PromptService` rewrites route numbers, exit numbers
+and mile markers out of it — a signage entry becomes a generic overhead guide
+sign, any other entry just loses the number — while unnumbered landmarks pass
+through untouched. Same rationale as the era brand pinning. Locked by C65.
+Note this only reaches a prompt through the synthetic base today: the era
+PRESERVE block is the short fixed form.
 
 **Corner shop** — the one scene type with a scripted story rather than a sampled
 one: it opens as a grocery or a pharmacy (drawn once per run from
@@ -182,6 +217,25 @@ Derelict eras replace the live-business PERIOD DETAILS block entirely.
   must disappear, name the removal explicitly and say what replaces it.
 - A list of details reads as mandatory unless the prompt says otherwise. Any new
   pool of props needs its own "if it has nowhere to go, leave it out" clause.
+- Never ask for lettering the prompt cannot spell out. "with exit numbering", "a
+  name across the front" and the like are instructions to invent text, and the
+  model invents it from whatever it thinks the place is — that is how a real
+  highway photo came back with a city skyline and an invented interchange. Name
+  the sign as an object and say it cannot be read. Every prompt carries either a
+  whitelist of quoted text or an explicit "no readable text anywhere"; C67 fails
+  if one carries neither.
+- The synthetic base emits `commercial architecture` and `building materials`
+  only when `Geometry.Buildings` holds something `IsBuilding` accepts. Era
+  architecture is scene-blind, and on an empty highway it built a strip mall
+  behind the median; with no buildings the base describes the roadway frontage
+  and says outright that nothing is built (C69).
+- A new barrier, wall or guardrail must say the existing one stays. A bare
+  "cable barrier along the shoulder" is read as a replacement, and the guardrail
+  changes type mid-run, which breaks PRESERVE. Once a sound wall appears it
+  persists in every later era.
+- Do not list what must not appear by name. Writing a place or brand into a
+  negation puts the word in front of the model, which is the opposite of the
+  intent — remove the request that needed the name instead.
 - Prompts have two hard budgets, both checked: 920 words (C11) and
   `MaxPromptChars` 6000 (C22). The worst case today is ~895 words / ~5650 chars,
   so there is room for roughly one more sentence — new lines must earn their

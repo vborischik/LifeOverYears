@@ -95,6 +95,7 @@ public record Utilities(
     [property: JsonPropertyName("characteristics")] IReadOnlyList<string> Characteristics,
     [property: JsonPropertyName("downtown_characteristics")] IReadOnlyList<string>? DowntownCharacteristics = null,
     [property: JsonPropertyName("strip_mall_characteristics")] IReadOnlyList<string>? StripMallCharacteristics = null,
+    [property: JsonPropertyName("highway_characteristics")] IReadOnlyList<string>? HighwayCharacteristics = null,
     [property: JsonPropertyName("undergrounded")] bool Undergrounded = false);
 
 // ── Society ───────────────────────────────────────────────────────────────────
@@ -153,4 +154,8 @@ public record SceneContent(
     // "packed" (used by the enclosed mall scene type) renders a dense,
     // uncountable crowd/lot instead of an exact People/Vehicles count — those
     // two fields are omitted entirely in era JSON for a packed scene.
-    [property: JsonPropertyName("crowd")]             string? Crowd = null);
+    [property: JsonPropertyName("crowd")]             string? Crowd = null,
+    // Generic trades for buildings that stand in the background of a scene with
+    // no storefronts of its own — currently the highway flavors, where the
+    // storefront pool is skipped but the buildings in frame still have to age.
+    [property: JsonPropertyName("background_tenants")] IReadOnlyList<string>? BackgroundTenants = null);

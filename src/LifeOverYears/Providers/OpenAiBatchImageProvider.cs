@@ -24,7 +24,7 @@ namespace LifeOverYears.Providers;
 public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
 {
     private const string Size =  "720x1280";   
-    private const string Quality = "low";
+    private const string Quality = "medium";
     private const string Endpoint = "/v1/images/edits";
 
     private const string BaseFileFileName = "base-file.json";

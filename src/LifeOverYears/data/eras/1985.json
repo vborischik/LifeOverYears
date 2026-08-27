@@ -2,9 +2,11 @@
   "year": 1985,
   "label": "Mid-1980s America",
   "description": "Reagan era prosperity. Japanese imports arrived. MTV culture. Neon and bold graphics everywhere. Self-service gas standard.",
-
-  "allowed_scene_conditions": ["thriving", "busy", "new"],
-
+  "allowed_scene_conditions": [
+    "thriving",
+    "busy",
+    "new"
+  ],
   "people_mix": [
     "a group of teenagers in bright windbreakers",
     "a mother with two kids in tow",
@@ -27,10 +29,18 @@
     "a grandmother clutching a coupon flyer",
     "a construction worker in a hard hat crossing at the light"
   ],
-
   "transportation": {
     "cars": {
-      "dominant_makes": ["Chevrolet", "Ford", "Dodge", "Toyota", "Honda", "Nissan", "Buick", "Oldsmobile"],
+      "dominant_makes": [
+        "Chevrolet",
+        "Ford",
+        "Dodge",
+        "Toyota",
+        "Honda",
+        "Nissan",
+        "Buick",
+        "Oldsmobile"
+      ],
       "specific_models": [
         "1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan",
         "1981-1985 Dodge Aries — K-car, boxy economy sedan",
@@ -57,7 +67,13 @@
         "1978-1986 Ford Bronco — full-size boxy SUV, round headlights",
         "1973-1991 Chevrolet Suburban — long boxy wagon-SUV"
       ],
-      "body_styles": ["front-wheel drive compact sedan", "hatchback", "station wagon", "pickup truck", "early minivan"],
+      "body_styles": [
+        "front-wheel drive compact sedan",
+        "hatchback",
+        "station wagon",
+        "pickup truck",
+        "early minivan"
+      ],
       "visual_characteristics": [
         "boxy rectangular body proportions",
         "plastic bumpers replacing chrome",
@@ -67,11 +83,30 @@
         "smaller trunk proportions",
         "aerodynamic styling beginning with Taurus"
       ],
-      "colors": ["silver", "light blue", "burgundy", "white", "beige", "red", "charcoal gray"],
-      "absent": ["SUVs common", "crossovers", "modern rounded aerodynamic shapes", "large chrome bumpers", "LED lights"]
+      "colors": [
+        "silver",
+        "light blue",
+        "burgundy",
+        "white",
+        "beige",
+        "red",
+        "charcoal gray"
+      ],
+      "absent": [
+        "SUVs common",
+        "crossovers",
+        "modern rounded aerodynamic shapes",
+        "large chrome bumpers",
+        "LED lights"
+      ]
     },
     "trucks": {
-      "dominant_makes": ["Ford F-Series", "Chevrolet S-10", "Toyota Pickup", "Dodge Ram"],
+      "dominant_makes": [
+        "Ford F-Series",
+        "Chevrolet S-10",
+        "Toyota Pickup",
+        "Dodge Ram"
+      ],
       "specific_models": [
         "1980-1986 Ford F-150 — square body, dual headlights",
         "1982-1993 Chevrolet S-10 — compact pickup, square",
@@ -91,11 +126,21 @@
       "context": "Prices dropped from early 1980s peak, self-service now dominant"
     }
   },
-
   "architecture": {
     "commercial": {
-      "styles": ["strip mall", "mansard roof", "mirrored glass facade", "concrete tilt-up"],
-      "materials": ["brick", "concrete block", "mirrored glass panels", "metal cladding", "stucco"],
+      "styles": [
+        "strip mall",
+        "mansard roof",
+        "mirrored glass facade",
+        "concrete tilt-up"
+      ],
+      "materials": [
+        "brick",
+        "concrete block",
+        "mirrored glass panels",
+        "metal cladding",
+        "stucco"
+      ],
       "characteristics": [
         "low single-story strip malls dominant",
         "mirrored glass panels on newer buildings",
@@ -116,20 +161,47 @@
       ]
     }
   },
-
   "business": {
-    "gas_brands": ["Texaco", "Shell", "Amoco", "Mobil", "Citgo"],
+    "gas_brands": [
+      "Texaco",
+      "Shell",
+      "Amoco",
+      "Mobil",
+      "Citgo"
+    ],
     "active_brands": [
-      "Shell", "Texaco", "Mobil", "Exxon", "Chevron",
-      "Kmart", "Sears", "JCPenney", "Woolworth", "Service Merchandise",
-      "McDonald's", "Burger King", "Wendy's", "Pizza Hut", "Taco Bell",
-      "Kroger", "Safeway", "Winn-Dixie",
-      "RadioShack", "Circuit City",
-      "7-Eleven", "Hardee's"
+      "Shell",
+      "Texaco",
+      "Mobil",
+      "Exxon",
+      "Chevron",
+      "Kmart",
+      "Sears",
+      "JCPenney",
+      "Woolworth",
+      "Service Merchandise",
+      "McDonald's",
+      "Burger King",
+      "Wendy's",
+      "Pizza Hut",
+      "Taco Bell",
+      "Kroger",
+      "Safeway",
+      "Winn-Dixie",
+      "RadioShack",
+      "Circuit City",
+      "7-Eleven",
+      "Hardee's"
     ],
     "absent_brands": [
-      "Starbucks", "Home Depot large format", "Costco", "Amazon",
-      "Best Buy", "Target Supercenter", "Walmart Supercenter", "Blockbuster Video"
+      "Starbucks",
+      "Home Depot large format",
+      "Costco",
+      "Amazon",
+      "Best Buy",
+      "Target Supercenter",
+      "Walmart Supercenter",
+      "Blockbuster Video"
     ],
     "signage": {
       "characteristics": [
@@ -144,11 +216,18 @@
       "typography_style": "bold geometric sans-serif, early computer-influenced fonts"
     }
   },
-
   "infrastructure": {
     "roads": {
-      "markings": ["yellow center line", "white edge lines", "painted crosswalks", "turn lane arrows"],
-      "materials": ["asphalt", "concrete"],
+      "markings": [
+        "yellow center line",
+        "white edge lines",
+        "painted crosswalks",
+        "turn lane arrows"
+      ],
+      "materials": [
+        "asphalt",
+        "concrete"
+      ],
       "characteristics": [
         "improved lane markings vs 1970s",
         "more traffic signals",
@@ -181,22 +260,49 @@
         "cable TV lines added to poles",
         "no fiber optic",
         "large transformer boxes on poles"
+      ],
+      "highway_characteristics": [
+        "steel lattice transmission towers standing alongside the roadway",
+        "sodium-vapor lighting on mast arms over the lanes",
+        "wooden poles carrying power and telephone along the shoulder",
+        "no fiber optic"
       ]
     }
   },
-
   "society": {
     "fashion": {
-      "men": ["polo shirts with collars up", "acid wash jeans", "windbreakers", "shoulder pads in blazers"],
-      "women": ["big permed hair", "shoulder pads", "leg warmers", "bright neon colors", "high-waisted jeans"],
-      "colors": ["neon pink", "electric blue", "purple", "teal", "white", "black"]
+      "men": [
+        "polo shirts with collars up",
+        "acid wash jeans",
+        "windbreakers",
+        "shoulder pads in blazers"
+      ],
+      "women": [
+        "big permed hair",
+        "shoulder pads",
+        "leg warmers",
+        "bright neon colors",
+        "high-waisted jeans"
+      ],
+      "colors": [
+        "neon pink",
+        "electric blue",
+        "purple",
+        "teal",
+        "white",
+        "black"
+      ]
     },
     "advertising": {
       "style": "high contrast, bold colors, geometric shapes, early computer graphics influence",
-      "media": ["billboard", "backlit bus shelter panels", "window posters", "neon signs"]
+      "media": [
+        "billboard",
+        "backlit bus shelter panels",
+        "window posters",
+        "neon signs"
+      ]
     }
   },
-
   "environment": {
     "vegetation": {
       "characteristics": [
@@ -211,7 +317,6 @@
       "signs": "neon and backlit plastic dominant, early LED not yet present"
     }
   },
-
   "photography": {
     "film_stock": "Kodacolor VR 200 or Fujicolor 100",
     "color_characteristics": [
@@ -224,7 +329,6 @@
     "style": "slightly oversaturated, bright daylight, commercial feel",
     "color_mode": "color"
   },
-
   "scene_content": {
     "downtown_street": {
       "narrative": "A 1985 main street in transition — neon and backlit plastic overtaking hand-painted signs, a first small video rental shop among the old local stores.",
@@ -245,7 +349,10 @@
         "2 SLICES $1.50",
         "SALE 25% OFF"
       ],
-      "people": { "min": 10, "max": 15 },
+      "people": {
+        "min": 10,
+        "max": 15
+      },
       "people_activities": [
         "a teenager carrying a boombox on his shoulder",
         "a woman with big permed hair and shoulder pads window-shopping",
@@ -268,7 +375,10 @@
         "a woman jogging past the storefronts in bright spandex",
         "an older couple sharing a booth visible through the diner window"
       ],
-      "vehicles": { "min": 4, "max": 6 },
+      "vehicles": {
+        "min": 4,
+        "max": 6
+      },
       "extras": [
         "a wall-mounted payphone with a steel-cord handset and phone book shelf",
         "the painted ghost-sign wall ad now noticeably fading, colors washing out",
@@ -297,7 +407,10 @@
         "FREE COFFEE WITH FILL-UP",
         "HOT DOGS 2 FOR $1"
       ],
-      "people": { "min": 4, "max": 7 },
+      "people": {
+        "min": 4,
+        "max": 7
+      },
       "people_activities": [
         "a driver self-serving at the pump",
         "a customer walking into the store counting bills",
@@ -320,7 +433,10 @@
         "a delivery driver dropping a rack of newspapers by the store door",
         "a teenager buying a pack of gum at the counter"
       ],
-      "vehicles": { "min": 3, "max": 4 },
+      "vehicles": {
+        "min": 3,
+        "max": 4
+      },
       "extras": [
         "squeegee buckets at the pump islands",
         "a display rack of windshield-washer fluid jugs",
@@ -348,7 +464,10 @@
         "MUFFLERS INSTALLED TODAY",
         "OIL CHANGE $12.95"
       ],
-      "people": { "min": 4, "max": 6 },
+      "people": {
+        "min": 4,
+        "max": 6
+      },
       "people_activities": [
         "a mechanic hooking up an engine analyzer to a car in the bay",
         "the owner behind the counter ringing up a brake job",
@@ -371,7 +490,10 @@
         "a mechanic carrying a battery across the apron",
         "the owner talking on a corded phone at the counter"
       ],
-      "vehicles": { "min": 5, "max": 7 },
+      "vehicles": {
+        "min": 5,
+        "max": 7
+      },
       "extras": [
         "a new-looking electronic engine analyzer on a rolling cart",
         "a stack of radial tires under the office window",
@@ -400,7 +522,10 @@
         "CASSETTES 3 FOR $10",
         "NAILS $12"
       ],
-      "people": { "min": 8, "max": 12 },
+      "people": {
+        "min": 8,
+        "max": 12
+      },
       "people_activities": [
         "a woman pushing a cart to a boxy sedan",
         "teenagers clustered outside the video store",
@@ -423,7 +548,10 @@
         "a security guard chatting with a shop owner near the entrance",
         "a man adjusting the antenna on a boombox by the curb"
       ],
-      "vehicles": { "min": 5, "max": 7 },
+      "vehicles": {
+        "min": 5,
+        "max": 7
+      },
       "extras": [
         "a bank of wall-mounted payphones near the anchor store",
         "a cart corral in the parking lot",
@@ -566,6 +694,62 @@
         "a payphone mounted on the brick around the corner of the building"
       ]
     },
+    "highway_urban": {
+      "narrative": "A 1985 urban interstate carrying a full commute — button-reflector lane markings, overhead sign gantries and traffic in every lane.",
+      "storefronts": [],
+      "window_signs": [],
+      "people": {
+        "min": 0,
+        "max": 0
+      },
+      "people_activities": [],
+      "vehicles": {
+        "min": 3,
+        "max": 5
+      },
+      "extras": [
+        "raised button reflectors set into the lane markings",
+        "an overhead sign gantry spanning the lanes, green panels with white borders",
+        "galvanized W-beam guardrail on steel posts",
+        "sodium-vapor lighting on tall mast arms, orange at dusk",
+        "55 mph speed limit signs at regular intervals",
+        "a haze along the far end of the roadway, the lanes narrowing into it"
+      ],
+      "background_tenants": [
+        "a self-storage facility with a plain painted sign facing the lanes, the words indistinct at this distance",
+        "a furniture warehouse with block lettering across the front, too distant to make out",
+        "a trucking depot with a low sign by the gate, its lettering unreadable from the road",
+        "a wholesale supply building with a plain sans-serif fascia sign, illegible from here",
+        "an auto parts distributor with lettering on the end wall, too blurred by distance to read"
+      ]
+    },
+    "highway_rural": {
+      "narrative": "A 1985 rural two-lane highway, resurfaced and restriped but otherwise the same road — long sight lines, a wide gravel shoulder and almost no traffic on it.",
+      "storefronts": [],
+      "window_signs": [],
+      "people": {
+        "min": 0,
+        "max": 0
+      },
+      "people_activities": [],
+      "vehicles": {
+        "min": 1,
+        "max": 3
+      },
+      "extras": [
+        "galvanized W-beam guardrail on steel posts at the curves",
+        "fresh yellow centre line with white edge stripes",
+        "reflective route shield on a steel post at the crossroads",
+        "wooden utility poles running the length of the shoulder",
+        "55 mph speed limit signs weathered at the corners",
+        "a farm supply sign standing back in a field"
+      ],
+      "background_tenants": [
+        "a grain elevator with repainted lettering down its side, indistinct at this distance",
+        "a farm supply dealership sign on a post by the drive, unreadable from the road",
+        "an implement dealer's shed with lettering along the front, too far to make out"
+      ]
+    },
     "default": {
       "narrative": "An ordinary 1985 American commercial street — bold primary-color signage, boxy cars, the first franchise logos among local shops.",
       "storefronts": [
@@ -582,7 +766,10 @@
         "PERM SPECIAL $25",
         "2 SLICES $1.50"
       ],
-      "people": { "min": 8, "max": 12 },
+      "people": {
+        "min": 8,
+        "max": 12
+      },
       "people_activities": [
         "a woman with permed hair and shoulder pads window-shopping",
         "a businessman in a boxy suit with a briefcase",
@@ -593,7 +780,10 @@
         "a woman using a wall-mounted payphone",
         "a couple leaving the diner"
       ],
-      "vehicles": { "min": 4, "max": 6 },
+      "vehicles": {
+        "min": 4,
+        "max": 6
+      },
       "extras": [
         "a wall-mounted payphone",
         "the painted ghost-sign wall ad, fading",

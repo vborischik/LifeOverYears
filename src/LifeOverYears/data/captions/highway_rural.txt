@@ -1,0 +1,149 @@
+🛣️ You could stand on this road in {firstYear} and not see a car.
+Not one, in either direction, for a good long while.
+Just the wires, the fields and the heat off the asphalt.
+Fifty years later, it's about the same.
+From {firstYear} to {lastYear}, watch the road, not the traffic.
+Some of you will remember {angle}.
+The place today: {condition}.
+Rural roads don't get busier. Everything around them just gets emptier.
+Where does a road like this go where you're from?
+---
+🛣️ Every trip had one landmark you watched for from the back seat.
+A barn. A silo. A sign for a place forty miles on.
+When you saw it, you knew how much longer.
+Half of them have fallen down since.
+{firstYear} to {lastYear}, the same drive.
+For a lot of folks it was {angle}.
+Today it's {condition}.
+Children navigate by landmarks because they can't read a map, and they remember those landmarks for life.
+What did you watch for on the drive?
+---
+🛣️ The radio went to static in the same spot every single time.
+You knew it was coming and you let it happen.
+Then a different station faded in and that meant you were close.
+Nothing about that exists anymore.
+Watch this road from {firstYear} to {lastYear}.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+The trip used to have a soundtrack that changed with geography. Now it's the same playlist the whole way.
+Where did your radio drop out?
+---
+🛣️ They paved the shoulders and cut a rumble strip and that was the big change.
+No new lanes. No interchange. Nothing to widen for.
+The road got safer and stayed exactly as quiet.
+Which is what most of this country's roads actually did.
+{firstYear} to {lastYear}, one two-lane highway.
+What people remember most: {angle}.
+And today — {condition}.
+We talk about traffic like it's everywhere. Most of the road network has been empty this whole time.
+Is the road near you any busier than it was?
+---
+🛣️ There was one gas station between here and the county line.
+If it was closed, you were planning your trip around it.
+Everybody knew what time it shut.
+It's been gone for twenty years and people still call the corner by its name.
+From {firstYear} to {lastYear}, watch the roadside empty.
+Some of you will remember {angle}.
+The place today: {condition}.
+A closed station on a rural road doesn't get replaced. The nearest one just becomes forty miles away.
+Where did you fill up out there?
+---
+🛣️ At night out here the headlights of one truck were an event.
+You'd watch them come for a full minute before they passed.
+Then the dark closed back in and it was you again.
+Nobody who grew up on a road like this forgets that.
+{firstYear} to {lastYear}, the same dark road.
+For a lot of people it was {angle}.
+Today it's {condition}.
+Rural night is a thing you can only really describe to somebody who has driven through it.
+Have you driven a road like this after dark?
+---
+🛣️ The billboard out here advertised a place still an hour away.
+Paint fading a little more every summer.
+By the end you could barely read it, and the business had closed anyway.
+The frame's still standing.
+Watch it from {firstYear} to {lastYear}.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+Roadside advertising outlives the roadside businesses by about a decade, every time.
+What sign is still up near you for something long gone?
+---
+🛣️ You learned to drive on a road like this.
+Nothing to hit. Nobody to hold up.
+Your father in the passenger seat not saying much.
+Twelve years old on a straight stretch with the seat pushed all the way forward.
+{firstYear} to {lastYear}, one country road.
+What people remember most: {angle}.
+And today — {condition}.
+Half the drivers in this country learned on an empty road nobody was watching.
+Where did you first drive?
+---
+🛣️ The utility poles are the only thing counting the miles out here.
+Same spacing, same lean, some of them since before the pavement.
+They're the tallest thing for a couple of miles in any direction.
+Nobody's ever photographed one on purpose.
+From {firstYear} to {lastYear}, watch the line of poles.
+Some of you will remember {angle}.
+The place today: {condition}.
+The infrastructure nobody looks at is the infrastructure that's been there longest.
+What runs alongside the road where you grew up?
+---
+🛣️ Sunday morning, this road belonged to you.
+Nothing coming. Nothing behind.
+You could hold the middle of the road for a mile and nobody would know.
+That kind of empty is hard to explain to people from a city.
+{firstYear} to {lastYear}, the same quiet.
+For a lot of folks it was {angle}.
+Today it's {condition}.
+There is a specific freedom in a road with nobody on it, and it hasn't gotten any less rare.
+When did you have a road to yourself?
+---
+🛣️ Everything out here is measured in how long it takes, not how far it is.
+Twenty minutes to town. An hour to the interstate.
+Nobody says the miles because the miles don't mean anything.
+That's a rural thing and it hasn't changed at all.
+Watch this road from {firstYear} to {lastYear}.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+Distance is a city idea. Out here it's all time, and the time is mostly spent on roads like this.
+How far was town from your house, in minutes?
+---
+🛣️ The farm on the left sold up somewhere in the middle of all this.
+The buildings stayed for a while, then the roof went.
+Now it's a line of trees and a foundation you can only see in winter.
+The road never noticed.
+{firstYear} to {lastYear}, watch what goes.
+What people remember most: {angle}.
+And today — {condition}.
+Roads outlast the farms they were built to serve, and then they just carry people past the gap.
+What's gone from the roadside where you're from?
+---
+🛣️ Falling asleep in the back seat on a road like this is a specific memory.
+The hum of the tyres. The seat belt buckle warm from the sun.
+Waking up because the road surface changed and you were nearly home.
+Nobody has that anymore. Every kid has a screen.
+From {firstYear} to {lastYear}, one long drive.
+Some of you will remember {angle}.
+The place today: {condition}.
+The boredom of a long drive did something to a childhood that we have completely engineered away.
+Did you fall asleep in the back on drives like this?
+---
+🛣️ Snow out here closed the road for real, not for a news report.
+Drifts across the lanes and nobody coming to clear it until morning.
+You checked with a neighbor before you tried it.
+That's still how it works.
+Watch this stretch from {firstYear} to {lastYear}.
+For a lot of people it was {angle}.
+Today it's {condition}.
+A rural road in winter is the last place where the weather still makes the decision for you.
+Did the road close where you grew up?
+---
+🛣️ You can see the crest where the town finally comes into view.
+Same rise, same moment, every trip for fifty years.
+Grandparents' house was twelve minutes past it.
+The house went years ago. The rise is still there.
+{firstYear} to {lastYear}, the same approach.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+A road holds the geography of a family longer than the family holds the houses.
+Where did your town first come into view?
