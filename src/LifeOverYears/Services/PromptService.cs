@@ -54,10 +54,12 @@ public sealed class PromptService : IPromptService
         var eraIndex = context.BeginEra();
 
         var sceneType    = sceneDna.SceneType ?? "default";
-        var sceneContent = ResolveSceneContent(eraProfile, sceneType);
+        var isHighway    = sceneType == "highway";
+        var contentKey   = SceneContentKey.Resolve(sceneType, sceneDna.Environment.Terrain);
+        var sceneContent = ResolveSceneContent(eraProfile, contentKey);
         if (sceneContent is null)
-            _logger.LogWarning("No scene_content in era {Year} for scene type '{SceneType}' — building generic scene block",
-                year, sceneType);
+            _logger.LogWarning("No scene_content in era {Year} for content key '{ContentKey}' — building generic scene block",
+                year, contentKey);
 
         var isGasStation    = sceneType == "gas_station";
         var hasSidewalks    = sceneDna.Geometry.Sidewalks;
@@ -144,7 +146,7 @@ public sealed class PromptService : IPromptService
         // An abandoned era has no vehicles and no PLACEMENT line — don't consume a
         // placement pattern from the run's pool for it. A packed lot has no gaps
         // to arrange either, so it skips placement the same way.
-        var placement = !isPacked && vehicles.Count > 0 ? context.NextPlacement(vehicles.Count, onStreetParking) : "";
+        var placement = !isPacked && !isHighway && vehicles.Count > 0 ? context.NextPlacement(vehicles.Count, onStreetParking) : "";
         var gasSign   = isGasStation ? await ResolveGasSignAsync(context, year, condition) : default;
         var cornerShop = IsCornerShop(sceneType)
             ? await ResolveCornerShopAsync(context, year, condition, sceneType)
@@ -153,9 +155,19 @@ public sealed class PromptService : IPromptService
             ? await ResolveMotelSignAsync(context, year, condition)
             : default;
 
-        var sceneBlock = BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, gasSign, cornerShop, motelSign, rng, context);
+        // A highway shot with buildings in frame still has to show a decade
+        // passing on them; an open-road shot has nothing to put a name on.
+        //
+        // Counted by what the entries actually are, not by array length: Vision
+        // files whatever it finds beside the road into Buildings, and a lone
+        // tree typed "deciduous" was enough to invent a warehouse on an empty
+        // roadside. A background trade is only credible where a building really
+        // stands.
+        var hasBackgroundBuildings = sceneDna.Geometry.Buildings.Any(IsBuilding);
+
+        var sceneBlock = BuildSceneBlock(eraProfile, sceneContent, sceneType, condition, gasSign, cornerShop, motelSign, hasBackgroundBuildings, rng, context);
         sceneBlock = AppendPlacementRule(sceneBlock);
-        sceneBlock = AppendSignageRestriction(sceneBlock);
+        sceneBlock = AppendSignageRestriction(sceneBlock, isHighway);
 
         var text = template
             // EXPERIMENT: the generated per-era geometry block is parked while the
@@ -166,8 +178,8 @@ public sealed class PromptService : IPromptService
             .Replace("{BASE_NOTE}",         context.ChainedFromPreviousEra ? ChainedBaseNote : FreshBaseNote)
             .Replace("{PRESERVE_BLOCK}",    ShortPreserveBlock)
             .Replace("{SCENE_BLOCK}",       sceneBlock)
-            .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, hasSidewalks, rng, context, isPacked, isSquatted, IsDecliningRetail(condition, sceneType), isSquattedRetail, IsLiquorEra(sceneType, year)))
-            .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation, onStreetParking, isPacked, derelictCount))
+            .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, hasSidewalks, rng, context, isPacked, isSquatted, IsDecliningRetail(condition, sceneType), isSquattedRetail, IsLiquorEra(sceneType, year), isHighway))
+            .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation, onStreetParking, isPacked, derelictCount, isHighway))
             .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year, sceneType, condition, rng, context))
             .Replace("{STYLE_BLOCK}",       BuildStyleBlock(eraProfile.Photography, condition));
 
@@ -205,7 +217,12 @@ public sealed class PromptService : IPromptService
         // describe a canopy or a pylon without ever naming a station.
         const string fallbackKey = "unknown";
         var phrases   = await _data.LoadSceneTypePhrasesAsync();
-        var sceneType = sceneDna.SceneType;
+        // The phrase is data like any other content lookup, and it is the one
+        // line telling the model what to build: a six-lane interstate and a
+        // rural two-lane are different roads, not one road in two settings.
+        var sceneType = sceneDna.SceneType is { } t
+            ? SceneContentKey.Resolve(t, sceneDna.Environment.Terrain)
+            : null;
         var usedKey   = !string.IsNullOrWhiteSpace(sceneType) && phrases.ContainsKey(sceneType)
             ? sceneType
             : fallbackKey;
@@ -229,7 +246,7 @@ public sealed class PromptService : IPromptService
 
         var text = template
             .Replace("{SCENE_TYPE_PHRASE}", phrase)
-            .Replace("{PERIOD_BLOCK}",      BuildBasePeriodBlock(baseEra))
+            .Replace("{PERIOD_BLOCK}",      BuildBasePeriodBlock(baseEra, sceneDna))
             .Replace("{GEOMETRY_BLOCK}",
                 BuildPreserveBlock(sceneDna, "BUILD THIS SCENE", "", includeTrees: true));
 
@@ -241,13 +258,33 @@ public sealed class PromptService : IPromptService
     // Period for the synthetic base, taken from the base year's era profile rather
     // than hardcoded, so the run's own years drive it. Only permanent fabric is
     // described: the base carries no people, vehicles or signage to date.
-    private static string BuildBasePeriodBlock(EraProfile era)
+    private static string BuildBasePeriodBlock(EraProfile era, SceneDna sceneDna)
     {
         var sb = new StringBuilder();
         sb.AppendLine($"PERIOD — build the scene as it stood in {era.Year}");
         sb.AppendLine($"Everything permanent must be plausible for {era.Year}; nothing may look newer.");
-        sb.AppendLine($"- commercial architecture: {Join(era.Architecture.Commercial.Styles.Take(2).ToList())}");
-        sb.AppendLine($"- building materials: {Join(era.Architecture.Commercial.Materials.Take(3).ToList())}");
+
+        // Architecture is era data with no scene attached, so it was emitted even
+        // for a scene that has no buildings at all — and a prompt that names
+        // commercial styles and storefront materials gets storefronts, which is
+        // how an open highway came back with a retail row behind the median.
+        // Where nothing is built, describe what actually borders the roadway
+        // instead: the frontage is the thing the model would otherwise fill in.
+        var buildings = sceneDna.Geometry.Buildings.Where(IsBuilding).ToList();
+        if (buildings.Count > 0)
+        {
+            sb.AppendLine($"- commercial architecture: {Join(era.Architecture.Commercial.Styles.Take(2).ToList())}");
+            sb.AppendLine($"- building materials: {Join(era.Architecture.Commercial.Materials.Take(3).ToList())}");
+        }
+        else
+        {
+            var frontage = DropTreeMentions(sceneDna.Environment.Landscape).Take(3).ToList();
+            sb.AppendLine(frontage.Count > 0
+                ? $"- roadway frontage, and nothing built beyond it: {Join(frontage)}"
+                : "- roadway frontage, and nothing built beyond it: open ground running back from the shoulder");
+            sb.AppendLine("- no buildings anywhere in the frame: no storefronts, no retail row, no commercial frontage");
+        }
+
         sb.AppendLine($"- road surface: {Join(era.Infrastructure.Roads.Materials.Take(2).ToList())}");
         sb.AppendLine($"- road markings: {Join(era.Infrastructure.Roads.Markings.Take(3).ToList())}");
         sb.AppendLine($"- utilities: {Join(era.Infrastructure.Utilities.Characteristics.Take(2).ToList())}");
@@ -381,7 +418,7 @@ public sealed class PromptService : IPromptService
         if (!includeTrees) immutable = DropTreeMentions(immutable);
         if (immutable.Count > 0)
             sb.AppendLine($"- immutable elements: {string.Join(", ", immutable)}");
-        var distinctive = s.Distinctive ?? [];
+        var distinctive = GenericizeRouteSignage(s.Distinctive ?? []);
         if (distinctive.Count > 0)
             sb.AppendLine($"- specific to this exact place, reproduce faithfully: {string.Join("; ", distinctive)}");
         if (closing.Length > 0)
@@ -402,6 +439,70 @@ public sealed class PromptService : IPromptService
     // on "street" (which contains "tree").
     private static List<string> DropTreeMentions(IReadOnlyList<string> elements) =>
         elements.Where(e => !System.Text.RegularExpressions.Regex.IsMatch(e, @"\btrees?\b", System.Text.RegularExpressions.RegexOptions.IgnoreCase)).ToList();
+
+    // A route number or an exit mile is not a fact about the place, it is a claim
+    // about the road — and this line is carried across every era of the run
+    // unchanged. Numbering moved: interstates were renumbered, exits went from
+    // sequential to mileage-based, state routes were decommissioned onto other
+    // shields. Stated in a 1975 frame from a 2025 photo it is simply wrong, and
+    // wrong in the specific, checkable way that gets a video picked apart in the
+    // comments — the same reason era brands and products are pinned to their
+    // years everywhere else in this file.
+    //
+    // The sign itself is worth keeping: an overhead gantry is real geometry that
+    // must not appear and vanish between decades. So a signage entry is replaced
+    // by an unnumbered equivalent rather than dropped, and a number embedded in
+    // some other observation loses only the number.
+    private static readonly System.Text.RegularExpressions.Regex RouteNumberToken = new(
+        @"(?:\b(?:the|a|an)\s+)?\b(?:I[-\s]?\d+" +
+        @"|(?:interstate|route|rte\.?|rt\.?|highway|hwy\.?|expressway|expwy\.?|freeway|turnpike" +
+        @"|u\.?s\.?|us|sr|cr|state\s+(?:route|highway|road)|county\s+(?:route|road))\s*-?\s*\d+[A-Za-z]?)\b",
+        System.Text.RegularExpressions.RegexOptions.IgnoreCase | System.Text.RegularExpressions.RegexOptions.Compiled);
+
+    private static readonly System.Text.RegularExpressions.Regex ExitNumberToken = new(
+        @"(?:\b(?:the|a|an)\s+)?\bexit\s*\d+[A-Za-z]?\b",
+        System.Text.RegularExpressions.RegexOptions.IgnoreCase | System.Text.RegularExpressions.RegexOptions.Compiled);
+
+    private static readonly System.Text.RegularExpressions.Regex MileMarkerToken = new(
+        @"(?:\b(?:the|a)\s+)?\b(?:mile\s*(?:marker|post)|mile|mm)\s*\d+[A-Za-z]?\b",
+        System.Text.RegularExpressions.RegexOptions.IgnoreCase | System.Text.RegularExpressions.RegexOptions.Compiled);
+
+    // What makes an entry a description of the sign rather than of the place.
+    // "marker" is deliberately absent: a mile marker is a real roadside object,
+    // and folding it into an overhead guide sign would move it as well as
+    // unnumber it.
+    private static readonly System.Text.RegularExpressions.Regex SignageWord = new(
+        @"\b(sign|signs|signage|gantry|gantries|shield|panel|panels|placard|guide\s+board|button\s+copy)\b",
+        System.Text.RegularExpressions.RegexOptions.IgnoreCase | System.Text.RegularExpressions.RegexOptions.Compiled);
+
+    private const string GenericGuideSign = "green directional guide sign overhead";
+
+    private static List<string> GenericizeRouteSignage(IReadOnlyList<string> distinctive)
+    {
+        var result = new List<string>();
+        foreach (var entry in distinctive)
+        {
+            var v = entry.Trim();
+            if (v.Length == 0) continue;
+
+            if (RouteNumberToken.IsMatch(v) || ExitNumberToken.IsMatch(v) || MileMarkerToken.IsMatch(v))
+            {
+                // An entry about the sign keeps the sign and loses everything
+                // printed on it. Anything else keeps its own observation and
+                // loses only the number inside it.
+                v = SignageWord.IsMatch(v)
+                    ? GenericGuideSign
+                    : MileMarkerToken.Replace(
+                          ExitNumberToken.Replace(
+                              RouteNumberToken.Replace(v, "the highway"), "an exit"), "a mile marker");
+            }
+
+            // Two numbered entries can genericize onto the same words.
+            if (!result.Contains(v, StringComparer.OrdinalIgnoreCase))
+                result.Add(v);
+        }
+        return result;
+    }
 
     // Vision output sometimes embeds its own label ("permanent landmarks: none") inside
     // an element — strip it so the PRESERVE line carries a single label, and drop
@@ -734,6 +835,22 @@ public sealed class PromptService : IPromptService
 
     private static bool IsMotel(string sceneType) => sceneType == "motel";
 
+    // Vegetation and roadside furniture that Vision sometimes files under
+    // Buildings. Matched on the type it wrote, so a "deciduous" or "tree line"
+    // entry stops standing in for a structure.
+    private static readonly string[] NotBuildingWords =
+    {
+        "tree", "deciduous", "conifer", "evergreen", "shrub", "hedge", "vegetation",
+        "grass", "embankment", "treeline", "woods", "forest", "field"
+    };
+
+    private static bool IsBuilding(Building b)
+    {
+        var type = (b.Type ?? "").ToLowerInvariant();
+        if (type.Length == 0) return false;
+        return !NotBuildingWords.Any(type.Contains);
+    }
+
     private static bool IsLiquorEra(string sceneType, int year) =>
         IsCornerShop(sceneType) && year >= GenerationContext.LiquorFromYear;
 
@@ -764,7 +881,7 @@ public sealed class PromptService : IPromptService
         return sb.ToString().TrimEnd();
     }
 
-    private static string BuildSceneBlock(EraProfile era, SceneContent? content, string sceneType, string condition, GenerationContext.GasSign gasSign, GenerationContext.CornerShopSign cornerShop, GenerationContext.MotelSign motelSign, Random rng, GenerationContext context)
+    private static string BuildSceneBlock(EraProfile era, SceneContent? content, string sceneType, string condition, GenerationContext.GasSign gasSign, GenerationContext.CornerShopSign cornerShop, GenerationContext.MotelSign motelSign, bool hasBackgroundBuildings, Random rng, GenerationContext context)
     {
         var sb = new StringBuilder();
         sb.AppendLine($"TRANSFORM TO {era.Year}");
@@ -772,6 +889,7 @@ public sealed class PromptService : IPromptService
         sb.AppendLine(content is null ? intro : $"{intro} {content.Narrative}");
 
         var isGasStation = sceneType == "gas_station";
+        var isHighway    = sceneType == "highway";
 
         // Scene atmosphere — condition affects appearance/upkeep only, never the
         // physical geometry in the PRESERVE block.
@@ -846,71 +964,87 @@ public sealed class PromptService : IPromptService
             sb.AppendLine("- most of the other units dark behind the glass, several papered over from the inside");
         }
 
-        var pool = new List<string>();
-        if (content is not null)
-            pool.AddRange(content.Storefronts);
-        // The two survivors are stated explicitly above; drop any storefront the
-        // era pool offers for the same businesses so they are not listed twice.
-        if (IsDecliningRetail(condition, sceneType))
-            pool.RemoveAll(s => s.Contains("liquor", StringComparison.OrdinalIgnoreCase)
-                             || s.Contains("tax ", StringComparison.OrdinalIgnoreCase)
-                             || s.Contains("check cashing", StringComparison.OrdinalIgnoreCase)
-                             || s.Contains("check-cashing", StringComparison.OrdinalIgnoreCase));
-        else
+        // A highway has no storefronts, no signage band and no commercial
+        // architecture in frame: the era pools this block samples are all shop
+        // vocabulary, and emitting any of it puts a building on the roadside.
+        // Its period detail comes from extras alone, below.
+        if (!isHighway)
         {
-            pool.AddRange(era.Architecture.Commercial.Characteristics);
-            pool.AddRange(era.Business.Signage.Characteristics);
-        }
-        if (isGasStation)
-            pool.AddRange(era.Architecture.GasStations.Characteristics);
-
-        var usedConcepts = new HashSet<string>();
-        var picks        = new List<string>();
-        var target       = 3;
-
-        // The fuel price and main sign lines below cover these concepts.
-        if (isGasStation)
-        {
-            usedConcepts.Add("price sign");
-            usedConcepts.Add("pole sign");
-            target--;
-        }
-        else
-        {
-            // Always anchor the era with a period price where the pool offers one.
-            foreach (var item in pool.Where(i => i.Contains('¢') || i.Contains('$')).Take(2))
+            var pool = new List<string>();
+            if (content is not null)
+                pool.AddRange(content.Storefronts);
+            // The two survivors are stated explicitly above; drop any storefront the
+            // era pool offers for the same businesses so they are not listed twice.
+            if (IsDecliningRetail(condition, sceneType))
+                pool.RemoveAll(s => s.Contains("liquor", StringComparison.OrdinalIgnoreCase)
+                                 || s.Contains("tax ", StringComparison.OrdinalIgnoreCase)
+                                 || s.Contains("check cashing", StringComparison.OrdinalIgnoreCase)
+                                 || s.Contains("check-cashing", StringComparison.OrdinalIgnoreCase));
+            else
             {
-                picks.Add(item);
+                pool.AddRange(era.Architecture.Commercial.Characteristics);
+                pool.AddRange(era.Business.Signage.Characteristics);
+            }
+            if (isGasStation)
+                pool.AddRange(era.Architecture.GasStations.Characteristics);
+
+            var usedConcepts = new HashSet<string>();
+            var picks        = new List<string>();
+            var target       = 3;
+
+            // The fuel price and main sign lines below cover these concepts.
+            if (isGasStation)
+            {
+                usedConcepts.Add("price sign");
+                usedConcepts.Add("pole sign");
+                target--;
+            }
+            else
+            {
+                // Always anchor the era with a period price where the pool offers one.
+                foreach (var item in pool.Where(i => i.Contains('¢') || i.Contains('$')).Take(2))
+                {
+                    picks.Add(item);
+                    var concept = ConceptOf(item);
+                    if (concept is not null) usedConcepts.Add(concept);
+                }
+            }
+
+            foreach (var item in Sample(pool, pool.Count, rng))
+            {
+                if (picks.Count >= target) break;
+                if (picks.Contains(item)) continue;
                 var concept = ConceptOf(item);
-                if (concept is not null) usedConcepts.Add(concept);
+                if (concept is not null && !usedConcepts.Add(concept)) continue;
+                picks.Add(item);
             }
-        }
 
-        foreach (var item in Sample(pool, pool.Count, rng))
-        {
-            if (picks.Count >= target) break;
-            if (picks.Contains(item)) continue;
-            var concept = ConceptOf(item);
-            if (concept is not null && !usedConcepts.Add(concept)) continue;
-            picks.Add(item);
-        }
-
-        // Storefront picks need the same "new" reconciliation the extras get: the
-        // pool carries ghost-sign entries ("ghost signs from closed retailers")
-        // that contradict a freshly rebuilt scene outright. Only the extras path
-        // was covered before, so whether the contradiction shipped came down to
-        // which pool the ghost-sign line happened to be sampled from.
-        var ghostReconciled = false;
-        foreach (var item in picks)
-        {
-            var line = ReconcileWithNewCondition(item, condition);
-            if (!ReferenceEquals(line, item))
+            // Storefront picks need the same "new" reconciliation the extras get: the
+            // pool carries ghost-sign entries ("ghost signs from closed retailers")
+            // that contradict a freshly rebuilt scene outright. Only the extras path
+            // was covered before, so whether the contradiction shipped came down to
+            // which pool the ghost-sign line happened to be sampled from.
+            var ghostReconciled = false;
+            foreach (var item in picks)
             {
-                if (ghostReconciled) continue;   // one reconciling line is enough
-                ghostReconciled = true;
+                var line = ReconcileWithNewCondition(item, condition);
+                if (!ReferenceEquals(line, item))
+                {
+                    if (ghostReconciled) continue;   // one reconciling line is enough
+                    ghostReconciled = true;
+                }
+                sb.AppendLine($"- {line}");
             }
-            sb.AppendLine($"- {line}");
         }
+
+        // The buildings behind a highway are not storefronts and get no signage
+        // treatment — but left unnamed they sit unchanged through six decades,
+        // which reads as a still photograph rather than a run. One generic
+        // trade per era, never a real brand, worded to stay incidental: it is
+        // background, and the placement rule still lets the model drop it if
+        // the frame has nowhere to put it.
+        if (isHighway && hasBackgroundBuildings && content?.BackgroundTenants is { Count: > 0 } tenants)
+            sb.AppendLine($"- {Sample(tenants, 1, rng)[0]}");
 
         // Chain tenant plan: a per-run decision resolved fresh for this era's
         // year/condition. Not decay content — a ghost sign is a period detail
@@ -1062,10 +1196,44 @@ public sealed class PromptService : IPromptService
     // quoted. A bare whitelist would forbid a ghost sign's own weathered-but-
     // readable text, so the closing sentence explicitly carves out lettering
     // that is present but illegible, rather than contradicting that detail.
-    private static string AppendSignageRestriction(string sceneBlock)
+    // A highway's guide sign is the one piece of signage that has to stay
+    // legible-looking while staying unreadable. Under the blanket rule the model
+    // took "no readable text" as "no text", and rendered the gantry as an empty
+    // dark rectangle in all six eras — a sign that reads as broken, not as one
+    // photographed from too far away. Describing the face positively (green,
+    // white border, pale shapes where the legend sits) keeps the object intact
+    // and moves the restriction onto the words alone.
+    private const string HighwaySignageRestriction =
+        "SIGNAGE RESTRICTION\n" +
+        "The overhead guide sign keeps its green face and white border, and its legend renders as soft " +
+        "white shapes that never resolve into words — no place names, no route or exit numbers, no " +
+        "destinations. Every other sign and painted name is a shape only, too distant or too weathered " +
+        "to read. Do not turn words from this prompt into signage.";
+
+    private static string AppendSignageRestriction(string sceneBlock, bool isHighway)
     {
         var signText = CollectSignText(sceneBlock);
-        if (signText.Count == 0) return sceneBlock;
+
+        // No quoted strings meant no restriction at all — which left the one
+        // scene type that quotes nothing (highway) as the only one with zero
+        // control over lettering, while its own period details still asked for
+        // painted names and sign panels. The model filled that silence by
+        // reading the road: a place name on a guide sign, then a skyline to
+        // match it. An empty whitelist is the strongest instruction available,
+        // not the absence of one, so say it.
+        // The derelict and half-dead branches already close on their own no-text
+        // rule, so a second block would only repeat it — and repeat it into the
+        // character budget, which is what it did.
+        const string OwnRestriction = "do not turn words from this prompt into signage";
+        if (signText.Count == 0)
+            return sceneBlock.Contains(OwnRestriction, StringComparison.OrdinalIgnoreCase)
+                ? sceneBlock
+                : sceneBlock.TrimEnd() + "\n\n" + (isHighway
+                    ? HighwaySignageRestriction
+                    : "SIGNAGE RESTRICTION\n" +
+                      "NO readable text anywhere — every sign and painted name is a shape only, too distant or " +
+                      "too weathered to resolve into words. No place names, route or exit numbers, destinations, " +
+                      "business names or logos. Do not turn words from this prompt into signage.");
 
         var sb = new StringBuilder(sceneBlock);
         sb.AppendLine();
@@ -1092,10 +1260,21 @@ public sealed class PromptService : IPromptService
     private static bool IsSinglePerson(string mixEntry) =>
         !PluralMixMarkers.Any(m => mixEntry.TrimStart().StartsWith(m, StringComparison.OrdinalIgnoreCase));
 
-    private static string BuildPeopleBlock(EraProfile era, SceneContent? content, int peopleCount, bool isGasStation, bool hasSidewalks, Random rng, GenerationContext context, bool isPacked, bool isSquatted, bool isDecliningRetail, bool isSquattedRetail, bool isLiquorEra)
+    private static string BuildPeopleBlock(EraProfile era, SceneContent? content, int peopleCount, bool isGasStation, bool hasSidewalks, Random rng, GenerationContext context, bool isPacked, bool isSquatted, bool isDecliningRetail, bool isSquattedRetail, bool isLiquorEra, bool isHighway)
     {
         var sb = new StringBuilder();
         sb.AppendLine("PEOPLE");
+
+        // A highway carries no pedestrians in any era, and it is the one scene
+        // type where "no people" must not read as desertion: the lanes are busy,
+        // everyone in the frame is simply inside a vehicle. Checked before the
+        // packed branch, whose crowd wording is written for a mall entrance.
+        if (isHighway)
+        {
+            sb.Append("NO people on foot anywhere — nobody walking, standing or waiting at the roadside. Everyone in this scene is inside a moving vehicle.");
+            return sb.ToString();
+        }
+
         if (!isPacked && peopleCount == 0)
         {
             sb.Append("NO people anywhere — the place is completely deserted.");
@@ -1297,7 +1476,7 @@ public sealed class PromptService : IPromptService
         return result;
     }
 
-    private static string BuildVehiclesBlock(IReadOnlyList<(string Model, string? Color)> vehicles, int year, string placement, bool isGasStation, bool onStreetParking, bool isPacked, int derelictCount)
+    private static string BuildVehiclesBlock(IReadOnlyList<(string Model, string? Color)> vehicles, int year, string placement, bool isGasStation, bool onStreetParking, bool isPacked, int derelictCount, bool isHighway)
     {
         var sb = new StringBuilder();
         sb.AppendLine("VEHICLES");
@@ -1322,6 +1501,18 @@ public sealed class PromptService : IPromptService
 
         if (isPacked)
         {
+            // Packed means "too many to count" either way, but a highway is
+            // packed in motion: the lot wording would stop the traffic dead and
+            // fill the carriageway with parked cars.
+            if (isHighway)
+            {
+                sb.AppendLine("DENSE MOVING TRAFFIC — a continuous stream filling every lane in view, out to the far edge of the frame, too many vehicles to count individually, all travelling at highway speed and close together. Representative models visible near the camera:");
+                foreach (var (model, color) in vehicles)
+                    sb.AppendLine(color is null ? $"- {model}" : $"- {model} — {color}");
+                sb.Append($"Every other vehicle in the traffic is period-correct for {year}; nothing newer. All in their own lane and moving; none stopped, and none on the shoulder.");
+                return sb.ToString();
+            }
+
             sb.AppendLine("A FULL parking lot — every stall occupied in unbroken rows out to the far edge, too many vehicles to count, no empty stalls in the foreground. Representative models visible near the camera:");
             foreach (var (model, color) in vehicles)
                 sb.AppendLine(color is null ? $"- {model}" : $"- {model} — {color}");
@@ -1329,9 +1520,23 @@ public sealed class PromptService : IPromptService
             return sb.ToString();
         }
 
-        sb.AppendLine($"EXACTLY {vehicles.Count} period vehicles, all different:");
+        // "EXACTLY 1 period vehicles" was tolerable while every scene type put a
+        // lot-full in frame; a rural highway asks for one car often enough that
+        // the plural reads as a mistake in the prompt itself.
+        var vehicleNoun = vehicles.Count == 1 ? "period vehicle" : "period vehicles, all different";
+        sb.AppendLine($"EXACTLY {vehicles.Count} {vehicleNoun}:");
         foreach (var (model, color) in vehicles)
             sb.AppendLine(color is null ? $"- {model}" : $"- {model} — {color}");
+        // A highway shot has no kerb, no stalls and no arrangement pattern to
+        // vary between eras: everything in frame is moving, so the placement
+        // line is dropped rather than reworded (the call site skips drawing one).
+        if (isHighway)
+        {
+            sb.AppendLine($"Where a model is listed with a year range, render the {year} model year specifically — only styling, trim and features available in {year}, nothing introduced later. No vehicle newer than {year}.");
+            sb.Append("Each vehicle is travelling in its own lane at highway speed, spaced by natural following distance, all heading the same direction as the camera's vantage point. None stopped, and none standing on the shoulder.");
+            return sb.ToString();
+        }
+
         sb.AppendLine($"Parked with gaps. Where a model is listed with a year range, render the {year} model year specifically — only styling, trim and features available in {year}, nothing introduced later. No vehicle newer than {year}.");
         sb.AppendLine(onStreetParking
             ? "Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic."
@@ -1347,11 +1552,25 @@ public sealed class PromptService : IPromptService
         var infra = era.Infrastructure;
         var sb = new StringBuilder();
         sb.AppendLine("ENVIRONMENT");
+        var isHighway = sceneType == "highway";
         // Crisp era markings only make sense on a scene that is still kept up.
         if (condition is "declining" or "abandoned" or "squatted")
             sb.AppendLine("- road markings: worn and faded, well past their last repainting");
         else
-            sb.AppendLine($"- road markings: {Join(infra.Roads.Markings.Take(3).ToList())}");
+        {
+            // The markings pool is written for streets, so it offers crosswalks
+            // and stop bars — pedestrian markings that put a crossing across a
+            // highway where nobody may walk. Filtered rather than given its own
+            // pool: everything else in the list (edge lines, centre line,
+            // reflectors) is era-correct for a highway too.
+            var markings = infra.Roads.Markings.AsEnumerable();
+            if (isHighway)
+                markings = markings.Where(m =>
+                    !m.Contains("crosswalk", StringComparison.OrdinalIgnoreCase) &&
+                    !m.Contains("stop bar", StringComparison.OrdinalIgnoreCase) &&
+                    !m.Contains("stop line", StringComparison.OrdinalIgnoreCase));
+            sb.AppendLine($"- road markings: {Join(markings.Take(3).ToList())}");
+        }
         var isDowntown = sceneType == "downtown_street";
         // A main street and a strip mall each get their own utilities pool where
         // the era defines one; every other scene type takes the general list.
@@ -1359,6 +1578,7 @@ public sealed class PromptService : IPromptService
         {
             "downtown_street" => infra.Utilities.DowntownCharacteristics,
             "strip_mall"      => infra.Utilities.StripMallCharacteristics,
+            "highway"         => infra.Utilities.HighwayCharacteristics,
             _                 => null
         };
         var usingScenePool = scenePool is { Count: > 0 };
@@ -1372,7 +1592,12 @@ public sealed class PromptService : IPromptService
         // listing "conduits below grade" under utilities is not enough on its
         // own. The removal has to be stated as an explicit exception, or the
         // poles simply carry through.
-        if (usingScenePool && infra.Utilities.Undergrounded)
+        // The undergrounded flag describes the main-street and strip-mall
+        // rebuild, not the era as a whole: it sits on the shared utilities
+        // object, so a highway drawing its own pool from the same object would
+        // otherwise inherit a removal line and lose the towers and gantries it
+        // still carries in 2025.
+        if (usingScenePool && !isHighway && infra.Utilities.Undergrounded)
             sb.AppendLine(
                 "- overhead utilities are gone in this era — the one exception to PRESERVE: remove every " +
                 $"utility pole, crossarm, pole transformer and wire span {(isDowntown ? "along the street" : "over the lot")}, " +
@@ -1401,7 +1626,7 @@ public sealed class PromptService : IPromptService
         // whatever the era before it showed.
         var treeState = DescribeTreeState(condition, sceneType);
         var treeLines = scene.Environment.Trees
-            .Select(t => (Tree: t, Size: DescribeTreeSize(t.Size, year, chainedFrom)))
+            .Select(t => (Tree: t, Size: DescribeTreeSize(t.Size, t.Position, year, chainedFrom)))
             .Where(x => x.Size.Length > 0)
             .Select(x => $"- {x.Tree.Type} tree at {x.Tree.Position}: {x.Size}{treeState}")
             .ToList();
@@ -1474,15 +1699,35 @@ public sealed class PromptService : IPromptService
             }
             : "";
 
-    private static string DescribeTreeSize(string size, int year, int? chainedFromYear)
+    // A tree at the back of the frame is a different problem from one at the
+    // kerb. Size alone is measured against the tree, but what the viewer sees is
+    // measured against the frame: a background tree given the ordinary medium
+    // rate triples across fifty years, and by the last era it has walked
+    // forward, filled the distance and swallowed the sign gantry behind it.
+    // Distance also compresses growth honestly — the further away it is, the
+    // less of the frame the same real growth claims. So a background tree gets a
+    // single flat rate that lands the last era at about 160% of the first,
+    // whatever size Vision recorded. Already includes the GrowthDamping
+    // slowdown, so it is used as-is rather than divided again. 0.92 rather than
+    // a rounder 0.9 because percentages round to the nearest 5%: at 0.91 the
+    // backward path lands on 60% and reads as 167% across the run, over the
+    // ceiling the rate exists to hold.
+    private const double BackgroundRetention = 0.92;
+
+    private static bool IsBackgroundTree(string? position) =>
+        position is { } p && p.Contains("background", StringComparison.OrdinalIgnoreCase);
+
+    private static string DescribeTreeSize(string size, string? position, int year, int? chainedFromYear)
     {
-        var retention = size.ToLowerInvariant() switch
-        {
-            "large"  => 0.90,
-            "medium" => 0.78,
-            "small"  => 0.62,
-            _        => 0.78
-        } / GrowthDamping;
+        var retention = IsBackgroundTree(position)
+            ? BackgroundRetention
+            : size.ToLowerInvariant() switch
+            {
+                "large"  => 0.90,
+                "medium" => 0.78,
+                "small"  => 0.62,
+                _        => 0.78
+            } / GrowthDamping;
 
         if (chainedFromYear is { } from)
         {

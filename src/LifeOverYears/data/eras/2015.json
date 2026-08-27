@@ -2,9 +2,11 @@
   "year": 2015,
   "label": "Mid-2010s America",
   "description": "Smartphone era fully arrived. Crossovers replacing sedans and SUVs. LED everything. Retail apocalypse beginning. Blockbuster gone.",
-
-  "allowed_scene_conditions": ["thriving", "declining", "abandoned"],
-
+  "allowed_scene_conditions": [
+    "thriving",
+    "declining",
+    "abandoned"
+  ],
   "people_mix": [
     "a young couple pushing a jogging stroller",
     "a dog walker with three dogs",
@@ -27,10 +29,18 @@
     "a grandmother video-chatting with a tablet held at arm's length",
     "two teenagers sharing earbuds from one phone"
   ],
-
   "transportation": {
     "cars": {
-      "dominant_makes": ["Toyota", "Honda", "Ford", "Chevrolet", "Nissan", "Hyundai", "Kia", "Subaru"],
+      "dominant_makes": [
+        "Toyota",
+        "Honda",
+        "Ford",
+        "Chevrolet",
+        "Nissan",
+        "Hyundai",
+        "Kia",
+        "Subaru"
+      ],
       "specific_models": [
         "2012-2017 Toyota Camry — sharper creased mid-size sedan",
         "2013-2017 Honda Accord — clean modern lines",
@@ -58,7 +68,13 @@
         "2011-2016 Chrysler Town & Country — chrome-trimmed minivan",
         "2011-2016 Volkswagen Jetta — clean simple sedan"
       ],
-      "body_styles": ["crossover SUV", "mid-size sedan", "compact crossover", "pickup truck", "minivan"],
+      "body_styles": [
+        "crossover SUV",
+        "mid-size sedan",
+        "compact crossover",
+        "pickup truck",
+        "minivan"
+      ],
       "visual_characteristics": [
         "sleek aerodynamic shapes",
         "LED daytime running lights standard",
@@ -69,11 +85,31 @@
         "blacked-out trim and chrome accents mixed",
         "backup cameras standard"
       ],
-      "colors": ["white", "silver", "black", "gray", "dark red", "blue", "pearl white"],
-      "absent": ["chrome bumpers", "boxy 1990s shapes", "vinyl roofs", "pop-up headlights", "full-width LED light bars"]
+      "colors": [
+        "white",
+        "silver",
+        "black",
+        "gray",
+        "dark red",
+        "blue",
+        "pearl white"
+      ],
+      "absent": [
+        "chrome bumpers",
+        "boxy 1990s shapes",
+        "vinyl roofs",
+        "pop-up headlights",
+        "full-width LED light bars"
+      ]
     },
     "trucks": {
-      "dominant_makes": ["Ford F-150", "Chevrolet Silverado", "Ram 1500", "Toyota Tacoma", "GMC Sierra"],
+      "dominant_makes": [
+        "Ford F-150",
+        "Chevrolet Silverado",
+        "Ram 1500",
+        "Toyota Tacoma",
+        "GMC Sierra"
+      ],
       "specific_models": [
         "2015-2020 Ford F-150 — aluminum body, C-clamp headlights",
         "2009-2018 Ram 1500 — crosshair grille, refined",
@@ -105,11 +141,21 @@
       "context": "Prices dropped sharply from 2014 due to oil oversupply, crossovers replacing large SUVs"
     }
   },
-
   "architecture": {
     "commercial": {
-      "styles": ["mixed-use", "lifestyle center", "modern minimalist", "renovated big box"],
-      "materials": ["metal panels", "glass curtain wall", "stone veneer", "EIFS stucco", "fiber cement"],
+      "styles": [
+        "mixed-use",
+        "lifestyle center",
+        "modern minimalist",
+        "renovated big box"
+      ],
+      "materials": [
+        "metal panels",
+        "glass curtain wall",
+        "stone veneer",
+        "EIFS stucco",
+        "fiber cement"
+      ],
       "characteristics": [
         "modern flat clean facades",
         "large glass storefronts",
@@ -129,22 +175,60 @@
       ]
     }
   },
-
   "business": {
-    "gas_brands": ["Shell", "BP", "Chevron", "Marathon", "Casey's"],
+    "gas_brands": [
+      "Shell",
+      "BP",
+      "Chevron",
+      "Marathon",
+      "Casey's"
+    ],
     "active_brands": [
-      "Shell", "BP", "Exxon", "Mobil", "Chevron", "Speedway", "Wawa", "QuikTrip",
-      "Walmart", "Target", "Costco", "Sears closing stores", "Kmart closing stores",
-      "McDonald's", "Burger King", "Wendy's", "Taco Bell", "Subway", "Starbucks", "Chipotle", "Five Guys", "Panera",
-      "Kroger", "Publix", "Whole Foods", "Trader Joe's", "Aldi",
-      "Best Buy", "GameStop",
-      "Home Depot", "Lowe's",
-      "Walgreens", "CVS", "7-Eleven",
-      "AT&T", "Verizon", "T-Mobile"
+      "Shell",
+      "BP",
+      "Exxon",
+      "Mobil",
+      "Chevron",
+      "Speedway",
+      "Wawa",
+      "QuikTrip",
+      "Walmart",
+      "Target",
+      "Costco",
+      "Sears closing stores",
+      "Kmart closing stores",
+      "McDonald's",
+      "Burger King",
+      "Wendy's",
+      "Taco Bell",
+      "Subway",
+      "Starbucks",
+      "Chipotle",
+      "Five Guys",
+      "Panera",
+      "Kroger",
+      "Publix",
+      "Whole Foods",
+      "Trader Joe's",
+      "Aldi",
+      "Best Buy",
+      "GameStop",
+      "Home Depot",
+      "Lowe's",
+      "Walgreens",
+      "CVS",
+      "7-Eleven",
+      "AT&T",
+      "Verizon",
+      "T-Mobile"
     ],
     "absent_brands": [
-      "Blockbuster Video", "Circuit City", "Borders", "Hollywood Video",
-      "widespread Amazon physical stores", "RadioShack"
+      "Blockbuster Video",
+      "Circuit City",
+      "Borders",
+      "Hollywood Video",
+      "widespread Amazon physical stores",
+      "RadioShack"
     ],
     "signage": {
       "characteristics": [
@@ -158,11 +242,18 @@
       "typography_style": "minimalist flat sans-serif, simplified modern logos"
     }
   },
-
   "infrastructure": {
     "roads": {
-      "markings": ["yellow center line", "white edge lines", "high-visibility crosswalks", "bike lane markings appearing"],
-      "materials": ["asphalt", "concrete"],
+      "markings": [
+        "yellow center line",
+        "white edge lines",
+        "high-visibility crosswalks",
+        "bike lane markings appearing"
+      ],
+      "materials": [
+        "asphalt",
+        "concrete"
+      ],
       "characteristics": [
         "well maintained roads",
         "LED traffic signals standard",
@@ -207,22 +298,50 @@
         "clean open sky above the lot — no poles, no wires; a pad-mounted transformer cabinet at the lot edge",
         "lot lighting on its own standards, cellular antennas on nearby rooftops"
       ],
-      "undergrounded": true
+      "undergrounded": true,
+      "highway_characteristics": [
+        "transmission towers alongside the roadway, unchanged in decades",
+        "LED light heads fitted onto the existing mast arms",
+        "cellular towers and rooftop antennas within sight of the road",
+        "fiber optic marker posts along the fence line"
+      ]
     }
   },
-
   "society": {
     "fashion": {
-      "men": ["skinny jeans", "slim-fit plaid shirts", "beards", "henley shirts", "boat shoes"],
-      "women": ["yoga pants and leggings", "infinity scarves", "ankle boots", "high-waisted skinny jeans", "statement necklaces"],
-      "colors": ["coral", "mint green", "navy", "gray", "white", "blush pink"]
+      "men": [
+        "skinny jeans",
+        "slim-fit plaid shirts",
+        "beards",
+        "henley shirts",
+        "boat shoes"
+      ],
+      "women": [
+        "yoga pants and leggings",
+        "infinity scarves",
+        "ankle boots",
+        "high-waisted skinny jeans",
+        "statement necklaces"
+      ],
+      "colors": [
+        "coral",
+        "mint green",
+        "navy",
+        "gray",
+        "white",
+        "blush pink"
+      ]
     },
     "advertising": {
       "style": "digital photography, social media influenced, clean minimal layouts",
-      "media": ["digital billboards", "backlit displays", "vinyl banners", "QR codes appearing"]
+      "media": [
+        "digital billboards",
+        "backlit displays",
+        "vinyl banners",
+        "QR codes appearing"
+      ]
     }
   },
-
   "environment": {
     "vegetation": {
       "characteristics": [
@@ -237,7 +356,6 @@
       "signs": "full color LED digital displays, LED channel letters"
     }
   },
-
   "photography": {
     "film_stock": "digital — DSLR or smartphone camera",
     "color_characteristics": [
@@ -251,7 +369,6 @@
     "style": "sharp digital, vivid colors, smartphone HDR aesthetic, social media ready",
     "color_mode": "color"
   },
-
   "scene_content": {
     "downtown_street": {
       "narrative": "A 2015 main street mid-revival — the video store replaced by a phone repair shop, third-wave coffee and a vape shop, smartphones in every hand.",
@@ -272,7 +389,10 @@
         "HAPPY HOUR 4-6 — PINTS $4",
         "BUY ONE GET ONE 50% OFF"
       ],
-      "people": { "min": 10, "max": 15 },
+      "people": {
+        "min": 10,
+        "max": 15
+      },
       "people_activities": [
         "several people looking down at smartphones as they walk",
         "a bearded man in a slim plaid shirt photographing his coffee",
@@ -295,7 +415,10 @@
         "a grandmother reading a menu posted outside the taproom",
         "a jogger checking a fitness watch at the crosswalk"
       ],
-      "vehicles": { "min": 4, "max": 6 },
+      "vehicles": {
+        "min": 4,
+        "max": 6
+      },
       "extras": [
         "the old ghost-sign wall repainted as a colorful mural",
         "a bike corral at the curb",
@@ -324,7 +447,10 @@
         "E-CIG STARTER KITS",
         "ATM INSIDE"
       ],
-      "people": { "min": 4, "max": 7 },
+      "people": {
+        "min": 4,
+        "max": 7
+      },
       "people_activities": [
         "a driver self-serving at the pump",
         "a customer watching the pump screen ads while fueling",
@@ -347,7 +473,10 @@
         "a man topping off tire pressure with the digital gauge",
         "a woman scanning a loyalty app barcode at the register"
       ],
-      "vehicles": { "min": 3, "max": 4 },
+      "vehicles": {
+        "min": 3,
+        "max": 4
+      },
       "extras": [
         "card-skimmer warning stickers on the pumps",
         "combined trash-and-squeegee stations between the pumps",
@@ -374,7 +503,10 @@
         "TPMS SERVICE AVAILABLE",
         "OIL CHANGE $29.95"
       ],
-      "people": { "min": 2, "max": 4 },
+      "people": {
+        "min": 2,
+        "max": 4
+      },
       "people_activities": [
         "a mechanic resetting a tire-pressure sensor with a handheld tool",
         "the owner stamping a state inspection sticker at the counter",
@@ -397,7 +529,10 @@
         "the owner locking one bay door early for the day",
         "a mechanic checking the time, waiting on the next car to arrive"
       ],
-      "vehicles": { "min": 3, "max": 5 },
+      "vehicles": {
+        "min": 3,
+        "max": 5
+      },
       "extras": [
         "a state inspection sticker machine on the counter",
         "a tire-pressure sensor reset tool on a rolling cart",
@@ -426,7 +561,10 @@
         "70% OFF CLEARANCE",
         "EVERYTHING A DOLLAR"
       ],
-      "people": { "min": 8, "max": 12 },
+      "people": {
+        "min": 8,
+        "max": 12
+      },
       "people_activities": [
         "a shopper scrolling a phone under the canopy",
         "a gym-goer with a duffel bag heading to the gym",
@@ -449,7 +587,10 @@
         "a teenager filming a friend skateboarding across the lot",
         "a woman balancing a protein shake and a gym bag"
       ],
-      "vehicles": { "min": 5, "max": 7 },
+      "vehicles": {
+        "min": 5,
+        "max": 7
+      },
       "extras": [
         "a mostly empty cart corral",
         "a 'NOW LEASING' banner on the facade",
@@ -473,7 +614,10 @@
       "window_signs": [
         "MALL HOURS 11-7"
       ],
-      "people": { "min": 4, "max": 6 },
+      "people": {
+        "min": 4,
+        "max": 6
+      },
       "people_activities": [
         "a family crossing the lot toward the entrance",
         "two women carrying department store bags to a station wagon",
@@ -484,7 +628,10 @@
         "kids cutting diagonally across the lot",
         "an older couple resting on a bench by the doors"
       ],
-      "vehicles": { "min": 3, "max": 5 },
+      "vehicles": {
+        "min": 3,
+        "max": 5
+      },
       "extras": [
         "cracked asphalt with weeds through the seams",
         "a light pole with its fixture missing",
@@ -640,6 +787,59 @@
         "a security camera cable stapled down the brick to the door"
       ]
     },
+    "highway_urban": {
+      "narrative": "A 2015 urban interstate that has not moved freely in years — LED lighting on the mast arms, electronic message boards overhead and the lanes solid in both directions.",
+      "storefronts": [],
+      "window_signs": [],
+      "people": {
+        "min": 0,
+        "max": 0
+      },
+      "people_activities": [],
+      "extras": [
+        "LED light heads on the existing mast arms, white and sharp-edged",
+        "an electronic variable-message board mounted over the lanes",
+        "the same sound barrier walls, their concrete face patterned in a later repair",
+        "wide thermoplastic edge lines with rumble strip cut into the shoulder",
+        "a high-tension cable barrier added in the median, the existing barriers and guardrail all still in place",
+        "a steel sign bridge over the lanes, its panels weathered at the edges"
+      ],
+      "crowd": "packed",
+      "background_tenants": [
+        "a fulfilment centre with illuminated channel letters on the parapet, indistinct at this distance",
+        "a self-storage facility with a bright modern sign panel, its wording unreadable",
+        "a logistics building with a sign lit from within at the gate, too far to read",
+        "an office park monument sign carrying an abstract mark, no legible words",
+        "a data centre with no sign at all beyond a small plaque at the drive"
+      ]
+    },
+    "highway_rural": {
+      "narrative": "A 2015 rural two-lane highway, quiet as ever — new striping, cable barrier on the worst curve and mile markers counting down to a town you cannot see yet.",
+      "storefronts": [],
+      "window_signs": [],
+      "people": {
+        "min": 0,
+        "max": 0
+      },
+      "people_activities": [],
+      "vehicles": {
+        "min": 1,
+        "max": 3
+      },
+      "extras": [
+        "a cable barrier added outside the sharpest curve, the guardrail there left in place",
+        "green mile marker posts at regular intervals",
+        "wide white edge lines with rumble strips both sides",
+        "diamond-grade chevron signs through the bends",
+        "steel transmission towers marching away across the fields",
+        "a farm building with a fading painted sign on its end wall"
+      ],
+      "background_tenants": [
+        "a grain elevator with newer lettering over the old, neither legible from here",
+        "a farm supply store with an illuminated sign at the road, unreadable at this distance",
+        "an agricultural services sign on a low monument, no readable words"
+      ]
+    },
     "default": {
       "narrative": "An ordinary 2015 American commercial street — LED signs, crossovers at the curb, smartphones out everywhere.",
       "storefronts": [
@@ -656,7 +856,10 @@
         "FIRST CLASS FREE",
         "BUY ONE GET ONE 50% OFF"
       ],
-      "people": { "min": 8, "max": 12 },
+      "people": {
+        "min": 8,
+        "max": 12
+      },
       "people_activities": [
         "several people looking at smartphones as they walk",
         "a woman in yoga pants with a rolled mat",
@@ -665,7 +868,10 @@
         "a couple taking a selfie",
         "a barista serving a sidewalk table"
       ],
-      "vehicles": { "min": 4, "max": 6 },
+      "vehicles": {
+        "min": 4,
+        "max": 6
+      },
       "extras": [
         "the old ghost-sign wall repainted as a mural",
         "a bike corral at the curb",

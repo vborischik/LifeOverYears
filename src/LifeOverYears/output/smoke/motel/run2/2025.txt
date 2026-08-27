@@ -56,7 +56,7 @@ EXACTLY 3 people TOTAL: 1 in the foreground near the building entrance (largest)
 Clothing: men in techwear, chunky sneakers; women in oversized blazers, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 1 period vehicles, all different:
+EXACTLY 1 period vehicle:
 - 2019-2025 Subaru Outback — rugged wagon crossover — silver
 Parked with gaps. Where a model is listed with a year range, render the 2025 model year specifically — only styling, trim and features available in 2025, nothing introduced later. No vehicle newer than 2025.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.

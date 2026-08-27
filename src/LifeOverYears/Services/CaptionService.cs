@@ -119,6 +119,36 @@ public sealed class CaptionService : ICaptionService
             "checking out early because nobody could sleep",
             "the television bolted to the dresser with three channels",
         },
+        ["highway_urban"] = new[]
+        {
+            "watching the skyline come up over the last rise into town",
+            "the exact interchange where the traffic always stopped",
+            "counting the exits until yours from the back seat",
+            "the commute you could drive without remembering any of it",
+            "the radio station you kept until it went to static",
+            "the overhead signs lighting up green as you came under them",
+            "the one billboard that was there your whole childhood",
+            "coming home late with the whole city lit up on the left",
+            "the lane everybody knew to be in before the merge",
+            "sitting still in traffic with the windows down in August",
+            "the toll booth where somebody always had to find change",
+            "the sound the tyres made changing from concrete to asphalt",
+        },
+        ["highway_rural"] = new[]
+        {
+            "the mile marker that meant you were nearly there",
+            "not seeing another car for ten minutes at a stretch",
+            "the radio going to static in the same dead stretch every trip",
+            "the barn you watched for from the back seat every single trip",
+            "the smell of cut fields coming in through the vent",
+            "how far you could see down the road on a clear day",
+            "the one gas station between here and the county line",
+            "headlights of a truck a mile off in the dark",
+            "the crest of the hill where you could finally see town",
+            "falling asleep in the back and waking up almost home",
+            "the lone billboard for a place still forty miles away",
+            "having the whole road to yourself early on a Sunday",
+        },
         ["mall"] = new[]
         {
             "the smell of Cinnabon drifting through the food court",
@@ -169,8 +199,13 @@ public sealed class CaptionService : ICaptionService
     {
         // Caption bodies are categorized by scene type: data/captions/{sceneType}.txt,
         // falling back to base.txt when no scene-specific file exists — the same
-        // lookup the LLM system prompts used, one directory over.
-        var sceneType = string.IsNullOrWhiteSpace(sceneDna.SceneType) ? "base" : sceneDna.SceneType;
+        // lookup the LLM system prompts used, one directory over. Resolved
+        // through SceneContentKey for the same reason the era content is: a
+        // highway remembered from a city commute and one remembered from an
+        // empty county road have nothing in common to say.
+        var sceneType = string.IsNullOrWhiteSpace(sceneDna.SceneType)
+            ? "base"
+            : SceneContentKey.Resolve(sceneDna.SceneType, sceneDna.Environment.Terrain);
         string raw;
         try
         {

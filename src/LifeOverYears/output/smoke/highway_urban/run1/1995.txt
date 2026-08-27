@@ -1,0 +1,70 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+PRIORITY ORDER — when instructions conflict, the lower number wins
+1. The uploaded image's composition and geometry.
+2. The exact people and vehicle counts given below.
+3. The historical transformation for the target year.
+4. The specific period details listed — each only where the geometry has room
+   for it; one with nowhere to go is left out, never forced into the roadway.
+5. Add nothing that is not asked for — no extra businesses, signs, vehicles,
+   people, logos or advertisements.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove the
+modern businesses, logos, brands, storefront names, banners and advertisements
+visible in the source image, and replace them only with the period signage
+specified below.
+
+PRESERVE
+Keep the uploaded image's composition, camera angle, geometry, buildings,
+roads and permanent structures exactly as they are. Do not redraw,
+reposition or restyle them. Change only what the sections below ask for.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
+
+TRANSFORM TO 1995
+Clinton era prosperity. A 1995 urban interstate at its busiest yet — sound barrier walls up along the residential side, reflective sheeting on every sign, and traffic filling more of the roadway every year.
+
+PERIOD DETAILS
+- a concrete sound barrier wall newly built behind the shoulder, the existing guardrail still standing in front of it
+- steel lattice transmission towers standing behind the sound barrier wall
+- sodium-vapor lighting on the mast arms overhead
+Typography: clean geometric sans-serif, early digital influence.
+Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
+
+SIGNAGE RESTRICTION
+The overhead guide sign keeps its green face and white border, and its legend renders as soft white shapes that never resolve into words — no place names, no route or exit numbers, no destinations. Every other sign and painted name is a shape only, too distant or too weathered to read. Do not turn words from this prompt into signage.
+
+PEOPLE
+NO people on foot anywhere — nobody walking, standing or waiting at the roadside. Everyone in this scene is inside a moving vehicle.
+
+VEHICLES
+EXACTLY 6 period vehicles, all different:
+- 1992-1996 Toyota Camry — rounded, understated — burgundy
+- 1994-1997 Honda Accord — smooth rounded sedan — silver
+- 1991-1996 Buick Roadmaster — large rounded wagon and sedan — black
+- 1992-1997 Ford Taurus — rounded jellybean shape, oval theme — hunter green
+- 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding — white
+- 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size — navy blue
+Where a model is listed with a year range, render the 1995 model year specifically — only styling, trim and features available in 1995, nothing introduced later. No vehicle newer than 1995.
+Each vehicle is travelling in its own lane at highway speed, spaced by natural following distance, all heading the same direction as the camera's vantage point. None stopped, and none standing on the shoulder.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, turn lane arrows
+- utilities: transmission towers running parallel to the carriageway, sodium-vapor lighting, orange at dusk
+
+TREES
+- oak tree at background: clearly smaller than in the base image — about 80% of its canopy there, thinner trunk
+Tree sizes MUST follow this specification even where they differ from the base image.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — Kodak Gold 200 or Fujifilm Superia 200 look.
+Color: neutral to slightly warm tones. Grain: fine grain, cleaner than 1985.
+Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+
+PRIVACY
+Blur all faces and license plates.

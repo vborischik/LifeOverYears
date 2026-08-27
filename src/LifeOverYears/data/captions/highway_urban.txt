@@ -1,0 +1,149 @@
+🛣️ This road took four years to build and cut the city in half.
+Whole blocks came down for it.
+People who lived there got a letter and a date.
+By {firstYear} nobody talked about what used to be under it.
+From {firstYear} to {lastYear}, watch it fill up.
+Some of you will remember {angle}.
+The place today: {condition}.
+Every urban interstate is built on top of a neighborhood that lost the argument.
+What was here before the highway where you live?
+---
+🛣️ In {firstYear} you could see the pavement between the cars.
+Three lanes, moving, any time of day.
+Nobody planned a trip around traffic because there wasn't any.
+Then the exits filled in and the lanes never emptied again.
+{firstYear} to {lastYear}, the same stretch of road.
+For a lot of folks it was {angle}.
+Today it's {condition}.
+They widened it twice and it was full again inside a year, both times.
+When did the highway near you stop moving?
+---
+🛣️ The walls went up along the side and the road disappeared from the neighborhood.
+Before that you could see the houses from the lanes and they could see you.
+After, it was just concrete both sides and the sound anyway.
+Nobody misses the noise. Some people miss being on the map.
+Watch it go from {firstYear} to {lastYear}.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+A sound wall fixes one problem and quietly finishes another.
+Do you remember the road before the barriers?
+---
+🛣️ Everyone who drove this knew exactly which lane to be in.
+Not from signs. From doing it four hundred times a year.
+You could tell a local from a visitor in about ten seconds.
+That knowledge was worth twenty minutes a day.
+{firstYear} to {lastYear}, one commute.
+What people remember most: {angle}.
+And today — {condition}.
+Every city has a merge that residents treat as a personal skill.
+Which lane did you know to be in?
+---
+🛣️ The overhead signs used to be flat green paint.
+Headlights barely picked them up at night.
+Then reflective sheeting, then bigger panels, then screens.
+The road got easier to read and harder to drive.
+From {firstYear} to {lastYear}, watch the signs change.
+Some of you will remember {angle}.
+The place today: {condition}.
+We fixed the signage completely and the traffic not even slightly.
+Do you remember the old green signs?
+---
+🛣️ The skyline behind these lanes is how people knew they were home.
+It got taller about every ten years.
+You'd look up at the same point on the road every trip to check.
+Half of it wasn't there when this road opened.
+{firstYear} to {lastYear}, same view, different city.
+For a lot of people it was {angle}.
+Today it's {condition}.
+The best view of a city is usually from the road built to get you out of it.
+Where did your city's skyline first come into view?
+---
+🛣️ Rush hour used to mean one hour.
+Then two. Then most of the afternoon.
+Nobody announced the change. Everyone just left earlier.
+By the end, the only free road was Sunday morning.
+Watch this stretch from {firstYear} to {lastYear}.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+The commute grew by five minutes a year for thirty years, which is why nobody noticed.
+How long was your drive when you started it?
+---
+🛣️ The lighting turned this road orange every night for forty years.
+Sodium vapor. You could see the glow from miles off.
+Then it all went white in about three years and never looked the same.
+People who grew up here remember the orange.
+{firstYear} to {lastYear}, one stretch of road.
+What people remember most: {angle}.
+And today — {condition}.
+A city changes color eventually, and nobody's asked whether they liked the old one.
+Do you remember when the highway lights were orange?
+---
+🛣️ Somebody's whole life happened on this drive.
+Two hours a day. Ten thousand hours over a career.
+The same curves. The same billboard. The same songs.
+Nobody counts that time as part of the job.
+From {firstYear} to {lastYear}, watch the road change.
+Some of you will remember {angle}.
+The place today: {condition}.
+We spend years of a life on the road between the house and the work, and none of it is anybody's idea of living.
+How long was your commute?
+---
+🛣️ There was a radio station that faded out at the same overpass every trip.
+Static, then a different station, then home.
+You could time the drive by which song was ending.
+That whole ritual is gone and nobody marked the day.
+{firstYear} to {lastYear}, watch it change.
+For a lot of folks it was {angle}.
+Today it's {condition}.
+Habits attached to a road disappear with the technology, not the pavement.
+What did you listen to on your drive?
+---
+🛣️ Coming home late, this road was the best part of the day.
+Empty lanes. The city lit up on one side.
+Windows down in the summer because there was nobody to hear you.
+The same road that ruined your morning gave you that.
+Watch it from {firstYear} to {lastYear}.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+Every commuter has one drive home they still think about, and it was always at night.
+When was the road yours?
+---
+🛣️ They widened it and everyone was told it would fix the traffic.
+It did, for about eleven months.
+Then the new lanes filled with people who used to take another route.
+That happens every single time and we build it again anyway.
+{firstYear} to {lastYear}, watch it get wider and slower.
+What people remember most: {angle}.
+And today — {condition}.
+More lanes make more traffic. We have known this for fifty years and it has never once changed a plan.
+Did widening the road near you help?
+---
+🛣️ The toll booth was a whole building with people in it.
+Somebody's job was leaning out a window in February.
+You knew which lane had the fast one working.
+Now there's a gantry and a camera and nobody at all.
+From {firstYear} to {lastYear}, watch the booths go.
+Some of you will remember {angle}.
+The place today: {condition}.
+That's fifty jobs replaced by a bracket over the lanes, and the traffic still doesn't move.
+Do you remember stopping to pay?
+---
+🛣️ You can date a photo of this road by the cars alone.
+Nothing else in the frame changes fast.
+Same lanes, same alignment, same towers alongside.
+The traffic is the clock.
+{firstYear} to {lastYear}, one stretch, one clock running.
+For a lot of people it was {angle}.
+Today it's {condition}.
+Roads outlive everything that drives on them, which is why the cars are the only way to tell.
+What was your family driving on this road?
+---
+🛣️ This was the fastest way across town for exactly one decade.
+Then it was the slowest, and everyone knew a way around it.
+Locals stopped using it entirely at certain hours.
+The road built to save time became the thing you avoided.
+Watch this stretch from {firstYear} to {lastYear}.
+Maybe you remember {angle}.
+Here's how it ended up: {condition}.
+Every city has a highway that residents route around and visitors sit on.
+What's the road everyone in your town avoids?
