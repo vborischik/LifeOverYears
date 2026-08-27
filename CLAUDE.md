@@ -47,7 +47,10 @@ of any task, not a reaction to a rejected push. More than one person commits
 here, and a local `main` you pushed yourself last session is not evidence that
 it is still current — assuming it was is how motel got built on a base that was
 already an hour and a half stale, costing a merge, a conflicting
-`BuildSceneBlock` parameter and a renumbered check.
+`BuildSceneBlock` parameter and a renumbered check. `.claude/hooks/session-start.sh`
+now runs that fetch at session start and prints what you are behind by, so this
+does not rely on the rule above being read — but it reports and does not block,
+so acting on the warning is still yours to do.
 
 `--smoke-prompts` takes ~1–2 min and needs no API key. **Always run it after
 touching PromptService or data/eras** — and expect `git status` to show a large
