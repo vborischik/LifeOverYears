@@ -34,7 +34,7 @@ PERIOD DETAILS
 - the office window with its hours decal on the glass
 - stripe patterns on awnings
 - large logo signs on pylons
-- main sign: "Ramada" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
+- main sign: "Super 8" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
 - window signs: 'FREE HBO', 'PHONES IN ROOM'
 - a plastic patio chair beside a door, sun-faded on one side
 - a bucket and mop left standing outside an open room
@@ -43,7 +43,7 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Ramada'
+'Super 8'
 'FREE HBO'
 'PHONES IN ROOM'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

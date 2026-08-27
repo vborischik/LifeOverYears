@@ -18,3 +18,16 @@ Hampton Inn|1984|2025
 Sleep Inn|1987|2025
 Microtel|1989|2025
 Vagabond Inn|1958|2025
+Scottish Inns|1961|2025
+Budget Host|1970|2025
+Red Carpet Inn|1962|2025
+Friendship Inn|1962|2000
+Budgetel Inn|1975|1998
+Baymont Inn|1998|2025
+AmericInn|1983|2025
+Americas Best Value Inn|2003|2025
+Studio 6|1997|2025
+Extended Stay America|1995|2025
+Fairfield Inn|1987|2025
+Wyndham Garden|1981|2025
+TownePlace Suites|1997|2025

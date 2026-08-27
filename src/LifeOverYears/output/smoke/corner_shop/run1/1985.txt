@@ -34,7 +34,7 @@ PERIOD DETAILS
 - digital price displays at gas stations
 - beer and soft-drink posters taped inside the window glass
 - neon signs widespread
-- main sign: "PARK STREET MARKET" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
+- main sign: "FIFTH STREET GROCERY" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
 - window signs: 'ICE', 'OPEN 7 DAYS'
 - a stack of flattened cardboard tied up beside the side door
 - a lottery decal in the corner of the door glass
@@ -43,7 +43,7 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'PARK STREET MARKET'
+'FIFTH STREET GROCERY'
 'ICE'
 'OPEN 7 DAYS'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

@@ -34,7 +34,7 @@ PERIOD DETAILS
 - oil-can rack stacked with quart cans beside the pump island
 - overhanging flat canopies
 - price sign showing gas around $0.57
-- main sign: "Chevron" branded gas station — Chevron pole sign with price display and Chevron colors on the canopy fascia
+- main sign: "Marathon" branded gas station — Marathon pole sign with price display and Marathon colors on the canopy fascia
 - window signs: 'MECHANIC ON DUTY', 'FLATS FIXED $2'
 - a stack of used tires beside the service bay
 - a folded newspaper stack tied with twine by the office door
@@ -43,7 +43,7 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Chevron'
+'Marathon'
 'MECHANIC ON DUTY'
 'FLATS FIXED $2'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

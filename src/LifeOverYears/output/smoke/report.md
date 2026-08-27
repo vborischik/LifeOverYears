@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-08-27T18:09:45.0979844+00:00
+Generated: 2026-08-27T21:38:36.3785443+00:00
 
 ## Check Results
 
@@ -74,9 +74,9 @@ Generated: 2026-08-27T18:09:45.0979844+00:00
 | C69 | The synthetic base emits architecture only where buildings exist; an open-road scene gets a frontage description and an explicit nothing-is-built line instead | ✅ PASS | architecture follows the building list, not the scene type |
 | C70 | A background tree grows on a flatter curve than a kerbside one and ends the run at no more than ~165% of its first-era canopy, in both the chained and unchained paths | ✅ PASS | background tree: first era 65% of base, 161% across the chained run (1985:110% 1995:110% 2005:110% 2015:110% 2025:110%) |
 | C62 | The corner shop's street tree reads as a living tree in every era and its state follows the shop's arc (leafy while trading, untrimmed while declining, half dead once derelict); other scene types carry no tree state | ✅ PASS | corner_shop tree moves through 2 states across the run, canopy sizing intact, no other scene type affected |
-| C61 | corner_shop always draws from liquor_urban and freestanding_shop always draws from liquor_suburban; no other scene type renders a liquor name; strip_mall/shopping_center stay mapped to suburban for later, still unused today | ✅ PASS | urban 37, suburban 25, no overlap; corner_shop drew 30 distinct urban names and freestanding_shop drew 23 distinct suburban names across 60 seeds each; no liquor name in any other scene type |
-| C72 | Liquor-name and origin-kind randomness for corner_shop and freestanding_shop is visible and healthy across many seeds | ✅ PASS | corner_shop: 37/37 urban names hit (100%); freestanding_shop: 25/25 suburban names hit (100%) — full tables in the log above |
-| C71 | Every motel flag is a chain that existed in the era it is rendered in, a derelict motel shows a stripped pylon instead, and the flag actually changes across a run | ✅ PASS | 20 chains, 18 distinct flags across 120 seeds, 68 % of runs reflag, every flag inside its own year window |
+| C61 | corner_shop always draws from liquor_urban and freestanding_shop always draws from liquor_suburban; no other scene type renders a liquor name; strip_mall/shopping_center stay mapped to suburban for later, still unused today | ✅ PASS | urban 46, suburban 33, no overlap; corner_shop drew 32 distinct urban names and freestanding_shop drew 25 distinct suburban names across 60 seeds each; no liquor name in any other scene type |
+| C72 | Liquor-name and origin-kind randomness for corner_shop and freestanding_shop is visible and healthy across many seeds | ✅ PASS | corner_shop: 46/46 urban names hit (100%); freestanding_shop: 33/33 suburban names hit (100%) — full tables in the log above |
+| C71 | Every motel flag is a chain that existed in the era it is rendered in, a derelict motel shows a stripped pylon instead, and the flag actually changes across a run | ✅ PASS | 33 chains, 30 distinct flags across 120 seeds, 68 % of runs reflag, every flag inside its own year window |
 | C59 | Title templates load for base and every scene type; every line substitutes with no leftover placeholder and stays non-empty and inside YouTube's 100-char limit | ✅ PASS | gas_station: 16 titles, longest 62 \| downtown_street: 16 titles, longest 55 \| strip_mall: 16 titles, longest 59 \| auto_repair: 16 titles, longest 55 \| corner_shop: 16 titles, longest 62 \| freestanding_shop: 16 titles, longest 64 \| motel: 16 titles, longest 58 \| highway_urban: 16 titles, longest 61 \| highway_rural: 16 titles, longest 70 \| mall: 16 titles, longest 57 \| shopping_center: 16 titles, longest 60 \| base: 16 titles, longest 59 |
 
 ## Vehicle Selections

@@ -34,7 +34,7 @@ PERIOD DETAILS
 - large illuminated box signs
 - a plastic pylon sign with a sun-bleached panel and a cracked corner
 - a security camera bracketed above the office door, cabling run down the wall
-- main sign: "Ramada" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
+- main sign: "Super 8" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
 - window signs: 'VACANCY', 'OFFICE'
 - a vinyl banner sagging where a zip tie has let go
 - a dead ice machine with its panel light out
@@ -43,7 +43,7 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Ramada'
+'Super 8'
 'VACANCY'
 'OFFICE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

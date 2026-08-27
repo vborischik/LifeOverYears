@@ -34,7 +34,7 @@ PERIOD DETAILS
 - 'FREE MAPS' and trading-stamp decals on the office window
 - open service bay with a car raised on the lift inside
 - price sign showing gas around $0.57
-- main sign: "Shell" branded gas station — Shell pole sign with price display and Shell colors on the canopy fascia
+- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
 - window signs: 'MECHANIC ON DUTY', 'MOTOR OIL 55¢ QT'
 - a folded newspaper stack tied with twine by the office door
 - a stack of used tires beside the service bay
@@ -44,7 +44,7 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 'FREE MAPS'
-'Shell'
+'Citgo'
 'MECHANIC ON DUTY'
 'MOTOR OIL 55¢ QT'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

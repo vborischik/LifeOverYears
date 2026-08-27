@@ -34,7 +34,7 @@ PERIOD DETAILS
 - large convenience stores with fresh food
 - free air and vacuum station at the lot edge
 - price sign showing gas around $3.40
-- main sign: "Phillips 66" branded gas station — Phillips 66 pole sign with price display and Phillips 66 colors on the canopy fascia
+- main sign: "Exxon" branded gas station — Exxon pole sign with price display and Exxon colors on the canopy fascia
 - window signs: 'COLD BREW $3.99', 'MEMBERS SAVE 10¢/GAL'
 - outdoor cafe barriers with planters by the coffee lane
 - stacked bags of ice and firewood outside
@@ -43,7 +43,7 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Phillips 66'
+'Exxon'
 'COLD BREW $3.99'
 'MEMBERS SAVE 10¢/GAL'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

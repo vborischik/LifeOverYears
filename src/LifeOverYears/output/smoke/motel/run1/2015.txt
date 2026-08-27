@@ -34,7 +34,7 @@ PERIOD DETAILS
 - numbered room doors in a uniform row, two of them fitted with newer locks
 - large glass storefronts
 - LED accent lighting on buildings
-- main sign: "Super 8" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
+- main sign: "Travelodge" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
 - window signs: 'WEEKLY RATES', 'NO VISITORS'
 - a satellite dish still bolted to the roof, cable hanging loose
 - a plastic tub of belongings set outside a door
@@ -43,7 +43,7 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Super 8'
+'Travelodge'
 'WEEKLY RATES'
 'NO VISITORS'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

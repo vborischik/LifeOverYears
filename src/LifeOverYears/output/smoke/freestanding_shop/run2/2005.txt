@@ -34,7 +34,7 @@ PERIOD DETAILS
 - covered walkways at lifestyle centers
 - steel bars fitted across the entrance windows
 - a security camera aimed down at the entrance
-- main sign: "PARK STREET MARKET" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
+- main sign: "RIVERSIDE FOOD MARKET" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
 - window signs: 'ATM', 'LOTTO'
 - a taped-up notice about the check-cashing fee in the window
 - a cigarette-brand panel faded on the sun side
@@ -43,7 +43,7 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'PARK STREET MARKET'
+'RIVERSIDE FOOD MARKET'
 'ATM'
 'LOTTO'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

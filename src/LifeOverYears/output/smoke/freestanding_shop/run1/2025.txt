@@ -34,8 +34,8 @@ PERIOD DETAILS
 - an LED beer sign in the upper glass, one segment dead
 - ghost signs from closed retailers
 - the old ground sign frame still standing, panel long gone
-- main sign: "PARKWAY LIQUORS" — a neighbourhood liquor store, a plastic backlit box sign bolted over the old sign band, steel bars across the windows
-- above the new sign the previous business's lettering still ghosts on the brick: "PARK STREET MARKET" — weathered, partly gone, plainly older than the sign bolted beneath it
+- main sign: "GATEWAY BEVERAGE" — a neighbourhood liquor store, a plastic backlit box sign bolted over the old sign band, steel bars across the windows
+- above the new sign the previous business's lettering still ghosts on the brick: "FIFTH STREET GROCERY" — weathered, partly gone, plainly older than the sign bolted beneath it
 - window signs: 'LOTTO', 'NO LOITERING'
 - a padlocked ice chest with a faded drinks decal
 - a scuffed steel kick plate on the door
@@ -44,8 +44,8 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'PARKWAY LIQUORS'
-'PARK STREET MARKET'
+'GATEWAY BEVERAGE'
+'FIFTH STREET GROCERY'
 'LOTTO'
 'NO LOITERING'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

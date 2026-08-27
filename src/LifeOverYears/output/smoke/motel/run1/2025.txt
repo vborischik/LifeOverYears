@@ -34,7 +34,7 @@ PERIOD DETAILS
 - vacant former big box stores common
 - a laminated notice zip-tied to the pylon post at eye height
 - full color digital displays
-- main sign: "Super 8" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
+- main sign: "Travelodge" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
 - window signs: 'WEEKLY & MONTHLY', 'NO VISITORS AFTER 10'
 - a laminated notice cable-tied to the pylon post, corners curling
 - a plastic storage tub and a folding chair set outside one door
@@ -43,7 +43,7 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Super 8'
+'Travelodge'
 'WEEKLY & MONTHLY'
 'NO VISITORS AFTER 10'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

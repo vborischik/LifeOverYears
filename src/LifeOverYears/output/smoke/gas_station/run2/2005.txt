@@ -34,7 +34,7 @@ PERIOD DETAILS
 - coin-operated air machine near the back of the lot
 - wide multi-island canopy with branded fascia lighting
 - price sign showing gas around $2.30
-- main sign: "Shell" branded gas station — Shell pole sign with price display and Shell colors on the canopy fascia
+- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
 - window signs: 'CIGARETTES $3.75 PACK', 'ENERGY DRINKS 2 FOR $4'
 - trash cans with paper-towel dispensers between the pumps
 - a windshield-washer fluid display rack by the pumps
@@ -43,7 +43,7 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Shell'
+'Citgo'
 'CIGARETTES $3.75 PACK'
 'ENERGY DRINKS 2 FOR $4'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

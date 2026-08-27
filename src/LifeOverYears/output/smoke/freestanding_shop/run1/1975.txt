@@ -34,7 +34,7 @@ PERIOD DETAILS
 - a flat aluminium canopy over the walk-up entrance, no wider than the doorway
 - low single-story buildings
 - parking lots directly in front of stores
-- main sign: "PARK STREET MARKET" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
+- main sign: "FIFTH STREET GROCERY" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
 - window signs: 'WE DELIVER', 'OPEN 7 DAYS'
 - a bicycle rack bolted into the apron near the walkway
 - a painted arrow on the side wall pointing round to the delivery door
@@ -43,7 +43,7 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'PARK STREET MARKET'
+'FIFTH STREET GROCERY'
 'WE DELIVER'
 'OPEN 7 DAYS'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

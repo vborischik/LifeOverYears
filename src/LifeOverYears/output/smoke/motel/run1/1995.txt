@@ -34,7 +34,7 @@ PERIOD DETAILS
 - standalone drive-through restaurants
 - awnings with stripe patterns fading
 - numbered room doors in a uniform row, the paint even and recent
-- main sign: "Super 8" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
+- main sign: "Travelodge" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
 - window signs: 'TRUCKERS WELCOME', 'OFFICE'
 - a housekeeping cart parked outside an open door
 - a cigarette bin standing at the office entrance
@@ -43,7 +43,7 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Super 8'
+'Travelodge'
 'TRUCKERS WELCOME'
 'OFFICE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

@@ -34,7 +34,7 @@ PERIOD DETAILS
 - large single-story big box stores
 - standalone drive-through restaurants
 - faded apron striping still marking out spaces nobody uses anymore
-- main sign: "PARK STREET MARKET" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
+- main sign: "FIFTH STREET GROCERY" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
 - window signs: 'PHONE CARDS', 'MONEY ORDERS'
 - a hand-lettered notice taped inside the entrance glass
 - a bare canopy frame where a light panel used to sit
@@ -43,7 +43,7 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'PARK STREET MARKET'
+'FIFTH STREET GROCERY'
 'PHONE CARDS'
 'MONEY ORDERS'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

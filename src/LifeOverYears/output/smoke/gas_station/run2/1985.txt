@@ -34,7 +34,7 @@ PERIOD DETAILS
 - large logo signs on pylons
 - ice freezer chest with an 'ICE $1' decal by the store door
 - price sign showing gas around $1.12
-- main sign: "Shell" branded gas station — Shell pole sign with price display and Shell colors on the canopy fascia
+- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
 - window signs: 'MOTOR OIL 99¢ QT', 'FREE COFFEE WITH FILL-UP'
 - a display rack of windshield-washer fluid jugs
 - a BMX bike leaned by the store door
@@ -44,7 +44,7 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 'ICE $1'
-'Shell'
+'Citgo'
 'MOTOR OIL 99¢ QT'
 'FREE COFFEE WITH FILL-UP'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

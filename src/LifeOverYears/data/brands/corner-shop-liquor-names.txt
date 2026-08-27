@@ -71,6 +71,15 @@ liquor_urban|CENTRAL LIQUOR
 liquor_urban|VITALE'S WINE & LIQUOR
 liquor_urban|LIBERTY LIQUORS
 liquor_urban|WASHINGTON STREET LIQUOR
+liquor_urban|9TH STREET LIQUORS
+liquor_urban|2ND AVENUE WINE & LIQUOR
+liquor_urban|MULBERRY LIQUOR & DELI
+liquor_urban|SANTOS LIQUOR STORE
+liquor_urban|COLUMBUS AVE LIQUORS
+liquor_urban|RIVERA'S WINE & LIQUOR
+liquor_urban|FRANKLIN STREET LIQUORS
+liquor_urban|M & R LIQUORS
+liquor_urban|DOWNTOWN LIQUOR MART
 
 liquor_suburban|DISCOUNT LIQUOR
 liquor_suburban|DISCOUNT LIQUOR WAREHOUSE
@@ -97,3 +106,11 @@ liquor_suburban|MEADOWBROOK LIQUORS
 liquor_suburban|PARKWAY LIQUORS
 liquor_suburban|FAIRGROUND BEVERAGE
 liquor_suburban|NORTHSIDE LIQUOR WAREHOUSE
+liquor_suburban|BARGAIN BEVERAGE
+liquor_suburban|RETAIL LIQUOR WAREHOUSE
+liquor_suburban|SUNSET PLAZA LIQUORS
+liquor_suburban|ROUTE 46 LIQUORS
+liquor_suburban|GATEWAY BEVERAGE
+liquor_suburban|COMMONS WINE & LIQUOR
+liquor_suburban|OUTLET LIQUOR WAREHOUSE
+liquor_suburban|TURNPIKE LIQUORS

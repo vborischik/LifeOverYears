@@ -34,7 +34,7 @@ PERIOD DETAILS
 - older strip malls showing age
 - channel letter signs on storefronts
 - price sign showing gas around $1.15
-- main sign: "Chevron" branded gas station — Chevron pole sign with price display and Chevron colors on the canopy fascia
+- main sign: "Marathon" branded gas station — Marathon pole sign with price display and Marathon colors on the canopy fascia
 - window signs: 'CAR WASH $4 WITH FILL-UP', 'PAY AT PUMP — NEW!'
 - a wire rack of free auto-trader papers by the door
 - a payphone mounted by the store entrance
@@ -43,7 +43,7 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Chevron'
+'Marathon'
 'CAR WASH $4 WITH FILL-UP'
 'PAY AT PUMP — NEW!'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

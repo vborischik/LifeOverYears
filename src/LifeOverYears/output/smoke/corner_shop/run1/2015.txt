@@ -34,8 +34,8 @@ PERIOD DETAILS
 - monument signs with LED displays
 - steel bars across every pane of the front glass
 - neon beer signs glowing in the upper window
-- main sign: "CENTRAL LIQUOR" — a neighbourhood liquor store, a plastic backlit box sign bolted over the old sign band, steel bars across the windows
-- above the new sign the previous business's lettering still ghosts on the brick: "PARK STREET MARKET" — weathered, partly gone, plainly older than the sign bolted beneath it
+- main sign: "COLUMBUS AVE LIQUORS" — a neighbourhood liquor store, a plastic backlit box sign bolted over the old sign band, steel bars across the windows
+- above the new sign the previous business's lettering still ghosts on the brick: "FIFTH STREET GROCERY" — weathered, partly gone, plainly older than the sign bolted beneath it
 - window signs: 'ICE', 'ATM'
 - a security camera cable stapled down the brick to the door
 - a plastic no-loitering placard already sun-bleached
@@ -44,8 +44,8 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'CENTRAL LIQUOR'
-'PARK STREET MARKET'
+'COLUMBUS AVE LIQUORS'
+'FIFTH STREET GROCERY'
 'ICE'
 'ATM'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

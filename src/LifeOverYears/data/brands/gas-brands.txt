@@ -26,3 +26,18 @@ Speedway|1959|2025
 Circle K|1980|2025
 RaceTrac|1976|2025
 Love's|1964|2025
+Getty|1930|2010
+Skelly|1930|1977
+Diamond Shamrock|1967|1996
+Total|1970|2000
+Fina|1950|2000
+Clark|1932|2025
+Kwik Trip|1965|2025
+Pilot|1958|2025
+Flying J|1968|2025
+Murphy USA|1996|2025
+Cumberland Farms|1962|2025
+Kum & Go|1959|2025
+Thorntons|1971|2025
+Cenex|1968|2025
+Coastal|1970|1998

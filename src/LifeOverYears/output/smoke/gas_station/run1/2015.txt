@@ -34,7 +34,7 @@ PERIOD DETAILS
 - minimalist flat brand logos
 - LED accent lighting on buildings
 - price sign showing gas around $2.45
-- main sign: "Chevron" branded gas station — Chevron pole sign with price display and Chevron colors on the canopy fascia
+- main sign: "Marathon" branded gas station — Marathon pole sign with price display and Marathon colors on the canopy fascia
 - window signs: 'ANY SIZE COFFEE $1', 'E-CIG STARTER KITS'
 - a red DVD-rental kiosk by the store entrance
 - a chalkboard A-frame sign advertising the coffee bar
@@ -43,7 +43,7 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Chevron'
+'Marathon'
 'ANY SIZE COFFEE $1'
 'E-CIG STARTER KITS'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

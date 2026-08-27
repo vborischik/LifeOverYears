@@ -34,7 +34,7 @@ PERIOD DETAILS
 - LED message boards
 - air and vacuum island at the lot edge
 - price sign showing gas around $2.45
-- main sign: "Shell" branded gas station — Shell pole sign with price display and Shell colors on the canopy fascia
+- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
 - window signs: 'ANY SIZE COFFEE $1', '2 ENERGY DRINKS $5'
 - an air-and-vacuum island at the lot edge
 - combined trash-and-squeegee stations between the pumps
@@ -43,7 +43,7 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Shell'
+'Citgo'
 'ANY SIZE COFFEE $1'
 '2 ENERGY DRINKS $5'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

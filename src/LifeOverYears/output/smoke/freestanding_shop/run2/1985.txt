@@ -34,7 +34,7 @@ PERIOD DETAILS
 - backlit plastic channel letters standard
 - an aluminium-framed glass door with a metal kick plate
 - awnings with bold stripe patterns
-- main sign: "PARK STREET MARKET" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
+- main sign: "RIVERSIDE FOOD MARKET" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
 - window signs: 'VIDEO RENTAL', 'ICE'
 - an ice chest chained to a bracket on the front wall
 - a lottery decal in the corner of the entrance glass
@@ -43,7 +43,7 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'PARK STREET MARKET'
+'RIVERSIDE FOOD MARKET'
 'VIDEO RENTAL'
 'ICE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

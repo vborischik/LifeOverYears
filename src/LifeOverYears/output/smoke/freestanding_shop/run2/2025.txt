@@ -34,8 +34,8 @@ PERIOD DETAILS
 - a no-loitering placard weathered past reading
 - outdoor dining structures from pandemic era
 - large glass storefronts
-- main sign: "FAIRGROUND BEVERAGE" — a neighbourhood liquor store, a plastic backlit box sign bolted over the old sign band, steel bars across the windows
-- above the new sign the previous business's lettering still ghosts on the brick: "PARK STREET MARKET" — weathered, partly gone, plainly older than the sign bolted beneath it
+- main sign: "COMMONS WINE & LIQUOR" — a neighbourhood liquor store, a plastic backlit box sign bolted over the old sign band, steel bars across the windows
+- above the new sign the previous business's lettering still ghosts on the brick: "RIVERSIDE FOOD MARKET" — weathered, partly gone, plainly older than the sign bolted beneath it
 - window signs: 'NO LOITERING', 'ICE'
 - weeds coming up through a crack in the apron near the entrance
 - a scuffed steel kick plate on the door
@@ -44,8 +44,8 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'FAIRGROUND BEVERAGE'
-'PARK STREET MARKET'
+'COMMONS WINE & LIQUOR'
+'RIVERSIDE FOOD MARKET'
 'NO LOITERING'
 'ICE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

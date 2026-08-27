@@ -34,8 +34,8 @@ PERIOD DETAILS
 - clean flat minimalist facades
 - vacant storefront and ghost signs common
 - outdoor dining structures from pandemic era
-- main sign: "VITALE'S WINE & LIQUOR" — a neighbourhood liquor store, a plastic backlit box sign bolted over the old sign band, steel bars across the windows
-- above the new sign the previous business's lettering still ghosts on the brick: "PARK STREET MARKET" — weathered, partly gone, plainly older than the sign bolted beneath it
+- main sign: "RIVERA'S WINE & LIQUOR" — a neighbourhood liquor store, a plastic backlit box sign bolted over the old sign band, steel bars across the windows
+- above the new sign the previous business's lettering still ghosts on the brick: "RIVERSIDE FOOD MARKET" — weathered, partly gone, plainly older than the sign bolted beneath it
 - window signs: 'ICE', 'BEER WINE LIQUOR'
 - a bare bracket where the payphone was taken off the wall
 - a scuffed steel kick plate on the door
@@ -44,8 +44,8 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'VITALE'S WINE & LIQUOR'
-'PARK STREET MARKET'
+'RIVERA'S WINE & LIQUOR'
+'RIVERSIDE FOOD MARKET'
 'ICE'
 'BEER WINE LIQUOR'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

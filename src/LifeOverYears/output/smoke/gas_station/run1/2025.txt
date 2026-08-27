@@ -34,7 +34,7 @@ PERIOD DETAILS
 - free air and vacuum station at the lot edge
 - drive-through digital menu boards with AI ordering
 - price sign showing gas around $3.40
-- main sign: "Chevron" branded gas station — Chevron pole sign with price display and Chevron colors on the canopy fascia
+- main sign: "Marathon" branded gas station — Marathon pole sign with price display and Marathon colors on the canopy fascia
 - window signs: 'MEMBERS SAVE 10¢/GAL', 'SCAN & GO — SKIP THE LINE'
 - outdoor cafe barriers with planters by the coffee lane
 - QR-code stickers on the pump screens
@@ -43,7 +43,7 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Chevron'
+'Marathon'
 'MEMBERS SAVE 10¢/GAL'
 'SCAN & GO — SKIP THE LINE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

@@ -34,7 +34,7 @@ PERIOD DETAILS
 - a wooden bench against the front wall, facing out over the apron
 - a plate-glass window on either side of the entrance, hand-lettered specials taped up inside
 - mechanical price boards at gas stations
-- main sign: "PARK STREET MARKET" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
+- main sign: "RIVERSIDE FOOD MARKET" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
 - window signs: 'WE DELIVER', 'PHONE INSIDE'
 - wire crates of empty glass bottles stacked by the delivery door
 - a chalked price board propped just inside the entrance
@@ -43,7 +43,7 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'PARK STREET MARKET'
+'RIVERSIDE FOOD MARKET'
 'WE DELIVER'
 'PHONE INSIDE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

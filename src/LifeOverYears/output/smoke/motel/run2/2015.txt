@@ -34,7 +34,7 @@ PERIOD DETAILS
 - an LED panel bolted into the old pylon frame, brighter than everything around it
 - a printed sheet of house rules taped inside the office window
 - modern flat clean facades
-- main sign: "Ramada" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
+- main sign: "Super 8" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
 - window signs: 'WEEKLY RATES', 'VACANCY'
 - a satellite dish still bolted to the roof, cable hanging loose
 - a bicycle chained to a walkway post outside one door
@@ -43,7 +43,7 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Ramada'
+'Super 8'
 'WEEKLY RATES'
 'VACANCY'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.

@@ -34,7 +34,7 @@ PERIOD DETAILS
 - large illuminated signage
 - awnings with bold stripe patterns
 - price sign showing gas around $1.12
-- main sign: "Chevron" branded gas station — Chevron pole sign with price display and Chevron colors on the canopy fascia
+- main sign: "Marathon" branded gas station — Marathon pole sign with price display and Marathon colors on the canopy fascia
 - window signs: 'FREE COFFEE WITH FILL-UP', 'MOTOR OIL 99¢ QT'
 - a BMX bike leaned by the store door
 - a mailbox with graffiti scratches at the lot edge
@@ -43,7 +43,7 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Chevron'
+'Marathon'
 'FREE COFFEE WITH FILL-UP'
 'MOTOR OIL 99¢ QT'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
