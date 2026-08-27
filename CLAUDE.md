@@ -42,6 +42,13 @@ dotnet run -- assemble <runFolder> [years...]
 dotnet run -- vision-variance <folder> [--repeat N]
 ```
 
+**Fetch before you read anything.** `git fetch origin main` is the first action
+of any task, not a reaction to a rejected push. More than one person commits
+here, and a local `main` you pushed yourself last session is not evidence that
+it is still current — assuming it was is how motel got built on a base that was
+already an hour and a half stale, costing a merge, a conflicting
+`BuildSceneBlock` parameter and a renumbered check.
+
 `--smoke-prompts` takes ~1–2 min and needs no API key. **Always run it after
 touching PromptService or data/eras** — and expect `git status` to show a large
 diff under `src/LifeOverYears/output/smoke/`: that is the regenerated report,
