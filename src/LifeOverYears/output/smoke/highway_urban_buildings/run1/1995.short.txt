@@ -1,0 +1,30 @@
+One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
+Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
+
+TRANSFORM TO 1995 — condition: well kept — freshly painted, open for business
+
+PERIOD DETAILS
+- a distribution centre with a freestanding sign at the gate, too far to read
+- a concrete sound barrier wall newly built behind the shoulder, the existing guardrail still standing in front of it
+- a concrete barrier added between the opposing carriageways, the shoulder guardrail unchanged
+- thermoplastic lane markings, bright and freshly applied
+Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
+
+SIGNAGE
+The overhead guide sign keeps its green face and white border, and its legend renders as soft white shapes that never resolve into words — no place names, no route or exit numbers, no destinations. Every other sign and painted name is a shape only, too distant or too weathered to read. Do not turn words from this prompt into signage.
+
+PEOPLE
+NO people on foot. Everyone in the scene is inside a moving vehicle.
+
+VEHICLES
+EXACTLY 2 vehicles, 1995 model year, and no others:
+- 1992-1997 Ford Taurus — rounded jellybean shape, oval theme — teal
+- 1993-2002 Pontiac Firebird — sleek pointed sports coupe — navy blue
+Moving in their own lanes at highway speed, natural spacing, all heading the same way. None parked on the shoulder. Plates blurred.
+
+TREES
+- oak tree at background: clearly smaller than in the base image — about 80% of its canopy there, thinner trunk
+
+STYLE
+COLOR photograph — Kodak Gold 200 or Fujifilm Superia 200 look. Color: neutral to slightly warm tones. Grain: fine grain, cleaner than 1985. Photorealistic — NOT black-and-white, no HDR. Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+Blur all faces and licence plates.

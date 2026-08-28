@@ -1,0 +1,34 @@
+One single continuous photograph of a small standalone one-story commercial building set apart from the street, its own paved parking apron facing the entrance, no neighbouring storefronts under a shared roof — no panels,
+grids, or split frames. Photorealistic, shot on a normal camera at eye level.
+
+BUILD THIS SCENE
+- camera: eye-level, facing facade, fov 76
+- commercial arterial road, 2-lane, asphalt
+- sidewalks absent, curbs absent
+- driveways: paved apron directly in front of the entrance; parking: off-street apron facing the facade, no on-street parking
+- one-story standalone shop set back from the road building at centered on its own lot, facade facing the parking apron, 1 story, painted concrete block, plate glass, flat parapet roof, deep setback
+- utilities: overhead power lines, utility pole at the lot edge — keep their exact positions and geometry, but render them as period-appropriate infrastructure for the target year
+- landscape: painted parking bays, grass strip along the road frontage
+- honey locust tree at lot edge beside the ground sign, small size
+- immutable elements: low ground sign at the edge of the apron, paved parking apron facing the entrance, no neighbouring storefronts under a shared roof
+
+PERIOD — build the scene as it stood in 1975
+Everything permanent must be plausible for 1975; nothing may look newer.
+- commercial architecture: flat roof strip mall, mansard roof facade
+- building materials: brick, concrete block, wood paneling
+- road surface: asphalt, concrete in older areas
+- road markings: yellow center line, white edge lines, no rumble strips
+- utilities: overhead power lines everywhere, wooden utility poles standard
+No later-era construction: no LED fixtures, no aluminium-and-glass curtain wall, no modern bollards or plastic sign boxes.
+
+The scene is completely empty: no people, no vehicles, no bicycles. Streets,
+parking spaces and sidewalks are bare. Buildings have blank storefronts — no
+business names, no logos, no brands, no advertisements, no signage text of any
+kind.
+
+Bright, open daylight under a high thin cloud layer — soft even light, gentle
+shadows, no heavy grey sky, no gloom, no fog, no rain, no seasonal cues.
+
+OUTPUT FORMAT
+A TRUE 9:16 vertical portrait with the full scene visible: sky above, street or
+pavement below.

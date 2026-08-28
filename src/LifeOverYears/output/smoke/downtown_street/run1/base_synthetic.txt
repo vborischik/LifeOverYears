@@ -1,0 +1,37 @@
+One single continuous photograph of a downtown commercial street, storefronts meeting the sidewalk on both sides — no panels,
+grids, or split frames. Photorealistic, shot on a normal camera at eye level.
+
+BUILD THIS SCENE
+- camera: eye-level, street-facing, fov 80
+- main street road, 2-lane, asphalt
+- sidewalks present, curbs present
+- driveways: alley entrance mid-block; parking: parallel street parking both sides
+- two-story brick commercial building at left block face, 2 stories, red brick, cast iron storefront columns, flat parapet roof, at sidewalk setback
+- single-story retail building at center block face, 1 story, brick, plate glass storefront, flat with low parapet roof, at sidewalk setback
+- corner mixed-use building at right corner, 3 stories, brick, stone trim cornice, flat roof, at sidewalk setback
+- utilities: overhead power and telephone lines, wooden utility poles every 50 feet — keep their exact positions and geometry, but render them as period-appropriate infrastructure for the target year
+- landscape: concrete sidewalks, brick pavers at crosswalks, small planted tree pits
+- oak tree at sidewalk left near corner, large size
+- maple tree at sidewalk center in front of retail, medium size
+- immutable elements: cast iron storefront columns on left building, recessed corner entrance on right building, brick alley mid-block
+
+PERIOD — build the scene as it stood in 1975
+Everything permanent must be plausible for 1975; nothing may look newer.
+- commercial architecture: flat roof strip mall, mansard roof facade
+- building materials: brick, concrete block, wood paneling
+- road surface: asphalt, concrete in older areas
+- road markings: yellow center line, white edge lines, no rumble strips
+- utilities: overhead power lines everywhere, wooden utility poles standard
+No later-era construction: no LED fixtures, no aluminium-and-glass curtain wall, no modern bollards or plastic sign boxes.
+
+The scene is completely empty: no people, no vehicles, no bicycles. Streets,
+parking spaces and sidewalks are bare. Buildings have blank storefronts — no
+business names, no logos, no brands, no advertisements, no signage text of any
+kind.
+
+Bright, open daylight under a high thin cloud layer — soft even light, gentle
+shadows, no heavy grey sky, no gloom, no fog, no rain, no seasonal cues.
+
+OUTPUT FORMAT
+A TRUE 9:16 vertical portrait with the full scene visible: sky above, street or
+pavement below.

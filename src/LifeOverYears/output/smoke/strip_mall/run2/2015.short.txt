@@ -1,0 +1,37 @@
+One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
+Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
+
+TRANSFORM TO 2015 — condition: declining — faded paint, aging signage, little activity
+
+PERIOD DETAILS
+- a liquor store still open, its lit window the brightest thing in the row
+- a tax preparation and check-cashing office still open a few doors along, plain lettering, bars on the window
+- most of the other units dark behind the glass, several papered over from the inside
+- former video store unit now a vape shop with an LED 'VAPE' sign
+- thrift store with donation bins outside
+Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
+
+SIGNAGE
+The only readable text anywhere in the image is:
+'VAPE'
+'WE FIX PHONES'
+'GYM MEMBERSHIP $10/MO'
+'SCREEN REPAIR $49'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
+
+PEOPLE
+2-3 people in the background as small figures, plus a few more further off, no detail on any face. All on the pavement or beside parked cars, never in the road. Faces blurred.
+
+VEHICLES
+EXACTLY 1 vehicle, 2015 model year, and no others:
+- 2012-2018 Ford Focus — sharp European compact — black
+Parked, with gaps between them, none in a driving lane. Plates blurred.
+
+TREES
+- crepe myrtle tree at parking lot island near entrance: clearly smaller than in the base image — about 70% of its canopy there, thinner trunk
+- maple tree at landscape strip along the road: slightly smaller than in the base image — about 85% of its canopy there
+- oak tree at back property line: slightly smaller than in the base image — about 95% of its canopy there
+
+STYLE
+COLOR photograph — digital — DSLR or smartphone camera look. Color: high saturation. Grain: clean, minimal noise. Photorealistic — NOT black-and-white, no HDR. Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
+Blur all faces and licence plates.

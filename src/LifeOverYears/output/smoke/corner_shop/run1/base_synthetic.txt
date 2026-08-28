@@ -1,0 +1,34 @@
+One single continuous photograph of a single small neighbourhood shop on a street corner, one storefront with its entrance on the corner, a blank brick side wall, and low buildings around it — no panels,
+grids, or split frames. Photorealistic, shot on a normal camera at eye level.
+
+BUILD THIS SCENE
+- camera: eye-level, facing facade, fov 74
+- residential road, 2-lane, asphalt
+- sidewalks present, curbs present
+- parking: parallel street parking along the curb
+- two-story corner building with a shop at street level building at on the corner, facade to the sidewalk, 2 stories, red brick, plate glass, flat parapet roof, at-street setback
+- utilities: overhead power lines, utility pole at the corner — keep their exact positions and geometry, but render them as period-appropriate infrastructure for the target year
+- landscape: concrete sidewalk squares, granite curb at the corner
+- honey locust tree at sidewalk beside the entrance, small size
+- immutable elements: sign band above the storefront, blank brick side wall along the side street, entrance door on the corner chamfer
+
+PERIOD — build the scene as it stood in 1975
+Everything permanent must be plausible for 1975; nothing may look newer.
+- commercial architecture: flat roof strip mall, mansard roof facade
+- building materials: brick, concrete block, wood paneling
+- road surface: asphalt, concrete in older areas
+- road markings: yellow center line, white edge lines, no rumble strips
+- utilities: overhead power lines everywhere, wooden utility poles standard
+No later-era construction: no LED fixtures, no aluminium-and-glass curtain wall, no modern bollards or plastic sign boxes.
+
+The scene is completely empty: no people, no vehicles, no bicycles. Streets,
+parking spaces and sidewalks are bare. Buildings have blank storefronts — no
+business names, no logos, no brands, no advertisements, no signage text of any
+kind.
+
+Bright, open daylight under a high thin cloud layer — soft even light, gentle
+shadows, no heavy grey sky, no gloom, no fog, no rain, no seasonal cues.
+
+OUTPUT FORMAT
+A TRUE 9:16 vertical portrait with the full scene visible: sky above, street or
+pavement below.

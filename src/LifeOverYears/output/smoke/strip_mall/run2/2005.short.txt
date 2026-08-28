@@ -1,0 +1,38 @@
+One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
+Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
+
+TRANSFORM TO 2005 — condition: declining — faded paint, aging signage, little activity
+
+PERIOD DETAILS
+- a liquor store still open, its lit window the brightest thing in the row
+- a tax preparation and check-cashing office still open a few doors along, plain lettering, bars on the window
+- most of the other units dark behind the glass, several papered over from the inside
+- dollar store anchor with yellow 'EVERYTHING $1' signage
+- video rental store with 'STORE CLOSING — EVERYTHING MUST GO' banners
+Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
+
+SIGNAGE
+The only readable text anywhere in the image is:
+'EVERYTHING $1'
+'STORE CLOSING — EVERYTHING MUST GO'
+'WALK-INS WELCOME'
+'RINGTONES $1.99'
+'NO CREDIT? NO PROBLEM!'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
+
+PEOPLE
+3 people, walking to a parked car. On the pavement, the lot apron or by the entrance — never in the road or a driving lane. Faces blurred.
+
+VEHICLES
+EXACTLY 1 vehicle, 2005 model year, and no others:
+- 2000-2007 Ford Taurus — rounded, aging fleet-look sedan — silver
+Parked, with gaps between them, none in a driving lane. Plates blurred.
+
+TREES
+- crepe myrtle tree at parking lot island near entrance: clearly smaller than in the base image — about 50% of its canopy there, thinner trunk
+- maple tree at landscape strip along the road: clearly smaller than in the base image — about 75% of its canopy there, thinner trunk
+- oak tree at back property line: slightly smaller than in the base image — about 90% of its canopy there
+
+STYLE
+COLOR photograph — early digital camera or Kodak/Fuji consumer film look. Color: neutral tones. Grain: low grain, early digital noise in shadows. Photorealistic — NOT black-and-white, no HDR. Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
+Blur all faces and licence plates.

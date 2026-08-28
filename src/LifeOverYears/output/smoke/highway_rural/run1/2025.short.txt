@@ -1,0 +1,25 @@
+One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
+Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
+
+TRANSFORM TO 2025 — condition: well kept — freshly painted, open for business
+
+PERIOD DETAILS
+- cable barrier and reflective delineators through the curves, the original guardrail still there behind them
+- green mile marker posts, some faded to pale
+Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
+
+SIGNAGE
+The overhead guide sign keeps its green face and white border, and its legend renders as soft white shapes that never resolve into words — no place names, no route or exit numbers, no destinations. Every other sign and painted name is a shape only, too distant or too weathered to read. Do not turn words from this prompt into signage.
+
+PEOPLE
+NO people on foot. Everyone in the scene is inside a moving vehicle.
+
+VEHICLES
+EXACTLY 2 vehicles, 2025 model year, and no others:
+- 2022-2025 Nissan Pathfinder — squared-off three-row SUV — dark green
+- 2019-2025 Subaru Forester — practical boxy crossover — blue
+Moving in their own lanes at highway speed, natural spacing, all heading the same way. None parked on the shoulder. Plates blurred.
+
+STYLE
+COLOR photograph — digital — smartphone or mirrorless camera look. Color: high saturation. Grain: very clean, minimal to no noise. Photorealistic — NOT black-and-white, no HDR. Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+Blur all faces and licence plates.

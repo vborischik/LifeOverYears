@@ -1,0 +1,38 @@
+One single continuous photograph of a gas station, with a pump island under a freestanding canopy on support columns and a small attached store building — no panels,
+grids, or split frames. Photorealistic, shot on a normal camera at eye level.
+
+BUILD THIS SCENE
+- camera: eye-level, street-facing, fov 75
+- commercial arterial road, 4-lane, asphalt
+- sidewalks present, curbs present
+- driveways: north driveway apron, south driveway apron; parking: open asphalt apron surrounding pump islands
+- gas station canopy building at center lot over pump islands, 1 story, steel frame, corrugated metal fascia, flat roof, 30 feet from road setback
+- service station office building at rear right corner, 1 story, concrete block, brick veneer, flat parapet roof, at parking apron setback
+- open service bay building at rear left corner, 1 story, concrete block, gabled metal roof, at parking apron setback
+- utilities: overhead power lines on wooden poles, transformer on northeast corner pole — keep their exact positions and geometry, but render them as period-appropriate infrastructure for the target year
+- landscape: flat asphalt apron, painted concrete curbing, narrow grass strip at road edge
+- cottonwood tree at northeast corner of lot, medium size
+- elm tree at sidewalk edge left of entrance, small size
+- cedar tree at back fence line, large size
+- immutable elements: canopy with four corner support posts, pump island with eight dispensers, north and south driveway aprons
+
+PERIOD — build the scene as it stood in 1975
+Everything permanent must be plausible for 1975; nothing may look newer.
+- commercial architecture: flat roof strip mall, mansard roof facade
+- building materials: brick, concrete block, wood paneling
+- road surface: asphalt, concrete in older areas
+- road markings: yellow center line, white edge lines, no rumble strips
+- utilities: overhead power lines everywhere, wooden utility poles standard
+No later-era construction: no LED fixtures, no aluminium-and-glass curtain wall, no modern bollards or plastic sign boxes.
+
+The scene is completely empty: no people, no vehicles, no bicycles. Streets,
+parking spaces and sidewalks are bare. Buildings have blank storefronts — no
+business names, no logos, no brands, no advertisements, no signage text of any
+kind.
+
+Bright, open daylight under a high thin cloud layer — soft even light, gentle
+shadows, no heavy grey sky, no gloom, no fog, no rain, no seasonal cues.
+
+OUTPUT FORMAT
+A TRUE 9:16 vertical portrait with the full scene visible: sky above, street or
+pavement below.

@@ -1,0 +1,35 @@
+One single continuous photograph of an enclosed shopping mall seen from outside, a long windowless single-story box set well back behind a large surface parking lot — no panels,
+grids, or split frames. Photorealistic, shot on a normal camera at eye level.
+
+BUILD THIS SCENE
+- camera: eye-level, facing facade, fov 82
+- commercial arterial road, 4-lane, asphalt
+- sidewalks absent, curbs absent
+- driveways: main entrance apron, side entrance apron; parking: large surface lot surrounding the building
+- enclosed mall box building at rear of the lot, 1 story, concrete panels, brick base course, flat roof, 150 feet from road setback
+- utilities: tall parking lot light poles, overhead power lines at the lot edge — keep their exact positions and geometry, but render them as period-appropriate infrastructure for the target year
+- landscape: long planter islands splitting the parking rows, painted stall striping
+- honey locust tree at planter island near entrance, small size
+- maple tree at lot perimeter, medium size
+- immutable elements: windowless end-cap facade, recessed main entrance with canopy, rows of tall lot light poles
+
+PERIOD — build the scene as it stood in 1975
+Everything permanent must be plausible for 1975; nothing may look newer.
+- commercial architecture: flat roof strip mall, mansard roof facade
+- building materials: brick, concrete block, wood paneling
+- road surface: asphalt, concrete in older areas
+- road markings: yellow center line, white edge lines, no rumble strips
+- utilities: overhead power lines everywhere, wooden utility poles standard
+No later-era construction: no LED fixtures, no aluminium-and-glass curtain wall, no modern bollards or plastic sign boxes.
+
+The scene is completely empty: no people, no vehicles, no bicycles. Streets,
+parking spaces and sidewalks are bare. Buildings have blank storefronts — no
+business names, no logos, no brands, no advertisements, no signage text of any
+kind.
+
+Bright, open daylight under a high thin cloud layer — soft even light, gentle
+shadows, no heavy grey sky, no gloom, no fog, no rain, no seasonal cues.
+
+OUTPUT FORMAT
+A TRUE 9:16 vertical portrait with the full scene visible: sky above, street or
+pavement below.

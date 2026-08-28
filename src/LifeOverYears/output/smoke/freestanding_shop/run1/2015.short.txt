@@ -1,0 +1,36 @@
+One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
+Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
+
+TRANSFORM TO 2015 — condition: declining — faded paint, aging signage, little activity
+
+PERIOD DETAILS
+- main sign: "GATEWAY BEVERAGE" — a neighbourhood liquor store, a plastic backlit box sign bolted over the old sign band, steel bars across the windows
+- LED illuminated channel letters
+- a buzzer entry plate screwed beside the door handle
+- printed price sheets taped up in rows inside the glass
+- above the new sign the previous business's lettering still ghosts on the brick: "FIFTH STREET GROCERY" — weathered, partly gone, plainly older than the sign bolted beneath it
+Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
+
+SIGNAGE
+The only readable text anywhere in the image is:
+'GATEWAY BEVERAGE'
+'FIFTH STREET GROCERY'
+'NO LOITERING'
+'LOTTO'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
+
+PEOPLE
+2-3 people in the background as small figures, plus a few more further off, no detail on any face. All on the pavement or beside parked cars, never in the road. Faces blurred.
+
+VEHICLES
+EXACTLY 2 vehicles, 2015 model year, and no others:
+- 2011-2016 Honda CR-V — rounded compact crossover — pearl white
+- 2013-2016 Ford Escape — rounded compact crossover — silver
+Parked, with gaps between them, none in a driving lane. Plates blurred.
+
+TREES
+- honey locust tree at lot edge beside the ground sign: clearly smaller than in the base image — about 70% of its canopy there, thinner trunk, in leaf but untrimmed, suckers at the base and one dead limb
+
+STYLE
+COLOR photograph — digital — DSLR or smartphone camera look. Color: high saturation. Grain: clean, minimal noise. Photorealistic — NOT black-and-white, no HDR. Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
+Blur all faces and licence plates.

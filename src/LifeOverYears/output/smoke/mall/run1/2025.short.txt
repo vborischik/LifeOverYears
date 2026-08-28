@@ -1,0 +1,25 @@
+One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
+Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
+
+TRANSFORM TO 2025 — condition: well kept — freshly painted, open for business
+
+PERIOD DETAILS
+- minimalist flat LED channel letters
+- clean flat minimalist facades
+- QR codes on signage
+- stall lines almost entirely gone
+- weeds through wide asphalt cracks
+Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
+
+SIGNAGE
+NO readable text anywhere — every sign and painted name is a shape only, too distant or too weathered to resolve into words. No place names, route or exit numbers, destinations, business names or logos. Do not turn words from this prompt into signage.
+
+PEOPLE
+NO people anywhere. The place is empty.
+
+VEHICLES
+NO vehicles anywhere.
+
+STYLE
+COLOR photograph — digital — smartphone or mirrorless camera look. Color: high saturation. Grain: very clean, minimal to no noise. Photorealistic — NOT black-and-white, no HDR. Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+Blur all faces and licence plates.

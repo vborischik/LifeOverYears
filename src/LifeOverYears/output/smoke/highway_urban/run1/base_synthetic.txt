@@ -1,0 +1,33 @@
+One single continuous photograph of an urban interstate highway seen from the roadside, several lanes each way separated by a concrete median barrier, guardrail along the shoulder and overhead sign gantries spanning the lanes — no panels,
+grids, or split frames. Photorealistic, shot on a normal camera at eye level.
+
+BUILD THIS SCENE
+- camera: eye-level, facing street, fov 70
+- urban interstate road, 6-lane, concrete
+- sidewalks absent, curbs absent
+- utilities: overhead sign gantry, tall light standards on mast arms — keep their exact positions and geometry, but render them as period-appropriate infrastructure for the target year
+- landscape: mown embankment, concrete median barrier
+- oak tree at background, medium size
+- immutable elements: guardrail along the shoulder, the road alignment and lane count
+- specific to this exact place, reproduce faithfully: green directional guide sign overhead; the highway overpass crossing above the roadway; a mile marker at the start of the curve; a distinctive curved concrete overpass with exposed beams
+
+PERIOD — build the scene as it stood in 1975
+Everything permanent must be plausible for 1975; nothing may look newer.
+- roadway frontage, and nothing built beyond it: mown embankment, concrete median barrier
+- no buildings anywhere in the frame: no storefronts, no retail row, no commercial frontage
+- road surface: asphalt, concrete in older areas
+- road markings: yellow center line, white edge lines, no rumble strips
+- utilities: overhead power lines everywhere, wooden utility poles standard
+No later-era construction: no LED fixtures, no aluminium-and-glass curtain wall, no modern bollards or plastic sign boxes.
+
+The scene is completely empty: no people, no vehicles, no bicycles. Streets,
+parking spaces and sidewalks are bare. Buildings have blank storefronts — no
+business names, no logos, no brands, no advertisements, no signage text of any
+kind.
+
+Bright, open daylight under a high thin cloud layer — soft even light, gentle
+shadows, no heavy grey sky, no gloom, no fog, no rain, no seasonal cues.
+
+OUTPUT FORMAT
+A TRUE 9:16 vertical portrait with the full scene visible: sky above, street or
+pavement below.

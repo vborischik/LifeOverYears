@@ -872,17 +872,20 @@ public sealed class PromptService : IPromptService
     // Vegetation and roadside furniture that Vision sometimes files under
     // Buildings. Matched on the type it wrote, so a "deciduous" or "tree line"
     // entry stops standing in for a structure.
-    private static readonly string[] NotBuildingWords =
-    {
-        "tree", "deciduous", "conifer", "evergreen", "shrub", "hedge", "vegetation",
-        "grass", "embankment", "treeline", "woods", "forest", "field"
-    };
+    // Whole words only, and for the same reason DropTreeMentions gives above:
+    // a substring test reads "street" as "tree", so "a corner building with a
+    // shop at street level" was filed as vegetation. The base prompt then
+    // described the building and, two lines later, said nothing was built.
+    private static readonly System.Text.RegularExpressions.Regex NotBuildingWord = new(
+        @"\b(trees?|treeline|deciduous|conifers?|evergreens?|shrubs?|hedges?|vegetation|" +
+        @"grass|embankment|woods|forest|fields?)\b",
+        System.Text.RegularExpressions.RegexOptions.IgnoreCase | System.Text.RegularExpressions.RegexOptions.Compiled);
 
     private static bool IsBuilding(Building b)
     {
-        var type = (b.Type ?? "").ToLowerInvariant();
+        var type = (b.Type ?? "").Trim();
         if (type.Length == 0) return false;
-        return !NotBuildingWords.Any(type.Contains);
+        return !NotBuildingWord.IsMatch(type);
     }
 
     private static bool IsLiquorEra(string sceneType, int year) =>

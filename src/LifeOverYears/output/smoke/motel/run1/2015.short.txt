@@ -1,0 +1,34 @@
+One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
+Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
+
+TRANSFORM TO 2015 — condition: declining — faded paint, aging signage, little activity
+
+PERIOD DETAILS
+- main sign: "Travelodge" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
+- numbered room doors in a uniform row, two of them fitted with newer locks
+- large glass storefronts
+- LED accent lighting on buildings
+- window signs: 'WEEKLY RATES', 'NO VISITORS'
+Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
+
+SIGNAGE
+The only readable text anywhere in the image is:
+'Travelodge'
+'WEEKLY RATES'
+'NO VISITORS'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
+
+PEOPLE
+3 people, walking along the pavement past the frontage. On the pavement, the lot apron or by the entrance — never in the road or a driving lane. Faces blurred.
+
+VEHICLES
+EXACTLY 1 vehicle, 2015 model year, and no others:
+- 2012-2015 Honda Civic — compact, angular — white
+Parked, with gaps between them, none in a driving lane. Plates blurred.
+
+TREES
+- silver maple tree at lot edge beside the pylon sign: slightly smaller than in the base image — about 85% of its canopy there
+
+STYLE
+COLOR photograph — digital — DSLR or smartphone camera look. Color: high saturation. Grain: clean, minimal noise. Photorealistic — NOT black-and-white, no HDR. Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
+Blur all faces and licence plates.

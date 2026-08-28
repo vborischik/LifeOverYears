@@ -1,0 +1,28 @@
+One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
+Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
+
+TRANSFORM TO 1975 — condition: well kept — freshly painted, open for business
+
+PERIOD DETAILS
+- 55 mph speed limit signs on plain steel posts
+- tall steel lattice transmission towers running alongside the roadway
+Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
+
+SIGNAGE
+The overhead guide sign keeps its green face and white border, and its legend renders as soft white shapes that never resolve into words — no place names, no route or exit numbers, no destinations. Every other sign and painted name is a shape only, too distant or too weathered to read. Do not turn words from this prompt into signage.
+
+PEOPLE
+NO people on foot. Everyone in the scene is inside a moving vehicle.
+
+VEHICLES
+EXACTLY 2 vehicles, 1975 model year, and no others:
+- 1972-1980 Dodge D100 — angular cab, simple grille
+- 1974-1983 Jeep Cherokee — two-door SUV, boxy, new model
+Moving in their own lanes at highway speed, natural spacing, all heading the same way. None parked on the shoulder. Plates blurred.
+
+TREES
+- oak tree at background: clearly smaller than in the base image — about 70% of its canopy there, thinner trunk
+
+STYLE
+STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere. Grain: visible fine grain. Style: documentary, natural light. Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp. Light: bright open daylight, clear sky, soft natural shadows — a fine, ordinary day.
+Blur all faces and licence plates.

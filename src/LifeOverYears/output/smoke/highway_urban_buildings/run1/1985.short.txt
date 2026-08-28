@@ -1,0 +1,29 @@
+One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
+Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
+
+TRANSFORM TO 1985 — condition: well kept — freshly painted, open for business
+
+PERIOD DETAILS
+- an auto parts distributor with lettering on the end wall, too blurred by distance to read
+- an overhead sign gantry spanning the lanes, green panels with white borders
+- raised button reflectors set into the lane markings
+Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
+
+SIGNAGE
+The overhead guide sign keeps its green face and white border, and its legend renders as soft white shapes that never resolve into words — no place names, no route or exit numbers, no destinations. Every other sign and painted name is a shape only, too distant or too weathered to read. Do not turn words from this prompt into signage.
+
+PEOPLE
+NO people on foot. Everyone in the scene is inside a moving vehicle.
+
+VEHICLES
+EXACTLY 2 vehicles, 1985 model year, and no others:
+- 1975-1991 Ford Econoline — boxy full-size van — white
+- 1977-1990 Chevrolet Caprice — boxy full-size sedan, formal lines — burgundy
+Moving in their own lanes at highway speed, natural spacing, all heading the same way. None parked on the shoulder. Plates blurred.
+
+TREES
+- oak tree at background: clearly smaller than in the base image — about 75% of its canopy there, thinner trunk
+
+STYLE
+COLOR photograph — Kodacolor VR 200 or Fujicolor 100 look. Color: slightly cool tones compared to 1970s. Grain: moderate grain, cleaner than 1975. Photorealistic — NOT black-and-white, no HDR. Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+Blur all faces and licence plates.

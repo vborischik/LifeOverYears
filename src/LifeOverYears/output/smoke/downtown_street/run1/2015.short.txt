@@ -1,0 +1,37 @@
+One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
+Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
+
+TRANSFORM TO 2015 — condition: well kept — freshly painted, open for business
+
+PERIOD DETAILS
+- MARY'S DINER with 'COFFEE $2.25' chalked on a menu board
+- digital menu boards at drive-throughs
+- barber shop with its spinning barber pole, now billed as a 'classic barbershop'
+- window signs: 'HAPPY HOUR 4-6 — PINTS $4', 'CRAFT LATTE $4.50'
+- a modern bike-share style rack
+Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
+
+SIGNAGE
+The only readable text anywhere in the image is:
+'COFFEE $2.25'
+'classic barbershop'
+'HAPPY HOUR 4-6 — PINTS $4'
+'CRAFT LATTE $4.50'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
+
+PEOPLE
+2-3 people in the background as small figures, plus a few more further off, no detail on any face. All on the pavement or beside parked cars, never in the road. Faces blurred.
+
+VEHICLES
+EXACTLY 2 vehicles, 2015 model year, and no others:
+- 2011-2016 Chrysler Town & Country — chrome-trimmed minivan — gray
+- 2013-2017 Honda Accord — clean modern lines — white
+Parked, with gaps between them, none in a driving lane. Plates blurred.
+
+TREES
+- oak tree at sidewalk left near corner: slightly smaller than in the base image — about 95% of its canopy there
+- maple tree at sidewalk center in front of retail: slightly smaller than in the base image — about 85% of its canopy there
+
+STYLE
+COLOR photograph — digital — DSLR or smartphone camera look. Color: high saturation. Grain: clean, minimal noise. Photorealistic — NOT black-and-white, no HDR. Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+Blur all faces and licence plates.

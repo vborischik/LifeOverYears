@@ -1,0 +1,28 @@
+One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
+Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
+
+TRANSFORM TO 2015 — condition: well kept — freshly painted, open for business
+
+PERIOD DETAILS
+- wide white edge lines with rumble strips both sides
+- green mile marker posts at regular intervals
+Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
+
+SIGNAGE
+The overhead guide sign keeps its green face and white border, and its legend renders as soft white shapes that never resolve into words — no place names, no route or exit numbers, no destinations. Every other sign and painted name is a shape only, too distant or too weathered to read. Do not turn words from this prompt into signage.
+
+PEOPLE
+NO people on foot. Everyone in the scene is inside a moving vehicle.
+
+VEHICLES
+EXACTLY 2 vehicles, 2015 model year, and no others:
+- 2013-2017 Honda Accord — clean modern lines — gray
+- 2010-2016 Chevrolet Equinox — mid-size crossover — pearl white
+Moving in their own lanes at highway speed, natural spacing, all heading the same way. None parked on the shoulder. Plates blurred.
+
+TREES
+- oak tree at background: slightly smaller than in the base image — about 95% of its canopy there
+
+STYLE
+COLOR photograph — digital — DSLR or smartphone camera look. Color: high saturation. Grain: clean, minimal noise. Photorealistic — NOT black-and-white, no HDR. Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+Blur all faces and licence plates.

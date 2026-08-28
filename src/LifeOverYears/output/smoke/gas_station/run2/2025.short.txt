@@ -1,0 +1,32 @@
+One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
+Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
+
+TRANSFORM TO 2025 — condition: newly built — pristine surfaces, new signage
+
+PERIOD DETAILS
+- main sign: "Exxon" branded gas station — Exxon pole sign with price display and Exxon colors on the canopy fascia
+- large convenience stores with fresh food
+- free air and vacuum station at the lot edge
+- price sign showing gas around $3.40
+- window signs: 'COLD BREW $3.99', 'MEMBERS SAVE 10¢/GAL'
+Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
+
+SIGNAGE
+The only readable text anywhere in the image is:
+'Exxon'
+'COLD BREW $3.99'
+'MEMBERS SAVE 10¢/GAL'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
+
+PEOPLE
+2-3 people in the background as small figures, plus a few more further off, no detail on any face. All on the pavement or beside parked cars, never in the road. Faces blurred.
+
+VEHICLES
+EXACTLY 2 vehicles, 2025 model year, and no others:
+- 2021-2025 Nissan Rogue — squared-off crossover, floating roofline — blue
+- 2019-2025 Toyota RAV4 — boxy rugged crossover, very common — gray
+Parked, with gaps between them, none in a driving lane. Plates blurred.
+
+STYLE
+COLOR photograph — digital — smartphone or mirrorless camera look. Color: high saturation. Grain: very clean, minimal to no noise. Photorealistic — NOT black-and-white, no HDR. Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+Blur all faces and licence plates.

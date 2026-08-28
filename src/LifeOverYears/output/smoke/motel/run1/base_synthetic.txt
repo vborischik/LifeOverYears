@@ -1,0 +1,34 @@
+One single continuous photograph of a single-story roadside motel, one long wing of numbered guest doors each with a paired window, parking bays marked one per door along the front, and a low pylon sign out by the road — no panels,
+grids, or split frames. Photorealistic, shot on a normal camera at eye level.
+
+BUILD THIS SCENE
+- camera: eye-level, facing facade, fov 80
+- two-lane highway road, 2-lane, asphalt
+- sidewalks absent, curbs absent
+- driveways: asphalt apron in front of the room doors; parking: marked bays one per room door across the frontage
+- single-story motel wing of numbered guest rooms building at set back behind the parking apron, long face to the road, 1 story, painted concrete block, painted metal doors, low pitch with a shallow walkway overhang roof, deep setback
+- utilities: overhead power lines, utility pole at the lot edge — keep their exact positions and geometry, but render them as period-appropriate infrastructure for the target year
+- landscape: gravel strip along the building base, grass verge out to the road
+- silver maple tree at lot edge beside the pylon sign, medium size
+- immutable elements: uniform row of numbered guest doors, paired window beside each door, freestanding pylon sign out by the road
+
+PERIOD — build the scene as it stood in 1975
+Everything permanent must be plausible for 1975; nothing may look newer.
+- commercial architecture: flat roof strip mall, mansard roof facade
+- building materials: brick, concrete block, wood paneling
+- road surface: asphalt, concrete in older areas
+- road markings: yellow center line, white edge lines, no rumble strips
+- utilities: overhead power lines everywhere, wooden utility poles standard
+No later-era construction: no LED fixtures, no aluminium-and-glass curtain wall, no modern bollards or plastic sign boxes.
+
+The scene is completely empty: no people, no vehicles, no bicycles. Streets,
+parking spaces and sidewalks are bare. Buildings have blank storefronts — no
+business names, no logos, no brands, no advertisements, no signage text of any
+kind.
+
+Bright, open daylight under a high thin cloud layer — soft even light, gentle
+shadows, no heavy grey sky, no gloom, no fog, no rain, no seasonal cues.
+
+OUTPUT FORMAT
+A TRUE 9:16 vertical portrait with the full scene visible: sky above, street or
+pavement below.

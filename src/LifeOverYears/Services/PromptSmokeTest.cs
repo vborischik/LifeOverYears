@@ -131,6 +131,22 @@ public static class PromptSmokeTest
         await SaveRun(shoppingCenterScene.SceneType, 1, scRun);
         await SaveRun(unknownScene.SceneType,   1, new Dictionary<int, Prompt> { { 1985, unknownPrompt } });
 
+        // One base per scene shape, built in the run's first year exactly as the
+        // pipeline builds it. Named by the folder it sits in, so highway's two
+        // flavours and the with-buildings variant each keep their own.
+        foreach (var (folder, scene) in new (string, SceneDna)[]
+        {
+            (gasScene.SceneType, gasScene), (downtownScene.SceneType, downtownScene),
+            (stripMallScene.SceneType, stripMallScene), (autoRepairScene.SceneType, autoRepairScene),
+            (cornerShopScene.SceneType, cornerShopScene), (motelScene.SceneType, motelScene),
+            (freestandingShopScene.SceneType, freestandingShopScene),
+            ("highway_urban", highwayUrbanScene), ("highway_rural", highwayRuralScene),
+            ("highway_urban_buildings", highwayBuiltScene),
+            (mallScene2.SceneType, mallScene2), (shoppingCenterScene.SceneType, shoppingCenterScene),
+            (unknownScene.SceneType, unknownScene),
+        })
+            await SaveBase(folder, 1, await promptService.BuildBaseAsync(scene, Years[0]));
+
         // d) Checks C1–C25
         // Pass is tri-state: true PASS, false FAIL, null DISABLED. A parked check
         // reports DISABLED so it stays visible in the report — never a silent PASS.
@@ -202,7 +218,17 @@ public static class PromptSmokeTest
         DoC66(eras, hwUrban, hwBuilt, findings);
         DoC67(gasRun1, dtRun1, smRun1, arRun1, csRun1, hwUrban, hwRural, hwBuilt, unknownPrompt, eras, findings);
         DoC68(gasRun1, dtRun1, hwUrban, hwRural, hwBuilt, findings);
-        await DoC69(promptService, highwayUrbanScene, highwayBuiltScene, downtownScene, findings);
+        await DoC69(promptService, highwayUrbanScene, highwayBuiltScene, downtownScene,
+            new (string, SceneDna)[]
+            {
+                ("gas_station", gasScene), ("downtown_street", downtownScene),
+                ("strip_mall", stripMallScene), ("auto_repair", autoRepairScene),
+                ("corner_shop", cornerShopScene), ("motel", motelScene),
+                ("freestanding_shop", freestandingShopScene), ("mall", mallScene2),
+                ("shopping_center", shoppingCenterScene), ("highway_urban", highwayUrbanScene),
+                ("highway_rural", highwayRuralScene), ("highway_with_buildings", highwayBuiltScene),
+                ("unknown", unknownScene),
+            }, findings);
         await DoC70(promptService, eras, highwayUrbanScene, downtownScene, findings);
         DoC73(new (string, Dictionary<int, Prompt>)[]
         {
@@ -820,6 +846,19 @@ public static class PromptSmokeTest
         return prompts;
     }
 
+    // The synthetic base is the frame every era is then edited from, so a run's
+    // output is only half readable without it — and it was being built and
+    // thrown away. Written next to the eras so the whole chain can be read, and
+    // so it can be pasted into a tool by hand.
+    private static async Task SaveBase(string sceneType, int run, string basePrompt)
+    {
+        var dir = Path.Combine("output", "smoke", sceneType, $"run{run}");
+        Directory.CreateDirectory(dir);
+        await File.WriteAllTextAsync(Path.Combine(dir, "base_synthetic.txt"), basePrompt);
+        await File.WriteAllTextAsync(
+            Path.Combine(dir, "base_synthetic.short.txt"), ShortPromptWriter.Rewrite(basePrompt));
+    }
+
     private static async Task SaveRun(string sceneType, int run, Dictionary<int, Prompt> prompts)
     {
         foreach (var (year, prompt) in prompts)
@@ -827,6 +866,8 @@ public static class PromptSmokeTest
             var dir = Path.Combine("output", "smoke", sceneType, $"run{run}");
             Directory.CreateDirectory(dir);
             await File.WriteAllTextAsync(Path.Combine(dir, $"{year}.txt"),  prompt.Text);
+            await File.WriteAllTextAsync(Path.Combine(dir, $"{year}.short.txt"),
+                ShortPromptWriter.Rewrite(prompt.Text));
             await File.WriteAllTextAsync(Path.Combine(dir, $"{year}.json"),
                 JsonSerializer.Serialize(prompt, WriteJson));
         }
@@ -4889,6 +4930,7 @@ public static class PromptSmokeTest
         SceneDna highwayOpenRoad,
         SceneDna highwayWithBuildings,
         SceneDna downtownScene,
+        IReadOnlyList<(string Label, SceneDna Scene)> everyScene,
         List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
@@ -4915,7 +4957,27 @@ public static class PromptSmokeTest
             if (!downtown.Contains(line, StringComparison.Ordinal))
                 errs.Add($"downtown base lost \"{line.Trim()}\"");
 
-        f.Add(("C69", "The synthetic base emits architecture only where buildings exist; an open-road scene gets a frontage description and an explicit nothing-is-built line instead",
+        // The two halves of a base prompt must agree. A substring test that read
+        // "street" as "tree" filed a corner shop's building as vegetation, and
+        // the base then described the building and said nothing was built two
+        // lines later. Checked across every fixture, because the bug was in a
+        // word list and the next one will be too.
+        foreach (var (label, scene) in everyScene)
+        {
+            var text = await promptService.BuildBaseAsync(scene, Years[0]);
+            var saysNothingBuilt = text.Contains("no buildings anywhere in the frame", StringComparison.Ordinal);
+            var hasBuildings = scene.Geometry.Buildings.Count > 0;
+
+            if (hasBuildings && saysNothingBuilt)
+                errs.Add($"{label}: base says nothing is built while the scene lists {scene.Geometry.Buildings.Count} building(s)");
+            if (!hasBuildings && !saysNothingBuilt)
+                errs.Add($"{label}: base never states that nothing is built, on a scene with no buildings");
+            foreach (var line in architectureLines)
+                if (hasBuildings != text.Contains(line, StringComparison.Ordinal))
+                    errs.Add($"{label}: \"{line.Trim()}\" does not follow the building list");
+        }
+
+        f.Add(("C69", "The synthetic base emits architecture only where buildings exist, states outright that nothing is built where none do, and never does both at once",
             errs.Count == 0, errs.Count == 0
                 ? "architecture follows the building list, not the scene type"
                 : Join(errs)));
