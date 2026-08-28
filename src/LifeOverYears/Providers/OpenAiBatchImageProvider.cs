@@ -24,7 +24,7 @@ namespace LifeOverYears.Providers;
 public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
 {
     private const string Size =  "720x1280";   
-    private const string Quality = "medium";
+    private const string Quality = "low";
     private const string Endpoint = "/v1/images/edits";
 
     private const string BaseFileFileName = "base-file.json";
@@ -48,10 +48,23 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
     // download+parse of the batch output file within this process.
     private readonly ConcurrentDictionary<string, Dictionary<string, string>> _parsedOutputs = new();
 
-    public OpenAiBatchImageProvider(IOpenAiProvider openai, ILogger<OpenAiBatchImageProvider> logger)
+    // When true the base image travels inside the batch line as a base64 data
+    // URL instead of being uploaded and referenced by id. Off by default: the
+    // file id is the documented shape and keeps the .jsonl small. It exists
+    // because OpenAI's Batch API has been failing to resolve uploaded file ids
+    // since 19 Aug 2026 while the same files work in a direct call, and
+    // inlining removes the reference the executor cannot follow. Whether the
+    // endpoint accepts image_url in a batch body is exactly what this flag is
+    // for finding out — an earlier attempt recorded it as rejected, and a
+    // rejected batch is not billed, so the experiment is free.
+    private readonly bool _inlineImage;
+
+    public OpenAiBatchImageProvider(
+        IOpenAiProvider openai, ILogger<OpenAiBatchImageProvider> logger, bool inlineImage = false)
     {
         _openai = openai;
         _logger = logger;
+        _inlineImage = inlineImage;
     }
 
     public async Task SynthesizeBaseAsync(string prompt, string outputPath)
@@ -95,7 +108,20 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
             return;
         }
 
-        var baseFileId = await GetOrUploadBaseFileAsync(basePath, jobsDir);
+        // Either a reference the executor has to resolve, or the bytes themselves.
+        object imageEntry;
+        if (_inlineImage)
+        {
+            var bytes = await File.ReadAllBytesAsync(basePath);
+            imageEntry = new { image_url = $"data:image/png;base64,{Convert.ToBase64String(bytes)}" };
+            _logger.LogInformation(
+                "Inlining base image {BasePath} into the batch line ({Kb} KB before base64, no file upload)",
+                basePath, bytes.Length / 1024);
+        }
+        else
+        {
+            imageEntry = new { file_id = await GetOrUploadBaseFileAsync(basePath, jobsDir) };
+        }
 
         // custom_id is how the result is matched back to the year later — output
         // line order is not guaranteed to match input order, even in a one-line
@@ -115,9 +141,11 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
                 //                          application/json use 'images' (array).
                 //   images: ["file-..."] -> Invalid type for 'images[0]':
                 //                          expected an object, got a string.
-                // "type", "url" and "image_url" inside the object are all
-                // unknown parameters — file_id is the only accepted key.
-                images = new object[] { new { file_id = baseFileId } },
+                // "type" and "url" inside the object are unknown parameters.
+                // "file_id" is the documented key; "image_url" (a data URL) is
+                // what OpenAi:BatchInlineImage sends instead, and was recorded
+                // as rejected once — the flag is there to retest it cheaply.
+                images = new object[] { imageEntry },
                 prompt,
                 size = Size,
                 quality = Quality
@@ -132,6 +160,16 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
 
         var inputFileId = await _openai.UploadFileAsync(
             await File.ReadAllBytesAsync(inputPath), InputFileNameFor(year), "batch");
+
+        // An uploaded file reports "uploaded" before it reports "processed", and
+        // nothing in the API stops a batch being created over one that has not
+        // got there yet. Creating it anyway is how a batch ends up failing with
+        // "Cannot find file …" over an id that plainly exists — the executor
+        // looks for the file before it is resolvable. The upload and the create
+        // call sat one second apart, so this costs nothing in the normal case
+        // and is simply correct in the abnormal one.
+        await WaitForFileAsync(inputFileId);
+
         var batchId = await _openai.CreateBatchAsync(inputFileId, Endpoint);
 
         await WriteJobAsync(jobsDir, new BatchJob(
@@ -146,6 +184,43 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
             "Submitted {Year} as batch {BatchId} over {InputFileId} (gpt-image-2, {Quality}, {Size})",
             year, batchId, inputFileId, Quality, Size);
     }
+
+    // Polls until the file leaves "uploaded". Bounded and non-fatal: if it never
+    // settles the batch is created anyway, because a slow status is a guess at
+    // the cause and must not be the thing that stops a run.
+    private async Task WaitForFileAsync(string fileId)
+    {
+        var deadline = DateTimeOffset.UtcNow.AddSeconds(FileReadyTimeoutSeconds);
+        while (DateTimeOffset.UtcNow < deadline)
+        {
+            string status;
+            try
+            {
+                status = await _openai.GetFileStatusAsync(fileId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, "Could not read status of {FileId} — creating the batch anyway", fileId);
+                return;
+            }
+
+            if (string.Equals(status, "processed", StringComparison.OrdinalIgnoreCase))
+                return;
+
+            if (string.Equals(status, "error", StringComparison.OrdinalIgnoreCase))
+                throw new InvalidOperationException(
+                    $"OpenAI reports file {fileId} in state 'error' — it cannot be used as batch input");
+
+            _logger.LogInformation("Waiting for {FileId} to be processed (currently '{Status}')", fileId, status);
+            await Task.Delay(TimeSpan.FromSeconds(2));
+        }
+
+        _logger.LogWarning(
+            "File {FileId} still not processed after {Seconds}s — creating the batch anyway",
+            fileId, FileReadyTimeoutSeconds);
+    }
+
+    private const int FileReadyTimeoutSeconds = 30;
 
     // Uploads a base image once per distinct basePath and caches its file id in
     // jobsDir/base-file.json, keyed by the base image's full path — NOT once per
@@ -168,6 +243,7 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
 
         var bytes = await File.ReadAllBytesAsync(basePath);
         var fileId = await _openai.UploadFileAsync(bytes, Path.GetFileName(basePath), "vision");
+        await WaitForFileAsync(fileId);
         cache[key] = fileId;
         await File.WriteAllTextAsync(cachePath, JsonSerializer.Serialize(cache, JobJson));
         _logger.LogInformation("Uploaded base image {BasePath}, file id {FileId}", basePath, fileId);
@@ -204,9 +280,24 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
                 var errorText = errorFileId is not null
                     ? await _openai.DownloadFileContentAsync(errorFileId)
                     : null;
+                // A file-access failure here is almost certainly not this run's
+                // fault: OpenAI's Batch API has been failing to resolve file_id
+                // references since 19 Aug 2026 (community thread 1391232), while
+                // the same files work in a direct call. Say so, so the next
+                // person does not spend an evening on the key and the payload.
+                var accessProblem = errorText is not null &&
+                    (errorText.Contains("does not have access", StringComparison.OrdinalIgnoreCase) ||
+                     errorText.Contains("Cannot find file", StringComparison.OrdinalIgnoreCase) ||
+                     errorText.Contains("authorize file access", StringComparison.OrdinalIgnoreCase));
+
                 throw new InvalidOperationException(
                     $"OpenAI batch {job.JobId} ended with status '{status}'" +
-                    (errorText is not null ? $": {errorText}" : ""));
+                    (errorText is not null ? $": {errorText}" : "") +
+                    (accessProblem
+                        ? " — this is a file-reference failure on OpenAI's side, not a bad payload: the Batch API " +
+                          "has been failing to resolve uploaded file ids since 19 Aug 2026. Retrying costs nothing " +
+                          "(a failed batch is not billed); OpenAi:Mode=sync bypasses the Files API entirely."
+                        : ""));
 
             case "completed":
                 // Every line failed: OpenAI produces no output file at all, only

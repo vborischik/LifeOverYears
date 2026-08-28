@@ -27,6 +27,11 @@ public interface IOpenAiProvider
     Task<(string Status, string? OutputFileId, string? ErrorFileId)> GetBatchAsync(
         string batchId, CancellationToken ct = default);
 
+    // Files API: an uploaded file reports "uploaded", "processed" or "error".
+    // Referencing one before it is processed is what the Batch API appears to
+    // choke on, so the batch provider waits on this before creating a batch.
+    Task<string> GetFileStatusAsync(string fileId, CancellationToken ct = default);
+
     // Files API: download file content as raw text.
     Task<string> DownloadFileContentAsync(string fileId, CancellationToken ct = default);
 }

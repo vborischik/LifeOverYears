@@ -14,7 +14,7 @@ namespace LifeOverYears.Providers;
 public sealed class OpenAiImageProvider : IImageGenerationProvider
 {
     private const string Size =  "720x1280";    // 2:3 portrait, non-experimental
-    private const string Quality = "medium";
+    private const string Quality = "low";
 
     private static readonly JsonSerializerOptions JobJson =
         new(JsonSerializerDefaults.Web) { WriteIndented = true };

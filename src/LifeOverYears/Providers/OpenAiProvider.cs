@@ -93,6 +93,14 @@ public sealed class OpenAiProvider : IOpenAiProvider
         return ExtractId(payload);
     }
 
+    public async Task<string> GetFileStatusAsync(string fileId, CancellationToken ct = default)
+    {
+        var payload = await SendWithRetryAsync(
+            () => new HttpRequestMessage(HttpMethod.Get, $"{FilesUrl}/{fileId}"), ct);
+        var file = JsonSerializer.Deserialize<FileStatusResponse>(payload, JsonOpts);
+        return file?.Status ?? "unknown";
+    }
+
     public async Task<string> CreateBatchAsync(string inputFileId, string endpoint,
         CancellationToken ct = default)
     {
@@ -196,6 +204,8 @@ public sealed class OpenAiProvider : IOpenAiProvider
             ?? throw new InvalidOperationException($"No id in OpenAI response: {json}");
 
     private sealed record IdResponse([property: JsonPropertyName("id")] string Id);
+
+    private sealed record FileStatusResponse([property: JsonPropertyName("status")] string? Status);
 
     private sealed record BatchResponse(
         [property: JsonPropertyName("status")] string Status,

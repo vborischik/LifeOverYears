@@ -35,6 +35,7 @@ public static class BatchSmokeTest
             await DoB8(loggerFactory, sandbox, findings);
             await DoB9(loggerFactory, sandbox, findings);
             await DoB10(loggerFactory, sandbox, findings);
+            await DoB11(loggerFactory, sandbox, findings);
         }
         finally
         {
@@ -418,16 +419,61 @@ public static class BatchSmokeTest
             "rejection surfaced with the API's own wording in both shapes");
     }
 
+    // Two ways to hand the base image to a batch line, and the flag has to pick
+    // exactly one: an id the executor resolves, or the bytes inline. Inlining
+    // exists because OpenAI's executor stopped resolving ids, so the thing that
+    // matters is that the inline path uploads nothing at all — a file that is
+    // still uploaded is still a file that can fail to resolve.
+    private static async Task DoB11(
+        ILoggerFactory lf, string sandbox, List<(string Id, string Desc, bool Pass, string Detail)> f)
+    {
+        var errs = new List<string>();
+
+        async Task<(string Line, FakeOpenAi Fake)> SubmitAsync(bool inline, string name)
+        {
+            var (provider, fake, jobsDir) = NewCase(lf, sandbox, name, inline);
+            var basePath = await WriteBaseAsync(jobsDir, "base_synthetic.png");
+            await provider.SubmitEraAsync(basePath, "a prompt", 1975, jobsDir);
+            var line = await File.ReadAllTextAsync(Path.Combine(jobsDir, "batch-input-1975.jsonl"));
+            return (line, fake);
+        }
+
+        var (referenced, refFake) = await SubmitAsync(false, "b11-file-id");
+        if (!referenced.Contains("\"file_id\"", StringComparison.Ordinal))
+            errs.Add("default mode: batch line does not reference the image by file_id");
+        if (referenced.Contains("base64,", StringComparison.Ordinal))
+            errs.Add("default mode: batch line inlines the image anyway");
+        if (!refFake.Calls.Any(c => c.StartsWith("upload:vision", StringComparison.Ordinal)))
+            errs.Add("default mode: the image was never uploaded");
+
+        var (inlined, inlineFake) = await SubmitAsync(true, "b11-inline");
+        if (!inlined.Contains("\"image_url\"", StringComparison.Ordinal))
+            errs.Add("inline mode: batch line carries no image_url");
+        if (!inlined.Contains("data:image/png;base64,", StringComparison.Ordinal))
+            errs.Add("inline mode: image_url is not a base64 data URL");
+        if (inlined.Contains("\"file_id\"", StringComparison.Ordinal))
+            errs.Add("inline mode: still references a file_id");
+        // The whole point: no image file exists to fail to resolve.
+        if (inlineFake.Calls.Any(c => c.StartsWith("upload:vision", StringComparison.Ordinal)))
+            errs.Add("inline mode: the image was uploaded anyway — the file reference it exists to avoid is still there");
+        // The batch input itself is still a file; nothing can be done about that.
+        if (!inlineFake.Calls.Any(c => c.StartsWith("upload:batch", StringComparison.Ordinal)))
+            errs.Add("inline mode: the batch input file was not uploaded");
+
+        Add(f, "B11", "OpenAi:BatchInlineImage swaps the image file_id for an inline base64 data URL and uploads no image file; the default keeps the documented file_id form", errs,
+            "both image-delivery shapes hold, and inline uploads nothing but the batch input");
+    }
+
     // ── Harness ───────────────────────────────────────────────────────────────
 
     private static (OpenAiBatchImageProvider Provider, FakeOpenAi Fake, string JobsDir) NewCase(
-        ILoggerFactory lf, string sandbox, string name)
+        ILoggerFactory lf, string sandbox, string name, bool inlineImage = false)
     {
         var jobsDir = Path.Combine(sandbox, name);
         Directory.CreateDirectory(jobsDir);
         var fake = new FakeOpenAi();
         var provider = new OpenAiBatchImageProvider(
-            fake, lf.CreateLogger<OpenAiBatchImageProvider>());
+            fake, lf.CreateLogger<OpenAiBatchImageProvider>(), inlineImage);
         return (provider, fake, jobsDir);
     }
 
@@ -492,6 +538,15 @@ public static class BatchSmokeTest
             var id = $"file-{++_ids}";
             _files[id] = Encoding.UTF8.GetString(content);
             return Task.FromResult(id);
+        }
+
+        // Set to something other than "processed" to exercise the wait loop.
+        public string FileStatus { get; set; } = "processed";
+
+        public Task<string> GetFileStatusAsync(string fileId, CancellationToken ct = default)
+        {
+            Calls.Add($"file-status:{fileId}");
+            return Task.FromResult(_files.ContainsKey(fileId) ? FileStatus : "error");
         }
 
         public Task<string> CreateBatchAsync(string inputFileId, string endpoint, CancellationToken ct = default)

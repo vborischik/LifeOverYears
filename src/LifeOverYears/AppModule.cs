@@ -114,9 +114,18 @@ public sealed class AppModule : Module
 
             if (string.Equals(imagesMode, "batch", StringComparison.OrdinalIgnoreCase))
             {
+                // Escape hatch for OpenAI's batch file-resolution outage: send
+                // the image inline instead of by id. See the flag's comment on
+                // the provider.
+                var inlineImage = _configuration.GetValue("OpenAi:BatchInlineImage", false);
+                if (inlineImage)
+                    _loggerFactory.CreateLogger<AppModule>().LogInformation(
+                        "Batch mode: inlining the base image as base64 instead of uploading it (OpenAi:BatchInlineImage)");
+
                 builder.Register(_ => new OpenAiBatchImageProvider(
                             _.Resolve<IOpenAiProvider>(),
-                            _loggerFactory.CreateLogger<OpenAiBatchImageProvider>()))
+                            _loggerFactory.CreateLogger<OpenAiBatchImageProvider>(),
+                            inlineImage))
                        .As<IImageGenerationProvider>().SingleInstance();
             }
             else if (string.Equals(imagesMode, "sync", StringComparison.OrdinalIgnoreCase))

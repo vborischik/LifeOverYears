@@ -252,6 +252,43 @@ downtown_street, strip_mall, auto_repair, corner_shop and motel. The rank is mon
 (a place never quietly recovers mid-arc); only the last era resolves it.
 Derelict eras replace the live-business PERIOD DETAILS block entirely.
 
+## Known outage: Batch API cannot resolve file ids (from 19 Aug 2026)
+
+`OpenAi:Mode=batch` has been failing since 19 Aug 2026 with file-access errors,
+in two shapes: the batch completes and its error file carries a per-request
+`401 Unable to authorize file access` on the **image** file id, or the batch
+itself ends `failed` with `Cannot find file …, or organization … does not have
+access to it` naming the **batch input .jsonl**. It is an OpenAI-side bug —
+[community thread 1391232](https://community.openai.com/t/batch-images-edits-failing-with-401-unable-to-authorize-file-access/1391232),
+`/v1/images/edits` + `gpt-image-2`, no official reply or ETA. Some accounts
+recovered around 24 Aug, others had not by 26 Aug.
+
+Evidence it is not ours: a batch run on 16 Aug completed all six eras; nothing
+in `OpenAiBatchImageProvider` changed between then and the first failure; the
+request body is byte-identical in shape; the same key uploads files, creates
+batches and runs `sync` fine.
+
+Ruled out, so nobody re-tries them:
+
+* **`purpose` on the uploaded image** — the thread reports `vision` and
+  `user_data` failing identically, and the 27 Aug failure was on the input
+  .jsonl, uploaded as `batch`.
+* **API key permissions** — upload, batch creation and sync all succeed on that
+  key.
+* **A race before the file is ready** — `SubmitEraAsync` now waits for the file
+  to report `processed` before creating the batch (correct regardless, and free)
+  and the failure persists.
+* **Inlining the image as base64** — `OpenAi:BatchInlineImage=true` swaps the
+  image `file_id` for a `data:` URL and uploads no image file at all (B11).
+  Tried, did not help, left in the code and defaulted off. It cannot fix the
+  input-.jsonl shape of the failure anyway: `CreateBatch` takes only
+  `input_file_id`, so that one file is unavoidable.
+
+Retrying costs nothing — a failed batch is not billed (`usage` all zeros,
+`completed: 0`) — so the cheapest check is to run `collect` again. `sync` works
+throughout because it never touches the Files API; it is the fallback, at full
+price with no batch discount.
+
 ## Conventions
 
 - Comments explain *why*, in prose, at the decision point — not what the line

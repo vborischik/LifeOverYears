@@ -1,6 +1,6 @@
 # Batch Smoke Test Report
 
-Generated: 2026-08-13T03:20:19.2567260+00:00
+Generated: 2026-08-28T03:37:13.4016500+00:00
 
 ## Check Results
 
@@ -15,4 +15,6 @@ Generated: 2026-08-13T03:20:19.2567260+00:00
 | B7 | An unknown batch status is treated as pending rather than fatal | ✅ PASS | unrecognised status returned false |
 | B8 | Collecting a year that was never submitted throws naming that year | ✅ PASS | missing job state reported against the year |
 | B9 | An era image already on disk collects with no API call and is not overwritten | ✅ PASS | existing file honoured, zero provider calls |
+| B10 | A completed batch whose line failed reports the provider's message, with or without an output file | ✅ PASS | rejection surfaced with the API's own wording in both shapes |
+| B11 | OpenAi:BatchInlineImage swaps the image file_id for an inline base64 data URL and uploads no image file; the default keeps the documented file_id form | ✅ PASS | both image-delivery shapes hold, and inline uploads nothing but the batch input |
 
