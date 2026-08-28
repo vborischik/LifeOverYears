@@ -1699,6 +1699,23 @@ public sealed class PromptService : IPromptService
     // consistent with each other.
     private const double GrowthDamping = 0.95;
 
+    // A second, blunter slowdown on top of it: whatever growth is left after the
+    // rate nudge above, keep 80% of it. The rates were derived from how a tree
+    // actually grows, but the run compresses fifty years into six frames, and a
+    // canopy that is arithmetically right still reads as time-lapse rather than
+    // as the same tree photographed again. Kept as its own lever because it
+    // answers a different question from GrowthDamping — that one adjusts the
+    // rate, this one says how much of the resulting growth to show.
+    private const double GrowthScale = 0.80;
+
+    // Applies the slowdown to a per-decade retention rate. Growth per decade is
+    // 1/retention, so the part above 1 is the growth itself: scale that and
+    // invert. Done on the rate rather than on either branch's output so the
+    // chained and unchained paths stay exact inverses — one states the ratio
+    // forward, the other the same ratio backward, and they must not drift.
+    private static double SlowGrowth(double retention) =>
+        1.0 / (1.0 + (1.0 / retention - 1.0) * GrowthScale);
+
     // Returns "" when the uploaded image already shows the tree at the right
     // size: the source year against the base, or a chained era whose comparator
     // is the same year. The caller drops the whole TREES section in that case.
@@ -1753,7 +1770,7 @@ public sealed class PromptService : IPromptService
 
     private static string DescribeTreeSize(string size, string? position, int year, int? chainedFromYear)
     {
-        var retention = IsBackgroundTree(position)
+        var retention = SlowGrowth(IsBackgroundTree(position)
             ? BackgroundRetention
             : size.ToLowerInvariant() switch
             {
@@ -1761,14 +1778,14 @@ public sealed class PromptService : IPromptService
                 "medium" => 0.78,
                 "small"  => 0.62,
                 _        => 0.78
-            } / GrowthDamping;
+            } / GrowthDamping);
 
         if (chainedFromYear is { } from)
         {
             // Growth between two eras of the same run. The ratio depends only on
             // the gap, so a decade step is the same multiplier wherever it falls
-            // on the run — 153% for a small tree, 106% for a large one, after
-            // GrowthDamping.
+            // on the run — 145% for a small tree, 105% for a large one, after
+            // GrowthDamping and GrowthScale.
             var decadesForward = (year - from) / 10;
             if (decadesForward == 0)
                 return "";

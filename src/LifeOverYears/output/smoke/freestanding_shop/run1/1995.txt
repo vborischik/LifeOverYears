@@ -68,7 +68,7 @@ ENVIRONMENT
 - utilities: overhead power lines standard, cable TV and early phone data lines on poles
 
 TREES
-- honey locust tree at lot edge beside the ground sign: a young tree, only about 30% of its canopy in the base image, thin trunk, in full summer leaf, an even healthy crown, the tree pit swept clear
+- honey locust tree at lot edge beside the ground sign: a young tree, only about 35% of its canopy in the base image, thin trunk, in full summer leaf, an even healthy crown, the tree pit swept clear
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE

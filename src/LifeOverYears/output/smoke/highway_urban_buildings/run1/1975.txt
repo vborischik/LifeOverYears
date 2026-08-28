@@ -54,7 +54,7 @@ ENVIRONMENT
 - utilities: tall steel lattice transmission towers following the roadway, wooden distribution poles along the frontage
 
 TREES
-- oak tree at background: clearly smaller than in the base image — about 65% of its canopy there, thinner trunk
+- oak tree at background: clearly smaller than in the base image — about 70% of its canopy there, thinner trunk
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE

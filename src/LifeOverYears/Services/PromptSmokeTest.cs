@@ -958,10 +958,10 @@ public static class PromptSmokeTest
             // absolute-rung ladder, the large tree does NOT clamp to the same
             // floor here (that flattening was exactly the bug being fixed).
             // Percentages here are post-GrowthDamping.
-            if (!run[1975].Text.Contains("a young tree, only about 10% of its canopy in the base image, thin trunk"))
-                errs.Add($"{label}/1975: missing small-tree young-canopy phrasing (10%)");
-            if (!run[1975].Text.Contains("clearly smaller than in the base image — about 35% of its canopy there, thinner trunk"))
-                errs.Add($"{label}/1975: missing medium-tree canopy phrasing (35%)");
+            if (!run[1975].Text.Contains("a young tree, only about 15% of its canopy in the base image, thin trunk"))
+                errs.Add($"{label}/1975: missing small-tree young-canopy phrasing (15%)");
+            if (!run[1975].Text.Contains("clearly smaller than in the base image — about 45% of its canopy there, thinner trunk"))
+                errs.Add($"{label}/1975: missing medium-tree canopy phrasing (45%)");
 
             // 2005 (2 decades back): the mature (large) tree is barely down.
             if (!run[2005].Text.Contains("slightly smaller than in the base image — about 90% of its canopy there"))
@@ -1032,8 +1032,17 @@ public static class PromptSmokeTest
                     else
                         labels.Add(line[linePrefix.Length..].Trim());
                 }
-                if (labels.Distinct().Count() != labels.Count)
-                    errs.Add($"{label}: mature tree size labels not distinct across years: {string.Join(" | ", labels)}");
+                // Not every era need differ any more. A large tree changes about
+                // 4% per decade once GrowthScale is applied, and percentages
+                // round to the nearest 5%, so two adjacent eras legitimately land
+                // on the same figure — a mature tree that barely moves in ten
+                // years is the honest result, not a bug. What this still has to
+                // catch is the original failure: an absolute ladder clamping
+                // every era to one rung. So require most eras to differ and the
+                // ends of the run to differ from each other.
+                var distinct = labels.Distinct().Count();
+                if (labels.Count > 0 && (distinct < labels.Count - 1 || labels[0] == labels[^1]))
+                    errs.Add($"{label}: mature tree barely varies across the run ({distinct} distinct of {labels.Count}): {string.Join(" | ", labels)}");
             }
         }
 
@@ -3530,9 +3539,9 @@ public static class PromptSmokeTest
         // Each rate carries PromptService.GrowthDamping, then rounds to 5%.
         var expected = new Dictionary<string, string>
         {
-            ["small"]  = "155%",   // 0.95 / 0.62
-            ["medium"] = "120%",   // 0.95 / 0.78
-            ["large"]  = "105%",   // 0.95 / 0.90
+            ["small"]  = "145%",   // 0.95 / 0.62, then GrowthScale
+            ["medium"] = "115%",   // 0.95 / 0.78, then GrowthScale
+            ["large"]  = "105%",   // 0.95 / 0.90, then GrowthScale
         };
 
         foreach (var year in Years)

@@ -76,8 +76,8 @@ DECAY
 - parking stripes worn down to faint outlines
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
-- crepe myrtle tree at parking lot island near entrance: clearly smaller than in the base image — about 65% of its canopy there, thinner trunk
-- maple tree at landscape strip along the road: clearly smaller than in the base image — about 80% of its canopy there, thinner trunk
+- crepe myrtle tree at parking lot island near entrance: clearly smaller than in the base image — about 70% of its canopy there, thinner trunk
+- maple tree at landscape strip along the road: slightly smaller than in the base image — about 85% of its canopy there
 - oak tree at back property line: slightly smaller than in the base image — about 95% of its canopy there
 Tree sizes MUST follow this specification even where they differ from the base image.
 

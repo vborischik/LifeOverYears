@@ -52,7 +52,7 @@ ENVIRONMENT
 - utilities: transmission towers alongside the roadway, unchanged in decades, LED light heads fitted onto the existing mast arms
 
 TREES
-- oak tree at background: slightly smaller than in the base image — about 90% of its canopy there
+- oak tree at background: slightly smaller than in the base image — about 95% of its canopy there
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE

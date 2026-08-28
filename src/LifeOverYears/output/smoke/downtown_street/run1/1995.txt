@@ -71,8 +71,8 @@ ENVIRONMENT
 - utilities: overhead power lines standard, cable TV and early phone data lines on poles
 
 TREES
-- oak tree at sidewalk left near corner: slightly smaller than in the base image — about 85% of its canopy there
-- maple tree at sidewalk center in front of retail: clearly smaller than in the base image — about 55% of its canopy there, thinner trunk
+- oak tree at sidewalk left near corner: slightly smaller than in the base image — about 90% of its canopy there
+- maple tree at sidewalk center in front of retail: clearly smaller than in the base image — about 60% of its canopy there, thinner trunk
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE

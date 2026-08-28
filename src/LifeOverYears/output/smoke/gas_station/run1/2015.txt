@@ -71,8 +71,8 @@ DECAY
 - faded storefront paint, one window papered over
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
-- cottonwood tree at northeast corner of lot: clearly smaller than in the base image — about 80% of its canopy there, thinner trunk
-- elm tree at sidewalk edge left of entrance: clearly smaller than in the base image — about 65% of its canopy there, thinner trunk
+- cottonwood tree at northeast corner of lot: slightly smaller than in the base image — about 85% of its canopy there
+- elm tree at sidewalk edge left of entrance: clearly smaller than in the base image — about 70% of its canopy there, thinner trunk
 - cedar tree at back fence line: slightly smaller than in the base image — about 95% of its canopy there
 Tree sizes MUST follow this specification even where they differ from the base image.
 

@@ -69,8 +69,8 @@ ENVIRONMENT
 - utilities: overhead power lines standard, cable and fiber lines on poles appearing
 
 TREES
-- cottonwood tree at northeast corner of lot: clearly smaller than in the base image — about 65% of its canopy there, thinner trunk
-- elm tree at sidewalk edge left of entrance: clearly smaller than in the base image — about 45% of its canopy there, thinner trunk
+- cottonwood tree at northeast corner of lot: clearly smaller than in the base image — about 75% of its canopy there, thinner trunk
+- elm tree at sidewalk edge left of entrance: clearly smaller than in the base image — about 50% of its canopy there, thinner trunk
 - cedar tree at back fence line: slightly smaller than in the base image — about 90% of its canopy there
 Tree sizes MUST follow this specification even where they differ from the base image.
 

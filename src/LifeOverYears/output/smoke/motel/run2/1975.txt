@@ -70,7 +70,7 @@ ENVIRONMENT
 - utilities: overhead power lines everywhere, wooden utility poles standard
 
 TREES
-- silver maple tree at lot edge beside the pylon sign: clearly smaller than in the base image — about 35% of its canopy there, thinner trunk
+- silver maple tree at lot edge beside the pylon sign: clearly smaller than in the base image — about 45% of its canopy there, thinner trunk
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE

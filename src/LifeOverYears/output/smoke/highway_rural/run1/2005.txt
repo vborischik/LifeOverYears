@@ -51,7 +51,7 @@ ENVIRONMENT
 - utilities: transmission towers alongside the roadway, sodium-vapor lighting with a few whiter lamps replaced in
 
 TREES
-- oak tree at background: clearly smaller than in the base image — about 85% of its canopy there, thinner trunk
+- oak tree at background: slightly smaller than in the base image — about 85% of its canopy there
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE

@@ -54,7 +54,7 @@ ENVIRONMENT
 - utilities: steel lattice transmission towers standing alongside the roadway, sodium-vapor lighting on mast arms over the lanes
 
 TREES
-- oak tree at background: clearly smaller than in the base image — about 70% of its canopy there, thinner trunk
+- oak tree at background: clearly smaller than in the base image — about 75% of its canopy there, thinner trunk
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE

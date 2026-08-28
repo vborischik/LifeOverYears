@@ -200,6 +200,99 @@ data/scenes/{id}.json      SceneDna persisted after analysis
 
 ---
 
+## Adding a New Era
+
+An era is a year the run renders. The six shipped years are 1975–2025 on a ten
+year step. Adding one (1965, 2035, …) touches more than the era file, because
+several things are anchored to the *set* of years rather than read from it.
+Traced from the code Aug 2026 — re-check before trusting it.
+
+### 1. The era profile — `data/eras/{year}.json`
+
+Copy the nearest year and edit. Twelve top-level keys, all required by the
+deserializer: `year`, `label`, `description`, `allowed_scene_conditions`,
+`people_mix`, `transportation`, `architecture`, `business`, `infrastructure`,
+`society`, `environment`, `photography`, `scene_content`.
+
+What C1 fails on, so get these right first:
+
+* `scene_content` must carry `downtown_street`, `gas_station`, `strip_mall`,
+  `auto_repair`, `corner_shop`, `motel`, `freestanding_shop`, `default`. The
+  shipped files also carry `mall`, `shopping_center`, `highway_urban`,
+  `highway_rural` — twelve keys in total. A missing key silently falls back to
+  `default`, which is why the check exists.
+* `people_mix` — at least 20 entries.
+* `people_activities` — at least 20 for `downtown_street`, `gas_station`,
+  `strip_mall`, `auto_repair`.
+* `photography.color_mode` must be present. C7 expects the oldest era to be
+  `black_and_white` and every later one colour.
+* `infrastructure.utilities` — `characteristics`, plus the optional
+  scene-specific pools (`downtown_characteristics`, `strip_mall_characteristics`,
+  `highway_characteristics`) and the `undergrounded` flag.
+* `allowed_scene_conditions` drives `PickSceneCondition`; a year that offers
+  nothing at or above the rank already reached holds the arc instead.
+
+### 2. The default year list — `Program.cs`
+
+Three separate literals, all `{ 1975, 1985, 1995, 2005, 2015, 2025 }`: the `run`
+mode default, the `assemble` fallback and the `collect` fallback for run folders
+predating `run.json`. Miss one and that entry point quietly ignores the new era.
+
+### 3. The tree anchor — `PromptService.SourceYear`
+
+Currently 2025, and it means "the year the base image already shows". **Only
+matters when the new era is newer than the current newest.** Leave it stale and
+`DescribeTreeSize` computes a fraction above 1 for that year and describes it
+with shrink wording — "slightly smaller … about 105% of its canopy".
+
+### 4. Decade spacing is load-bearing
+
+`DescribeTreeSize` counts steps with integer division by 10
+(`(SourceYear - year) / 10`, and `(year - from) / 10` when chained). A year that
+is not a whole decade from its neighbour — 2020, say — yields zero steps, the
+size string comes back empty and the era emits **no TREES section at all**. Off
+step years need that arithmetic reworked, not just a new file.
+
+### 5. Date-gated storylines — `GenerationContext`
+
+These encode real history and do not move with the year list; check each still
+reads correctly against the new span.
+
+| what | where | gate |
+|---|---|---|
+| corner shop turns liquor | `LiquorFromYear` | 2015 |
+| corner shop stops being kept up | `DeclineFromYear` | 2005 |
+| Blockbuster | `ResolveBlockbuster` | absent before 1990, named to 2009, ghost after |
+| RadioShack | `ResolveRadioShack` | generic before 1990, named to 2014, ghost after |
+| gas rebrand / motel reflag | `BuildGasPlan`, the motel equivalent | only plan a switch when the run spans ≥ 25 years |
+
+### 6. Brand files with year ranges — `data/brands/`
+
+`gas-brands.txt` and `motel-brands.txt` are `Name|from|to`. A new era outside
+every range still resolves (`PickEligibleAcross` relaxes to eligibility at the
+start year), but the result is a brand that did not exist then. Extend the
+ranges deliberately.
+
+### 7. The smoke suite — `PromptSmokeTest`
+
+* `Years` at the top of the file — the array every check iterates.
+* `DowntownCoffeePrices` — indexed by year with `[year]`, so a year without an
+  entry throws `KeyNotFoundException` and the whole run dies rather than failing
+  a check.
+* Hardcoded year expectations, all of which move when the span moves: C6 (tree
+  percentages at 1975 and 2005, and `year == 2025` standing in for the source
+  year), C7 (`run[1975]` black and white), C8, C45, C60, C70.
+
+### 8. What needs nothing
+
+Captions (`{firstYear}`/`{lastYear}` come from the narrative), video assembly and
+the year overlay are all generic over the list — `FfmpegProvider` derives its
+timeline from `images.Count`, and `TotalEras` is passed as `years.Count`
+everywhere in production. The `= 6` default on `GenerationContext.TotalEras` is
+only reached by fixtures that do not set it.
+
+---
+
 ## Current Status
 
 | Component | Status |

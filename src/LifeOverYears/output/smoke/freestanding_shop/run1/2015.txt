@@ -75,7 +75,7 @@ DECAY
 - a cracked window pane held with tape at one corner
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
-- honey locust tree at lot edge beside the ground sign: clearly smaller than in the base image — about 65% of its canopy there, thinner trunk, in leaf but untrimmed, suckers at the base and one dead limb
+- honey locust tree at lot edge beside the ground sign: clearly smaller than in the base image — about 70% of its canopy there, thinner trunk, in leaf but untrimmed, suckers at the base and one dead limb
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE

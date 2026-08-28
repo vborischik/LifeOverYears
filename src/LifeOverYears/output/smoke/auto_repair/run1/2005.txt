@@ -70,8 +70,8 @@ DECAY
 - a hand-lettered service sign taped inside the office glass
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
-- maple tree at street corner: clearly smaller than in the base image — about 65% of its canopy there, thinner trunk
-- elm tree at side yard: clearly smaller than in the base image — about 45% of its canopy there, thinner trunk
+- maple tree at street corner: clearly smaller than in the base image — about 75% of its canopy there, thinner trunk
+- elm tree at side yard: clearly smaller than in the base image — about 50% of its canopy there, thinner trunk
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE

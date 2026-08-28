@@ -72,7 +72,7 @@ DECAY
 - rust streaked down the wall below a through-wall air unit
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
-- silver maple tree at lot edge beside the pylon sign: clearly smaller than in the base image — about 80% of its canopy there, thinner trunk
+- silver maple tree at lot edge beside the pylon sign: slightly smaller than in the base image — about 85% of its canopy there
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE

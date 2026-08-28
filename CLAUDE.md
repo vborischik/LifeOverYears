@@ -27,7 +27,10 @@ src/LifeOverYears/
 ```
 
 Docs in `docs/` are conceptual design notes and drift from the code; trust the
-code and this file first.
+code and this file first. `CONTEXT.md` holds the layering rules and a traced
+checklist for **adding a new era** — the year list is anchored in more places
+than the era file (tree anchor, decade arithmetic, date-gated storylines,
+smoke expectations).
 
 ## Commands
 
@@ -75,12 +78,19 @@ frame unless a prompt explicitly asks for its removal. A block that merely
 
 **Tree size** — `PromptService.DescribeTreeSize`. Per-decade retention rates by
 recorded size (large .90 / medium .78 / small .62), all divided by
-`GrowthDamping` (0.95, a deliberate 5% slowdown, Aug 2026). A tree whose
+`GrowthDamping` (0.95, a deliberate rate nudge, Aug 2026), then run through
+`SlowGrowth`, which keeps only `GrowthScale` (0.80) of whatever growth is left —
+a second, blunter slowdown added Aug 2026 because arithmetically-correct canopies
+still read as time-lapse. Per decade after both: small 145%, medium 115%, large
+105%. Applied to the rate, never to one branch's output, so the two paths stay
+exact inverses. A tree whose
 position contains "background" ignores its recorded size and takes
 `BackgroundRetention` (0.92, already damped) instead: on the ordinary rate a
 background medium tree tripled across the run and covered the sign gantry
-behind it. That path ends the run at ~155-160% of the first era, and C70
-asserts the ceiling in both the chained and unchained branches. Chained runs read as
+behind it. That path ends the run at ~130-145% of the first era, and C70
+asserts the ceiling in both the chained and unchained branches. A large tree now
+changes less than the 5% rounding step per decade, so two adjacent eras may state
+the same figure — C6 allows that and only fails if the run flattens outright. Chained runs read as
 growth against the uploaded previous era; unchained runs as a fraction of the
 base image. The two paths are exact inverses — change retention, not one branch.
 Percentages round to the nearest 5%. The source year (2025) emits no TREES

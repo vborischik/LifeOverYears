@@ -70,9 +70,9 @@ ENVIRONMENT
 - utilities: overhead power lines everywhere, wooden utility poles standard
 
 TREES
-- crepe myrtle tree at parking lot island near entrance: a young tree, only about 10% of its canopy in the base image, thin trunk
-- maple tree at landscape strip along the road: clearly smaller than in the base image — about 35% of its canopy there, thinner trunk
-- oak tree at back property line: clearly smaller than in the base image — about 75% of its canopy there, thinner trunk
+- crepe myrtle tree at parking lot island near entrance: a young tree, only about 15% of its canopy in the base image, thin trunk
+- maple tree at landscape strip along the road: clearly smaller than in the base image — about 45% of its canopy there, thinner trunk
+- oak tree at back property line: clearly smaller than in the base image — about 80% of its canopy there, thinner trunk
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE
