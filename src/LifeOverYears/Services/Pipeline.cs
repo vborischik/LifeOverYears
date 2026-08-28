@@ -18,6 +18,13 @@ public sealed class Pipeline
     private readonly ICaptionService _caption;
     private readonly string _baseMode;
     private readonly bool _eraChaining;
+
+    // Writes a second, shorter copy of every prompt beside the normal ones.
+    // Off by default: it is a hand-use artefact, not part of generating a video,
+    // and nothing downstream reads it. Worth having on, because a run's prompts
+    // are the only moment the arc exists in full — regenerating them later means
+    // finding the run folder again.
+    private readonly bool _shortPrompts;
     private readonly ILogger<Pipeline> _logger;
 
     public Pipeline(
@@ -31,6 +38,7 @@ public sealed class Pipeline
         ICaptionService caption,
         string baseMode,
         bool eraChaining,
+        bool shortPrompts,
         ILogger<Pipeline> logger)
     {
         _vision = vision;
@@ -43,6 +51,7 @@ public sealed class Pipeline
         _caption = caption;
         _baseMode = baseMode;
         _eraChaining = eraChaining;
+        _shortPrompts = shortPrompts;
         _logger = logger;
     }
 
@@ -83,6 +92,14 @@ public sealed class Pipeline
             prompts[year] = prompt;
             await _data.SavePromptAsync(prompt);
             await File.WriteAllTextAsync(Path.Combine(run.PromptsDir, $"{year}.txt"), prompt.Text);
+
+            if (_shortPrompts)
+            {
+                var shortDir = Path.Combine(run.Root, ShortPromptWriter.OutputDirName);
+                Directory.CreateDirectory(shortDir);
+                await File.WriteAllTextAsync(
+                    Path.Combine(shortDir, $"{year}.txt"), ShortPromptWriter.Rewrite(prompt.Text));
+            }
             _logger.LogInformation("Step 2 — prompt built: year={Year} id={Id} length={Length}",
                 year, prompt.Id, prompt.Text.Length);
         }

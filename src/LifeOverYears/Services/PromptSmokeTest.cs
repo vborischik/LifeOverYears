@@ -67,6 +67,8 @@ public static class PromptSmokeTest
         var highwayUrbanScene = MakeHighwayScene("urban");
         var highwayRuralScene = MakeHighwayScene("rural");
         var highwayBuiltScene = MakeHighwayScene("urban", withBuildings: true);
+        var mallScene2          = MakeMallScene();
+        var shoppingCenterScene = MakeShoppingCenterScene();
         var unknownScene   = MakeUnknownScene();
 
         // Load all era profiles
@@ -92,6 +94,10 @@ public static class PromptSmokeTest
         var hwUrban = await BuildRun(promptService, highwayUrbanScene, eras, 42, Years);
         var hwRural = await BuildRun(promptService, highwayRuralScene, eras, 42, Years);
         var hwBuilt = await BuildRun(promptService, highwayBuiltScene, eras, 42, Years);
+        // The two packed scene types had fixtures but no run of their own, so
+        // nothing walked them era by era the way every other type is walked.
+        var mallRun = await BuildRun(promptService, mallScene2,          eras, 42, Years);
+        var scRun   = await BuildRun(promptService, shoppingCenterScene, eras, 42, Years);
 
         // c) Unknown scene — 1985 only, must not throw
         var unknownCtx    = new GenerationContext { Random = new Random(42), TotalEras = 1 };
@@ -121,6 +127,8 @@ public static class PromptSmokeTest
         // The same urban flavor with buildings in frame — the only run that
         // carries background tenants, kept separate so both cases are readable.
         await SaveRun("highway_urban_buildings", 1, hwBuilt);
+        await SaveRun(mallScene2.SceneType,          1, mallRun);
+        await SaveRun(shoppingCenterScene.SceneType, 1, scRun);
         await SaveRun(unknownScene.SceneType,   1, new Dictionary<int, Prompt> { { 1985, unknownPrompt } });
 
         // d) Checks C1–C25
@@ -196,6 +204,18 @@ public static class PromptSmokeTest
         DoC68(gasRun1, dtRun1, hwUrban, hwRural, hwBuilt, findings);
         await DoC69(promptService, highwayUrbanScene, highwayBuiltScene, downtownScene, findings);
         await DoC70(promptService, eras, highwayUrbanScene, downtownScene, findings);
+        DoC73(new (string, Dictionary<int, Prompt>)[]
+        {
+            ("gas_station", gasRun1), ("downtown_street/run1", dtRun1), ("downtown_street/run2", dtRun2),
+            ("strip_mall/run1", smRun1), ("strip_mall/run2", smRun2),
+            ("auto_repair/run1", arRun1), ("auto_repair/run2", arRun2),
+            ("corner_shop/run1", csRun1), ("corner_shop/run2", csRun2),
+            ("freestanding_shop/run1", fsRun1), ("freestanding_shop/run2", fsRun2),
+            ("motel/run1", mtRun1), ("motel/run2", mtRun2),
+            ("highway_urban", hwUrban), ("highway_rural", hwRural), ("highway_urban_buildings", hwBuilt),
+            ("mall", mallRun), ("shopping_center", scRun),
+        }, unknownPrompt, findings);
+        await DoC74(promptService, eras, logger, findings);
         DoC62(csRun1, csRun2, gasRun1, dtRun1, smRun1, arRun1, findings);
         await DoC61(dataService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
         await DoC72(dataService, logger, findings);
@@ -644,6 +664,59 @@ public static class PromptSmokeTest
             "uniform row of numbered guest doors",
             "paired window beside each door",
             "freestanding pylon sign out by the road"
+        ]);
+
+    private static SceneDna MakeShoppingCenterScene() => new(
+        Id:        "smoke-shopping-center",
+        CreatedAt: "2025-01-01T00:00:00Z",
+        SceneType: "shopping_center",
+        Camera: new Camera(Height: "eye-level", Direction: "facade", Fov: 80),
+        Geometry: new Geometry(
+            Roads:
+            [
+                new Road(
+                    Type:     "commercial arterial",
+                    Lanes:    4,
+                    Markings: ["yellow center line", "white edge lines", "turn lane arrows"],
+                    Surface:  "asphalt")
+            ],
+            Sidewalks: true,
+            Curbs:     true,
+            Buildings:
+            [
+                // The stepped parapet and one oversized unit are what make this a
+                // shopping_center rather than a strip_mall — see vision.txt.
+                new Building(
+                    Type:      "anchor store block with its own raised parapet",
+                    Position:  "left of the run, set slightly forward",
+                    Stories:   1,
+                    Materials: ["concrete block", "brick veneer"],
+                    Roof:      "flat, raised parapet",
+                    Setback:   "120 feet from road"),
+                new Building(
+                    Type:      "inline retail block, lower parapet",
+                    Position:  "right of the anchor, continuing the run",
+                    Stories:   1,
+                    Materials: ["concrete block", "plate glass"],
+                    Roof:      "flat",
+                    Setback:   "120 feet from road")
+            ],
+            Driveways: ["main entrance apron", "service drive at the far end"],
+            Parking:   "large surface lot in front of the run"),
+        Environment: new Environment(
+            Terrain:   "suburban flat",
+            Utilities: ["lot light poles", "overhead power lines along the road frontage"],
+            Trees:
+            [
+                new Tree(Position: "planter island mid-lot", Size: "small",  Type: "pear"),
+                new Tree(Position: "lot perimeter",          Size: "medium", Type: "maple")
+            ],
+            Landscape: ["planter islands between parking rows", "grass verge along the road"]),
+        ImmutableElements:
+        [
+            "stepped parapet line across the run",
+            "freestanding pylon sign at the road",
+            "continuous walkway canopy in front of the inline units"
         ]);
 
     private static SceneDna MakeMallScene() => new(
@@ -2321,7 +2394,10 @@ public static class PromptSmokeTest
         List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
-        string[] markers = { "Blockbuster", "torn-ticket", "blue fascia" };
+        // "wide patch" is the ghost form: the sign is gone, so the only thing
+        // that still identifies the tenant is how much wall it left behind.
+        // RadioShack's ghost says "small patch" and is allowed here.
+        string[] markers = { "Blockbuster", "torn-ticket", "wide patch of less-faded wall" };
 
         foreach (var (run, label) in new[] { (dtRun1, "downtown/run1"), (dtRun2, "downtown/run2") })
             foreach (var (year, prompt) in run)
@@ -3679,7 +3755,10 @@ public static class PromptSmokeTest
         List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
-        const string removal = "overhead utilities are gone in this era";
+        // Matched on the instruction, not on a description of the end state:
+        // the utilities pool already says there are no poles, and only this line
+        // acts on the poles that are in the picture being edited.
+        const string removal = "are gone in this era: remove every";
         int[] undergroundYears = { 2015, 2025 };
 
         void CheckBuried(Dictionary<int, Prompt> run, string label)
@@ -5057,6 +5136,198 @@ public static class PromptSmokeTest
             errs.Count == 0, errs.Count == 0
                 ? $"{brands.Count} chains, {flagged.Count} distinct flags across {seeds} seeds, {reflagRate:P0} of runs reflag, every flag inside its own year window"
                 : Join(errs)));
+    }
+
+    // The Meta line is a rewrite of a finished prompt, so it inherits everything
+    // the builder decided and only restates it. What it has to guarantee is the
+    // part the builder is free to ignore: no person paired with alcohol or with
+    // nowhere to be, no count Meta will not honour, and the sign that dates the
+    // frame still present. Run over the real prompts of every scene type,
+    // because the wording it has to remove is generated, not written by hand.
+    private static void DoC73(
+        IReadOnlyList<(string Label, Dictionary<int, Prompt> Run)> runs,
+        Prompt unknownPrompt,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        // Everything that reads as a person drinking or with nowhere to be. The
+        // trade itself is fine — a liquor store is a shop, and its sign is the
+        // whole point of the corner-shop arc — so shop nouns are not listed.
+        string[] banned =
+        {
+            "bottle in a paper bag", "bottle in a black plastic bag", "sharing a bottle",
+            "already drinking", "drink out of sight", "nothing to do",
+            "nobody lives here", "no tents", "bedding", "shopping carts",
+            "regulars of this store", "out of the wind", "squatted",
+        };
+
+        var rewritten = 0;
+        var all = runs
+            .SelectMany(r => r.Run.Select(kv => ($"{r.Label}/{kv.Key}", kv.Value)))
+            .Append(("unknown", unknownPrompt))
+            .ToList();
+
+        foreach (var (where, prompt) in all)
+            {
+                var meta = ShortPromptWriter.Rewrite(prompt.Text);
+                rewritten++;
+
+                foreach (var phrase in banned)
+                    if (meta.Contains(phrase, StringComparison.OrdinalIgnoreCase))
+                        errs.Add($"{where}: rewritten prompt still contains \"{phrase}\"");
+
+                // Above three, an exact count comes back as something else, so
+                // the rewrite must have turned it into a small-group phrase.
+                var m = System.Text.RegularExpressions.Regex.Match(meta, @"^(\d+) people,", System.Text.RegularExpressions.RegexOptions.Multiline);
+                if (m.Success && int.Parse(m.Groups[1].Value) > 3)
+                    errs.Add($"{where}: rewritten prompt still asks for {m.Groups[1].Value} people by count");
+
+                var vehicles = System.Text.RegularExpressions.Regex.Match(meta, @"EXACTLY (\d+) vehicle");
+                if (vehicles.Success && int.Parse(vehicles.Groups[1].Value) > 2)
+                    errs.Add($"{where}: rewritten prompt lists {vehicles.Groups[1].Value} vehicles (max 2)");
+
+                // Structure the hand user depends on.
+                foreach (var heading in new[] { "TRANSFORM TO", "PEOPLE", "VEHICLES" })
+                    if (!meta.Contains(heading, StringComparison.Ordinal))
+                        errs.Add($"{where}: rewritten prompt lost the {heading} section");
+
+                // The sign dates the frame; losing it to a word filter is the
+                // failure this guards, and it happened once already.
+                if (prompt.Text.Contains("- main sign:", StringComparison.Ordinal)
+                    && !meta.Contains("main sign", StringComparison.Ordinal))
+                    errs.Add($"{where}: the main sign was filtered out of the rewrite");
+
+                // The whole reason this line exists. A rewrite that grew would
+                // mean the section builders had started adding rather than
+                // restating, which is how the two lines drift apart.
+                if (meta.Length >= prompt.Text.Length)
+                    errs.Add($"{where}: the short prompt is not shorter ({meta.Length} vs {prompt.Text.Length} chars)");
+            }
+
+        f.Add(("C73", "The Meta rewrite of every era prompt drops the alcohol and nowhere-to-be wording, holds people to a small group and vehicles to two, and keeps the main sign",
+            errs.Count == 0, errs.Count == 0
+                ? $"{rewritten} prompts rewritten clean across every scene type"
+                : Join(errs.Take(5))));
+    }
+
+    // Ten hand-written fixtures test ten shapes, and every rule in the builder
+    // has been written against those same ten. What they do not contain is the
+    // shape nobody thought of: a corner shop with no trees, a strip mall with a
+    // sidewalk, a highway with an empty buildings array. SceneDnaFactory makes
+    // those from a seed with no photo and no Vision call, and this walks a fresh
+    // scene for every type across several seeds looking only for the failures a
+    // fixture cannot show — a throw, a blown budget, a placeholder left in.
+    //
+    // It doubles as the standing proof that a synthetic base needs no Vision at
+    // all: every prompt here, base included, is built from generated text.
+    private static async Task DoC74(
+        IPromptService promptService,
+        Dictionary<int, EraProfile> eras,
+        ILogger logger,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        const int seedsPerType = 6;
+        const int maxWords = 920;
+
+        int WordCount(string t) =>
+            t.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries)
+             .Count(x => x.Any(char.IsLetterOrDigit));
+
+        var built = 0;
+        var noTrees = 0;
+        var noBuildings = 0;
+
+        foreach (var sceneType in SceneDnaFactory.SceneTypes)
+            for (var seed = 0; seed < seedsPerType; seed++)
+            {
+                SceneDna scene;
+                try
+                {
+                    scene = SceneDnaFactory.Create(sceneType, seed);
+                }
+                catch (Exception ex)
+                {
+                    errs.Add($"{sceneType}/seed {seed}: generating the scene threw: {ex.Message}");
+                    continue;
+                }
+
+                if (scene.Environment.Trees.Count == 0) noTrees++;
+                if (scene.Geometry.Buildings.Count == 0) noBuildings++;
+
+                // The synthetic base is the whole point: no photo went into it.
+                try
+                {
+                    var basePrompt = await promptService.BuildBaseAsync(scene, Years[0]);
+                    if (basePrompt.Contains('{') || basePrompt.Contains('}'))
+                        errs.Add($"{sceneType}/seed {seed}: base prompt has an unsubstituted placeholder");
+                    if (basePrompt.Length < 200)
+                        errs.Add($"{sceneType}/seed {seed}: base prompt is only {basePrompt.Length} chars");
+                }
+                catch (Exception ex)
+                {
+                    errs.Add($"{sceneType}/seed {seed}: BuildBaseAsync threw: {ex.Message}");
+                    continue;
+                }
+
+                var ctx = new GenerationContext
+                    { Random = new Random(seed), TotalEras = Years.Length, Years = Years };
+                foreach (var year in Years)
+                {
+                    try
+                    {
+                        var prompt = await promptService.BuildAsync(scene, eras[year], ctx);
+                        built++;
+
+                        var where = $"{sceneType}/seed {seed}/{year}";
+                        if (prompt.Text.Contains('{') || prompt.Text.Contains('}'))
+                            errs.Add($"{where}: unsubstituted placeholder in the prompt");
+                        if (prompt.Text.Length > MaxPromptChars)
+                            errs.Add($"{where}: {prompt.Text.Length} chars (max {MaxPromptChars})");
+                        if (WordCount(prompt.Text) >= maxWords)
+                        {
+                            errs.Add($"{where}: {WordCount(prompt.Text)} words (limit {maxWords})");
+                            // Written out because a generated scene cannot be
+                            // reproduced by opening a fixture — the seed is the
+                            // only handle on it, and the prompt is what shows
+                            // which combination got long.
+                            var dump = Path.Combine("output", "smoke", "oversize");
+                            Directory.CreateDirectory(dump);
+                            await File.WriteAllTextAsync(
+                                Path.Combine(dump, $"{sceneType}-seed{seed}-{year}.txt"), prompt.Text);
+                        }
+
+                        // The short line has to survive an unfamiliar shape too.
+                        var shortForm = ShortPromptWriter.Rewrite(prompt.Text);
+                        if (shortForm.Length >= prompt.Text.Length)
+                            errs.Add($"{where}: the short prompt is not shorter");
+                    }
+                    catch (Exception ex)
+                    {
+                        errs.Add($"{sceneType}/seed {seed}/{year}: BuildAsync threw: {ex.Message}");
+                    }
+                }
+
+                if (errs.Count > 12) break;   // the first dozen say what is wrong
+            }
+
+        // Reported because a generator that stopped producing these would make
+        // the check pass while testing nothing new.
+        logger.LogInformation(
+            "[Smoke] C74 generated scenes: {Built} prompts over {Types} scene types x {Seeds} seeds; " +
+            "{NoTrees} scenes with no trees, {NoBuildings} with no buildings",
+            built, SceneDnaFactory.SceneTypes.Count, seedsPerType, noTrees, noBuildings);
+
+        if (noTrees == 0)
+            errs.Add("no generated scene came out without trees — the tree-free path is untested");
+        if (noBuildings == 0)
+            errs.Add("no generated scene came out without buildings — the open-road path is untested");
+
+        f.Add(("C74", $"Prompts and a synthetic base build from generated SceneDna for every scene type over {seedsPerType} seeds, with no photo and no Vision call, inside the same budgets",
+            errs.Count == 0, errs.Count == 0
+                ? $"{built} prompts from generated scenes; {noTrees} tree-free and {noBuildings} building-free shapes covered"
+                : Join(errs.Take(6))));
     }
 
     // ── Report ────────────────────────────────────────────────────────────────

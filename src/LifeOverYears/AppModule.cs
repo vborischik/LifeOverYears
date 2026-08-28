@@ -92,9 +92,14 @@ public sealed class AppModule : Module
         // the sum of its windows.
         var eraChaining = _configuration.GetValue("Pipeline:EraChaining", true);
 
+        // Writes {runFolder}/short-prompts/ during a normal run, so the
+        // hand-usable copies exist without having to come back with the
+        // 'short-prompts' CLI mode later.
+        var shortPrompts = _configuration.GetValue("Pipeline:ShortPrompts", false);
+
         _loggerFactory.CreateLogger<AppModule>().LogInformation(
-            "Image generation provider: enabled={Enabled}, mode={Mode}, baseMode={BaseMode}, eraChaining={EraChaining}",
-            imagesEnabled, imagesMode, baseMode, eraChaining);
+            "Image generation provider: enabled={Enabled}, mode={Mode}, baseMode={BaseMode}, eraChaining={EraChaining}, shortPrompts={ShortPrompts}",
+            imagesEnabled, imagesMode, baseMode, eraChaining, shortPrompts);
 
         if (!imagesEnabled)
         {
@@ -162,6 +167,7 @@ public sealed class AppModule : Module
                     _.Resolve<ICaptionService>(),
                     baseMode,
                     eraChaining,
+                    shortPrompts,
                     _loggerFactory.CreateLogger<Pipeline>()))
                .SingleInstance();
     }

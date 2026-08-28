@@ -1,0 +1,79 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+PRIORITY ORDER — when instructions conflict, the lower number wins
+1. The uploaded image's composition and geometry.
+2. The exact people and vehicle counts given below.
+3. The historical transformation for the target year.
+4. The specific period details listed — each only where the geometry has room
+   for it; one with nowhere to go is left out, never forced into the roadway.
+5. Add nothing that is not asked for — no extra businesses, signs, vehicles,
+   people, logos or advertisements.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove the
+modern businesses, logos, brands, storefront names, banners and advertisements
+visible in the source image, and replace them only with the period signage
+specified below.
+
+PRESERVE
+Keep the uploaded image's composition, camera angle, geometry, buildings,
+roads and permanent structures exactly as they are. Do not redraw,
+reposition or restyle them. Change only what the sections below ask for.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
+
+TRANSFORM TO 1995
+Clinton era prosperity. A 1995 open-air shopping center holding steady — the anchor block refaced with a taller parapet, a video store and a discount clothier in the middle units.
+
+PERIOD DETAILS
+- standalone drive-through restaurants
+- the anchor block refaced with a taller stucco parapet and a new sign band
+- vast parking lots
+- window signs: 'TJ MAXX', 'BLOCKBUSTER VIDEO'
+- a painted crosswalk from the islands to the anchor
+- planted islands with young ornamental trees
+Typography: clean geometric sans-serif, early digital influence.
+Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
+
+SIGNAGE RESTRICTION
+The only readable text anywhere in the image is:
+'TJ MAXX'
+'BLOCKBUSTER VIDEO'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
+
+PEOPLE
+A DENSE CROWD of shoppers — far too many to count: a steady stream in and out of the entrance doors, groups moving between parked cars, clusters waiting near the doors, foreground figures sharp and background figures loose. Do not render an empty or sparse scene.
+- shoppers cutting between the planted islands
+- two teenagers reading the new release wall through the glass
+- a man in a Starter jacket waiting at a bus stop
+Clothing: men in baggy jeans, windbreakers; women in floral dresses, chokers. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+
+VEHICLES
+A FULL parking lot — every stall occupied in unbroken rows out to the far edge, too many vehicles to count, no empty stalls in the foreground. Representative models visible near the camera:
+- 1992-1996 Ford F-150 — rounded aero body — hunter green
+- 1991-1996 Ford Escort — small rounded economy car — white
+- 1989-1997 Geo Metro — very small economy hatchback — teal
+- 1992-1996 Toyota Camry — rounded, understated — burgundy
+- 1988-1998 Chevrolet C/K 1500 — softly squared pickup — black
+Every other vehicle in the lot is period-correct for 1995; nothing newer. All nose-in or angled into stalls; none parallel-parked.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, turn lane arrows
+- utilities: overhead power lines standard, cable TV and early phone data lines on poles
+
+TREES
+- pear tree at planter island mid-lot: a young tree, only about 35% of its canopy in the base image, thin trunk
+- maple tree at lot perimeter: clearly smaller than in the base image — about 60% of its canopy there, thinner trunk
+Tree sizes MUST follow this specification even where they differ from the base image.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — Kodak Gold 200 or Fujifilm Superia 200 look.
+Color: neutral to slightly warm tones. Grain: fine grain, cleaner than 1985.
+Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+
+PRIVACY
+Blur all faces and license plates.

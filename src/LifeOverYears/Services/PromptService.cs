@@ -1632,10 +1632,13 @@ public sealed class PromptService : IPromptService
         // otherwise inherit a removal line and lose the towers and gantries it
         // still carries in 2025.
         if (usingScenePool && !isHighway && infra.Utilities.Undergrounded)
+            // The utilities line above already says there are no poles now. What
+            // it cannot do is act on the picture in hand, which still has them —
+            // so this says only that, and does not restate the end state.
             sb.AppendLine(
-                "- overhead utilities are gone in this era — the one exception to PRESERVE: remove every " +
-                $"utility pole, crossarm, pole transformer and wire span {(isDowntown ? "along the street" : "over the lot")}, " +
-                "and rebuild the clean sky and the facades behind them. Everything else stays exactly as it is.");
+                "- the poles and wires still visible in the uploaded image are gone in this era: remove every " +
+                $"pole, crossarm and wire span {(isDowntown ? "along the street" : "over the lot")} and rebuild the sky " +
+                "behind them. This is the one exception to PRESERVE; everything else stays as it is.");
         sb.Append(BuildDecayBlock(condition, sceneType, rng));
 
         // What the model is actually looking at. Unchained, every era edits the

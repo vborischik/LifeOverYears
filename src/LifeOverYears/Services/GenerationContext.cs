@@ -663,7 +663,7 @@ public sealed class GenerationContext
             ChainSignKind.Named => year < 1996
                 ? "a Blockbuster Video store in the row, blue storefront sign with the yellow torn-ticket logo, the ticket larger on this earlier wordmark"
                 : "a Blockbuster store in the row, blue storefront sign with the yellow torn-ticket logo",
-            ChainSignKind.Ghost => "the unit where the store was, a rectangular patch of less-faded wall above the door where the sign board was removed, anchor holes still visible, a lighter band along the top where the blue fascia ran, no lettering at all",
+            ChainSignKind.Ghost => "the unit where the store was, a wide patch of less-faded wall above the door, anchor holes still visible, no lettering at all",
             _ => throw new InvalidOperationException($"Unexpected Blockbuster sign kind: {kind}")
         };
 
@@ -691,7 +691,7 @@ public sealed class GenerationContext
                 ? "a small radio and electronics shop, hand-lettered window sign reading CB RADIOS - ANTENNAS - SCANNERS, no chain name anywhere"
                 : "a small radio and electronics shop, hand-lettered window sign reading STEREO - SPEAKERS - TAPES, no chain name anywhere",
             ChainSignKind.Named => "a RadioShack store, red sign board with white lettering",
-            ChainSignKind.Ghost => "the unit where the store was, a rectangular patch of less-faded wall above the door where the sign board was removed, anchor holes still visible, no lettering at all",
+            ChainSignKind.Ghost => "the unit where the store was, a small patch of less-faded wall beside the door, anchor holes still visible, no lettering at all",
             _ => throw new InvalidOperationException($"Unexpected RadioShack sign kind: {kind}")
         };
 

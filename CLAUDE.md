@@ -43,6 +43,7 @@ dotnet run -- run <photo> [years...]      # full pipeline
 dotnet run -- collect <runFolder> [--wait]  # finish a batch run, assemble video
 dotnet run -- assemble <runFolder> [years...]
 dotnet run -- vision-variance <folder> [--repeat N]
+dotnet run -- short-prompts <runFolder>   # shorter prompt text, offline, free
 ```
 
 **Fetch before you read anything.** `git fetch origin main` is the first action
@@ -251,6 +252,33 @@ picked per era in `GenerationContext.PickSceneCondition` for gas_station,
 downtown_street, strip_mall, auto_repair, corner_shop and motel. The rank is monotonic across a run
 (a place never quietly recovers mid-arc); only the last era resolves it.
 Derelict eras replace the live-business PERIOD DETAILS block entirely.
+
+**Short prompts** — `Pipeline:ShortPrompts=true` writes
+`<runFolder>/short-prompts/` during a normal run; `dotnet run -- short-prompts
+<runFolder>` does the same for a run that already finished.
+`Services/ShortPromptWriter.cs` reads and writes files only — no API, no cost,
+and nothing in the pipeline imports it. It is a rewrite of the finished prompt
+rather than a second builder, so the two lines cannot describe different scenes.
+The full prompt assumes a model that reads 900 words and honours an exact count
+of nine people; most will not. The short form keeps the same scene in a third of
+the length: people held to a small group with one plain action, `abandoned` and
+`squatted` restated as physical states with nobody in them, vehicles capped at
+two, and the main sign pinned first so a word filter cannot drop the thing that
+dates the frame. The signage whitelist is kept verbatim — a liquor store is a
+shop, and its sign is the corner-shop arc. Written for Meta's tools, but nothing
+in it is specific to them: it is the version to try first anywhere the long form
+comes back as a different place. Locked by C73 over every scene type.
+
+**Generated scenes** — `Services/SceneDnaFactory.Create(sceneType, seed)` builds
+a plausible SceneDna with no photo and no Vision call. Under
+`BaseMode=synthetic` the photo is never sent anywhere — the base is drawn from
+SceneDna *text* — so Vision there only turns one photo into that text, and the
+text can be generated instead. Used today by C74, which walks every scene type
+over six seeds and builds a synthetic base plus all six eras from each: 360
+prompts against shapes the ten fixtures do not contain (no trees, no buildings,
+sidewalks where the fixture had none). It found a real budget overrun on its
+first run. The production path — running with no photo at all — is one CLI mode
+away and not written yet.
 
 ## Known outage: Batch API cannot resolve file ids (from 19 Aug 2026)
 

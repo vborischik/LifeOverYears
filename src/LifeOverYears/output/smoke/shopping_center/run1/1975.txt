@@ -1,0 +1,79 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+PRIORITY ORDER — when instructions conflict, the lower number wins
+1. The uploaded image's composition and geometry.
+2. The exact people and vehicle counts given below.
+3. The historical transformation for the target year.
+4. The specific period details listed — each only where the geometry has room
+   for it; one with nowhere to go is left out, never forced into the roadway.
+5. Add nothing that is not asked for — no extra businesses, signs, vehicles,
+   people, logos or advertisements.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove the
+modern businesses, logos, brands, storefront names, banners and advertisements
+visible in the source image, and replace them only with the period signage
+specified below.
+
+PRESERVE
+Keep the uploaded image's composition, camera angle, geometry, buildings,
+roads and permanent structures exactly as they are. Do not redraw,
+reposition or restyle them. Change only what the sections below ask for.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
+
+TRANSFORM TO 1975
+Post-Vietnam, oil crisis era. A 1975 open-air shopping center still new — several stepped retail blocks under separate parapets, a supermarket anchoring the long end, small shops filling the rest, the lot busy all day.
+
+PERIOD DETAILS
+- low single-story buildings
+- backlit plastic channel letters
+- limited color palettes per sign
+- window signs: 'WOOLWORTH', 'GROCERIES'
+- wire cart corrals near the anchor doors
+- long planted islands splitting the parking rows
+Typography: bold sans-serif, slab serif, occasional script.
+Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
+
+SIGNAGE RESTRICTION
+The only readable text anywhere in the image is:
+'WOOLWORTH'
+'GROCERIES'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
+
+PEOPLE
+A DENSE CROWD of shoppers — far too many to count: a steady stream in and out of the entrance doors, groups moving between parked cars, clusters waiting near the doors, foreground figures sharp and background figures loose. Do not render an empty or sparse scene.
+- two boys sitting on the walkway edge with bottles of soda
+- a woman pushing a loaded cart out to a station wagon
+- a police officer in a short-sleeve summer uniform directing traffic
+Clothing: men in turtlenecks, wide lapels; women in wide leg pants, peasant blouses. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+
+VEHICLES
+A FULL parking lot — every stall occupied in unbroken rows out to the far edge, too many vehicles to count, no empty stalls in the foreground. Representative models visible near the camera:
+- 1971-1978 Ford Econoline — boxy full-size van, flat nose
+- 1971-1980 Chevrolet Vega — small subcompact hatchback/wagon
+- 1973-1979 Ford F-100 — square body, chrome grille
+- 1969-1978 Ford Country Squire — full-size wood-paneled station wagon
+- 1973-1978 Datsun 610 — compact sedan/wagon, boxy
+Every other vehicle in the lot is period-correct for 1975; nothing newer. All nose-in or angled into stalls; none parallel-parked.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, no rumble strips
+- utilities: overhead power lines everywhere, wooden utility poles standard
+
+TREES
+- pear tree at planter island mid-lot: a young tree, only about 15% of its canopy in the base image, thin trunk
+- maple tree at lot perimeter: clearly smaller than in the base image — about 45% of its canopy there, thinner trunk
+Tree sizes MUST follow this specification even where they differ from the base image.
+
+PHOTOGRAPHIC STYLE
+STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.
+Grain: visible fine grain. Style: documentary, natural light.
+Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.
+Light: bright open daylight, clear sky, soft natural shadows — a fine, ordinary day.
+
+PRIVACY
+Blur all faces and license plates.

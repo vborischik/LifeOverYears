@@ -1,0 +1,60 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+PRIORITY ORDER — when instructions conflict, the lower number wins
+1. The uploaded image's composition and geometry.
+2. The exact people and vehicle counts given below.
+3. The historical transformation for the target year.
+4. The specific period details listed — each only where the geometry has room
+   for it; one with nowhere to go is left out, never forced into the roadway.
+5. Add nothing that is not asked for — no extra businesses, signs, vehicles,
+   people, logos or advertisements.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove the
+modern businesses, logos, brands, storefront names, banners and advertisements
+visible in the source image, and replace them only with the period signage
+specified below.
+
+PRESERVE
+Keep the uploaded image's composition, camera angle, geometry, buildings,
+roads and permanent structures exactly as they are. Do not redraw,
+reposition or restyle them. Change only what the sections below ask for.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
+
+TRANSFORM TO 2025
+Post-pandemic era. A 2025 enclosed mall standing dead — the long windowless box intact but blank, the end-cap bearing only the ghost rectangle and anchor holes where the sign was, an empty cracked lot with nothing parked on it.
+
+PERIOD DETAILS
+- minimalist flat LED channel letters
+- clean flat minimalist facades
+- QR codes on signage
+- stall lines almost entirely gone
+- weeds through wide asphalt cracks
+Typography: minimalist geometric sans-serif, heavily simplified flat logos.
+Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
+
+SIGNAGE RESTRICTION
+NO readable text anywhere — every sign and painted name is a shape only, too distant or too weathered to resolve into words. No place names, route or exit numbers, destinations, business names or logos. Do not turn words from this prompt into signage.
+
+PEOPLE
+NO people anywhere — the place is completely deserted.
+
+VEHICLES
+NO vehicles anywhere — empty lot, no parked or moving cars.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, high-visibility crosswalks
+- utilities: overhead lines on existing poles in older commercial areas, fiber optic widespread
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — digital — smartphone or mirrorless camera look.
+Color: high saturation. Grain: very clean, minimal to no noise.
+Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+
+PRIVACY
+Blur all faces and license plates.

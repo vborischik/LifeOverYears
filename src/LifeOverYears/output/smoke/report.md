@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-08-28T03:37:29.8086260+00:00
+Generated: 2026-08-28T16:44:52.9575010+00:00
 
 ## Check Results
 
@@ -62,7 +62,7 @@ Generated: 2026-08-28T03:37:29.8086260+00:00
 | C54 | Chained eras size trees as growth against the uploaded previous era, never as a fraction of the base | ✅ PASS | every era after the first grows its trees by the per-decade ratio for its size |
 | C55 | The caption tail runs from run-folder state alone, so a resumed batch run is captioned too | ✅ PASS | narrative.json and scene.json round-trip; caption.txt written with years and hashtags |
 | C56 | Downtown and strip-mall poles and wires are explicitly removed from 2015 on; other scene types keep theirs | ✅ PASS | wires stay through 2005, then go underground on main street and at the strip mall only |
-| C57 | A weighted hashtag (#nostalgia 70%) hits its declared share of captions, spends a sampled slot, and never ships its weight suffix | ✅ PASS | #nostalgia in ~68.3% of 4000 draws; pinned set and tag count unchanged |
+| C57 | A weighted hashtag (#nostalgia 70%) hits its declared share of captions, spends a sampled slot, and never ships its weight suffix | ✅ PASS | #nostalgia in ~69.9% of 4000 draws; pinned set and tag count unchanged |
 | C58 | Period details are conditional on the geometry: every prompt states that a detail with no plausible place is left out, and nothing is placed in the roadway | ✅ PASS | placement rule present in every era prompt, ahead of the signage whitelist |
 | C60 | The corner shop and the freestanding shop each open as one grocery or pharmacy, turn over to a liquor store from 2015 with the old name ghosting above it, draw regulars rather than shoppers after that, and never recover | ✅ PASS | all four runs hold the trade arc, the decline and the prompt budgets; across 500 seeds each, corner_shop ends boarded 33% of the time; freestanding_shop ends boarded 33% of the time, never earlier |
 | C63 | SceneContentKey splits highway into urban/rural content keys by terrain — urban, suburban and industrial all take the corridor flavor, only rural and unrecognized or missing values take the countryside one — and leaves every other scene type unchanged | ✅ PASS | content key resolution holds for every terrain and scene type |
@@ -73,6 +73,8 @@ Generated: 2026-08-28T03:37:29.8086260+00:00
 | C68 | A highway keeps its guide sign as a green-faced object with an illegible legend instead of the blanket no-text block; no period detail turns the sign away, and no other scene type gets the highway variant | ✅ PASS | highway signage stays visible and wordless; other scene types unchanged |
 | C69 | The synthetic base emits architecture only where buildings exist; an open-road scene gets a frontage description and an explicit nothing-is-built line instead | ✅ PASS | architecture follows the building list, not the scene type |
 | C70 | A background tree grows on a flatter curve than a kerbside one and ends the run at no more than ~165% of its first-era canopy, in both the chained and unchained paths | ✅ PASS | background tree: first era 70% of base, 128% across the chained run (1985:105% 1995:105% 2005:105% 2015:105% 2025:105%) |
+| C73 | The Meta rewrite of every era prompt drops the alcohol and nowhere-to-be wording, holds people to a small group and vehicles to two, and keeps the main sign | ✅ PASS | 109 prompts rewritten clean across every scene type |
+| C74 | Prompts and a synthetic base build from generated SceneDna for every scene type over 6 seeds, with no photo and no Vision call, inside the same budgets | ✅ PASS | 360 prompts from generated scenes; 11 tree-free and 3 building-free shapes covered |
 | C62 | The corner shop's street tree reads as a living tree in every era and its state follows the shop's arc (leafy while trading, untrimmed while declining, half dead once derelict); other scene types carry no tree state | ✅ PASS | corner_shop tree moves through 2 states across the run, canopy sizing intact, no other scene type affected |
 | C61 | corner_shop always draws from liquor_urban and freestanding_shop always draws from liquor_suburban; no other scene type renders a liquor name; strip_mall/shopping_center stay mapped to suburban for later, still unused today | ✅ PASS | urban 46, suburban 33, no overlap; corner_shop drew 32 distinct urban names and freestanding_shop drew 25 distinct suburban names across 60 seeds each; no liquor name in any other scene type |
 | C72 | Liquor-name and origin-kind randomness for corner_shop and freestanding_shop is visible and healthy across many seeds | ✅ PASS | corner_shop: 46/46 urban names hit (100%); freestanding_shop: 33/33 suburban names hit (100%) — full tables in the log above |

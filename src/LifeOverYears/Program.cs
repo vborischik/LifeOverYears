@@ -48,6 +48,17 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
         return await BatchSmokeTest.RunAsync(batchLoggerFactory, batchLoggerFactory.CreateLogger("BatchSmokeTest"));
     }
 
+    // 'short-prompts <runFolder>' — rewrites a finished run's prompts into a
+    // shorter, hand-usable form under {runFolder}/short-prompts/. Reads and
+    // writes files only: no vision, no prompts rebuilt, no API, no cost, and
+    // nothing in the normal pipeline is touched. Isolated like 'assemble'.
+    if (args.Length >= 1 && args[0] == "short-prompts")
+    {
+        using var shortLoggerFactory = LoggerFactory.Create(b => b.AddConsole().SetMinimumLevel(LogLevel.Information));
+        return await ShortPromptWriter.RunAsync(
+            args.Skip(1).ToArray(), launchDir, shortLoggerFactory.CreateLogger("ShortPrompts"));
+    }
+
     // 'assemble <folderPath> [years...]' — manual testing only: no vision, no
     // prompts, no image provider call. Points overlay+assembly at images that
     // are already sitting in {folderPath}/images/. Isolated like --smoke-video:

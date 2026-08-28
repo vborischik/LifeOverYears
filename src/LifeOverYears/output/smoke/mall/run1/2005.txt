@@ -1,0 +1,83 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+PRIORITY ORDER — when instructions conflict, the lower number wins
+1. The uploaded image's composition and geometry.
+2. The exact people and vehicle counts given below.
+3. The historical transformation for the target year.
+4. The specific period details listed — each only where the geometry has room
+   for it; one with nowhere to go is left out, never forced into the roadway.
+5. Add nothing that is not asked for — no extra businesses, signs, vehicles,
+   people, logos or advertisements.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove the
+modern businesses, logos, brands, storefront names, banners and advertisements
+visible in the source image, and replace them only with the period signage
+specified below.
+
+PRESERVE
+Keep the uploaded image's composition, camera angle, geometry, buildings,
+roads and permanent structures exactly as they are. Do not redraw,
+reposition or restyle them. Change only what the sections below ask for.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
+
+TRANSFORM TO 2005
+Post-9/11 era. A 2005 enclosed mall past its peak — the end-cap letters changed hands again, the box unchanged, whole rows of the lot empty on a weekday.
+
+PERIOD DETAILS
+- electronic message boards common
+- large illuminated box signs
+- LED price signs at gas stations
+- window signs: 'OPEN 10-9 MON-SAT', 'MACY'S'
+- rows of tall lot light poles on concrete bases
+- a metal bus shelter at the lot edge
+Typography: clean sans-serif, polished brand identities.
+Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
+
+SIGNAGE RESTRICTION
+The only readable text anywhere in the image is:
+'OPEN 10-9 MON-SAT'
+'MACY'S'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
+
+PEOPLE
+EXACTLY 15 people TOTAL: 6 in the foreground near the building entrance (largest), 5 mid-ground out on the lot, beside parked vehicles, 4 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
+- a mother steadying a toddler on the crosswalk
+- two women carrying department store bags to a station wagon
+- an office worker clipped to a Bluetooth headset mid-conversation
+Clothing: men in graphic tees, cargo shorts; women in chunky highlights, velour tracksuits. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+
+VEHICLES
+EXACTLY 7 period vehicles, all different:
+- 2001-2007 Dodge Grand Caravan — family minivan, rounded — white
+- 2004-2008 Ford F-150 — bigger, bolder grille — black
+- 2002-2008 Dodge Ram — big rig grille evolved — gray
+- 2005-2010 Chevrolet Cobalt — compact economy sedan — gold
+- 2003-2008 Honda Pilot — boxy three-row SUV — dark red
+- 2000-2006 Chevrolet Tahoe — full-size SUV peak era — silver
+- 2001-2007 Ford Escape — compact boxy SUV — dark blue
+Parked with gaps. Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
+Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
+PLACEMENT: three nose-in near the building; the rest in stalls at the far edge of the lot. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, turn arrows
+- utilities: overhead power lines standard, cable and fiber lines on poles appearing
+
+TREES
+- honey locust tree at planter island near entrance: clearly smaller than in the base image — about 50% of its canopy there, thinner trunk
+- maple tree at lot perimeter: clearly smaller than in the base image — about 75% of its canopy there, thinner trunk
+Tree sizes MUST follow this specification even where they differ from the base image.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — early digital camera or Kodak/Fuji consumer film look.
+Color: neutral tones. Grain: low grain, early digital noise in shadows.
+Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+
+PRIVACY
+Blur all faces and license plates.

@@ -1,0 +1,78 @@
+One single continuous photograph — no panels, grids, or split frames.
+
+PRIORITY ORDER — when instructions conflict, the lower number wins
+1. The uploaded image's composition and geometry.
+2. The exact people and vehicle counts given below.
+3. The historical transformation for the target year.
+4. The specific period details listed — each only where the geometry has room
+   for it; one with nowhere to go is left out, never forced into the roadway.
+5. Add nothing that is not asked for — no extra businesses, signs, vehicles,
+   people, logos or advertisements.
+
+Use the uploaded photo as the exact base composition. The street in the source
+is empty — populate it with the people and vehicles specified below. Remove the
+modern businesses, logos, brands, storefront names, banners and advertisements
+visible in the source image, and replace them only with the period signage
+specified below.
+
+PRESERVE
+Keep the uploaded image's composition, camera angle, geometry, buildings,
+roads and permanent structures exactly as they are. Do not redraw,
+reposition or restyle them. Change only what the sections below ask for.
+
+OUTPUT FORMAT
+Create a TRUE 9:16 vertical portrait. Expand the SAME scene naturally above
+(sky) and below (street/pavement) as canvas extension — do not stretch or
+distort the source geometry.
+
+TRANSFORM TO 2015
+Smartphone era fully arrived. A 2015 enclosed mall mostly hollowed out — a rectangular patch of less-faded wall above the end-cap where the anchor letters were removed, anchor holes still visible, only a scatter of cars near the doors.
+
+PERIOD DETAILS
+- LED message boards
+- a tall internally-lit pylon sign at the lot entrance
+- monument signs with LED displays
+- window signs: 'MALL HOURS 11-7'
+- a light pole with its fixture missing
+- faded stall lines barely readable
+Typography: minimalist flat sans-serif, simplified modern logos.
+Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
+
+SIGNAGE RESTRICTION
+The only readable text anywhere in the image is:
+'MALL HOURS 11-7'
+Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
+
+PEOPLE
+EXACTLY 4 people TOTAL: 2 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
+- an older couple resting on a bench by the doors
+- a couple hunting their own car down a row
+- a woman power-walking while listening to a podcast through earbuds
+Clothing: men in skinny jeans, henley shirts; women in ankle boots, infinity scarves. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+
+VEHICLES
+EXACTLY 3 period vehicles, all different:
+- 2015-2020 Ford Edge — mid-size crossover, bold grille — white
+- 2010-2016 Chevrolet Equinox — mid-size crossover — silver
+- 2012-2015 Honda Civic — compact, angular — gray
+Parked with gaps. Where a model is listed with a year range, render the 2015 model year specifically — only styling, trim and features available in 2015, nothing introduced later. No vehicle newer than 2015.
+Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
+PLACEMENT: all angled into stalls along the far edge of the lot, the near stalls left empty. No vehicle in the same spot as any other era.
+
+ENVIRONMENT
+- road markings: yellow center line, white edge lines, high-visibility crosswalks
+- utilities: overhead power lines common on wooden poles, fiber optic lines on poles
+
+TREES
+- honey locust tree at planter island near entrance: clearly smaller than in the base image — about 70% of its canopy there, thinner trunk
+- maple tree at lot perimeter: slightly smaller than in the base image — about 85% of its canopy there
+Tree sizes MUST follow this specification even where they differ from the base image.
+
+PHOTOGRAPHIC STYLE
+COLOR photograph — digital — DSLR or smartphone camera look.
+Color: high saturation. Grain: clean, minimal noise.
+Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+
+PRIVACY
+Blur all faces and license plates.

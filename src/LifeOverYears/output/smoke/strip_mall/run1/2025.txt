@@ -69,7 +69,7 @@ PLACEMENT: all angled into stalls along the far edge of the lot, the near stalls
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
 - utilities: power, phone and fiber fully undergrounded across the site, clean open sky above the lot — no poles, no wires; ground level transformer cabinets at the lot edge
-- overhead utilities are gone in this era — the one exception to PRESERVE: remove every utility pole, crossarm, pole transformer and wire span over the lot, and rebuild the clean sky and the facades behind them. Everything else stays exactly as it is.
+- the poles and wires still visible in the uploaded image are gone in this era: remove every pole, crossarm and wire span over the lot and rebuild the sky behind them. This is the one exception to PRESERVE; everything else stays as it is.
 
 DECAY
 - a FOR RENT sign taped inside a dark storefront window
