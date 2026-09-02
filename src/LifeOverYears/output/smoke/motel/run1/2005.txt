@@ -28,46 +28,48 @@ distort the source geometry.
 TRANSFORM TO 2005
 Post-9/11 era. A 2005 motel taking whoever comes — the chain rate long gone off the sign, a wireless-internet banner zip-tied to the pylon, and half the bays empty at midday.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- faux-traditional facade details
 - monument signs at lifestyle centers
-- covered walkways at lifestyle centers
-- main sign: "Travelodge" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
-- window signs: 'NO REFUNDS', 'FREE WIRELESS INTERNET'
-- a vinyl banner sagging where a zip tie has let go
-- a plastic chair outside one door, cracked through the seat
+- a concrete walkway with the overhang paint flaking off the posts
+- internally lit channel letters standard
+- main sign: "Quality Inn" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
+- window signs: 'VACANCY', 'WEEKLY RATES'
+- a dead ice machine with its panel light out
+- cigarette ends collected along the base of the walkway wall
 Typography: clean sans-serif, polished brand identities.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Travelodge'
-'NO REFUNDS'
-'FREE WIRELESS INTERNET'
+'Quality Inn'
+'VACANCY'
+'WEEKLY RATES'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 2 people TOTAL: 1 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles. Grouped in pairs, threes, and singles.
-- someone carrying a grocery bag along the row to a far door
-- a clerk speaking through a gap in the office door
-- a teenager skateboarding with a messenger bag bouncing on his back
-Clothing: men in baggy jeans, cargo shorts; women in layered tank tops, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- two people talking quietly between two parked cars
+- a woman reading the rate sheet taped in the office glass
+- a couple taking photos with a digital camera
+Clothing: men in frosted tips hair, baggy jeans; women in low-rise jeans, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 3 period vehicles, all different:
-- 2004-2010 Toyota Sienna — large rounded minivan — dark blue
-- 2001-2007 Toyota Highlander — early crossover — dark red
-- 2005-2010 Chevrolet Cobalt — compact economy sedan — silver
+EXACTLY 1 period vehicle:
+- 2001-2005 Honda Civic — rounded compact, very common — gold
 Parked with gaps. Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: all angled into stalls along the far edge of the lot, the near stalls left empty. No vehicle in the same spot as any other era.
+PLACEMENT: one nose-in close to the entrance; the rest spread across stalls toward the lot's far edge. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: yellow center line, white edge lines, turn arrows
+- road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines standard, cable and fiber lines on poles appearing
 
+DECAY
+- a length of walkway fascia lifting away from its fixings
+- room doors gone chalky, patched unevenly from one door to the next
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - silver maple tree at lot edge beside the pylon sign: clearly smaller than in the base image — about 75% of its canopy there, thinner trunk
 Tree sizes MUST follow this specification even where they differ from the base image.
@@ -76,7 +78,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — early digital camera or Kodak/Fuji consumer film look.
 Color: neutral tones. Grain: low grain, early digital noise in shadows.
 Photorealistic — NOT black-and-white, no HDR.
-Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
 
 PRIVACY
 Blur all faces and license plates.

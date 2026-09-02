@@ -4,9 +4,9 @@ Keep the uploaded photo's exact composition, camera angle, road and building geo
 TRANSFORM TO 1985 — condition: well kept — freshly painted, open for business
 
 PERIOD DETAILS
-- an auto parts distributor with lettering on the end wall, too blurred by distance to read
-- an overhead sign gantry spanning the lanes, green panels with white borders
-- raised button reflectors set into the lane markings
+- a furniture warehouse with block lettering across the front, too distant to make out
+- sodium-vapor lighting on tall mast arms, orange at dusk
+- galvanized W-beam guardrail on steel posts
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
@@ -17,8 +17,8 @@ NO people on foot. Everyone in the scene is inside a moving vehicle.
 
 VEHICLES
 EXACTLY 2 vehicles, 1985 model year, and no others:
-- 1975-1991 Ford Econoline — boxy full-size van — white
-- 1977-1990 Chevrolet Caprice — boxy full-size sedan, formal lines — burgundy
+- 1982-1993 Chevrolet S-10 — compact pickup, square — white
+- 1980-1985 Cadillac Seville — sharp formal lines, bustleback — beige
 Moving in their own lanes at highway speed, natural spacing, all heading the same way. None parked on the shoulder. Plates blurred.
 
 TREES

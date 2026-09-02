@@ -4,9 +4,9 @@ Keep the uploaded photo's exact composition, camera angle, road and building geo
 TRANSFORM TO 1975 — condition: well kept — freshly painted, open for business
 
 PERIOD DETAILS
-- a beverage distributor's shed with painted lettering along the parapet, sun-bleached past reading
-- tall steel lattice transmission towers running alongside the roadway
-- flat non-reflective green overhead sign panels with white lettering
+- a plumbing supply building, its painted sign faded and illegible from the roadway
+- corrugated steel W-beam guardrail on wooden posts
+- sodium-vapor light standards on a wide central spacing
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
@@ -17,13 +17,13 @@ NO people on foot. Everyone in the scene is inside a moving vehicle.
 
 VEHICLES
 EXACTLY 2 vehicles, 1975 model year, and no others:
-- 1972-1980 Dodge D100 — angular cab, simple grille
-- 1974-1983 Jeep Cherokee — two-door SUV, boxy, new model
+- 1972-1980 Dodge D100 — angular cab, simple grille — dark brown
+- 1974-1983 Jeep Cherokee — two-door SUV, boxy, new model — powder blue
 Moving in their own lanes at highway speed, natural spacing, all heading the same way. None parked on the shoulder. Plates blurred.
 
 TREES
 - oak tree at background: clearly smaller than in the base image — about 70% of its canopy there, thinner trunk
 
 STYLE
-STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere. Grain: visible fine grain. Style: documentary, natural light. Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp. Light: bright open daylight, clear sky, soft natural shadows — a fine, ordinary day.
+COLOR photograph — Kodachrome 64 or Ektachrome look. Color: slightly warm tones. Grain: visible fine grain. Photorealistic — NOT black-and-white, no HDR. Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 Blur all faces and licence plates.

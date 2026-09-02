@@ -4,8 +4,8 @@ Keep the uploaded photo's exact composition, camera angle, road and building geo
 TRANSFORM TO 2025 — condition: well kept — freshly painted, open for business
 
 PERIOD DETAILS
-- overhead gantries carrying electronic lane-control and message signs
 - the same concrete sound barrier walls, stained and weathered along the base
+- wide reflective edge lines with a milled rumble strip
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
@@ -16,8 +16,8 @@ NO people on foot. Everyone in the scene is inside a moving vehicle.
 
 VEHICLES
 EXACTLY 2 vehicles, 2025 model year, and no others:
-- 2021-2025 Chevrolet Tahoe — huge full-size SUV — blue
-- 2024-2025 Toyota Grand Highlander — large family crossover — dark green
+- 2019-2025 Subaru Forester — practical boxy crossover — gray
+- 2021-2025 Kia Carnival — boxy SUV-styled minivan — blue
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 STYLE

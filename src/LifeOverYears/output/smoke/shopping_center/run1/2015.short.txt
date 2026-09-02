@@ -4,17 +4,17 @@ Keep the uploaded photo's exact composition, camera angle, road and building geo
 TRANSFORM TO 2015 — condition: well kept — freshly painted, open for business
 
 PERIOD DETAILS
-- a rectangular patch of unfaded wall on the anchor parapet where the sign was removed
-- minimalist flat brand logos
-- a pylon sign with the top panel blanked out white
-- window signs: '$1', 'SPACE AVAILABLE'
+- modern flat clean facades
+- LED illuminated channel letters
+- digital menu boards at drive-throughs
+- window signs: '$1', 'NOW LEASING'
 - faded stall lines
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
 '$1'
-'SPACE AVAILABLE'
+'NOW LEASING'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
@@ -22,8 +22,8 @@ PEOPLE
 
 VEHICLES
 EXACTLY 2 vehicles, 2015 model year, and no others:
-- 2011-2016 Hyundai Elantra — swoopy fluidic compact — pearl white
-- 2009-2018 Ram 1500 — crosshair grille, refined — silver
+- 2015-2020 Ford Edge — mid-size crossover, bold grille — pearl white
+- 2011-2016 Hyundai Elantra — swoopy fluidic compact — dark red
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES

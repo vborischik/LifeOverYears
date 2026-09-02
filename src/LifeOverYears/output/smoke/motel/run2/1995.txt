@@ -28,42 +28,41 @@ distort the source geometry.
 TRANSFORM TO 1995
 Clinton era prosperity. A 1995 motel trading on price — a rate painted straight onto the sign panel, a fresh coat on the doors, and the lot half full by evening.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: busy — customers present, high activity, all pumps in use
 
 PERIOD DETAILS
 - numbered room doors in a uniform row, the paint even and recent
-- a concrete walkway under the overhang, the kerb line freshly painted
-- a satellite dish bolted to the roof at the office end
-- main sign: "Super 8" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
-- window signs: '$29.95', 'TRUCKERS WELCOME'
+- a plastic pylon sign at the road with the nightly rate on its lower panel
+- a printed rate card taped inside the office window
+- main sign: "Holiday Inn" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
+- window signs: 'VACANCY', 'OFFICE'
+- a hand-lettered card in the office glass giving the check-out time
 - a cigarette bin standing at the office entrance
-- a housekeeping cart parked outside an open door
 Typography: clean geometric sans-serif, early digital influence.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Super 8'
-'$29.95'
-'TRUCKERS WELCOME'
+'Holiday Inn'
+'VACANCY'
+'OFFICE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 4 people TOTAL: 2 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
-- a man on a payphone at the end of the building
-- someone loading a cooler into a back seat
-- a teenager paging through a comic at a spinner rack
-Clothing: men in windbreakers, flannel shirts; women in floral dresses, high-waisted mom jeans. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a woman carrying a cup of coffee back from the office
+- someone shaking out a floor mat outside an open room
+- a paperboy with a canvas bag on a bike
+Clothing: men in grunge style, baggy jeans; women in slip dresses, crop tops. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 1991-1996 Ford Escort — small rounded economy car — white
-- 1995-1999 Chevrolet Cavalier — compact, rounded — black
-- 1994-2001 Dodge Ram — big rig style grille, bold — silver
-- 1989-1997 Geo Metro — very small economy hatchback — teal
+EXACTLY 3 period vehicles, all different:
+- 1993-1998 Jeep Grand Cherokee — early SUV, boxy-rounded — hunter green
+- 1992-1996 Toyota Camry — rounded, understated — white
+- 1991-1996 Ford Escort — small rounded economy car — burgundy
 Parked with gaps. Where a model is listed with a year range, render the 1995 model year specifically — only styling, trim and features available in 1995, nothing introduced later. No vehicle newer than 1995.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: two nose-in near the building; the rest angled into stalls at the far edge of the lot. No vehicle in the same spot as any other era.
+PLACEMENT: all parked in the lot, nose-in to marked stalls, with an empty stall between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn lane arrows

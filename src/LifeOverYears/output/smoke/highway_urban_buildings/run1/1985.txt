@@ -29,9 +29,9 @@ TRANSFORM TO 1985
 Reagan era prosperity. A 1985 urban interstate carrying a full commute — button-reflector lane markings, overhead sign gantries and traffic in every lane.
 
 PERIOD DETAILS
-- an auto parts distributor with lettering on the end wall, too blurred by distance to read
-- an overhead sign gantry spanning the lanes, green panels with white borders
-- raised button reflectors set into the lane markings
+- a furniture warehouse with block lettering across the front, too distant to make out
+- sodium-vapor lighting on tall mast arms, orange at dusk
+- galvanized W-beam guardrail on steel posts
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
@@ -42,10 +42,12 @@ PEOPLE
 NO people on foot anywhere — nobody walking, standing or waiting at the roadside. Everyone in this scene is inside a moving vehicle.
 
 VEHICLES
-EXACTLY 3 period vehicles, all different:
-- 1975-1991 Ford Econoline — boxy full-size van — white
-- 1977-1990 Chevrolet Caprice — boxy full-size sedan, formal lines — burgundy
-- 1984-1987 Honda Civic — small boxy hatchback — charcoal gray
+EXACTLY 5 period vehicles, all different:
+- 1982-1993 Chevrolet S-10 — compact pickup, square — white
+- 1980-1985 Cadillac Seville — sharp formal lines, bustleback — beige
+- 1977-1990 Chevrolet Caprice — boxy full-size sedan, formal lines — charcoal gray
+- 1984-1987 Honda Civic — small boxy hatchback — red
+- 1984-1988 Toyota Pickup — small, boxy, popular import — silver
 Where a model is listed with a year range, render the 1985 model year specifically — only styling, trim and features available in 1985, nothing introduced later. No vehicle newer than 1985.
 Each vehicle is travelling in its own lane at highway speed, spaced by natural following distance, all heading the same direction as the camera's vantage point. None stopped, and none standing on the shoulder.
 

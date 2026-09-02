@@ -29,9 +29,9 @@ TRANSFORM TO 2005
 Post-9/11 era. A 2005 urban interstate running at capacity through the middle of the day — barrier walls both sides, a full sign gantry overhead, and no gap left between the cars.
 
 PERIOD DETAILS
-- a self-storage facility with an illuminated sign panel, its wording indistinct
-- the existing median barrier, reflective delineators added along its top
-- 65 mph speed limit signs on reflective sheeting
+- a logistics building with a monument sign at the drive, too far to read
+- a full-width overhead gantry carrying green sign panels with white borders
+- the same sound barrier walls as before, now running both sides of the carriageway
 Typography: clean sans-serif, polished brand identities.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
@@ -43,11 +43,11 @@ NO people on foot anywhere — nobody walking, standing or waiting at the roadsi
 
 VEHICLES
 DENSE MOVING TRAFFIC — a continuous stream filling every lane in view, out to the far edge of the frame, too many vehicles to count individually, all travelling at highway speed and close together. Representative models visible near the camera:
-- 2004-2010 Toyota Sienna — large rounded minivan — white
-- 2003-2009 Hummer H2 — massive military-styled SUV — silver
-- 2000-2006 Chevrolet Tahoe — full-size SUV peak era — black
-- 2005-2010 Ford Mustang — retro muscle revival — dark red
-- 2001-2007 Ford Escape — compact boxy SUV — dark blue
+- 2005-2010 Jeep Grand Cherokee — rounded modern SUV — gold
+- 1998-2005 Volkswagen New Beetle — retro bubble shape — black
+- 2003-2007 Nissan Altima — sporty mid-size — gray
+- 1999-2006 Chevrolet Silverado — squared modern look — silver
+- 2003-2008 Toyota Corolla — conservative compact sedan — dark blue
 Every other vehicle in the traffic is period-correct for 2005; nothing newer. All in their own lane and moving; none stopped, and none on the shoulder.
 
 ENVIRONMENT

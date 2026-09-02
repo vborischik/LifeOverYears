@@ -29,8 +29,8 @@ TRANSFORM TO 1985
 Reagan era prosperity. A 1985 urban interstate carrying a full commute — button-reflector lane markings, overhead sign gantries and traffic in every lane.
 
 PERIOD DETAILS
+- raised button reflectors set into the lane markings
 - galvanized W-beam guardrail on steel posts
-- an overhead sign gantry spanning the lanes, green panels with white borders
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
@@ -41,11 +41,10 @@ PEOPLE
 NO people on foot anywhere — nobody walking, standing or waiting at the roadside. Everyone in this scene is inside a moving vehicle.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 1980-1985 Buick LeSabre — boxy full-size, chrome trim — beige
-- 1984-1989 Plymouth Voyager — boxy first-generation minivan — silver
-- 1983-1985 Nissan Maxima — boxy import sedan — white
-- 1982-1993 Chevrolet S-10 — compact pickup, square — burgundy
+EXACTLY 3 period vehicles, all different:
+- 1979-1985 Ford Mustang — Fox body, angular hatchback coupe — burgundy
+- 1980-1985 Buick LeSabre — boxy full-size, chrome trim — charcoal gray
+- 1984-1989 Plymouth Voyager — boxy first-generation minivan — white
 Where a model is listed with a year range, render the 1985 model year specifically — only styling, trim and features available in 1985, nothing introduced later. No vehicle newer than 1985.
 Each vehicle is travelling in its own lane at highway speed, spaced by natural following distance, all heading the same direction as the camera's vantage point. None stopped, and none standing on the shoulder.
 

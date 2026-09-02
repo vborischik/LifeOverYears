@@ -28,41 +28,42 @@ distort the source geometry.
 TRANSFORM TO 1985
 Reagan era prosperity. A neighborhood auto repair shop in 1985 — backlit sign letters over the bays, radial tires stacked out front, and a shop moving from carburetors to the first electronic engine diagnostics.
 
-CONDITION: busy — customers present, high activity, all pumps in use
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
 - a faded price board from a previous era, papered over with a new one reading 'BRAKES $59.95'
-- electronic marquee signs appearing
-- large logo signs on pylons
-- window signs: 'OIL CHANGE $12.95', 'BRAKES $59.95'
+- mirrored glass panels on newer buildings
+- drive-through lanes appearing
+- window signs: 'BRAKES $59.95', 'MUFFLERS INSTALLED TODAY'
+- a corded phone visible on the office counter
 - a bell hose stretched across the apron
-- a faded painted sign ghosted beneath the newer backlit letters
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 'BRAKES $59.95'
-'OIL CHANGE $12.95'
+'MUFFLERS INSTALLED TODAY'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 5 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a mechanic torquing wheel lugs after a brake job
-- a man in a tie waiting on a bench, checking his watch
-- a jogger in a tracksuit and headband
-Clothing: men in shoulder pads in blazers, polo shirts with collars up; women in big permed hair, high-waisted jeans. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- an older woman handing over keys at the office window
+- a mechanic rolling a new radial tire in from the display stack
+- a college student wheeling a mountain bike with a U-lock on the frame
+Clothing: men in acid wash jeans, windbreakers; women in high-waisted jeans, big permed hair. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 5 period vehicles, all different:
-- 1978-1986 Ford Bronco — full-size boxy SUV, round headlights — burgundy
-- 1983-1987 Honda Accord — clean lines, pop-up headlights — white
-- 1984-1988 Pontiac Fiero — small wedge two-seater — red
-- 1979-1985 Ford LTD Country Squire — full-size woodgrain wagon — beige
-- 1981-1985 Ford Escort — small boxy economy hatchback — charcoal gray
+EXACTLY 6 period vehicles, all different:
+- 1980-1989 Lincoln Town Car — long boxy luxury sedan — red
+- 1984-1988 Toyota Pickup — small, boxy, popular import — light blue
+- 1978-1987 Chevrolet Monte Carlo — personal luxury coupe, long hood — silver
+- 1975-1991 Ford Econoline — boxy full-size van — charcoal gray
+- 1984-1987 Honda Civic — small boxy hatchback — white
+- 1984-1990 Dodge Caravan — first minivan, boxy — beige
 Parked with gaps. Where a model is listed with a year range, render the 1985 model year specifically — only styling, trim and features available in 1985, nothing introduced later. No vehicle newer than 1985.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: all parked in the lot, nose-in to marked stalls, with gaps between them. No vehicle in the same spot as any other era.
+PLACEMENT: three nose-in near the building; the rest in stalls at the far edge of the lot. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, painted crosswalks

@@ -31,45 +31,44 @@ Smartphone era fully arrived. A 2015 motel running on weekly lets — an LED pan
 CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- an LED panel bolted into the old pylon frame, brighter than everything around it
-- a printed sheet of house rules taped inside the office window
-- modern flat clean facades
-- main sign: "Super 8" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
-- window signs: 'WEEKLY RATES', 'VACANCY'
-- a satellite dish still bolted to the roof, cable hanging loose
-- a bicycle chained to a walkway post outside one door
+- LED accent lighting on buildings
+- vacant storefront signs from closures
+- a payment slot cut into the office glass, the rest of it screened
+- main sign: "Holiday Inn" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
+- window signs: 'NO VISITORS', 'VACANCY'
+- a stack of flattened boxes wedged behind the ice alcove
+- a plastic tub of belongings set outside a door
 Typography: minimalist flat sans-serif, simplified modern logos.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Super 8'
-'WEEKLY RATES'
+'Holiday Inn'
+'NO VISITORS'
 'VACANCY'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 3 people TOTAL: 1 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
-- two people unloading bags from a back seat without hurrying
-- a woman walking a small dog along the edge of the lot
-- a woman in yoga pants carrying a green smoothie
-Clothing: men in skinny jeans, boat shoes; women in high-waisted skinny jeans, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 4 people TOTAL: 2 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
+- someone leaving a room door propped with a shoe
+- a woman carrying laundry in a plastic basket toward the far end
+- a teenager filming a friend doing a trick on a longboard
+Clothing: men in henley shirts, boat shoes; women in high-waisted skinny jeans, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 2 period vehicles, all different:
-- 2014-2018 Chevrolet Silverado — squared modern grille — dark red
-- 2007-2017 Jeep Wrangler — boxy off-roader, round headlights — gray
+EXACTLY 1 period vehicle:
+- 2011-2017 Honda Odyssey — lightning-bolt beltline minivan — white
 Parked with gaps. Where a model is listed with a year range, render the 2015 model year specifically — only styling, trim and features available in 2015, nothing introduced later. No vehicle newer than 2015.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: one nose-in close to the entrance; the rest spread across stalls toward the lot's far edge. No vehicle in the same spot as any other era.
+PLACEMENT: all parked in the lot, nose-in to marked stalls, with an empty stall between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines common on wooden poles, fiber optic lines on poles
 
 DECAY
-- a length of walkway fascia lifting away from its fixings
-- rust streaked down the wall below a through-wall air unit
+- room doors gone chalky, patched unevenly from one door to the next
+- a sun-bleached panel in the pylon sign, cracked through one corner
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - silver maple tree at lot edge beside the pylon sign: slightly smaller than in the base image — about 85% of its canopy there

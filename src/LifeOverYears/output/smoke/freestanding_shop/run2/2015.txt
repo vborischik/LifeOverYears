@@ -31,47 +31,48 @@ Smartphone era fully arrived. By 2015 the building sells bottles — the same ap
 CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- heavy steel mesh over the entrance windows, bolted flat to the frames
-- renovated or vacant big box stores
-- a no-loitering placard weathered past reading
-- main sign: "COMMONS WINE & LIQUOR" — a neighbourhood liquor store, a plastic backlit box sign bolted over the old sign band, steel bars across the windows
-- above the new sign the previous business's lettering still ghosts on the brick: "RIVERSIDE FOOD MARKET" — weathered, partly gone, plainly older than the sign bolted beneath it
-- window signs: 'BEER WINE LIQUOR', 'LOTTO'
+- vacant storefront signs from closures
+- cameras at both corners of the building, cabling run openly down the wall
+- LED illuminated channel letters
+- main sign: "DISCOUNT LIQUOR WAREHOUSE" — a neighbourhood liquor store, a plastic backlit box sign bolted over the old sign band, steel bars across the windows
+- above the new sign the previous business's lettering still ghosts on the brick: "HIGHLAND PHARMACY" — weathered, partly gone, plainly older than the sign bolted beneath it
+- window signs: 'LOTTO', 'ATM INSIDE'
 - a padlocked ice chest with a faded drinks decal
-- a scuffed steel kick plate on the door
+- a bare bracket where a payphone was taken off the wall
 Typography: minimalist flat sans-serif, simplified modern logos.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'COMMONS WINE & LIQUOR'
-'RIVERSIDE FOOD MARKET'
-'BEER WINE LIQUOR'
+'DISCOUNT LIQUOR WAREHOUSE'
+'HIGHLAND PHARMACY'
 'LOTTO'
+'ATM INSIDE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 2 people TOTAL: 1 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles. Grouped in pairs, threes, and singles.
-- the people here are regulars of this store, not shoppers: sitting on the step beside the door, a bottle in a paper bag between them — keeping to themselves, nobody carrying groceries, nobody looking at the camera
-- someone parked at the edge of the apron, not going in
-- two men standing off to the side of the entrance, saying little
-- a teenager filming a friend doing a trick on a longboard
-Clothing: men in henley shirts, boat shoes; women in high-waisted skinny jeans, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- the people here are regulars of this store, not shoppers: standing around outside the store door with nothing to do, talking — keeping to themselves, nobody carrying groceries, nobody looking at the camera
+- someone leaving a bicycle unlocked against the wall for a minute
+- a man waiting for the door buzzer with a hand on the handle
+- a young couple pushing a jogging stroller
+Clothing: men in beards, boat shoes; women in yoga pants and leggings, statement necklaces. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 1 period vehicle:
-- 2011-2016 Chrysler Town & Country — chrome-trimmed minivan — gray
+EXACTLY 2 period vehicles, all different:
+- 2011-2017 Jeep Grand Cherokee — refined upscale SUV — dark red
+- 2005-2015 Toyota Tacoma — capable mid-size pickup — black
 Parked with gaps. Where a model is listed with a year range, render the 2015 model year specifically — only styling, trim and features available in 2015, nothing introduced later. No vehicle newer than 2015.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
+PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines common on wooden poles, fiber optic lines on poles
 
 DECAY
+- an ice cooler chained to the wall beside the entrance
 - the old sign band painted over, a hand-lettered board screwed on beneath it
-- steel bars fitted across the lower windows, newer than everything around them
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - honey locust tree at lot edge beside the ground sign: clearly smaller than in the base image — about 70% of its canopy there, thinner trunk, in leaf but untrimmed, suckers at the base and one dead limb

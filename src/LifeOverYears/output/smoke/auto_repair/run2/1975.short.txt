@@ -5,18 +5,18 @@ TRANSFORM TO 1975 — condition: well kept — freshly painted, open for busines
 
 PERIOD DETAILS
 - a hand-painted price board in the office window reading 'TUNE-UPS $19.95'
-- a lit 'OPEN' sign hanging crooked in the office door glass
-- a parts counter visible through the office glass, shelves of boxed parts behind it
-- window signs: 'MUFFLER INSTALLED — WHILE YOU WAIT', 'OIL CHANGE $4.95'
-- a bell wire strung across the apron to announce arriving cars
+- small office with a plate glass window and hand-lettered 'AUTO REPAIR' arched across the glass
+- hand-painted lettering on windows
+- window signs: 'TUNE-UP SPECIAL $19.95', 'MUFFLER INSTALLED — WHILE YOU WAIT'
+- a wrecker truck parked at the side of the lot
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
 'TUNE-UPS $19.95'
-'OPEN'
+'AUTO REPAIR'
+'TUNE-UP SPECIAL $19.95'
 'MUFFLER INSTALLED — WHILE YOU WAIT'
-'OIL CHANGE $4.95'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
@@ -24,8 +24,8 @@ PEOPLE
 
 VEHICLES
 EXACTLY 2 vehicles, 1975 model year, and no others:
-- 1968-1979 Chevrolet Nova — compact, simple three-box shape
-- 1975-1980 Ford Granada — compact luxury, Mercedes-inspired formal grille
+- 1968-1979 Chevrolet Nova — compact, simple three-box shape — dark brown
+- 1975-1980 Ford Granada — compact luxury, Mercedes-inspired formal grille — harvest gold
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES
@@ -33,5 +33,5 @@ TREES
 - elm tree at side yard: a young tree, only about 15% of its canopy in the base image, thin trunk
 
 STYLE
-STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere. Grain: visible fine grain. Style: documentary, natural light. Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp. Light: bright open daylight, clear sky, soft natural shadows — a fine, ordinary day.
+COLOR photograph — Kodachrome 64 or Ektachrome look. Color: slightly warm tones. Grain: visible fine grain. Photorealistic — NOT black-and-white, no HDR. Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 Blur all faces and licence plates.

@@ -32,44 +32,43 @@ CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
 - a faded printed banner reading '$19.95 STATE INSPECTION' from a past promotion still hanging on the fascia
-- printed vinyl sign band reading 'AUTO REPAIR — STATE INSPECTION'
-- digital menu boards at drive-throughs
-- window signs: 'TIRE ROTATION $24.95', 'OIL CHANGE $29.95'
-- a quick-lube chain coupon taped inside the office door, half torn
+- full color digital price signs at gas stations
+- minimalist flat brand logos
+- window signs: 'STATE INSPECTION $19.95', 'TPMS SERVICE AVAILABLE'
 - a tablet propped beside the register
+- an empty second bay with the door down
 Typography: minimalist flat sans-serif, simplified modern logos.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 '$19.95 STATE INSPECTION'
-'AUTO REPAIR — STATE INSPECTION'
-'TIRE ROTATION $24.95'
-'OIL CHANGE $29.95'
+'STATE INSPECTION $19.95'
+'TPMS SERVICE AVAILABLE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a customer checking a tablet screen the mechanic is holding
-- a delivery driver dropping off a small parts box
-- a woman balancing a yoga mat and an iced coffee
-Clothing: men in slim-fit plaid shirts, henley shirts; women in yoga pants and leggings, high-waisted skinny jeans. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- the owner stamping a state inspection sticker at the counter
+- a mechanic sliding out from under a car on a creeper
+- a man loading a bike onto a car rack
+Clothing: men in boat shoes, skinny jeans; women in ankle boots, high-waisted skinny jeans. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 2 period vehicles, all different:
-- 2013-2018 Toyota RAV4 — angular compact crossover — white
-- 2014-2018 Chevrolet Silverado — squared modern grille — blue
+- 2011-2016 Honda CR-V — rounded compact crossover — dark red
+- 2013-2018 Toyota RAV4 — angular compact crossover — blue
 Parked with gaps. Where a model is listed with a year range, render the 2015 model year specifically — only styling, trim and features available in 2015, nothing introduced later. No vehicle newer than 2015.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: all angled into stalls along the far edge of the lot, the near stalls left empty. No vehicle in the same spot as any other era.
+PLACEMENT: all parked in the lot, nose-in to marked stalls, with an empty stall between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines common on wooden poles, fiber optic lines on poles
 
 DECAY
+- a stack of worn tires leaning against the side wall
 - the painted sign band faded, letters flaking at the edges
-- a hand-lettered service sign taped inside the office glass
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - maple tree at street corner: slightly smaller than in the base image — about 85% of its canopy there

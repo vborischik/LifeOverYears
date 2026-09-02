@@ -31,8 +31,8 @@ Clinton era prosperity. A 1995 urban interstate at its busiest yet — sound bar
 PERIOD DETAILS
 - a distribution centre with a freestanding sign at the gate, too far to read
 - a concrete sound barrier wall newly built behind the shoulder, the existing guardrail still standing in front of it
-- a concrete barrier added between the opposing carriageways, the shoulder guardrail unchanged
-- thermoplastic lane markings, bright and freshly applied
+- sodium-vapor lighting on the mast arms overhead
+- steel lattice transmission towers standing behind the sound barrier wall
 Typography: clean geometric sans-serif, early digital influence.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
@@ -44,11 +44,11 @@ NO people on foot anywhere — nobody walking, standing or waiting at the roadsi
 
 VEHICLES
 EXACTLY 5 period vehicles, all different:
-- 1992-1997 Ford Taurus — rounded jellybean shape, oval theme — teal
-- 1993-2002 Pontiac Firebird — sleek pointed sports coupe — navy blue
-- 1992-1996 Ford F-150 — rounded aero body — hunter green
-- 1995-2004 Toyota Tacoma — compact, rounded — burgundy
+- 1992-1996 Ford F-150 — rounded aero body — burgundy
+- 1994-1998 Ford Mustang — rounded SN95 pony car — teal
 - 1989-1997 Geo Metro — very small economy hatchback — white
+- 1990-1994 Chevrolet Lumina — rounded mid-size sedan — silver
+- 1990-1997 Mazda Miata — tiny rounded roadster, pop-up lights — navy blue
 Where a model is listed with a year range, render the 1995 model year specifically — only styling, trim and features available in 1995, nothing introduced later. No vehicle newer than 1995.
 Each vehicle is travelling in its own lane at highway speed, spaced by natural following distance, all heading the same direction as the camera's vantage point. None stopped, and none standing on the shoulder.
 

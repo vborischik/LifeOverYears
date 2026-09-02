@@ -31,47 +31,48 @@ Post-pandemic era. A 2025 liquor store on the apron where the shop used to be �
 CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- a no-loitering placard weathered past reading
-- outdoor dining structures from pandemic era
-- large glass storefronts
-- main sign: "COMMONS WINE & LIQUOR" — a neighbourhood liquor store, a plastic backlit box sign bolted over the old sign band, steel bars across the windows
-- above the new sign the previous business's lettering still ghosts on the brick: "RIVERSIDE FOOD MARKET" — weathered, partly gone, plainly older than the sign bolted beneath it
-- window signs: 'NO LOITERING', 'ICE'
-- weeds coming up through a crack in the apron near the entrance
+- the old ground sign frame still standing, panel long gone
+- a buzzer entry plate screwed beside the door handle
+- vacant storefront and ghost signs common
+- main sign: "DISCOUNT LIQUOR WAREHOUSE" — a neighbourhood liquor store, a plastic backlit box sign bolted over the old sign band, steel bars across the windows
+- above the new sign the previous business's lettering still ghosts on the brick: "HIGHLAND PHARMACY" — weathered, partly gone, plainly older than the sign bolted beneath it
+- window signs: 'NO LOITERING', 'LOTTO'
+- a padlocked ice chest with a faded drinks decal
 - a scuffed steel kick plate on the door
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'COMMONS WINE & LIQUOR'
-'RIVERSIDE FOOD MARKET'
+'DISCOUNT LIQUOR WAREHOUSE'
+'HIGHLAND PHARMACY'
 'NO LOITERING'
-'ICE'
+'LOTTO'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 3 people TOTAL: 1 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
-- the people here are regulars of this store, not shoppers: sitting on the step beside the door, a bottle in a paper bag between them — keeping to themselves, nobody carrying groceries, nobody looking at the camera
-- someone coming out with a bag held low, walking straight to a car
+EXACTLY 2 people TOTAL: 1 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles. Grouped in pairs, threes, and singles.
+- the people here are regulars of this store, not shoppers: leaning against the wall by the barred window, not going in — keeping to themselves, nobody carrying groceries, nobody looking at the camera
+- a man sitting on a concrete parking bumper with a can beside him
 - a delivery driver checking an app before carrying a case in
 - a man carrying a reusable grocery bag from a delivery pickup
-Clothing: men in bucket hats, wide-leg pants; women in chunky dad sneakers, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+Clothing: men in chunky sneakers, wide-leg pants; women in leggings and oversized hoodies, oversized blazers. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 1 period vehicle:
-- 2021-2025 Kia Telluride — boxy upscale three-row SUV — dark green
+EXACTLY 2 period vehicles, all different:
+- 2021-2025 Toyota Camry — sleek sedan, aggressive front fascia — white
+- 2021-2025 Ford F-150 — full-width LED bar, bold — silver
 Parked with gaps. Where a model is listed with a year range, render the 2025 model year specifically — only styling, trim and features available in 2025, nothing introduced later. No vehicle newer than 2025.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
 - utilities: overhead lines on existing poles in older commercial areas, fiber optic widespread
 
 DECAY
-- the parking apron cracked and patched, weeds through the seams
-- the old sign band painted over, a hand-lettered board screwed on beneath it
+- a cracked window pane held with tape at one corner
+- steel bars fitted across the lower windows, newer than everything around them
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 
 PHOTOGRAPHIC STYLE

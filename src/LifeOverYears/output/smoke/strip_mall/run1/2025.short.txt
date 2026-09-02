@@ -7,24 +7,24 @@ PERIOD DETAILS
 - a liquor store still open, its lit window the brightest thing in the row
 - a tax preparation and check-cashing office still open a few doors along, plain lettering, bars on the window
 - most of the other units dark behind the glass, several papered over from the inside
-- urgent care clinic with red-and-white minimal branding
-- dollar store anchor with green signage
+- nail and spa studio with an LED script sign
+- boba tea franchise with pastel signage and QR decals on the glass
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
-'DRIVER PICKUP ONLY'
-'SWITCH & SAVE — 3 LINES $90'
-'EVERYTHING $1.25'
+'ORDER ON THE APP'
+'FREE TRIAL CLASS'
+'CURBSIDE PICKUP'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-2 people, a delivery driver checking a phone beside a van. On the pavement, the lot apron or by the entrance — never in the road or a driving lane. Faces blurred.
+2 people, standing near the entrance looking at the window. On the pavement, the lot apron or by the entrance — never in the road or a driving lane. Faces blurred.
 
 VEHICLES
 EXACTLY 2 vehicles, 2025 model year, and no others:
-- 2020-2025 Hyundai Tucson — sharp parametric grille design — silver
-- 2023-2025 Honda Accord — clean minimalist refresh — white
+- 2017-2025 Honda CR-V — rounded best-selling crossover — black
+- 2023-2025 Kia Sportage — futuristic boomerang lights — gray
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 STYLE

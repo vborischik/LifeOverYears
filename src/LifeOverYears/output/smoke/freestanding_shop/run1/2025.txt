@@ -28,57 +28,41 @@ distort the source geometry.
 TRANSFORM TO 2025
 Post-pandemic era. A 2025 liquor store on the apron where the shop used to be — everything sold through a barred window and a buzzer door, the parking spaces out front used by fewer cars every year.
 
-CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
+CONDITION: squatted — closed and derelict, boarded entrance, weeds through the pavement, litter blown against the kerb
 
 PERIOD DETAILS
-- an LED beer sign in the upper glass, one segment dead
-- ghost signs from closed retailers
-- the old ground sign frame still standing, panel long gone
-- main sign: "GATEWAY BEVERAGE" — a neighbourhood liquor store, a plastic backlit box sign bolted over the old sign band, steel bars across the windows
-- above the new sign the previous business's lettering still ghosts on the brick: "FIFTH STREET GROCERY" — weathered, partly gone, plainly older than the sign bolted beneath it
-- window signs: 'LOTTO', 'NO LOITERING'
-- a padlocked ice chest with a faded drinks decal
-- a scuffed steel kick plate on the door
-Typography: minimalist geometric sans-serif, heavily simplified flat logos.
+- every storefront closed and dark — no lit signs, no menu boards, no open businesses
+- faded remains of old signage still on the facade, lettering weathered and partly missing
+- plywood over the ground-floor windows, doors chained shut
+- main sign: the sign board gone from the band over the door, anchor holes and a lighter unfaded rectangle left where it hung, no lettering at all
+No sign text anywhere except weathered remnants — do not turn words from this prompt into signage.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
-SIGNAGE RESTRICTION
-The only readable text anywhere in the image is:
-'GATEWAY BEVERAGE'
-'FIFTH STREET GROCERY'
-'LOTTO'
-'NO LOITERING'
-Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
-
 PEOPLE
-EXACTLY 3 people TOTAL: 1 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
-- the people here are regulars of this store, not shoppers: gathered at the corner of the building, keeping out of the way of the door — keeping to themselves, nobody carrying groceries, nobody looking at the camera
-- someone parked at the edge of the apron, not going in
-- someone leaving a bicycle unlocked against the wall for a minute
-- a remote worker taking a video call through wireless earbuds
-Clothing: men in techwear, chunky sneakers; women in chunky dad sneakers, high-waisted wide-leg jeans. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 3 people TOTAL and nobody else:
+- two of them sitting close together on the kerb out of the wind, sharing a bottle between them, turned slightly away, keeping to themselves
+- a retiree couple with matching walking poles — passing by along the far edge, not stopping, nothing to do with this place
+No staff, no customers, nobody working — nothing here is open.
+The two have only come in to drink out of sight: no tents, no tarps, no bedding, no shopping carts, no belongings laid out — nobody lives here.
 
 VEHICLES
-EXACTLY 1 period vehicle:
-- 2019-2025 Chevrolet Equinox — rounded compact crossover — gray
-Parked with gaps. Where a model is listed with a year range, render the 2025 model year specifically — only styling, trim and features available in 2025, nothing introduced later. No vehicle newer than 2025.
-Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
+NO vehicles anywhere — empty lot, no parked or moving cars.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
 - utilities: overhead lines on existing poles in older commercial areas, fiber optic widespread
 
 DECAY
-- a cracked window pane held with tape at one corner
-- the old sign band painted over, a hand-lettered board screwed on beneath it
+- the sign band stripped bare, anchor holes left in the brick
+- a dead security camera hanging off its bracket above the door
+- graffiti across the boarded window and the lower brick
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — digital — smartphone or mirrorless camera look.
 Color: high saturation. Grain: very clean, minimal to no noise.
 Photorealistic — NOT black-and-white, no HDR.
-Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
+Light: flat, even light under a grey overcast — subdued and cheerless, but plainly daytime; no fog, no rain, no darkness.
 
 PRIVACY
 Blur all faces and license plates.

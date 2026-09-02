@@ -32,12 +32,12 @@ CONDITION: thriving — well-maintained, freshly painted, active business, clean
 
 PERIOD DETAILS
 - pizza and sub shop with a '2 SLICES + SODA $2.99' sign in the window
-- MARY'S DINER with 'HOT COFFEE 75¢' in the window
-- large illuminated box signs
-- window signs: 'PAGERS $19.99', 'HAIRCUT $8'
+- STAR DINER with 'HOT COFFEE 75¢' in the window
+- vast parking lots
+- window signs: 'CDs $9.99', 'VHS 3-DAY RENTAL $1.99'
 - a wall-mounted payphone or payphone booth
-- the old painted ghost-sign now almost fully faded, barely legible
-- a cluster of coin-operated newspaper boxes on the corner
+- movie release posters plastered in the video store windows
+- a stack of free classified-ad papers in a wire rack
 Typography: clean geometric sans-serif, early digital influence.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
@@ -45,26 +45,27 @@ SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 '2 SLICES + SODA $2.99'
 'HOT COFFEE 75¢'
-'PAGERS $19.99'
-'HAIRCUT $8'
+'CDs $9.99'
+'VHS 3-DAY RENTAL $1.99'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 12 people TOTAL: 5 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles.
-- a man on rollerblades weaving around pedestrians
+EXACTLY 15 people TOTAL: 6 near sidewalk (largest, foreground), 5 opposite sidewalk mid-block, 4 distant, far end of block. Grouped in pairs, threes, and singles.
+- a clerk taping a sale poster inside a shop window
 - a teenager in a flannel shirt browsing the video store's new releases wall, visible through the glass
-- an office worker eating a sandwich on a bench during lunch
-Clothing: men in baggy jeans, windbreakers; women in crop tops, chokers. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a mom loading groceries into a minivan
+Clothing: men in backwards caps, grunge style; women in crop tops, chokers. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 1992-1996 Toyota Camry — rounded, understated — hunter green
-- 1992-1995 Honda Civic — small rounded coupe and sedan — teal
-- 1993-1997 Toyota Corolla — rounded compact sedan — black
-- 1991-1995 Dodge Caravan — rounded second-gen minivan — burgundy
+EXACTLY 5 period vehicles, all different:
+- 1995-2004 Toyota Tacoma — compact, rounded — white
+- 1995-1999 Dodge Neon — small rounded economy, friendly face — black
+- 1988-1998 Chevrolet C/K 1500 — softly squared pickup — burgundy
+- 1991-1994 Saturn SL — plastic body panels, compact — silver
+- 1990-1994 Chevrolet Lumina — rounded mid-size sedan — navy blue
 Parked with gaps. Where a model is listed with a year range, render the 1995 model year specifically — only styling, trim and features available in 1995, nothing introduced later. No vehicle newer than 1995.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+PLACEMENT: three parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn lane arrows

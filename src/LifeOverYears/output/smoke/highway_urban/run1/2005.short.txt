@@ -17,7 +17,7 @@ NO people on foot. Everyone in the scene is inside a moving vehicle.
 VEHICLES
 EXACTLY 2 vehicles, 2005 model year, and no others:
 - 2002-2008 Dodge Ram — big rig grille evolved — gray
-- 2005-2010 Ford Mustang — retro muscle revival — dark blue
+- 2004-2008 Chrysler 300 — bold boxy retro chrome grille — dark blue
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES

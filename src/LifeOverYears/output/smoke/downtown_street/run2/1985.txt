@@ -28,15 +28,15 @@ distort the source geometry.
 TRANSFORM TO 1985
 Reagan era prosperity. A 1985 main street in transition — neon and backlit plastic overtaking hand-painted signs, a first small video rental shop among the old local stores.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: busy — customers present, high activity, all pumps in use
 
 PERIOD DETAILS
-- TOWN DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
+- MAIN STREET DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
 - video arcade with a 'GAMES 25¢' neon sign and posters in the window
-- low single-story strip malls dominant
-- window signs: 'CASSETTE TAPES $7.99', 'VHS OVERNIGHT RENTAL $2.99'
-- a mailbox with graffiti scratches
-- the painted ghost-sign wall ad now noticeably fading, colors washing out
+- neon signs widespread
+- window signs: '2 SLICES $1.50', 'SALE 25% OFF'
+- movie posters taped inside the video shop windows
+- a bike rack with BMX bikes
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
@@ -44,26 +44,28 @@ SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 'HOT COFFEE 45¢'
 'GAMES 25¢'
-'CASSETTE TAPES $7.99'
-'VHS OVERNIGHT RENTAL $2.99'
+'2 SLICES $1.50'
+'SALE 25% OFF'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 10 people TOTAL: 4 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
-- a woman jogging past the storefronts in bright spandex
-- a boy showing off a new pair of high-top sneakers to a friend
-- a grandmother clutching a coupon flyer
-Clothing: men in polo shirts with collars up, shoulder pads in blazers; women in big permed hair, leg warmers. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 14 people TOTAL: 6 near sidewalk (largest, foreground), 5 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles.
+- a woman in acid-wash jeans flipping through a rack of cassette singles
+- a mail carrier in shorts making his afternoon rounds
+- an older woman in a velour tracksuit carrying a tote bag
+Clothing: men in windbreakers, shoulder pads in blazers; women in high-waisted jeans, big permed hair. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline — light blue
-- 1975-1991 Ford Econoline — boxy full-size van — silver
-- 1982-1986 Nissan Sentra — small economy boxy sedan — beige
-- 1984-1988 Toyota Pickup — small, boxy, popular import — red
+EXACTLY 6 period vehicles, all different:
+- 1984-1988 Toyota Pickup — small, boxy, popular import — silver
+- 1973-1991 Chevrolet Suburban — long boxy wagon-SUV — burgundy
+- 1978-1986 Ford Bronco — full-size boxy SUV, round headlights — charcoal gray
+- 1975-1991 Ford Econoline — boxy full-size van — light blue
+- 1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan — white
+- 1973-1987 Chevrolet C/K — square body pickup, dual headlights — beige
 Parked with gaps. Where a model is listed with a year range, render the 1985 model year specifically — only styling, trim and features available in 1985, nothing introduced later. No vehicle newer than 1985.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
+PLACEMENT: three parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, painted crosswalks

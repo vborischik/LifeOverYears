@@ -29,40 +29,40 @@ TRANSFORM TO 2005
 Post-9/11 era. A 2005 open-air shopping center mid-turnover — the anchor changed hands again, two inline units dark behind papered glass, the lot busy only near the ends.
 
 PERIOD DETAILS
-- monument signs at lifestyle centers
-- aging 1980s strip malls
-- large LED-lit pylon signs
-- window signs: 'OPEN 9-9', 'NOW LEASING'
+- decorative cornices and parapets
+- LED price signs at gas stations
+- electronic message boards common
+- window signs: 'NOW LEASING', 'SALE'
 - a cart corral with a bent rail near the anchor
-- patched asphalt with faded stall lines toward the middle
+- a dumpster corral with a sagging wooden gate
 Typography: clean sans-serif, polished brand identities.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'OPEN 9-9'
 'NOW LEASING'
+'SALE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 14 people TOTAL: 6 near sidewalk (largest, foreground), 5 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles.
-- a woman loading bags into an SUV near the anchor doors
+- an older woman resting on the bench outside the anchor
 - a woman reading the papered glass of a closed unit
-- a couple taking photos with a digital camera
-Clothing: men in frosted tips hair, baggy jeans; women in trucker hats, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- an office worker clipped to a Bluetooth headset mid-conversation
+Clothing: men in baggy jeans, trucker hats; women in velour tracksuits, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 7 period vehicles, all different:
-- 2003-2007 Nissan Altima — sporty mid-size — dark blue
-- 1998-2004 Nissan Frontier — compact pickup — black
-- 2002-2008 Dodge Ram — big rig grille evolved — dark red
-- 1999-2006 Chevrolet Silverado — squared modern look — gold
-- 2005-2010 Jeep Grand Cherokee — rounded modern SUV — silver
-- 2003-2007 Honda Accord — clean lines, sharper than 1990s — white
-- 2004-2008 Pontiac Grand Prix — sporty sedan plastic cladding — gray
+- 2000-2007 Ford Taurus — rounded, aging fleet-look sedan — dark red
+- 2001-2007 Ford Escape — compact boxy SUV — white
+- 2004-2010 Toyota Sienna — large rounded minivan — dark blue
+- 2001-2007 Dodge Grand Caravan — family minivan, rounded — black
+- 2004-2012 Chevrolet Colorado — mid-size pickup — gold
+- 1998-2004 Nissan Frontier — compact pickup — silver
+- 2001-2007 Toyota Highlander — early crossover — gray
 Parked with gaps. Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: three nose-in near the building; the rest in stalls at the far edge of the lot. No vehicle in the same spot as any other era.
+PLACEMENT: all parked in the lot, nose-in to marked stalls, with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn arrows

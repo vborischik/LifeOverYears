@@ -29,8 +29,8 @@ TRANSFORM TO 1975
 Post-Vietnam, oil crisis era. A 1975 rural two-lane highway running out through open country — narrow asphalt, painted centre line and wooden guardrail posts, with a car passing every few minutes.
 
 PERIOD DETAILS
-- 55 mph speed limit signs on plain steel posts
 - wooden utility poles carrying a single line of wire along the shoulder
+- flat non-reflective route markers on wooden posts
 Typography: bold sans-serif, slab serif, occasional script.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
@@ -42,7 +42,7 @@ NO people on foot anywhere — nobody walking, standing or waiting at the roadsi
 
 VEHICLES
 EXACTLY 1 period vehicle:
-- 1972-1980 Dodge D100 — angular cab, simple grille
+- 1972-1980 Dodge D100 — angular cab, simple grille — dark brown
 Where a model is listed with a year range, render the 1975 model year specifically — only styling, trim and features available in 1975, nothing introduced later. No vehicle newer than 1975.
 Each vehicle is travelling in its own lane at highway speed, spaced by natural following distance, all heading the same direction as the camera's vantage point. None stopped, and none standing on the shoulder.
 
@@ -55,10 +55,10 @@ TREES
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE
-STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.
-Grain: visible fine grain. Style: documentary, natural light.
-Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.
-Light: bright open daylight, clear sky, soft natural shadows — a fine, ordinary day.
+COLOR photograph — Kodachrome 64 or Ektachrome look.
+Color: slightly warm tones. Grain: visible fine grain.
+Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

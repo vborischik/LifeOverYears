@@ -4,18 +4,18 @@ Keep the uploaded photo's exact composition, camera angle, road and building geo
 TRANSFORM TO 1985 — condition: busy — well kept, plenty of custom
 
 PERIOD DETAILS
-- main sign: "RIVERSIDE FOOD MARKET" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
-- a hand-lettered card taped over the old price board
+- main sign: "BAYVIEW PHARMACY" — a neighbourhood pharmacy, painted sign board over the door with a mortar-and-pestle emblem beside the lettering
 - stripe patterns on awnings
-- large logo signs on pylons
-- window signs: 'LOTTERY TICKETS', 'ICE'
+- a video rental rack visible through the window just inside the door
+- neon signs widespread
+- window signs: 'CIGARETTES 95¢', 'VIDEO RENTAL'
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
-'RIVERSIDE FOOD MARKET'
-'LOTTERY TICKETS'
-'ICE'
+'BAYVIEW PHARMACY'
+'CIGARETTES 95¢'
+'VIDEO RENTAL'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
@@ -23,8 +23,8 @@ PEOPLE
 
 VEHICLES
 EXACTLY 2 vehicles, 1985 model year, and no others:
-- 1984-1990 Dodge Caravan — first minivan, boxy — white
-- 1981-1985 Ford Escort — small boxy economy hatchback — beige
+- 1982-1992 Chevrolet Camaro — wedge-shaped sporty coupe — beige
+- 1978-1987 Chevrolet Monte Carlo — personal luxury coupe, long hood — charcoal gray
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES

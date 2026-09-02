@@ -28,14 +28,14 @@ distort the source geometry.
 TRANSFORM TO 1995
 Clinton era prosperity. A 1995 corner shop squeezed by the supermarkets — money orders and phone cards on the window now, and a cash machine put in where the magazine rack used to be.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: busy — customers present, high activity, all pumps in use
 
 PERIOD DETAILS
-- a backlit plastic sign panel, one tube out at the left end
-- a chest cooler on the sidewalk under a plastic drinks banner
+- a phone-card poster and a money-order decal filling the lower window
+- a security camera bracket newly fitted above the door
 - a hand-lettered sign about a two-item limit taped to the glass
-- main sign: "RIVERSIDE FOOD MARKET" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
-- window signs: 'PHONE CARDS', 'ICE'
+- main sign: "BAYVIEW PHARMACY" — a neighbourhood pharmacy, painted sign board over the door with a mortar-and-pestle emblem beside the lettering
+- window signs: 'PHONE CARDS', 'MONEY ORDERS'
 - a hand-lettered notice taped inside the door glass
 - a phone-card rack visible through the glass by the register
 Typography: clean geometric sans-serif, early digital influence.
@@ -43,26 +43,25 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'RIVERSIDE FOOD MARKET'
+'BAYVIEW PHARMACY'
 'PHONE CARDS'
-'ICE'
+'MONEY ORDERS'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- two men talking beside the ice chest, neither going in
-- the clerk carrying flattened boxes to the side of the building
-- a teenager paging through a comic at a spinner rack
-Clothing: men in windbreakers, flannel shirts; women in floral dresses, high-waisted mom jeans. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a woman coming out with one small plastic bag
+- a delivery driver leaving cases stacked by the door
+- two women power-walking in windbreakers
+Clothing: men in baggy jeans, flannel shirts; women in chokers, crop tops. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 3 period vehicles, all different:
-- 1990-1994 Chevrolet Lumina — rounded mid-size sedan — black
-- 1991-1994 Saturn SL — plastic body panels, compact — silver
-- 1992-1996 Ford F-150 — rounded aero body — teal
+EXACTLY 2 period vehicles, all different:
+- 1993-1998 Jeep Grand Cherokee — early SUV, boxy-rounded — burgundy
+- 1992-1996 Toyota Camry — rounded, understated — hunter green
 Parked with gaps. Where a model is listed with a year range, render the 1995 model year specifically — only styling, trim and features available in 1995, nothing introduced later. No vehicle newer than 1995.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
+PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn lane arrows

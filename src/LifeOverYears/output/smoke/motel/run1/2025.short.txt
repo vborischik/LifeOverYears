@@ -4,27 +4,26 @@ Keep the uploaded photo's exact composition, camera angle, road and building geo
 TRANSFORM TO 2025 — condition: reopened and tidy — clean surfaces, the same building back in use
 
 PERIOD DETAILS
-- main sign: "Travelodge" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
-- vacant former big box stores common
+- main sign: "Quality Inn" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
 - a laminated notice zip-tied to the pylon post at eye height
-- full color digital displays
+- QR codes on signage
+- a paired window beside each door, most screened from inside with sheets or blinds shut flat
 - window signs: 'WEEKLY & MONTHLY', 'NO VISITORS AFTER 10'
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
-'Travelodge'
+'Quality Inn'
 'WEEKLY & MONTHLY'
 'NO VISITORS AFTER 10'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-3 people, standing near the entrance looking at the window. On the pavement, the lot apron or by the entrance — never in the road or a driving lane. Faces blurred.
+2 people, standing near the entrance looking at the window. On the pavement, the lot apron or by the entrance — never in the road or a driving lane. Faces blurred.
 
 VEHICLES
-EXACTLY 2 vehicles, 2025 model year, and no others:
-- 2019-2025 Ram 1500 — crew cab pickup, large grille — white
-- 2019-2025 Toyota Corolla — sharp-nosed compact — blue
+EXACTLY 1 vehicle, 2025 model year, and no others:
+- 2021-2025 Kia Telluride — boxy upscale three-row SUV — gray
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 STYLE

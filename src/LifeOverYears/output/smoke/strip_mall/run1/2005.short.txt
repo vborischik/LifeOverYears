@@ -1,23 +1,23 @@
 One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
 Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
 
-TRANSFORM TO 2005 — condition: busy — well kept, plenty of custom
+TRANSFORM TO 2005 — condition: well kept — freshly painted, open for business
 
 PERIOD DETAILS
 - dollar store anchor with yellow 'EVERYTHING $1' signage
+- cellular store with carrier logos and 'FREE FLIP PHONE' posters
 - hair salon with a 'WALK-INS WELCOME' sign
-- tax preparation office with a green square logo
-- window signs: 'NO CREDIT? NO PROBLEM!', 'DVD BLOWOUT — 4 FOR $10'
-- a 'STORE CLOSING' A-frame sign on the walkway
+- a RadioShack store, red sign board with white lettering
+- window signs: 'FOOTLONG COMBO $5.99', 'NAIL FILL $18'
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
 'EVERYTHING $1'
+'FREE FLIP PHONE'
 'WALK-INS WELCOME'
-'NO CREDIT? NO PROBLEM!'
-'DVD BLOWOUT — 4 FOR $10'
-'STORE CLOSING'
+'FOOTLONG COMBO $5.99'
+'NAIL FILL $18'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
@@ -25,8 +25,8 @@ PEOPLE
 
 VEHICLES
 EXACTLY 2 vehicles, 2005 model year, and no others:
-- 2002-2009 Chevrolet TrailBlazer — mid-size SUV boxy — white
-- 2001-2007 Toyota Highlander — early crossover — gray
+- 2003-2007 Honda Accord — clean lines, sharper than 1990s — silver
+- 2001-2007 Ford Escape — compact boxy SUV — white
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES

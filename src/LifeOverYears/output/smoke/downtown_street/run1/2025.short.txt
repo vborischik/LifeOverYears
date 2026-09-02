@@ -1,32 +1,32 @@
 One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
 Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
 
-TRANSFORM TO 2025 — condition: declining — faded paint, aging signage, little activity
+TRANSFORM TO 2025 — condition: reopened and tidy — clean surfaces, the same building back in use
 
 PERIOD DETAILS
-- a liquor store still open, its lit window the brightest thing in the row
-- a tax preparation and check-cashing office still open a few doors along, plain lettering, bars on the window
-- most of the other units dark behind the glass, several papered over from the inside
-- MARY'S DINER with 'COFFEE $3.50' shown on a small digital menu screen in the window
-- delivery-only ghost kitchen storefront with pickup shelves visible through the glass
+- STAR DINER with 'COFFEE $3.50' shown on a small digital menu screen in the window
+- the old video store space now a specialty coffee bar with a minimalist flat logo
+- drive-through digital menu boards with AI ordering
+- window signs: 'ORDER AHEAD — SCAN THE QR CODE', 'BOBA — BUY ONE GET ONE FRIDAYS'
+- a shared e-scooter and e-bike dock at the curb
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
 'COFFEE $3.50'
-'LASHES FROM $79'
-'NOW HIRING — APPLY ONLINE'
+'ORDER AHEAD — SCAN THE QR CODE'
+'BOBA — BUY ONE GET ONE FRIDAYS'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-2 people, standing near the entrance looking at the window. On the pavement, the lot apron or by the entrance — never in the road or a driving lane. Faces blurred.
+2-3 people in the background as small figures, plus a few more further off, no detail on any face. All on the pavement or beside parked cars, never in the road. Faces blurred.
 
 VEHICLES
 EXACTLY 2 vehicles, 2025 model year, and no others:
-- 2022-2025 Toyota Tundra — massive grille, muscular stance — black
-- 2021-2025 Kia Telluride — boxy upscale three-row SUV — white
+- 2021-2025 Ford Bronco — retro boxy off-roader — silver
+- 2021-2025 Toyota Camry — sleek sedan, aggressive front fascia — gray
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 STYLE
-COLOR photograph — digital — smartphone or mirrorless camera look. Color: high saturation. Grain: very clean, minimal to no noise. Photorealistic — NOT black-and-white, no HDR. Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
+COLOR photograph — digital — smartphone or mirrorless camera look. Color: high saturation. Grain: very clean, minimal to no noise. Photorealistic — NOT black-and-white, no HDR. Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 Blur all faces and licence plates.

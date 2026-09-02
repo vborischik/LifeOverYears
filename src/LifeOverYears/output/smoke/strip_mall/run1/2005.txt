@@ -28,46 +28,45 @@ distort the source geometry.
 TRANSFORM TO 2005
 Post-9/11 era. An aging 2005 strip mall — national franchises mixed with struggling locals, the video store on its last legs.
 
-CONDITION: busy — customers present, high activity, all pumps in use
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
 - dollar store anchor with yellow 'EVERYTHING $1' signage
+- cellular store with carrier logos and 'FREE FLIP PHONE' posters
 - hair salon with a 'WALK-INS WELCOME' sign
-- tax preparation office with a green square logo
-- window signs: 'NO CREDIT? NO PROBLEM!', 'DVD BLOWOUT — 4 FOR $10'
-- a 'STORE CLOSING' A-frame sign on the walkway
-- a cart corral in the lot
+- a RadioShack store, red sign board with white lettering
+- window signs: 'FOOTLONG COMBO $5.99', 'NAIL FILL $18'
+- a sidewalk sandwich board with a cell-phone store promo
+- light poles with faded banner ads
 Typography: clean sans-serif, polished brand identities.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 'EVERYTHING $1'
+'FREE FLIP PHONE'
 'WALK-INS WELCOME'
-'NO CREDIT? NO PROBLEM!'
-'DVD BLOWOUT — 4 FOR $10'
-'STORE CLOSING'
+'FOOTLONG COMBO $5.99'
+'NAIL FILL $18'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 10 people TOTAL: 4 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
-- a woman leaving the check-cashing store counting bills
-- teenagers gathered outside the game store
-- a woman walking a small dog in a sweater
-Clothing: men in frosted tips hair, cargo shorts; women in velour tracksuits, chunky highlights. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 9 people TOTAL: 4 near sidewalk (largest, foreground), 3 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
+- a couple browsing the closing video store's bargain bins
+- a family piling out of an SUV near the entrance
+- a jogger checking a heart-rate monitor watch mid-stride
+Clothing: men in frosted tips hair, baggy jeans; women in chunky highlights, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 7 period vehicles, all different:
-- 2002-2009 Chevrolet TrailBlazer — mid-size SUV boxy — white
-- 2001-2007 Toyota Highlander — early crossover — gray
-- 2003-2007 Nissan Altima — sporty mid-size — black
-- 2005-2010 Jeep Grand Cherokee — rounded modern SUV — silver
-- 1999-2006 Chevrolet Silverado — squared modern look — dark red
-- 2005-2010 Chevrolet Cobalt — compact economy sedan — dark blue
-- 2003-2009 Hummer H2 — massive military-styled SUV — gold
+EXACTLY 5 period vehicles, all different:
+- 2003-2007 Honda Accord — clean lines, sharper than 1990s — silver
+- 2001-2007 Ford Escape — compact boxy SUV — white
+- 2002-2006 Toyota Camry — smooth conservative mid-size — dark blue
+- 2002-2007 Jeep Liberty — round-headlight compact SUV — black
+- 2002-2009 Chevrolet TrailBlazer — mid-size SUV boxy — gold
 Parked with gaps. Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: all parked in the lot, nose-in to marked stalls, with gaps between them. No vehicle in the same spot as any other era.
+PLACEMENT: three nose-in near the building; the rest in stalls at the far edge of the lot. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn arrows

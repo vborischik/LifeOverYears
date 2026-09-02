@@ -32,9 +32,9 @@ CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
 - a printed banner advertising tire brands and a '$24.95 OIL CHANGE' promo, replacing the old painted sign
-- large illuminated box signs
-- a display wall of aftermarket wheels visible through the office glass
-- window signs: 'ALIGNMENT $49.95', 'AFTERMARKET WHEELS IN STOCK'
+- electronic message boards common
+- aging 1980s strip malls
+- window signs: 'OIL CHANGE $24.95', 'CHECK ENGINE LIGHT $59.95'
 - a printed vinyl banner advertising tire brands
 - a wall display of aftermarket wheels
 Typography: clean sans-serif, polished brand identities.
@@ -43,23 +43,23 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 '$24.95 OIL CHANGE'
-'ALIGNMENT $49.95'
-'AFTERMARKET WHEELS IN STOCK'
+'OIL CHANGE $24.95'
+'CHECK ENGINE LIGHT $59.95'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a mechanic checking tire tread with a gauge
-- a woman dropping off a minivan with two kids in the back seat
-- a woman power-walking with a small dog on a retractable leash
-Clothing: men in cargo shorts, frosted tips hair; women in low-rise jeans, velour tracksuits. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a man comparing brake prices on the printed banner outside
+- a customer pointing at a check-engine code printout
+- a teenager skateboarding with a messenger bag bouncing on his back
+Clothing: men in baggy jeans, trucker hats; women in layered tank tops, chunky highlights. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 1 period vehicle:
-- 2002-2006 Toyota Camry — smooth conservative mid-size — dark red
+- 2002-2006 Toyota Camry — smooth conservative mid-size — black
 Parked with gaps. Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: all parked in the lot, nose-in to marked stalls, with an empty stall between them. No vehicle in the same spot as any other era.
+PLACEMENT: two nose-in near the building; the rest angled into stalls at the far edge of the lot. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
@@ -67,7 +67,7 @@ ENVIRONMENT
 
 DECAY
 - the painted sign band faded, letters flaking at the edges
-- a hand-lettered service sign taped inside the office glass
+- weeds at the apron edges and along the base of the building
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - maple tree at street corner: clearly smaller than in the base image — about 75% of its canopy there, thinner trunk

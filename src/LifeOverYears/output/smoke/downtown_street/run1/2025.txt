@@ -28,17 +28,14 @@ distort the source geometry.
 TRANSFORM TO 2025
 Post-pandemic era. A 2025 main street — minimalist flat-logo storefronts, QR codes on the glass, delivery culture in plain view.
 
-CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
+CONDITION: restored — the same building reoccupied — plywood off the windows, litter and weeds cleared, surfaces cleaned, a modest working business again; structure, footprint and signband shape unchanged
 
 PERIOD DETAILS
-- a liquor store still open, its lit window the brightest thing in the row
-- a tax preparation and check-cashing office still open a few doors along, plain lettering, bars on the window
-- most of the other units dark behind the glass, several papered over from the inside
-- MARY'S DINER with 'COFFEE $3.50' shown on a small digital menu screen in the window
-- delivery-only ghost kitchen storefront with pickup shelves visible through the glass
+- STAR DINER with 'COFFEE $3.50' shown on a small digital menu screen in the window
 - the old video store space now a specialty coffee bar with a minimalist flat logo
-- window signs: 'LASHES FROM $79', 'NOW HIRING — APPLY ONLINE'
-- the ghost-sign wall now a commissioned mural with bold flat graphics
+- drive-through digital menu boards with AI ordering
+- window signs: 'ORDER AHEAD — SCAN THE QR CODE', 'BOBA — BUY ONE GET ONE FRIDAYS'
+- a shared e-scooter and e-bike dock at the curb
 - a stack of delivery packages waiting at a shop door
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
@@ -46,41 +43,38 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 'COFFEE $3.50'
-'LASHES FROM $79'
-'NOW HIRING — APPLY ONLINE'
+'ORDER AHEAD — SCAN THE QR CODE'
+'BOBA — BUY ONE GET ONE FRIDAYS'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 2 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block. Grouped in pairs, threes, and singles.
-- of these, 3 people waiting outside the liquor store for someone, not going in — keeping to themselves, not looking at the camera
-- a teenager gliding past on an e-scooter
-- a woman comparing prices on the boba shop's QR menu
-- a teenager filming a friend for a short-form video
-Clothing: men in bucket hats, techwear; women in athleisure, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 14 people TOTAL: 6 near sidewalk (largest, foreground), 5 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles.
+- a delivery cyclist checking an app at the curb
+- sidewalk diners in a parklet dining structure
+- a teenager gliding by on a skateboard
+Clothing: men in chunky sneakers, bucket hats; women in high-waisted wide-leg jeans, chunky dad sneakers. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 2 period vehicles, all different:
-- 2022-2025 Toyota Tundra — massive grille, muscular stance — black
+EXACTLY 5 period vehicles, all different:
+- 2021-2025 Ford Bronco — retro boxy off-roader — silver
+- 2021-2025 Toyota Camry — sleek sedan, aggressive front fascia — gray
+- 2022-2025 Nissan Pathfinder — squared-off three-row SUV — black
+- 2021-2025 Nissan Rogue — squared-off crossover, floating roofline — dark green
 - 2021-2025 Kia Telluride — boxy upscale three-row SUV — white
 Parked with gaps. Where a model is listed with a year range, render the 2025 model year specifically — only styling, trim and features available in 2025, nothing introduced later. No vehicle newer than 2025.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
+PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: worn and faded, well past their last repainting
+- road markings: yellow center line, white edge lines, high-visibility crosswalks
 - utilities: power, phone and fiber fully undergrounded along the main commercial block, clean open sky above the street — no poles, no wires; ground level transformer cabinets and smart conduits below grade
 - the poles and wires still visible in the uploaded image are gone in this era: remove every pole, crossarm and wire span along the street and rebuild the sky behind them. This is the one exception to PRESERVE; everything else stays as it is.
-
-DECAY
-- a faded painted wall ad showing through the brick
-- an old sign band painted over, the previous lettering still faintly readable
-Wear is surfaces only — road, curbs, footprints, camera unchanged.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — digital — smartphone or mirrorless camera look.
 Color: high saturation. Grain: very clean, minimal to no noise.
 Photorealistic — NOT black-and-white, no HDR.
-Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

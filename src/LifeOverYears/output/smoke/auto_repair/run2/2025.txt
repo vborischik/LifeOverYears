@@ -28,51 +28,53 @@ distort the source geometry.
 TRANSFORM TO 2025
 Post-pandemic era. A thinly staffed independent auto repair shop in 2025 — one bay open, one dark, and most of the signage now generic printed vinyl rather than anything custom.
 
-CONDITION: restored — the same building reoccupied — plywood off the windows, litter and weeds cleared, surfaces cleaned, a modest working business again; structure, footprint and signband shape unchanged
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
 - a generic printed banner advertising '$49.99 OIL CHANGE', replacing older signage
-- large glass storefronts
-- generic printed vinyl sign band reading 'AUTO REPAIR' in plain block letters
-- window signs: 'STATE INSPECTION $24.99', 'BRAKES FROM $149.99'
-- a QR-code payment sign taped near the register
+- digital display signage
+- a small digital tablet mounted at the counter for checkout
+- window signs: 'APPOINTMENT ONLY — CALL AHEAD', 'OIL CHANGE $49.99'
 - a thinly stocked parts shelf visible through the glass
+- a small digital tablet at the checkout counter
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 '$49.99 OIL CHANGE'
-'AUTO REPAIR'
-'STATE INSPECTION $24.99'
-'BRAKES FROM $149.99'
+'APPOINTMENT ONLY — CALL AHEAD'
+'OIL CHANGE $49.99'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+EXACTLY 2 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block. Grouped in pairs, threes, and singles.
 - the owner doing paperwork alone at the counter
-- a customer pointing at a dashboard warning light on their phone screen
-- a retiree scrolling a tablet while sitting on a bench
-Clothing: men in wide-leg pants, oversized fit tees; women in athleisure, high-waisted wide-leg jeans. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a driver calling ahead from the parking lot before coming in
+- a teenager gliding by on a skateboard
+Clothing: men in oversized fit tees, techwear; women in leggings and oversized hoodies, oversized blazers. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 3 period vehicles, all different:
-- 2021-2025 Ford F-150 — refreshed, full-width LED bar options — gray
+EXACTLY 1 period vehicle:
 - 2023-2025 Kia Sportage — futuristic boomerang lights — blue
-- 2019-2025 Chevrolet Equinox — rounded compact crossover — white
 Parked with gaps. Where a model is listed with a year range, render the 2025 model year specifically — only styling, trim and features available in 2025, nothing introduced later. No vehicle newer than 2025.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
 PLACEMENT: one nose-in close to the entrance; the rest spread across stalls toward the lot's far edge. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: yellow center line, white edge lines, high-visibility crosswalks
+- road markings: worn and faded, well past their last repainting
 - utilities: overhead lines on existing poles in older commercial areas, fiber optic widespread
+
+DECAY
+- one service bay door rolled down while the other stays open
+- a hand-lettered service sign taped inside the office glass
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — digital — smartphone or mirrorless camera look.
 Color: high saturation. Grain: very clean, minimal to no noise.
 Photorealistic — NOT black-and-white, no HDR.
-Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
 
 PRIVACY
 Blur all faces and license plates.

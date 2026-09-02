@@ -32,38 +32,39 @@ CONDITION: thriving — well-maintained, freshly painted, active business, clean
 
 PERIOD DETAILS
 - soft-serve ice cream stand at the end cap with a cone-shaped sign
-- simple rectangular forms
-- hand-painted lettering on windows
-- window signs: '8-TRACK TAPES $4.99', 'WASH 35¢ — DRY 10¢'
+- overhanging flat canopies
+- large plate glass storefronts
+- a small radio and electronics shop, hand-lettered window sign reading CB RADIOS - ANTENNAS - SCANNERS, no chain name anywhere
+- window signs: 'WASH 35¢ — DRY 10¢', 'BACK TO SCHOOL — JEANS $6'
 - a coin-operated kiddie ride by a storefront door
-- painted white parking stall lines, slightly faded
+- an American flag on a pole at the lot entrance
 Typography: bold sans-serif, slab serif, occasional script.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'8-TRACK TAPES $4.99'
 'WASH 35¢ — DRY 10¢'
+'BACK TO SCHOOL — JEANS $6'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 16 people TOTAL: 6 near sidewalk (largest, foreground), 6 opposite sidewalk mid-block, 4 distant, far end of block. Grouped in pairs, threes, and singles.
-- a shopper counting change at the laundromat's coin machine
-- a woman pushing a shopping cart across the parking lot
-- a girl walking a bicycle with a basket
-Clothing: men in plaid patterns, wide lapels; women in midi skirts, wide leg pants. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a woman carrying a laundry basket under the canopy
+- an elderly couple walking slowly along the covered walkway
+- an elderly couple walking arm in arm
+Clothing: men in turtlenecks, plaid patterns; women in midi skirts, wide leg pants. Fashion palette: avocado, harvest gold, burnt orange. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 6 period vehicles, all different:
-- 1973-1979 Ford F-100 — square body, chrome grille
-- 1971-1976 Chevrolet G10 Sportvan — boxy windowed van, chrome bumper
-- 1975-1979 AMC Pacer — wide bubble-shaped compact, huge glass area
-- 1970-1976 Pontiac Firebird Trans Am — hood scoop, spoiler, bold graphics
-- 1973-1978 Datsun 610 — compact sedan/wagon, boxy
-- 1971-1976 Jeep Wagoneer — boxy full-size SUV, woodgrain trim optional
+- 1973-1979 Ford F-100 — square body, chrome grille — dark brown
+- 1971-1976 Chevrolet G10 Sportvan — boxy windowed van, chrome bumper — burnt orange
+- 1975-1979 AMC Pacer — wide bubble-shaped compact, huge glass area — harvest gold
+- 1970-1976 Pontiac Firebird Trans Am — hood scoop, spoiler, bold graphics — maroon
+- 1973-1978 Datsun 610 — compact sedan/wagon, boxy — tan
+- 1971-1976 Jeep Wagoneer — boxy full-size SUV, woodgrain trim optional — powder blue
 Parked with gaps. Where a model is listed with a year range, render the 1975 model year specifically — only styling, trim and features available in 1975, nothing introduced later. No vehicle newer than 1975.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: three nose-in near the building; the rest in stalls at the far edge of the lot. No vehicle in the same spot as any other era.
+PLACEMENT: all parked in the lot, nose-in to marked stalls, with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, no rumble strips
@@ -76,10 +77,10 @@ TREES
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE
-STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.
-Grain: visible fine grain. Style: documentary, natural light.
-Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.
-Light: bright open daylight, clear sky, soft natural shadows — a fine, ordinary day.
+COLOR photograph — Kodachrome 64 or Ektachrome look.
+Color: slightly warm tones. Grain: visible fine grain.
+Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

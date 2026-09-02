@@ -31,36 +31,37 @@ Post-Vietnam, oil crisis era. A full-service neighborhood gas station in 1975 �
 CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
-- oil-can rack stacked with quart cans beside the pump island
-- overhanging flat canopies
+- oil cans displayed outside
+- 'FREE MAPS' and trading-stamp decals on the office window
 - price sign showing gas around $0.57
-- main sign: "Marathon" branded gas station — Marathon pole sign with price display and Marathon colors on the canopy fascia
-- window signs: 'MECHANIC ON DUTY', 'FLATS FIXED $2'
+- main sign: "Fina" branded gas station — Fina pole sign with price display and Fina colors on the canopy fascia
+- window signs: 'MOTOR OIL 55¢ QT', 'FLATS FIXED $2'
 - a stack of used tires beside the service bay
-- a folded newspaper stack tied with twine by the office door
+- a bicycle leaning against a utility pole
 Typography: bold sans-serif, slab serif, occasional script.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Marathon'
-'MECHANIC ON DUTY'
+'FREE MAPS'
+'Fina'
+'MOTOR OIL 55¢ QT'
 'FLATS FIXED $2'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 8 people TOTAL: 3 near sidewalk (largest, foreground), 3 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
-- the station owner standing in the office doorway with a clipboard
-- a young attendant checking tire pressure with a gauge
-- a mailman in a USPS uniform with a leather satchel
-Clothing: men in turtlenecks, wide lapels; women in wide leg pants, midi skirts. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+- a driver waiting behind the wheel while the attendant works
+- an attendant sweeping the apron with a push broom
+- a boy selling newspapers on the corner, coins jingling in his pouch
+Clothing: men in polyester suits, bell bottoms; women in peasant blouses, wide leg pants. Fashion palette: avocado, harvest gold, burnt orange. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
-- 1973-1979 Ford F-100 — square body, chrome grille
-- 1971-1976 Chevrolet G10 Sportvan — boxy windowed van, chrome bumper
-- 1975-1979 AMC Pacer — wide bubble-shaped compact, huge glass area
-- 1970-1976 Pontiac Firebird Trans Am — hood scoop, spoiler, bold graphics
+- 1973-1979 Ford F-100 — square body, chrome grille — dark brown
+- 1971-1976 Chevrolet G10 Sportvan — boxy windowed van, chrome bumper — burnt orange
+- 1975-1979 AMC Pacer — wide bubble-shaped compact, huge glass area — harvest gold
+- 1970-1976 Pontiac Firebird Trans Am — hood scoop, spoiler, bold graphics — maroon
 Parked with gaps. Where a model is listed with a year range, render the 1975 model year specifically — only styling, trim and features available in 1975, nothing introduced later. No vehicle newer than 1975.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
 PLACEMENT: one nose-in close to the entrance; the rest spread across stalls toward the lot's far edge. No vehicle in the same spot as any other era.
@@ -76,10 +77,10 @@ TREES
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE
-STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.
-Grain: visible fine grain. Style: documentary, natural light.
-Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.
-Light: bright open daylight, clear sky, soft natural shadows — a fine, ordinary day.
+COLOR photograph — Kodachrome 64 or Ektachrome look.
+Color: slightly warm tones. Grain: visible fine grain.
+Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

@@ -4,26 +4,26 @@ Keep the uploaded photo's exact composition, camera angle, road and building geo
 TRANSFORM TO 2005 — condition: declining — faded paint, aging signage, little activity
 
 PERIOD DETAILS
-- main sign: "RIVERSIDE FOOD MARKET" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
-- LED price signs at gas stations
+- main sign: "BAYVIEW PHARMACY" — a neighbourhood pharmacy, painted sign board over the door with a mortar-and-pestle emblem beside the lettering
+- aging 1980s strip malls
 - a check-cashing banner across the top of the window
-- half the shelving visible through the window standing empty
-- window signs: 'PHONE CARDS', 'LOTTO'
+- a plastic sign panel with a cracked corner
+- window signs: 'LOTTO', 'CHECK CASHING'
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
-'RIVERSIDE FOOD MARKET'
-'PHONE CARDS'
+'BAYVIEW PHARMACY'
 'LOTTO'
+'CHECK CASHING'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-3 people, walking to a parked car. On the pavement, the lot apron or by the entrance — never in the road or a driving lane. Faces blurred.
+3 people, a delivery driver checking a phone beside a van. On the pavement, the lot apron or by the entrance — never in the road or a driving lane. Faces blurred.
 
 VEHICLES
 EXACTLY 1 vehicle, 2005 model year, and no others:
-- 2002-2009 Chevrolet TrailBlazer — mid-size SUV boxy — dark red
+- 2004-2008 Chrysler 300 — bold boxy retro chrome grille — dark blue
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES

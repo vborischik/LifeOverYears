@@ -31,36 +31,36 @@ Post-Vietnam, oil crisis era. A 1975 roadside motel in steady trade — a neon V
 CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
-- an ice machine in a lit alcove near the office end
+- a neon sign on the pylon out by the road, the NO above VACANCY unlit
+- simple bold typography
 - a concrete walkway running the length of the wing under a shallow overhang
-- the office at the end of the wing, its own sign lit over the door
-- main sign: "Super 8" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
-- window signs: 'COLOR TV', 'POOL'
-- a metal ashtray stand outside the office door
+- main sign: "Holiday Inn" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
+- window signs: 'AIR CONDITIONED', 'POOL'
 - a folded luggage cart parked against the office wall
+- a metal ashtray stand outside the office door
 Typography: bold sans-serif, slab serif, occasional script.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Super 8'
-'COLOR TV'
+'Holiday Inn'
+'AIR CONDITIONED'
 'POOL'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 4 people TOTAL: 2 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
-- a man in shirtsleeves talking to the clerk in the office doorway
 - someone filling an ice bucket at the machine by the office
-- a teenage girl in platform shoes waiting for a friend
-Clothing: men in bell bottoms, wide lapels; women in wide leg pants, earth tones. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a man in shirtsleeves talking to the clerk in the office doorway
+- a young man in a leisure suit adjusting his collar
+Clothing: men in polyester suits, plaid patterns; women in peasant blouses, wide leg pants. Fashion palette: avocado, harvest gold, burnt orange. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
-- 1968-1979 Chevrolet Nova — compact, simple three-box shape
-- 1975-1980 Ford Granada — compact luxury, Mercedes-inspired formal grille
-- 1975-1979 Chevrolet Monza — small hatchback, rare but present
-- 1971-1978 Dodge Tradesman — boxy full-size van
+- 1968-1979 Chevrolet Nova — compact, simple three-box shape — dark brown
+- 1975-1980 Ford Granada — compact luxury, Mercedes-inspired formal grille — harvest gold
+- 1975-1979 Chevrolet Monza — small hatchback, rare but present — burnt orange
+- 1971-1978 Dodge Tradesman — boxy full-size van — maroon
 Parked with gaps. Where a model is listed with a year range, render the 1975 model year specifically — only styling, trim and features available in 1975, nothing introduced later. No vehicle newer than 1975.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
 PLACEMENT: one nose-in close to the entrance; the rest spread across stalls toward the lot's far edge. No vehicle in the same spot as any other era.
@@ -74,10 +74,10 @@ TREES
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE
-STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.
-Grain: visible fine grain. Style: documentary, natural light.
-Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.
-Light: bright open daylight, clear sky, soft natural shadows — a fine, ordinary day.
+COLOR photograph — Kodachrome 64 or Ektachrome look.
+Color: slightly warm tones. Grain: visible fine grain.
+Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

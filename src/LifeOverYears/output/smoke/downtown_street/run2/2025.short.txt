@@ -7,15 +7,15 @@ PERIOD DETAILS
 - a liquor store still open, its lit window the brightest thing in the row
 - a tax preparation and check-cashing office still open a few doors along, plain lettering, bars on the window
 - most of the other units dark behind the glass, several papered over from the inside
-- TOWN DINER with 'COFFEE $3.50' shown on a small digital menu screen in the window
-- plant and gift shop with a hand-lettered kraft-paper window display
+- MAIN STREET DINER with 'COFFEE $3.50' shown on a small digital menu screen in the window
+- boba tea shop with pastel minimalist branding and a QR-code ordering decal
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
 'COFFEE $3.50'
-'ORDER AHEAD — SCAN THE QR CODE'
-'NOW HIRING — APPLY ONLINE'
+'LASHES FROM $79'
+'OAT MILK LATTE $6.50'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
@@ -23,8 +23,8 @@ PEOPLE
 
 VEHICLES
 EXACTLY 2 vehicles, 2025 model year, and no others:
-- 2022-2025 Honda Civic — clean mature compact — silver
-- 2021-2025 Chrysler Pacifica — sleek minivan, thin lights — black
+- 2021-2025 Kia Telluride — boxy upscale three-row SUV — black
+- 2022-2025 Nissan Pathfinder — squared-off three-row SUV — blue
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 STYLE

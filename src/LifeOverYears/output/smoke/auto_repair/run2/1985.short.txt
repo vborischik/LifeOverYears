@@ -5,16 +5,16 @@ TRANSFORM TO 1985 — condition: well kept — freshly painted, open for busines
 
 PERIOD DETAILS
 - a faded price board from a previous era, papered over with a new one reading 'BRAKES $59.95'
-- wider parking lots
-- digital price displays at gas stations
-- window signs: 'OIL CHANGE $12.95', 'MUFFLERS INSTALLED TODAY'
-- a stack of radial tires under the office window
+- electronic marquee signs appearing
+- office with plate glass window, a hand-lettered 'BRAKES • MUFFLERS' sign taped inside
+- window signs: 'BRAKES $59.95', 'MUFFLERS INSTALLED TODAY'
+- a metal parts cabinet with catalog binders on top
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
 'BRAKES $59.95'
-'OIL CHANGE $12.95'
+'BRAKES • MUFFLERS'
 'MUFFLERS INSTALLED TODAY'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
@@ -23,8 +23,8 @@ PEOPLE
 
 VEHICLES
 EXACTLY 2 vehicles, 1985 model year, and no others:
-- 1982-1992 Chevrolet Camaro — wedge-shaped sporty coupe — white
-- 1981-1985 Dodge Aries — K-car, boxy economy sedan — silver
+- 1975-1991 Ford Econoline — boxy full-size van — light blue
+- 1982-1993 Chevrolet S-10 — compact pickup, square — red
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES

@@ -4,17 +4,17 @@ Keep the uploaded photo's exact composition, camera angle, road and building geo
 TRANSFORM TO 1995 — condition: well kept — freshly painted, open for business
 
 PERIOD DETAILS
-- standalone drive-through restaurants
-- the anchor block refaced with a taller stucco parapet and a new sign band
-- vast parking lots
-- window signs: 'TJ MAXX', 'BLOCKBUSTER VIDEO'
-- a painted crosswalk from the islands to the anchor
+- an internally lit pylon sign with four tenant panels
+- a national bagel chain unit with a small patio rail
+- a drop-off lane striped along the front of the anchor
+- window signs: 'SALE', 'OPEN 9-9'
+- planted islands with young ornamental trees
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
-'TJ MAXX'
-'BLOCKBUSTER VIDEO'
+'SALE'
+'OPEN 9-9'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
@@ -22,8 +22,8 @@ PEOPLE
 
 VEHICLES
 EXACTLY 2 vehicles, 1995 model year, and no others:
-- 1992-1996 Ford F-150 — rounded aero body — hunter green
-- 1991-1996 Ford Escort — small rounded economy car — white
+- 1994-1998 Ford Mustang — rounded SN95 pony car — hunter green
+- 1991-1996 Buick Roadmaster — large rounded wagon and sedan — burgundy
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES

@@ -29,40 +29,40 @@ TRANSFORM TO 2025
 Post-pandemic era. A 2025 open-air shopping center on its second life — a fitness gym filling the old anchor block behind a new full-height glass front, a discount variety store and a thrift shop inline, the lot moderately busy again but the tenants all cheaper than before.
 
 PERIOD DETAILS
-- outdoor dining structures from pandemic era
-- ghost signs from closed retailers
-- vacant former big box stores common
-- window signs: 'FIVE BELOW', 'PLANET FITNESS'
+- one remaining unit with paper still taped inside the glass
+- a bright new fascia band over the old anchor block
+- channel letters mounted on a raceway above the gym entrance
+- window signs: 'DONATION CENTER', 'PLANET FITNESS'
+- cracked asphalt with weeds still at the seams toward the far end
 - restriped stalls in front of the gym only
-- a row of donation bins beside the thrift shop
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'FIVE BELOW'
+'DONATION CENTER'
 'PLANET FITNESS'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 10 people TOTAL: 4 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
-- a woman leaving the nail salon with her hands raised
-- a teenager filming a friend across the parking lot
-- a grandmother video-chatting with grandkids on a phone propped on a bench
-Clothing: men in chunky sneakers, oversized fit tees; women in high-waisted wide-leg jeans, athleisure. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 14 people TOTAL: 6 near sidewalk (largest, foreground), 5 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles.
+- two teenagers leaving the variety store with snacks
+- two friends sorting through a donation box at the bins
+- a retiree couple with matching walking poles
+Clothing: men in wide-leg pants, bucket hats; women in athleisure, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 7 period vehicles, all different:
-- 2023-2025 Kia Sportage — futuristic boomerang lights — silver
-- 2019-2025 Toyota Corolla — sharp-nosed compact — white
-- 2021-2025 Kia Carnival — boxy SUV-styled minivan — dark green
-- 2022-2025 Toyota Tundra — massive grille, muscular stance — gray
-- 2017-2025 Honda CR-V — rounded best-selling crossover — black
-- 2020-2025 Hyundai Tucson — sharp parametric grille design — blue
-- 2021-2025 Ford Bronco — retro boxy off-roader — period-correct color
+- 2021-2025 Chevrolet Tahoe — huge full-size SUV — silver
+- 2019-2025 Toyota RAV4 — boxy rugged crossover, very common — gray
+- 2021-2025 Toyota Camry — sleek sedan, aggressive front fascia — black
+- 2019-2025 Toyota Corolla — sharp-nosed compact — blue
+- 2021-2025 Ford F-150 — full-width LED bar, bold — white
+- 2019-2025 Subaru Outback — rugged wagon crossover — dark green
+- 2024-2025 Toyota Grand Highlander — large family crossover — period-correct color
 Parked with gaps. Where a model is listed with a year range, render the 2025 model year specifically — only styling, trim and features available in 2025, nothing introduced later. No vehicle newer than 2025.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: all parked in the lot, nose-in to marked stalls, with gaps between them. No vehicle in the same spot as any other era.
+PLACEMENT: three nose-in near the building; the rest in stalls at the far edge of the lot. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks

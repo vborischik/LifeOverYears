@@ -4,9 +4,9 @@ Keep the uploaded photo's exact composition, camera angle, road and building geo
 TRANSFORM TO 2005 — condition: well kept — freshly painted, open for business
 
 PERIOD DETAILS
-- a self-storage facility with an illuminated sign panel, its wording indistinct
-- the existing median barrier, reflective delineators added along its top
-- 65 mph speed limit signs on reflective sheeting
+- a logistics building with a monument sign at the drive, too far to read
+- a full-width overhead gantry carrying green sign panels with white borders
+- the same sound barrier walls as before, now running both sides of the carriageway
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
@@ -17,8 +17,8 @@ NO people on foot. Everyone in the scene is inside a moving vehicle.
 
 VEHICLES
 EXACTLY 2 vehicles, 2005 model year, and no others:
-- 2004-2010 Toyota Sienna — large rounded minivan — white
-- 2003-2009 Hummer H2 — massive military-styled SUV — silver
+- 2005-2010 Jeep Grand Cherokee — rounded modern SUV — gold
+- 1998-2005 Volkswagen New Beetle — retro bubble shape — black
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES

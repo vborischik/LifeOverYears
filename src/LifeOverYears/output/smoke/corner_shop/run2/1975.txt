@@ -31,38 +31,38 @@ Post-Vietnam, oil crisis era. A neighbourhood corner shop in 1975 — one small 
 CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
-- a painted soft-drink advert covering most of the brick side wall
 - large plate glass windows with hand-lettered specials taped up from the inside
-- mechanical price boards at gas stations
-- main sign: "RIVERSIDE FOOD MARKET" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
-- window signs: 'WE DELIVER', 'PHONE INSIDE'
-- wire crates of empty glass bottles stacked beside the step
+- large pylon signs on poles
+- a wooden screen door with a metal push bar across the middle
+- main sign: "BAYVIEW PHARMACY" — a neighbourhood pharmacy, painted sign board over the door with a mortar-and-pestle emblem beside the lettering
+- window signs: 'ICE COLD DRINKS', 'PHONE INSIDE'
+- a hand-painted arrow on the side wall pointing to the delivery door
 - a chalked price board propped against the wall by the door
 Typography: bold sans-serif, slab serif, occasional script.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'RIVERSIDE FOOD MARKET'
-'WE DELIVER'
+'BAYVIEW PHARMACY'
+'ICE COLD DRINKS'
 'PHONE INSIDE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 6 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
-- a woman holding the screen door open with her foot, both hands full
-- a man carrying a case of bottles out to a car at the curb
-- a boy selling newspapers on the corner, coins jingling in his pouch
-Clothing: men in turtlenecks, polyester suits; women in midi skirts, peasant blouses. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- the shopkeeper in an apron sweeping the sidewalk in front of the step
+- two neighbours stopped to talk a few feet from the entrance
+- a girl walking a bicycle with a basket
+Clothing: men in bell bottoms, polyester suits; women in earth tones, peasant blouses. Fashion palette: avocado, harvest gold, burnt orange. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 1968-1979 Chevrolet Nova — compact, simple three-box shape
-- 1975-1980 Ford Granada — compact luxury, Mercedes-inspired formal grille
-- 1975-1979 Chevrolet Monza — small hatchback, rare but present
+- 1968-1979 Chevrolet Nova — compact, simple three-box shape — dark brown
+- 1975-1980 Ford Granada — compact luxury, Mercedes-inspired formal grille — harvest gold
+- 1975-1979 Chevrolet Monza — small hatchback, rare but present — burnt orange
 Parked with gaps. Where a model is listed with a year range, render the 1975 model year specifically — only styling, trim and features available in 1975, nothing introduced later. No vehicle newer than 1975.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, no rumble strips
@@ -73,10 +73,10 @@ TREES
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE
-STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.
-Grain: visible fine grain. Style: documentary, natural light.
-Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.
-Light: bright open daylight, clear sky, soft natural shadows — a fine, ordinary day.
+COLOR photograph — Kodachrome 64 or Ektachrome look.
+Color: slightly warm tones. Grain: visible fine grain.
+Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

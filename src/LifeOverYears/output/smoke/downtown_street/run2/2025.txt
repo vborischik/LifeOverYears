@@ -34,34 +34,34 @@ PERIOD DETAILS
 - a liquor store still open, its lit window the brightest thing in the row
 - a tax preparation and check-cashing office still open a few doors along, plain lettering, bars on the window
 - most of the other units dark behind the glass, several papered over from the inside
-- TOWN DINER with 'COFFEE $3.50' shown on a small digital menu screen in the window
-- plant and gift shop with a hand-lettered kraft-paper window display
+- MAIN STREET DINER with 'COFFEE $3.50' shown on a small digital menu screen in the window
+- boba tea shop with pastel minimalist branding and a QR-code ordering decal
 - delivery-only ghost kitchen storefront with pickup shelves visible through the glass
-- window signs: 'ORDER AHEAD — SCAN THE QR CODE', 'NOW HIRING — APPLY ONLINE'
-- a shared e-scooter and e-bike dock at the curb
-- the ghost-sign wall now a commissioned mural with bold flat graphics
+- window signs: 'LASHES FROM $79', 'OAT MILK LATTE $6.50'
+- a stack of delivery packages waiting at a shop door
+- a parklet outdoor dining structure occupying two parking spaces
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 'COFFEE $3.50'
-'ORDER AHEAD — SCAN THE QR CODE'
-'NOW HIRING — APPLY ONLINE'
+'LASHES FROM $79'
+'OAT MILK LATTE $6.50'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- of these, one person already drinking, sitting along the wall a few doors down from the liquor store — keeping to themselves, not looking at the camera
-- two friends comparing photos on their phones at an outdoor table
-- an older couple reading the diner's digital menu in the window
-- a man in techwear walking a dog in a cooling vest
-Clothing: men in bucket hats, chunky sneakers; women in athleisure, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- of these, 2 people standing around outside the liquor store with nothing to do — keeping to themselves, not looking at the camera
+- a woman comparing prices on the boba shop's QR menu
+- a couple filming a vertical video on a phone gimbal
+- a delivery cyclist weaving carefully around pedestrians
+Clothing: men in oversized fit tees, bucket hats; women in athleisure, oversized blazers. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 2 period vehicles, all different:
-- 2022-2025 Honda Civic — clean mature compact — silver
-- 2021-2025 Chrysler Pacifica — sleek minivan, thin lights — black
+- 2021-2025 Kia Telluride — boxy upscale three-row SUV — black
+- 2022-2025 Nissan Pathfinder — squared-off three-row SUV — blue
 Parked with gaps. Where a model is listed with a year range, render the 2025 model year specifically — only styling, trim and features available in 2025, nothing introduced later. No vehicle newer than 2025.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
 PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.

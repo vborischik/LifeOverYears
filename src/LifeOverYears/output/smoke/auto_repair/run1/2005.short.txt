@@ -1,29 +1,30 @@
 One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
 Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
 
-TRANSFORM TO 2005 — condition: declining — faded paint, aging signage, little activity
+TRANSFORM TO 2005 — condition: busy — well kept, plenty of custom
 
 PERIOD DETAILS
 - a printed banner advertising tire brands and a '$24.95 OIL CHANGE' promo, replacing the old painted sign
-- LED price signs at gas stations
-- electronic message boards common
-- window signs: 'CHECK ENGINE LIGHT $59.95', 'BRAKES FROM $89.95'
-- a wall display of aftermarket wheels
+- large big box anchor stores
+- covered walkways at lifestyle centers
+- window signs: 'CHECK ENGINE LIGHT $59.95', 'OIL CHANGE $24.95'
+- a laptop-style scan tool on a rolling cart
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
 '$24.95 OIL CHANGE'
 'CHECK ENGINE LIGHT $59.95'
-'BRAKES FROM $89.95'
+'OIL CHANGE $24.95'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-2-3 people in the background as small figures, plus a few more further off, no detail on any face. All on the pavement or beside parked cars, never in the road. Faces blurred.
+3 people, walking along the pavement past the frontage. On the pavement, the lot apron or by the entrance — never in the road or a driving lane. Faces blurred.
 
 VEHICLES
-EXACTLY 1 vehicle, 2005 model year, and no others:
-- 2000-2006 Chevrolet Tahoe — full-size SUV peak era — black
+EXACTLY 2 vehicles, 2005 model year, and no others:
+- 2001-2007 Toyota Highlander — early crossover — gray
+- 1998-2004 Nissan Frontier — compact pickup — black
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES
@@ -31,5 +32,5 @@ TREES
 - elm tree at side yard: clearly smaller than in the base image — about 50% of its canopy there, thinner trunk
 
 STYLE
-COLOR photograph — early digital camera or Kodak/Fuji consumer film look. Color: neutral tones. Grain: low grain, early digital noise in shadows. Photorealistic — NOT black-and-white, no HDR. Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
+COLOR photograph — early digital camera or Kodak/Fuji consumer film look. Color: neutral tones. Grain: low grain, early digital noise in shadows. Photorealistic — NOT black-and-white, no HDR. Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 Blur all faces and licence plates.

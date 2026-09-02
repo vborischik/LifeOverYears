@@ -31,41 +31,43 @@ Post-Vietnam, oil crisis era. A working small-town main street in 1975 — local
 CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
-- MARY'S DINER with a hand-lettered 'HOT COFFEE 25¢' sign in the window
-- 'COBBLER'S CORNER' with a small 'SHOE REPAIR — WHILE U WAIT' sign
-- simple rectangular forms
-- window signs: 'HAIRCUT $2.50', 'SHIRTS 2 FOR $5'
-- 2-3 bicycles leaned against a storefront wall
-- a wooden newspaper rack with stacked local papers by the diner door
+- STAR DINER with a hand-lettered 'HOT COFFEE 25¢' sign in the window
+- corner drug store with a hand-painted 'MAIN STREET PHARMACY' sign and a small neon 'PRESCRIPTIONS' sign in the window
+- 'CENTRAL TV' window displaying console televisions with a 'COLOR TV' placard
+- window signs: 'ICE CREAM CONES 15¢', 'MILK 69¢ HALF GALLON'
+- a glass-and-aluminum telephone booth on the corner
+- an American flag on a storefront bracket
 Typography: bold sans-serif, slab serif, occasional script.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 'HOT COFFEE 25¢'
-'COBBLER'S CORNER'
-'SHOE REPAIR — WHILE U WAIT'
-'HAIRCUT $2.50'
-'SHIRTS 2 FOR $5'
+'MAIN STREET PHARMACY'
+'PRESCRIPTIONS'
+'CENTRAL TV'
+'COLOR TV'
+'ICE CREAM CONES 15¢'
+'MILK 69¢ HALF GALLON'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 30 people TOTAL: 12 near sidewalk (largest, foreground), 11 opposite sidewalk mid-block, 7 distant, far end of block. Grouped in pairs, threes, and singles.
-- a woman carrying paper grocery bags in both arms
-- a group of kids clustered outside the five & dime looking at the candy display
-- a shopkeeper in an apron by his doorway
-Clothing: men in polyester suits, bell bottoms; women in peasant blouses, midi skirts. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a teenager leaning on a bicycle near the curb
+- a barber visible through the shop window cutting hair
+- an elderly couple walking arm in arm
+Clothing: men in turtlenecks, plaid patterns; women in midi skirts, wide leg pants. Fashion palette: avocado, harvest gold, burnt orange. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 5 period vehicles, all different:
-- 1973-1979 Ford F-100 — square body, chrome grille
-- 1971-1976 Chevrolet G10 Sportvan — boxy windowed van, chrome bumper
-- 1975-1979 AMC Pacer — wide bubble-shaped compact, huge glass area
-- 1970-1976 Pontiac Firebird Trans Am — hood scoop, spoiler, bold graphics
-- 1973-1978 Datsun 610 — compact sedan/wagon, boxy
+- 1973-1979 Ford F-100 — square body, chrome grille — dark brown
+- 1971-1976 Chevrolet G10 Sportvan — boxy windowed van, chrome bumper — burnt orange
+- 1975-1979 AMC Pacer — wide bubble-shaped compact, huge glass area — harvest gold
+- 1970-1976 Pontiac Firebird Trans Am — hood scoop, spoiler, bold graphics — maroon
+- 1973-1978 Datsun 610 — compact sedan/wagon, boxy — tan
 Parked with gaps. Where a model is listed with a year range, render the 1975 model year specifically — only styling, trim and features available in 1975, nothing introduced later. No vehicle newer than 1975.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: three parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
+PLACEMENT: two parked on the LEFT side; the rest parked on the RIGHT side with gaps. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, no rumble strips
@@ -77,10 +79,10 @@ TREES
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE
-STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.
-Grain: visible fine grain. Style: documentary, natural light.
-Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.
-Light: bright open daylight, clear sky, soft natural shadows — a fine, ordinary day.
+COLOR photograph — Kodachrome 64 or Ektachrome look.
+Color: slightly warm tones. Grain: visible fine grain.
+Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

@@ -28,45 +28,48 @@ distort the source geometry.
 TRANSFORM TO 2005
 Post-9/11 era. A 2005 motel taking whoever comes — the chain rate long gone off the sign, a wireless-internet banner zip-tied to the pylon, and half the bays empty at midday.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- large illuminated box signs
-- a plastic pylon sign with a sun-bleached panel and a cracked corner
-- a security camera bracketed above the office door, cabling run down the wall
-- main sign: "Super 8" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
-- window signs: 'VACANCY', 'OFFICE'
-- a vinyl banner sagging where a zip tie has let go
+- aging 1980s strip malls
+- a paired window beside each door, one pane held with a strip of tape
+- the office window part-covered by a printed rate sheet
+- main sign: "Holiday Inn" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
+- window signs: 'NO REFUNDS', 'VACANCY'
+- a plastic chair outside one door, cracked through the seat
 - a dead ice machine with its panel light out
 Typography: clean sans-serif, polished brand identities.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Super 8'
+'Holiday Inn'
+'NO REFUNDS'
 'VACANCY'
-'OFFICE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 2 people TOTAL: 1 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles. Grouped in pairs, threes, and singles.
-- a man walking the length of the wing without stopping
-- a driver sitting in a parked car with the door open, on the phone
-- a man loading a case of bottled water into a minivan
-Clothing: men in frosted tips hair, cargo shorts; women in trucker hats, chunky highlights. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a clerk speaking through a gap in the office door
+- someone carrying a grocery bag along the row to a far door
+- a grandmother clutching a coupon flyer at a bus bench
+Clothing: men in graphic tees, cargo shorts; women in low-rise jeans, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 2 period vehicles, all different:
-- 2004-2012 Chevrolet Colorado — mid-size pickup — gray
-- 2001-2007 Dodge Grand Caravan — family minivan, rounded — white
+EXACTLY 1 period vehicle:
+- 2005-2010 Chevrolet Cobalt — compact economy sedan — dark blue
 Parked with gaps. Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: all angled into stalls along the far edge of the lot, the near stalls left empty. No vehicle in the same spot as any other era.
+PLACEMENT: two nose-in near the building; the rest angled into stalls at the far edge of the lot. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: yellow center line, white edge lines, turn arrows
+- road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines standard, cable and fiber lines on poles appearing
 
+DECAY
+- rust streaked down the wall below a through-wall air unit
+- bay striping worn thin and repainted once in a paler white
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - silver maple tree at lot edge beside the pylon sign: clearly smaller than in the base image — about 75% of its canopy there, thinner trunk
 Tree sizes MUST follow this specification even where they differ from the base image.
@@ -75,7 +78,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — early digital camera or Kodak/Fuji consumer film look.
 Color: neutral tones. Grain: low grain, early digital noise in shadows.
 Photorealistic — NOT black-and-white, no HDR.
-Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
 
 PRIVACY
 Blur all faces and license plates.

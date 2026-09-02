@@ -1,20 +1,20 @@
 One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
 Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
 
-TRANSFORM TO 1985 — condition: busy — well kept, plenty of custom
+TRANSFORM TO 1985 — condition: well kept — freshly painted, open for business
 
 PERIOD DETAILS
 - a faded price board from a previous era, papered over with a new one reading 'BRAKES $59.95'
-- electronic marquee signs appearing
-- large logo signs on pylons
-- window signs: 'OIL CHANGE $12.95', 'BRAKES $59.95'
-- a bell hose stretched across the apron
+- mirrored glass panels on newer buildings
+- drive-through lanes appearing
+- window signs: 'BRAKES $59.95', 'MUFFLERS INSTALLED TODAY'
+- a corded phone visible on the office counter
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
 'BRAKES $59.95'
-'OIL CHANGE $12.95'
+'MUFFLERS INSTALLED TODAY'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
@@ -22,8 +22,8 @@ PEOPLE
 
 VEHICLES
 EXACTLY 2 vehicles, 1985 model year, and no others:
-- 1978-1986 Ford Bronco — full-size boxy SUV, round headlights — burgundy
-- 1983-1987 Honda Accord — clean lines, pop-up headlights — white
+- 1980-1989 Lincoln Town Car — long boxy luxury sedan — red
+- 1984-1988 Toyota Pickup — small, boxy, popular import — light blue
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES

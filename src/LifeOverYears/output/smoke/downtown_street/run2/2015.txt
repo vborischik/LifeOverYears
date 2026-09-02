@@ -34,36 +34,33 @@ PERIOD DETAILS
 - a liquor store still open, its lit window the brightest thing in the row
 - a tax preparation and check-cashing office still open a few doors along, plain lettering, bars on the window
 - most of the other units dark behind the glass, several papered over from the inside
-- TOWN DINER with 'COFFEE $2.25' chalked on a menu board
-- barber shop with its spinning barber pole, now billed as a 'classic barbershop'
-- vape shop with a bright 'VAPE — E-CIGS' LED window sign
-- window signs: 'BUY ONE GET ONE 50% OFF', 'CRAFT LATTE $4.50'
+- MAIN STREET DINER with 'COFFEE $2.25' chalked on a menu board
+- boutique with a reclaimed-wood facade and minimalist lettering
+- third-wave coffee shop with a minimalist logo and Edison bulbs visible inside
+- window signs: 'HAPPY HOUR 4-6 — PINTS $4', 'BUY ONE GET ONE 50% OFF'
 - chalkboard sandwich-board signs outside the cafes
-- a food truck parked mid-block
+- a dog water bowl outside a cafe door
 Typography: minimalist flat sans-serif, simplified modern logos.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 'COFFEE $2.25'
-'classic barbershop'
-'VAPE — E-CIGS'
+'HAPPY HOUR 4-6 — PINTS $4'
 'BUY ONE GET ONE 50% OFF'
-'CRAFT LATTE $4.50'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- of these, 3 people waiting outside the liquor store for someone, not going in — keeping to themselves, not looking at the camera
-- a woman comparing yoga class schedules on the studio's window sign
-- a grandmother reading a menu posted outside the taproom
-- a grandmother video-chatting with a tablet held at arm's length
-Clothing: men in boat shoes, beards; women in infinity scarves, ankle boots. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- of these, 3 people already drinking, sitting along the wall a few doors down from the liquor store — keeping to themselves, not looking at the camera
+- sidewalk diners at small cafe tables under string lights
+- a barista sweeping the sidewalk before opening
+- a woman walking a dog in a knit sweater
+Clothing: men in slim-fit plaid shirts, beards; women in statement necklaces, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 2 period vehicles, all different:
-- 2014-2019 Nissan Rogue — popular compact crossover — white
-- 2011-2016 Kia Optima — stylish mid-size, sporty — gray
+EXACTLY 1 period vehicle:
+- 2013-2019 Ford Fusion — Aston-Martin-style grille, sleek — blue
 Parked with gaps. Where a model is listed with a year range, render the 2015 model year specifically — only styling, trim and features available in 2015, nothing introduced later. No vehicle newer than 2015.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
 PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
@@ -74,8 +71,8 @@ ENVIRONMENT
 - the poles and wires still visible in the uploaded image are gone in this era: remove every pole, crossarm and wire span along the street and rebuild the sky behind them. This is the one exception to PRESERVE; everything else stays as it is.
 
 DECAY
-- an old sign band painted over, the previous lettering still faintly readable
-- a faded painted wall ad showing through the brick
+- a sun-bleached awning, torn at one corner
+- peeling paint along the storefront cornice
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - oak tree at sidewalk left near corner: slightly smaller than in the base image — about 95% of its canopy there

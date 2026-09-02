@@ -1,29 +1,30 @@
 One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
 Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
 
-TRANSFORM TO 2015 — condition: declining — faded paint, aging signage, little activity
+TRANSFORM TO 2015 — condition: well kept — freshly painted, open for business
 
 PERIOD DETAILS
-- main sign: "Marathon" branded gas station — Marathon pole sign with price display and Marathon colors on the canopy fascia
-- minimalist flat brand logos
-- LED accent lighting on buildings
+- main sign: "Fina" branded gas station — Fina pole sign with price display and Fina colors on the canopy fascia
+- large glass storefronts
+- card skimmer warnings on pumps
 - price sign showing gas around $2.45
-- window signs: 'ANY SIZE COFFEE $1', 'E-CIG STARTER KITS'
+- window signs: 'ANY SIZE COFFEE $1', '2 ENERGY DRINKS $5'
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
-'Marathon'
+'Fina'
 'ANY SIZE COFFEE $1'
-'E-CIG STARTER KITS'
+'2 ENERGY DRINKS $5'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-2 people, walking along the pavement past the frontage. On the pavement, the lot apron or by the entrance — never in the road or a driving lane. Faces blurred.
+2-3 people in the background as small figures, plus a few more further off, no detail on any face. All on the pavement or beside parked cars, never in the road. Faces blurred.
 
 VEHICLES
-EXACTLY 1 vehicle, 2015 model year, and no others:
-- 2011-2016 Kia Optima — stylish mid-size, sporty — white
+EXACTLY 2 vehicles, 2015 model year, and no others:
+- 2010-2016 Chevrolet Equinox — mid-size crossover — pearl white
+- 2011-2016 Volkswagen Jetta — clean simple sedan — gray
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES
@@ -32,5 +33,5 @@ TREES
 - cedar tree at back fence line: slightly smaller than in the base image — about 95% of its canopy there
 
 STYLE
-COLOR photograph — digital — DSLR or smartphone camera look. Color: high saturation. Grain: clean, minimal noise. Photorealistic — NOT black-and-white, no HDR. Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
+COLOR photograph — digital — DSLR or smartphone camera look. Color: high saturation. Grain: clean, minimal noise. Photorealistic — NOT black-and-white, no HDR. Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 Blur all faces and licence plates.

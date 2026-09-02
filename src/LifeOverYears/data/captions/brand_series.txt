@@ -1,0 +1,91 @@
+📷 Everybody in town shopped here. Then one day nobody did.
+This is the same building, photographed from the same spot, {firstYear} to {lastYear}.
+Watch the sign change three times before it comes down for good.
+The place today: {condition}.
+Nothing dramatic ever happened here. It just stopped being the place you went.
+Which store did your family go to every single weekend?
+---
+📷 You could have driven to this store with your eyes closed.
+{firstYear} to {lastYear}, same camera position, same parking lot, same building.
+The lot filled up, then it thinned out, then the letters came off the wall.
+The place today: {condition}.
+Half the country had one of these within ten minutes of home. Now you would have to explain to a kid what it was.
+What was the first store you were allowed to walk into on your own?
+---
+📷 The parking lot tells the story before the sign does.
+Look at {firstYear}. Then look at {lastYear}.
+Nobody decided to close it. It just got quieter every year until quiet was all that was left.
+The place today: {condition}.
+Do you remember the last time you went, or did you not know it was the last time?
+---
+📷 This building has outlived the company whose name was on it.
+{firstYear} to {lastYear}, one spot, six photographs.
+The bricks never moved. Everything else did.
+The place today: {condition}.
+What store from your childhood is still standing with somebody else's name on it?
+---
+📷 Your mother parked here. You waited in the car here.
+Same frame, {firstYear} through {lastYear}.
+Watch the cars change shape and the sign change with them.
+The place today: {condition}.
+What did she always send you inside to get?
+---
+📷 There was a time when this was where everybody went on a Saturday.
+{firstYear} to {lastYear}, photographed from the same corner of the lot every ten years.
+The last frame is the one that gets people.
+The place today: {condition}.
+Was there one in your town, and what stands there now?
+---
+📷 The sign came down on a Tuesday and most people found out from a photo.
+This is the same storefront across {firstYear} to {lastYear}.
+Three logos, fifty years, one building.
+The place today: {condition}.
+Which version of the sign do you remember?
+---
+📷 Nobody photographs the store they go to every week.
+Which is why almost nothing survives of this one except what people remember.
+{firstYear} to {lastYear}, reconstructed frame by frame from the same spot.
+The place today: {condition}.
+What do you remember about the inside that no photograph would show?
+---
+📷 It was never the best store. It was the close one.
+{firstYear} to {lastYear} from the same position in the parking lot.
+That turned out to be enough to make it part of everybody's childhood.
+The place today: {condition}.
+What did you buy there that you still have?
+---
+📷 Watch the lot. That is where you can see it happening first.
+{firstYear} it is full. By {lastYear} there are whole rows nobody has parked in for months.
+The sign is the last thing to go.
+The place today: {condition}.
+When did you first notice yours had gotten quiet?
+---
+📷 The building is bigger than the company that built it.
+{firstYear} to {lastYear}, same camera position, same roofline, same asphalt.
+Only the name across the front kept changing.
+The place today: {condition}.
+What is in yours now?
+---
+📷 Every town had one and every town lost it at roughly the same time.
+This is what those fifty years looked like from one fixed spot, {firstYear} to {lastYear}.
+The place today: {condition}.
+Nobody held a funeral for these. They just quietly became something else.
+What was the name of yours?
+---
+📷 The sign in the first frame is not the sign in the last frame.
+{firstYear} to {lastYear}, one building, photographed the same way every decade.
+Watch what the parking lot does while you are busy reading the letters.
+The place today: {condition}.
+How old were you when you stopped going?
+---
+📷 You have walked past this exact spot a hundred times.
+Here it is in {firstYear}, and here it is in {lastYear}, from the same place on the asphalt.
+Everything between those two frames happened slowly enough that nobody called it anything.
+The place today: {condition}.
+What is the store you would drive past today just to see if it is still there?
+---
+📷 This is not a store closing. This is fifty years of a town changing its mind.
+{firstYear} to {lastYear}, one camera position, six photographs.
+The place today: {condition}.
+The building is still useful. The name on it stopped being.
+What name would be on yours?

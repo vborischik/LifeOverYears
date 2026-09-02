@@ -1,39 +1,45 @@
-Planet Fitness|2005|2025
-Anytime Fitness|2005|2025
-Crunch Fitness|2010|2025
-Orangetheory Fitness|2012|2025
-LA Fitness|1995|2025
-Gold's Gym|1985|2025
-Bally Total Fitness|1985|2016
-Curves|1995|2015
-Retro Fitness|2005|2025
-Five Below|2005|2025
-Dollar Tree|1990|2025
-Dollar General|1965|2025
-Family Dollar|1965|2025
-Ollie's Bargain Outlet|1985|2025
-Big Lots|2001|2025
-Ross Dress for Less|1985|2025
-Burlington Coat Factory|1980|2025
-dd's Discounts|2005|2025
-Rainbow Shops|1975|2025
-Citi Trends|2000|2025
-Savers|1990|2025
-Goodwill|1975|2025
-Salvation Army Family Store|1975|2025
-Plato's Closet|2000|2025
-Once Upon a Child|1995|2025
-Spirit Halloween|1995|2025
-Harbor Freight Tools|1990|2025
-Hobby Lobby|1985|2025
-Michaels|1985|2025
-Party City|1995|2025
-Tuesday Morning|1985|2023
-Pier 1 Imports|1980|2020
-GNC|1980|2025
-Sally Beauty Supply|1980|2025
-H&R Block|1975|2025
-Jackson Hewitt|1990|2025
-Advance America|1997|2025
-Aaron's|1990|2025
-Rent-A-Center|1990|2025
+# Trades that move into a dead retail box, for the brand-series redevelopment
+# era. Name|from|to|category — the category is what stops two gyms opening in
+# adjacent bays of the same building; one tenant per category is drawn.
+# The fourth field is optional: gas-brands.txt and motel-brands.txt share this
+# parser and carry three.
+
+Planet Fitness|2005|2025|fitness
+Anytime Fitness|2005|2025|fitness
+Crunch Fitness|2010|2025|fitness
+Orangetheory Fitness|2012|2025|fitness
+LA Fitness|1995|2025|fitness
+Gold's Gym|1985|2025|fitness
+Bally Total Fitness|1985|2016|fitness
+Curves|1995|2015|fitness
+Retro Fitness|2005|2025|fitness
+Five Below|2005|2025|dollar
+Dollar Tree|1990|2025|dollar
+Dollar General|1965|2025|dollar
+Family Dollar|1965|2025|dollar
+Ollie's Bargain Outlet|1985|2025|closeout
+Big Lots|2001|2025|closeout
+Ross Dress for Less|1985|2025|offprice_apparel
+Burlington Coat Factory|1980|2025|offprice_apparel
+dd's Discounts|2005|2025|offprice_apparel
+Rainbow Shops|1975|2025|offprice_apparel
+Citi Trends|2000|2025|offprice_apparel
+Savers|1990|2025|thrift
+Goodwill|1975|2025|thrift
+Salvation Army Family Store|1975|2025|thrift
+Plato's Closet|2000|2025|thrift
+Once Upon a Child|1995|2025|thrift
+Spirit Halloween|1995|2025|party
+Harbor Freight Tools|1990|2025|tools
+Hobby Lobby|1985|2025|crafts
+Michaels|1985|2025|crafts
+Party City|1995|2025|party
+Tuesday Morning|1985|2023|homegoods
+Pier 1 Imports|1980|2020|homegoods
+GNC|1980|2025|supplements
+Sally Beauty Supply|1980|2025|beauty
+H&R Block|1975|2025|tax
+Jackson Hewitt|1990|2025|tax
+Advance America|1997|2025|check_cashing
+Aaron's|1990|2025|rent_to_own
+Rent-A-Center|1990|2025|rent_to_own

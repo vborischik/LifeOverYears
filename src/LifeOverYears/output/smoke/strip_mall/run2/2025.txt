@@ -31,36 +31,40 @@ Post-pandemic era. A 2025 strip mall rebuilt around services and food — nail s
 CONDITION: restored — the same building reoccupied — plywood off the windows, litter and weeds cleared, surfaces cleaned, a modest working business again; structure, footprint and signband shape unchanged
 
 PERIOD DETAILS
-- vacant storefront and ghost signs common
-- simplified flat brand logos
-- full color digital displays
-- window signs: 'ORDER ON THE APP', 'FREE TRIAL CLASS'
-- 'CURBSIDE PICKUP' signed parking spots
-- a kick scooter leaning by a wall
+- digital display signage
+- dollar store anchor with green signage
+- delivery ghost kitchen with 'DRIVER PICKUP ONLY' parking signs
+- the unit where the store was, a wide patch of less-faded wall above the door, anchor holes still visible, no lettering at all
+- the unit where the store was, a small patch of less-faded wall beside the door, anchor holes still visible, no lettering at all
+- window signs: 'ORDER ON THE APP', 'FULL SET FROM $45'
+- QR-code stickers on glass
+- an e-scooter parked by the walkway
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
+'DRIVER PICKUP ONLY'
 'ORDER ON THE APP'
-'FREE TRIAL CLASS'
-'CURBSIDE PICKUP'
+'FULL SET FROM $45'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 9 people TOTAL: 4 near sidewalk (largest, foreground), 3 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
-- an older man reading a flyer taped to a storefront window
-- a family sharing boba teas at an outdoor table
+EXACTLY 10 people TOTAL: 4 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
+- a family heading into the trampoline park
+- a woman leaving urgent care with a folder of paperwork
 - a teenager gliding by on a skateboard
-Clothing: men in techwear, bucket hats; women in high-waisted wide-leg jeans, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+Clothing: men in oversized fit tees, techwear; women in leggings and oversized hoodies, oversized blazers. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 5 period vehicles, all different:
-- 2022-2025 Ford Maverick — small unibody pickup — dark green
-- 2021-2025 Toyota Camry — sleek sedan, aggressive front fascia — black
-- 2019-2025 Ram 1500 — crew cab pickup, large grille — silver
-- 2019-2025 Subaru Outback — rugged wagon crossover — gray
-- 2021-2025 Chevrolet Tahoe — huge full-size SUV — blue
+EXACTLY 7 period vehicles, all different:
+- 2019-2025 Toyota Corolla — sharp-nosed compact — blue
+- 2022-2025 Toyota Tundra — massive grille, muscular stance — dark green
+- 2019-2025 Subaru Forester — practical boxy crossover — black
+- 2022-2025 Ford Maverick — small unibody pickup — gray
+- 2022-2025 Honda Civic — clean mature compact — silver
+- 2019-2025 GMC Sierra — chrome-heavy full-size pickup — white
+- 2017-2025 Honda CR-V — rounded best-selling crossover — period-correct color
 Parked with gaps. Where a model is listed with a year range, render the 2025 model year specifically — only styling, trim and features available in 2025, nothing introduced later. No vehicle newer than 2025.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
 PLACEMENT: three nose-in near the building; the rest in stalls at the far edge of the lot. No vehicle in the same spot as any other era.

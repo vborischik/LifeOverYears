@@ -1,32 +1,21 @@
 One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
 Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
 
-TRANSFORM TO 2025 — condition: declining — faded paint, aging signage, little activity
+TRANSFORM TO 2025 — condition: closed and vacant — boarded windows, weeds through the pavement, weathered surfaces
 
 PERIOD DETAILS
-- main sign: "COLUMBUS AVE LIQUORS" — a neighbourhood liquor store, a plastic backlit box sign bolted over the old sign band, steel bars across the windows
-- the old lettering still faintly readable above the box sign
-- QR codes on signage
-- an LED beer sign in the upper glass, one segment dead
-- above the new sign the previous business's lettering still ghosts on the brick: "FIFTH STREET GROCERY" — weathered, partly gone, plainly older than the sign bolted beneath it
+- main sign: the sign board gone from the band over the door, anchor holes and a lighter unfaded rectangle left where it hung, no lettering at all
+- every storefront closed and dark — no lit signs, no menu boards, no open businesses
+- faded remains of old signage still on the facade, lettering weathered and partly missing
+- plywood over the ground-floor windows, doors chained shut
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
-SIGNAGE
-The only readable text anywhere in the image is:
-'COLUMBUS AVE LIQUORS'
-'FIFTH STREET GROCERY'
-'BEER WINE LIQUOR'
-'ATM INSIDE'
-Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
-
 PEOPLE
-2 people, carrying a bag towards the pavement. On the pavement, the lot apron or by the entrance — never in the road or a driving lane. Faces blurred.
+NO people anywhere. The place is empty.
 
 VEHICLES
-EXACTLY 1 vehicle, 2025 model year, and no others:
-- 2019-2025 Subaru Outback — rugged wagon crossover — gray
-Parked, with gaps between them, none in a driving lane. Plates blurred.
+NO vehicles anywhere.
 
 STYLE
-COLOR photograph — digital — smartphone or mirrorless camera look. Color: high saturation. Grain: very clean, minimal to no noise. Photorealistic — NOT black-and-white, no HDR. Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
+COLOR photograph — digital — smartphone or mirrorless camera look. Color: high saturation. Grain: very clean, minimal to no noise. Photorealistic — NOT black-and-white, no HDR. Light: flat, even light under a grey overcast — subdued and cheerless, but plainly daytime; no fog, no rain, no darkness.
 Blur all faces and licence plates.

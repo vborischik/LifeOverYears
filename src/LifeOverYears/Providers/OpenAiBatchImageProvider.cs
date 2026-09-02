@@ -24,7 +24,7 @@ namespace LifeOverYears.Providers;
 public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
 {
     private const string Size =  "720x1280";   
-    private const string Quality = "low";
+    private const string Quality = "medium";
     private const string Endpoint = "/v1/images/edits";
 
     private const string BaseFileFileName = "base-file.json";
@@ -92,7 +92,9 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
         _logger.LogInformation("CleanBase complete: {Output}", outputPath);
     }
 
-    public async Task SubmitEraAsync(string basePath, string prompt, int year, string jobsDir)
+    public async Task SubmitEraAsync(
+        string basePath, string prompt, int year, string jobsDir,
+        string? referenceImagePath = null)
     {
         Directory.CreateDirectory(jobsDir);
 
@@ -123,6 +125,33 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
             imageEntry = new { file_id = await GetOrUploadBaseFileAsync(basePath, jobsDir) };
         }
 
+        // "images" is already an array, so a reference sheet is simply a second
+        // entry, built the same way as the first and cached by its own path. It
+        // goes after the base: the first image is the one being edited, and the
+        // prompt refers to this one as the reference. A path that is not there
+        // downgrades the request rather than failing it — the prompt still
+        // states the logo in words, and losing a chained run over one absent PNG
+        // costs far more than the sheet was worth.
+        var images = new List<object> { imageEntry };
+        if (referenceImagePath is not null)
+        {
+            if (!File.Exists(referenceImagePath))
+            {
+                _logger.LogWarning(
+                    "Reference image for {Year} not found at {Path} — submitting without it; the prompt still states the logo in words",
+                    year, referenceImagePath);
+            }
+            else if (_inlineImage)
+            {
+                var refBytes = await File.ReadAllBytesAsync(referenceImagePath);
+                images.Add(new { image_url = $"data:image/png;base64,{Convert.ToBase64String(refBytes)}" });
+            }
+            else
+            {
+                images.Add(new { file_id = await GetOrUploadBaseFileAsync(referenceImagePath, jobsDir) });
+            }
+        }
+
         // custom_id is how the result is matched back to the year later — output
         // line order is not guaranteed to match input order, even in a one-line
         // batch.
@@ -145,7 +174,7 @@ public sealed class OpenAiBatchImageProvider : IImageGenerationProvider
                 // "file_id" is the documented key; "image_url" (a data URL) is
                 // what OpenAi:BatchInlineImage sends instead, and was recorded
                 // as rejected once — the flag is there to retest it cheaply.
-                images = new object[] { imageEntry },
+                images = images.ToArray(),
                 prompt,
                 size = Size,
                 quality = Quality

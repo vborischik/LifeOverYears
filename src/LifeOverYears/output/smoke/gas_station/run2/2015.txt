@@ -31,45 +31,44 @@ Smartphone era fully arrived. A 2015 station — LED-lit canopy, digital price s
 CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- LED message boards
-- air and vacuum island at the lot edge
+- LED illuminated channel letters
+- convenience store with modern branding
 - price sign showing gas around $2.45
-- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
-- window signs: 'ANY SIZE COFFEE $1', '2 ENERGY DRINKS $5'
-- an air-and-vacuum island at the lot edge
+- main sign: "Sinclair" branded gas station — Sinclair pole sign with price display and Sinclair colors on the canopy fascia
+- window signs: 'UNLIMITED CAR WASH $19.99/MO', 'ATM INSIDE'
 - combined trash-and-squeegee stations between the pumps
+- an air-and-vacuum island at the lot edge
 Typography: minimalist flat sans-serif, simplified modern logos.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Citgo'
-'ANY SIZE COFFEE $1'
-'2 ENERGY DRINKS $5'
+'Sinclair'
+'UNLIMITED CAR WASH $19.99/MO'
+'ATM INSIDE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a kid pressing his face against the DVD kiosk glass
-- a driver comparing gas app prices before choosing a pump
-- two kids on kick scooters
-Clothing: men in slim-fit plaid shirts, skinny jeans; women in infinity scarves, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+- a driver waiting behind a car at the only open pump
+- a driver vacuuming his car at the vacuum island
+- a woman balancing a yoga mat and an iced coffee
+Clothing: men in beards, slim-fit plaid shirts; women in infinity scarves, high-waisted skinny jeans. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 2 period vehicles, all different:
-- 2007-2017 Jeep Wrangler — boxy off-roader, round headlights — pearl white
-- 2013-2016 Mazda CX-5 — flowing KODO-design crossover — gray
+EXACTLY 1 period vehicle:
+- 2009-2018 Ram 1500 — crosshair grille, refined — silver
 Parked with gaps. Where a model is listed with a year range, render the 2015 model year specifically — only styling, trim and features available in 2015, nothing introduced later. No vehicle newer than 2015.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: all angled into stalls along the far edge of the lot, the near stalls left empty. No vehicle in the same spot as any other era.
+PLACEMENT: one nose-in close to the entrance; the rest spread across stalls toward the lot's far edge. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines common on wooden poles, fiber optic lines on poles
 
 DECAY
-- mismatched asphalt patches, cracks at the joints
 - chipped, stained curbs, weeds in the gutter
+- curb litter, an overflowing trash can
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - cottonwood tree at northeast corner of lot: slightly smaller than in the base image — about 85% of its canopy there

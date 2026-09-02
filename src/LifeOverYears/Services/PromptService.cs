@@ -1652,11 +1652,13 @@ public sealed class PromptService : IPromptService
         // the base while showing the previous era compounds the shrink every
         // step: a small tree drops to a tenth of the base by 1975 and keeps
         // being cut to a fraction of that.
-        var chainedFrom = context.ChainedFromPreviousEra
-                          && context.EraIndex > 0
-                          && context.EraIndex < context.Years.Count
-            ? context.Years[context.EraIndex - 1]
-            : (int?)null;
+        var isChained = context.ChainedFromPreviousEra
+                        && context.EraIndex > 0
+                        && context.EraIndex < context.Years.Count;
+
+        // Before any era has stated a size, the uploaded frame shows whatever
+        // the run's opening era drew.
+        var firstEraYear = context.Years.Count > 0 ? context.Years[0] : year;
 
         // In the source year the base image already shows the trees at their
         // current size, so every DescribeTreeSize comes back empty and the whole
@@ -1665,11 +1667,28 @@ public sealed class PromptService : IPromptService
         // does not apply: the newest era still has to grow its trees back out of
         // whatever the era before it showed.
         var treeState = DescribeTreeState(condition, sceneType);
-        var treeLines = scene.Environment.Trees
-            .Select(t => (Tree: t, Size: DescribeTreeSize(t.Size, t.Position, year, chainedFrom)))
-            .Where(x => x.Size.Length > 0)
-            .Select(x => $"- {x.Tree.Type} tree at {x.Tree.Position}: {x.Size}{treeState}")
-            .ToList();
+        var treeLines = new List<string>();
+        foreach (var tree in scene.Environment.Trees)
+        {
+            // Each tree carries its own anchor: they grow at different rates, so
+            // a large one can stay silent for two decades while a small one
+            // beside it states growth every era.
+            var key  = $"{tree.Type}|{tree.Position}";
+            var from = isChained ? context.TreeGrowthAnchor(key, firstEraYear) : (int?)null;
+            var size = DescribeTreeSize(tree.Size, tree.Position, year, from);
+
+            // Empty means the step is too small to draw. The era then says
+            // nothing about this tree, which under chaining leaves the canopy
+            // exactly as the uploaded frame has it — and the anchor stays where
+            // it was, so the next era measures from the same place and the
+            // growth is expressed once it is worth expressing.
+            if (size.Length == 0)
+                continue;
+
+            treeLines.Add($"- {tree.Type} tree at {tree.Position}: {size}{treeState}");
+            if (isChained)
+                context.RecordTreeGrowthStated(key, year);
+        }
 
         if (treeLines.Count > 0)
         {
@@ -1677,9 +1696,9 @@ public sealed class PromptService : IPromptService
             sb.AppendLine("TREES");
             foreach (var line in treeLines)
                 sb.AppendLine(line);
-            sb.Append(chainedFrom is null
-                ? "Tree sizes MUST follow this specification even where they differ from the base image."
-                : "Tree sizes MUST follow this specification even where they differ from the uploaded photo.");
+            sb.Append(isChained
+                ? "Tree sizes MUST follow this specification even where they differ from the uploaded photo."
+                : "Tree sizes MUST follow this specification even where they differ from the base image.");
         }
 
         return sb.ToString().TrimEnd();
@@ -1771,10 +1790,30 @@ public sealed class PromptService : IPromptService
     // ceiling the rate exists to hold.
     private const double BackgroundRetention = 0.92;
 
+    // Below this, an era states nothing about the tree at all.
+    //
+    // A decade on a large or background tree is about 5%. No image model draws a
+    // 5% canopy change, and the TREES block closes with a MUST — so the model is
+    // handed an instruction it cannot express and an order to obey it. It
+    // resolves that either by ignoring the tree (four flat eras) or by redrawing
+    // it at whatever size the rest of the frame suggests, which is how a distant
+    // treeline became one tree covering half a motel in a single decade. Nothing
+    // corrects that afterwards: chained growth is stated against the previous
+    // frame only, so an overshoot becomes the new baseline and compounds to the
+    // end of the run.
+    //
+    // Staying silent is strictly better than asking for the invisible: the
+    // canopy carries forward untouched, the growth is not lost — it accrues
+    // against the anchor — and it is stated in one step large enough to draw.
+    private const int MinStatedGrowthPct = 115;
+
     private static bool IsBackgroundTree(string? position) =>
         position is { } p && p.Contains("background", StringComparison.OrdinalIgnoreCase);
 
-    private static string DescribeTreeSize(string size, string? position, int year, int? chainedFromYear)
+    // internal rather than private: BrandSeriesPromptService states canopy
+    // growth the same way, and a second copy of this arithmetic would drift
+    // from the retention rates above the first time either is tuned.
+    internal static string DescribeTreeSize(string size, string? position, int year, int? chainedFromYear)
     {
         var retention = SlowGrowth(IsBackgroundTree(position)
             ? BackgroundRetention
@@ -1798,6 +1837,10 @@ public sealed class PromptService : IPromptService
 
             var growth = Math.Pow(retention, -decadesForward);
             var grownPct = (int)(Math.Round(growth * 20.0, MidpointRounding.AwayFromZero) * 5);
+
+            // Too small to draw — say nothing and let it accrue.
+            if (grownPct < MinStatedGrowthPct)
+                return "";
 
             return growth <= 1.15
                 ? $"slightly larger than in the uploaded photo — about {grownPct}% of its canopy there"

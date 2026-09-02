@@ -12,7 +12,13 @@ public interface IImageGenerationProvider
 
     Task CleanBaseAsync(string sourcePath, string prompt, string outputPath);
 
-    Task SubmitEraAsync(string basePath, string prompt, int year, string jobsDir);
+    // referenceImagePath is a second image sent alongside the base for the
+    // model to copy something specific out of — a brand series sends the era's
+    // logo sheet. Optional and defaulted so the photo-driven path, which has
+    // nothing to reference, is unchanged.
+    Task SubmitEraAsync(
+        string basePath, string prompt, int year, string jobsDir,
+        string? referenceImagePath = null);
 
     // True: result was ready and has been downloaded to outputPath.
     // False: job still pending. Throws on failed jobs with the provider error.

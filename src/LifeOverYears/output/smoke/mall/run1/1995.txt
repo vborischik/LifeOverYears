@@ -29,35 +29,35 @@ TRANSFORM TO 1995
 Clinton era prosperity. A 1995 enclosed mall still doing business — a stucco repaint and a taller entrance tower on the same box, and a lot that stays full all weekend.
 
 PERIOD DETAILS
-- a tall internally-lit pylon sign at the lot entrance
-- vast parking lots
-- standalone drive-through restaurants
-- window signs: 'SEARS', 'OPEN 10-9 MON-SAT'
-- long low planter islands splitting the parking rows
-- crisp freshly painted stall lines
+- a mirrored-glass entrance vestibule projecting from the facade
+- large single-story big box stores
+- large illuminated box signs
+- window signs: 'SEARS', 'JCPENNEY'
+- rows of tall lot light poles on concrete bases
+- a bank of wall-mounted payphones by the entrance
 Typography: clean geometric sans-serif, early digital influence.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 'SEARS'
-'OPEN 10-9 MON-SAT'
+'JCPENNEY'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 A DENSE CROWD of shoppers — far too many to count: a steady stream in and out of the entrance doors, groups moving between parked cars, clusters waiting near the doors, foreground figures sharp and background figures loose. Do not render an empty or sparse scene.
-- kids cutting diagonally across the lot
-- a couple hunting their own car down a row
-- a jogger with a portable CD player clipped to his waistband
-Clothing: men in windbreakers, backwards caps; women in floral dresses, crop tops. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a family crossing the lot toward the entrance
+- a man loading boxes into a tailgate
+- a grandmother pushing a wire cart of groceries
+Clothing: men in baggy jeans, grunge style; women in crop tops, slip dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 A FULL parking lot — every stall occupied in unbroken rows out to the far edge, too many vehicles to count, no empty stalls in the foreground. Representative models visible near the camera:
-- 1993-1997 Toyota Corolla — rounded compact sedan — hunter green
-- 1993-2002 Pontiac Firebird — sleek pointed sports coupe — white
-- 1989-1997 Geo Metro — very small economy hatchback — silver
-- 1991-1994 Saturn SL — plastic body panels, compact — teal
-- 1991-1996 Ford Escort — small rounded economy car — black
+- 1991-1994 Saturn SL — plastic body panels, compact — burgundy
+- 1992-1997 Ford Taurus — rounded jellybean shape, oval theme — hunter green
+- 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding — silver
+- 1994-1997 Honda Accord — smooth rounded sedan — white
+- 1991-1996 Buick Roadmaster — large rounded wagon and sedan — teal
 Every other vehicle in the lot is period-correct for 1995; nothing newer. All nose-in or angled into stalls; none parallel-parked.
 
 ENVIRONMENT

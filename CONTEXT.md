@@ -273,7 +273,17 @@ every range still resolves (`PickEligibleAcross` relaxes to eligibility at the
 start year), but the result is a brand that did not exist then. Extend the
 ranges deliberately.
 
-### 7. The smoke suite — `PromptSmokeTest`
+### 7. Brand series files — `data/brands/series/{brand}.json`
+
+Each file carries its own `years` array and an `eras` block per year. A brand
+series is *not* generic over the run's year list: `brand` mode refuses a year the
+file has no era for rather than skipping it, because a skipped era is a gap in
+the finished video. Adding a project-wide era means adding that year's block —
+logo state, condition, densities, film stock, tree stage, vehicle classes,
+fashion, signage — to every series file, or accepting that those series stay on
+their own shorter list.
+
+### 8. The smoke suite — `PromptSmokeTest`
 
 * `Years` at the top of the file — the array every check iterates.
 * `DowntownCoffeePrices` — indexed by year with `[year]`, so a year without an
@@ -283,13 +293,116 @@ ranges deliberately.
   percentages at 1975 and 2005, and `year == 2025` standing in for the source
   year), C7 (`run[1975]` black and white), C8, C45, C60, C70.
 
-### 8. What needs nothing
+### 9. What needs nothing
 
 Captions (`{firstYear}`/`{lastYear}` come from the narrative), video assembly and
 the year overlay are all generic over the list — `FfmpegProvider` derives its
 timeline from `images.Count`, and `TotalEras` is passed as `years.Count`
 everywhere in production. The `= 6` default on `GenerationContext.TotalEras` is
 only reached by fixtures that do not set it.
+
+---
+
+## Adding a New Brand Series
+
+A brand series is the second generation path: `dotnet run -- brand kmart`. It
+never calls Vision, never uploads a photograph, and is defined entirely by
+`data/brands/series/{name}.json`. Everything after the prompt — chaining, the
+year overlay, video assembly, the caption — is the ordinary run path.
+
+**Adding one is a data job.** Kmart needed no code beyond the mode itself;
+`sears.json` needs none at all. Traced from the code Sep 2026 — re-check before
+trusting it.
+
+### 1. The series file — `data/brands/series/sears.json`
+
+`BrandSeries` and `BrandEra` use `required` members, so a missing field throws at
+deserialization rather than rendering a wrong frame. Top level: `brand`,
+`sceneType` (always `brand_series`), `storeDescription`, `years`, `eras`.
+
+Every era must carry `condition`, `lotOccupancy`, `crowdDensity`, `colorMode`,
+`filmStock`, `treeStage`, `vehicleClasses`, `fashion`, `signage`, `advertising`,
+`neighbors`, `tone`. Optional: `logoRef`, `logoSpec`, `logoFail`, `signRemoved`,
+`redeveloped`.
+
+`storeDescription` is the one phrase every era opens with — the building and lot
+in words, with no brand name in it. It is what keeps the six frames the same
+premises once the sign is gone.
+
+### 2. The rules the data has to obey
+
+Each is a check, so getting one wrong fails `--smoke-prompts` rather than
+surfacing on a finished video.
+
+| rule | why | check |
+|---|---|---|
+| No numeric count of people or vehicles, anywhere | the image model does not count, and the digits cost budget | C79 |
+| Vehicle classes disjoint across eras | the same class twice is the same lot photographed twice. Compared on `GenerationContext.BaseModelName` — the first two words — so "small pickups" and "crew-cab pickups" are distinct but "compact imports"/"compact importers" are not | C80 |
+| Every era with a `logoSpec` also has a `logoRef` | the words are what the reference exists to stop the model guessing at | C85 |
+| `logoSpec` **identical** where the logo did not change, **different** where it did | this is what drives the wording: a changed spec emits the takedown of the old sign, an unchanged one emits "same sign, same place, same size". Copy the array verbatim between eras that share a logo | C85 |
+| The brand name appears in no era after the sign comes down | naming it inside a removal instruction puts the word in front of the model | C78 |
+| Every era colour; the decade rides on `filmStock` | use the stock `data/eras/{year}.json` already names for that year so both paths describe a decade the same way | C75 |
+| `crowdDensity: "empty"` for a dead era | it changes the PEOPLE block's shape rather than one adjective — a closed store described as holding shoppers is a contradiction the model resolves by drawing the shoppers | C84 |
+| Under 960 words / 6000 chars | brand prompts run ~450-530, so there is room — but the char ceiling is the tighter one project-wide | C81 |
+
+### 3. Logo reference images — `data/brands/logos/sears/{year}.png`
+
+One per era with a `logoRef`, path written relative to `data/`. A missing file
+does not fail the run: the provider logs a warning and submits without it, and
+the LOGO block still states the letterforms.
+
+**The first era cannot receive one.** It is drawn text-to-image, and
+`/v1/images/generations` takes no input image at all. Its letterforms come from
+`logoSpec` alone, and the second era carries the reference in over the top of
+that frame. Worth knowing when the opening logo matters: put the research into
+`logoSpec` for that era, not into the PNG.
+
+### 4. What needs nothing
+
+* **Code.** `DataService`, `RunService`, `BrandSeriesPromptService` and
+  `BrandSeriesRunner` are brand-agnostic; `brand sears` works the moment the
+  JSON exists.
+* **Captions and titles.** `data/captions/brand_series.txt` and
+  `titles/brand_series.txt` are keyed on the scene type, not the brand, so every
+  series shares them. That is also the limitation: **the caption cannot name the
+  brand.** Naming it would need a `{brand}` placeholder in `CaptionService`,
+  which was proposed and declined — the pools are written brand-agnostic on
+  purpose.
+* **`center-replacements.txt`.** The redeveloped era draws its tenants from it,
+  filtered to the year and one per `category`. Adding a brand there means adding
+  the fourth field too, or that entry opts out of the one-per-kind rule (C78
+  fails on a blank category).
+
+### 5. Traps specific to Sears
+
+* Sears already exists in the project as `Sears|1925|2018` in
+  `mall-anchors.txt`, used by the photo path's mall scenes. The series file is
+  separate and does not read it — but the closing year is a useful anchor, and a
+  2025 era must not put the name on the building.
+* A run's condition words are yours, but only the **last** era's reaches the
+  caption, through `CaptionService.MapFinalCondition`. It knows
+  `thriving/busy/new/restored/declining/abandoned/squatted`; anything else —
+  Kmart's `redeveloped` and `vacant` included — falls through to "changed a lot
+  over the years". Silent, not an error. Pick a mapped word if the closing line
+  matters, or accept the generic one.
+* The smoke suite loads `kmart` by name (`PromptSmokeTest.RunAsync`). A second
+  series is not covered until it is added there; C75-C86 assert the Kmart
+  fixture only.
+
+### 6. Running it
+
+```
+cd src/LifeOverYears
+dotnet run -- brand sears            # all years in the file
+dotnet run -- brand sears 1975 1985  # a subset; an era the file lacks is refused
+dotnet run -- collect <runFolder>    # resume: skips years whose image exists
+```
+
+`collect` reads `series.json` from the run folder, so a resumed era still gets
+its logo reference, and a missing first frame is redrawn from text rather than
+failing the run. Drop hand-made images into `<runFolder>/images/{year}.png` and
+`collect` will stamp, assemble and caption them without calling the provider at
+all.
 
 ---
 

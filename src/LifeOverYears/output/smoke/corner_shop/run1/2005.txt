@@ -31,45 +31,44 @@ Post-9/11 era. A 2005 corner shop down to the last things people still walk in f
 CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
+- a security camera aimed down at the entrance step
+- large illuminated box signs
 - a plastic sign panel with a cracked corner
-- electronic message boards common
-- large big box anchor stores
-- main sign: "FIFTH STREET GROCERY" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
-- window signs: 'PHONE CARDS', 'ATM'
-- a cigarette-brand awning faded on the sun side
-- a dented steel trash can bolted beside the door
+- main sign: "FONTAINE DRUGS" — a neighbourhood pharmacy, painted sign board over the door with a mortar-and-pestle emblem beside the lettering
+- window signs: 'MONEY ORDERS', 'PHONE CARDS'
+- a milk crate left out by the step as a seat
+- a taped-up notice about the check-cashing fee in the window
 Typography: clean sans-serif, polished brand identities.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'FIFTH STREET GROCERY'
+'FONTAINE DRUGS'
+'MONEY ORDERS'
 'PHONE CARDS'
-'ATM'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a man coming out with a single item in his hand, not in a bag
-- a delivery driver leaving one small stack of boxes at the door
-- a man in a trucker hat parking an SUV at an angle across two spaces
-Clothing: men in trucker hats, frosted tips hair; women in layered tank tops, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 2 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block. Grouped in pairs, threes, and singles.
+- a man sitting on the low wall beside the entrance, doing nothing
+- a woman waiting on the step with a phone card in her hand
+- a mom balancing a coffee cup and a diaper bag
+Clothing: men in graphic tees, trucker hats; women in velour tracksuits, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 2 period vehicles, all different:
-- 1998-2005 Volkswagen New Beetle — retro bubble shape — gray
-- 2004-2008 Chrysler 300 — bold boxy retro chrome grille — dark red
+EXACTLY 1 period vehicle:
+- 2003-2008 Toyota Corolla — conservative compact sedan — white
 Parked with gaps. Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
+PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines standard, cable and fiber lines on poles appearing
 
 DECAY
-- peeling paint down the corner pilaster, brick showing through
-- the old sign band painted over, a hand-lettered board screwed on beneath it
+- an ice cooler chained to the wall beside the entrance
+- steel bars fitted across the lower windows, newer than everything around them
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - honey locust tree at sidewalk beside the entrance: clearly smaller than in the base image — about 50% of its canopy there, thinner trunk, in leaf but untrimmed, suckers at the base and one dead limb

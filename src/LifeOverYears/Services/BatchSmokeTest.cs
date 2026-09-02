@@ -576,9 +576,9 @@ public static class BatchSmokeTest
             return Task.FromResult(content);
         }
 
-        public Task<byte[]> EditImageAsync(byte[] referenceImage, string prompt, string size, string quality, CancellationToken ct = default)
+        public Task<byte[]> EditImageAsync(byte[] referenceImage, string prompt, string size, string quality, byte[]? extraImage = null, CancellationToken ct = default)
         {
-            Calls.Add("edit");
+            Calls.Add(extraImage is null ? "edit" : "edit+ref");
             return Task.FromResult<byte[]>([1, 2, 3]);
         }
 

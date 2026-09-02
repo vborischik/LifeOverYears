@@ -8,7 +8,7 @@ PERIOD DETAILS
 - a tax preparation and check-cashing office still open a few doors along, plain lettering, bars on the window
 - most of the other units dark behind the glass, several papered over from the inside
 - former video store unit now a vape shop with an LED 'VAPE' sign
-- thrift store with donation bins outside
+- phone repair store with a 'WE FIX PHONES' sign
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
@@ -16,15 +16,16 @@ The only readable text anywhere in the image is:
 'VAPE'
 'WE FIX PHONES'
 'GYM MEMBERSHIP $10/MO'
-'SCREEN REPAIR $49'
+'EVERYTHING A DOLLAR'
+'NOW LEASING'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-2-3 people in the background as small figures, plus a few more further off, no detail on any face. All on the pavement or beside parked cars, never in the road. Faces blurred.
+3 people, standing near the entrance looking at the window. On the pavement, the lot apron or by the entrance — never in the road or a driving lane. Faces blurred.
 
 VEHICLES
 EXACTLY 1 vehicle, 2015 model year, and no others:
-- 2012-2018 Ford Focus — sharp European compact — black
+- 2015-2020 Ford Edge — mid-size crossover, bold grille — dark red
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES

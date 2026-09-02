@@ -15,9 +15,8 @@ PEOPLE
 NO people on foot. Everyone in the scene is inside a moving vehicle.
 
 VEHICLES
-EXACTLY 2 vehicles, 1985 model year, and no others:
-- 1980-1985 Buick LeSabre — boxy full-size, chrome trim — beige
-- 1984-1989 Plymouth Voyager — boxy first-generation minivan — silver
+EXACTLY 1 vehicle, 1985 model year, and no others:
+- 1981-1985 Ford Escort — small boxy economy hatchback — silver
 Moving in their own lanes at highway speed, natural spacing, all heading the same way. None parked on the shoulder. Plates blurred.
 
 TREES

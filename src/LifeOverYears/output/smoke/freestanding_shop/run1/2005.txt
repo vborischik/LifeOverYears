@@ -31,43 +31,44 @@ Post-9/11 era. A 2005 standalone shop down to the last things people still drive
 CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- a security camera aimed down at the entrance
-- large illuminated box signs
+- large LED-lit pylon signs
 - cracked asphalt patched in one corner of the apron
-- main sign: "FIFTH STREET GROCERY" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
-- window signs: 'MONEY ORDERS', 'PHONE CARDS'
-- a milk crate left out by the door as a seat
+- monument signs at lifestyle centers
+- main sign: "OAK STREET PHARMACY" — a neighbourhood pharmacy, painted sign board over the door with a mortar-and-pestle emblem beside the lettering
+- window signs: 'MONEY ORDERS', 'LOTTO'
+- a dented steel trash can bolted beside the entrance
 - a taped-up notice about the check-cashing fee in the window
 Typography: clean sans-serif, polished brand identities.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'FIFTH STREET GROCERY'
+'OAK STREET PHARMACY'
 'MONEY ORDERS'
-'PHONE CARDS'
+'LOTTO'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 2 people TOTAL: 1 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles. Grouped in pairs, threes, and singles.
-- a delivery driver checking the side door before knocking
+EXACTLY 3 people TOTAL: 1 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
+- a man parked close to the door with the engine running
 - someone reading the check-cashing fee notice through the bars
-- a woman comparing ringtones on her flip phone with a friend
-Clothing: men in frosted tips hair, cargo shorts; women in chunky highlights, velour tracksuits. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a UPS driver wheeling packages on a hand truck
+Clothing: men in baggy jeans, graphic tees; women in velour tracksuits, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 1 period vehicle:
-- 2003-2008 Toyota Corolla — conservative compact sedan — white
+EXACTLY 2 period vehicles, all different:
+- 2001-2007 Toyota Highlander — early crossover — silver
+- 2001-2007 Dodge Grand Caravan — family minivan, rounded — black
 Parked with gaps. Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
+PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines standard, cable and fiber lines on poles appearing
 
 DECAY
-- steel bars fitted across the lower windows, newer than everything around them
+- the parking apron cracked and patched, weeds through the seams
 - a cracked window pane held with tape at one corner
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES

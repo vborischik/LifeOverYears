@@ -1,21 +1,21 @@
 One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
 Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
 
-TRANSFORM TO 1985 — condition: well kept — freshly painted, open for business
+TRANSFORM TO 1985 — condition: busy — well kept, plenty of custom
 
 PERIOD DETAILS
-- main sign: "FIFTH STREET GROCERY" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
-- backlit plastic channel letters standard
-- wider parking lots
-- a plastic backlit ground sign at the edge of the apron, one letter dimmer than the rest
-- window signs: 'VIDEO RENTAL', 'CIGARETTES 95¢'
+- main sign: "OAK STREET PHARMACY" — a neighbourhood pharmacy, painted sign board over the door with a mortar-and-pestle emblem beside the lettering
+- large logo signs on pylons
+- drive-through lanes appearing
+- a flat canopy over the entrance, one panel light burnt out
+- window signs: 'LOTTERY TICKETS', 'VIDEO RENTAL'
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
-'FIFTH STREET GROCERY'
+'OAK STREET PHARMACY'
+'LOTTERY TICKETS'
 'VIDEO RENTAL'
-'CIGARETTES 95¢'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
@@ -23,8 +23,8 @@ PEOPLE
 
 VEHICLES
 EXACTLY 2 vehicles, 1985 model year, and no others:
-- 1982-1986 Nissan Sentra — small economy boxy sedan — light blue
-- 1977-1990 Chevrolet Caprice — boxy full-size sedan, formal lines — burgundy
+- 1982-1993 Chevrolet S-10 — compact pickup, square — light blue
+- 1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline — charcoal gray
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES

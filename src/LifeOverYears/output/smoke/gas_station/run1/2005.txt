@@ -28,41 +28,43 @@ distort the source geometry.
 TRANSFORM TO 2005
 Post-9/11 era. A 2005 gas station — big multi-island canopy, card readers at every pump, LED price sign, and a convenience store doing most of the business.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: busy — customers present, high activity, all pumps in use
 
 PERIOD DETAILS
 - large convenience store with energy-drink and phone-card ads in the glass
-- covered walkways at lifestyle centers
+- large big box anchor stores
 - price sign showing gas around $2.30
-- main sign: "Marathon" branded gas station — Marathon pole sign with price display and Marathon colors on the canopy fascia
-- window signs: 'PHONE CARDS SOLD HERE', 'ENERGY DRINKS 2 FOR $4'
-- a windshield-washer fluid display rack by the pumps
-- trash cans with paper-towel dispensers between the pumps
+- main sign: "Fina" branded gas station — Fina pole sign with price display and Fina colors on the canopy fascia
+- window signs: 'ANY SIZE FOUNTAIN DRINK 99¢', 'ENERGY DRINKS 2 FOR $4'
+- a propane exchange cage by the storefront
+- 'NO SMOKING — TURN OFF ENGINE' decals on each pump
 Typography: clean sans-serif, polished brand identities.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Marathon'
-'PHONE CARDS SOLD HERE'
+'Fina'
+'ANY SIZE FOUNTAIN DRINK 99¢'
 'ENERGY DRINKS 2 FOR $4'
+'NO SMOKING — TURN OFF ENGINE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a trucker paying cash through the store window at night
-- a teenager filling a bike tire at the coin-operated air machine
-- a teenager comparing camera phones with a friend
-Clothing: men in trucker hats, frosted tips hair; women in low-rise jeans, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+EXACTLY 5 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- a teenager filling tires at the coin-operated air machine
+- a teenager buying an energy drink at the counter
+- a teenager skateboarding with a messenger bag bouncing on his back
+Clothing: men in cargo shorts, baggy jeans; women in layered tank tops, chunky highlights. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 3 period vehicles, all different:
-- 2003-2008 Toyota Corolla — conservative compact sedan — dark red
-- 2000-2005 Ford Focus — European-styled compact — white
-- 2004-2008 Chrysler 300 — bold boxy retro chrome grille — gold
+EXACTLY 4 period vehicles, all different:
+- 2004-2008 Pontiac Grand Prix — sporty sedan plastic cladding — silver
+- 2003-2009 Hummer H2 — massive military-styled SUV — gold
+- 2001-2005 Honda Civic — rounded compact, very common — black
+- 2002-2006 Toyota Camry — smooth conservative mid-size — white
 Parked with gaps. Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: all parked in the lot, nose-in to marked stalls, with an empty stall between them. No vehicle in the same spot as any other era.
+PLACEMENT: all angled into stalls along the far edge of the lot, the near stalls left empty. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn arrows

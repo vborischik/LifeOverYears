@@ -29,11 +29,11 @@ TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 enclosed mall mostly hollowed out — a rectangular patch of less-faded wall above the end-cap where the anchor letters were removed, anchor holes still visible, only a scatter of cars near the doors.
 
 PERIOD DETAILS
-- LED message boards
-- a tall internally-lit pylon sign at the lot entrance
-- monument signs with LED displays
+- a recessed main entrance with brushed aluminum doors under a shallow canopy
+- beige concrete panels above a dark brick base course, no windows along the run
+- modern flat clean facades
 - window signs: 'MALL HOURS 11-7'
-- a light pole with its fixture missing
+- cracked asphalt with weeds through the seams
 - faded stall lines barely readable
 Typography: minimalist flat sans-serif, simplified modern logos.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
@@ -44,20 +44,20 @@ The only readable text anywhere in the image is:
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 4 people TOTAL: 2 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
-- an older couple resting on a bench by the doors
+EXACTLY 5 people TOTAL: 2 in the foreground near the building entrance (largest), 2 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
 - a couple hunting their own car down a row
-- a woman power-walking while listening to a podcast through earbuds
-Clothing: men in skinny jeans, henley shirts; women in ankle boots, infinity scarves. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a family crossing the lot toward the entrance
+- two kids on kick scooters
+Clothing: men in boat shoes, skinny jeans; women in infinity scarves, statement necklaces. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 2015-2020 Ford Edge — mid-size crossover, bold grille — white
-- 2010-2016 Chevrolet Equinox — mid-size crossover — silver
-- 2012-2015 Honda Civic — compact, angular — gray
+- 2015-2023 Ford F-150 — aluminum body, blocky modern — gray
+- 2013-2018 Hyundai Santa Fe — fluidic sculpture styling — blue
+- 2011-2016 Hyundai Elantra — swoopy fluidic compact — silver
 Parked with gaps. Where a model is listed with a year range, render the 2015 model year specifically — only styling, trim and features available in 2015, nothing introduced later. No vehicle newer than 2015.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: all angled into stalls along the far edge of the lot, the near stalls left empty. No vehicle in the same spot as any other era.
+PLACEMENT: one nose-in close to the entrance; the rest spread across stalls toward the lot's far edge. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks

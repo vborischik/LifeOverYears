@@ -31,36 +31,36 @@ Post-9/11 era. A 2005 corner shop down to the last things people still walk in f
 CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- LED price signs at gas stations
+- aging 1980s strip malls
 - a check-cashing banner across the top of the window
-- half the shelving visible through the window standing empty
-- main sign: "RIVERSIDE FOOD MARKET" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
-- window signs: 'PHONE CARDS', 'LOTTO'
-- a milk crate left out by the step as a seat
-- a cigarette-brand awning faded on the sun side
+- a plastic sign panel with a cracked corner
+- main sign: "BAYVIEW PHARMACY" — a neighbourhood pharmacy, painted sign board over the door with a mortar-and-pestle emblem beside the lettering
+- window signs: 'LOTTO', 'CHECK CASHING'
+- a dented steel trash can bolted beside the door
+- a taped-up notice about the check-cashing fee in the window
 Typography: clean sans-serif, polished brand identities.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'RIVERSIDE FOOD MARKET'
-'PHONE CARDS'
+'BAYVIEW PHARMACY'
 'LOTTO'
+'CHECK CASHING'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a delivery driver leaving one small stack of boxes at the door
+- a clerk stepping out to look up and down the street, then going back in
 - a man on a cell phone standing a few feet from the entrance
-- a teenager comparing camera phones with a friend
-Clothing: men in trucker hats, frosted tips hair; women in chunky highlights, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a grandmother clutching a coupon flyer at a bus bench
+Clothing: men in graphic tees, cargo shorts; women in low-rise jeans, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 1 period vehicle:
-- 2002-2009 Chevrolet TrailBlazer — mid-size SUV boxy — dark red
+- 2004-2008 Chrysler 300 — bold boxy retro chrome grille — dark blue
 Parked with gaps. Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
+PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
@@ -68,7 +68,7 @@ ENVIRONMENT
 
 DECAY
 - an ice cooler chained to the wall beside the entrance
-- steel bars fitted across the lower windows, newer than everything around them
+- peeling paint down the corner pilaster, brick showing through
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - honey locust tree at sidewalk beside the entrance: clearly smaller than in the base image — about 50% of its canopy there, thinner trunk, in leaf but untrimmed, suckers at the base and one dead limb

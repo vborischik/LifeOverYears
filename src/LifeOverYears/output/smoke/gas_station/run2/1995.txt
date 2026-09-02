@@ -28,42 +28,43 @@ distort the source geometry.
 TRANSFORM TO 1995
 Clinton era prosperity. A 1995 self-serve station — wide canopy over multiple islands, attached convenience store, the first pay-at-pump card readers.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: busy — customers present, high activity, all pumps in use
 
 PERIOD DETAILS
-- vast parking lots
-- drive-through menu boards illuminated
+- automatic car wash bay at the back of the lot
+- electronic marquee signs common
 - price sign showing gas around $1.15
-- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
-- window signs: 'CAR WASH $4 WITH FILL-UP', 'PAY AT PUMP — NEW!'
+- main sign: "Sinclair" branded gas station — Sinclair pole sign with price display and Sinclair colors on the canopy fascia
+- window signs: 'PAY AT PUMP — NEW!', 'CAR WASH $4 WITH FILL-UP'
 - a bench with a local realtor ad by the ice machine
-- a payphone mounted by the store entrance
+- a hand-written 'PUMP 3 OUT OF ORDER' sign taped to one pump
 Typography: clean geometric sans-serif, early digital influence.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Citgo'
-'CAR WASH $4 WITH FILL-UP'
+'Sinclair'
 'PAY AT PUMP — NEW!'
+'CAR WASH $4 WITH FILL-UP'
+'PUMP 3 OUT OF ORDER'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 5 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a man buying a lottery ticket at the counter
-- a trucker stretching his legs beside his idling rig
-- a man in a Starter jacket waiting at a bus stop
-Clothing: men in grunge style, baggy jeans; women in crop tops, slip dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- a teenager filling up his first car alone for the first time
+- a man topping off his washer fluid from a jug in his trunk
+- a teenager showing a friend a new pair of platform sneakers
+Clothing: men in flannel shirts, grunge style; women in floral dresses, high-waisted mom jeans. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
-- 1989-1997 Geo Metro — very small economy hatchback — teal
-- 1993-2002 Pontiac Firebird — sleek pointed sports coupe — silver
-- 1995-2004 Toyota Tacoma — compact, rounded — navy blue
-- 1995-1999 Dodge Neon — small rounded economy, friendly face — hunter green
+- 1991-1996 Ford Escort — small rounded economy car — hunter green
+- 1992-1996 Toyota Camry — rounded, understated — navy blue
+- 1991-1995 Dodge Caravan — rounded second-gen minivan — silver
+- 1994-1997 Honda Accord — smooth rounded sedan — black
 Parked with gaps. Where a model is listed with a year range, render the 1995 model year specifically — only styling, trim and features available in 1995, nothing introduced later. No vehicle newer than 1995.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: two nose-in near the building; the rest angled into stalls at the far edge of the lot. No vehicle in the same spot as any other era.
+PLACEMENT: all angled into stalls along the far edge of the lot, the near stalls left empty. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn lane arrows

@@ -28,52 +28,55 @@ distort the source geometry.
 TRANSFORM TO 2025
 Post-pandemic era. A 2025 fuel stop — LED canopy, full-color digital price sign, and a convenience store selling fresh food.
 
-CONDITION: restored — the same building reoccupied — plywood off the windows, litter and weeds cleared, surfaces cleaned, a modest working business again; structure, footprint and signband shape unchanged
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- free air and vacuum station at the lot edge
-- drive-through digital menu boards with AI ordering
+- drive-through coffee lane attached to the store
+- vacant storefront and ghost signs common
 - price sign showing gas around $3.40
-- main sign: "Marathon" branded gas station — Marathon pole sign with price display and Marathon colors on the canopy fascia
-- window signs: 'MEMBERS SAVE 10¢/GAL', 'SCAN & GO — SKIP THE LINE'
-- outdoor cafe barriers with planters by the coffee lane
-- QR-code stickers on the pump screens
+- main sign: "Fina" branded gas station — Fina pole sign with price display and Fina colors on the canopy fascia
+- window signs: 'COLD BREW $3.99', 'HOT PIZZA SLICES $2.99'
+- stacked delivery boxes by the store door
+- stacked bags of ice and firewood outside
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Marathon'
-'MEMBERS SAVE 10¢/GAL'
-'SCAN & GO — SKIP THE LINE'
+'Fina'
+'COLD BREW $3.99'
+'HOT PIZZA SLICES $2.99'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 6 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
-- a woman scanning a loyalty QR code at the pump screen
-- a man topping off washer fluid from his trunk
-- a retiree couple with matching walking poles
-Clothing: men in bucket hats, techwear; women in leggings and oversized hoodies, high-waisted wide-leg jeans. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+EXACTLY 2 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block. Grouped in pairs, threes, and singles.
+- a driver comparing gas prices on an app before choosing a pump
+- a teenager filling a bike tire at the free air station
+- a delivery courier with a large insulated backpack
+Clothing: men in chunky sneakers, bucket hats; women in athleisure, high-waisted wide-leg jeans. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2021-2025 Kia Telluride — boxy upscale three-row SUV — silver
-- 2019-2025 Toyota RAV4 — boxy rugged crossover, very common — white
-- 2022-2025 Chevrolet Silverado — refreshed bold grille — gray
-- 2021-2025 Nissan Rogue — squared-off crossover, floating roofline — blue
+EXACTLY 2 period vehicles, all different:
+- 2022-2025 Ford Maverick — small unibody pickup — black
+- 2017-2025 Honda CR-V — rounded best-selling crossover — dark green
 Parked with gaps. Where a model is listed with a year range, render the 2025 model year specifically — only styling, trim and features available in 2025, nothing introduced later. No vehicle newer than 2025.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: all angled into stalls along the far edge of the lot, the near stalls left empty. No vehicle in the same spot as any other era.
+PLACEMENT: two nose-in near the building; the rest angled into stalls at the far edge of the lot. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: yellow center line, white edge lines, high-visibility crosswalks
+- road markings: worn and faded, well past their last repainting
 - utilities: overhead lines on existing poles in older commercial areas, fiber optic widespread
+
+DECAY
+- mismatched asphalt patches, cracks at the joints
+- faded storefront paint, one window papered over
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — digital — smartphone or mirrorless camera look.
 Color: high saturation. Grain: very clean, minimal to no noise.
 Photorealistic — NOT black-and-white, no HDR.
-Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
 
 PRIVACY
 Blur all faces and license plates.

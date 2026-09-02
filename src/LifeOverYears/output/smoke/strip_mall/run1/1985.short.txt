@@ -1,20 +1,19 @@
 One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
 Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
 
-TRANSFORM TO 1985 — condition: well kept — freshly painted, open for business
+TRANSFORM TO 1985 — condition: busy — well kept, plenty of custom
 
 PERIOD DETAILS
-- wider parking lots
-- neon signs widespread
-- electronics store with a red 'RADIOSHACK' style sign
-- window signs: '2 SLICES + SODA $1.99', 'CASSETTES 3 FOR $10'
-- a bank of wall-mounted payphones near the anchor store
+- card and gift shop with gold script lettering
+- low single-story strip malls dominant
+- backlit plastic channel letters standard
+- a small radio and electronics shop, hand-lettered window sign reading STEREO - SPEAKERS - TAPES, no chain name anywhere
+- window signs: 'NAILS $12', 'CASSETTES 3 FOR $10'
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
-'RADIOSHACK'
-'2 SLICES + SODA $1.99'
+'NAILS $12'
 'CASSETTES 3 FOR $10'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
@@ -23,8 +22,8 @@ PEOPLE
 
 VEHICLES
 EXACTLY 2 vehicles, 1985 model year, and no others:
-- 1982-1985 Toyota Celica — angular sporty coupe, pop-up lights — red
-- 1981-1985 Dodge Aries — K-car, boxy economy sedan — white
+- 1981-1985 Ford Escort — small boxy economy hatchback — light blue
+- 1980-1986 Ford F-150 — square body, dual headlights — charcoal gray
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES

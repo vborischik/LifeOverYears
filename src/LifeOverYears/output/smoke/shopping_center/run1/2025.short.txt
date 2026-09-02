@@ -4,16 +4,16 @@ Keep the uploaded photo's exact composition, camera angle, road and building geo
 TRANSFORM TO 2025 — condition: well kept — freshly painted, open for business
 
 PERIOD DETAILS
-- outdoor dining structures from pandemic era
-- ghost signs from closed retailers
-- vacant former big box stores common
-- window signs: 'FIVE BELOW', 'PLANET FITNESS'
-- restriped stalls in front of the gym only
+- one remaining unit with paper still taped inside the glass
+- a bright new fascia band over the old anchor block
+- channel letters mounted on a raceway above the gym entrance
+- window signs: 'DONATION CENTER', 'PLANET FITNESS'
+- cracked asphalt with weeds still at the seams toward the far end
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
-'FIVE BELOW'
+'DONATION CENTER'
 'PLANET FITNESS'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
@@ -22,8 +22,8 @@ PEOPLE
 
 VEHICLES
 EXACTLY 2 vehicles, 2025 model year, and no others:
-- 2023-2025 Kia Sportage — futuristic boomerang lights — silver
-- 2019-2025 Toyota Corolla — sharp-nosed compact — white
+- 2021-2025 Chevrolet Tahoe — huge full-size SUV — silver
+- 2019-2025 Toyota RAV4 — boxy rugged crossover, very common — gray
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 STYLE

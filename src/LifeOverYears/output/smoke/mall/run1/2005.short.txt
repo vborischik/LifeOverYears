@@ -4,17 +4,17 @@ Keep the uploaded photo's exact composition, camera angle, road and building geo
 TRANSFORM TO 2005 — condition: well kept — freshly painted, open for business
 
 PERIOD DETAILS
+- monument signs at lifestyle centers
+- drive-through digital menu boards beginning
 - electronic message boards common
-- large illuminated box signs
-- LED price signs at gas stations
-- window signs: 'OPEN 10-9 MON-SAT', 'MACY'S'
-- rows of tall lot light poles on concrete bases
+- window signs: 'DILLARD'S', 'OPEN 10-9 MON-SAT'
+- crisp freshly painted stall lines
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
+'DILLARD'S'
 'OPEN 10-9 MON-SAT'
-'MACY'S'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
@@ -22,8 +22,8 @@ PEOPLE
 
 VEHICLES
 EXACTLY 2 vehicles, 2005 model year, and no others:
-- 2001-2007 Dodge Grand Caravan — family minivan, rounded — white
-- 2004-2008 Ford F-150 — bigger, bolder grille — black
+- 2001-2007 Ford Escape — compact boxy SUV — gold
+- 2002-2008 Dodge Ram — big rig grille evolved — dark red
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES

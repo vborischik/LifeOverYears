@@ -41,8 +41,9 @@ PEOPLE
 NO people on foot anywhere — nobody walking, standing or waiting at the roadside. Everyone in this scene is inside a moving vehicle.
 
 VEHICLES
-EXACTLY 1 period vehicle:
-- 2002-2006 Toyota Camry — smooth conservative mid-size — gray
+EXACTLY 2 period vehicles, all different:
+- 2003-2007 Honda Accord — clean lines, sharper than 1990s — gray
+- 2005-2010 Chevrolet Cobalt — compact economy sedan — dark blue
 Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
 Each vehicle is travelling in its own lane at highway speed, spaced by natural following distance, all heading the same direction as the camera's vantage point. None stopped, and none standing on the shoulder.
 

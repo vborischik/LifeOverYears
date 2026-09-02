@@ -1,31 +1,32 @@
 One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
 Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
 
-TRANSFORM TO 2025 — condition: declining — faded paint, aging signage, little activity
+TRANSFORM TO 2025 — condition: reopened and tidy — clean surfaces, the same building back in use
 
 PERIOD DETAILS
-- main sign: "Super 8" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
+- main sign: "Holiday Inn" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
+- a concrete walkway with the overhang fascia patched in a different color
 - outdoor dining structures from pandemic era
-- drive-through digital menu boards with AI ordering
-- digital display signage
-- window signs: 'NO VISITORS AFTER 10', 'ROOMS AVAILABLE'
+- large glass storefronts
+- window signs: 'ROOMS AVAILABLE', 'FREE WI-FI'
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
-'Super 8'
-'NO VISITORS AFTER 10'
+'Holiday Inn'
 'ROOMS AVAILABLE'
+'FREE WI-FI'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-3 people, walking along the pavement past the frontage. On the pavement, the lot apron or by the entrance — never in the road or a driving lane. Faces blurred.
+1 person, walking to a parked car. On the pavement, the lot apron or by the entrance — never in the road or a driving lane. Faces blurred.
 
 VEHICLES
-EXACTLY 1 vehicle, 2025 model year, and no others:
-- 2019-2025 Subaru Outback — rugged wagon crossover — silver
+EXACTLY 2 vehicles, 2025 model year, and no others:
+- 2019-2025 Toyota RAV4 — boxy rugged crossover, very common — gray
+- 2022-2025 Chevrolet Silverado — refreshed bold grille — silver
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 STYLE
-COLOR photograph — digital — smartphone or mirrorless camera look. Color: high saturation. Grain: very clean, minimal to no noise. Photorealistic — NOT black-and-white, no HDR. Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
+COLOR photograph — digital — smartphone or mirrorless camera look. Color: high saturation. Grain: very clean, minimal to no noise. Photorealistic — NOT black-and-white, no HDR. Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 Blur all faces and licence plates.

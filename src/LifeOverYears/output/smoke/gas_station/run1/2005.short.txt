@@ -1,21 +1,22 @@
 One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
 Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
 
-TRANSFORM TO 2005 — condition: well kept — freshly painted, open for business
+TRANSFORM TO 2005 — condition: busy — well kept, plenty of custom
 
 PERIOD DETAILS
-- main sign: "Marathon" branded gas station — Marathon pole sign with price display and Marathon colors on the canopy fascia
+- main sign: "Fina" branded gas station — Fina pole sign with price display and Fina colors on the canopy fascia
 - large convenience store with energy-drink and phone-card ads in the glass
-- covered walkways at lifestyle centers
+- large big box anchor stores
 - price sign showing gas around $2.30
-- window signs: 'PHONE CARDS SOLD HERE', 'ENERGY DRINKS 2 FOR $4'
+- window signs: 'ANY SIZE FOUNTAIN DRINK 99¢', 'ENERGY DRINKS 2 FOR $4'
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
-'Marathon'
-'PHONE CARDS SOLD HERE'
+'Fina'
+'ANY SIZE FOUNTAIN DRINK 99¢'
 'ENERGY DRINKS 2 FOR $4'
+'NO SMOKING — TURN OFF ENGINE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
@@ -23,8 +24,8 @@ PEOPLE
 
 VEHICLES
 EXACTLY 2 vehicles, 2005 model year, and no others:
-- 2003-2008 Toyota Corolla — conservative compact sedan — dark red
-- 2000-2005 Ford Focus — European-styled compact — white
+- 2004-2008 Pontiac Grand Prix — sporty sedan plastic cladding — silver
+- 2003-2009 Hummer H2 — massive military-styled SUV — gold
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES

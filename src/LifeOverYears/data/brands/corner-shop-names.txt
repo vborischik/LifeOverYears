@@ -11,6 +11,10 @@
 # Names are rendered as sign text, so they must read as a real small-town
 # storefront: no adjectives, no descriptions, nothing that could be mistaken
 # for an instruction to the image model.
+#
+# One origin name is drawn per run and the kind flip is 50/50 rather than
+# proportional, so the smaller pool sets the repeat rate no matter how large
+# the other grows. Keep the two kinds near each other in size.
 
 grocery|SANTINI'S MARKET
 grocery|CORNER GROCERY
@@ -32,12 +36,36 @@ grocery|TENTH STREET MARKET
 grocery|O'BRIEN'S GROCERY
 grocery|VALLEY FOOD MARKET
 grocery|SZYMANSKI'S MARKET
+grocery|MORELLI'S MARKET
+grocery|HAYES STREET GROCERY
+grocery|PULASKI FOOD MARKET
+grocery|GARCIA'S MARKET
+grocery|ELMWOOD GROCERY
+grocery|THIRD STREET MARKET
+grocery|KRUEGER'S FOOD MARKET
+grocery|BAYSIDE MARKET
+grocery|LOMBARDI'S GROCERY
+grocery|WALNUT STREET MARKET
+grocery|NGUYEN'S MARKET
+grocery|HIGHLAND FOOD MARKET
+grocery|DOHERTY'S GROCERY
+grocery|CEDAR STREET MARKET
+grocery|VARGAS FOOD MARKET
+grocery|FOREST AVENUE GROCERY
+grocery|WEBER'S MARKET
+grocery|SOUTHSIDE FOOD MARKET
+grocery|PETROSKI'S GROCERY
+grocery|GRANT STREET MARKET
+grocery|ORCHARD MARKET
+grocery|RUSSO'S FOOD MARKET
+grocery|EIGHTH STREET GROCERY
+grocery|MERIDIAN MARKET
+grocery|HANSEN'S MARKET
 
 pharmacy|OAK STREET PHARMACY
 pharmacy|WHELAN DRUGS
 pharmacy|BAYVIEW PHARMACY
 pharmacy|SCHMIDT'S DRUG STORE
-pharmacy|LINCOLN PHARMACY
 pharmacy|HOLLAND DRUGS
 pharmacy|ELM STREET PHARMACY
 pharmacy|MCCARTHY'S DRUG STORE
@@ -47,3 +75,28 @@ pharmacy|CENTRAL PHARMACY
 pharmacy|DONOVAN'S DRUG STORE
 pharmacy|SEVENTH AVENUE PHARMACY
 pharmacy|BURKE'S DRUGS
+pharmacy|MERCER DRUGS
+pharmacy|WALNUT STREET PHARMACY
+pharmacy|GALLAGHER'S DRUG STORE
+pharmacy|FAIRVIEW PHARMACY
+pharmacy|ROSENBERG DRUGS
+pharmacy|THIRD AVENUE PHARMACY
+pharmacy|KEENAN'S DRUG STORE
+pharmacy|HIGHLAND PHARMACY
+pharmacy|WEISS DRUGS
+pharmacy|CHURCH STREET PHARMACY
+pharmacy|TIERNEY'S DRUGS
+pharmacy|GLENWOOD PHARMACY
+pharmacy|ASHLAND DRUG STORE
+pharmacy|NINTH STREET PHARMACY
+pharmacy|FONTAINE DRUGS
+pharmacy|PARKSIDE PHARMACY
+pharmacy|HALLORAN'S DRUG STORE
+pharmacy|MADISON PHARMACY
+pharmacy|STERN DRUGS
+pharmacy|CEDAR AVENUE PHARMACY
+pharmacy|VOGEL'S DRUG STORE
+pharmacy|NORTHGATE PHARMACY
+pharmacy|LARKIN DRUGS
+pharmacy|BEACON STREET PHARMACY
+pharmacy|SALVATORE'S DRUG STORE

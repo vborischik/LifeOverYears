@@ -28,43 +28,41 @@ distort the source geometry.
 TRANSFORM TO 1985
 Reagan era prosperity. A 1985 self-service gas station — digital price sign newly installed, a small convenience store where the second service bay used to be.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: busy — customers present, high activity, all pumps in use
 
 PERIOD DETAILS
-- large logo signs on pylons
-- ice freezer chest with an 'ICE $1' decal by the store door
+- electronic marquee signs appearing
+- wider parking lots
 - price sign showing gas around $1.12
-- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
-- window signs: 'MOTOR OIL 99¢ QT', 'FREE COFFEE WITH FILL-UP'
+- main sign: "Sinclair" branded gas station — Sinclair pole sign with price display and Sinclair colors on the canopy fascia
+- window signs: 'FREE COFFEE WITH FILL-UP', 'SELF SERVE — PAY INSIDE'
 - a display rack of windshield-washer fluid jugs
-- a BMX bike leaned by the store door
+- squeegee buckets at the pump islands
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'ICE $1'
-'Citgo'
-'MOTOR OIL 99¢ QT'
+'Sinclair'
 'FREE COFFEE WITH FILL-UP'
+'SELF SERVE — PAY INSIDE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a trucker checking his mirrors before pulling out
-- a woman counting quarters for the air machine
-- an older woman in a velour tracksuit carrying a tote bag
-Clothing: men in windbreakers, shoulder pads in blazers; women in high-waisted jeans, big permed hair. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+- an attendant-turned-cashier waving through the store window
+- a clerk taping a new price sign to the pole
+- a college student wheeling a mountain bike with a U-lock on the frame
+Clothing: men in polo shirts with collars up, acid wash jeans; women in shoulder pads, high-waisted jeans. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 1975-1991 Ford Econoline — boxy full-size van — light blue
-- 1982-1993 Chevrolet S-10 — compact pickup, square — red
-- 1980-1986 Ford F-150 — square body, dual headlights — silver
-- 1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline — white
+EXACTLY 3 period vehicles, all different:
+- 1980-1986 Ford F-150 — square body, dual headlights — charcoal gray
+- 1983-1985 Nissan Maxima — boxy import sedan — silver
+- 1982-1985 Toyota Celica — angular sporty coupe, pop-up lights — light blue
 Parked with gaps. Where a model is listed with a year range, render the 1985 model year specifically — only styling, trim and features available in 1985, nothing introduced later. No vehicle newer than 1985.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: all angled into stalls along the far edge of the lot, the near stalls left empty. No vehicle in the same spot as any other era.
+PLACEMENT: all parked in the lot, nose-in to marked stalls, with an empty stall between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, painted crosswalks

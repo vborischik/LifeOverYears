@@ -4,8 +4,8 @@ Keep the uploaded photo's exact composition, camera angle, road and building geo
 TRANSFORM TO 1985 — condition: well kept — freshly painted, open for business
 
 PERIOD DETAILS
+- raised button reflectors set into the lane markings
 - galvanized W-beam guardrail on steel posts
-- an overhead sign gantry spanning the lanes, green panels with white borders
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
@@ -16,8 +16,8 @@ NO people on foot. Everyone in the scene is inside a moving vehicle.
 
 VEHICLES
 EXACTLY 2 vehicles, 1985 model year, and no others:
-- 1980-1985 Buick LeSabre — boxy full-size, chrome trim — beige
-- 1984-1989 Plymouth Voyager — boxy first-generation minivan — silver
+- 1979-1985 Ford Mustang — Fox body, angular hatchback coupe — burgundy
+- 1980-1985 Buick LeSabre — boxy full-size, chrome trim — charcoal gray
 Moving in their own lanes at highway speed, natural spacing, all heading the same way. None parked on the shoulder. Plates blurred.
 
 TREES

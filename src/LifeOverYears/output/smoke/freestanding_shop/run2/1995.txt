@@ -32,36 +32,37 @@ CONDITION: thriving — well-maintained, freshly painted, active business, clean
 
 PERIOD DETAILS
 - a backlit plastic ground sign, one tube out at the left end
-- a phone-card poster and a money-order decal filling the lower window
-- the entrance canopy showing bare steel where a panel is missing
-- main sign: "RIVERSIDE FOOD MARKET" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
-- window signs: 'MONEY ORDERS', 'LOTTO'
+- a hand-lettered sign about a two-item limit taped to the glass
+- faded apron striping still marking out spaces nobody uses anymore
+- main sign: "HIGHLAND PHARMACY" — a neighbourhood pharmacy, painted sign board over the door with a mortar-and-pestle emblem beside the lettering
+- window signs: 'ICE', 'MONEY ORDERS'
 - a phone-card rack visible through the glass by the register
-- a bare canopy frame where a light panel used to sit
+- a hand-lettered notice taped inside the entrance glass
 Typography: clean geometric sans-serif, early digital influence.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'RIVERSIDE FOOD MARKET'
+'HIGHLAND PHARMACY'
+'ICE'
 'MONEY ORDERS'
-'LOTTO'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 5 people TOTAL: 2 in the foreground near the building entrance (largest), 2 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
-- a man parked at an angle instead of in a marked space
-- a man loading an ice chest into the back of a pickup
-- a dad carrying a kid on his shoulders
-Clothing: men in flannel shirts, windbreakers; women in crop tops, floral dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 4 people TOTAL: 2 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
+- two people talking beside a car parked near the entrance
+- a man reading the money-order rates taped to the glass
+- a mom loading groceries into a minivan
+Clothing: men in backwards caps, baggy jeans; women in slip dresses, crop tops. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 2 period vehicles, all different:
-- 1993-2002 Pontiac Firebird — sleek pointed sports coupe — hunter green
-- 1993-1997 Toyota Corolla — rounded compact sedan — teal
+EXACTLY 3 period vehicles, all different:
+- 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size — teal
+- 1994-2001 Dodge Ram — big rig style grille, bold — silver
+- 1991-1996 Buick Roadmaster — large rounded wagon and sedan — burgundy
 Parked with gaps. Where a model is listed with a year range, render the 1995 model year specifically — only styling, trim and features available in 1995, nothing introduced later. No vehicle newer than 1995.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
+PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn lane arrows

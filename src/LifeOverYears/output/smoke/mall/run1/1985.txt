@@ -29,35 +29,35 @@ TRANSFORM TO 1985
 Reagan era prosperity. A 1985 enclosed mall at full tilt — the long windowless box repainted, JCPENNEY in bold backlit letters on the end-cap, and the lot packed out to the light poles.
 
 PERIOD DETAILS
-- bold primary colors with high contrast
-- electronic marquee signs appearing
-- beige concrete panels above a dark brick base course, no windows along the run
-- window signs: 'OPEN 10-9 MON-SAT', 'KMART'
-- rows of tall lot light poles on concrete bases
-- long low planter islands splitting the parking rows
+- large illuminated signage
+- wider parking lots
+- neon signs widespread
+- window signs: 'SEARS', 'OPEN 10-9 MON-SAT'
+- a metal bus shelter at the lot edge
+- crisp freshly painted stall lines
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
+'SEARS'
 'OPEN 10-9 MON-SAT'
-'KMART'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 A DENSE CROWD of shoppers — far too many to count: a steady stream in and out of the entrance doors, groups moving between parked cars, clusters waiting near the doors, foreground figures sharp and background figures loose. Do not render an empty or sparse scene.
-- teenagers loitering by the doors
-- a family crossing the lot toward the entrance
-- a father in a polo shirt with the collar popped, walking briskly
-Clothing: men in polo shirts with collars up, shoulder pads in blazers; women in high-waisted jeans, bright neon colors. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a couple hunting their own car down a row
+- an older couple resting on a bench by the doors
+- a businessman with a briefcase and wide tie
+Clothing: men in shoulder pads in blazers, windbreakers; women in bright neon colors, big permed hair. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 A FULL parking lot — every stall occupied in unbroken rows out to the far edge, too many vehicles to count, no empty stalls in the foreground. Representative models visible near the camera:
-- 1979-1985 Ford LTD Country Squire — full-size woodgrain wagon — charcoal gray
-- 1984-1989 Plymouth Voyager — boxy first-generation minivan — red
-- 1982-1986 Nissan Sentra — small economy boxy sedan — silver
-- 1984-1988 Toyota Pickup — small, boxy, popular import — white
-- 1984-1988 Pontiac Fiero — small wedge two-seater — light blue
+- 1981-1985 Ford Escort — small boxy economy hatchback — beige
+- 1984-1987 Honda Civic — small boxy hatchback — white
+- 1981-1985 Dodge Aries — K-car, boxy economy sedan — red
+- 1983-1985 Nissan Maxima — boxy import sedan — silver
+- 1979-1985 Ford Mustang — Fox body, angular hatchback coupe — charcoal gray
 Every other vehicle in the lot is period-correct for 1985; nothing newer. All nose-in or angled into stalls; none parallel-parked.
 
 ENVIRONMENT

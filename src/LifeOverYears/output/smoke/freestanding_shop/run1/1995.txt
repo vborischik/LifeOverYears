@@ -28,40 +28,41 @@ distort the source geometry.
 TRANSFORM TO 1995
 Clinton era prosperity. A 1995 standalone shop holding on against the chains — the apron still gets used, but half the spaces sit empty most afternoons now.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: busy — customers present, high activity, all pumps in use
 
 PERIOD DETAILS
-- large single-story big box stores
-- standalone drive-through restaurants
-- faded apron striping still marking out spaces nobody uses anymore
-- main sign: "FIFTH STREET GROCERY" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
-- window signs: 'PHONE CARDS', 'MONEY ORDERS'
-- a hand-lettered notice taped inside the entrance glass
+- channel letter signs on storefronts
+- a phone-card poster and a money-order decal filling the lower window
+- an ATM decal on the glass beside the door
+- main sign: "OAK STREET PHARMACY" — a neighbourhood pharmacy, painted sign board over the door with a mortar-and-pestle emblem beside the lettering
+- window signs: 'LOTTO', 'ATM INSIDE'
 - a bare canopy frame where a light panel used to sit
+- a phone-card rack visible through the glass by the register
 Typography: clean geometric sans-serif, early digital influence.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'FIFTH STREET GROCERY'
-'PHONE CARDS'
-'MONEY ORDERS'
+'OAK STREET PHARMACY'
+'LOTTO'
+'ATM INSIDE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 4 people TOTAL: 2 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
-- a delivery driver checking a clipboard against the side door
+EXACTLY 5 people TOTAL: 2 in the foreground near the building entrance (largest), 2 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
 - a man reading the money-order rates taped to the glass
-- a teenager showing a friend a new pair of platform sneakers
-Clothing: men in backwards caps, baggy jeans; women in floral dresses, slip dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- someone circling once before finding a space close to the door
+- a teenager wearing a backwards cap and cargo shorts
+Clothing: men in windbreakers, baggy jeans; women in chokers, slip dresses. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 2 period vehicles, all different:
-- 1995-2004 Toyota Tacoma — compact, rounded — hunter green
-- 1992-1995 Honda Civic — small rounded coupe and sedan — teal
+EXACTLY 3 period vehicles, all different:
+- 1995-2004 Toyota Tacoma — compact, rounded — teal
+- 1990-1997 Mazda Miata — tiny rounded roadster, pop-up lights — white
+- 1986-1997 Ford Aerostar — boxy rear-drive minivan — hunter green
 Parked with gaps. Where a model is listed with a year range, render the 1995 model year specifically — only styling, trim and features available in 1995, nothing introduced later. No vehicle newer than 1995.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
+PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn lane arrows

@@ -4,17 +4,17 @@ Keep the uploaded photo's exact composition, camera angle, road and building geo
 TRANSFORM TO 1975 — condition: well kept — freshly painted, open for business
 
 PERIOD DETAILS
-- main sign: "Super 8" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
-- an ice machine in a lit alcove near the office end
+- main sign: "Holiday Inn" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
+- a neon sign on the pylon out by the road, the NO above VACANCY unlit
+- simple bold typography
 - a concrete walkway running the length of the wing under a shallow overhang
-- the office at the end of the wing, its own sign lit over the door
-- window signs: 'COLOR TV', 'POOL'
+- window signs: 'AIR CONDITIONED', 'POOL'
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
-'Super 8'
-'COLOR TV'
+'Holiday Inn'
+'AIR CONDITIONED'
 'POOL'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
@@ -23,13 +23,13 @@ PEOPLE
 
 VEHICLES
 EXACTLY 2 vehicles, 1975 model year, and no others:
-- 1968-1979 Chevrolet Nova — compact, simple three-box shape
-- 1975-1980 Ford Granada — compact luxury, Mercedes-inspired formal grille
+- 1968-1979 Chevrolet Nova — compact, simple three-box shape — dark brown
+- 1975-1980 Ford Granada — compact luxury, Mercedes-inspired formal grille — harvest gold
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES
 - silver maple tree at lot edge beside the pylon sign: clearly smaller than in the base image — about 45% of its canopy there, thinner trunk
 
 STYLE
-STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere. Grain: visible fine grain. Style: documentary, natural light. Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp. Light: bright open daylight, clear sky, soft natural shadows — a fine, ordinary day.
+COLOR photograph — Kodachrome 64 or Ektachrome look. Color: slightly warm tones. Grain: visible fine grain. Photorealistic — NOT black-and-white, no HDR. Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 Blur all faces and licence plates.

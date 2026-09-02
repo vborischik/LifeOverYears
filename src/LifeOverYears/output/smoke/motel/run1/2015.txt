@@ -31,33 +31,34 @@ Smartphone era fully arrived. A 2015 motel running on weekly lets — an LED pan
 CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- numbered room doors in a uniform row, two of them fitted with newer locks
-- large glass storefronts
-- LED accent lighting on buildings
-- main sign: "Travelodge" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
-- window signs: 'WEEKLY RATES', 'NO VISITORS'
+- modern flat clean facades
+- cameras at both ends of the walkway, cabling run openly along the fascia
+- LED message boards
+- main sign: "Quality Inn" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
+- window signs: 'NO VISITORS', 'WEEKLY RATES'
+- a bicycle chained to a walkway post outside one door
 - a satellite dish still bolted to the roof, cable hanging loose
-- a plastic tub of belongings set outside a door
 Typography: minimalist flat sans-serif, simplified modern logos.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Travelodge'
-'WEEKLY RATES'
+'Quality Inn'
 'NO VISITORS'
+'WEEKLY RATES'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 3 people TOTAL: 1 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
-- someone standing at the end of the building, watching the road
-- someone smoking beside a car that has not moved in weeks
-- a man loading a bike onto a car rack
-Clothing: men in beards, boat shoes; women in yoga pants and leggings, ankle boots. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 2 people TOTAL: 1 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles. Grouped in pairs, threes, and singles.
+- a woman carrying laundry in a plastic basket toward the far end
+- a person moving a folding chair from one door to the next
+- a man in skinny jeans taking a selfie
+Clothing: men in henley shirts, skinny jeans; women in ankle boots, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 1 period vehicle:
-- 2012-2015 Honda Civic — compact, angular — white
+EXACTLY 2 period vehicles, all different:
+- 2013-2018 Hyundai Santa Fe — fluidic sculpture styling — white
+- 2015-2020 Chevrolet Colorado — mid-size pickup revived — black
 Parked with gaps. Where a model is listed with a year range, render the 2015 model year specifically — only styling, trim and features available in 2015, nothing introduced later. No vehicle newer than 2015.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
 PLACEMENT: two nose-in near the building; the rest angled into stalls at the far edge of the lot. No vehicle in the same spot as any other era.
@@ -67,8 +68,8 @@ ENVIRONMENT
 - utilities: overhead power lines common on wooden poles, fiber optic lines on poles
 
 DECAY
-- weeds standing in the cracks along the edge of the parking bays
-- bay striping worn thin and repainted once in a paler white
+- a sun-bleached panel in the pylon sign, cracked through one corner
+- a length of walkway fascia lifting away from its fixings
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - silver maple tree at lot edge beside the pylon sign: slightly smaller than in the base image — about 85% of its canopy there

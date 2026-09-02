@@ -1,30 +1,30 @@
 One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
 Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
 
-TRANSFORM TO 1985 — condition: well kept — freshly painted, open for business
+TRANSFORM TO 1985 — condition: busy — well kept, plenty of custom
 
 PERIOD DETAILS
-- main sign: "Travelodge" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
-- digital price displays at gas stations
-- a paired window beside each door with a through-wall air unit below it
-- neon signs widespread
-- window signs: 'PHONES IN ROOM', 'VACANCY'
+- main sign: "Quality Inn" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
+- large logo signs on pylons
+- numbered room doors in a uniform row, repainted a darker color than the trim
+- awnings with bold stripe patterns
+- window signs: 'FREE HBO', 'VACANCY'
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
-'Travelodge'
-'PHONES IN ROOM'
+'Quality Inn'
+'FREE HBO'
 'VACANCY'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-3 people, a delivery driver checking a phone beside a van. On the pavement, the lot apron or by the entrance — never in the road or a driving lane. Faces blurred.
+1 person, standing near the entrance looking at the window. On the pavement, the lot apron or by the entrance — never in the road or a driving lane. Faces blurred.
 
 VEHICLES
 EXACTLY 2 vehicles, 1985 model year, and no others:
-- 1983-1987 Honda Accord — clean lines, pop-up headlights — light blue
-- 1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline — charcoal gray
+- 1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan — silver
+- 1980-1985 Cadillac Seville — sharp formal lines, bustleback — burgundy
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES

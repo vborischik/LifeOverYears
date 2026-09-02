@@ -1,0 +1,323 @@
+{
+  "brand": "Kmart",
+  "sceneType": "brand_series",
+  "storeDescription": "a single-storey suburban discount department store with a long flat-roofed frontage, a deep asphalt parking lot in front of the entrance and landscaping islands between the parking bays",
+  "years": [
+    1975,
+    1985,
+    1995,
+    2005,
+    2015,
+    2025
+  ],
+  "eras": {
+    "1975": {
+      "logoRef": "brands/logos/kmart/1975.png",
+      "logoSpec": [
+        "large italic capital K in bright red",
+        "lowercase mart in turquoise, light rounded widely spaced letterforms",
+        "the K has a long angled leg extending beneath the start of mart",
+        "individual channel letters mounted directly onto the facade, no sign box"
+      ],
+      "logoFail": [
+        "K and mart rendered in the same colour",
+        "mart rendered bold, heavy or condensed",
+        "the 1990 script logo",
+        "the 2004 logo",
+        "a giant standalone K",
+        "lettering inside a sign box"
+      ],
+      "condition": "thriving",
+      "lotOccupancy": "packed",
+      "crowdDensity": "busy",
+      "colorMode": "color",
+      "filmStock": "Kodachrome 64 or Ektachrome — slightly warm tones, moderate saturation, soft shadows, slightly faded yellows and blues, visible fine grain",
+      "treeStage": "young",
+      "vehicleClasses": [
+        "station wagons",
+        "full-size sedans",
+        "pickup trucks",
+        "muscle cars"
+      ],
+      "fashion": [
+        "wide-leg trousers",
+        "patterned shirts",
+        "long straight hair",
+        "cat-eye glasses"
+      ],
+      "signage": [
+        "Blue Light Special",
+        "Family Savings",
+        "Weekend Sale",
+        "Back-to-School Sale",
+        "Discount Prices"
+      ],
+      "advertising": [
+        "Coca-Cola",
+        "Pepsi",
+        "Marlboro",
+        "Winston",
+        "Goodyear",
+        "local newspaper boards"
+      ],
+      "neighbors": [
+        "family restaurant",
+        "pharmacy",
+        "hardware store",
+        "shoe store",
+        "1-hr photo"
+      ],
+      "tone": "prosperous, energetic, family-oriented"
+    },
+    "1985": {
+      "logoRef": "brands/logos/kmart/1985.png",
+      "logoSpec": [
+        "large italic capital K in bright red",
+        "lowercase mart in turquoise, light rounded widely spaced letterforms",
+        "the K has a long angled leg extending beneath the start of mart",
+        "individual channel letters mounted directly onto the facade, no sign box"
+      ],
+      "logoFail": [
+        "K and mart rendered in the same colour",
+        "mart rendered bold, heavy or condensed",
+        "the 1990 script logo",
+        "the 2004 logo",
+        "a giant standalone K",
+        "lettering inside a sign box"
+      ],
+      "condition": "thriving",
+      "lotOccupancy": "packed",
+      "crowdDensity": "busy",
+      "colorMode": "color",
+      "filmStock": "Kodacolor VR 200 or Fujicolor 100 — saturated but natural, fine grain",
+      "treeStage": "medium",
+      "vehicleClasses": [
+        "compact hatchbacks",
+        "boxy minivans",
+        "downsized sedans",
+        "small pickups"
+      ],
+      "fashion": [
+        "padded-shoulder jackets",
+        "acid-wash denim",
+        "permed hair",
+        "bright tracksuits"
+      ],
+      "signage": [
+        "Blue Light Special",
+        "Layaway Available",
+        "Garden Shop",
+        "Super Savings",
+        "Grand Re-Opening"
+      ],
+      "advertising": [
+        "Coca-Cola",
+        "Kodak film",
+        "Michelin",
+        "Sony",
+        "payphone panel"
+      ],
+      "neighbors": [
+        "video rental",
+        "pizza parlour",
+        "hair salon",
+        "shoe store",
+        "savings bank"
+      ],
+      "tone": "confident, suburban, family-oriented"
+    },
+    "1995": {
+      "logoRef": "brands/logos/kmart/1995.png",
+      "logoSpec": [
+        "a large solid red capital K filling the sign",
+        "the word mart in white flowing script written across the lower half of the K",
+        "the script sits inside the K, not beside it",
+        "individual channel letters mounted directly onto the facade, no sign box"
+      ],
+      "logoFail": [
+        "mart set beside the K instead of inside it",
+        "mart in upright block letters rather than script",
+        "a turquoise mart",
+        "the 1969 logo",
+        "the 2004 logo",
+        "lettering inside a sign box"
+      ],
+      "condition": "busy",
+      "lotOccupancy": "busy",
+      "crowdDensity": "steady",
+      "colorMode": "color",
+      "filmStock": "Kodak Gold 200 or Fujifilm Superia 200 — moderate grain, slightly cool cast",
+      "treeStage": "mature",
+      "vehicleClasses": [
+        "family minivans",
+        "mid-size sedans",
+        "first-generation SUVs",
+        "compact coupes"
+      ],
+      "fashion": [
+        "oversized flannel shirts",
+        "baggy jeans",
+        "windbreakers",
+        "baseball caps"
+      ],
+      "signage": [
+        "Blue Light Special",
+        "Pharmacy",
+        "Photo Lab",
+        "Everyday Low Price",
+        "Back-to-School Sale"
+      ],
+      "advertising": [
+        "Coca-Cola",
+        "Kodak film",
+        "Nintendo",
+        "Pennzoil",
+        "cardboard sale boards"
+      ],
+      "neighbors": [
+        "video rental",
+        "sub shop",
+        "nail salon",
+        "dollar store",
+        "carpet outlet"
+      ],
+      "tone": "steady, ordinary, unremarkable"
+    },
+    "2005": {
+      "logoRef": "brands/logos/kmart/2005.png",
+      "logoSpec": [
+        "a red capital K above",
+        "the word kmart in lowercase red letters directly beneath it",
+        "clean modern sans-serif letterforms, even spacing, no italic slant",
+        "individual channel letters mounted directly onto the facade, no sign box"
+      ],
+      "logoFail": [
+        "a script mart",
+        "a turquoise mart",
+        "the K set beside the word instead of above it",
+        "an italic slanted K",
+        "the 1969 logo",
+        "lettering inside a sign box"
+      ],
+      "condition": "declining",
+      "lotOccupancy": "moderate",
+      "crowdDensity": "moderate",
+      "colorMode": "color",
+      "filmStock": "early digital camera or Kodak/Fuji consumer film — slightly flat colour, mild noise",
+      "treeStage": "mature",
+      "vehicleClasses": [
+        "full-size SUVs",
+        "crew-cab pickups",
+        "mid-size crossovers",
+        "rental-fleet sedans"
+      ],
+      "fashion": [
+        "bootcut jeans",
+        "logo hoodies",
+        "puffer vests",
+        "flip phones in hand"
+      ],
+      "signage": [
+        "Clearance",
+        "Everything Must Go",
+        "Pharmacy",
+        "Store Hours Reduced",
+        "Manager's Special"
+      ],
+      "advertising": [
+        "Coca-Cola",
+        "Verizon",
+        "Goodyear",
+        "faded window vinyls",
+        "sun-bleached sale boards"
+      ],
+      "neighbors": [
+        "nail salon",
+        "cheque cashing",
+        "vacant unit with papered windows",
+        "tax office",
+        "buffet restaurant"
+      ],
+      "tone": "tired, thinning out, past its best"
+    },
+    "2015": {
+      "signRemoved": true,
+      "condition": "vacant",
+      "lotOccupancy": "sparse",
+      "crowdDensity": "empty",
+      "colorMode": "color",
+      "filmStock": "digital — DSLR or smartphone camera, neutral colour, clean and sharp",
+      "treeStage": "mature",
+      "vehicleClasses": [
+        "aging sedans",
+        "weathered pickups",
+        "older crossovers",
+        "service vans"
+      ],
+      "fashion": [
+        "work jackets",
+        "hooded sweatshirts",
+        "plain jeans",
+        "high-visibility vests"
+      ],
+      "signage": [
+        "For Lease",
+        "No Trespassing",
+        "Space Available"
+      ],
+      "advertising": [
+        "blank sign frames",
+        "empty poster cases",
+        "faded lot striping"
+      ],
+      "neighbors": [
+        "cheque cashing",
+        "vacant unit with papered windows",
+        "tyre shop",
+        "thrift store",
+        "unlit vacant frontage"
+      ],
+      "tone": "closed, quiet, weather-worn"
+    },
+    "2025": {
+      "redeveloped": true,
+      "condition": "redeveloped",
+      "lotOccupancy": "moderate",
+      "crowdDensity": "moderate",
+      "colorMode": "color",
+      "filmStock": "digital — smartphone or mirrorless camera, wide dynamic range, clean detail",
+      "treeStage": "mature",
+      "vehicleClasses": [
+        "modern crossovers",
+        "electric hatchbacks",
+        "delivery vans",
+        "contractor pickups"
+      ],
+      "fashion": [
+        "athleisure leggings",
+        "quilted gilets",
+        "trainers",
+        "phones held up"
+      ],
+      "signage": [
+        "NOW OPEN",
+        "FOR LEASE",
+        "SUITE ENTRANCE"
+      ],
+      "advertising": [
+        "window graphics",
+        "menu boards",
+        "charging bay markings",
+        "delivery bay markings"
+      ],
+      "neighbors": [
+        "tyre shop",
+        "thrift store",
+        "coffee kiosk",
+        "urgent care clinic",
+        "self-storage frontage"
+      ],
+      "tone": "repurposed, practical, ordinary again"
+    }
+  }
+}

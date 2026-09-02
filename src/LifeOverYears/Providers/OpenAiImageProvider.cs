@@ -50,13 +50,16 @@ public sealed class OpenAiImageProvider : IImageGenerationProvider
         _logger.LogInformation("CleanBase complete: {Output}", outputPath);
     }
 
-    public Task SubmitEraAsync(string basePath, string prompt, int year, string jobsDir)
+    public Task SubmitEraAsync(
+        string basePath, string prompt, int year, string jobsDir,
+        string? referenceImagePath = null)
     {
         Directory.CreateDirectory(jobsDir);
 
         // Fire-and-forget: start the generation now, record the task, return.
         var baseBytes = File.ReadAllBytes(basePath);
-        var task = Task.Run(() => _openai.EditImageAsync(baseBytes, prompt, Size, Quality));
+        var refBytes  = ReadReference(referenceImagePath, year);
+        var task = Task.Run(() => _openai.EditImageAsync(baseBytes, prompt, Size, Quality, refBytes));
         _jobs[year] = task;
 
         var job = new
@@ -66,15 +69,34 @@ public sealed class OpenAiImageProvider : IImageGenerationProvider
             jobId       = $"openai-{year}",
             size        = Size,
             quality     = Quality,
+            reference   = referenceImagePath,
             submittedAt = DateTimeOffset.UtcNow.ToString("o")
         };
         File.WriteAllText(
             Path.Combine(jobsDir, $"{year}.json"),
             JsonSerializer.Serialize(job, JobJson));
 
-        _logger.LogInformation("Submitted {Year} to gpt-image-2 ({Quality}, {Size})",
-            year, Quality, Size);
+        _logger.LogInformation("Submitted {Year} to gpt-image-2 ({Quality}, {Size}){Reference}",
+            year, Quality, Size,
+            refBytes is null ? "" : $" with reference {referenceImagePath}");
         return Task.CompletedTask;
+    }
+
+    // A missing reference downgrades the request instead of failing it: the
+    // prompt still states the logo in words, so the frame is worse without the
+    // sheet but not wrong, and losing a whole chained run over one absent PNG
+    // costs far more than the reference was worth.
+    private byte[]? ReadReference(string? path, int year)
+    {
+        if (path is null)
+            return null;
+        if (File.Exists(path))
+            return File.ReadAllBytes(path);
+
+        _logger.LogWarning(
+            "Reference image for {Year} not found at {Path} — submitting without it; the prompt still states the logo in words",
+            year, path);
+        return null;
     }
 
     public async Task<bool> TryCollectAsync(string jobsDir, int year, string outputPath)

@@ -29,9 +29,9 @@ TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 urban interstate that has not moved freely in years — LED lighting on the mast arms, electronic message boards overhead and the lanes solid in both directions.
 
 PERIOD DETAILS
-- a data centre with no sign at all beyond a small plaque at the drive
-- an electronic variable-message board mounted over the lanes
-- the same sound barrier walls, their concrete face patterned in a later repair
+- a self-storage facility with a bright modern sign panel, its wording unreadable
+- wide thermoplastic edge lines with rumble strip cut into the shoulder
+- a steel sign bridge over the lanes, its panels weathered at the edges
 Typography: minimalist flat sans-serif, simplified modern logos.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
@@ -43,11 +43,11 @@ NO people on foot anywhere — nobody walking, standing or waiting at the roadsi
 
 VEHICLES
 DENSE MOVING TRAFFIC — a continuous stream filling every lane in view, out to the far edge of the frame, too many vehicles to count individually, all travelling at highway speed and close together. Representative models visible near the camera:
-- 2011-2016 Volkswagen Jetta — clean simple sedan — pearl white
-- 2012-2017 Toyota Camry — sharper creased mid-size sedan — gray
-- 2011-2016 Kia Optima — stylish mid-size, sporty — blue
-- 2013-2018 Hyundai Santa Fe — fluidic sculpture styling — black
-- 2012-2018 Ford Focus — sharp European compact — white
+- 2005-2015 Toyota Tacoma — capable mid-size pickup — black
+- 2014-2019 Kia Soul — boxy urban hatchback — white
+- 2011-2016 Chrysler Town & Country — chrome-trimmed minivan — gray
+- 2013-2018 Toyota RAV4 — angular compact crossover — silver
+- 2015-2020 Ford Edge — mid-size crossover, bold grille — dark red
 Every other vehicle in the traffic is period-correct for 2015; nothing newer. All in their own lane and moving; none stopped, and none on the shoulder.
 
 ENVIRONMENT

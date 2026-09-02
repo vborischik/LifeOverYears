@@ -1,22 +1,22 @@
 One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
 Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
 
-TRANSFORM TO 1985 — condition: well kept — freshly painted, open for business
+TRANSFORM TO 1985 — condition: busy — well kept, plenty of custom
 
 PERIOD DETAILS
-- TOWN DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
+- MAIN STREET DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
 - video arcade with a 'GAMES 25¢' neon sign and posters in the window
-- low single-story strip malls dominant
-- window signs: 'CASSETTE TAPES $7.99', 'VHS OVERNIGHT RENTAL $2.99'
-- a mailbox with graffiti scratches
+- neon signs widespread
+- window signs: '2 SLICES $1.50', 'SALE 25% OFF'
+- movie posters taped inside the video shop windows
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
 'HOT COFFEE 45¢'
 'GAMES 25¢'
-'CASSETTE TAPES $7.99'
-'VHS OVERNIGHT RENTAL $2.99'
+'2 SLICES $1.50'
+'SALE 25% OFF'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
@@ -24,8 +24,8 @@ PEOPLE
 
 VEHICLES
 EXACTLY 2 vehicles, 1985 model year, and no others:
-- 1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline — light blue
-- 1975-1991 Ford Econoline — boxy full-size van — silver
+- 1984-1988 Toyota Pickup — small, boxy, popular import — silver
+- 1973-1991 Chevrolet Suburban — long boxy wagon-SUV — burgundy
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES

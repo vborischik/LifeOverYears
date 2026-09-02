@@ -28,37 +28,37 @@ distort the source geometry.
 TRANSFORM TO 1985
 Reagan era prosperity. A 1985 corner shop holding its own — a video rental rack inside the door, lottery tickets at the counter and a chest freezer humming against the back wall.
 
-CONDITION: busy — customers present, high activity, all pumps in use
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
-- digital price displays at gas stations
-- beer and soft-drink posters taped inside the window glass
-- neon signs widespread
-- main sign: "FIFTH STREET GROCERY" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
-- window signs: 'ICE', 'OPEN 7 DAYS'
+- backlit plastic channel letters standard
+- wider parking lots
+- a plastic backlit sign panel fitted over the old painted band
+- main sign: "FONTAINE DRUGS" — a neighbourhood pharmacy, painted sign board over the door with a mortar-and-pestle emblem beside the lettering
+- window signs: 'VIDEO RENTAL', 'CIGARETTES 95¢'
 - a stack of flattened cardboard tied up beside the side door
-- a lottery decal in the corner of the door glass
+- a payphone mounted on the brick around the corner of the building
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'FIFTH STREET GROCERY'
-'ICE'
-'OPEN 7 DAYS'
+'FONTAINE DRUGS'
+'VIDEO RENTAL'
+'CIGARETTES 95¢'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 5 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a teenager coming out with a video tape under one arm
+EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- a woman counting change into a child's hand outside the step
 - two neighbours talking with bags in hand a few feet apart
-- a construction worker in a hard hat crossing at the light
-Clothing: men in windbreakers, shoulder pads in blazers; women in shoulder pads, bright neon colors. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a father coaching a Little League team across the lot
+Clothing: men in windbreakers, polo shirts with collars up; women in big permed hair, leg warmers. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 2 period vehicles, all different:
-- 1981-1985 Dodge Aries — K-car, boxy economy sedan — silver
-- 1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan — light blue
+- 1975-1991 Ford Econoline — boxy full-size van — burgundy
+- 1982-1992 Chevrolet Camaro — wedge-shaped sporty coupe — light blue
 Parked with gaps. Where a model is listed with a year range, render the 1985 model year specifically — only styling, trim and features available in 1985, nothing introduced later. No vehicle newer than 1985.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
 PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.

@@ -35,11 +35,13 @@ PERIOD DETAILS
 - a tax preparation and check-cashing office still open a few doors along, plain lettering, bars on the window
 - most of the other units dark behind the glass, several papered over from the inside
 - former video store unit now a vape shop with an LED 'VAPE' sign
-- thrift store with donation bins outside
 - phone repair store with a 'WE FIX PHONES' sign
-- window signs: 'GYM MEMBERSHIP $10/MO', 'SCREEN REPAIR $49'
-- a mostly empty cart corral
-- cracked, patched parking lot with faded stripes
+- thrift store with donation bins outside
+- the unit where the store was, a wide patch of less-faded wall above the door, anchor holes still visible, no lettering at all
+- the unit where the store was, a small patch of less-faded wall beside the door, anchor holes still visible, no lettering at all
+- window signs: 'GYM MEMBERSHIP $10/MO', 'EVERYTHING A DOLLAR'
+- a 'NOW LEASING' banner on the facade
+- a chalkboard A-frame sidewalk sign
 Typography: minimalist flat sans-serif, simplified modern logos.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
@@ -48,23 +50,24 @@ The only readable text anywhere in the image is:
 'VAPE'
 'WE FIX PHONES'
 'GYM MEMBERSHIP $10/MO'
-'SCREEN REPAIR $49'
+'EVERYTHING A DOLLAR'
+'NOW LEASING'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- of these, one person already drinking, sitting along the wall a few doors down from the liquor store — keeping to themselves, not looking at the camera
-- a teenager scrolling a phone while waiting on a bench
-- a girl practicing on a longboard near the cart corral
-- a man in skinny jeans taking a selfie
-Clothing: men in skinny jeans, boat shoes; women in statement necklaces, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 3 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- of these, one person standing around outside the liquor store with nothing to do — keeping to themselves, not looking at the camera
+- a delivery driver checking an app before entering a storefront
+- a security guard walking the row at dusk
+- a woman balancing a yoga mat and an iced coffee
+Clothing: men in boat shoes, henley shirts; women in yoga pants and leggings, infinity scarves. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 1 period vehicle:
-- 2012-2018 Ford Focus — sharp European compact — black
+- 2015-2020 Ford Edge — mid-size crossover, bold grille — dark red
 Parked with gaps. Where a model is listed with a year range, render the 2015 model year specifically — only styling, trim and features available in 2015, nothing introduced later. No vehicle newer than 2015.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: all parked in the lot, nose-in to marked stalls, with an empty stall between them. No vehicle in the same spot as any other era.
+PLACEMENT: all angled into stalls along the far edge of the lot, the near stalls left empty. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: worn and faded, well past their last repainting
@@ -72,8 +75,8 @@ ENVIRONMENT
 - the poles and wires still visible in the uploaded image are gone in this era: remove every pole, crossarm and wire span over the lot and rebuild the sky behind them. This is the one exception to PRESERVE; everything else stays as it is.
 
 DECAY
-- two blank white sign panels where tenants moved out
-- parking stripes worn down to faint outlines
+- paper flyers taped inside the glass of one unit
+- a FOR RENT sign taped inside a dark storefront window
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - crepe myrtle tree at parking lot island near entrance: clearly smaller than in the base image — about 70% of its canopy there, thinner trunk

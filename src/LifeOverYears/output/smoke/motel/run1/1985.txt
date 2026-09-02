@@ -28,39 +28,37 @@ distort the source geometry.
 TRANSFORM TO 1985
 Reagan era prosperity. A 1985 motel still filling most nights — a backlit plastic sign at the road, a soft-drink machine glowing outside the office, and the walkway swept.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: busy — customers present, high activity, all pumps in use
 
 PERIOD DETAILS
-- digital price displays at gas stations
-- a paired window beside each door with a through-wall air unit below it
-- neon signs widespread
-- main sign: "Travelodge" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
-- window signs: 'PHONES IN ROOM', 'VACANCY'
-- a painted sheet-metal room number on each door
-- a bucket and mop left standing outside an open room
+- large logo signs on pylons
+- numbered room doors in a uniform row, repainted a darker color than the trim
+- awnings with bold stripe patterns
+- main sign: "Quality Inn" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
+- window signs: 'FREE HBO', 'VACANCY'
+- a drink machine with one dead selection button
+- a plastic patio chair beside a door, sun-faded on one side
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Travelodge'
-'PHONES IN ROOM'
+'Quality Inn'
+'FREE HBO'
 'VACANCY'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 3 people TOTAL: 1 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
-- a man setting a hard-sided case down to open a room door
-- a couple walking back from the road with takeout bags
-- a construction worker in a hard hat crossing at the light
-Clothing: men in windbreakers, shoulder pads in blazers; women in shoulder pads, bright neon colors. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 1 people TOTAL: 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
+- someone reading the rate card taped inside the office glass
+- a clerk propping the office door open with a wedge
+- a grandmother clutching a coupon flyer
+Clothing: men in acid wash jeans, windbreakers; women in big permed hair, leg warmers. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 1983-1987 Honda Accord — clean lines, pop-up headlights — light blue
-- 1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline — charcoal gray
-- 1977-1990 Chevrolet Caprice — boxy full-size sedan, formal lines — silver
-- 1981-1985 Dodge Aries — K-car, boxy economy sedan — burgundy
+EXACTLY 2 period vehicles, all different:
+- 1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan — silver
+- 1980-1985 Cadillac Seville — sharp formal lines, bustleback — burgundy
 Parked with gaps. Where a model is listed with a year range, render the 1985 model year specifically — only styling, trim and features available in 1985, nothing introduced later. No vehicle newer than 1985.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
 PLACEMENT: all parked in the lot, nose-in to marked stalls, with an empty stall between them. No vehicle in the same spot as any other era.

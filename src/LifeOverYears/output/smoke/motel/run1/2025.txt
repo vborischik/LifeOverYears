@@ -31,38 +31,36 @@ Post-pandemic era. A 2025 motel that is really long-term housing — an LED pane
 CONDITION: restored — the same building reoccupied — plywood off the windows, litter and weeds cleared, surfaces cleaned, a modest working business again; structure, footprint and signband shape unchanged
 
 PERIOD DETAILS
-- vacant former big box stores common
 - a laminated notice zip-tied to the pylon post at eye height
-- full color digital displays
-- main sign: "Travelodge" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
+- QR codes on signage
+- a paired window beside each door, most screened from inside with sheets or blinds shut flat
+- main sign: "Quality Inn" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
 - window signs: 'WEEKLY & MONTHLY', 'NO VISITORS AFTER 10'
 - a laminated notice cable-tied to the pylon post, corners curling
-- a plastic storage tub and a folding chair set outside one door
+- a bicycle and a child's scooter leaned against the walkway wall
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Travelodge'
+'Quality Inn'
 'WEEKLY & MONTHLY'
 'NO VISITORS AFTER 10'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 3 people TOTAL: 1 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
-- a woman carrying a laundry basket back from the road
-- a woman sitting outside her door on a folding chair with a phone
-- a man carrying a reusable grocery bag from a delivery pickup
-Clothing: men in techwear, bucket hats; women in athleisure, chunky dad sneakers. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 2 people TOTAL: 1 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles. Grouped in pairs, threes, and singles.
+- someone standing in an open doorway looking out at the lot
+- someone loading a car that is plainly lived out of
+- a courier double-checking an address on a delivery app
+Clothing: men in oversized fit tees, wide-leg pants; women in leggings and oversized hoodies, high-waisted wide-leg jeans. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 3 period vehicles, all different:
-- 2019-2025 Ram 1500 — crew cab pickup, large grille — white
-- 2019-2025 Toyota Corolla — sharp-nosed compact — blue
-- 2020-2025 Hyundai Tucson — sharp parametric grille design — dark green
+EXACTLY 1 period vehicle:
+- 2021-2025 Kia Telluride — boxy upscale three-row SUV — gray
 Parked with gaps. Where a model is listed with a year range, render the 2025 model year specifically — only styling, trim and features available in 2025, nothing introduced later. No vehicle newer than 2025.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: one nose-in close to the entrance; the rest spread across stalls toward the lot's far edge. No vehicle in the same spot as any other era.
+PLACEMENT: two nose-in near the building; the rest angled into stalls at the far edge of the lot. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks

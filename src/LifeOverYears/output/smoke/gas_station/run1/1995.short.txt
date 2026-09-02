@@ -1,21 +1,22 @@
 One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
 Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
 
-TRANSFORM TO 1995 — condition: busy — well kept, plenty of custom
+TRANSFORM TO 1995 — condition: well kept — freshly painted, open for business
 
 PERIOD DETAILS
-- main sign: "Marathon" branded gas station — Marathon pole sign with price display and Marathon colors on the canopy fascia
-- older strip malls showing age
-- channel letter signs on storefronts
+- main sign: "Fina" branded gas station — Fina pole sign with price display and Fina colors on the canopy fascia
+- no full service attendants
+- air and water station at the lot edge
 - price sign showing gas around $1.15
-- window signs: 'CAR WASH $4 WITH FILL-UP', 'PAY AT PUMP — NEW!'
+- window signs: '2 HOT DOGS $2', '32oz FOUNTAIN DRINK 89¢'
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
-'Marathon'
-'CAR WASH $4 WITH FILL-UP'
-'PAY AT PUMP — NEW!'
+'Fina'
+'2 HOT DOGS $2'
+'32oz FOUNTAIN DRINK 89¢'
+'PUMP 3 OUT OF ORDER'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
@@ -23,8 +24,8 @@ PEOPLE
 
 VEHICLES
 EXACTLY 2 vehicles, 1995 model year, and no others:
-- 1992-1996 Ford F-150 — rounded aero body — black
-- 1995-1999 Dodge Neon — small rounded economy, friendly face — white
+- 1990-1997 Mazda Miata — tiny rounded roadster, pop-up lights — silver
+- 1992-1997 Ford Taurus — rounded jellybean shape, oval theme — navy blue
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES

@@ -5,9 +5,9 @@ TRANSFORM TO 1995 — condition: well kept — freshly painted, open for busines
 
 PERIOD DETAILS
 - pizza and sub shop with a '2 SLICES + SODA $2.99' sign in the window
-- TOWN DINER with 'HOT COFFEE 75¢' in the window
-- large illuminated box signs
-- window signs: 'FREE INTERNET TRIAL — 30 DAYS', 'VHS 3-DAY RENTAL $1.99'
+- MAIN STREET DINER with 'HOT COFFEE 75¢' in the window
+- pager and cellular store with a neon 'PAGERS — BEEPERS' sign
+- window signs: 'HAIRCUT $8', 'CDs $9.99'
 - a wall-mounted payphone or payphone booth
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
@@ -15,8 +15,9 @@ SIGNAGE
 The only readable text anywhere in the image is:
 '2 SLICES + SODA $2.99'
 'HOT COFFEE 75¢'
-'FREE INTERNET TRIAL — 30 DAYS'
-'VHS 3-DAY RENTAL $1.99'
+'PAGERS — BEEPERS'
+'HAIRCUT $8'
+'CDs $9.99'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
@@ -24,8 +25,8 @@ PEOPLE
 
 VEHICLES
 EXACTLY 2 vehicles, 1995 model year, and no others:
-- 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size — navy blue
-- 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding — silver
+- 1989-1997 Geo Metro — very small economy hatchback — teal
+- 1993-2002 Pontiac Firebird — sleek pointed sports coupe — silver
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES

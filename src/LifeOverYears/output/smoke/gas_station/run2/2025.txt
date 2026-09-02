@@ -31,39 +31,38 @@ Post-pandemic era. A 2025 fuel stop — LED canopy, full-color digital price sig
 CONDITION: new — recently built appearance, pristine surfaces, new signage
 
 PERIOD DETAILS
-- large convenience stores with fresh food
-- free air and vacuum station at the lot edge
+- clean flat minimalist facades
+- modern canopy with bright white LED lighting
 - price sign showing gas around $3.40
-- main sign: "Exxon" branded gas station — Exxon pole sign with price display and Exxon colors on the canopy fascia
-- window signs: 'COLD BREW $3.99', 'MEMBERS SAVE 10¢/GAL'
-- outdoor cafe barriers with planters by the coffee lane
-- stacked bags of ice and firewood outside
+- main sign: "Sheetz" branded gas station — Sheetz pole sign with price display and Sheetz colors on the canopy fascia
+- window signs: 'MEMBERS SAVE 10¢/GAL', 'HOT PIZZA SLICES $2.99'
+- a kick scooter leaning by the store wall
+- QR-code stickers on the pump screens
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Exxon'
-'COLD BREW $3.99'
+'Sheetz'
 'MEMBERS SAVE 10¢/GAL'
+'HOT PIZZA SLICES $2.99'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 5 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- a clerk restocking the grab-and-go cooler behind the glass
 - a customer tapping a phone to pay at the pump
-- a delivery van driver walking out with a coffee
-- a teenager filming a friend for a short-form video
-Clothing: men in chunky sneakers, bucket hats; women in high-waisted wide-leg jeans, athleisure. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+- a woman walking a dog while balancing a phone gimbal
+Clothing: men in bucket hats, techwear; women in oversized blazers, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2021-2025 Nissan Rogue — squared-off crossover, floating roofline — blue
-- 2019-2025 Toyota RAV4 — boxy rugged crossover, very common — gray
-- 2021-2025 Kia Telluride — boxy upscale three-row SUV — silver
-- 2021-2025 Kia Carnival — boxy SUV-styled minivan — white
+EXACTLY 3 period vehicles, all different:
+- 2019-2025 Subaru Outback — rugged wagon crossover — blue
+- 2021-2025 Ford Bronco — retro boxy off-roader — gray
+- 2024-2025 Toyota Grand Highlander — large family crossover — silver
 Parked with gaps. Where a model is listed with a year range, render the 2025 model year specifically — only styling, trim and features available in 2025, nothing introduced later. No vehicle newer than 2025.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: one nose-in close to the entrance; the rest spread across stalls toward the lot's far edge. No vehicle in the same spot as any other era.
+PLACEMENT: all parked in the lot, nose-in to marked stalls, with an empty stall between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, high-visibility crosswalks

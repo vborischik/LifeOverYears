@@ -1,32 +1,32 @@
 One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
 Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
 
-TRANSFORM TO 2025 — condition: reopened and tidy — clean surfaces, the same building back in use
+TRANSFORM TO 2025 — condition: declining — faded paint, aging signage, little activity
 
 PERIOD DETAILS
-- main sign: "Marathon" branded gas station — Marathon pole sign with price display and Marathon colors on the canopy fascia
-- free air and vacuum station at the lot edge
-- drive-through digital menu boards with AI ordering
+- main sign: "Fina" branded gas station — Fina pole sign with price display and Fina colors on the canopy fascia
+- drive-through coffee lane attached to the store
+- vacant storefront and ghost signs common
 - price sign showing gas around $3.40
-- window signs: 'MEMBERS SAVE 10¢/GAL', 'SCAN & GO — SKIP THE LINE'
+- window signs: 'COLD BREW $3.99', 'HOT PIZZA SLICES $2.99'
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
-'Marathon'
-'MEMBERS SAVE 10¢/GAL'
-'SCAN & GO — SKIP THE LINE'
+'Fina'
+'COLD BREW $3.99'
+'HOT PIZZA SLICES $2.99'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-2-3 people in the background as small figures, plus a few more further off, no detail on any face. All on the pavement or beside parked cars, never in the road. Faces blurred.
+2 people, carrying a bag towards the pavement. On the pavement, the lot apron or by the entrance — never in the road or a driving lane. Faces blurred.
 
 VEHICLES
 EXACTLY 2 vehicles, 2025 model year, and no others:
-- 2021-2025 Kia Telluride — boxy upscale three-row SUV — silver
-- 2019-2025 Toyota RAV4 — boxy rugged crossover, very common — white
+- 2022-2025 Ford Maverick — small unibody pickup — black
+- 2017-2025 Honda CR-V — rounded best-selling crossover — dark green
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 STYLE
-COLOR photograph — digital — smartphone or mirrorless camera look. Color: high saturation. Grain: very clean, minimal to no noise. Photorealistic — NOT black-and-white, no HDR. Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+COLOR photograph — digital — smartphone or mirrorless camera look. Color: high saturation. Grain: very clean, minimal to no noise. Photorealistic — NOT black-and-white, no HDR. Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
 Blur all faces and licence plates.

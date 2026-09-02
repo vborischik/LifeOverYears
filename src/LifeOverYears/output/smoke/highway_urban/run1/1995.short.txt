@@ -17,8 +17,8 @@ NO people on foot. Everyone in the scene is inside a moving vehicle.
 
 VEHICLES
 EXACTLY 2 vehicles, 1995 model year, and no others:
-- 1992-1996 Toyota Camry — rounded, understated — burgundy
-- 1994-1997 Honda Accord — smooth rounded sedan — silver
+- 1992-1997 Ford Taurus — rounded jellybean shape, oval theme — white
+- 1995-1999 Chevrolet Cavalier — compact, rounded — black
 Moving in their own lanes at highway speed, natural spacing, all heading the same way. None parked on the shoulder. Plates blurred.
 
 TREES

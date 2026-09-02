@@ -31,11 +31,11 @@ Post-Vietnam, oil crisis era. A 1975 roadside motel in steady trade — a neon V
 CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
-- window air-conditioning units set under alternate windows
-- overhanging flat canopies
-- neon signs common
-- main sign: "Travelodge" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
-- window signs: 'AIR CONDITIONED', 'OFFICE'
+- a paired window beside each door, curtains drawn halfway
+- the office at the end of the wing, its own sign lit over the door
+- mansard rooflines becoming popular
+- main sign: "Quality Inn" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
+- window signs: 'OFFICE', 'POOL'
 - a metal ashtray stand outside the office door
 - room numbers screwed to the doors in painted metal figures
 Typography: bold sans-serif, slab serif, occasional script.
@@ -43,26 +43,26 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Travelodge'
-'AIR CONDITIONED'
+'Quality Inn'
 'OFFICE'
+'POOL'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 2 people TOTAL: 1 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles. Grouped in pairs, threes, and singles.
 - a man carrying a suitcase from his car to a room door
-- someone filling an ice bucket at the machine by the office
-- a shopkeeper in an apron by his doorway
-Clothing: men in turtlenecks, wide lapels; women in wide leg pants, earth tones. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a driver checking a folded paper map flat against the wall
+- two boys with baseball gloves
+Clothing: men in bell bottoms, plaid patterns; women in peasant blouses, wide leg pants. Fashion palette: avocado, harvest gold, burnt orange. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 1973-1979 Ford F-100 — square body, chrome grille
-- 1971-1976 Chevrolet G10 Sportvan — boxy windowed van, chrome bumper
-- 1975-1979 AMC Pacer — wide bubble-shaped compact, huge glass area
+- 1973-1979 Ford F-100 — square body, chrome grille — dark brown
+- 1971-1976 Chevrolet G10 Sportvan — boxy windowed van, chrome bumper — burnt orange
+- 1975-1979 AMC Pacer — wide bubble-shaped compact, huge glass area — harvest gold
 Parked with gaps. Where a model is listed with a year range, render the 1975 model year specifically — only styling, trim and features available in 1975, nothing introduced later. No vehicle newer than 1975.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: one nose-in close to the entrance; the rest spread across stalls toward the lot's far edge. No vehicle in the same spot as any other era.
+PLACEMENT: all angled into stalls along the far edge of the lot, the near stalls left empty. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, no rumble strips
@@ -73,10 +73,10 @@ TREES
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE
-STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.
-Grain: visible fine grain. Style: documentary, natural light.
-Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.
-Light: bright open daylight, clear sky, soft natural shadows — a fine, ordinary day.
+COLOR photograph — Kodachrome 64 or Ektachrome look.
+Color: slightly warm tones. Grain: visible fine grain.
+Photorealistic — NOT black-and-white, no HDR.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

@@ -28,46 +28,49 @@ distort the source geometry.
 TRANSFORM TO 2005
 Post-9/11 era. A 2005 gas station — big multi-island canopy, card readers at every pump, LED price sign, and a convenience store doing most of the business.
 
-CONDITION: busy — customers present, high activity, all pumps in use
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- coin-operated air machine near the back of the lot
-- wide multi-island canopy with branded fascia lighting
+- automated car wash tunnel beside the lot
+- branded canopy lighting
 - price sign showing gas around $2.30
-- main sign: "Citgo" branded gas station — Citgo pole sign with price display and Citgo colors on the canopy fascia
-- window signs: 'CIGARETTES $3.75 PACK', 'ENERGY DRINKS 2 FOR $4'
-- trash cans with paper-towel dispensers between the pumps
-- a windshield-washer fluid display rack by the pumps
+- main sign: "Sinclair" branded gas station — Sinclair pole sign with price display and Sinclair colors on the canopy fascia
+- window signs: 'ANY SIZE FOUNTAIN DRINK 99¢', 'ENERGY DRINKS 2 FOR $4'
+- 'NO SMOKING — TURN OFF ENGINE' decals on each pump
+- a free real-estate flyer box by the door
 Typography: clean sans-serif, polished brand identities.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Citgo'
-'CIGARETTES $3.75 PACK'
+'Sinclair'
+'ANY SIZE FOUNTAIN DRINK 99¢'
 'ENERGY DRINKS 2 FOR $4'
+'NO SMOKING — TURN OFF ENGINE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 6 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
-- a man topping off washer fluid from a jug in his trunk
-- a woman inserting her card at the pump reader
-- an office worker clipped to a Bluetooth headset mid-conversation
-Clothing: men in frosted tips hair, graphic tees; women in layered tank tops, chunky highlights. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+EXACTLY 2 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block. Grouped in pairs, threes, and singles.
+- a clerk restocking phone cards on a rack by the door
+- a driver self-serving at the pump
+- a dad wrangling twins in a double jogging stroller
+Clothing: men in trucker hats, baggy jeans; women in velour tracksuits, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
-EXACTLY 3 period vehicles, all different:
-- 1998-2005 Volkswagen New Beetle — retro bubble shape — white
-- 2005-2010 Chevrolet Cobalt — compact economy sedan — gold
-- 2001-2007 Toyota Highlander — early crossover — dark blue
+EXACTLY 1 period vehicle:
+- 2005-2010 Jeep Grand Cherokee — rounded modern SUV — white
 Parked with gaps. Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: all parked in the lot, nose-in to marked stalls, with an empty stall between them. No vehicle in the same spot as any other era.
+PLACEMENT: two nose-in near the building; the rest angled into stalls at the far edge of the lot. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: yellow center line, white edge lines, turn arrows
+- road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines standard, cable and fiber lines on poles appearing
 
+DECAY
+- chipped, stained curbs, weeds in the gutter
+- faded storefront paint, one window papered over
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - cottonwood tree at northeast corner of lot: clearly smaller than in the base image — about 75% of its canopy there, thinner trunk
 - elm tree at sidewalk edge left of entrance: clearly smaller than in the base image — about 50% of its canopy there, thinner trunk
@@ -78,7 +81,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — early digital camera or Kodak/Fuji consumer film look.
 Color: neutral tones. Grain: low grain, early digital noise in shadows.
 Photorealistic — NOT black-and-white, no HDR.
-Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
 
 PRIVACY
 Blur all faces and license plates.

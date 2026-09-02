@@ -4,9 +4,9 @@ Keep the uploaded photo's exact composition, camera angle, road and building geo
 TRANSFORM TO 2015 — condition: well kept — freshly painted, open for business
 
 PERIOD DETAILS
-- a data centre with no sign at all beyond a small plaque at the drive
-- an electronic variable-message board mounted over the lanes
-- the same sound barrier walls, their concrete face patterned in a later repair
+- a self-storage facility with a bright modern sign panel, its wording unreadable
+- wide thermoplastic edge lines with rumble strip cut into the shoulder
+- a steel sign bridge over the lanes, its panels weathered at the edges
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
@@ -17,8 +17,8 @@ NO people on foot. Everyone in the scene is inside a moving vehicle.
 
 VEHICLES
 EXACTLY 2 vehicles, 2015 model year, and no others:
-- 2011-2016 Volkswagen Jetta — clean simple sedan — pearl white
-- 2012-2017 Toyota Camry — sharper creased mid-size sedan — gray
+- 2005-2015 Toyota Tacoma — capable mid-size pickup — black
+- 2014-2019 Kia Soul — boxy urban hatchback — white
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES

@@ -1,0 +1,50 @@
+One single continuous photograph — no panels, grids, or split frames.
+A photorealistic 1995 photograph of a single-storey suburban discount department store with a long flat-roofed frontage, a deep asphalt parking lot in front of the entrance and landscaping islands between the parking bays, shot from the parking lot towards the entrance.
+Use the uploaded photo as the exact base composition. It shows this same place in an earlier year: first remove EVERY person, vehicle and bicycle already in it, so the lot and the frontage are bare, then populate them as specified below. Keep none of the earlier year's figures or traffic.
+
+CONTINUITY
+The same location 10 years later: same camera position, framing, building footprint, parking geometry, landscaping islands and neighbouring storefronts. Only historical content changes.
+
+LOGO
+The lettering across the facade in the uploaded photo is the OLD sign and is being replaced. Take it down completely — no ghost, no outline, no leftover letter — and mount the new store name "Kmart" in its place, built exactly like this:
+- a large solid red capital K filling the sign
+- the word mart in white flowing script written across the lower half of the K
+- the script sits inside the K, not beside it
+- individual channel letters mounted directly onto the facade, no sign box
+LOGO REFERENCE
+Reproduce the letterforms, proportions, spacing and slant from the attached reference image. Apply them as channel letters mounted on the facade at the size and position the building already gives the sign. Use the reference for the logo only — never its background, lighting, framing or composition.
+
+LOGO FAIL
+The sign is wrong if any of these describes it:
+- mart set beside the K instead of inside it
+- mart in upright block letters rather than script
+- a turquoise mart
+- the 1969 logo
+- the 2004 logo
+- lettering inside a sign box
+
+SCENE
+The place reads busy — steady, ordinary, unremarkable.
+The parking lot is busy — most bays taken, gaps scattered through it.
+Neighbouring units along the same frontage: nail salon, dollar store, sub shop.
+
+VEHICLES
+The vehicles are of the period — for example compact coupes, mid-size sedans, first-generation SUVs, or anything else in keeping with the year. Nothing newer than the year of the photograph appears anywhere in frame.
+
+PEOPLE
+A regular flow of shoppers crosses the frontage, walking to and from the entrance and across the lot, each one doing something plainly ordinary.
+Period clothing and grooming: windbreakers, baggy jeans, baseball caps.
+Every person is a different individual — no repeated face, build, pose or outfit.
+
+PERIOD DETAILS
+Store signage reading "Pharmacy", "Everyday Low Price", "Blue Light Special".
+Period advertising and fittings: Coca-Cola, Nintendo, cardboard sale boards.
+Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
+No other readable text appears anywhere in the image.
+
+PHOTOGRAPHIC STYLE
+COLOUR photograph — Kodak Gold 200 or Fujifilm Superia 200 — moderate grain, slightly cool cast.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur every face and make every licence plate unreadable.

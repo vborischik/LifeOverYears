@@ -43,9 +43,9 @@ NO people on foot anywhere — nobody walking, standing or waiting at the roadsi
 VEHICLES
 DENSE MOVING TRAFFIC — a continuous stream filling every lane in view, out to the far edge of the frame, too many vehicles to count individually, all travelling at highway speed and close together. Representative models visible near the camera:
 - 2002-2008 Dodge Ram — big rig grille evolved — gray
-- 2005-2010 Ford Mustang — retro muscle revival — dark blue
+- 2004-2008 Chrysler 300 — bold boxy retro chrome grille — dark blue
 - 2004-2010 Toyota Sienna — large rounded minivan — black
-- 2005-2010 Chevrolet Cobalt — compact economy sedan — dark red
+- 2002-2006 Toyota Camry — smooth conservative mid-size — dark red
 - 2001-2007 Toyota Highlander — early crossover — silver
 Every other vehicle in the traffic is period-correct for 2005; nothing newer. All in their own lane and moving; none stopped, and none on the shoulder.
 

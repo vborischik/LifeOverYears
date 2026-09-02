@@ -32,38 +32,40 @@ CONDITION: thriving — well-maintained, freshly painted, active business, clean
 
 PERIOD DETAILS
 - a faded price board from a previous era, papered over with a new one reading 'BRAKES $59.95'
-- wider parking lots
-- digital price displays at gas stations
-- window signs: 'OIL CHANGE $12.95', 'MUFFLERS INSTALLED TODAY'
-- a stack of radial tires under the office window
+- electronic marquee signs appearing
+- office with plate glass window, a hand-lettered 'BRAKES • MUFFLERS' sign taped inside
+- window signs: 'BRAKES $59.95', 'MUFFLERS INSTALLED TODAY'
 - a metal parts cabinet with catalog binders on top
+- a new-looking electronic engine analyzer on a rolling cart
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 'BRAKES $59.95'
-'OIL CHANGE $12.95'
+'BRAKES • MUFFLERS'
 'MUFFLERS INSTALLED TODAY'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 6 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
-- a driver pulling in and honking lightly for a bay
-- a mechanic torquing wheel lugs after a brake job
-- a father coaching a Little League team across the lot
-Clothing: men in windbreakers, polo shirts with collars up; women in high-waisted jeans, big permed hair. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
+- a customer arguing good-naturedly over an estimate at the counter
+- a mechanic carrying a battery across the apron
+- a woman in a power suit with enormous shoulder pads striding past
+Clothing: men in acid wash jeans, shoulder pads in blazers; women in shoulder pads, leg warmers. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 5 period vehicles, all different:
-- 1982-1992 Chevrolet Camaro — wedge-shaped sporty coupe — white
-- 1981-1985 Dodge Aries — K-car, boxy economy sedan — silver
-- 1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline — beige
-- 1983-1988 Ford Thunderbird — aero coupe, rounded — burgundy
-- 1980-1985 Buick LeSabre — boxy full-size, chrome trim — light blue
+EXACTLY 7 period vehicles, all different:
+- 1975-1991 Ford Econoline — boxy full-size van — light blue
+- 1982-1993 Chevrolet S-10 — compact pickup, square — red
+- 1980-1986 Ford F-150 — square body, dual headlights — silver
+- 1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline — white
+- 1978-1986 Ford Bronco — full-size boxy SUV, round headlights — charcoal gray
+- 1973-1987 Chevrolet C/K — square body pickup, dual headlights — burgundy
+- 1984-1990 Dodge Caravan — first minivan, boxy — beige
 Parked with gaps. Where a model is listed with a year range, render the 1985 model year specifically — only styling, trim and features available in 1985, nothing introduced later. No vehicle newer than 1985.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: two in stalls near the entrance; the rest spread across the lot with gaps. No vehicle in the same spot as any other era.
+PLACEMENT: all parked in the lot, nose-in to marked stalls, with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, painted crosswalks

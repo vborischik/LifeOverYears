@@ -28,54 +28,51 @@ distort the source geometry.
 TRANSFORM TO 2025
 Post-pandemic era. A 2025 motel that is really long-term housing — an LED panel at the road advertising the month, doors that stay shut all day, and a lot of cars that belong to residents.
 
-CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
+CONDITION: restored — the same building reoccupied — plywood off the windows, litter and weeds cleared, surfaces cleaned, a modest working business again; structure, footprint and signband shape unchanged
 
 PERIOD DETAILS
+- a concrete walkway with the overhang fascia patched in a different color
 - outdoor dining structures from pandemic era
-- drive-through digital menu boards with AI ordering
-- digital display signage
-- main sign: "Super 8" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
-- window signs: 'NO VISITORS AFTER 10', 'ROOMS AVAILABLE'
+- large glass storefronts
+- main sign: "Holiday Inn" on the pylon out by the road, the chain's own sign shape and colors, with a lit VACANCY panel below it
+- window signs: 'ROOMS AVAILABLE', 'FREE WI-FI'
 - a laminated notice cable-tied to the pylon post, corners curling
-- a plastic storage tub and a folding chair set outside one door
+- a satellite dish left bolted to the roof with its cable cut
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Super 8'
-'NO VISITORS AFTER 10'
+'Holiday Inn'
 'ROOMS AVAILABLE'
+'FREE WI-FI'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 3 people TOTAL: 1 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
-- two people smoking at the end of the walkway, saying little
-- a man moving a tub of belongings from a car to a room
-- a retiree couple with matching walking poles
-Clothing: men in techwear, chunky sneakers; women in oversized blazers, leggings and oversized hoodies. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 1 people TOTAL: 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
+- someone loading a car that is plainly lived out of
+- a man talking through the office payment slot
+- a teenager filming a friend for a short-form video
+Clothing: men in techwear, chunky sneakers; women in high-waisted wide-leg jeans, chunky dad sneakers. Fashion palette: sage green, beige, cream. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 1 period vehicle:
-- 2019-2025 Subaru Outback — rugged wagon crossover — silver
+EXACTLY 3 period vehicles, all different:
+- 2019-2025 Toyota RAV4 — boxy rugged crossover, very common — gray
+- 2022-2025 Chevrolet Silverado — refreshed bold grille — silver
+- 2021-2025 Kia Telluride — boxy upscale three-row SUV — dark green
 Parked with gaps. Where a model is listed with a year range, render the 2025 model year specifically — only styling, trim and features available in 2025, nothing introduced later. No vehicle newer than 2025.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
 PLACEMENT: one nose-in close to the entrance; the rest spread across stalls toward the lot's far edge. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: worn and faded, well past their last repainting
+- road markings: yellow center line, white edge lines, high-visibility crosswalks
 - utilities: overhead lines on existing poles in older commercial areas, fiber optic widespread
-
-DECAY
-- weeds standing in the cracks along the edge of the parking bays
-- room doors gone chalky, patched unevenly from one door to the next
-Wear is surfaces only — road, curbs, footprints, camera unchanged.
 
 PHOTOGRAPHIC STYLE
 COLOR photograph — digital — smartphone or mirrorless camera look.
 Color: high saturation. Grain: very clean, minimal to no noise.
 Photorealistic — NOT black-and-white, no HDR.
-Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

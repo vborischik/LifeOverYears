@@ -28,47 +28,45 @@ distort the source geometry.
 TRANSFORM TO 2015
 Smartphone era fully arrived. An independent auto repair shop in 2015 — a state inspection sticker machine on the counter, a tire-pressure sensor reset tool in the bay, and fewer cars in the lot than there used to be as quick-lube chains pull business away.
 
-CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
 - a faded printed banner reading '$19.95 STATE INSPECTION' from a past promotion still hanging on the fascia
-- a tire-pressure sensor reset tool on a cart inside the open bay
-- renovated or vacant big box stores
-- window signs: 'BRAKES FROM $99.95', 'OIL CHANGE $29.95'
-- a state inspection sticker machine on the counter
-- a tablet propped beside the register
+- two roll-up bay doors, only one in use with a car up on the lift
+- LED accent lighting on buildings
+- window signs: 'OIL CHANGE $29.95', 'TIRE ROTATION $24.95'
+- an empty second bay with the door down
+- a tire-pressure sensor reset tool on a rolling cart
 Typography: minimalist flat sans-serif, simplified modern logos.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 '$19.95 STATE INSPECTION'
-'BRAKES FROM $99.95'
 'OIL CHANGE $29.95'
+'TIRE ROTATION $24.95'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 4 people TOTAL: 2 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a woman dropping off her car before walking to catch a bus
-- an older regular chatting with the owner about slow business
-- a group of friends comparing photos on their phones
-Clothing: men in skinny jeans, beards; women in ankle boots, infinity scarves. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a mechanic carrying a tire across the mostly empty apron
+- a mechanic torquing lug nuts after a tire rotation
+- a delivery cyclist checking an app on his phone at a curb
+Clothing: men in slim-fit plaid shirts, boat shoes; women in infinity scarves, yoga pants and leggings. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 1 period vehicle:
-- 2005-2015 Toyota Tacoma — capable mid-size pickup — dark red
+EXACTLY 3 period vehicles, all different:
+- 2011-2016 Honda CR-V — rounded compact crossover — black
+- 2012-2017 Toyota Camry — sharper creased mid-size sedan — dark red
+- 2014-2021 Subaru Outback — rugged wagon crossover — white
 Parked with gaps. Where a model is listed with a year range, render the 2015 model year specifically — only styling, trim and features available in 2015, nothing introduced later. No vehicle newer than 2015.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: all parked in the lot, nose-in to marked stalls, with an empty stall between them. No vehicle in the same spot as any other era.
+PLACEMENT: one nose-in close to the entrance; the rest spread across stalls toward the lot's far edge. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: worn and faded, well past their last repainting
+- road markings: yellow center line, white edge lines, high-visibility crosswalks
 - utilities: overhead power lines common on wooden poles, fiber optic lines on poles
 
-DECAY
-- a stack of worn tires leaning against the side wall
-- a hand-lettered service sign taped inside the office glass
-Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - maple tree at street corner: slightly smaller than in the base image — about 85% of its canopy there
 - elm tree at side yard: clearly smaller than in the base image — about 70% of its canopy there, thinner trunk
@@ -78,7 +76,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — digital — DSLR or smartphone camera look.
 Color: high saturation. Grain: clean, minimal noise.
 Photorealistic — NOT black-and-white, no HDR.
-Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
+Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

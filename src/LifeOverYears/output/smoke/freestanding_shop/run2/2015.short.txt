@@ -4,27 +4,28 @@ Keep the uploaded photo's exact composition, camera angle, road and building geo
 TRANSFORM TO 2015 — condition: declining — faded paint, aging signage, little activity
 
 PERIOD DETAILS
-- main sign: "COMMONS WINE & LIQUOR" — a neighbourhood liquor store, a plastic backlit box sign bolted over the old sign band, steel bars across the windows
-- heavy steel mesh over the entrance windows, bolted flat to the frames
-- renovated or vacant big box stores
-- above the new sign the previous business's lettering still ghosts on the brick: "RIVERSIDE FOOD MARKET" — weathered, partly gone, plainly older than the sign bolted beneath it
-- window signs: 'BEER WINE LIQUOR', 'LOTTO'
+- main sign: "DISCOUNT LIQUOR WAREHOUSE" — a neighbourhood liquor store, a plastic backlit box sign bolted over the old sign band, steel bars across the windows
+- vacant storefront signs from closures
+- cameras at both corners of the building, cabling run openly down the wall
+- LED illuminated channel letters
+- above the new sign the previous business's lettering still ghosts on the brick: "HIGHLAND PHARMACY" — weathered, partly gone, plainly older than the sign bolted beneath it
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
-'COMMONS WINE & LIQUOR'
-'RIVERSIDE FOOD MARKET'
-'BEER WINE LIQUOR'
+'DISCOUNT LIQUOR WAREHOUSE'
+'HIGHLAND PHARMACY'
 'LOTTO'
+'ATM INSIDE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-2 people, walking along the pavement past the frontage. On the pavement, the lot apron or by the entrance — never in the road or a driving lane. Faces blurred.
+2 people, standing near the entrance looking at the window. On the pavement, the lot apron or by the entrance — never in the road or a driving lane. Faces blurred.
 
 VEHICLES
-EXACTLY 1 vehicle, 2015 model year, and no others:
-- 2011-2016 Chrysler Town & Country — chrome-trimmed minivan — gray
+EXACTLY 2 vehicles, 2015 model year, and no others:
+- 2011-2017 Jeep Grand Cherokee — refined upscale SUV — dark red
+- 2005-2015 Toyota Tacoma — capable mid-size pickup — black
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES

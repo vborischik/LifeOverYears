@@ -1,0 +1,47 @@
+One single continuous photograph — no panels, grids, or split frames.
+A photorealistic 1975 photograph of a single-storey suburban discount department store with a long flat-roofed frontage, a deep asphalt parking lot in front of the entrance and landscaping islands between the parking bays, shot from the parking lot towards the entrance.
+OUTPUT FORMAT: a TRUE 9:16 vertical portrait frame.
+
+LOGO
+The store name across the facade reads "Kmart", built exactly like this:
+- large italic capital K in bright red
+- lowercase mart in turquoise, light rounded widely spaced letterforms
+- the K has a long angled leg extending beneath the start of mart
+- individual channel letters mounted directly onto the facade, no sign box
+LOGO REFERENCE
+Reproduce the letterforms, proportions, spacing and slant from the attached reference image. Apply them as channel letters mounted on the facade at the size and position the building already gives the sign. Use the reference for the logo only — never its background, lighting, framing or composition.
+
+LOGO FAIL
+The sign is wrong if any of these describes it:
+- K and mart rendered in the same colour
+- mart rendered bold, heavy or condensed
+- the 1990 script logo
+- the 2004 logo
+- a giant standalone K
+- lettering inside a sign box
+
+SCENE
+The place reads thriving — prosperous, energetic, family-oriented.
+The parking lot is full — nearly every bay taken, cars queuing for the ones that are not.
+Neighbouring units along the same frontage: shoe store, family restaurant, hardware store.
+
+VEHICLES
+The vehicles are of the period — for example pickup trucks, full-size sedans, muscle cars, or anything else in keeping with the year. Nothing newer than the year of the photograph appears anywhere in frame.
+
+PEOPLE
+A steady stream of shoppers crosses the frontage, walking to and from the entrance and across the lot, each one doing something plainly ordinary.
+Period clothing and grooming: wide-leg trousers, patterned shirts, cat-eye glasses.
+Every person is a different individual — no repeated face, build, pose or outfit.
+
+PERIOD DETAILS
+Store signage reading "Back-to-School Sale", "Family Savings", "Blue Light Special".
+Period advertising and fittings: Winston, Marlboro, Pepsi.
+Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
+No other readable text appears anywhere in the image.
+
+PHOTOGRAPHIC STYLE
+COLOUR photograph — Kodachrome 64 or Ektachrome — slightly warm tones, moderate saturation, soft shadows, slightly faded yellows and blues, visible fine grain.
+Photorealistic — NOT black-and-white, no HDR.
+
+PRIVACY
+Blur every face and make every licence plate unreadable.

@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-08-28T17:52:43.4079890+00:00
+Generated: 2026-09-02T04:27:58.6993440+00:00
 
 ## Check Results
 
@@ -12,11 +12,11 @@ Generated: 2026-08-28T17:52:43.4079890+00:00
 | C4 | Vehicle count in range and VEHICLES section lines match SelectedVehicles.Count | ✅ PASS | All vehicle counts correct |
 | C5 | Run1 vs Run2: ≥3 years differ in vehicles; no year has identical full text | ✅ PASS | Sufficient variance between seeds |
 | C6 | Tree canopy proportion vs. the base image (distinct per era for mature trees, size-relative), and no TREES section or tree mention in the source year | ✅ PASS | Tree ladder and source-year omission correct |
-| C7 | 1975=B&W (STRICTLY BLACK AND WHITE); 1985-2025=COLOR photograph | ✅ PASS | Color mode correct in all prompts |
+| C7 | Every era is a COLOR photograph; no era carries the monochrome block | ✅ PASS | Color mode correct in all prompts |
 | C8 | Gas station fuel prices always present; downtown coffee price in ≥1 run per year | ✅ PASS | All price anchors found |
 | C9 | DISABLED — PRESERVE block contains all building types and immutable elements verbatim | ⛔ DISABLED | disabled while the short era PRESERVE is evaluated — restore together with the BuildPreserveBlock call in PromptService line 89 |
 | C10 | No TEXT OVERLAY section remains; year still anchors the VEHICLES block and carries the ranged-model-year restriction | ✅ PASS | Overlay removed, vehicle year anchors correct, model-year restriction present |
-| C11 | Every prompt is under 920 words | ✅ PASS | All prompts under 920 words |
+| C11 | Every prompt is under 960 words | ✅ PASS | All prompts under 960 words |
 | C12 | B&W prompts contain no vehicle pool colors, no 'Fashion palette', no 'desaturated' | ✅ PASS | B&W prompts are color-free |
 | C13 | Color eras: every vehicle has a color and no color repeats within one prompt | ✅ PASS | All vehicle colors unique per prompt |
 | C14 | Gas station 2025 prompt has no EV/electric/charger/Lightning content | ✅ PASS | 2025 gas prompts are fully de-electrified |
@@ -59,7 +59,7 @@ Generated: 2026-08-28T17:52:43.4079890+00:00
 | C51 | A run that reached rank 2 before the finale ends squatted — never restored or declining | ✅ PASS | 80 rank-2 runs all held their finale at squatted |
 | C52 | The 'restored' descriptor reads as reoccupation of the same shell, not a renovation | ✅ PASS | 56 restored finales, all reoccupation wording |
 | C53 | Squatted retail gets trading-row people and vehicles; the squatted forecourt stays dead and its figures sum to its stated total | ✅ PASS | retail rows populated and parked, forecourts dead with single-figure passers-by |
-| C54 | Chained eras size trees as growth against the uploaded previous era, never as a fraction of the base | ✅ PASS | every era after the first grows its trees by the per-decade ratio for its size |
+| C54 | Chained eras size trees as growth against the uploaded previous era, never as a fraction of the base; a step too small to draw is deferred rather than stated or dropped | ✅ PASS | large states in 2005; medium states in 1985/1995/2005/2015/2025; small states in 1985/1995/2005/2015/2025 |
 | C55 | The caption tail runs from run-folder state alone, so a resumed batch run is captioned too | ✅ PASS | narrative.json and scene.json round-trip; caption.txt written with years and hashtags |
 | C56 | Downtown and strip-mall poles and wires are explicitly removed from 2015 on; other scene types keep theirs | ✅ PASS | wires stay through 2005, then go underground on main street and at the strip mall only |
 | C57 | A weighted hashtag (#nostalgia 70%) hits its declared share of captions, spends a sampled slot, and never ships its weight suffix | ✅ PASS | #nostalgia in ~70.9% of 4000 draws; pinned set and tag count unchanged |
@@ -72,7 +72,7 @@ Generated: 2026-08-28T17:52:43.4079890+00:00
 | C67 | Every prompt states what may be read in the frame — a whitelist or an explicit none — and a highway asks for no skyline, no exit numbering and no legible business name | ✅ PASS | signage is constrained in every prompt; highway invents no geography |
 | C68 | A highway keeps its guide sign as a green-faced object with an illegible legend instead of the blanket no-text block; no period detail turns the sign away, and no other scene type gets the highway variant | ✅ PASS | highway signage stays visible and wordless; other scene types unchanged |
 | C69 | The synthetic base emits architecture only where buildings exist, states outright that nothing is built where none do, and never does both at once | ✅ PASS | architecture follows the building list, not the scene type |
-| C70 | A background tree grows on a flatter curve than a kerbside one and ends the run at no more than ~165% of its first-era canopy, in both the chained and unchained paths | ✅ PASS | background tree: first era 70% of base, 128% across the chained run (1985:105% 1995:105% 2005:105% 2015:105% 2025:105%) |
+| C70 | A background tree grows on a flatter curve than a kerbside one and ends the run at no more than ~165% of its first-era canopy, in both the chained and unchained paths | ✅ PASS | background tree: first era 70% of base, 132% across the chained run (1985:— 1995:115% 2005:— 2015:115% 2025:—) |
 | C73 | The Meta rewrite of every era prompt drops the alcohol and nowhere-to-be wording, holds people to a small group and vehicles to two, and keeps the main sign | ✅ PASS | 109 prompts rewritten clean across every scene type |
 | C74 | Prompts and a synthetic base build from generated SceneDna for every scene type over 6 seeds, with no photo and no Vision call, inside the same budgets | ✅ PASS | 360 prompts from generated scenes; 11 tree-free and 3 building-free shapes covered |
 | C62 | The corner shop's street tree reads as a living tree in every era and its state follows the shop's arc (leafy while trading, untrimmed while declining, half dead once derelict); other scene types carry no tree state | ✅ PASS | corner_shop tree moves through 2 states across the run, canopy sizing intact, no other scene type affected |
@@ -80,6 +80,18 @@ Generated: 2026-08-28T17:52:43.4079890+00:00
 | C72 | Liquor-name and origin-kind randomness for corner_shop and freestanding_shop is visible and healthy across many seeds | ✅ PASS | corner_shop: 46/46 urban names hit (100%); freestanding_shop: 33/33 suburban names hit (100%) — full tables in the log above |
 | C71 | Every motel flag is a chain that existed in the era it is rendered in, a derelict motel shows a stripped pylon instead, and the flag actually changes across a run | ✅ PASS | 33 chains, 30 distinct flags across 120 seeds, 68% of runs reflag, every flag inside its own year window |
 | C59 | Title templates load for base and every scene type; every line substitutes with no leftover placeholder and stays non-empty and inside YouTube's 100-char limit | ✅ PASS | gas_station: 16 titles, longest 62 \| downtown_street: 16 titles, longest 55 \| strip_mall: 16 titles, longest 59 \| auto_repair: 16 titles, longest 55 \| corner_shop: 16 titles, longest 62 \| freestanding_shop: 16 titles, longest 64 \| motel: 16 titles, longest 58 \| highway_urban: 16 titles, longest 61 \| highway_rural: 16 titles, longest 70 \| mall: 16 titles, longest 57 \| shopping_center: 16 titles, longest 60 \| base: 16 titles, longest 59 |
+| C75 | Every brand-series prompt resolves all placeholders, carries every block, and is a colour photograph with no monochrome block | ✅ PASS | 6 era prompts, no unresolved tokens, all blocks present, every era colour |
+| C76 | Each brand era states a logo reference exactly when the series carries one | ✅ PASS | reference in 1975, 1985, 1995, 2005; none in 2015, 2025 |
+| C77 | The sign-removal era states the removal explicitly and says what is left in its place | ✅ PASS | 2015: SIGN REMOVED — lettering taken down, mounting points, faded outline, empty pylon frame |
+| C78 | The redeveloped era names no original brand signage, clears the old sign's hardware, and fills the frontage with trades that were actually open that year | ✅ PASS | 2025: no "Kmart" anywhere, fascia resurfaced, units Crunch Fitness, Salvation Army Family Store, Rent-A-Center; 35 eligible, no two of a kind across 300 seeds |
+| C79 | No brand-series prompt states a numeric count of people or vehicles | ✅ PASS | density is words only across all six eras |
+| C80 | No vehicle class repeats across the eras of a brand run, and the classes are stated as examples rather than as the whole lot | ✅ PASS | 18 distinct classes across 6 eras, none repeated, each era's list stated as examples |
+| C81 | Every brand-series prompt is under 960 words and 6000 chars | ✅ PASS | worst case 536 words / 3455 chars |
+| C82 | Every brand era after the first carries one continuity block stating the real year gap; the first carries none | ✅ PASS | 1975 none; 1985, 1995, 2005, 2015, 2025 each state their own gap |
+| C83 | The first brand era states the 9:16 canvas and clears nothing; every era after it clears the people and traffic of the frame it edits | ✅ PASS | 1975 drawn from text, states the crop; 1985, 1995, 2005, 2015, 2025 each clear the frame they edit |
+| C84 | A brand era with an empty crowd states a place with nobody in it, not the live people block with one word changed | ✅ PASS | deserted eras: 2015; every populated era states a group, never the bare density word |
+| C85 | A brand era whose logo changed states the old sign's takedown; one whose logo did not says it stays; every stated logo carries its reference image | ✅ PASS | replaced in 1995, 2005; held in 1985; every logo era carries a reference |
+| C86 | The brand series has its own caption bodies and title hooks, and the caption tail resolves to them rather than falling back to base | ✅ PASS | 15 bodies, 14 titles under data/captions/brand_series*, caption and title assemble from them |
 
 ## Vehicle Selections
 
@@ -87,39 +99,39 @@ Generated: 2026-08-28T17:52:43.4079890+00:00
 | Year | Count | Vehicles |
 |------|-------|----------|
 | 1975 | 4 | 1973-1979 Ford F-100 — square body, chrome grille, 1971-1976 Chevrolet G10 Sportvan — boxy windowed van, chrome bumper, 1975-1979 AMC Pacer — wide bubble-shaped compact, huge glass area, 1970-1976 Pontiac Firebird Trans Am — hood scoop, spoiler, bold graphics |
-| 1985 | 4 | 1980-1985 Buick LeSabre — boxy full-size, chrome trim, 1982-1993 Chevrolet S-10 — compact pickup, square, 1977-1990 Chevrolet Caprice — boxy full-size sedan, formal lines, 1973-1987 Chevrolet C/K — square body pickup, dual headlights |
-| 1995 | 3 | 1992-1996 Ford F-150 — rounded aero body, 1995-1999 Dodge Neon — small rounded economy, friendly face, 1994-2001 Dodge Ram — big rig style grille, bold |
-| 2005 | 3 | 2003-2008 Toyota Corolla — conservative compact sedan, 2000-2005 Ford Focus — European-styled compact, 2004-2008 Chrysler 300 — bold boxy retro chrome grille |
-| 2015 | 1 | 2011-2016 Kia Optima — stylish mid-size, sporty |
-| 2025 | 4 | 2021-2025 Kia Telluride — boxy upscale three-row SUV, 2019-2025 Toyota RAV4 — boxy rugged crossover, very common, 2022-2025 Chevrolet Silverado — refreshed bold grille, 2021-2025 Nissan Rogue — squared-off crossover, floating roofline |
+| 1985 | 3 | 1978-1987 Chevrolet Monte Carlo — personal luxury coupe, long hood, 1973-1987 Chevrolet C/K — square body pickup, dual headlights, 1983-1985 Nissan Maxima — boxy import sedan |
+| 1995 | 3 | 1990-1997 Mazda Miata — tiny rounded roadster, pop-up lights, 1992-1997 Ford Taurus — rounded jellybean shape, oval theme, 1989-1997 Geo Metro — very small economy hatchback |
+| 2005 | 4 | 2004-2008 Pontiac Grand Prix — sporty sedan plastic cladding, 2003-2009 Hummer H2 — massive military-styled SUV, 2001-2005 Honda Civic — rounded compact, very common, 2002-2006 Toyota Camry — smooth conservative mid-size |
+| 2015 | 4 | 2010-2016 Chevrolet Equinox — mid-size crossover, 2011-2016 Volkswagen Jetta — clean simple sedan, 2015-2020 Ford Edge — mid-size crossover, bold grille, 2011-2017 Jeep Grand Cherokee — refined upscale SUV |
+| 2025 | 2 | 2022-2025 Ford Maverick — small unibody pickup, 2017-2025 Honda CR-V — rounded best-selling crossover |
 
 ### gas_station / Run 2 (seed=1337)
 | Year | Count | Vehicles |
 |------|-------|----------|
 | 1975 | 4 | 1968-1979 Chevrolet Nova — compact, simple three-box shape, 1975-1980 Ford Granada — compact luxury, Mercedes-inspired formal grille, 1975-1979 Chevrolet Monza — small hatchback, rare but present, 1971-1978 Dodge Tradesman — boxy full-size van |
-| 1985 | 4 | 1975-1991 Ford Econoline — boxy full-size van, 1982-1993 Chevrolet S-10 — compact pickup, square, 1980-1986 Ford F-150 — square body, dual headlights, 1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline |
-| 1995 | 4 | 1989-1997 Geo Metro — very small economy hatchback, 1993-2002 Pontiac Firebird — sleek pointed sports coupe, 1995-2004 Toyota Tacoma — compact, rounded, 1995-1999 Dodge Neon — small rounded economy, friendly face |
-| 2005 | 3 | 1998-2005 Volkswagen New Beetle — retro bubble shape, 2005-2010 Chevrolet Cobalt — compact economy sedan, 2001-2007 Toyota Highlander — early crossover |
-| 2015 | 2 | 2007-2017 Jeep Wrangler — boxy off-roader, round headlights, 2013-2016 Mazda CX-5 — flowing KODO-design crossover |
-| 2025 | 4 | 2021-2025 Nissan Rogue — squared-off crossover, floating roofline, 2019-2025 Toyota RAV4 — boxy rugged crossover, very common, 2021-2025 Kia Telluride — boxy upscale three-row SUV, 2021-2025 Kia Carnival — boxy SUV-styled minivan |
+| 1985 | 3 | 1980-1986 Ford F-150 — square body, dual headlights, 1983-1985 Nissan Maxima — boxy import sedan, 1982-1985 Toyota Celica — angular sporty coupe, pop-up lights |
+| 1995 | 4 | 1991-1996 Ford Escort — small rounded economy car, 1992-1996 Toyota Camry — rounded, understated, 1991-1995 Dodge Caravan — rounded second-gen minivan, 1994-1997 Honda Accord — smooth rounded sedan |
+| 2005 | 1 | 2005-2010 Jeep Grand Cherokee — rounded modern SUV |
+| 2015 | 1 | 2009-2018 Ram 1500 — crosshair grille, refined |
+| 2025 | 3 | 2019-2025 Subaru Outback — rugged wagon crossover, 2021-2025 Ford Bronco — retro boxy off-roader, 2024-2025 Toyota Grand Highlander — large family crossover |
 
 ### downtown_street / Run 1 (seed=42)
 | Year | Count | Vehicles |
 |------|-------|----------|
 | 1975 | 5 | 1973-1979 Ford F-100 — square body, chrome grille, 1971-1976 Chevrolet G10 Sportvan — boxy windowed van, chrome bumper, 1975-1979 AMC Pacer — wide bubble-shaped compact, huge glass area, 1970-1976 Pontiac Firebird Trans Am — hood scoop, spoiler, bold graphics, 1973-1978 Datsun 610 — compact sedan/wagon, boxy |
-| 1985 | 6 | 1979-1985 Ford LTD Country Squire — full-size woodgrain wagon, 1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan, 1981-1985 Ford Escort — small boxy economy hatchback, 1980-1989 Lincoln Town Car — long boxy luxury sedan, 1978-1987 Chevrolet Monte Carlo — personal luxury coupe, long hood, 1980-1985 Buick LeSabre — boxy full-size, chrome trim |
-| 1995 | 4 | 1992-1996 Toyota Camry — rounded, understated, 1992-1995 Honda Civic — small rounded coupe and sedan, 1993-1997 Toyota Corolla — rounded compact sedan, 1991-1995 Dodge Caravan — rounded second-gen minivan |
-| 2005 | 5 | 2003-2007 Nissan Altima — sporty mid-size, 2002-2008 Dodge Ram — big rig grille evolved, 2005-2010 Ford Mustang — retro muscle revival, 2004-2008 Chrysler 300 — bold boxy retro chrome grille, 1998-2004 Nissan Frontier — compact pickup |
-| 2015 | 4 | 2011-2016 Chrysler Town & Country — chrome-trimmed minivan, 2013-2017 Honda Accord — clean modern lines, 2011-2016 Kia Optima — stylish mid-size, sporty, 2013-2018 Hyundai Santa Fe — fluidic sculpture styling |
-| 2025 | 2 | 2022-2025 Toyota Tundra — massive grille, muscular stance, 2021-2025 Kia Telluride — boxy upscale three-row SUV |
+| 1985 | 6 | 1981-1985 Ford Escort — small boxy economy hatchback, 1980-1986 Ford F-150 — square body, dual headlights, 1983-1988 Ford Thunderbird — aero coupe, rounded, 1984-1988 Toyota Pickup — small, boxy, popular import, 1978-1987 Chevrolet Monte Carlo — personal luxury coupe, long hood, 1982-1986 Nissan Sentra — small economy boxy sedan |
+| 1995 | 5 | 1995-2004 Toyota Tacoma — compact, rounded, 1995-1999 Dodge Neon — small rounded economy, friendly face, 1988-1998 Chevrolet C/K 1500 — softly squared pickup, 1991-1994 Saturn SL — plastic body panels, compact, 1990-1994 Chevrolet Lumina — rounded mid-size sedan |
+| 2005 | 1 | 2003-2008 Toyota Corolla — conservative compact sedan |
+| 2015 | 1 | 2014-2019 Kia Soul — boxy urban hatchback |
+| 2025 | 5 | 2021-2025 Ford Bronco — retro boxy off-roader, 2021-2025 Toyota Camry — sleek sedan, aggressive front fascia, 2022-2025 Nissan Pathfinder — squared-off three-row SUV, 2021-2025 Nissan Rogue — squared-off crossover, floating roofline, 2021-2025 Kia Telluride — boxy upscale three-row SUV |
 
 ### downtown_street / Run 2 (seed=1337)
 | Year | Count | Vehicles |
 |------|-------|----------|
 | 1975 | 6 | 1968-1979 Chevrolet Nova — compact, simple three-box shape, 1975-1980 Ford Granada — compact luxury, Mercedes-inspired formal grille, 1975-1979 Chevrolet Monza — small hatchback, rare but present, 1971-1978 Dodge Tradesman — boxy full-size van, 1975-1978 Datsun 280Z — sleek fastback sports coupe, 1968-1978 Volkswagen Beetle — rounded rear-engine economy car |
-| 1985 | 4 | 1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline, 1975-1991 Ford Econoline — boxy full-size van, 1982-1986 Nissan Sentra — small economy boxy sedan, 1984-1988 Toyota Pickup — small, boxy, popular import |
-| 1995 | 5 | 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size, 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding, 1990-1994 Chevrolet Lumina — rounded mid-size sedan, 1994-1998 Ford Mustang — rounded SN95 pony car, 1991-1996 Buick Roadmaster — large rounded wagon and sedan |
-| 2005 | 2 | 2003-2007 Honda Accord — clean lines, sharper than 1990s, 2002-2006 Toyota Camry — smooth conservative mid-size |
-| 2015 | 2 | 2014-2019 Nissan Rogue — popular compact crossover, 2011-2016 Kia Optima — stylish mid-size, sporty |
-| 2025 | 2 | 2022-2025 Honda Civic — clean mature compact, 2021-2025 Chrysler Pacifica — sleek minivan, thin lights |
+| 1985 | 6 | 1984-1988 Toyota Pickup — small, boxy, popular import, 1973-1991 Chevrolet Suburban — long boxy wagon-SUV, 1978-1986 Ford Bronco — full-size boxy SUV, round headlights, 1975-1991 Ford Econoline — boxy full-size van, 1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan, 1973-1987 Chevrolet C/K — square body pickup, dual headlights |
+| 1995 | 6 | 1989-1997 Geo Metro — very small economy hatchback, 1993-2002 Pontiac Firebird — sleek pointed sports coupe, 1994-2001 Dodge Ram — big rig style grille, bold, 1995-1999 Dodge Neon — small rounded economy, friendly face, 1993-1997 Ford Ranger — compact pickup, straight lines, 1992-1996 Ford F-150 — rounded aero body |
+| 2005 | 2 | 2000-2005 Ford Focus — European-styled compact, 2003-2007 Honda Accord — clean lines, sharper than 1990s |
+| 2015 | 1 | 2013-2019 Ford Fusion — Aston-Martin-style grille, sleek |
+| 2025 | 2 | 2021-2025 Kia Telluride — boxy upscale three-row SUV, 2022-2025 Nissan Pathfinder — squared-off three-row SUV |
 

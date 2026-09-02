@@ -5,27 +5,26 @@ TRANSFORM TO 2015 — condition: declining — faded paint, aging signage, littl
 
 PERIOD DETAILS
 - a faded printed banner reading '$19.95 STATE INSPECTION' from a past promotion still hanging on the fascia
-- printed vinyl sign band reading 'AUTO REPAIR — STATE INSPECTION'
-- digital menu boards at drive-throughs
-- window signs: 'TIRE ROTATION $24.95', 'OIL CHANGE $29.95'
-- a quick-lube chain coupon taped inside the office door, half torn
+- full color digital price signs at gas stations
+- minimalist flat brand logos
+- window signs: 'STATE INSPECTION $19.95', 'TPMS SERVICE AVAILABLE'
+- a tablet propped beside the register
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
 '$19.95 STATE INSPECTION'
-'AUTO REPAIR — STATE INSPECTION'
-'TIRE ROTATION $24.95'
-'OIL CHANGE $29.95'
+'STATE INSPECTION $19.95'
+'TPMS SERVICE AVAILABLE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-3 people, standing near the entrance looking at the window. On the pavement, the lot apron or by the entrance — never in the road or a driving lane. Faces blurred.
+2-3 people in the background as small figures, plus a few more further off, no detail on any face. All on the pavement or beside parked cars, never in the road. Faces blurred.
 
 VEHICLES
 EXACTLY 2 vehicles, 2015 model year, and no others:
-- 2013-2018 Toyota RAV4 — angular compact crossover — white
-- 2014-2018 Chevrolet Silverado — squared modern grille — blue
+- 2011-2016 Honda CR-V — rounded compact crossover — dark red
+- 2013-2018 Toyota RAV4 — angular compact crossover — blue
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES

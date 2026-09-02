@@ -5,16 +5,16 @@ TRANSFORM TO 1975 — condition: well kept — freshly painted, open for busines
 
 PERIOD DETAILS
 - soft-serve ice cream stand at the end cap with a cone-shaped sign
-- simple rectangular forms
-- hand-painted lettering on windows
-- window signs: '8-TRACK TAPES $4.99', 'WASH 35¢ — DRY 10¢'
-- a coin-operated kiddie ride by a storefront door
+- overhanging flat canopies
+- large plate glass storefronts
+- a small radio and electronics shop, hand-lettered window sign reading CB RADIOS - ANTENNAS - SCANNERS, no chain name anywhere
+- window signs: 'WASH 35¢ — DRY 10¢', 'BACK TO SCHOOL — JEANS $6'
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
-'8-TRACK TAPES $4.99'
 'WASH 35¢ — DRY 10¢'
+'BACK TO SCHOOL — JEANS $6'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
@@ -22,8 +22,8 @@ PEOPLE
 
 VEHICLES
 EXACTLY 2 vehicles, 1975 model year, and no others:
-- 1973-1979 Ford F-100 — square body, chrome grille
-- 1971-1976 Chevrolet G10 Sportvan — boxy windowed van, chrome bumper
+- 1973-1979 Ford F-100 — square body, chrome grille — dark brown
+- 1971-1976 Chevrolet G10 Sportvan — boxy windowed van, chrome bumper — burnt orange
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES
@@ -32,5 +32,5 @@ TREES
 - oak tree at back property line: clearly smaller than in the base image — about 80% of its canopy there, thinner trunk
 
 STYLE
-STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere. Grain: visible fine grain. Style: documentary, natural light. Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp. Light: bright open daylight, clear sky, soft natural shadows — a fine, ordinary day.
+COLOR photograph — Kodachrome 64 or Ektachrome look. Color: slightly warm tones. Grain: visible fine grain. Photorealistic — NOT black-and-white, no HDR. Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
 Blur all faces and licence plates.

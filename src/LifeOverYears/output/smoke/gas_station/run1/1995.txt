@@ -28,41 +28,42 @@ distort the source geometry.
 TRANSFORM TO 1995
 Clinton era prosperity. A 1995 self-serve station — wide canopy over multiple islands, attached convenience store, the first pay-at-pump card readers.
 
-CONDITION: busy — customers present, high activity, all pumps in use
+CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
 
 PERIOD DETAILS
-- older strip malls showing age
-- channel letter signs on storefronts
+- no full service attendants
+- air and water station at the lot edge
 - price sign showing gas around $1.15
-- main sign: "Marathon" branded gas station — Marathon pole sign with price display and Marathon colors on the canopy fascia
-- window signs: 'CAR WASH $4 WITH FILL-UP', 'PAY AT PUMP — NEW!'
-- a wire rack of free auto-trader papers by the door
+- main sign: "Fina" branded gas station — Fina pole sign with price display and Fina colors on the canopy fascia
+- window signs: '2 HOT DOGS $2', '32oz FOUNTAIN DRINK 89¢'
 - a payphone mounted by the store entrance
+- a hand-written 'PUMP 3 OUT OF ORDER' sign taped to one pump
 Typography: clean geometric sans-serif, early digital influence.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'Marathon'
-'CAR WASH $4 WITH FILL-UP'
-'PAY AT PUMP — NEW!'
+'Fina'
+'2 HOT DOGS $2'
+'32oz FOUNTAIN DRINK 89¢'
+'PUMP 3 OUT OF ORDER'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 5 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 1 distant, far end of block. Grouped in pairs, threes, and singles.
-- a clerk restocking the ice merchandiser
-- a driver checking a paper road map against a highway sign
-- a paperboy with a canvas bag on a bike
-Clothing: men in baggy jeans, backwards caps; women in slip dresses, crop tops. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
+EXACTLY 6 people TOTAL: 2 near sidewalk (largest, foreground), 2 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
+- a clerk restocking the beef jerky rack by the register
+- a teenager filling up his first car alone for the first time
+- a boy trading Pogs with a friend on a curb
+Clothing: men in backwards caps, grunge style; women in slip dresses, chokers. Fashion palette: forest green, maroon, mustard yellow. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes. Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.
 
 VEHICLES
 EXACTLY 3 period vehicles, all different:
-- 1992-1996 Ford F-150 — rounded aero body — black
-- 1995-1999 Dodge Neon — small rounded economy, friendly face — white
-- 1994-2001 Dodge Ram — big rig style grille, bold — silver
+- 1990-1997 Mazda Miata — tiny rounded roadster, pop-up lights — silver
+- 1992-1997 Ford Taurus — rounded jellybean shape, oval theme — navy blue
+- 1989-1997 Geo Metro — very small economy hatchback — teal
 Parked with gaps. Where a model is listed with a year range, render the 1995 model year specifically — only styling, trim and features available in 1995, nothing introduced later. No vehicle newer than 1995.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: all angled into stalls along the far edge of the lot, the near stalls left empty. No vehicle in the same spot as any other era.
+PLACEMENT: two nose-in near the building; the rest angled into stalls at the far edge of the lot. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn lane arrows

@@ -28,41 +28,42 @@ distort the source geometry.
 TRANSFORM TO 1985
 Reagan era prosperity. A 1985 standalone shop still pulling a steady trade — the apron out front rarely empty, a plastic sign panel lit over the door where the painted one used to be.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: busy — customers present, high activity, all pumps in use
 
 PERIOD DETAILS
-- backlit plastic channel letters standard
-- wider parking lots
-- a plastic backlit ground sign at the edge of the apron, one letter dimmer than the rest
-- main sign: "FIFTH STREET GROCERY" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
-- window signs: 'VIDEO RENTAL', 'CIGARETTES 95¢'
-- a stack of flattened cardboard tied up beside the side door
-- a payphone mounted on the wall at the edge of the apron
+- large logo signs on pylons
+- drive-through lanes appearing
+- a flat canopy over the entrance, one panel light burnt out
+- main sign: "OAK STREET PHARMACY" — a neighbourhood pharmacy, painted sign board over the door with a mortar-and-pestle emblem beside the lettering
+- window signs: 'LOTTERY TICKETS', 'VIDEO RENTAL'
+- a lottery decal in the corner of the entrance glass
+- an ice chest chained to a bracket on the front wall
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'FIFTH STREET GROCERY'
+'OAK STREET PHARMACY'
+'LOTTERY TICKETS'
 'VIDEO RENTAL'
-'CIGARETTES 95¢'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 4 people TOTAL: 2 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
-- a boy on a bike weaving between the parked cars
-- someone carrying a chest cooler bag out to a station wagon
-- a man with a mullet washing his car windows at a rest stop
-Clothing: men in polo shirts with collars up, windbreakers; women in big permed hair, high-waisted jeans. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 6 people TOTAL: 2 in the foreground near the building entrance (largest), 2 mid-ground out on the lot, beside parked vehicles, 2 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
+- two teenagers leaning against a parked car near the door
+- a delivery driver backing a van up to the side entrance
+- a girl in leg warmers practicing dance steps on the sidewalk
+Clothing: men in shoulder pads in blazers, polo shirts with collars up; women in bright neon colors, shoulder pads. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 3 period vehicles, all different:
-- 1982-1986 Nissan Sentra — small economy boxy sedan — light blue
-- 1977-1990 Chevrolet Caprice — boxy full-size sedan, formal lines — burgundy
-- 1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan — silver
+EXACTLY 4 period vehicles, all different:
+- 1982-1993 Chevrolet S-10 — compact pickup, square — light blue
+- 1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline — charcoal gray
+- 1982-1986 Nissan Sentra — small economy boxy sedan — white
+- 1982-1985 Toyota Celica — angular sporty coupe, pop-up lights — burgundy
 Parked with gaps. Where a model is listed with a year range, render the 1985 model year specifically — only styling, trim and features available in 1985, nothing introduced later. No vehicle newer than 1985.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
+PLACEMENT: all parked on the LEFT side of the street with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, painted crosswalks

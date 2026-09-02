@@ -28,48 +28,53 @@ distort the source geometry.
 TRANSFORM TO 2015
 Smartphone era fully arrived. A 2015 main street mid-revival — the video store replaced by a phone repair shop, third-wave coffee and a vape shop, smartphones in every hand.
 
-CONDITION: thriving — well-maintained, freshly painted, active business, clean lot
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- MARY'S DINER with 'COFFEE $2.25' chalked on a menu board
-- digital menu boards at drive-throughs
-- barber shop with its spinning barber pole, now billed as a 'classic barbershop'
-- window signs: 'HAPPY HOUR 4-6 — PINTS $4', 'CRAFT LATTE $4.50'
-- a modern bike-share style rack
-- a dog water bowl outside a cafe door
+- a liquor store still open, its lit window the brightest thing in the row
+- a tax preparation and check-cashing office still open a few doors along, plain lettering, bars on the window
+- most of the other units dark behind the glass, several papered over from the inside
+- STAR DINER with 'COFFEE $2.25' chalked on a menu board
+- vape shop with a bright 'VAPE — E-CIGS' LED window sign
+- craft beer taproom with a hand-drawn chalkboard sidewalk sign
+- window signs: 'SCREEN REPAIR FROM $49', 'CRAFT LATTE $4.50'
+- a food truck parked mid-block
+- string lights zigzagging over the sidewalk seating
 Typography: minimalist flat sans-serif, simplified modern logos.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 'COFFEE $2.25'
-'classic barbershop'
-'HAPPY HOUR 4-6 — PINTS $4'
+'VAPE — E-CIGS'
+'SCREEN REPAIR FROM $49'
 'CRAFT LATTE $4.50'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 10 people TOTAL: 4 near sidewalk (largest, foreground), 4 opposite sidewalk mid-block, 2 distant, far end of block. Grouped in pairs, threes, and singles.
-- a barista delivering drinks to an outdoor table
-- sidewalk diners at small cafe tables under string lights
-- a dog walker with three dogs
-Clothing: men in beards, boat shoes; women in ankle boots, high-waisted skinny jeans. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 2 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block. Grouped in pairs, threes, and singles.
+- of these, 3 people standing around outside the liquor store with nothing to do — keeping to themselves, not looking at the camera
+- a jogger checking a fitness watch at the crosswalk
+- a teenager filming a video for social media outside the mural
+- a woman walking a dog in a knit sweater
+Clothing: men in skinny jeans, beards; women in statement necklaces, high-waisted skinny jeans. Fashion palette: coral, mint green, navy. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 4 period vehicles, all different:
-- 2011-2016 Chrysler Town & Country — chrome-trimmed minivan — gray
-- 2013-2017 Honda Accord — clean modern lines — white
-- 2011-2016 Kia Optima — stylish mid-size, sporty — dark red
-- 2013-2018 Hyundai Santa Fe — fluidic sculpture styling — pearl white
+EXACTLY 1 period vehicle:
+- 2014-2019 Kia Soul — boxy urban hatchback — white
 Parked with gaps. Where a model is listed with a year range, render the 2015 model year specifically — only styling, trim and features available in 2015, nothing introduced later. No vehicle newer than 2015.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
+PLACEMENT: the first two parked on the RIGHT side; the rest parked on the LEFT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: yellow center line, white edge lines, high-visibility crosswalks
+- road markings: worn and faded, well past their last repainting
 - utilities: power, phone and fiber routed underground along the main commercial block, clean open sky above the street — no poles, no wires; pad-mounted transformer cabinets and pull boxes at the curb
 - the poles and wires still visible in the uploaded image are gone in this era: remove every pole, crossarm and wire span along the street and rebuild the sky behind them. This is the one exception to PRESERVE; everything else stays as it is.
 
+DECAY
+- an old sign band painted over, the previous lettering still faintly readable
+- a sun-bleached awning, torn at one corner
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - oak tree at sidewalk left near corner: slightly smaller than in the base image — about 95% of its canopy there
 - maple tree at sidewalk center in front of retail: slightly smaller than in the base image — about 85% of its canopy there
@@ -79,7 +84,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — digital — DSLR or smartphone camera look.
 Color: high saturation. Grain: clean, minimal noise.
 Photorealistic — NOT black-and-white, no HDR.
-Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
 
 PRIVACY
 Blur all faces and license plates.

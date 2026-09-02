@@ -4,17 +4,17 @@ Keep the uploaded photo's exact composition, camera angle, road and building geo
 TRANSFORM TO 2005 — condition: well kept — freshly painted, open for business
 
 PERIOD DETAILS
-- monument signs at lifestyle centers
-- aging 1980s strip malls
-- large LED-lit pylon signs
-- window signs: 'OPEN 9-9', 'NOW LEASING'
+- decorative cornices and parapets
+- LED price signs at gas stations
+- electronic message boards common
+- window signs: 'NOW LEASING', 'SALE'
 - a cart corral with a bent rail near the anchor
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
-'OPEN 9-9'
 'NOW LEASING'
+'SALE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
@@ -22,8 +22,8 @@ PEOPLE
 
 VEHICLES
 EXACTLY 2 vehicles, 2005 model year, and no others:
-- 2003-2007 Nissan Altima — sporty mid-size — dark blue
-- 1998-2004 Nissan Frontier — compact pickup — black
+- 2000-2007 Ford Taurus — rounded, aging fleet-look sedan — dark red
+- 2001-2007 Ford Escape — compact boxy SUV — white
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES

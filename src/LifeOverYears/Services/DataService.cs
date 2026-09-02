@@ -49,28 +49,38 @@ public sealed class DataService : IDataService
         return await _fs.ReadAllTextAsync(path);
     }
 
-    public Task<IReadOnlyList<(string Name, int From, int To)>> LoadGasBrandsAsync() =>
-        ReadBrandTimelineAsync("gas-brands.txt");
+    public async Task<IReadOnlyList<(string Name, int From, int To)>> LoadGasBrandsAsync() =>
+        Undated(await ReadBrandTimelineAsync("gas-brands.txt"));
 
     // Motel chains carry the same shape as gas brands — a name and the years it
     // was on the road — so they share one parser rather than two that can drift.
-    public Task<IReadOnlyList<(string Name, int From, int To)>> LoadMotelBrandsAsync() =>
-        ReadBrandTimelineAsync("motel-brands.txt");
+    public async Task<IReadOnlyList<(string Name, int From, int To)>> LoadMotelBrandsAsync() =>
+        Undated(await ReadBrandTimelineAsync("motel-brands.txt"));
 
-    private async Task<IReadOnlyList<(string Name, int From, int To)>> ReadBrandTimelineAsync(string fileName)
+    // Gas and motel files carry no category, and their callers have no use for
+    // one. Projecting it away here keeps a single parser without widening the
+    // tuple every one of those callers reads.
+    private static IReadOnlyList<(string Name, int From, int To)> Undated(
+        IReadOnlyList<(string Name, int From, int To, string Category)> brands) =>
+        brands.Select(b => (b.Name, b.From, b.To)).ToList();
+
+    private async Task<IReadOnlyList<(string Name, int From, int To, string Category)>> ReadBrandTimelineAsync(string fileName)
     {
         var path = Path.Combine("data", "brands", fileName);
         _logger.LogInformation("Loading brand timeline from {Path}", path);
         var text = await _fs.ReadAllTextAsync(path);
 
-        var brands = new List<(string Name, int From, int To)>();
+        var brands = new List<(string Name, int From, int To, string Category)>();
         foreach (var line in text.Split('\n'))
         {
             var trimmed = line.Trim();
-            if (trimmed.Length == 0)
+            // '#' comments so a file can explain its own columns.
+            if (trimmed.Length == 0 || trimmed.StartsWith('#'))
                 continue;
             var parts = trimmed.Split('|');
-            if (parts.Length != 3
+            // Three fields or four: the category is optional, carried only by
+            // the files whose callers need to keep two of a kind apart.
+            if (parts.Length is not (3 or 4)
                 || string.IsNullOrWhiteSpace(parts[0])
                 || !int.TryParse(parts[1], out var from)
                 || !int.TryParse(parts[2], out var to))
@@ -78,7 +88,8 @@ public sealed class DataService : IDataService
                 _logger.LogWarning("Skipping malformed brand line in {File}: {Line}", fileName, trimmed);
                 continue;
             }
-            brands.Add((parts[0].Trim(), from, to));
+            var category = parts.Length == 4 ? parts[3].Trim() : "";
+            brands.Add((parts[0].Trim(), from, to, category));
         }
         return brands;
     }
@@ -128,6 +139,32 @@ public sealed class DataService : IDataService
                 byKind[kind] = names = new List<string>();
             names.Add(parts[1].Trim());
         }
+    }
+
+    // Same three-field timeline as the gas and motel brands, so it shares their
+    // parser rather than gaining a third that can drift from them.
+    public Task<IReadOnlyList<(string Name, int From, int To, string Category)>> LoadCenterReplacementsAsync() =>
+        ReadBrandTimelineAsync("center-replacements.txt");
+
+    public async Task<BrandSeries> LoadBrandSeriesAsync(string name)
+    {
+        var path = Path.Combine("data", "brands", "series", $"{name}.json");
+        _logger.LogInformation("Loading brand series {Name} from {Path}", name, path);
+        if (!File.Exists(path))
+            throw new FileNotFoundException(
+                $"No brand series '{name}' — expected {path}. Available: " +
+                string.Join(", ", AvailableSeries()), path);
+        return await _json.DeserializeFileAsync<BrandSeries>(path);
+    }
+
+    // Named in the exception above rather than logged, because the one moment
+    // anybody needs this list is when they have just got the name wrong.
+    private static IEnumerable<string> AvailableSeries()
+    {
+        var dir = Path.Combine("data", "brands", "series");
+        return Directory.Exists(dir)
+            ? Directory.EnumerateFiles(dir, "*.json").Select(Path.GetFileNameWithoutExtension).OfType<string>().Order()
+            : Enumerable.Empty<string>();
     }
 
     public async Task<IReadOnlyDictionary<string, string>> LoadSceneTypePhrasesAsync()

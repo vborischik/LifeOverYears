@@ -15,8 +15,9 @@ PEOPLE
 NO people on foot. Everyone in the scene is inside a moving vehicle.
 
 VEHICLES
-EXACTLY 1 vehicle, 2005 model year, and no others:
-- 2002-2006 Toyota Camry — smooth conservative mid-size — gray
+EXACTLY 2 vehicles, 2005 model year, and no others:
+- 2003-2007 Honda Accord — clean lines, sharper than 1990s — gray
+- 2005-2010 Chevrolet Cobalt — compact economy sedan — dark blue
 Moving in their own lanes at highway speed, natural spacing, all heading the same way. None parked on the shoulder. Plates blurred.
 
 TREES

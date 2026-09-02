@@ -70,6 +70,11 @@ public sealed class AppModule : Module
         builder.Register(_ => new PromptService(_.Resolve<IDataService>(), _loggerFactory.CreateLogger<PromptService>()))
                .As<IPromptService>().SingleInstance();
 
+        // The brand-series path: no IDataService dependency because it reads no
+        // template and no era file — the series JSON is the whole input.
+        builder.Register(_ => new BrandSeriesPromptService(_loggerFactory.CreateLogger<BrandSeriesPromptService>()))
+               .As<IBrandSeriesPromptService>().SingleInstance();
+
         var folders = PipelineFolders.Resolve(_configuration);
         builder.RegisterInstance(new RunService(folders.OutputDir, _loggerFactory.CreateLogger<RunService>()))
                .As<IRunService>().SingleInstance();
@@ -169,6 +174,22 @@ public sealed class AppModule : Module
                     eraChaining,
                     shortPrompts,
                     _loggerFactory.CreateLogger<Pipeline>()))
+               .SingleInstance();
+
+        // Pipeline's sibling for the brand mode. Registered unconditionally and
+        // resolved only by the 'brand' CLI mode — it costs nothing until then,
+        // and Pipeline:BaseMode does not apply to it, since a series has no
+        // photograph to clean and always draws its base from text.
+        builder.Register(_ => new BrandSeriesRunner(
+                    _.Resolve<IBrandSeriesPromptService>(),
+                    _.Resolve<IDataService>(),
+                    _.Resolve<IRunService>(),
+                    _.Resolve<IImageGenerationProvider>(),
+                    _.Resolve<IYearOverlayService>(),
+                    _.Resolve<IVideoService>(),
+                    _.Resolve<ICaptionService>(),
+                    shortPrompts,
+                    _loggerFactory.CreateLogger<BrandSeriesRunner>()))
                .SingleInstance();
     }
 }

@@ -29,35 +29,35 @@ TRANSFORM TO 1985
 Reagan era prosperity. A 1985 open-air shopping center at its busiest — the anchor repainted with a bold new sign, the inline units turned over to newer names.
 
 PERIOD DETAILS
-- electronic marquee signs appearing
-- large illuminated signage
-- a stepped run of parapets at three different heights along the center
-- window signs: 'OPEN 9-9', 'SALE'
-- lot light poles with squared-off fixtures
-- a metal bench under the walkway near the anchor
+- stripe patterns on awnings
+- wider parking lots
+- an updated pylon sign with interchangeable tenant strips
+- window signs: 'KMART', 'OPEN 9-9'
+- planted islands with low shrubs and mulch
+- repainted stall lines over a resurfaced lot
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
+'KMART'
 'OPEN 9-9'
-'SALE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 A DENSE CROWD of shoppers — far too many to count: a steady stream in and out of the entrance doors, groups moving between parked cars, clusters waiting near the doors, foreground figures sharp and background figures loose. Do not render an empty or sparse scene.
-- kids gathered outside the video rental unit
-- a couple reading the tenant strips on the pylon sign
-- a kid with a boombox on his shoulder
-Clothing: men in windbreakers, polo shirts with collars up; women in bright neon colors, shoulder pads. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- an older man reading a flyer taped inside the glass
+- a woman pushing a cart along the front of the anchor block
+- a woman with permed hair and shoulder pads
+Clothing: men in windbreakers, polo shirts with collars up; women in leg warmers, bright neon colors. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 A FULL parking lot — every stall occupied in unbroken rows out to the far edge, too many vehicles to count, no empty stalls in the foreground. Representative models visible near the camera:
-- 1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan — silver
-- 1980-1985 Cadillac Seville — sharp formal lines, bustleback — light blue
-- 1978-1987 Chevrolet Monte Carlo — personal luxury coupe, long hood — white
-- 1981-1985 Dodge Aries — K-car, boxy economy sedan — beige
 - 1982-1993 Chevrolet S-10 — compact pickup, square — burgundy
+- 1981-1988 Oldsmobile Cutlass Ciera — boxy, formal roofline — light blue
+- 1982-1986 Nissan Sentra — small economy boxy sedan — charcoal gray
+- 1982-1985 Toyota Celica — angular sporty coupe, pop-up lights — white
+- 1978-1986 Ford Bronco — full-size boxy SUV, round headlights — beige
 Every other vehicle in the lot is period-correct for 1985; nothing newer. All nose-in or angled into stalls; none parallel-parked.
 
 ENVIRONMENT

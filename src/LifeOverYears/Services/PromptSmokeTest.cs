@@ -15,6 +15,22 @@ public static class PromptSmokeTest
 
     private const int MaxPromptChars = 6000; // raised from 5300: the priority order block and the per-era SIGNAGE RESTRICTION whitelist added real length
 
+    // The word half of the same budget. Raised from 920 (itself raised from 820
+    // for the priority order block and the SIGNAGE RESTRICTION whitelist) when
+    // 1975 became a colour era: a colour era draws a per-vehicle colour from the
+    // run's shared Random, so the stream shifts and every later era samples
+    // different — and on strip_mall, heavier. That scene's 2015 prompt was
+    // already the tail at 888 words and went to 943.
+    //
+    // Held in one place because four checks assert it — C11 over the era runs,
+    // C60 over the corner-shop pair, C74 over the synthetic sweep and C81 over
+    // the brand series. Three of them quietly keeping the old number while the
+    // fourth moved is how a budget stops meaning anything.
+    //
+    // Note the char half is the tighter one now: 5886 of 6000 at the same worst
+    // case, so ~110 chars of headroom, not a sentence's worth.
+    private const int MaxPromptWords = 960;
+
     private static readonly JsonSerializerOptions WriteJson = new() { WriteIndented = true };
 
     // Matches ANY unresolved {TOKEN} — template placeholders (e.g. {SCENE_BLOCK})
@@ -50,9 +66,11 @@ public static class PromptSmokeTest
     // ── Entry point ───────────────────────────────────────────────────────────
 
     public static async Task<int> RunAsync(
-        IPromptService promptService,
-        IDataService   dataService,
-        ILogger        logger)
+        IPromptService            promptService,
+        IBrandSeriesPromptService brandPromptService,
+        IDataService              dataService,
+        ICaptionService           captionService,
+        ILogger                   logger)
     {
         logger.LogInformation("[Smoke] PromptSmokeTest starting");
 
@@ -146,6 +164,14 @@ public static class PromptSmokeTest
             (unknownScene.SceneType, unknownScene),
         })
             await SaveBase(folder, 1, await promptService.BuildBaseAsync(scene, Years[0]));
+
+        // c2) The brand series — the second generation path. No SceneDna is
+        // involved anywhere in it, so it shares no fixture with the runs above;
+        // it is walked era by era exactly as they are.
+        var kmart        = await dataService.LoadBrandSeriesAsync("kmart");
+        var replacements = await dataService.LoadCenterReplacementsAsync();
+        var brandRun     = BuildBrandRun(brandPromptService, kmart, 42, replacements);
+        await SaveBrandRun(kmart, brandRun);
 
         // d) Checks C1–C25
         // Pass is tri-state: true PASS, false FAIL, null DISABLED. A parked check
@@ -247,6 +273,18 @@ public static class PromptSmokeTest
         await DoC72(dataService, logger, findings);
         await DoC71(dataService, findings);
         await DoC59(dataService, findings);
+        DoC75(brandRun, findings);
+        DoC76(kmart, brandRun, findings);
+        DoC77(brandRun, findings);
+        DoC78(brandPromptService, kmart, brandRun, replacements, findings);
+        DoC79(brandRun, findings);
+        DoC80(brandRun, findings);
+        DoC81(brandRun, findings);
+        DoC82(brandRun, findings);
+        DoC83(brandRun, findings);
+        DoC84(kmart, brandRun, findings);
+        DoC85(kmart, brandRun, findings);
+        await DoC86(dataService, captionService, kmart, findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -846,6 +884,44 @@ public static class PromptSmokeTest
         return prompts;
     }
 
+    // One GenerationContext across all six eras, exactly as BrandSeriesRunner
+    // builds one — the vehicle-class memory C80 asserts lives in it, so a
+    // per-era context would make that check pass by accident.
+    private static Dictionary<int, Prompt> BuildBrandRun(
+        IBrandSeriesPromptService svc,
+        BrandSeries               series,
+        int                       seed,
+        IReadOnlyList<(string Name, int From, int To, string Category)> centerReplacements)
+    {
+        var ctx = new GenerationContext
+        {
+            Random                 = new Random(seed),
+            TotalEras              = series.Years.Count,
+            Years                  = series.Years,
+            ChainedFromPreviousEra = true
+        };
+        var prompts = new Dictionary<int, Prompt>();
+        foreach (var year in series.Years)
+            prompts[year] = svc.Build(series, year, ctx, centerReplacements);
+        return prompts;
+    }
+
+    private static async Task SaveBrandRun(
+        BrandSeries series, Dictionary<int, Prompt> prompts)
+    {
+        var dir = Path.Combine("output", "smoke", "brand_series", SeriesFolder(series));
+        Directory.CreateDirectory(dir);
+        foreach (var (year, prompt) in prompts)
+        {
+            await File.WriteAllTextAsync(Path.Combine(dir, $"{year}.txt"), prompt.Text);
+            await File.WriteAllTextAsync(Path.Combine(dir, $"{year}.json"),
+                JsonSerializer.Serialize(prompt, WriteJson));
+        }
+    }
+
+    private static string SeriesFolder(BrandSeries series) =>
+        series.Brand.ToLowerInvariant().Replace(' ', '-');
+
     // The synthetic base is the frame every era is then edited from, so a run's
     // output is only half readable without it — and it was being built and
     // thrown away. Written next to the eras so the whole chain can be read, and
@@ -1171,12 +1247,17 @@ public static class PromptSmokeTest
     {
         var errs = new List<string>();
 
+        // 1975 used to be the one monochrome era. It was dropped because the
+        // frame kept coming back in colour anyway and the complaint was real:
+        // under EraChaining 1975 is an edit of the colour synthetic base, and
+        // asking an edit model to desaturate a colour source is the one
+        // instruction it reliably ignores. 1975 was also the odd claim
+        // historically — the era's own film_stock names Kodachrome 64 and
+        // Ektachrome, both colour. Every era is colour now, so there is no
+        // colour transition anywhere in a chained run.
         void Check(Dictionary<int, Prompt> run, string label)
         {
-            if (!run[1975].Text.Contains("STRICTLY BLACK AND WHITE"))
-                errs.Add($"{label}/1975: missing 'STRICTLY BLACK AND WHITE'");
-
-            foreach (var year in Years.Where(y => y != 1975))
+            foreach (var year in Years)
             {
                 if (!run[year].Text.Contains("COLOR photograph"))
                     errs.Add($"{label}/{year}: missing 'COLOR photograph'");
@@ -1190,7 +1271,7 @@ public static class PromptSmokeTest
         Check(dtRun1,  "downtown_street/run1");
         Check(dtRun2,  "downtown_street/run2");
 
-        f.Add(("C7", "1975=B&W (STRICTLY BLACK AND WHITE); 1985-2025=COLOR photograph",
+        f.Add(("C7", "Every era is a COLOR photograph; no era carries the monochrome block",
             errs.Count == 0, errs.Count == 0 ? "Color mode correct in all prompts" : Join(errs)));
     }
 
@@ -1341,7 +1422,7 @@ public static class PromptSmokeTest
             text.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries)
                 .Count(t => t.Any(char.IsLetterOrDigit));
 
-        const int maxWords = 920; // raised from 820: the priority order block and the per-era SIGNAGE RESTRICTION whitelist added real length
+        const int maxWords = MaxPromptWords;
         foreach (var (run, label) in all)
             foreach (var (year, prompt) in run)
             {
@@ -3651,15 +3732,17 @@ public static class PromptSmokeTest
             ChainedFromPreviousEra = true
         };
 
-        // One decade of growth, as a percentage of the image being edited. Depends
-        // only on the recorded size, so it is the same at every step of the run.
-        // Each rate carries PromptService.GrowthDamping, then rounds to 5%.
-        var expected = new Dictionary<string, string>
+        // Growth as a percentage of the image being edited, per size. A small or
+        // medium tree clears the "big enough to draw" threshold in one decade and
+        // so states a size every era. A large one does not — one decade of it is
+        // about 5%, which no image model renders — so it stays silent and the
+        // growth accrues until it can be said in one visible step.
+        var everyEra = new Dictionary<string, string>
         {
             ["small"]  = "145%",   // 0.95 / 0.62, then GrowthScale
             ["medium"] = "115%",   // 0.95 / 0.78, then GrowthScale
-            ["large"]  = "105%",   // 0.95 / 0.90, then GrowthScale
         };
+        var statedPerSize = new Dictionary<string, List<(int Year, string Line)>>(StringComparer.OrdinalIgnoreCase);
 
         foreach (var year in Years)
         {
@@ -3681,9 +3764,11 @@ public static class PromptSmokeTest
                 continue;
             }
 
+            // The scene has a small and a medium tree, both of which clear the
+            // threshold every decade, so the section itself must never vanish.
             if (trees.Length == 0)
             {
-                errs.Add($"{year}: chained era has no TREES section — its trees stay at the previous era's size");
+                errs.Add($"{year}: chained era has no TREES section at all — every tree in this scene has gone silent");
                 continue;
             }
             if (trees.Contains("in the base image", StringComparison.Ordinal))
@@ -3697,19 +3782,50 @@ public static class PromptSmokeTest
             {
                 var line = trees.Split('\n')
                     .FirstOrDefault(l => l.StartsWith($"- {tree.Type} tree at {tree.Position}:", StringComparison.Ordinal));
+                if (!statedPerSize.TryGetValue(tree.Size, out var stated))
+                    statedPerSize[tree.Size] = stated = new List<(int, string)>();
+
                 if (line is null)
                 {
-                    errs.Add($"{year}: no tree line for {tree.Type}");
+                    // Only the sizes whose decade step is too small to draw may
+                    // skip an era. Any other silence is the section losing a tree.
+                    if (everyEra.ContainsKey(tree.Size))
+                        errs.Add($"{year}: no tree line for the {tree.Size} {tree.Type} — it clears the threshold every decade");
                     continue;
                 }
-                if (!line.Contains(expected[tree.Size], StringComparison.Ordinal))
-                    errs.Add($"{year}: {tree.Size} tree should grow to {expected[tree.Size]} per decade, got: {line.Trim()}");
+
+                stated.Add((year, line.Trim()));
+                if (everyEra.TryGetValue(tree.Size, out var perDecade)
+                    && !line.Contains(perDecade, StringComparison.Ordinal))
+                    errs.Add($"{year}: {tree.Size} tree should grow to {perDecade} per decade, got: {line.Trim()}");
             }
         }
 
-        f.Add(("C54", "Chained eras size trees as growth against the uploaded previous era, never as a fraction of the base",
+        // A deferred step must still arrive. A size that never states anything
+        // across five chained eras is not accumulating — it has stopped growing,
+        // which is the failure this whole mechanism exists to avoid.
+        foreach (var tree in stripMallScene.Environment.Trees.DistinctBy(t => t.Size, StringComparer.OrdinalIgnoreCase))
+        {
+            var stated = statedPerSize.GetValueOrDefault(tree.Size) ?? new List<(int, string)>();
+            if (stated.Count == 0)
+                errs.Add($"the {tree.Size} tree states no growth in any chained era — its growth is being dropped, not deferred");
+
+            // And when it does arrive it has to be worth drawing.
+            foreach (var (year, line) in stated.Where(x => !everyEra.ContainsKey(tree.Size)))
+            {
+                var m = System.Text.RegularExpressions.Regex.Match(line, @"about (\d+)% of its canopy");
+                if (m.Success && int.Parse(m.Groups[1].Value) < 115)
+                    errs.Add($"{year}: {tree.Size} tree states {m.Groups[1].Value}% — below the threshold it was held back for");
+            }
+        }
+
+        var summary = string.Join("; ", statedPerSize
+            .OrderBy(kv => kv.Key, StringComparer.Ordinal)
+            .Select(kv => $"{kv.Key} states in {(kv.Value.Count == 0 ? "no era" : string.Join("/", kv.Value.Select(v => v.Year)))}"));
+
+        f.Add(("C54", "Chained eras size trees as growth against the uploaded previous era, never as a fraction of the base; a step too small to draw is deferred rather than stated or dropped",
             errs.Count == 0, errs.Count == 0
-                ? "every era after the first grows its trees by the per-decade ratio for its size"
+                ? summary
                 : Join(errs.Take(5))));
     }
 
@@ -4027,7 +4143,7 @@ public static class PromptSmokeTest
         List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
-        const int maxWords = 920;
+        const int maxWords = MaxPromptWords;
 
         int WordCount(string text) =>
             text.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries)
@@ -5046,17 +5162,29 @@ public static class PromptSmokeTest
             var prompt = await promptService.BuildAsync(highwayScene, eras[year], chained);
             if (year == Years[0]) continue;      // first era is edited from the base
             var pct = FirstCanopyPct(prompt.Text);
+
+            // A silent era is the normal case now, not a fault: a step too small
+            // to draw is not stated at all, and the growth accrues to the next
+            // era that can express it. What must not happen is silence all the
+            // way through — that is the run flattening, checked after the loop.
             if (pct is null)
             {
-                errs.Add($"chained/{year}: no canopy percentage for the background tree");
+                steps.Add($"{year}:—");
                 continue;
             }
             steps.Add($"{year}:{pct}%");
             product *= pct.Value / 100.0;
             if (pct > 125)
-                errs.Add($"chained/{year}: background tree grows {pct}% in a single decade");
+                errs.Add($"chained/{year}: background tree grows {pct}% in a single step");
         }
         var chainedTotal = (int)Math.Round(product * 100);
+
+        // The floor the accumulation exists to protect: growth deferred is not
+        // growth abandoned, so a run that never states a size anywhere has
+        // silently stopped growing its trees.
+        const int floorPct = 115;
+        if (chainedTotal < floorPct)
+            errs.Add($"chained: background tree ends the run at {chainedTotal}% — the run flattened: {string.Join(" ", steps)}");
         if (chainedTotal > ceilingPct)
             errs.Add($"chained: background tree reaches {chainedTotal}% across the run (ceiling {ceilingPct}%): {string.Join(" ", steps)}");
 
@@ -5291,7 +5419,7 @@ public static class PromptSmokeTest
     {
         var errs = new List<string>();
         const int seedsPerType = 6;
-        const int maxWords = 920;
+        const int maxWords = MaxPromptWords;
 
         int WordCount(string t) =>
             t.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries)
@@ -5393,6 +5521,614 @@ public static class PromptSmokeTest
     }
 
     // ── Report ────────────────────────────────────────────────────────────────
+
+
+    // ── Brand series (C75–C82) ────────────────────────────────────────────────
+    //
+    // Numbered from 75 because C59–C74 are taken: the brand-series work was
+    // specified against C59–C66, but renumbering live checks would break every
+    // reference to them in CLAUDE.md and in the report history. Same eight
+    // assertions, next free block.
+
+    private static void DoC75(
+        Dictionary<int, Prompt> brandRun,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        foreach (var (year, prompt) in brandRun.OrderBy(p => p.Key))
+            foreach (System.Text.RegularExpressions.Match m in UnresolvedTokenPattern.Matches(prompt.Text))
+                errs.Add($"{year}: unresolved token {m.Value}");
+
+        // A block that silently came back empty is the same class of bug as an
+        // unresolved token — the prompt is missing something it was built to say.
+        foreach (var (year, prompt) in brandRun.OrderBy(p => p.Key))
+            foreach (var block in new[] { "SCENE", "VEHICLES", "PEOPLE", "PERIOD DETAILS", "PHOTOGRAPHIC STYLE", "PRIVACY" })
+                if (!prompt.Text.Contains(block, StringComparison.Ordinal))
+                    errs.Add($"{year}: no {block} block");
+
+        // Colour everywhere, the same call C7 makes for the era path: the period
+        // is carried by the film stock, not by draining the frame. The oldest era
+        // is where this silently reverts — it is the one a monochrome default
+        // looks plausible in — so it is checked rather than assumed.
+        foreach (var (year, prompt) in brandRun.OrderBy(p => p.Key))
+        {
+            if (prompt.Text.Contains("STRICTLY BLACK AND WHITE", StringComparison.Ordinal))
+                errs.Add($"{year}: monochrome — the era should be colour with a period film stock");
+            if (!prompt.Text.Contains("COLOUR photograph", StringComparison.Ordinal))
+                errs.Add($"{year}: no colour photograph line");
+        }
+
+        f.Add(("C75", "Every brand-series prompt resolves all placeholders, carries every block, and is a colour photograph with no monochrome block",
+            errs.Count == 0, errs.Count == 0
+                ? $"{brandRun.Count} era prompts, no unresolved tokens, all blocks present, every era colour"
+                : Join(errs)));
+    }
+
+    // The logo reference is the whole reason an era carries an image alongside
+    // the prompt. It has to be announced in the years there is a sign, and
+    // absent in the years there is not — a LOGO REFERENCE line in a year with no
+    // logoRef would point the model at an image the provider never sends.
+    private static void DoC76(
+        BrandSeries series, Dictionary<int, Prompt> brandRun,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        const string referenceLine = "LOGO REFERENCE";
+
+        foreach (var (year, prompt) in brandRun.OrderBy(p => p.Key))
+        {
+            var era        = series.Eras[year.ToString()];
+            var hasRef     = era.LogoRef is not null;
+            var statesRef  = prompt.Text.Contains(referenceLine, StringComparison.Ordinal);
+
+            if (hasRef && !statesRef)
+                errs.Add($"{year}: logoRef \"{era.LogoRef}\" is set but the prompt never mentions the reference");
+            if (!hasRef && statesRef)
+                errs.Add($"{year}: no logoRef in the series, but the prompt asks the model to copy one");
+
+            // And the reference must not stand alone: the words are what carries
+            // the logo when the PNG is missing, which the providers allow.
+            if (hasRef && !prompt.Text.Contains("LOGO\n", StringComparison.Ordinal))
+                errs.Add($"{year}: a LOGO REFERENCE with no LOGO block stating the letterforms");
+        }
+
+        var withRef    = series.Years.Where(y => series.Eras[y.ToString()].LogoRef is not null).ToList();
+        var withoutRef = series.Years.Except(withRef).ToList();
+        if (withRef.Count == 0 || withoutRef.Count == 0)
+            errs.Add("the series has no era with a logo, or none without — this check asserts nothing");
+
+        f.Add(("C76", "Each brand era states a logo reference exactly when the series carries one",
+            errs.Count == 0, errs.Count == 0
+                ? $"reference in {string.Join(", ", withRef)}; none in {string.Join(", ", withoutRef)}"
+                : Join(errs)));
+    }
+
+    // Under era chaining the frame being edited still has the lettering on the
+    // building. A prompt that merely stops describing the logo leaves it
+    // standing for another fifty years, so the removal has to be stated, and
+    // stated as what is physically there in its place.
+    private static void DoC77(
+        Dictionary<int, Prompt> brandRun,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        const int year = 2015;
+
+        if (!brandRun.TryGetValue(year, out var prompt))
+        {
+            f.Add(("C77", "The sign-removal era states the removal explicitly",
+                false, $"no {year} prompt in the brand run"));
+            return;
+        }
+
+        if (!prompt.Text.Contains("SIGN REMOVED", StringComparison.Ordinal))
+            errs.Add($"{year}: no SIGN REMOVED block");
+
+        // The removal itself, then what replaces it. A bare "the sign is gone"
+        // is the negation an image model ignores.
+        foreach (var phrase in new[] { "taken down", "mounting points", "faded outline" })
+            if (!prompt.Text.Contains(phrase, StringComparison.OrdinalIgnoreCase))
+                errs.Add($"{year}: removal does not say \"{phrase}\"");
+
+        if (prompt.Text.Contains("LOGO REFERENCE", StringComparison.Ordinal)
+            || prompt.Text.Contains("LOGO FAIL", StringComparison.Ordinal))
+            errs.Add($"{year}: still carries a logo block after the sign came down");
+
+        f.Add(("C77", "The sign-removal era states the removal explicitly and says what is left in its place",
+            errs.Count == 0, errs.Count == 0
+                ? $"{year}: SIGN REMOVED — lettering taken down, mounting points, faded outline, empty pylon frame"
+                : Join(errs)));
+    }
+
+    // The last era is the same building under different tenants. Naming the old
+    // brand anywhere in it — even inside an instruction to remove it — puts the
+    // word in front of the model, which is how a negation puts the sign back up.
+    private static void DoC78(
+        IBrandSeriesPromptService svc,
+        BrandSeries series, Dictionary<int, Prompt> brandRun,
+        IReadOnlyList<(string Name, int From, int To, string Category)> replacements,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        var last = series.Years.Max();
+
+        if (!brandRun.TryGetValue(last, out var prompt))
+        {
+            f.Add(("C78", "The redeveloped era names no brand signage",
+                false, $"no {last} prompt in the brand run"));
+            return;
+        }
+
+        if (prompt.Text.Contains(series.Brand, StringComparison.OrdinalIgnoreCase))
+            errs.Add($"{last}: names \"{series.Brand}\" — the word is in front of the model whatever the sentence asks");
+
+        foreach (var block in new[] { "LOGO", "LOGO REFERENCE", "LOGO FAIL" })
+            if (prompt.Text.Contains(block, StringComparison.Ordinal))
+                errs.Add($"{last}: still carries a {block} block");
+
+        // The units are named businesses, not category words: "FITNESS" over a
+        // door labels a shop rather than being one. Each has to have been
+        // trading in this exact year — the same claim C71 makes of a motel flag,
+        // and the same way to get it wrong, since the pool spans fifty years.
+        var eligible = replacements.Where(t => last >= t.From && last <= t.To).ToList();
+        var named    = eligible.Where(t => prompt.Text.Contains(t.Name, StringComparison.Ordinal)).ToList();
+
+        if (named.Count == 0)
+            errs.Add($"{last}: the redeveloped frontage names no actual trade — only category words");
+        if (!prompt.Text.Contains("The units now trading are", StringComparison.Ordinal))
+            errs.Add($"{last}: no tenant line on the subdivided frontage");
+
+        // Anything from the pool that appears must be a live one, not a chain
+        // that had already closed by this year.
+        foreach (var dead in replacements.Where(t => last > t.To)
+                     .Where(t => prompt.Text.Contains(t.Name, StringComparison.Ordinal)))
+            errs.Add($"{last}: \"{dead.Name}\" closed in {dead.To} — it cannot open here");
+
+        // No two units of the same kind. Swept over seeds rather than trusting
+        // the one draw above: the pool is lopsided enough that a single seed
+        // says nothing, and this is the failure the category column was added
+        // for. Also guards the column itself — an entry left uncategorised
+        // silently opts out of the rule.
+        foreach (var blank in replacements.Where(t => string.IsNullOrWhiteSpace(t.Category)))
+            errs.Add($"center-replacements.txt: \"{blank.Name}\" has no category — it can pair with anything");
+
+        const int tenantSeeds = 300;
+        for (var seed = 1; seed <= tenantSeeds; seed++)
+        {
+            var text = BuildBrandRun(svc, series, seed, replacements)[last].Text;
+            var here = replacements
+                .Where(t => last >= t.From && last <= t.To && text.Contains(t.Name, StringComparison.Ordinal))
+                .ToList();
+
+            foreach (var dupe in here.GroupBy(t => t.Category, StringComparer.OrdinalIgnoreCase).Where(g => g.Count() > 1))
+            {
+                errs.Add($"seed {seed}: {dupe.Count()} '{dupe.Key}' units in one building ({string.Join(", ", dupe.Select(t => t.Name))})");
+                break;
+            }
+        }
+
+        // The hardware has to go too, or the chain carries a ghost sign forward.
+        if (!prompt.Text.Contains("REDEVELOPED", StringComparison.Ordinal))
+            errs.Add($"{last}: no REDEVELOPED block");
+        foreach (var phrase in new[] { "resurfaced", "ghost lettering", "mounting hardware" })
+            if (!prompt.Text.Contains(phrase, StringComparison.OrdinalIgnoreCase))
+                errs.Add($"{last}: redevelopment does not say \"{phrase}\"");
+
+        f.Add(("C78", "The redeveloped era names no original brand signage, clears the old sign's hardware, and fills the frontage with trades that were actually open that year",
+            errs.Count == 0, errs.Count == 0
+                ? $"{last}: no \"{series.Brand}\" anywhere, fascia resurfaced, units {string.Join(", ", named.Select(t => t.Name))}; {eligible.Count} eligible, no two of a kind across {tenantSeeds} seeds"
+                : Join(errs)));
+    }
+
+    // The image model does not count. A number in front of a crowd is budget
+    // spent on an instruction that will not be followed, and it competes with
+    // the density word that would have been.
+    private static readonly System.Text.RegularExpressions.Regex BrandCountPattern =
+        new(@"\b(\d+|EXACTLY|two|three|four|five|six|seven|eight|nine|ten|dozen)\s+(\w+[- ]){0,2}?" +
+            @"(people|persons|person|shoppers|customers|figures|adults|children|pedestrians|men|women|" +
+            @"cars|vehicles|sedans|wagons|trucks|pickups|vans|SUVs|crossovers|hatchbacks|coupes|minivans)\b",
+            System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+    private static void DoC79(
+        Dictionary<int, Prompt> brandRun,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        void Scan(string label, string text)
+        {
+            foreach (System.Text.RegularExpressions.Match m in BrandCountPattern.Matches(text))
+                errs.Add($"{label}: counts people or vehicles — \"{m.Value.Trim()}\"");
+        }
+
+        foreach (var (year, prompt) in brandRun.OrderBy(p => p.Key))
+            Scan(year.ToString(), prompt.Text);
+
+        f.Add(("C79", "No brand-series prompt states a numeric count of people or vehicles",
+            errs.Count == 0, errs.Count == 0
+                ? "density is words only across all six eras"
+                : Join(errs)));
+    }
+
+    // The same class in two decades is the same lot photographed twice. The run
+    // shares one GenerationContext for exactly this reason, so a repeat here
+    // means the vehicle memory is not being consulted.
+    private static void DoC80(
+        Dictionary<int, Prompt> brandRun,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        var seen = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+
+        foreach (var (year, prompt) in brandRun.OrderBy(p => p.Key))
+        {
+            if (prompt.SelectedVehicles.Count == 0)
+                errs.Add($"{year}: no vehicle classes selected");
+
+            foreach (var vehicle in prompt.SelectedVehicles)
+            {
+                // Compared on the same normalized key the run's memory uses, so
+                // the check cannot pass on a spelling difference the context
+                // already treats as one class.
+                var key = GenerationContext.BaseModelName(vehicle);
+                if (seen.TryGetValue(key, out var firstYear))
+                    errs.Add($"{year}: \"{vehicle}\" already used in {firstYear}");
+                else
+                    seen[key] = year;
+
+                // Selected but never stated is the same failure seen from the
+                // other side: the memory was spent and the frame never got it.
+                if (!prompt.Text.Contains(vehicle, StringComparison.OrdinalIgnoreCase))
+                    errs.Add($"{year}: \"{vehicle}\" was selected but does not appear in the prompt");
+            }
+
+            // And the classes stay a sample. Stated as the whole lot, three
+            // named classes become three shapes repeated down the rows; the
+            // thing that actually has to hold is the date, not the model list.
+            if (!prompt.Text.Contains("for example", StringComparison.OrdinalIgnoreCase))
+                errs.Add($"{year}: vehicle classes read as an inventory rather than examples");
+            if (!prompt.Text.Contains("Nothing newer than the year", StringComparison.Ordinal))
+                errs.Add($"{year}: nothing pins the vehicles to the era once the list is only a sample");
+        }
+
+        f.Add(("C80", "No vehicle class repeats across the eras of a brand run, and the classes are stated as examples rather than as the whole lot",
+            errs.Count == 0, errs.Count == 0
+                ? $"{seen.Count} distinct classes across {brandRun.Count} eras, none repeated, each era's list stated as examples"
+                : Join(errs)));
+    }
+
+    private static void DoC81(
+        Dictionary<int, Prompt> brandRun,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        // Same definition C11 uses: whitespace tokens carrying a letter or digit.
+        int WordCount(string text) =>
+            text.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries)
+                .Count(t => t.Any(char.IsLetterOrDigit));
+
+        const int maxWords = MaxPromptWords;
+        var widest = 0;
+        var longest = 0;
+
+        void Scan(string label, string text)
+        {
+            var words = WordCount(text);
+            widest  = Math.Max(widest, words);
+            longest = Math.Max(longest, text.Length);
+            if (words >= maxWords)
+                errs.Add($"{label}: {words} words (limit {maxWords})");
+            if (text.Length > MaxPromptChars)
+                errs.Add($"{label}: {text.Length} chars (limit {MaxPromptChars})");
+        }
+
+        foreach (var (year, prompt) in brandRun.OrderBy(p => p.Key))
+            Scan(year.ToString(), prompt.Text);
+
+        f.Add(("C81", $"Every brand-series prompt is under {maxWords} words and {MaxPromptChars} chars",
+            errs.Count == 0, errs.Count == 0
+                ? $"worst case {widest} words / {longest} chars"
+                : Join(errs)));
+    }
+
+    // The one block that says the six frames are the same place. It cannot
+    // appear in the first era — there is no earlier frame for it to refer to,
+    // and pointing at one is how a first frame ends up copying a scene that
+    // does not exist yet.
+    private static void DoC82(
+        Dictionary<int, Prompt> brandRun,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        var years = brandRun.Keys.OrderBy(y => y).ToList();
+
+        foreach (var year in years)
+        {
+            var text  = brandRun[year].Text;
+            var first = year == years[0];
+            var has   = text.Contains("CONTINUITY", StringComparison.Ordinal);
+
+            if (first && has)
+                errs.Add($"{year}: the first era carries a continuity block, with nothing to be continuous with");
+            if (!first && !has)
+                errs.Add($"{year}: no continuity block");
+            if (first || !has)
+                continue;
+
+            // The gap has to be the real one. A wrong figure here is a wrong
+            // instruction about how much the place should have changed.
+            var gap = year - years[years.IndexOf(year) - 1];
+            if (!text.Contains($"{gap} years later", StringComparison.Ordinal))
+                errs.Add($"{year}: continuity does not state the {gap}-year gap");
+
+            // Stated once. The same demand written three ways stops reading as
+            // emphasis and starts reading as three claims to reconcile.
+            var occurrences = text.Split("CONTINUITY").Length - 1;
+            if (occurrences != 1)
+                errs.Add($"{year}: {occurrences} continuity blocks");
+        }
+
+        f.Add(("C82", "Every brand era after the first carries one continuity block stating the real year gap; the first carries none",
+            errs.Count == 0, errs.Count == 0
+                ? $"{years[0]} none; {string.Join(", ", years.Skip(1))} each state their own gap"
+                : Join(errs)));
+    }
+
+
+    // Chained generation uploads the previous era's finished frame, shoppers and
+    // traffic included. Every block after the opening only ever adds — a PEOPLE
+    // block describing this year's crowd does not delete last year's — so
+    // without an explicit clearing instruction the lot fills up down the run
+    // until the last frame holds fifty years of customers at once.
+    //
+    // The first era is the mirror image of that. It is drawn from text with
+    // nothing uploaded, so it must not carry the clearing wording — that would
+    // point at an image that does not exist — and it is the only era stating the
+    // 9:16 canvas, which every later era inherits by editing the frame before it.
+    //
+    // Nothing here asserts a base image: the run has none, every frame after the
+    // first edits its predecessor, and a check still looking for one would be
+    // describing a pipeline that no longer exists.
+    private static void DoC83(
+        Dictionary<int, Prompt> brandRun,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        var years = brandRun.Keys.OrderBy(y => y).ToList();
+        const string clearing = "remove EVERY person, vehicle and bicycle already in it";
+
+        foreach (var year in years)
+        {
+            var text  = brandRun[year].Text;
+            var first = year == years[0];
+            var has   = text.Contains(clearing, StringComparison.Ordinal);
+
+            var statesCrop = text.Contains("TRUE 9:16 vertical portrait", StringComparison.Ordinal);
+
+            // No frame behind this one, so there is nothing to pin and nothing
+            // to clear — the only thing it owes is the canvas.
+            if (first)
+            {
+                if (has)
+                    errs.Add($"{year}: asks the model to clear a frame that was never uploaded");
+                if (!statesCrop)
+                    errs.Add($"{year}: the run's one text-to-image frame does not state the 9:16 canvas");
+                continue;
+            }
+
+            if (!has)
+                errs.Add($"{year}: edits {years[years.IndexOf(year) - 1]} but never clears that frame's people and traffic");
+            // Restating the aspect over a frame already in it invites a re-crop.
+            if (statesCrop)
+                errs.Add($"{year}: restates the 9:16 canvas it already inherited");
+        }
+
+        f.Add(("C83", "The first brand era states the 9:16 canvas and clears nothing; every era after it clears the people and traffic of the frame it edits",
+            errs.Count == 0, errs.Count == 0
+                ? $"{years[0]} drawn from text, states the crop; {string.Join(", ", years.Skip(1))} each clear the frame they edit"
+                : Join(errs)));
+    }
+
+    // A closed store with shoppers walking to its entrance is a contradiction,
+    // and an image model settles a contradiction by drawing the concrete half of
+    // it — the shoppers. An era whose crowd is empty has to be a physical state
+    // with nobody in it, not the live block with one adjective swapped.
+    private static void DoC84(
+        BrandSeries series, Dictionary<int, Prompt> brandRun,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        var deserted = new List<int>();
+
+        foreach (var (year, prompt) in brandRun.OrderBy(p => p.Key))
+        {
+            var era = series.Eras[year.ToString()];
+            if (!era.CrowdDensity.Equals("empty", StringComparison.OrdinalIgnoreCase)
+                && !era.CrowdDensity.Equals("deserted", StringComparison.OrdinalIgnoreCase))
+            {
+                // The live case, checked from the other side: a populated era
+                // must never leave the density word standing as bare grammar.
+                if (prompt.Text.Contains($"are {era.CrowdDensity} —", StringComparison.OrdinalIgnoreCase))
+                    errs.Add($"{year}: crowd stated as the raw word \"{era.CrowdDensity}\" rather than a group");
+                continue;
+            }
+
+            deserted.Add(year);
+            if (!prompt.Text.Contains("Nobody is in frame", StringComparison.Ordinal))
+                errs.Add($"{year}: crowd is \"{era.CrowdDensity}\" but the prompt never says nobody is there");
+            foreach (var word in new[] { "shoppers walking", "clothing and grooming" })
+                if (prompt.Text.Contains(word, StringComparison.OrdinalIgnoreCase))
+                    errs.Add($"{year}: deserted era still describes \"{word}\"");
+        }
+
+        f.Add(("C84", "A brand era with an empty crowd states a place with nobody in it, not the live people block with one word changed",
+            errs.Count == 0, errs.Count == 0
+                ? (deserted.Count > 0
+                    ? $"deserted eras: {string.Join(", ", deserted)}; every populated era states a group, never the bare density word"
+                    : "no deserted era in this series; every populated era states a group")
+                : Join(errs)));
+    }
+
+    // The single most destructive thing this mode can get wrong. Under chaining
+    // the uploaded frame already wears the previous era's sign; a LOGO block that
+    // only describes the new one adds without removing, and the model keeps the
+    // old lettering or blends the two into a logo that never existed — on the
+    // building the whole series exists to show. So a changed logo must state the
+    // takedown, and an unchanged one must state that it stays, or a redraw
+    // wanders. Every era carrying a spec must also carry its reference image:
+    // the words alone are what the reference exists to stop the model guessing at.
+    private static void DoC85(
+        BrandSeries series, Dictionary<int, Prompt> brandRun,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        var years = brandRun.Keys.OrderBy(y => y).ToList();
+        var swapped = new List<int>();
+        var held    = new List<int>();
+
+        foreach (var year in years)
+        {
+            var era  = series.Eras[year.ToString()];
+            var text = brandRun[year].Text;
+            if (era.LogoSpec is not { Count: > 0 } spec)
+                continue;
+
+            // A described logo with no reference is exactly the case the
+            // reference was added to prevent.
+            if (era.LogoRef is null)
+                errs.Add($"{year}: states letterforms with no reference image to check them against");
+
+            var index = years.IndexOf(year);
+            if (index == 0)
+                continue;
+
+            var previousSpec = series.Eras[years[index - 1].ToString()].LogoSpec;
+            var changed = previousSpec is null || !previousSpec.SequenceEqual(spec, StringComparer.Ordinal);
+
+            if (changed)
+            {
+                swapped.Add(year);
+                if (!text.Contains("is the OLD sign and is being replaced", StringComparison.Ordinal))
+                    errs.Add($"{year}: logo differs from {years[index - 1]} but the prompt never says the old one comes down");
+                if (!text.Contains("no ghost, no outline, no leftover letter", StringComparison.Ordinal))
+                    errs.Add($"{year}: takedown does not rule out a ghost of the old lettering");
+            }
+            else
+            {
+                held.Add(year);
+                if (!text.Contains("unchanged from the uploaded photo", StringComparison.Ordinal))
+                    errs.Add($"{year}: same logo as {years[index - 1]} but the prompt does not say it stays");
+                if (text.Contains("being replaced", StringComparison.Ordinal))
+                    errs.Add($"{year}: asks for a takedown of a sign that did not change");
+            }
+        }
+
+        f.Add(("C85", "A brand era whose logo changed states the old sign's takedown; one whose logo did not says it stays; every stated logo carries its reference image",
+            errs.Count == 0, errs.Count == 0
+                ? $"replaced in {Join2(swapped)}; held in {Join2(held)}; every logo era carries a reference"
+                : Join(errs)));
+    }
+
+    private static string Join2(IReadOnlyList<int> years) =>
+        years.Count == 0 ? "none" : string.Join(", ", years);
+
+    // The brand series is a scene type like any other as far as the caption tail
+    // is concerned — it just had no files, so every Kmart video would have gone
+    // out wearing base.txt, which is written about a place nobody photographed.
+    // This asserts the lookup actually lands on the series' own pools, and holds
+    // them to the same floors every other type is held to.
+    private static async Task DoC86(
+        IDataService dataService, ICaptionService captions, BrandSeries series,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        const int minBodies = 15;   // C26's floor
+        const int minTitles = 12;   // C59's floor
+
+        var key = series.SceneType;
+        string rawBodies = "", rawTitles = "";
+        try   { rawBodies = await dataService.LoadCaptionBodiesAsync(key); }
+        catch (FileNotFoundException) { errs.Add($"no data/captions/{key}.txt — the series falls back to base.txt"); }
+        try   { rawTitles = await dataService.LoadTitleTemplatesAsync(key); }
+        catch (FileNotFoundException) { errs.Add($"no data/captions/titles/{key}.txt — the series falls back to titles/base.txt"); }
+
+        var bodies = rawBodies.Split("\n---\n").Select(b => b.Trim()).Where(b => b.Length > 0).ToList();
+        var titles = rawTitles.Split('\n').Select(t => t.Trim()).Where(t => t.Length > 0).ToList();
+
+        if (rawBodies.Length > 0 && bodies.Count < minBodies)
+            errs.Add($"{key}.txt has {bodies.Count} bodies, expected >= {minBodies}");
+        if (rawTitles.Length > 0 && titles.Count < minTitles)
+            errs.Add($"titles/{key}.txt has {titles.Count} titles, expected >= {minTitles}");
+        foreach (var dupe in bodies.GroupBy(b => b).Where(g => g.Count() > 1))
+            errs.Add($"{key}.txt repeats a body — the pool is smaller than it looks");
+        foreach (var dupe in titles.GroupBy(t => t).Where(g => g.Count() > 1))
+            errs.Add($"titles/{key}.txt repeats \"{dupe.Key}\"");
+
+        var allowed = new HashSet<string>(StringComparer.Ordinal) { "firstYear", "lastYear", "angle", "condition" };
+        var placeholder = new System.Text.RegularExpressions.Regex(@"\{(\w+)\}");
+        foreach (var body in bodies)
+        {
+            var used = placeholder.Matches(body).Select(m => m.Groups[1].Value).ToHashSet(StringComparer.Ordinal);
+            foreach (var bad in used.Except(allowed))
+                errs.Add($"{key}.txt uses unknown placeholder {{{bad}}}");
+            if (!used.Contains("firstYear") || !used.Contains("lastYear"))
+                errs.Add("a body does not carry both years");
+            if (!used.Contains("condition"))
+                errs.Add("a body does not carry the condition");
+            if (!body.TrimEnd().EndsWith('?'))
+                errs.Add("a body does not end on a question");
+            if (body.Contains('#'))
+                errs.Add("a body carries a hashtag — those are appended, not written in");
+        }
+        foreach (var title in titles)
+        {
+            var used = placeholder.Matches(title).Select(m => m.Groups[1].Value).ToHashSet(StringComparer.Ordinal);
+            foreach (var bad in used.Except(new[] { "firstYear", "lastYear" }))
+                errs.Add($"titles/{key}.txt uses {{{bad}}} — a title carries years only");
+            var rendered = title.Replace("{firstYear}", "1975").Replace("{lastYear}", "2025");
+            if (rendered.Length >= 100)
+                errs.Add($"a title renders to {rendered.Length} chars, over YouTube's 100");
+        }
+
+        // And end to end: the assembled caption for a finished series run must
+        // come out fully substituted, from these pools rather than the fallback.
+        if (errs.Count == 0)
+        {
+            var standIn = BrandCaptionScene(series);
+            var caption = await captions.GenerateAsync(standIn, new SceneNarrative(
+                FirstYear: series.Years.Min(), LastYear: series.Years.Max(),
+                FinalCondition: "redeveloped", FirstBrand: series.Brand,
+                LastBrand: series.Brand, RebrandOccurred: false));
+
+            foreach (System.Text.RegularExpressions.Match m in placeholder.Matches(caption.Description))
+                errs.Add($"assembled caption left {m.Value} unresolved");
+            if (!bodies.Any(b => caption.Description.Contains(b.Split('\n')[0].Trim(), StringComparison.Ordinal)))
+                errs.Add("assembled caption did not come from the series' own body pool");
+            if (!titles.Any(t => caption.Title == t.Replace("{firstYear}", series.Years.Min().ToString())
+                                                  .Replace("{lastYear}", series.Years.Max().ToString())))
+                errs.Add($"assembled title \"{caption.Title}\" did not come from the series' own title pool");
+            if (caption.Hashtags.Count == 0)
+                errs.Add("assembled caption carries no hashtags");
+        }
+
+        f.Add(("C86", "The brand series has its own caption bodies and title hooks, and the caption tail resolves to them rather than falling back to base",
+            errs.Count == 0, errs.Count == 0
+                ? $"{bodies.Count} bodies, {titles.Count} titles under data/captions/{key}*, caption and title assemble from them"
+                : Join(errs)));
+    }
+
+    // The same stand-in RunService writes to scene.json for a brand run: the
+    // caption tail reads a SceneDna and has no idea the run had no photograph.
+    private static SceneDna BrandCaptionScene(BrandSeries series) => new(
+        Id:        series.Brand.ToLowerInvariant().Replace(' ', '-'),
+        CreatedAt: "2026-01-01T00:00:00Z",
+        SceneType: series.SceneType,
+        Camera:    new Camera("eye-level", "storefront-facing", 75),
+        Geometry:  new Geometry([], true, true, [], [], "open asphalt lot"),
+        Environment: new Environment("suburban", [], [], []),
+        ImmutableElements: [series.StoreDescription]);
 
     private static async Task WriteReport(
         List<(string Id, string Desc, bool? Pass, string Detail)> findings,

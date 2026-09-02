@@ -28,15 +28,18 @@ distort the source geometry.
 TRANSFORM TO 2005
 Post-9/11 era. A 2005 main street — cellular stores and chain coffee arriving, the video store in its final days, flip phones in every hand.
 
-CONDITION: busy — customers present, high activity, all pumps in use
+CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
+- a liquor store still open, its lit window the brightest thing in the row
+- a tax preparation and check-cashing office still open a few doors along, plain lettering, bars on the window
+- most of the other units dark behind the glass, several papered over from the inside
 - the video rental store closing down — 'EVERYTHING MUST GO — ALL MOVIES $3' banner across the window
-- MARY'S DINER with a refreshed awning and a 'COFFEE $1.25' vinyl decal on the glass
-- video game store with a 'USED GAMES' sign and a midnight-release poster
-- window signs: 'TANNING — 1 MONTH UNLIMITED $29', 'DVDs $14.99'
-- the ghost-sign reduced to a faint trace of paint on the brick
+- STAR DINER with a refreshed awning and a 'COFFEE $1.25' vinyl decal on the glass
+- barber shop with its spinning barber pole, unchanged
+- window signs: 'EVERYTHING MUST GO — 50-70% OFF', 'TANNING — 1 MONTH UNLIMITED $29'
 - a single scuffed payphone covered in stickers, rarely used
+- ribbon magnets on a lamppost
 Typography: clean sans-serif, polished brand identities.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
@@ -44,33 +47,33 @@ SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 'EVERYTHING MUST GO — ALL MOVIES $3'
 'COFFEE $1.25'
-'USED GAMES'
+'EVERYTHING MUST GO — 50-70% OFF'
 'TANNING — 1 MONTH UNLIMITED $29'
-'DVDs $14.99'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 14 people TOTAL: 6 near sidewalk (largest, foreground), 5 opposite sidewalk mid-block, 3 distant, far end of block. Grouped in pairs, threes, and singles.
-- a man loading a flat-screen TV box into an SUV
-- a teenager texting on a flip phone with both thumbs
-- a group of college kids with messenger bags
-Clothing: men in trucker hats, frosted tips hair; women in trucker hats, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 2 people TOTAL: 1 near sidewalk (largest, foreground), 1 opposite sidewalk mid-block. Grouped in pairs, threes, and singles.
+- of these, one person waiting outside the liquor store for someone, not going in — keeping to themselves, not looking at the camera
+- a boy on a razor scooter weaving around a bench
+- a shopper digging through the closing video store's sidewalk bargain bins
+- a teenager adjusting an MP3 player clipped to his belt
+Clothing: men in graphic tees, baggy jeans; women in velour tracksuits, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 5 period vehicles, all different:
-- 2003-2007 Nissan Altima — sporty mid-size — black
-- 2002-2008 Dodge Ram — big rig grille evolved — white
-- 2005-2010 Ford Mustang — retro muscle revival — gray
-- 2004-2008 Chrysler 300 — bold boxy retro chrome grille — silver
-- 1998-2004 Nissan Frontier — compact pickup — dark blue
+EXACTLY 1 period vehicle:
+- 2003-2008 Toyota Corolla — conservative compact sedan — white
 Parked with gaps. Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
-PLACEMENT: all parked on the RIGHT side of the street with gaps between them. No vehicle in the same spot as any other era.
+PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
-- road markings: yellow center line, white edge lines, turn arrows
+- road markings: worn and faded, well past their last repainting
 - utilities: overhead power lines standard, cable and fiber lines on poles appearing
 
+DECAY
+- one storefront papered over from inside, a handwritten sign taped to the glass
+- peeling paint along the storefront cornice
+Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - oak tree at sidewalk left near corner: slightly smaller than in the base image — about 90% of its canopy there
 - maple tree at sidewalk center in front of retail: clearly smaller than in the base image — about 75% of its canopy there, thinner trunk
@@ -80,7 +83,7 @@ PHOTOGRAPHIC STYLE
 COLOR photograph — early digital camera or Kodak/Fuji consumer film look.
 Color: neutral tones. Grain: low grain, early digital noise in shadows.
 Photorealistic — NOT black-and-white, no HDR.
-Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+Light: plain daylight, lightly overcast, soft shadows — colours a little muted, quiet but not bleak.
 
 PRIVACY
 Blur all faces and license plates.

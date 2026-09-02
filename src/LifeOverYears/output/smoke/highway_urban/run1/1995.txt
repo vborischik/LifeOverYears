@@ -42,13 +42,12 @@ PEOPLE
 NO people on foot anywhere — nobody walking, standing or waiting at the roadside. Everyone in this scene is inside a moving vehicle.
 
 VEHICLES
-EXACTLY 6 period vehicles, all different:
-- 1992-1996 Toyota Camry — rounded, understated — burgundy
+EXACTLY 5 period vehicles, all different:
+- 1992-1997 Ford Taurus — rounded jellybean shape, oval theme — white
+- 1995-1999 Chevrolet Cavalier — compact, rounded — black
+- 1993-1997 Toyota Corolla — rounded compact sedan — teal
 - 1994-1997 Honda Accord — smooth rounded sedan — silver
-- 1991-1996 Buick Roadmaster — large rounded wagon and sedan — black
-- 1992-1997 Ford Taurus — rounded jellybean shape, oval theme — hunter green
-- 1992-1995 Pontiac Grand Am — compact with ribbed plastic cladding — white
-- 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size — navy blue
+- 1988-1998 Chevrolet C/K 1500 — softly squared pickup — navy blue
 Where a model is listed with a year range, render the 1995 model year specifically — only styling, trim and features available in 1995, nothing introduced later. No vehicle newer than 1995.
 Each vehicle is travelling in its own lane at highway speed, spaced by natural following distance, all heading the same direction as the camera's vantage point. None stopped, and none standing on the shoulder.
 

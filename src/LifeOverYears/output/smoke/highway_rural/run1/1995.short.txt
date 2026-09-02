@@ -4,8 +4,8 @@ Keep the uploaded photo's exact composition, camera angle, road and building geo
 TRANSFORM TO 1995 — condition: well kept — freshly painted, open for business
 
 PERIOD DETAILS
-- thermoplastic centre line, bright against the new asphalt
-- paved shoulders with a rumble strip cut along the edge line
+- steel transmission towers standing back from the roadway in the distance
+- high-intensity reflective sheeting on the route and warning signs
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
@@ -16,8 +16,8 @@ NO people on foot. Everyone in the scene is inside a moving vehicle.
 
 VEHICLES
 EXACTLY 2 vehicles, 1995 model year, and no others:
-- 1995-1999 Dodge Neon — small rounded economy, friendly face — hunter green
-- 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size — black
+- 1995-1999 Dodge Neon — small rounded economy, friendly face — silver
+- 1991-1996 Chevrolet Caprice — whale-shaped, rounded full-size — hunter green
 Moving in their own lanes at highway speed, natural spacing, all heading the same way. None parked on the shoulder. Plates blurred.
 
 TREES

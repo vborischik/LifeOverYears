@@ -31,33 +31,33 @@ Post-9/11 era. A 2005 standalone shop down to the last things people still drive
 CONDITION: declining — faded paint, minor wear, aging signage, sparse activity
 
 PERIOD DETAILS
-- covered walkways at lifestyle centers
-- steel bars fitted across the entrance windows
-- a security camera aimed down at the entrance
-- main sign: "RIVERSIDE FOOD MARKET" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
-- window signs: 'ATM', 'LOTTO'
-- a taped-up notice about the check-cashing fee in the window
+- half the shelving visible through the window standing empty
+- a check-cashing banner across the top of the window
+- faux-traditional facade details
+- main sign: "HIGHLAND PHARMACY" — a neighbourhood pharmacy, painted sign board over the door with a mortar-and-pestle emblem beside the lettering
+- window signs: 'MONEY ORDERS', 'CHECK CASHING'
+- a dented steel trash can bolted beside the entrance
 - a cigarette-brand panel faded on the sun side
 Typography: clean sans-serif, polished brand identities.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
-'RIVERSIDE FOOD MARKET'
-'ATM'
-'LOTTO'
+'HIGHLAND PHARMACY'
+'MONEY ORDERS'
+'CHECK CASHING'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
-EXACTLY 2 people TOTAL: 1 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles. Grouped in pairs, threes, and singles.
-- two people talking low near a car at the far edge of the apron
-- someone reading the check-cashing fee notice through the bars
-- a jogger checking a heart-rate monitor watch mid-stride
-Clothing: men in baggy jeans, trucker hats; women in trucker hats, low-rise jeans. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+EXACTLY 3 people TOTAL: 1 in the foreground near the building entrance (largest), 1 mid-ground out on the lot, beside parked vehicles, 1 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
+- a man parked close to the door with the engine running
+- a driver waiting in a car with the windows down
+- a delivery driver checking a handheld scanner before knocking
+Clothing: men in graphic tees, baggy jeans; women in chunky highlights, trucker hats. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 1 period vehicle:
-- 2003-2007 Honda Accord — clean lines, sharper than 1990s — white
+- 2003-2007 Nissan Altima — sporty mid-size — dark red
 Parked with gaps. Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
 Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic.
 PLACEMENT: the first one parked on the LEFT side near the corner; the rest parked on the RIGHT side. No vehicle in the same spot as any other era.
@@ -67,8 +67,8 @@ ENVIRONMENT
 - utilities: overhead power lines standard, cable and fiber lines on poles appearing
 
 DECAY
-- the parking apron cracked and patched, weeds through the seams
-- an ice cooler chained to the wall beside the entrance
+- milk crates and flattened boxes stacked by the side door
+- steel bars fitted across the lower windows, newer than everything around them
 Wear is surfaces only — road, curbs, footprints, camera unchanged.
 TREES
 - honey locust tree at lot edge beside the ground sign: clearly smaller than in the base image — about 50% of its canopy there, thinner trunk, in leaf but untrimmed, suckers at the base and one dead limb

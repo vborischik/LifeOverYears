@@ -29,40 +29,42 @@ TRANSFORM TO 2005
 Post-9/11 era. A 2005 enclosed mall past its peak — the end-cap letters changed hands again, the box unchanged, whole rows of the lot empty on a weekday.
 
 PERIOD DETAILS
+- monument signs at lifestyle centers
+- drive-through digital menu boards beginning
 - electronic message boards common
-- large illuminated box signs
-- LED price signs at gas stations
-- window signs: 'OPEN 10-9 MON-SAT', 'MACY'S'
-- rows of tall lot light poles on concrete bases
-- a metal bus shelter at the lot edge
+- window signs: 'DILLARD'S', 'OPEN 10-9 MON-SAT'
+- crisp freshly painted stall lines
+- faded stall lines with asphalt patching between rows
 Typography: clean sans-serif, polished brand identities.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
+'DILLARD'S'
 'OPEN 10-9 MON-SAT'
-'MACY'S'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 15 people TOTAL: 6 in the foreground near the building entrance (largest), 5 mid-ground out on the lot, beside parked vehicles, 4 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
-- a mother steadying a toddler on the crosswalk
+- kids cutting diagonally across the lot
 - two women carrying department store bags to a station wagon
-- an office worker clipped to a Bluetooth headset mid-conversation
-Clothing: men in graphic tees, cargo shorts; women in chunky highlights, velour tracksuits. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a delivery driver checking a handheld scanner before knocking
+Clothing: men in graphic tees, frosted tips hair; women in chunky highlights, layered tank tops. Fashion palette: denim, pink, white. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
-EXACTLY 7 period vehicles, all different:
-- 2001-2007 Dodge Grand Caravan — family minivan, rounded — white
-- 2004-2008 Ford F-150 — bigger, bolder grille — black
-- 2002-2008 Dodge Ram — big rig grille evolved — gray
-- 2005-2010 Chevrolet Cobalt — compact economy sedan — gold
-- 2003-2008 Honda Pilot — boxy three-row SUV — dark red
+EXACTLY 9 period vehicles, all different:
+- 2001-2007 Ford Escape — compact boxy SUV — gold
+- 2002-2008 Dodge Ram — big rig grille evolved — dark red
+- 2005-2010 Chevrolet Cobalt — compact economy sedan — black
 - 2000-2006 Chevrolet Tahoe — full-size SUV peak era — silver
-- 2001-2007 Ford Escape — compact boxy SUV — dark blue
+- 2005-2010 Jeep Grand Cherokee — rounded modern SUV — dark blue
+- 2003-2009 Hummer H2 — massive military-styled SUV — gray
+- 2000-2005 Ford Focus — European-styled compact — white
+- 1999-2006 Chevrolet Silverado — squared modern look — period-correct color
+- 2004-2012 Chevrolet Colorado — mid-size pickup — period-correct color
 Parked with gaps. Where a model is listed with a year range, render the 2005 model year specifically — only styling, trim and features available in 2005, nothing introduced later. No vehicle newer than 2005.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
-PLACEMENT: three nose-in near the building; the rest in stalls at the far edge of the lot. No vehicle in the same spot as any other era.
+PLACEMENT: all parked in the lot, nose-in to marked stalls, with gaps between them. No vehicle in the same spot as any other era.
 
 ENVIRONMENT
 - road markings: yellow center line, white edge lines, turn arrows

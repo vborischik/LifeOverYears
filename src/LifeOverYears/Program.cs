@@ -95,9 +95,10 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
     if (isSmokeTest)
     {
         var promptService = container.Resolve<IPromptService>();
+        var brandService  = container.Resolve<IBrandSeriesPromptService>();
         var dataService   = container.Resolve<IDataService>();
         var promptResult = await PromptSmokeTest.RunAsync(
-            promptService, dataService,
+            promptService, brandService, dataService, container.Resolve<ICaptionService>(),
             loggerFactory.CreateLogger("SmokeTest"));
         var folderResult = await FolderSmokeTest.RunAsync(loggerFactory.CreateLogger("SmokeTest"));
         return promptResult == 0 && folderResult == 0 ? 0 : 1;
@@ -114,6 +115,13 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
     // provider requires configuration.
     if (args.Length >= 1 && args[0] == "collect")
         return await RunCollectAsync(args.Skip(1).ToArray(), launchDir, container, loggerFactory);
+
+    // 'brand <name> [years...]' — the second generation path: the scene comes
+    // from data/brands/series/{name}.json instead of a photograph, so Vision is
+    // never called and no image is ever uploaded as a source. Everything after
+    // the prompt is the ordinary run folder / chaining / overlay / assembly path.
+    if (args.Length >= 1 && args[0] == "brand")
+        return await RunBrandAsync(args.Skip(1).ToArray(), container, loggerFactory);
 
     // 'run <photoPath> [years...]' — the mode keyword is optional for now
     if (args.Length >= 1 && args[0] == "run")
@@ -152,6 +160,38 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
         // photo path, vision failure, config error) would otherwise lose its
         // whole buffered log — this is the fallback destination for exactly
         // that case. No-op once a real run.log exists.
+        RunLogProvider.FlushIfUnattached();
+    }
+}
+
+static async Task<int> RunBrandAsync(
+    string[] args, Autofac.IContainer container, ILoggerFactory loggerFactory)
+{
+    var logger = loggerFactory.CreateLogger("Brand");
+    if (args.Length < 1)
+    {
+        logger.LogError("brand requires a series name: brand <name> [years...]");
+        return 1;
+    }
+
+    // No default year list here, unlike every other mode: the series file
+    // carries its own years, and defaulting to the standard six would invent
+    // eras a brand may not have.
+    var years = args.Skip(1).Select(int.Parse).ToList();
+
+    try
+    {
+        return await container.Resolve<BrandSeriesRunner>().RunAsync(args[0], years);
+    }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "Brand series run failed");
+        return 1;
+    }
+    finally
+    {
+        // Same fallback as the photo run: a run that dies before the run folder
+        // exists would otherwise lose its whole buffered log.
         RunLogProvider.FlushIfUnattached();
     }
 }
@@ -254,10 +294,30 @@ static async Task<int> RunCollectAsync(
     var jobsDir    = Path.Combine(folder, "jobs");
     var promptsDir = Path.Combine(folder, "prompts");
     var provider   = container.Resolve<IImageGenerationProvider>();
-    var chained    = container.Resolve<IConfiguration>().GetValue("Pipeline:EraChaining", true);
+
+    // A brand run keeps its series file beside run.json. Without it collect
+    // would resume one blind: it would resubmit eras with no logo reference —
+    // the one input that stops the model inventing the sign — and it would give
+    // up entirely on a missing first frame, because a brand run has no shared
+    // base for that frame to be edited from.
+    var seriesPath = Path.Combine(folder, "series.json");
+    LifeOverYears.Models.BrandSeries? series = null;
+    if (File.Exists(seriesPath))
+    {
+        series = System.Text.Json.JsonSerializer.Deserialize<LifeOverYears.Models.BrandSeries>(
+            await File.ReadAllTextAsync(seriesPath),
+            new System.Text.Json.JsonSerializerOptions(System.Text.Json.JsonSerializerDefaults.Web));
+        logger.LogInformation("collect: brand series run ({Brand})", series?.Brand);
+    }
+
+    // Never a choice for a brand run: with no shared base, era N+1 has only
+    // era N to edit.
+    var chained = series is not null
+                  || container.Resolve<IConfiguration>().GetValue("Pipeline:EraChaining", true);
 
     // The shared base every non-chained era edits, and the starting point of a
-    // chained run. Whichever mode produced this run, its file is already here.
+    // chained run. Whichever mode produced this run, its file is already here —
+    // except a brand run, which has none and opens on its first era instead.
     var sharedBase = new[] { "base_synthetic.png", "base_clean.png" }
         .Select(name => Path.Combine(folder, name))
         .FirstOrDefault(File.Exists);
@@ -290,6 +350,7 @@ static async Task<int> RunCollectAsync(
             // shared one or the previous era's image.
             var jobPath    = Path.Combine(jobsDir, $"{year}.json");
             var promptPath = Path.Combine(promptsDir, $"{year}.txt");
+            var drawnNow   = false;
             if (!File.Exists(jobPath))
             {
                 if (!File.Exists(promptPath))
@@ -297,15 +358,47 @@ static async Task<int> RunCollectAsync(
                     logger.LogError("collect: {Year} has no job state and no prompts/{Year}.txt to resubmit from", year, year);
                     return 1;
                 }
-                if (chainBase is null)
+                if (chainBase is null && series is null)
                 {
                     logger.LogError("collect: {Year} needs resubmitting but the run has no base image", year);
                     return 1;
                 }
 
-                logger.LogInformation("collect: {Year} was never submitted — submitting from {Base}",
-                    year, Path.GetFileName(chainBase));
-                await provider.SubmitEraAsync(chainBase, await File.ReadAllTextAsync(promptPath), year, jobsDir);
+                if (chainBase is null)
+                {
+                    // The series' opening frame. It was drawn from text the
+                    // first time and is redrawn the same way — there is nothing
+                    // for it to edit, and losing one frame must not cost the run.
+                    logger.LogInformation(
+                        "collect: {Year} is the series' first frame and is missing — redrawing it from text", year);
+                    await provider.SynthesizeBaseAsync(await File.ReadAllTextAsync(promptPath), outputPath);
+                    drawnNow = true;
+                }
+                else
+                {
+                    var reference = BrandLogoRef(series, year);
+                    logger.LogInformation("collect: {Year} was never submitted — submitting from {Base}{Reference}",
+                        year, Path.GetFileName(chainBase),
+                        reference is null ? "" : $" with reference {reference}");
+                    await provider.SubmitEraAsync(
+                        chainBase, await File.ReadAllTextAsync(promptPath), year, jobsDir, reference);
+                }
+            }
+
+            // A frame drawn from text is written synchronously and has no job to
+            // poll, so it is judged by whether the file landed.
+            if (drawnNow)
+            {
+                if (VideoAssemblyRunner.FindEraImage(imagesDir, year) is { } drawn)
+                {
+                    logger.LogInformation("Collected {Year}", year);
+                    chainBase = drawn;
+                    continue;
+                }
+                logger.LogInformation("Pending {Year}", year);
+                pending.Add(year);
+                if (chained) break;
+                continue;
             }
 
             bool collected;
@@ -385,6 +478,15 @@ static async Task<int> RunCollectAsync(
     logger.LogInformation("collect complete — video: {Path}, caption.txt: {CaptionState}",
         video.FilePath, captionState);
     return 0;
+}
+
+// An era's logo sheet, as data/-relative as the series file writes it. Null for
+// a photo run, and for the eras after the sign comes down.
+static string? BrandLogoRef(LifeOverYears.Models.BrandSeries? series, int year)
+{
+    if (series is null || !series.Eras.TryGetValue(year.ToString(), out var era) || era.LogoRef is null)
+        return null;
+    return Path.Combine("data", era.LogoRef.Replace('/', Path.DirectorySeparatorChar));
 }
 
 static void MoveProcessedPhoto(string photoPath, string projectRoot, string destDir, ILogger logger)

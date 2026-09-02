@@ -29,9 +29,9 @@ TRANSFORM TO 2025
 Post-pandemic era. A 2025 urban interstate widened as far as the right-of-way allows — LED everything, gantries every mile, and traffic that fills every lane it was given.
 
 PERIOD DETAILS
-- a fulfilment centre with a large illuminated sign on the wall, unreadable from the roadway
+- an office park sign panel with lettering too small to resolve from the road
+- LED lighting throughout, cool white and evenly spaced
 - the same concrete sound barrier walls, stained and weathered along the base
-- wide reflective edge lines with a milled rumble strip
 Typography: minimalist geometric sans-serif, heavily simplified flat logos.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 
@@ -43,11 +43,11 @@ NO people on foot anywhere — nobody walking, standing or waiting at the roadsi
 
 VEHICLES
 DENSE MOVING TRAFFIC — a continuous stream filling every lane in view, out to the far edge of the frame, too many vehicles to count individually, all travelling at highway speed and close together. Representative models visible near the camera:
-- 2022-2025 Chevrolet Silverado — refreshed bold grille — dark green
-- 2019-2025 Subaru Outback — rugged wagon crossover — white
-- 2019-2025 Chevrolet Equinox — rounded compact crossover — blue
-- 2017-2025 Honda CR-V — rounded best-selling crossover — black
-- 2020-2025 Hyundai Tucson — sharp parametric grille design — silver
+- 2017-2025 Honda CR-V — rounded best-selling crossover — silver
+- 2023-2025 Honda Accord — clean minimalist refresh — dark green
+- 2020-2025 Hyundai Tucson — sharp parametric grille design — white
+- 2019-2025 Subaru Forester — practical boxy crossover — black
+- 2024-2025 Toyota Grand Highlander — large family crossover — blue
 Every other vehicle in the traffic is period-correct for 2025; nothing newer. All in their own lane and moving; none stopped, and none on the shoulder.
 
 ENVIRONMENT

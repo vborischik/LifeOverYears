@@ -6,8 +6,12 @@ public interface IOpenAiProvider
 {
     // POST /v1/images/edits (multipart). Sends referenceImage as the image to
     // edit plus the prompt; returns the decoded PNG bytes of the result.
+    // extraImage rides along as a second "image[]" part — the endpoint already
+    // takes an array — for a brand series' logo sheet. The prompt says which of
+    // the two is being edited and which is only being copied from.
     Task<byte[]> EditImageAsync(
         byte[] referenceImage, string prompt, string size, string quality,
+        byte[]? extraImage = null,
         CancellationToken ct = default);
 
     // POST /v1/images/generations (JSON). No reference image — the prompt is

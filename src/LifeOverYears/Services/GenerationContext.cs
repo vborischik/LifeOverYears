@@ -26,6 +26,24 @@ public sealed class GenerationContext
 
     public bool TryUseCarModel(string model) => UsedCarModels.Add(BaseModelName(model));
 
+    // ── Tree growth ───────────────────────────────────────────────────────────
+    // The year whose canopy the uploaded frame actually shows, per tree.
+    //
+    // Not the previous era. A decade of growth on a large or background tree
+    // comes to about 5%, which is below what an image model can draw — so those
+    // eras now say nothing about trees at all and leave the canopy exactly as
+    // they found it. The comparison therefore has to reach back to the last era
+    // that actually stated a size, or the growth is measured against a frame
+    // that never changed and the tree stands still for fifty years.
+    private readonly Dictionary<string, int> _treeGrowthAnchors = new(StringComparer.OrdinalIgnoreCase);
+
+    // fallbackYear is the run's first era: before anything has been stated, the
+    // uploaded frame shows what that era drew.
+    public int TreeGrowthAnchor(string treeKey, int fallbackYear) =>
+        _treeGrowthAnchors.TryGetValue(treeKey, out var year) ? year : fallbackYear;
+
+    public void RecordTreeGrowthStated(string treeKey, int year) => _treeGrowthAnchors[treeKey] = year;
+
     // Same shape as UsedCarModels, but for people-activity/people-mix bullet
     // lines: without this, people picks had no cross-era memory the way cars do.
     public HashSet<string> UsedPeopleLines { get; } = new(StringComparer.OrdinalIgnoreCase);

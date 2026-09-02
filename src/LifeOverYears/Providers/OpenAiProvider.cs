@@ -35,6 +35,7 @@ public sealed class OpenAiProvider : IOpenAiProvider
 
     public async Task<byte[]> EditImageAsync(
         byte[] referenceImage, string prompt, string size, string quality,
+        byte[]? extraImage = null,
         CancellationToken ct = default)
     {
         var payload = await SendWithRetryAsync(() =>
@@ -49,6 +50,16 @@ public sealed class OpenAiProvider : IOpenAiProvider
             var imageContent = new ByteArrayContent(referenceImage);
             imageContent.Headers.ContentType = new MediaTypeHeaderValue("image/png");
             form.Add(imageContent, "image[]", "base.png");
+
+            // Second part, same field name — the field is already an array. It
+            // goes after the base on purpose: the first image is the one being
+            // edited, and the prompt refers to this one as the reference.
+            if (extraImage is not null)
+            {
+                var extraContent = new ByteArrayContent(extraImage);
+                extraContent.Headers.ContentType = new MediaTypeHeaderValue("image/png");
+                form.Add(extraContent, "image[]", "reference.png");
+            }
             return new HttpRequestMessage(HttpMethod.Post, EditsUrl) { Content = form };
         }, ct);
 
