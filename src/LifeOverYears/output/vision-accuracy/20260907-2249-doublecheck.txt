@@ -1,0 +1,36 @@
+﻿VISION ACCURACY — 8 labelled photos of 8, DoubleCheck=on
+
+photo        field       expected         got              result
+auto1        scene_type  auto_repair      (failed)         MISMATCH
+auto1        parking     lot              (failed)         MISMATCH
+auto1        sidewalks   true             (failed)         MISMATCH
+auto2        scene_type  auto_repair      auto_repair      ok
+auto2        parking     lot              lot              ok
+auto2        sidewalks   true             false            MISMATCH
+downtown1    scene_type  downtown_street  (failed)         MISMATCH
+downtown1    parking     on-street        (failed)         MISMATCH
+downtown1    sidewalks   true             (failed)         MISMATCH
+downtown3    scene_type  downtown_street  corner_shop      MISMATCH
+downtown3    parking     on-street        on-street        ok
+downtown3    sidewalks   true             true             ok
+gas1         scene_type  gas_station      gas_station      ok
+gas1         parking     lot              lot              ok
+gas1         sidewalks   false            false            ok
+gas10        scene_type  gas_station      gas_station      ok
+gas10        parking     lot              lot              ok
+gas10        sidewalks   true             false            MISMATCH
+gas16        scene_type  gas_station      (failed)         MISMATCH
+gas16        parking     lot              (failed)         MISMATCH
+gas16        sidewalks   false            (failed)         MISMATCH
+mall1        scene_type  shopping_center  shopping_center  ok
+mall1        parking     lot              lot              ok
+mall1        sidewalks   false            false            ok
+
+scene_type  4/8 correct
+parking     5/8 correct
+sidewalks   3/8 correct
+
+3 photo(s) the model could not read at all.
+
+Run again with --no-double-check and compare: a verification pass that
+does not raise these numbers is not earning its call.

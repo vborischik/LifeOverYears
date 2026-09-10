@@ -1,0 +1,34 @@
+﻿VISION ACCURACY — 8 labelled photos of 8, DoubleCheck=off
+
+photo        field       expected         got              result
+auto1        scene_type  auto_repair      auto_repair      ok
+auto1        parking     lot              lot              ok
+auto1        sidewalks   true             true             ok
+auto2        scene_type  auto_repair      freestanding_shop MISMATCH
+auto2        parking     lot              lot              ok
+auto2        sidewalks   true             false            MISMATCH
+downtown1    scene_type  downtown_street  corner_shop      MISMATCH
+downtown1    parking     on-street        on-street        ok
+downtown1    sidewalks   true             true             ok
+downtown3    scene_type  downtown_street  corner_shop      MISMATCH
+downtown3    parking     on-street        on-street        ok
+downtown3    sidewalks   true             true             ok
+gas1         scene_type  gas_station      gas_station      ok
+gas1         parking     lot              lot              ok
+gas1         sidewalks   false            false            ok
+gas10        scene_type  gas_station      gas_station      ok
+gas10        parking     lot              lot              ok
+gas10        sidewalks   true             false            MISMATCH
+gas16        scene_type  gas_station      gas_station      ok
+gas16        parking     lot              lot              ok
+gas16        sidewalks   false            false            ok
+mall1        scene_type  shopping_center  shopping_center  ok
+mall1        parking     lot              lot              ok
+mall1        sidewalks   false            false            ok
+
+scene_type  5/8 correct
+parking     8/8 correct
+sidewalks   6/8 correct
+
+Run again with --no-double-check and compare: a verification pass that
+does not raise these numbers is not earning its call.

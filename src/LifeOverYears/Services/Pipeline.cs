@@ -70,6 +70,32 @@ public sealed class Pipeline
             sceneDna.Geometry.Roads.Count,
             sceneDna.Environment.Terrain);
 
+        // Step 1b — refuse to generate a place Vision could not name.
+        //
+        // Nothing downstream fails on an unrecognised scene type: every data
+        // lookup falls back to the generic "default" pool and the run completes
+        // normally, producing six images of nowhere in particular. VisionService
+        // already retries once through EnrichAsync and then logs "still missing"
+        // and carries on — which is how a photo it never understood still costs
+        // a base image plus six eras.
+        //
+        // Checked here, before the run folder exists and before the first paid
+        // call. Returning non-zero puts the photo in the failed/ folder, which
+        // is where a photo needing a human look belongs.
+        var sceneTypePhrases = await _data.LoadSceneTypePhrasesAsync();
+        if (!SceneDnaValidator.IsRenderableSceneType(
+                sceneDna.SceneType, sceneDna.Environment.Terrain, sceneTypePhrases))
+        {
+            _logger.LogError(
+                "Vision could not place this photo — scene type {SceneType} (terrain {Terrain}) is not one this project can render. " +
+                "Nothing generated, no money spent. Known types: {Known}. SceneDna kept at data/scenes/{Id}.json.",
+                string.IsNullOrWhiteSpace(sceneDna.SceneType) ? "(empty)" : sceneDna.SceneType,
+                sceneDna.Environment.Terrain ?? "(none)",
+                string.Join(", ", sceneTypePhrases.Keys.Where(k => !SceneDnaValidator.IsUndetermined(k))),
+                sceneDna.Id);
+            return 1;
+        }
+
         var run = await _runService.CreateRunAsync(sceneDna, photoPath, years);
 
         // Full vision output, verbatim — one scene per run, so verbosity here
@@ -225,9 +251,16 @@ public sealed class Pipeline
         }
 
         // Step 4 — stamp + assemble, the same tail 'collect' and 'assemble' use.
+        // Only the composition order changes here. Generation still runs oldest
+        // to newest above, because each era is edited from the one before it.
+        var frameOrder = VideoAssemblyRunner.NewestFirst(years);
+        _logger.LogInformation("Step 4 — frame order: {Order} (+ {Opener} again to close the loop)",
+            string.Join(", ", frameOrder), frameOrder[0]);
+
         var (_, video) = await VideoAssemblyRunner.RunAsync(
             _overlay, _video, run.ImagesDir, run.StampedDir,
-            Path.Combine(run.VideoDir, "timeline.mp4"), years, _logger);
+            Path.Combine(run.VideoDir, "timeline.mp4"),
+            frameOrder, _logger);
 
         if (video is null)
         {

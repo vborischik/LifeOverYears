@@ -3,7 +3,7 @@ You are a street scene analysis AI. Analyze the provided photo and return ONLY a
 Fill every field based on what you observe in the image. Use the exact schema below:
 
 {
-  "scene_type": "<gas_station|auto_repair|strip_mall|mall|downtown_street|corner_shop|freestanding_shop|motel|residential_street|highway|parking_lot|shopping_center|industrial|unknown>",
+  "scene_type": "<gas_station|auto_repair|strip_mall|mall|downtown_street|corner_shop|freestanding_shop|motel|highway|shopping_center|unknown>",
   "camera": {
     "height": "<eye-level|low|high|aerial>",
     "direction": "<street|intersection|alley|facade|park>",
@@ -29,8 +29,8 @@ Fill every field based on what you observe in the image. Use the exact schema be
     "parking": "<on-street|lot|none>",
     "buildings": [
       {
-        "type": "<residential|commercial|industrial|mixed>",
-        "position": "<left|right|center|background>",
+        "type": "<freestanding retail box|attached storefront row|corner block|pump canopy|service garage|warehouse|multi-storey block|kiosk|shed|house-form>",
+        "position": "<far left|left|center-left|center|center-right|right|far right|background>",
         "stories": <count>,
         "materials": ["<brick|concrete|stucco|wood|glass|metal>"],
         "roof": "<flat|pitched|mansard|shed>",
@@ -70,6 +70,20 @@ Rules:
   and starts another, even where the run is physically continuous: a retail
   row whose parapet steps up over a larger unit and back down is several
   buildings, not one.
+- the same applies to roads, and it is the rule most often missed: a cross
+  street meeting the one in front of the camera is a SECOND road, not part of
+  the first. If camera.direction is "intersection" there are at least two road
+  entries. A frontage road, service drive or alley running separately from the
+  main carriageway is its own entry too. What is NOT a separate road: extra
+  lanes, a turn lane, a median, or the two directions of one divided roadway —
+  those are "lanes" on a single entry.
+- building "type" is the building's FORM, not its use — nearly every photo here
+  is commercial, so naming the use says nothing and every answer came back the
+  same. "attached storefront row" for units sharing a continuous frontage,
+  "freestanding retail box" for a single block standing in its own lot, "corner
+  block" where two elevations meet at a street corner, "pump canopy" for the
+  roof over fuel islands, "service garage" for a building fronted by vehicle
+  bay doors.
 - parking is "lot" whenever a dedicated off-street paved area for customer
   parking is visible, even if street parking is also present; "on-street"
   only when parallel or angled bays along the roadway are the only parking.

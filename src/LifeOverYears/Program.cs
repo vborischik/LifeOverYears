@@ -41,6 +41,16 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
 
     // TODO: remove smoke test
     // Fully isolated: no appsettings, no DI container, no network. Drives the
+    // real VisionProvider against a fake INvidiaProvider — covers reading the
+    // model's answer, not the accuracy of what it saw.
+    if (args.Contains("--smoke-vision"))
+    {
+        using var visionLoggerFactory = LoggerFactory.Create(b => b.AddConsole().SetMinimumLevel(LogLevel.Debug));
+        return await VisionSmokeTest.RunAsync(visionLoggerFactory, visionLoggerFactory.CreateLogger("VisionSmokeTest"));
+    }
+
+    // TODO: remove smoke test
+    // Fully isolated: no appsettings, no DI container, no network. Drives the
     // real OpenAiBatchImageProvider against a fake IOpenAiProvider.
     if (args.Contains("--smoke-batch"))
     {
@@ -110,6 +120,13 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
         return await VisionVarianceTest.RunAsync(
             args.Skip(1).ToArray(), launchDir, container, loggerFactory);
 
+    // 'vision-accuracy <folder> [--no-double-check]' — grades Vision against an
+    // expected.json beside the photos. Diagnostic, like vision-variance: needs
+    // the network, and it measures a model rather than the code.
+    if (args.Length >= 1 && args[0] == "vision-accuracy")
+        return await VisionAccuracyTest.RunAsync(
+            args.Skip(1).ToArray(), launchDir, container, loggerFactory);
+
     // 'collect <runFolder> [--wait]' — fetches finished generation jobs into
     // images/, then assembles the video. Needs the DI container: the real
     // provider requires configuration.
@@ -127,41 +144,75 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
     if (args.Length >= 1 && args[0] == "run")
         args = args.Skip(1).ToArray();
 
-    var photoPath = ResolvePhotoPath(args, projectRoot, folders.InputDir);
-    var years     = args.Length >= 2
+    // Every photo in the input folder, not just the first one it happened to
+    // enumerate. Dropping five in and getting one back — with the other four
+    // silently left for a later invocation nobody remembered to make — was the
+    // old behaviour. An explicit path on the command line still means that one
+    // photo, so `run <photo> [years...]` is unchanged.
+    var photoPaths = ResolvePhotoPaths(args, projectRoot, folders.InputDir);
+    var years      = args.Length >= 2
         ? args.Skip(1).Select(int.Parse).ToList()
         : new List<int> { 1975,1985,1995,2005,2015,2025 };
 
-    try
-    {
-        var pipeline = container.Resolve<Pipeline>();
-        var result = await pipeline.RunAsync(photoPath, years);
+    var batchLogger = loggerFactory.CreateLogger("Program");
+    if (photoPaths.Count > 1)
+        batchLogger.LogInformation("Batch: {Count} photos to process — {Names}",
+            photoPaths.Count, string.Join(", ", photoPaths.Select(Path.GetFileName)));
 
-        // Retire the source photo either way so the input folder does not
-        // accumulate already-processed (or already-failed) images across
-        // runs. photoPath was read relative to projectRoot (RunAsync runs
-        // after SetCurrentDirectory), so the move must resolve against
-        // projectRoot too — not launchDir.
-        var destDir = result == 0 ? folders.ProcessedDir : folders.FailedDir;
-        MoveProcessedPhoto(photoPath, projectRoot, destDir, loggerFactory.CreateLogger("Program"));
+    var failed = new List<string>();
+    for (var i = 0; i < photoPaths.Count; i++)
+    {
+        var photoPath = photoPaths[i];
 
-        return result;
+        // Each photo is its own run with its own folder and run.log, so the log
+        // provider has to start over — otherwise every photo after the first
+        // appends into the first one's file.
+        RunLogProvider.BeginRun();
+
+        if (photoPaths.Count > 1)
+            batchLogger.LogInformation("=== Photo {Index}/{Total}: {Name} ===",
+                i + 1, photoPaths.Count, Path.GetFileName(photoPath));
+
+        try
+        {
+            var pipeline = container.Resolve<Pipeline>();
+            var result = await pipeline.RunAsync(photoPath, years);
+            if (result != 0)
+                failed.Add(Path.GetFileName(photoPath));
+
+            // Retire the source photo either way so the input folder does not
+            // accumulate already-processed (or already-failed) images across
+            // runs. photoPath was read relative to projectRoot (RunAsync runs
+            // after SetCurrentDirectory), so the move must resolve against
+            // projectRoot too — not launchDir.
+            var destDir = result == 0 ? folders.ProcessedDir : folders.FailedDir;
+            MoveProcessedPhoto(photoPath, projectRoot, destDir, batchLogger);
+        }
+        catch (Exception ex)
+        {
+            // One bad photo does not end the batch — that is the whole point of
+            // handing over a folder. It is retired to failed/ and the next one
+            // starts clean.
+            batchLogger.LogError(ex, "Pipeline failed for {Name}", Path.GetFileName(photoPath));
+            failed.Add(Path.GetFileName(photoPath));
+            MoveProcessedPhoto(photoPath, projectRoot, folders.FailedDir, batchLogger);
+        }
+        finally
+        {
+            // A run that dies before RunService ever creates the run folder (bad
+            // photo path, vision failure, config error) would otherwise lose its
+            // whole buffered log — this is the fallback destination for exactly
+            // that case. No-op once a real run.log exists.
+            RunLogProvider.FlushIfUnattached();
+        }
     }
-    catch (Exception ex)
-    {
-        var logger = loggerFactory.CreateLogger("Program");
-        logger.LogError(ex, "Pipeline failed");
-        MoveProcessedPhoto(photoPath, projectRoot, folders.FailedDir, logger);
-        return 1;
-    }
-    finally
-    {
-        // A run that dies before RunService ever creates the run folder (bad
-        // photo path, vision failure, config error) would otherwise lose its
-        // whole buffered log — this is the fallback destination for exactly
-        // that case. No-op once a real run.log exists.
-        RunLogProvider.FlushIfUnattached();
-    }
+
+    if (photoPaths.Count > 1)
+        batchLogger.LogInformation("Batch complete — {Ok}/{Total} succeeded{Failed}",
+            photoPaths.Count - failed.Count, photoPaths.Count,
+            failed.Count == 0 ? "" : $", failed: {string.Join(", ", failed)}");
+
+    return failed.Count == 0 ? 0 : 1;
 }
 
 static async Task<int> RunBrandAsync(
@@ -234,9 +285,13 @@ static async Task<int> RunAssembleAsync(string[] args, string launchDir)
 
     logger.LogInformation("Assemble: folder={Folder} years={Years}", folderPath, string.Join(", ", years));
 
+    // Same order every other path composes in, whatever order the years were
+    // typed in — so re-assembling a finished run reproduces its video rather
+    // than quietly making a different one.
     var (missing, video) = await VideoAssemblyRunner.RunAsync(
         overlayService, videoService, imagesDir, stampedDir,
-        Path.Combine(videoDir, "timeline.mp4"), years, logger);
+        Path.Combine(videoDir, "timeline.mp4"),
+        VideoAssemblyRunner.NewestFirst(years), logger);
 
     if (missing.Count > 0)
     {
@@ -450,13 +505,16 @@ static async Task<int> RunCollectAsync(
 
     logger.LogInformation("collect: all {Count} era images present — assembling video", years.Count);
 
+    // The manifest's order drives generation; the cut is the same newest-first
+    // shape the pipeline uses. A batch run normally finishes here rather than in
+    // Pipeline, so the two must not disagree about what the video looks like.
     var (missing, video) = await VideoAssemblyRunner.RunAsync(
         container.Resolve<IYearOverlayService>(),
         container.Resolve<IVideoService>(),
         imagesDir,
         Path.Combine(folder, "stamped"),
         Path.Combine(folder, "video", "timeline.mp4"),
-        years, logger);
+        VideoAssemblyRunner.NewestFirst(years), logger);
 
     if (missing.Count > 0 || video is null)
         return 1;
@@ -526,21 +584,31 @@ static void MoveProcessedPhoto(string photoPath, string projectRoot, string dest
     }
 }
 
-static string ResolvePhotoPath(string[] args, string projectRoot, string inputDir)
+// One explicit path, or everything in the input folder in name order.
+//
+// Extensions are matched case-insensitively rather than by three "*.jpg"-style
+// patterns: those are case-sensitive on a case-sensitive filesystem, and the
+// processed folder already holds files named ".JPG" that such a pattern would
+// have walked straight past.
+static IReadOnlyList<string> ResolvePhotoPaths(string[] args, string projectRoot, string inputDir)
 {
     if (args.Length >= 1)
-        return args[0];
+        return new[] { args[0] };
 
     var inputDirFull = Path.Combine(projectRoot, inputDir);
+    string[] extensions = { ".jpg", ".jpeg", ".png" };
+
     if (Directory.Exists(inputDirFull))
     {
-        var first = Directory.EnumerateFiles(inputDirFull, "*.jpg")
-            .Concat(Directory.EnumerateFiles(inputDirFull, "*.jpeg"))
-            .Concat(Directory.EnumerateFiles(inputDirFull, "*.png"))
-            .FirstOrDefault();
+        // Ordered so a folder of photos is processed predictably, and so a
+        // re-run after an interruption picks up where the eye expects.
+        var photos = Directory.EnumerateFiles(inputDirFull)
+            .Where(f => extensions.Contains(Path.GetExtension(f), StringComparer.OrdinalIgnoreCase))
+            .OrderBy(f => Path.GetFileName(f), StringComparer.OrdinalIgnoreCase)
+            .ToList();
 
-        if (first is not null)
-            return first;
+        if (photos.Count > 0)
+            return photos;
     }
 
     throw new InvalidOperationException($"No photo path provided and no images found in {inputDirFull}");

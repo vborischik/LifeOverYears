@@ -57,6 +57,24 @@ public sealed class RunLogProvider : ILoggerProvider
         }
     }
 
+    // Between photos of a batch. Each photo is its own run with its own folder
+    // and its own run.log, so the provider has to forget the previous one —
+    // Attach's "already attached this process" guard would otherwise funnel
+    // every later photo's lines into the first photo's file, and the fallback
+    // would only ever fire for the first failure.
+    //
+    // Safe to call after a run that attached: its run.log was written through
+    // line by line and is already complete on disk.
+    public static void BeginRun()
+    {
+        lock (Instance._lock)
+        {
+            Instance._path = null;
+            Instance._buffer.Clear();
+            Instance._fallbackFlushed = false;
+        }
+    }
+
     private void WriteLine(string line)
     {
         lock (_lock)

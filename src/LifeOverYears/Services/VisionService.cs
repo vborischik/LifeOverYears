@@ -10,11 +10,20 @@ public sealed class VisionService : IVisionService
     private readonly IDataService _data;
     private readonly ILogger<VisionService> _logger;
 
-    public VisionService(IVisionProvider vision, IDataService data, ILogger<VisionService> logger)
+    // A second, targeted look at the few fields that are cheap to get wrong and
+    // expensive to render wrong. On by default because the vision model costs
+    // nothing here, and because the failure it catches is silent: a confident
+    // wrong "parking" reads as a well-formed prompt and comes back as an
+    // invented car park six frames deep.
+    private readonly bool _doubleCheck;
+
+    public VisionService(IVisionProvider vision, IDataService data, ILogger<VisionService> logger,
+                         bool doubleCheck = true)
     {
         _vision = vision;
         _data = data;
         _logger = logger;
+        _doubleCheck = doubleCheck;
     }
 
     public async Task<SceneDna> AnalyzeAsync(string photoPath)
@@ -33,6 +42,12 @@ public sealed class VisionService : IVisionService
             _logger.LogInformation("After enrichment, still missing: {Fields}",
                 missing.Count > 0 ? string.Join(", ", missing) : "none");
         }
+
+        // After enrichment, not before: there is no point re-examining a field
+        // that was blank a moment ago, and the verify prompt reads better when
+        // every claim it lists is actually populated.
+        if (_doubleCheck)
+            sceneDna = await _vision.VerifyAsync(photoPath, sceneDna);
 
         await _data.SaveSceneDnaAsync(sceneDna);
         _logger.LogInformation("SceneDna saved: {Id}", sceneDna.Id);

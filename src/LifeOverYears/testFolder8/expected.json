@@ -1,0 +1,22 @@
+{
+  "_comment": [
+    "Ground truth for the vision accuracy run: what a person sees in each photo.",
+    "Read off the images by Claude and confirmed by Vlad on 7 Sep 2026. The four",
+    "that were in dispute at the time are marked below — they are the ones a",
+    "future disagreement should re-examine first, because they were judgement",
+    "calls rather than plain readings.",
+    "Fields left out of an entry are not asserted."
+  ],
+  "gas1":      { "scene_type": "gas_station",     "parking": "lot",       "sidewalks": false },
+  "gas10":     { "scene_type": "gas_station",     "parking": "lot",       "sidewalks": true,
+                 "_note": "disputed: raised concrete walkway in front of the store" },
+  "gas16":     { "scene_type": "gas_station",     "parking": "lot",       "sidewalks": false },
+  "auto1":     { "scene_type": "auto_repair",     "parking": "lot",       "sidewalks": true },
+  "auto2":     { "scene_type": "auto_repair",     "parking": "lot",       "sidewalks": true,
+                 "_note": "disputed: kerb and concrete strip along the road" },
+  "downtown1": { "scene_type": "downtown_street", "parking": "on-street", "sidewalks": true,
+                 "_note": "disputed: Vision said corner_shop; a three-storey corner store on a wide commercial street is not the narrow build-to-pavement shop that type means" },
+  "downtown3": { "scene_type": "downtown_street", "parking": "on-street", "sidewalks": true,
+                 "_note": "disputed: Vision said corner_shop; same reasoning as downtown1" },
+  "mall1":     { "scene_type": "shopping_center", "parking": "lot",       "sidewalks": false }
+}
