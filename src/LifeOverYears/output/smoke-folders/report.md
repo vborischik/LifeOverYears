@@ -1,6 +1,6 @@
 # Folder Smoke Test Report
 
-Generated: 2026-09-02T04:27:58.7070510+00:00
+Generated: 2026-09-10T02:14:30.9182070+00:00
 
 ## Check Results
 
@@ -9,7 +9,7 @@ Generated: 2026-09-02T04:27:58.7070510+00:00
 | F1 | PipelineFolders.Resolve defaults with no folder keys set | ✅ PASS | matched pre-existing hardcoded paths |
 | F2 | PipelineFolders.Resolve honors configured overrides | ✅ PASS | all four keys read back correctly |
 | F3 | appsettings.example.json Pipeline section has the four folder keys | ✅ PASS | appsettings.example.json Pipeline section matches defaults |
-| F4 | ResolvePhotoPath reads from the configured InputDir | ✅ PASS | found seeded photo via custom InputDir |
+| F4 | Every image in the configured InputDir is returned in name order, whatever the extension's casing; an explicit argument still means one photo | ✅ PASS | 3 photos picked up in order (a_first.JPG, b_second.jpg, c_third.png), .txt ignored |
 | F5 | MoveProcessedPhoto(result==0) moves into the configured ProcessedDir | ✅ PASS | moved and directory auto-created |
 | F6 | MoveProcessedPhoto(result!=0 or catch) moves into the configured FailedDir | ✅ PASS | moved and directory auto-created |
 | F7 | MoveProcessedPhoto appends a timestamp on name collision instead of overwriting | ✅ PASS | original preserved, timestamped copy created |

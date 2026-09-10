@@ -1,18 +1,22 @@
 One single continuous photograph of an open-air shopping center, several stepped retail blocks of differing heights under separate parapets with one larger anchor store, each unit entered directly from a large surface parking lot — no panels,
-grids, or split frames. Photorealistic, shot on a normal camera at eye level.
+grids, or split frames. Photorealistic, shot on a normal camera — the height and
+framing are given below, follow them rather than defaulting to a straight-on
+eye-level view.
 
 BUILD THIS SCENE
 - camera: eye-level, facing facade, fov 80
 - commercial arterial road, 4-lane, asphalt
 - sidewalks present, curbs present
 - driveways: main entrance apron, service drive at the far end; parking: large surface lot in front of the run
-- anchor store block with its own raised parapet building at left of the run, set slightly forward, 1 story, concrete block, brick veneer, flat, raised parapet roof, 120 feet from road setback
-- inline retail block, lower parapet building at right of the anchor, continuing the run, 1 story, concrete block, plate glass, flat roof, 120 feet from road setback
+- anchor store block with its own raised parapet at left of the run, set slightly forward, 1 story, concrete block, brick veneer, flat, raised parapet roof, 120 feet from road setback
+- inline retail block, lower parapet at right of the anchor, continuing the run, 1 story, concrete block, plate glass, flat roof, 120 feet from road setback
 - utilities: lot light poles, overhead power lines along the road frontage — keep their exact positions and geometry, but render them as period-appropriate infrastructure for the target year
 - landscape: planter islands between parking rows, grass verge along the road
 - pear tree at planter island mid-lot, small size
 - maple tree at lot perimeter, medium size
 - immutable elements: stepped parapet line across the run, freestanding pylon sign at the road, continuous walkway canopy in front of the inline units
+
+
 
 PERIOD — build the scene as it stood in 1975
 Everything permanent must be plausible for 1975; nothing may look newer.

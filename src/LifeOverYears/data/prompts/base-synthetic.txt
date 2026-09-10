@@ -1,7 +1,11 @@
 One single continuous photograph of {SCENE_TYPE_PHRASE} — no panels,
-grids, or split frames. Photorealistic, shot on a normal camera at eye level.
+grids, or split frames. Photorealistic, shot on a normal camera — the height and
+framing are given below, follow them rather than defaulting to a straight-on
+eye-level view.
 
 {GEOMETRY_BLOCK}
+
+{DISTINCTIVE_BLOCK}
 
 {PERIOD_BLOCK}
 

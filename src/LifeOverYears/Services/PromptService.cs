@@ -38,10 +38,23 @@ public sealed class PromptService : IPromptService
     private readonly IDataService _data;
     private readonly ILogger<PromptService> _logger;
 
-    public PromptService(IDataService data, ILogger<PromptService> logger)
+    // Render the run's oldest frame in monochrome whatever its era file says.
+    //
+    // A config switch rather than a value in data/eras/{year}.json because it is
+    // an audience decision, not a fact about the decade: colour film existed in
+    // 1975 and the era profile documents that honestly, but the black-and-white
+    // frame is what makes a viewer read the run as "this is old" in the first
+    // second. Measured on views, not on taste.
+    //
+    // Tied to the earliest era of the run, not to the number 1975: add 1965 and
+    // the opening frame is the one that should be monochrome.
+    public bool MonochromeFirstEra { get; }
+
+    public PromptService(IDataService data, ILogger<PromptService> logger, bool monochromeFirstEra = true)
     {
         _data = data;
         _logger = logger;
+        MonochromeFirstEra = monochromeFirstEra;
     }
 
     public async Task<Prompt> BuildAsync(SceneDna sceneDna, EraProfile eraProfile, GenerationContext context)
@@ -53,6 +66,21 @@ public sealed class PromptService : IPromptService
         var year     = eraProfile.Year;
         var eraIndex = context.BeginEra();
 
+        // Rewritten once, here, rather than at each of the three places that ask
+        // whether this era is monochrome. Vehicle colours and the fashion palette
+        // read the same field, so forcing it only in the style block would leave
+        // a black-and-white frame carrying "dark red" and "coral" (C12).
+        if (MonochromeFirstEra && IsOldestEra(context, year)
+            && !string.Equals(eraProfile.Photography.ColorMode, "black_and_white", StringComparison.OrdinalIgnoreCase))
+        {
+            eraProfile = eraProfile with
+            {
+                Photography = eraProfile.Photography with { ColorMode = "black_and_white" }
+            };
+            _logger.LogInformation(
+                "Monochrome first era: {Year} rendered black and white (Pipeline:MonochromeFirstEra)", year);
+        }
+
         var sceneType    = sceneDna.SceneType ?? "default";
         var isHighway    = sceneType == "highway";
         var contentKey   = SceneContentKey.Resolve(sceneType, sceneDna.Environment.Terrain);
@@ -63,7 +91,8 @@ public sealed class PromptService : IPromptService
 
         var isGasStation    = sceneType == "gas_station";
         var hasSidewalks    = sceneDna.Geometry.Sidewalks;
-        var onStreetParking = IsOnStreetParking(sceneDna.Geometry.Parking);
+        var parkingKind     = ResolveParking(sceneDna.Geometry.Parking);
+        var onStreetParking = parkingKind == ParkingKind.OnStreet;
         var supportsCondition = SupportsCondition(sceneType);
 
         var condition = supportsCondition
@@ -146,7 +175,9 @@ public sealed class PromptService : IPromptService
         // An abandoned era has no vehicles and no PLACEMENT line — don't consume a
         // placement pattern from the run's pool for it. A packed lot has no gaps
         // to arrange either, so it skips placement the same way.
-        var placement = !isPacked && !isHighway && vehicles.Count > 0 ? context.NextPlacement(vehicles.Count, onStreetParking) : "";
+        var placement = !isPacked && !isHighway && parkingKind != ParkingKind.None && vehicles.Count > 0
+            ? context.NextPlacement(vehicles.Count, onStreetParking)
+            : "";
         var gasSign   = isGasStation ? await ResolveGasSignAsync(context, year, condition) : default;
         var cornerShop = IsCornerShop(sceneType)
             ? await ResolveCornerShopAsync(context, year, condition, sceneType)
@@ -178,8 +209,8 @@ public sealed class PromptService : IPromptService
             .Replace("{BASE_NOTE}",         context.ChainedFromPreviousEra ? ChainedBaseNote : FreshBaseNote)
             .Replace("{PRESERVE_BLOCK}",    ShortPreserveBlock)
             .Replace("{SCENE_BLOCK}",       sceneBlock)
-            .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, hasSidewalks, rng, context, isPacked, isSquatted, IsDecliningRetail(condition, sceneType), isSquattedRetail, IsLiquorEra(sceneType, year), isHighway))
-            .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation, onStreetParking, isPacked, derelictCount, isHighway))
+            .Replace("{PEOPLE_BLOCK}",      BuildPeopleBlock(eraProfile, sceneContent, peopleCount, isGasStation, hasSidewalks, rng, context, isPacked, isSquatted, IsDecliningRetail(condition, sceneType), isSquattedRetail, IsLiquorEra(sceneType, year), isHighway, parkingKind))
+            .Replace("{VEHICLES_BLOCK}",    BuildVehiclesBlock(vehicles, year, placement, isGasStation, parkingKind, isPacked, derelictCount, isHighway))
             .Replace("{ENVIRONMENT_BLOCK}", BuildEnvironmentBlock(sceneDna, eraProfile, year, sceneType, condition, rng, context))
             .Replace("{STYLE_BLOCK}",       BuildStyleBlock(eraProfile.Photography, condition));
 
@@ -248,7 +279,8 @@ public sealed class PromptService : IPromptService
             .Replace("{SCENE_TYPE_PHRASE}", phrase)
             .Replace("{PERIOD_BLOCK}",      BuildBasePeriodBlock(baseEra, sceneDna))
             .Replace("{GEOMETRY_BLOCK}",
-                BuildPreserveBlock(sceneDna, "BUILD THIS SCENE", "", includeTrees: true));
+                BuildPreserveBlock(sceneDna, "BUILD THIS SCENE", "", includeTrees: true))
+            .Replace("{DISTINCTIVE_BLOCK}", BuildDistinctiveBlock(sceneDna));
 
         _logger.LogInformation("Synthetic base prompt built: id={Id} length={Length}",
             sceneDna.Id, text.Length);
@@ -351,12 +383,45 @@ public sealed class PromptService : IPromptService
     // "gravel lot", "concrete apron in front of the bays"). Anything that does not
     // name the street or the curb is treated as off-street: forecourts, aprons and
     // lots are the common case and must not inherit parallel-parking language.
-    private static bool IsOnStreetParking(string? parking)
+    // Where a vehicle can legitimately stand in THIS photo.
+    //
+    // This used to be a bool, and "none" fell to the false side along with
+    // "lot" — so a frontage with no parking at all was told to put cars nose-in
+    // into stalls, and NextPlacement handed it a lot-shaped arrangement on top
+    // ("angled into stalls along the far edge of the lot"). The model cannot
+    // satisfy that without inventing a car park, and it invents one. Three runs
+    // were lost to it before the cause was found.
+    internal enum ParkingKind { OnStreet, Lot, None }
+
+    internal static ParkingKind ResolveParking(string? parking)
     {
-        if (string.IsNullOrWhiteSpace(parking)) return false;
+        // Vision said nothing: keep the old default rather than suppressing
+        // parking everywhere the field happens to be blank.
+        if (string.IsNullOrWhiteSpace(parking)) return ParkingKind.Lot;
+
         var p = parking.ToLowerInvariant();
-        return p.Contains("street") || p.Contains("curb")
-            || p.Contains("parallel") || p.Contains("meter");
+
+        // Denials first, or a substring match reads them backwards. Vision
+        // writes free text here, and "off-street apron facing the facade, no
+        // on-street parking" contains "street" twice while meaning the exact
+        // opposite — the freestanding_shop fixture said that and was told to
+        // parallel-park against a kerb it does not have.
+        var deniesOnStreet = p.Contains("off-street") || p.Contains("off street")
+                             || p.Contains("no on-street") || p.Contains("no street")
+                             || p.Contains("not on-street");
+
+        if (!deniesOnStreet
+            && (p.Contains("street") || p.Contains("curb")
+                || p.Contains("parallel") || p.Contains("meter")))
+            return ParkingKind.OnStreet;
+
+        // Nowhere to park at all. "no parking lot of its own" is the corner-shop
+        // wording and means exactly this; an off-street apron does not, so the
+        // denial above must not fall through to here.
+        if (p.Contains("none") || p.Contains("no parking"))
+            return ParkingKind.None;
+
+        return ParkingKind.Lot;
     }
 
     private static SceneContent? ResolveSceneContent(EraProfile era, string sceneType)
@@ -381,6 +446,57 @@ public sealed class PromptService : IPromptService
     // decade. The synthetic base (BuildBaseAsync) passes true: there is no
     // photo and no separate TREES section for it, so this is the only place
     // the trees get described at all.
+    // Vision's per-photo observations, and the only field that genuinely differs
+    // between one photo and the next: over 23 photos its geometry fields
+    // collapsed to near-constants (every building "commercial", every roof
+    // "flat", one road each) while all 155 distinctive phrases came back unique.
+    //
+    // It used to ride as one bullet at the end of the geometry list, weighted
+    // the same as "sidewalks present" — which is why synthetic bases of very
+    // different places came out looking alike. It gets its own block now.
+    //
+    // People and vehicles are stripped. The base is deliberately empty so each
+    // era can place its own, and under era chaining anything drawn here is in
+    // every later frame — a bystander Vision happened to notice becomes a
+    // fifty-year resident. Phrases that only assert emptiness ("no visible
+    // vehicles") go too: the base already says the scene is bare, and naming a
+    // thing inside a negation is how it gets drawn.
+    public static string BuildDistinctiveBlock(SceneDna s)
+    {
+        var kept = GenericizeRouteSignage(s.Distinctive ?? [])
+            .Where(p => !MentionsPeopleOrTraffic(p))
+            .ToList();
+        if (kept.Count == 0)
+            return "";
+
+        var sb = new StringBuilder();
+        sb.AppendLine("SPECIFIC TO THIS EXACT PLACE — these are what make it this location and not a");
+        sb.AppendLine("generic one of its kind. Reproduce each faithfully, in the position described:");
+        foreach (var phrase in kept)
+            sb.AppendLine($"- {phrase}");
+        sb.Append("Build the scene around these rather than adding them to a stock forecourt.");
+        return sb.ToString();
+    }
+
+    // Head nouns for a person or a moving vehicle. The compound exclusions are
+    // fixtures that merely contain one of those words — a car wash is a
+    // building, not a car.
+    private static readonly string[] TrafficCompounds =
+        { "car wash", "truck stop", "car park", "bus stop", "bike rack", "car dealership", "truck bay" };
+
+    private static readonly System.Text.RegularExpressions.Regex PeopleOrTrafficPattern = new(
+        @"\b(people|person|man|men|woman|women|pedestrian|customer|child|children|boy|girl|worker|" +
+        @"driver|cyclist|shopper|figure|car|truck|van|suv|vehicle|sedan|bicycle|bike|motorcycle|bus)s?\b",
+        System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+    private static bool MentionsPeopleOrTraffic(string phrase)
+    {
+        var probe = phrase;
+        foreach (var compound in TrafficCompounds)
+            probe = probe.Replace(compound, " ", StringComparison.OrdinalIgnoreCase);
+        return PeopleOrTrafficPattern.IsMatch(probe);
+    }
+
     private static string BuildPreserveBlock(SceneDna s, string header, string closing, bool includeTrees)
     {
         var sb = new StringBuilder();
@@ -405,7 +521,10 @@ public sealed class PromptService : IPromptService
             sb.AppendLine($"- {string.Join("; ", parts)}");
         }
         foreach (var b in s.Geometry.Buildings)
-            sb.AppendLine($"- {b.Type} building at {b.Position}, {b.Stories} {(b.Stories == 1 ? "story" : "stories")}, {Join(b.Materials)}, {b.Roof} roof, {b.Setback} setback");
+            // No "building" appended: type now names the structure's form
+            // ("attached storefront row", "pump canopy"), and "pump canopy
+            // building" reads as a second, invented structure.
+            sb.AppendLine($"- {b.Type} at {b.Position}, {b.Stories} {(b.Stories == 1 ? "story" : "stories")}, {Join(b.Materials)}, {b.Roof} roof, {b.Setback} setback");
         if (s.Environment.Utilities.Count > 0)
             sb.AppendLine($"- utilities: {string.Join(", ", s.Environment.Utilities)} — keep their exact positions and geometry, but render them as period-appropriate infrastructure for the target year");
         var landscape = includeTrees ? s.Environment.Landscape : DropTreeMentions(s.Environment.Landscape);
@@ -418,9 +537,6 @@ public sealed class PromptService : IPromptService
         if (!includeTrees) immutable = DropTreeMentions(immutable);
         if (immutable.Count > 0)
             sb.AppendLine($"- immutable elements: {string.Join(", ", immutable)}");
-        var distinctive = GenericizeRouteSignage(s.Distinctive ?? []);
-        if (distinctive.Count > 0)
-            sb.AppendLine($"- specific to this exact place, reproduce faithfully: {string.Join("; ", distinctive)}");
         if (closing.Length > 0)
         {
             sb.Append(closing);
@@ -1297,7 +1413,7 @@ public sealed class PromptService : IPromptService
     private static bool IsSinglePerson(string mixEntry) =>
         !PluralMixMarkers.Any(m => mixEntry.TrimStart().StartsWith(m, StringComparison.OrdinalIgnoreCase));
 
-    private static string BuildPeopleBlock(EraProfile era, SceneContent? content, int peopleCount, bool isGasStation, bool hasSidewalks, Random rng, GenerationContext context, bool isPacked, bool isSquatted, bool isDecliningRetail, bool isSquattedRetail, bool isLiquorEra, bool isHighway)
+    private static string BuildPeopleBlock(EraProfile era, SceneContent? content, int peopleCount, bool isGasStation, bool hasSidewalks, Random rng, GenerationContext context, bool isPacked, bool isSquatted, bool isDecliningRetail, bool isSquattedRetail, bool isLiquorEra, bool isHighway, ParkingKind parkingKind)
     {
         var sb = new StringBuilder();
         sb.AppendLine("PEOPLE");
@@ -1436,7 +1552,9 @@ public sealed class PromptService : IPromptService
         sb.Append(" No posing or eye contact.");
         sb.Append(hasSidewalks
             ? " All people stay on sidewalks, at storefronts, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes."
-            : " All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.");
+            : parkingKind == ParkingKind.None
+                ? " All people stay at the building entrance, along its frontage, or on the verge beside the road — never standing, sitting, or walking in the road or driving lanes."
+                : " All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.");
         if (isGasStation)
             sb.Append(" Any customer activity at the pumps happens next to a parked vehicle — no one refuels without a car present.");
         return sb.ToString();
@@ -1513,7 +1631,7 @@ public sealed class PromptService : IPromptService
         return result;
     }
 
-    private static string BuildVehiclesBlock(IReadOnlyList<(string Model, string? Color)> vehicles, int year, string placement, bool isGasStation, bool onStreetParking, bool isPacked, int derelictCount, bool isHighway)
+    private static string BuildVehiclesBlock(IReadOnlyList<(string Model, string? Color)> vehicles, int year, string placement, bool isGasStation, ParkingKind parkingKind, bool isPacked, int derelictCount, bool isHighway)
     {
         var sb = new StringBuilder();
         sb.AppendLine("VEHICLES");
@@ -1575,7 +1693,23 @@ public sealed class PromptService : IPromptService
         }
 
         sb.AppendLine($"Parked with gaps. Where a model is listed with a year range, render the {year} model year specifically — only styling, trim and features available in {year}, nothing introduced later. No vehicle newer than {year}.");
-        sb.AppendLine(onStreetParking
+        // A frontage with nowhere to park gets neither instruction: both assert a
+        // place to put a car, and asked for stalls that are not there the model
+        // draws the stalls. Stated as what the street actually does instead —
+        // traffic passing, at most a brief stop at the kerb — and no PLACEMENT
+        // line, because every arrangement in the pool is lot- or kerb-shaped.
+        if (parkingKind == ParkingKind.None)
+        {
+            // Said as what the frontage IS, not as a list of what it lacks.
+            // Naming bays and nose-in stalls inside a negation is the surest way
+            // to get them drawn — the same rule that governs brands and signage.
+            sb.Append("There is no parking here. The building front meets the pavement and the " +
+                      "pavement meets the carriageway directly. The vehicles are out on the road, " +
+                      "moving with the traffic or halted briefly against the kerb.");
+            return sb.ToString();
+        }
+
+        sb.AppendLine(parkingKind == ParkingKind.OnStreet
             ? "Parked vehicles hug the curb — parallel, each facing its lane's direction; none sideways, diagonal, or against traffic. Keep at least one full driving lane clear each way for through traffic."
             : "Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.");
         sb.Append($"PLACEMENT: {placement}. No vehicle in the same spot as any other era.");
@@ -1860,6 +1994,12 @@ public sealed class PromptService : IPromptService
             return $"clearly smaller than in the base image — about {pct}% of its canopy there, thinner trunk";
         return $"a young tree, only about {pct}% of its canopy in the base image, thin trunk";
     }
+
+    // The run's earliest year. Falls back to the era counter for callers that do
+    // not pass a year list — the smoke fixtures build their eras in order, so the
+    // first one built is the oldest.
+    private static bool IsOldestEra(GenerationContext context, int year) =>
+        context.Years.Count > 0 ? year == context.Years.Min() : context.IsFirstEra;
 
     private static string BuildStyleBlock(Photography photo, string condition)
     {

@@ -1,16 +1,20 @@
 One single continuous photograph of an ordinary American location — no panels,
-grids, or split frames. Photorealistic, shot on a normal camera at eye level.
+grids, or split frames. Photorealistic, shot on a normal camera — the height and
+framing are given below, follow them rather than defaulting to a straight-on
+eye-level view.
 
 BUILD THIS SCENE
 - camera: elevated, facing oblique, fov 60
 - local street road, 2-lane, asphalt
 - sidewalks absent, curbs absent
 - driveways: gravel access road; parking: gravel lot
-- industrial warehouse building at background, 1 story, corrugated metal, gabled roof, 50 feet from road setback
+- industrial warehouse at background, 1 story, corrugated metal, gabled roof, 50 feet from road setback
 - utilities: overhead power lines — keep their exact positions and geometry, but render them as period-appropriate infrastructure for the target year
 - landscape: gravel and packed dirt lot
 - pine tree at fence line east, small size
 - immutable elements: loading dock on east wall
+
+
 
 PERIOD — build the scene as it stood in 1975
 Everything permanent must be plausible for 1975; nothing may look newer.

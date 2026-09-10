@@ -10,7 +10,7 @@ namespace LifeOverYears.Services;
 // TODO: remove smoke test
 // Isolated smoke test for the configurable Pipeline folders and the
 // retire-on-failure behavior: PipelineFolders.Resolve is called directly
-// (it's public), while ResolvePhotoPath and MoveProcessedPhoto are Program.cs
+// (it's public), while ResolvePhotoPaths and MoveProcessedPhoto are Program.cs
 // top-level local functions, reached here via reflection so the checks
 // exercise the real implementation rather than a reimplementation. Runs
 // entirely against a temp sandbox — no appsettings, no DI container.
@@ -70,23 +70,51 @@ public static class FolderSmokeTest
         findings.Add(("F3", "appsettings.example.json Pipeline section has the four folder keys", f3Ok, f3Detail));
 
         // Reflection handles into Program.cs's private top-level local
-        // functions (compiler-mangled names, e.g. "<<Main>$>g__ResolvePhotoPath|0_4").
+        // functions (compiler-mangled names, e.g. "<<Main>$>g__ResolvePhotoPaths|0_4").
         var programType = typeof(Program);
-        var resolvePhotoPath = FindMethod(programType, "ResolvePhotoPath");
+        var resolvePhotoPaths = FindMethod(programType, "ResolvePhotoPaths");
         var moveProcessedPhoto = FindMethod(programType, "MoveProcessedPhoto");
 
         var sandbox = Directory.CreateTempSubdirectory("lifeoveryears-smoke-folders-");
         try
         {
-            // F4 — ResolvePhotoPath picks up an image from the configured InputDir.
+            // F4 — every image in the configured InputDir is picked up, in name
+            // order, and an explicit argument still means that one photo. Dropping
+            // several in and getting one back is the behaviour this replaced, so
+            // the count is the assertion, not just the path.
             var inputDir = Path.Combine(sandbox.FullName, "custom-input");
             Directory.CreateDirectory(inputDir);
-            var seededPhoto = Path.Combine(inputDir, "seed.jpg");
-            await File.WriteAllBytesAsync(seededPhoto, new byte[] { 1, 2, 3 });
-            var resolved = (string)resolvePhotoPath.Invoke(null, new object[] { Array.Empty<string>(), sandbox.FullName, "custom-input" })!;
-            var f4Ok = resolved == seededPhoto;
-            findings.Add(("F4", "ResolvePhotoPath reads from the configured InputDir",
-                f4Ok, f4Ok ? "found seeded photo via custom InputDir" : $"expected {seededPhoto}, got {resolved}"));
+            var seeded = new List<string>();
+            // Mixed casing and extensions on purpose: a "*.jpg" pattern is
+            // case-sensitive on a case-sensitive filesystem and would skip ".JPG".
+            foreach (var name in new[] { "b_second.jpg", "a_first.JPG", "c_third.png", "notes.txt" })
+            {
+                var path = Path.Combine(inputDir, name);
+                await File.WriteAllBytesAsync(path, new byte[] { 1, 2, 3 });
+                if (!name.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
+                    seeded.Add(path);
+            }
+
+            var resolved = ((IReadOnlyList<string>)resolvePhotoPaths.Invoke(
+                null, new object[] { Array.Empty<string>(), sandbox.FullName, "custom-input" })!).ToList();
+            var expected = seeded.OrderBy(Path.GetFileName, StringComparer.OrdinalIgnoreCase).ToList();
+
+            var f4Errors = new List<string>();
+            if (!resolved.SequenceEqual(expected))
+                f4Errors.Add($"expected [{string.Join(", ", expected.Select(Path.GetFileName))}], " +
+                             $"got [{string.Join(", ", resolved.Select(Path.GetFileName))}]");
+
+            // An explicit path is still exactly that one photo, folder or no folder.
+            var explicitOne = ((IReadOnlyList<string>)resolvePhotoPaths.Invoke(
+                null, new object[] { new[] { "/tmp/given.jpg" }, sandbox.FullName, "custom-input" })!).ToList();
+            if (explicitOne.Count != 1 || explicitOne[0] != "/tmp/given.jpg")
+                f4Errors.Add($"an explicit path resolved to [{string.Join(", ", explicitOne)}] instead of just itself");
+
+            findings.Add(("F4", "Every image in the configured InputDir is returned in name order, whatever the extension's casing; an explicit argument still means one photo",
+                f4Errors.Count == 0,
+                f4Errors.Count == 0
+                    ? $"{resolved.Count} photos picked up in order ({string.Join(", ", resolved.Select(Path.GetFileName))}), .txt ignored"
+                    : string.Join("; ", f4Errors)));
 
             // F5 — successful move lands in the configured ProcessedDir, dir auto-created.
             var successSource = Path.Combine(sandbox.FullName, "success.jpg");

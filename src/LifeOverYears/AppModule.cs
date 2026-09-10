@@ -58,7 +58,26 @@ public sealed class AppModule : Module
         builder.Register(_ => new VisionProvider(_.Resolve<INvidiaProvider>(), _loggerFactory.CreateLogger<VisionProvider>()))
                .As<IVisionProvider>().SingleInstance();
 
-        builder.Register(_ => new VisionService(_.Resolve<IVisionProvider>(), _.Resolve<IDataService>(), _loggerFactory.CreateLogger<VisionService>()))
+        // Off by default. It was added on the belief that it caught the
+        // invented-car-park failure, which was never checked: it was reported as
+        // working because it CHANGED six fields, and looking at the photographs
+        // afterwards those changes were wrong. Measured properly against
+        // testFolder8/expected.json it corrected one scene_type out of five
+        // comparable photos and fixed nothing else — while doubling the calls,
+        // and so doubling exposure to the empty-stream failure that took three
+        // of eight photos out of that same run. No demonstrated benefit, a
+        // demonstrated cost.
+        //
+        // Kept rather than deleted: the code is covered by N6/N7 and the
+        // measurement harness exists, so re-enabling it is a config flag and a
+        // re-run rather than a rewrite.
+        var visionDoubleCheck = _configuration.GetValue("Vision:DoubleCheck", false);
+
+        builder.Register(_ => new VisionService(
+                    _.Resolve<IVisionProvider>(),
+                    _.Resolve<IDataService>(),
+                    _loggerFactory.CreateLogger<VisionService>(),
+                    visionDoubleCheck))
                .As<IVisionService>().SingleInstance();
 
         // CaptionProvider (the LLM path) is deliberately unregistered: captions are
@@ -67,7 +86,14 @@ public sealed class AppModule : Module
         builder.Register(_ => new CaptionService(_.Resolve<IDataService>(), _loggerFactory.CreateLogger<CaptionService>()))
                .As<ICaptionService>().SingleInstance();
 
-        builder.Register(_ => new PromptService(_.Resolve<IDataService>(), _loggerFactory.CreateLogger<PromptService>()))
+        // The oldest frame in black and white. On by default: it is what the run
+        // shipped with, and turning it off measurably cost views.
+        var monochromeFirstEra = _configuration.GetValue("Pipeline:MonochromeFirstEra", true);
+
+        builder.Register(_ => new PromptService(
+                    _.Resolve<IDataService>(),
+                    _loggerFactory.CreateLogger<PromptService>(),
+                    monochromeFirstEra))
                .As<IPromptService>().SingleInstance();
 
         // The brand-series path: no IDataService dependency because it reads no
@@ -103,8 +129,8 @@ public sealed class AppModule : Module
         var shortPrompts = _configuration.GetValue("Pipeline:ShortPrompts", false);
 
         _loggerFactory.CreateLogger<AppModule>().LogInformation(
-            "Image generation provider: enabled={Enabled}, mode={Mode}, baseMode={BaseMode}, eraChaining={EraChaining}, shortPrompts={ShortPrompts}",
-            imagesEnabled, imagesMode, baseMode, eraChaining, shortPrompts);
+            "Image generation provider: enabled={Enabled}, mode={Mode}, baseMode={BaseMode}, eraChaining={EraChaining}, shortPrompts={ShortPrompts}, monochromeFirstEra={Monochrome}",
+            imagesEnabled, imagesMode, baseMode, eraChaining, shortPrompts, monochromeFirstEra);
 
         if (!imagesEnabled)
         {

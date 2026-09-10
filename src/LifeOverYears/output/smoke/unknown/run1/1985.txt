@@ -29,11 +29,11 @@ TRANSFORM TO 1985
 Reagan era prosperity. An ordinary 1985 American commercial street — bold primary-color signage, boxy cars, the first franchise logos among local shops.
 
 PERIOD DETAILS
-- MARY'S DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
-- awnings with bold stripe patterns
-- large illuminated signage
-- window signs: 'VHS OVERNIGHT RENTAL $2.99', '2 SLICES $1.50'
-- arcade game posters in a window
+- TOWN DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
+- backlit plastic channel letters standard
+- neon signs widespread
+- window signs: '2 SLICES $1.50', 'PERM SPECIAL $25'
+- the painted ghost-sign wall ad, fading
 - a bike rack with BMX bikes
 Typography: bold geometric sans-serif, early computer-influenced fonts.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
@@ -41,23 +41,23 @@ Place each detail where it plausibly belongs — sidewalk, storefront, lot edge,
 SIGNAGE RESTRICTION
 The only readable text anywhere in the image is:
 'HOT COFFEE 45¢'
-'VHS OVERNIGHT RENTAL $2.99'
 '2 SLICES $1.50'
+'PERM SPECIAL $25'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
 EXACTLY 22 people TOTAL: 9 in the foreground near the building entrance (largest), 8 mid-ground out on the lot, beside parked vehicles, 5 distant, at the far edge of the lot. Grouped in pairs, threes, and singles.
+- a woman using a wall-mounted payphone
 - a teenager with a boombox on his shoulder
-- a couple leaving the diner
-- a mall security guard in a blazer making rounds
-Clothing: men in polo shirts with collars up, shoulder pads in blazers; women in bright neon colors, big permed hair. Fashion palette: neon pink, electric blue, purple. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
+- a kid with a boombox on his shoulder
+Clothing: men in acid wash jeans, windbreakers; women in big permed hair, bright neon colors. No posing or eye contact. All people stay on the lot apron, at the building entrance, or beside parked vehicles — never standing, sitting, or walking in the road or driving lanes.
 
 VEHICLES
 EXACTLY 4 period vehicles, all different:
-- 1980-1985 Buick LeSabre — boxy full-size, chrome trim — light blue
-- 1980-1986 Ford F-150 — square body, dual headlights — silver
-- 1982-1985 Toyota Celica — angular sporty coupe, pop-up lights — white
-- 1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan — beige
+- 1980-1985 Buick LeSabre — boxy full-size, chrome trim
+- 1980-1986 Ford F-150 — square body, dual headlights
+- 1982-1985 Toyota Celica — angular sporty coupe, pop-up lights
+- 1982-1988 Chevrolet Celebrity — boxy front-wheel drive sedan
 Parked with gaps. Where a model is listed with a year range, render the 1985 model year specifically — only styling, trim and features available in 1985, nothing introduced later. No vehicle newer than 1985.
 Parked vehicles sit nose-in or angled into the lot, evenly spaced; none parallel-parked along the street, none blocking a driveway apron. Keep the driveway aprons and the drive lanes through the lot clear.
 PLACEMENT: all parked in the lot, nose-in to marked stalls, with an empty stall between them. No vehicle in the same spot as any other era.
@@ -71,10 +71,10 @@ TREES
 Tree sizes MUST follow this specification even where they differ from the base image.
 
 PHOTOGRAPHIC STYLE
-COLOR photograph — Kodacolor VR 200 or Fujicolor 100 look.
-Color: slightly cool tones compared to 1970s. Grain: moderate grain, cleaner than 1975.
-Photorealistic — NOT black-and-white, no HDR.
-Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere.
+Grain: moderate grain, cleaner than 1975. Style: bright daylight, commercial feel.
+Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp.
+Light: bright open daylight, clear sky, soft natural shadows — a fine, ordinary day.
 
 PRIVACY
 Blur all faces and license plates.

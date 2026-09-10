@@ -31,6 +31,14 @@ public static class PromptSmokeTest
     // case, so ~110 chars of headroom, not a sentence's worth.
     private const int MaxPromptWords = 960;
 
+    // Facebook's own guidance on post length. A caption is the only text a
+    // viewer reads before deciding, and past this it is collapsed behind "See
+    // more" — the question at the end, which is what earns the comment, stops
+    // being visible at all. Measured on the assembled caption (body plus
+    // hashtags), because that is what CaptionRunner writes to caption.txt and
+    // what actually gets posted.
+    private const int MaxCaptionWords = 400;
+
     private static readonly JsonSerializerOptions WriteJson = new() { WriteIndented = true };
 
     // Matches ANY unresolved {TOKEN} — template placeholders (e.g. {SCENE_BLOCK})
@@ -184,13 +192,13 @@ public static class PromptSmokeTest
         DoC4 (gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, eras,          findings);
         DoC5 (gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2,                findings);
         DoC6 (gasRun1, gasRun2, gasScene,                                      findings);
-        DoC7 (gasRun1, gasRun2, dtRun1, dtRun2,                                findings);
+        DoC7 (promptService, gasRun1, gasRun2, dtRun1, dtRun2,                 findings);
         DoC8 (gasRun1, gasRun2, dtRun1, dtRun2, eras,                          findings);
         DoC9 (gasRun1, gasScene, dtRun1, downtownScene, smRun1, stripMallScene, arRun1, autoRepairScene, findings);
         DoC10(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2,                findings);
         DoC11(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
         DoC12(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, eras,          findings);
-        DoC13(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, eras,          findings);
+        DoC13(promptService, gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, eras, findings);
         DoC14(gasRun1, gasRun2,                                               findings);
         DoC15(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
         DoC16(gasRun1, gasRun2, dtRun1, dtRun2, smRun1, smRun2, arRun1, arRun2, unknownPrompt, findings);
@@ -285,6 +293,9 @@ public static class PromptSmokeTest
         DoC84(kmart, brandRun, findings);
         DoC85(kmart, brandRun, findings);
         await DoC86(dataService, captionService, kmart, findings);
+        await DoC87(dataService, findings);
+        await DoC88(dataService, findings);
+        await DoC89(promptService, eras, stripMallScene, findings);
 
         // e) Report
         await WriteReport(findings, gasRun1, gasRun2, dtRun1, dtRun2, logger);
@@ -1241,27 +1252,43 @@ public static class PromptSmokeTest
     }
 
     private static void DoC7(
+        IPromptService promptService,
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
 
-        // 1975 used to be the one monochrome era. It was dropped because the
-        // frame kept coming back in colour anyway and the complaint was real:
-        // under EraChaining 1975 is an edit of the colour synthetic base, and
-        // asking an edit model to desaturate a colour source is the one
-        // instruction it reliably ignores. 1975 was also the odd claim
-        // historically — the era's own film_stock names Kodachrome 64 and
-        // Ektachrome, both colour. Every era is colour now, so there is no
-        // colour transition anywhere in a chained run.
+        // The oldest era is monochrome when Pipeline:MonochromeFirstEra is on,
+        // and every later era is colour either way. Asserted against the setting
+        // rather than against a fixed answer, because both answers have been
+        // correct in this repo within a fortnight.
+        //
+        // Read the caveat before changing it back a third time: under
+        // EraChaining the oldest frame is an edit of the COLOUR synthetic base,
+        // and asking an edit model to desaturate a colour source is the one
+        // instruction it reliably ignores — which is why the monochrome era was
+        // dropped once already. The setting is on because views said so; the
+        // frame not obeying is a separate, still-open problem (the base is built
+        // in the same earliest year and is not monochrome with it).
+        var monoFirst = promptService.MonochromeFirstEra;
+        var oldest    = Years.Min();
+
         void Check(Dictionary<int, Prompt> run, string label)
         {
             foreach (var year in Years)
             {
-                if (!run[year].Text.Contains("COLOR photograph"))
+                var wantMono = monoFirst && year == oldest;
+                var isMono   = run[year].Text.Contains("STRICTLY BLACK AND WHITE");
+                var isColor  = run[year].Text.Contains("COLOR photograph");
+
+                if (wantMono && !isMono)
+                    errs.Add($"{label}/{year}: oldest era is not monochrome, but MonochromeFirstEra is on");
+                if (wantMono && isColor)
+                    errs.Add($"{label}/{year}: oldest era claims both monochrome and colour");
+                if (!wantMono && !isColor)
                     errs.Add($"{label}/{year}: missing 'COLOR photograph'");
-                if (run[year].Text.Contains("STRICTLY BLACK AND WHITE"))
+                if (!wantMono && isMono)
                     errs.Add($"{label}/{year}: unexpected 'STRICTLY BLACK AND WHITE'");
             }
         }
@@ -1271,8 +1298,10 @@ public static class PromptSmokeTest
         Check(dtRun1,  "downtown_street/run1");
         Check(dtRun2,  "downtown_street/run2");
 
-        f.Add(("C7", "Every era is a COLOR photograph; no era carries the monochrome block",
-            errs.Count == 0, errs.Count == 0 ? "Color mode correct in all prompts" : Join(errs)));
+        f.Add(("C7", "The oldest era is monochrome exactly when Pipeline:MonochromeFirstEra is on; every later era is colour",
+            errs.Count == 0, errs.Count == 0
+                ? $"MonochromeFirstEra={monoFirst}: {oldest} {(monoFirst ? "black and white" : "colour")}, {Years.Length - 1} later eras colour"
+                : Join(errs)));
     }
 
     private static void DoC8(
@@ -1476,6 +1505,7 @@ public static class PromptSmokeTest
     }
 
     private static void DoC13(
+        IPromptService promptService,
         Dictionary<int, Prompt> gasRun1, Dictionary<int, Prompt> gasRun2,
         Dictionary<int, Prompt> dtRun1,  Dictionary<int, Prompt> dtRun2,
         Dictionary<int, Prompt> smRun1,  Dictionary<int, Prompt> smRun2,
@@ -1494,7 +1524,12 @@ public static class PromptSmokeTest
         foreach (var (run, label) in runs)
             foreach (var (year, prompt) in run)
             {
+                // Skips a monochrome era, whether the era file says so or the
+                // MonochromeFirstEra setting made it so — a black-and-white
+                // prompt carries no vehicle colours by design (C12 asserts the
+                // other half of that: that it carries none).
                 if (eras[year].Photography.ColorMode == "black_and_white") continue;
+                if (promptService.MonochromeFirstEra && year == Years.Min()) continue;
 
                 var colors = new List<string>();
                 foreach (var model in prompt.SelectedVehicles)
@@ -2800,9 +2835,12 @@ public static class PromptSmokeTest
             if (!text.Contains($"PERIOD — build the scene as it stood in {Years[0]}"))
                 errs.Add($"{label}: base prompt is not dated to the base year {Years[0]}");
 
-            // Geometry actually made it in, in the same shape BuildPreserveBlock emits.
+            // Geometry actually made it in, in the same shape BuildPreserveBlock
+            // emits. No "building" between type and position: the type now names
+            // the structure's form ("pump canopy", "attached storefront row"),
+            // and "pump canopy building" reads as a second, invented structure.
             foreach (var b in scene.Geometry.Buildings)
-                if (!text.Contains($"{b.Type} building at {b.Position}"))
+                if (!text.Contains($"{b.Type} at {b.Position}"))
                     errs.Add($"{label}: base prompt missing building '{b.Type}'");
             foreach (var r in scene.Geometry.Roads)
                 if (!text.Contains($"{r.Type} road, {r.Lanes}-lane, {r.Surface}"))
@@ -6129,6 +6167,250 @@ public static class PromptSmokeTest
         Geometry:  new Geometry([], true, true, [], [], "open asphalt lot"),
         Environment: new Environment("suburban", [], [], []),
         ImmutableElements: [series.StoreDescription]);
+
+    // The money guard. An unrecognised scene type is the expensive failure this
+    // project can have: nothing throws, every data lookup quietly falls back to
+    // the generic pool, and the run bills a base image plus six eras for a place
+    // Vision never identified. So the rule is asserted from both sides — every
+    // type that should render does, and everything that means "I could not tell"
+    // does not, however it is spelled.
+    private static async Task DoC87(
+        IDataService dataService,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        IReadOnlyDictionary<string, string> phrases;
+        try
+        {
+            phrases = await dataService.LoadSceneTypePhrasesAsync();
+        }
+        catch (Exception ex)
+        {
+            f.Add(("C87", "An unrenderable scene type is refused before anything is generated",
+                false, $"LoadSceneTypePhrasesAsync threw: {ex.Message}"));
+            return;
+        }
+
+        // Every scene type the project actually ships must survive the guard, or
+        // it blocks real photos. Highway is checked through both terrains: it is
+        // the one type whose renderable key is not its own name.
+        var shipped = new (string Type, string? Terrain)[]
+        {
+            ("gas_station", "urban"), ("downtown_street", "urban"), ("strip_mall", "suburban"),
+            ("auto_repair", "urban"), ("corner_shop", "urban"), ("freestanding_shop", "suburban"),
+            ("motel", "rural"), ("mall", "suburban"), ("shopping_center", "suburban"),
+            ("highway", "urban"), ("highway", "rural"), ("highway", null),
+        };
+        foreach (var (type, terrain) in shipped)
+            if (!SceneDnaValidator.IsRenderableSceneType(type, terrain, phrases))
+                errs.Add($"\"{type}\" (terrain {terrain ?? "null"}) is refused, but the project ships it");
+
+        // And everything that means "Vision could not tell" must be refused —
+        // including the spellings a model reaches for when it is unsure, and the
+        // casing it happens to use.
+        var undetermined = new string?[]
+        {
+            null, "", "   ", "unknown", "UNKNOWN", " Unknown ", "default", "other", "none", "unclear", "n/a"
+        };
+        foreach (var type in undetermined)
+        {
+            if (SceneDnaValidator.IsRenderableSceneType(type, "urban", phrases))
+                errs.Add($"\"{type ?? "null"}\" passes the guard — a run would bill seven generations for it");
+            if (!SceneDnaValidator.IsUndetermined(type))
+                errs.Add($"\"{type ?? "null"}\" is not treated as undetermined, so the enrichment retry never fires");
+        }
+
+        // A type nobody has heard of is the dangerous case: it is not "unknown",
+        // so nothing flags it, and every lookup silently lands on the generic
+        // pool. It has to be refused too.
+        foreach (var invented in new[] { "parking_lot", "church", "gas station", "residential_street" })
+            if (SceneDnaValidator.IsRenderableSceneType(invented, "urban", phrases))
+                errs.Add($"invented type \"{invented}\" passes the guard");
+
+        // The guard reads scene-types.txt, so that file has to carry every
+        // shipped type or the guard turns into a blocker instead of a filter.
+        var renderable = phrases.Keys.Where(k => !SceneDnaValidator.IsUndetermined(k)).ToList();
+        if (renderable.Count < 10)
+            errs.Add($"scene-types.txt lists only {renderable.Count} renderable types — the guard would refuse real photos");
+
+        f.Add(("C87", "Every shipped scene type passes the pre-generation guard, and every way of saying \"Vision could not tell\" is refused before a single image is paid for",
+            errs.Count == 0, errs.Count == 0
+                ? $"{shipped.Length} shipped shapes accepted, {undetermined.Length} undetermined spellings and 4 invented types refused ({renderable.Count} renderable in scene-types.txt)"
+                : Join(errs)));
+    }
+
+    // The caption pools are the one place where a well-meaning edit can quietly
+    // grow past what the platform will show. Nothing at runtime truncates a
+    // caption — it must not, since every body is built to end on a question and
+    // a cut one asks nothing — so the limit is held here, at authoring time,
+    // over every body in every pool rather than over the one the current week
+    // happens to select.
+    private static async Task DoC88(
+        IDataService dataService,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        IReadOnlyList<string> hashtags;
+        try
+        {
+            hashtags = await dataService.LoadHashtagsAsync();
+        }
+        catch (Exception ex)
+        {
+            f.Add(("C88", $"Every assembled caption is under {MaxCaptionWords} words",
+                false, $"LoadHashtagsAsync threw: {ex.Message}"));
+            return;
+        }
+
+        // Five tags ship with a post; the pool is longer, so take the longest
+        // five to measure the worst case rather than whichever would be drawn.
+        var tagTail = "\n\n" + string.Join("\n",
+            hashtags.Select(h => h.Split(' ')[0]).OrderByDescending(h => h.Length).Take(5));
+
+        // The longest substitutions any body can receive, so the count is the
+        // worst case rather than one sample of it.
+        var longestAngle = CaptionService.AnglesByScene.Values
+            .SelectMany(a => a).OrderByDescending(a => a.Length).First();
+        var longestCondition = new[] { "thriving", "busy", "new", "restored", "declining", "abandoned", "squatted" }
+            .Select(CaptionService.MapFinalCondition)
+            .Append(CaptionService.UnknownConditionText)
+            .OrderByDescending(c => c.Length).First();
+
+        int WordCount(string text) =>
+            text.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries)
+                .Count(t => t.Any(char.IsLetterOrDigit));
+
+        var pools = CaptionService.AnglesByScene.Keys.Append("base").Append("brand_series").Distinct().ToList();
+        var checkedBodies = 0;
+        var worst = (Words: 0, Pool: "", Preview: "");
+
+        foreach (var pool in pools)
+        {
+            string raw;
+            try   { raw = await dataService.LoadCaptionBodiesAsync(pool); }
+            catch (FileNotFoundException) { continue; }   // covered by C26/C86
+
+            foreach (var body in raw.Split("\n---\n").Select(b => b.Trim()).Where(b => b.Length > 0))
+            {
+                var assembled = body
+                    .Replace("{firstYear}", "1975")
+                    .Replace("{lastYear}", "2025")
+                    .Replace("{angle}", longestAngle)
+                    .Replace("{condition}", longestCondition)
+                    + tagTail;
+
+                checkedBodies++;
+                var words = WordCount(assembled);
+                if (words > worst.Words)
+                    worst = (words, pool, body.Split('\n')[0].Trim());
+                if (words >= MaxCaptionWords)
+                    errs.Add($"{pool}.txt: a body assembles to {words} words (limit {MaxCaptionWords}) — \"{body.Split('\n')[0].Trim()}\"");
+            }
+        }
+
+        if (checkedBodies == 0)
+            errs.Add("no caption bodies were read — the check asserted nothing");
+
+        f.Add(("C88", $"Every assembled caption is under {MaxCaptionWords} words, so none is collapsed behind \"See more\" before its closing question",
+            errs.Count == 0, errs.Count == 0
+                ? $"{checkedBodies} bodies across {pools.Count} pools; worst case {worst.Words} words ({worst.Pool}.txt)"
+                : Join(errs)));
+    }
+
+    // The most expensive prompt bug this project has shipped: parking was a
+    // bool, "none" fell in with "lot", and a frontage with nowhere to park was
+    // told to put cars nose-in into stalls — with a lot-shaped PLACEMENT line
+    // on top. The model cannot obey that without drawing a car park, so it drew
+    // one. Three runs were lost before the cause was found, and nothing failed
+    // while it happened: the prompt was well-formed, just false.
+    //
+    // Checked at both levels — the resolver's own mapping, and the prompt built
+    // through the real service from a scene whose parking is "none".
+    private static async Task DoC89(
+        IPromptService promptService,
+        Dictionary<int, EraProfile> eras,
+        SceneDna stripMallScene,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+
+        // 1. The mapping. "none" must not be reachable by accident, and a blank
+        // must keep the old default rather than silently suppressing parking.
+        var expected = new (string? Input, PromptService.ParkingKind Want)[]
+        {
+            ("on-street", PromptService.ParkingKind.OnStreet),
+            ("parallel bays along the kerb", PromptService.ParkingKind.OnStreet),
+            ("metered curb parking", PromptService.ParkingKind.OnStreet),
+            ("lot", PromptService.ParkingKind.Lot),
+            ("open asphalt apron", PromptService.ParkingKind.Lot),
+            ("none", PromptService.ParkingKind.None),
+            // Free text that contains "street" while denying it. Read by
+            // substring alone these come out exactly backwards.
+            ("off-street apron facing the facade, no on-street parking", PromptService.ParkingKind.Lot),
+            ("off street lot behind the building", PromptService.ParkingKind.Lot),
+            ("no street parking, gravel apron only", PromptService.ParkingKind.Lot),
+            ("no parking", PromptService.ParkingKind.None),
+            ("NONE", PromptService.ParkingKind.None),
+            (null, PromptService.ParkingKind.Lot),
+            ("", PromptService.ParkingKind.Lot),
+        };
+        foreach (var (input, want) in expected)
+        {
+            var got = PromptService.ResolveParking(input);
+            if (got != want)
+                errs.Add($"ResolveParking(\"{input ?? "null"}\") = {got}, expected {want}");
+        }
+
+        // 2. The prompt. A scene with no parking must not ask for a bay, a
+        // stall, a lot or a PLACEMENT arrangement — every one of those is an
+        // instruction to draw parking that is not in the photograph.
+        var noParking = stripMallScene with
+        {
+            Id = "smoke-no-parking",
+            Geometry = stripMallScene.Geometry with { Parking = "none" }
+        };
+        var ctx = new GenerationContext
+        {
+            Random = new Random(11), TotalEras = Years.Length, Years = Years,
+            ChainedFromPreviousEra = true
+        };
+
+        foreach (var year in Years)
+        {
+            var text = (await promptService.BuildAsync(noParking, eras[year], ctx)).Text;
+            var vehicles = SectionOf(text, "VEHICLES");
+            if (vehicles.Length == 0)
+                continue;   // an abandoned era legitimately has no vehicles
+
+            if (text.Contains("PLACEMENT:", StringComparison.Ordinal))
+                errs.Add($"{year}: a PLACEMENT arrangement was issued for a scene with nowhere to park");
+            foreach (var phrase in new[] { "nose-in", "into the lot", "hug the curb", "parking bays", "stalls" })
+                if (vehicles.Contains(phrase, StringComparison.OrdinalIgnoreCase))
+                    errs.Add($"{year}: VEHICLES says \"{phrase}\" on a frontage with no parking");
+            if (!vehicles.Contains("no parking here", StringComparison.OrdinalIgnoreCase))
+                errs.Add($"{year}: VEHICLES never states that there is nowhere to park");
+
+            // The same false premise used to leak into PEOPLE as "the lot apron".
+            if (SectionOf(text, "PEOPLE").Contains("lot apron", StringComparison.OrdinalIgnoreCase))
+                errs.Add($"{year}: PEOPLE stands people on a lot apron that does not exist");
+        }
+
+        f.Add(("C89", "A scene whose parking is \"none\" is never told to park nose-in, is given no PLACEMENT arrangement, and stands nobody on a lot apron",
+            errs.Count == 0, errs.Count == 0
+                ? $"{expected.Length} parking strings map correctly; no lot wording in any era of a no-parking scene"
+                : Join(errs)));
+    }
+
+    // One named block of a prompt, up to the next blank line.
+    private static string SectionOf(string text, string header)
+    {
+        var start = text.IndexOf(header + "\n", StringComparison.Ordinal);
+        if (start < 0) return "";
+        var end = text.IndexOf("\n\n", start, StringComparison.Ordinal);
+        return end < 0 ? text[start..] : text[start..end];
+    }
 
     private static async Task WriteReport(
         List<(string Id, string Desc, bool? Pass, string Detail)> findings,

@@ -1,19 +1,23 @@
 One single continuous photograph of a strip mall, a single-story retail row under a continuous storefront overhang, fronted by a parking lot — no panels,
-grids, or split frames. Photorealistic, shot on a normal camera at eye level.
+grids, or split frames. Photorealistic, shot on a normal camera — the height and
+framing are given below, follow them rather than defaulting to a straight-on
+eye-level view.
 
 BUILD THIS SCENE
 - camera: eye-level, street-facing, fov 78
 - commercial arterial road, 4-lane, asphalt
 - sidewalks present, curbs present
 - driveways: north entrance apron, south entrance apron
-- single-story retail row under a continuous overhang building at along the back of the lot, 1 story, brick veneer, EIFS stucco panels, flat with continuous overhang roof, 60 feet from road setback
-- detached end-cap retail unit building at north end of the lot, 1 story, brick veneer, metal fascia panels, flat parapet roof, 40 feet from road setback
+- single-story retail row under a continuous overhang at along the back of the lot, 1 story, brick veneer, EIFS stucco panels, flat with continuous overhang roof, 60 feet from road setback
+- detached end-cap retail unit at north end of the lot, 1 story, brick veneer, metal fascia panels, flat parapet roof, 40 feet from road setback
 - utilities: overhead power lines on wooden poles, transformer on rear property line pole — keep their exact positions and geometry, but render them as period-appropriate infrastructure for the target year
 - landscape: parking lot islands with curbing, landscape strip along the road frontage, painted stall striping
 - crepe myrtle tree at parking lot island near entrance, small size
 - maple tree at landscape strip along the road, medium size
 - oak tree at back property line, large size
 - immutable elements: continuous storefront overhang along the retail row, pylon sign base at the road frontage, parking lot islands
+
+
 
 PERIOD — build the scene as it stood in 1975
 Everything permanent must be plausible for 1975; nothing may look newer.

@@ -4,18 +4,18 @@ Keep the uploaded photo's exact composition, camera angle, road and building geo
 TRANSFORM TO 1985 — condition: well kept — freshly painted, open for business
 
 PERIOD DETAILS
-- MARY'S DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
-- awnings with bold stripe patterns
-- large illuminated signage
-- window signs: 'VHS OVERNIGHT RENTAL $2.99', '2 SLICES $1.50'
-- arcade game posters in a window
+- TOWN DINER with a backlit sign and 'HOT COFFEE 45¢' in the window
+- backlit plastic channel letters standard
+- neon signs widespread
+- window signs: '2 SLICES $1.50', 'PERM SPECIAL $25'
+- the painted ghost-sign wall ad, fading
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
 'HOT COFFEE 45¢'
-'VHS OVERNIGHT RENTAL $2.99'
 '2 SLICES $1.50'
+'PERM SPECIAL $25'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
@@ -23,13 +23,13 @@ PEOPLE
 
 VEHICLES
 EXACTLY 2 vehicles, 1985 model year, and no others:
-- 1980-1985 Buick LeSabre — boxy full-size, chrome trim — light blue
-- 1980-1986 Ford F-150 — square body, dual headlights — silver
+- 1980-1985 Buick LeSabre — boxy full-size, chrome trim
+- 1980-1986 Ford F-150 — square body, dual headlights
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES
 - pine tree at fence line east: a young tree, only about 25% of its canopy in the base image, thin trunk
 
 STYLE
-COLOR photograph — Kodacolor VR 200 or Fujicolor 100 look. Color: slightly cool tones compared to 1970s. Grain: moderate grain, cleaner than 1975. Photorealistic — NOT black-and-white, no HDR. Light: warm, bright afternoon daylight, clear sky with light cloud, soft natural shadows — a fine, ordinary day.
+STRICTLY BLACK AND WHITE — true monochrome archival photograph, zero color anywhere. Grain: moderate grain, cleaner than 1975. Style: bright daylight, commercial feel. Photorealistic, like a preserved newspaper-archive frame; slight period-lens softness, not digitally sharp. Light: bright open daylight, clear sky, soft natural shadows — a fine, ordinary day.
 Blur all faces and licence plates.

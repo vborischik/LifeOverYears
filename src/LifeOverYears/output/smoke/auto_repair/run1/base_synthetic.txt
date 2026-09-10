@@ -1,18 +1,22 @@
 One single continuous photograph of an auto repair shop, with a row of service bays under one continuous roof and a small office — no panels,
-grids, or split frames. Photorealistic, shot on a normal camera at eye level.
+grids, or split frames. Photorealistic, shot on a normal camera — the height and
+framing are given below, follow them rather than defaulting to a straight-on
+eye-level view.
 
 BUILD THIS SCENE
 - camera: eye-level, street-facing, fov 76
 - residential road, 2-lane, asphalt
 - sidewalks present, curbs present
 - driveways: corner entrance apron; parking: concrete apron in front of the bays
-- small office with plate glass building at corner of the lot, 1 story, brick veneer, plate glass, flat parapet roof, 20 feet from road setback
-- service bay row under one continuous roof building at rear of the lot, 1 story, concrete block, corrugated metal, flat roof, 40 feet from road setback
+- small office with plate glass at corner of the lot, 1 story, brick veneer, plate glass, flat parapet roof, 20 feet from road setback
+- service bay row under one continuous roof at rear of the lot, 1 story, concrete block, corrugated metal, flat roof, 40 feet from road setback
 - utilities: overhead power lines, utility pole at the corner — keep their exact positions and geometry, but render them as period-appropriate infrastructure for the target year
 - landscape: narrow grass strip along the road, gravel edge along the apron
 - maple tree at street corner, medium size
 - elm tree at side yard, small size
 - immutable elements: painted sign band across the parapet, corner lot at the intersection, concrete apron in front of the service bays
+
+
 
 PERIOD — build the scene as it stood in 1975
 Everything permanent must be plausible for 1975; nothing may look newer.

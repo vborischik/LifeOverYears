@@ -1,21 +1,21 @@
 One continuous photograph, TRUE 9:16 vertical portrait. No panels, no grid, no split frames.
 Keep the uploaded photo's exact composition, camera angle, road and building geometry. Change only what is listed below.
 
-TRANSFORM TO 1995 — condition: busy — well kept, plenty of custom
+TRANSFORM TO 1995 — condition: well kept — freshly painted, open for business
 
 PERIOD DETAILS
-- main sign: "BAYVIEW PHARMACY" — a neighbourhood pharmacy, painted sign board over the door with a mortar-and-pestle emblem beside the lettering
-- a phone-card poster and a money-order decal filling the lower window
-- a security camera bracket newly fitted above the door
+- main sign: "LAKEVIEW GROCERY" — a neighbourhood grocery, painted wooden sign board across the band over the door, crates of produce on a stand under the window
+- a backlit plastic sign panel, one tube out at the left end
+- a chest cooler on the sidewalk under a plastic drinks banner
 - a hand-lettered sign about a two-item limit taped to the glass
-- window signs: 'PHONE CARDS', 'MONEY ORDERS'
+- window signs: 'PHONE CARDS', 'ICE'
 Place each detail where it plausibly belongs. If there is nowhere for one, leave it out. Nothing stands in the roadway.
 
 SIGNAGE
 The only readable text anywhere in the image is:
-'BAYVIEW PHARMACY'
+'LAKEVIEW GROCERY'
 'PHONE CARDS'
-'MONEY ORDERS'
+'ICE'
 Do not render any other readable words, business names, slogans, advertisements, logos or brand names. Lettering that appears elsewhere must be too small, too distant or too weathered to read as words.
 
 PEOPLE
@@ -23,8 +23,8 @@ PEOPLE
 
 VEHICLES
 EXACTLY 2 vehicles, 1995 model year, and no others:
-- 1993-1998 Jeep Grand Cherokee — early SUV, boxy-rounded — burgundy
-- 1992-1996 Toyota Camry — rounded, understated — hunter green
+- 1990-1994 Chevrolet Lumina — rounded mid-size sedan — black
+- 1991-1994 Saturn SL — plastic body panels, compact — silver
 Parked, with gaps between them, none in a driving lane. Plates blurred.
 
 TREES
