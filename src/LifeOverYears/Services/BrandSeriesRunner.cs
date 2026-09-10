@@ -166,9 +166,12 @@ public sealed class BrandSeriesRunner
         _logger.LogInformation("All {Count} era images present", years.Count);
 
         // Step 4 — stamp + assemble, unchanged.
+        // Same order the photo path composes in: the store as it is now, then
+        // the rewind. Generation ran oldest to newest; only the cut changes.
         var (_, video) = await VideoAssemblyRunner.RunAsync(
             _overlay, _video, run.ImagesDir, run.StampedDir,
-            Path.Combine(run.VideoDir, "timeline.mp4"), years, _logger);
+            Path.Combine(run.VideoDir, "timeline.mp4"),
+            VideoAssemblyRunner.NewestFirst(years), _logger);
 
         if (video is null)
         {

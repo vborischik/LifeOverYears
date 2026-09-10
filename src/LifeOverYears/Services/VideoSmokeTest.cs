@@ -6,6 +6,7 @@ using System.Text.Json;
 using LifeOverYears.Models;
 using LifeOverYears.Services.Interfaces;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace LifeOverYears.Services;
 
@@ -61,6 +62,7 @@ public static class VideoSmokeTest
         // the real BuildArgs (via reflection, since it's private) so the "same
         // kind for every cut in a run" invariant is checked far more thoroughly.
         findings.Add(CheckTransitionConsistency());
+        findings.AddRange(CheckTimelinePlan());
 
         // V5 first — every other check depends on these binaries existing.
         var ffmpegOk  = await BinaryAvailable("ffmpeg", logger);
@@ -87,9 +89,17 @@ public static class VideoSmokeTest
 
         // Exercise the real production tail: verify -> overlay -> compose,
         // via the same VideoAssemblyRunner 'collect' and 'assemble' use.
+        // Composed in the same order the product uses — newest first, then the
+        // rewind — so the video this test leaves on disk is a fair sample of
+        // what a real run produces. It is the artefact anyone eyeballs when they
+        // want to see what the pipeline makes without paying for a run, and a
+        // fixture that renders a different cut from production teaches the wrong
+        // thing. Order preservation itself is asserted separately by O6, against
+        // a deliberately descending list, so nothing is lost by matching here.
         var messagesBeforeFull = logCapture.Messages.Count;
         var (mainMissing, video) = await VideoAssemblyRunner.RunAsync(
-            overlay, videoService, imagesDir, stampedDir, outputPath, Years, logger);
+            overlay, videoService, imagesDir, stampedDir, outputPath,
+            VideoAssemblyRunner.NewestFirst(Years), logger);
         var messagesAfterFull = logCapture.Messages.Count;
 
         // O1 — stamped/{year}.png exists for every year, same dimensions as source.
@@ -125,6 +135,42 @@ public static class VideoSmokeTest
         findings.Add(("O2", "stamped output file size differs from the un-stamped source",
             o2Errors.Count == 0, o2Errors.Count == 0 ? "All stamped files differ in size from their source" : string.Join("; ", o2Errors)));
 
+
+        // O6 — the runner plays the years in the order it is handed, so a caller
+        // can open on the present and rewind. It used to sort them, which made
+        // that impossible and made the loop tail always repeat the oldest year.
+        // Driven through a recording IVideoService: no ffmpeg render, and it
+        // asserts the list ComposeAsync actually receives rather than inferring
+        // it from a command line.
+        var o6Errors = new List<string>();
+        var descending = Years.OrderByDescending(y => y).ToList();
+        // Recorded at the ffmpeg boundary, not at IVideoService: the real
+        // VideoService sits between them and used to re-sort by year, which is
+        // exactly the bug this check exists to catch. Substituting the whole
+        // service would step over the layer under test — an earlier version of
+        // this check did, and passed while the shipped video came out ascending.
+        var recorder = new RecordingFfmpegProvider();
+        var realVideoService = new VideoService(recorder, NullLogger<VideoService>.Instance);
+        await VideoAssemblyRunner.RunAsync(
+            overlay, realVideoService, imagesDir, Path.Combine(root, "order-stamped"),
+            Path.Combine(root, "order-video", "timeline.mp4"), descending, logger);
+
+        if (recorder.Received is null)
+            o6Errors.Add("the ffmpeg provider was never reached");
+        else
+        {
+            var got = recorder.Received.Select(i => i.Year).ToList();
+            if (!got.SequenceEqual(descending))
+                o6Errors.Add($"passed [{string.Join(", ", descending)}], composed [{string.Join(", ", got)}]");
+        }
+
+        findings.Add(("O6",
+            "The whole assembly chain — runner, VideoService, provider — hands ffmpeg the years in the order the caller passed them",
+            o6Errors.Count == 0,
+            o6Errors.Count == 0
+                ? $"[{string.Join(", ", descending)}] survived intact to ComposeAsync"
+                : string.Join("; ", o6Errors)));
+
         var fileInfo = File.Exists(outputPath) ? new FileInfo(outputPath) : null;
         var v1 = mainMissing.Count == 0 && video is not null && fileInfo is { Length: > 0 };
         findings.Add(("V1", "Video file exists and has non-zero size",
@@ -132,7 +178,9 @@ public static class VideoSmokeTest
 
         if (!v1)
         {
-            foreach (var (id, desc) in SkippedChecks().Where(c => c.Id is not ("O1" or "O2" or "V1")))
+            // O1/O2/O6 and V1 are already settled by this point: the first three
+            // read the stamped frames, which exist whether or not ffmpeg composed.
+            foreach (var (id, desc) in SkippedChecks().Where(c => c.Id is not ("O1" or "O2" or "O6" or "V1")))
                 findings.Add((id, desc, false, "skipped — video file not produced"));
             await WriteReport(findings, logger);
             PrintSummary(findings);
@@ -176,8 +224,9 @@ public static class VideoSmokeTest
                 .Select(m => m.Groups[1].Value)
                 .ToList();
 
-            if (used.Count != Years.Length - 1)
-                v6Errors.Add($"{used.Count} transitions for {Years.Length} frames (expected {Years.Length - 1})");
+            // n frames now yield n cuts, not n-1: the loop tail takes one more.
+            if (used.Count != Years.Length)
+                v6Errors.Add($"{used.Count} transitions for {Years.Length} frames (expected {Years.Length})");
             foreach (var t in used.Where(t => !Providers.FfmpegProvider.TransitionTypes.Contains(t)))
                 v6Errors.Add($"transition '{t}' is not in the pool");
             if (used.Distinct().Count() > 1)
@@ -199,9 +248,10 @@ public static class VideoSmokeTest
         Directory.CreateDirectory(Path.GetDirectoryName(partialVideoPath)!);
 
         var messagesBeforePartial = logCapture.Messages.Count;
+        // Same cut as the full run: O3 compares the stamped set, not its order.
         var (partialMissing, partialVideo) = await VideoAssemblyRunner.RunAsync(
             overlay, videoService, imagesDir, partialStampedDir, partialVideoPath,
-            PartialYears, logger);
+            VideoAssemblyRunner.NewestFirst(PartialYears), logger);
 
         if (partialMissing.Count > 0)
             o3Errors.Add($"watcher reported missing years for a partial request: {string.Join(", ", partialMissing)}");
@@ -333,17 +383,19 @@ public static class VideoSmokeTest
                         FilePath: $"fake{i}.png", Provider: "test", CreatedAt: "2025-01-01T00:00:00Z"))
                     .ToList();
 
-                var (firstHold, holdSeconds, _, _) = Providers.FfmpegProvider.PlanTimeline(frameCount);
+                var (clipSeconds, _, _) = Providers.FfmpegProvider.PlanTimeline(frameCount);
                 var args = (string)buildArgs.Invoke(null,
-                    new object[] { images, "out.mp4", firstHold, holdSeconds, kind })!;
+                    new object[] { images, "out.mp4", clipSeconds, kind })!;
 
                 var used = System.Text.RegularExpressions.Regex
                     .Matches(args, @"xfade=transition=([a-z]+)")
                     .Select(m => m.Groups[1].Value)
                     .ToList();
 
-                if (used.Count != frameCount - 1)
-                    errs.Add($"seed={seed} frames={frameCount}: {used.Count} transitions (expected {frameCount - 1})");
+                // One transition per cut, and the loop tail adds a cut of its own.
+                var expectedCuts = clipSeconds.Length - 1;
+                if (used.Count != expectedCuts)
+                    errs.Add($"seed={seed} frames={frameCount}: {used.Count} transitions (expected {expectedCuts})");
                 else if (used.Distinct().Count() > 1)
                     errs.Add($"seed={seed} frames={frameCount}: transitions differ within one run: {string.Join(", ", used)}");
                 else if (used.Count > 0 && used[0] != kind)
@@ -359,10 +411,236 @@ public static class VideoSmokeTest
                 : string.Join("; ", errs));
     }
 
+    // V8-V13 — the retention shape of the timeline. Pure arithmetic over
+    // PlanTimeline and the real BuildArgs, so no ffmpeg binary is involved and
+    // these run even on a box without it.
+    private static List<(string Id, string Desc, bool Pass, string Detail)> CheckTimelinePlan()
+    {
+        var results = new List<(string, string, bool, string)>();
+        var f = typeof(Providers.FfmpegProvider);
+        var buildArgs = f.GetMethod("BuildArgs",
+            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)
+            ?? throw new InvalidOperationException("FfmpegProvider.BuildArgs not found via reflection");
+
+        const double transition = Providers.FfmpegProvider.TransitionSeconds;
+        var minHold  = 2 * transition + Providers.FfmpegProvider.MinPureSecondsPerMiddleFrame;
+        var counts   = new[] { 2, 3, 6, 10 };
+        var n6       = Years.Length;
+        var (plan6, total6, adjusted6) = Providers.FfmpegProvider.PlanTimeline(n6);
+
+        string Fmt(IEnumerable<double> xs) =>
+            string.Join(", ", xs.Select(x => x.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture)));
+
+        // V8 — the ramp. Strictly increasing while the weight curve still has
+        // distinct values left; merely non-decreasing past that, because a run
+        // longer than the curve repeats its final weight rather than dropping
+        // back to a short hold. A flat or falling ramp is the bug: it means the
+        // early cuts stopped being the fast ones.
+        var v8 = new List<string>();
+        foreach (var n in counts)
+        {
+            var (clips, _, _) = Providers.FfmpegProvider.PlanTimeline(n);
+            var holds = clips.Skip(1).Take(n - 1).ToList();
+            for (var i = 1; i < holds.Count; i++)
+                if (holds[i] < holds[i - 1] - 1e-9)
+                    v8.Add($"n={n}: hold {i + 1} ({holds[i]:0.##}s) is shorter than hold {i} ({holds[i - 1]:0.##}s)");
+        }
+        var holds6 = plan6.Skip(1).Take(n6 - 1).ToList();
+        for (var i = 1; i < holds6.Count; i++)
+            if (holds6[i] <= holds6[i - 1] + 1e-9)
+                v8.Add($"n={n6}: holds {i} and {i + 1} are equal ({holds6[i]:0.##}s) — the ramp is flat where the curve is distinct");
+        results.Add(("V8", $"Holds ramp upward across clips 1..n-1 — strictly at n={n6}, never falling at any n",
+            v8.Count == 0, v8.Count == 0 ? $"n={n6}: {Fmt(holds6)}" : string.Join("; ", v8)));
+
+        // V9 — the loop tail exists and is the first image again, so the closing
+        // wipe lands where the video started and the platform's auto-loop has no
+        // seam to show.
+        var v9 = new List<string>();
+        foreach (var n in counts)
+        {
+            var (clips, _, _) = Providers.FfmpegProvider.PlanTimeline(n);
+            if (clips.Length != n + 1)
+            {
+                v9.Add($"n={n}: {clips.Length} clips planned, expected {n + 1}");
+                continue;
+            }
+            if (Math.Abs(clips[^1] - Providers.FfmpegProvider.LoopTailSeconds) > 1e-9)
+                v9.Add($"n={n}: tail is {clips[^1]:0.##}s, expected {Providers.FfmpegProvider.LoopTailSeconds:0.##}s");
+
+            var images = FakeImages(n);
+            var args   = (string)buildArgs.Invoke(null, new object[] { images, "out.mp4", clips, "radial" })!;
+            var inputs = System.Text.RegularExpressions.Regex
+                .Matches(args, "-i \"([^\"]+)\"").Select(m => m.Groups[1].Value).ToList();
+
+            if (inputs.Count != n + 1)
+                v9.Add($"n={n}: {inputs.Count} inputs emitted, expected {n + 1}");
+            else if (inputs[^1] != inputs[0])
+                v9.Add($"n={n}: tail input is {Path.GetFileName(inputs[^1])}, expected the first image {Path.GetFileName(inputs[0])}");
+        }
+        results.Add(("V9", "Every plan renders n+1 clips and the last input repeats the first image, so the auto-loop restart is seamless",
+            v9.Count == 0, v9.Count == 0 ? $"n+1 clips and a repeated opening frame at n={string.Join("/", counts)}" : string.Join("; ", v9)));
+
+        // V10 — the ramp redistributes the budget, it does not spend more of it.
+        // Only meaningful when nothing was clamped: once the floor fires the
+        // plan is deliberately longer than the target.
+        var v10 = new List<string>();
+        foreach (var n in counts)
+        {
+            var (clips, total, adjusted) = Providers.FfmpegProvider.PlanTimeline(n);
+            if (adjusted) continue;
+            var rendered = clips.Sum() - n * transition;
+            if (Math.Abs(rendered - Providers.FfmpegProvider.TargetTotalSeconds) > 0.01)
+                v10.Add($"n={n}: clips sum to {rendered:0.###}s, expected {Providers.FfmpegProvider.TargetTotalSeconds}s");
+            if (Math.Abs(rendered - total) > 0.01)
+                v10.Add($"n={n}: reported total {total:0.###}s disagrees with the clip array ({rendered:0.###}s)");
+        }
+        results.Add(("V10", $"An unadjusted plan's clips minus its n transitions equal {Providers.FfmpegProvider.TargetTotalSeconds}s (±0.01)",
+            v10.Count == 0, v10.Count == 0 ? $"n={n6}: {total6:0.###}s from clips [{Fmt(plan6)}]" : string.Join("; ", v10)));
+
+        // V11 — every clip between the first and the tail now carries a wipe on
+        // both sides, the last era included, so all of them owe the pure-view
+        // floor. The tail is exempt by design: it exists only to carry a wipe.
+        var v11 = new List<string>();
+        foreach (var n in counts)
+        {
+            var (clips, _, _) = Providers.FfmpegProvider.PlanTimeline(n);
+            for (var i = 1; i < n; i++)
+                if (clips[i] < minHold - 1e-9)
+                    v11.Add($"n={n}: clip {i} is {clips[i]:0.##}s, below the {minHold:0.##}s floor");
+        }
+        results.Add(("V11", $"Every clip 1..n-1 holds at least {minHold:0.##}s, so back-to-back wipes never eat the whole frame",
+            v11.Count == 0, v11.Count == 0 ? $"floor respected at n={string.Join("/", counts)}" : string.Join("; ", v11)));
+
+        // V12 — the reason the ramp exists. A viewer who sees nothing change for
+        // four seconds leaves, and the old uniform hold left a 2.6s dead patch
+        // at exactly the moment they were deciding. Asserted on the production
+        // frame count: a two-frame run is a degenerate test shape whose single
+        // long hold is arithmetically correct and says nothing about retention.
+        const double maxGapSeconds = 4.0;
+        var offsets = WipeOffsets(plan6);
+        var v12 = new List<string>();
+        for (var i = 1; i < offsets.Count; i++)
+        {
+            var gap = offsets[i] - offsets[i - 1];
+            if (gap > maxGapSeconds + 1e-9)
+                v12.Add($"{gap:0.##}s of no movement between the wipes at {offsets[i - 1]:0.##}s and {offsets[i]:0.##}s");
+        }
+        results.Add(("V12", $"At n={n6} no two consecutive wipes are more than {maxGapSeconds:0.##}s apart",
+            v12.Count == 0,
+            v12.Count == 0
+                ? $"wipes at {Fmt(offsets)} (largest gap {(offsets.Count > 1 ? offsets.Zip(offsets.Skip(1), (a, b) => b - a).Max() : 0):0.##}s)"
+                : string.Join("; ", v12)));
+
+        // V13 — a crossfade between two frames of the same location reads as the
+        // lens losing focus, not as a decade passing.
+        var hasFade = Providers.FfmpegProvider.TransitionTypes
+            .Any(t => t.Equals("fade", StringComparison.OrdinalIgnoreCase));
+        results.Add(("V13", "'fade' is not in the transition pool — a crossfade of one place reads as a focus wobble, not a change of decade",
+            !hasFade,
+            hasFade ? "'fade' is still in TransitionTypes"
+                    : $"pool: {string.Join(", ", Providers.FfmpegProvider.TransitionTypes)}"));
+
+        // V14 — the push-in's filter chain. Every term in it is load-bearing and
+        // silently degrades rather than failing if it moves: a missing upscale
+        // gives a soft, jittering crop, fps after zoompan gives a stepped ramp,
+        // and a wrong denominator leaves the zoom short of its end scale at the
+        // loop seam. None of that shows up as an error, only as a worse video.
+        var v14 = new List<string>();
+        var upscale = $"{1080 * 4}:{1920 * 4}";
+        foreach (var n in counts)
+        {
+            var (clips, _, _) = Providers.FfmpegProvider.PlanTimeline(n);
+            var args = (string)buildArgs.Invoke(null,
+                new object[] { FakeImages(n), "out.mp4", clips, "radial" })!;
+
+            var chains = args.Split(';').Where(c => c.Contains("zoompan", StringComparison.Ordinal)).ToList();
+            if (chains.Count != clips.Length)
+            {
+                v14.Add($"n={n}: {chains.Count} chains carry zoompan, expected {clips.Length}");
+                continue;
+            }
+
+            for (var i = 0; i < clips.Length; i++)
+            {
+                var chain  = chains[i];
+                var frames = (int)Math.Round(clips[i] * 30, MidpointRounding.AwayFromZero);
+
+                // The clip's length in frames drives the ramp's denominator, not
+                // zoompan's d=. d is frames emitted per frame received, and the
+                // input is already the clip's full length, so d=1 is the only
+                // value that preserves the timeline — d=frames renders the clip
+                // frames times too long.
+                if (!chain.Contains($"*on/{frames - 1}'", StringComparison.Ordinal))
+                    v14.Add($"n={n} clip {i}: ramp is not over {frames - 1} frames ({clips[i]:0.##}s at 30fps)");
+                if (!chain.Contains(":d=1:", StringComparison.Ordinal))
+                    v14.Add($"n={n} clip {i}: d= is not 1 — the clip will render its own length squared");
+
+                var fpsAt  = chain.IndexOf("fps=30", StringComparison.Ordinal);
+                var zoomAt = chain.IndexOf("zoompan", StringComparison.Ordinal);
+                if (fpsAt < 0 || fpsAt > zoomAt)
+                    v14.Add($"n={n} clip {i}: no fps=30 before zoompan — the ramp will advance in steps");
+
+                if (!chain.Contains($"scale={upscale}:", StringComparison.Ordinal)
+                    || !chain.Contains($"pad={upscale}:", StringComparison.Ordinal))
+                    v14.Add($"n={n} clip {i}: not upscaled to {upscale} before zoompan — the crop will be soft");
+                if (!chain.Contains(":s=1080x1920:", StringComparison.Ordinal))
+                    v14.Add($"n={n} clip {i}: zoompan does not output exactly 1080x1920");
+            }
+        }
+        results.Add(("V14", "Every clip carries a zoompan push-in: upscaled first, fps before it, output back to 1080x1920, and the ramp spanning that clip's own frame count",
+            v14.Count == 0,
+            v14.Count == 0
+                ? $"zoom to {Providers.FfmpegProvider.ZoomEndScale:0.##}x over each clip, upscaled {upscale} at n={string.Join("/", counts)}"
+                : string.Join("; ", v14.Take(5))));
+
+        return results.Select(r => (r.Item1, r.Item2, r.Item3, r.Item4)).ToList();
+    }
+
+    // Where each wipe begins, in finished-video seconds. Mirrors the offset walk
+    // in BuildArgs: the first starts when clip 0's clean view ends, and each one
+    // after advances by its clip's length minus the overlap.
+    private static List<double> WipeOffsets(double[] clips)
+    {
+        var offsets = new List<double>();
+        if (clips.Length < 2) return offsets;
+        var offset = clips[0] - Providers.FfmpegProvider.TransitionSeconds;
+        for (var i = 1; i < clips.Length; i++)
+        {
+            offsets.Add(offset);
+            offset += clips[i] - Providers.FfmpegProvider.TransitionSeconds;
+        }
+        return offsets;
+    }
+
+    private static List<HistoricalImage> FakeImages(int count) =>
+        Enumerable.Range(0, count)
+            .Select(i => new HistoricalImage(
+                Id: $"img{i}", PromptId: $"prompt{i}", Year: 1975 + i * 10,
+                FilePath: $"fake{i}.png", Provider: "test", CreatedAt: "2025-01-01T00:00:00Z"))
+            .ToList();
+
+    // Captures the image list at the last hop before ffmpeg, instead of shelling
+    // out — the order is the whole assertion and a render would say nothing
+    // extra. Standing in for the provider rather than the service keeps every
+    // layer that could re-sort inside the test.
+    private sealed class RecordingFfmpegProvider : IFfmpegProvider
+    {
+        public IReadOnlyList<HistoricalImage>? Received { get; private set; }
+
+        public Task<Video?> ComposeAsync(IReadOnlyList<HistoricalImage> images, string outputPath)
+        {
+            Received = images;
+            return Task.FromResult<Video?>(new Video(
+                Id: "recorded", ImageIds: images.Select(i => i.Id).ToList(),
+                FilePath: outputPath, CreatedAt: "2026-01-01T00:00:00Z"));
+        }
+    }
+
     private static IEnumerable<(string Id, string Desc)> SkippedChecks() => new[]
     {
         ("O1", "stamped/{year}.png exists for every test year, same dimensions as source"),
         ("O2", "stamped output file size differs from the un-stamped source"),
+        ("O6", "The whole assembly chain — runner, VideoService, provider — hands ffmpeg the years in the order the caller passed them"),
         ("V1", "Video file exists and has non-zero size"),
         ("V2", $"Video resolution == {ExpectedVideoWidth}x{ExpectedVideoHeight}"),
         ("V3", $"Duration is {ExpectedDurationSeconds(Years.Length)}s ± 0.5s " +

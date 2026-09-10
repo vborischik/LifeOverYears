@@ -22,6 +22,27 @@ public static class VideoAssemblyRunner
         return File.Exists(plain) ? plain : null;
     }
 
+    // The frame order every caller uses today: newest year first, then the rest
+    // oldest to newest. The video opens on the place as it is now — the only
+    // frame a viewer can recognise, and so the only one that earns the next
+    // three seconds — then rewinds and walks back up to it.
+    //
+    // Paired with the loop tail, which repeats the opening frame at the end, the
+    // run closes on the same image it started with and the platform's auto-loop
+    // has no seam: 2025, 1975 … 2015, 2025.
+    //
+    // A helper rather than four copies of the expression, but still called
+    // explicitly at each site: what order a video tells its story in is a
+    // content decision, and hiding it inside RunAsync is what made it invisible
+    // in the first place.
+    public static IReadOnlyList<int> NewestFirst(IEnumerable<int> years)
+    {
+        var ascending = years.OrderBy(y => y).ToList();
+        return ascending.Count > 1
+            ? ascending.TakeLast(1).Concat(ascending.Take(ascending.Count - 1)).ToList()
+            : ascending;
+    }
+
     public static async Task<(IReadOnlyList<int> Missing, Video? Video)> RunAsync(
         IYearOverlayService overlay,
         IVideoService video,
@@ -51,8 +72,12 @@ public static class VideoAssemblyRunner
         }
         logger.LogInformation("Overlay complete — {Count} years stamped into {Dir}", years.Count, stampedDir);
 
+        // No sort. Which year opens the video is a content decision now that the
+        // loop tail repeats the opening frame at the end: the first image is
+        // also the last thing on screen, so a run can lead with the present and
+        // rewind, or lead with the past and walk forward. That belongs to the
+        // caller, which is the only place that knows which story it is telling.
         var images = years
-            .OrderBy(y => y)
             .Select(y => new HistoricalImage(
                 Id:        Guid.NewGuid().ToString(),
                 PromptId:  "manual",
