@@ -34,8 +34,12 @@ cd src/LifeOverYears
 dotnet run -- run photo.jpg 1975 1985 ...   # one photo; years optional
 dotnet run -- run                           # every image in InputDir, each its own run
 dotnet run -- brand kmart                   # brand series: no photo, no Vision
+dotnet run -- brand circuit-city            # second series; ends in a Planet Fitness takeover
 dotnet run -- brand kmart 1975 1985         # a subset; a year the file lacks is refused
 ```
+
+One series per file under `data/brands/series/` — the argument is the file
+name. A misspelled name fails with the list of available series.
 
 A run folder appears under `output/runs/{id}_{yyyyMMdd-HHmm}/` holding
 `run.json` (photo path) or `series.json` (brand path), every era prompt,
@@ -45,7 +49,11 @@ The brand path draws its first era from text (nothing is uploaded), and every
 later era edits the frame before it. The series file is
 `data/brands/series/{name}.json`; logo reference images live in
 `data/brands/logos/{brand}/{year}.png` — a missing PNG logs a warning and the
-era generates from the LOGO block's words alone.
+era generates from the LOGO block's words alone. As of Sep 2026 that is the
+live state of `circuit-city`: its four logo eras (1975–2005) reference
+`data/brands/logos/circuit-city/{year}.png`, which are not dropped in yet, and
+its wordmark is marked LOGO-UNVERIFIED in the series file — check it against
+dated references before shipping a run.
 
 ## Resuming an interrupted run
 
