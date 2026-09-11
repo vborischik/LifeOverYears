@@ -10,6 +10,10 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="9.3.0" />
+    <!-- YouTube publishing only. Same versions YoutubePublisher builds with, so
+         the OAuth consent cached on this machine is reused, not re-granted. -->
+    <PackageReference Include="Google.Apis.Auth" Version="1.74.0" />
+    <PackageReference Include="Google.Apis.YouTube.v3" Version="1.73.0.4134" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.9" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.9" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.9" />
