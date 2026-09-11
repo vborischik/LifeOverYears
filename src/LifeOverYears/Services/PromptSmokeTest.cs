@@ -181,6 +181,13 @@ public static class PromptSmokeTest
         var brandRun     = BuildBrandRun(brandPromptService, kmart, 42, replacements);
         await SaveBrandRun(kmart, brandRun);
 
+        // The second series. Loaded and built here so every series-generic
+        // brand check sweeps it too — a series file that only ships is a
+        // series file nothing has ever parsed.
+        var circuitCity = await dataService.LoadBrandSeriesAsync("circuit-city");
+        var ccRun       = BuildBrandRun(brandPromptService, circuitCity, 42, replacements);
+        await SaveBrandRun(circuitCity, ccRun);
+
         // d) Checks C1–C25
         // Pass is tri-state: true PASS, false FAIL, null DISABLED. A parked check
         // reports DISABLED so it stays visible in the report — never a silent PASS.
@@ -293,6 +300,24 @@ public static class PromptSmokeTest
         DoC84(kmart, brandRun, findings);
         DoC85(kmart, brandRun, findings);
         await DoC86(dataService, captionService, kmart, findings);
+
+        // circuit-city through the same series-generic checks. C78 is not
+        // among them on purpose: it asserts the redeveloped last-era shape —
+        // subdivided frontage, resurfaced fascia, sampled tenants — and this
+        // series ends in a takeover instead; C91 is that era's equivalent.
+        // C86 runs once: it checks the shared brand_series caption pools,
+        // which are keyed on the scene type and identical for every series.
+        DoC75(ccRun, findings);
+        DoC76(circuitCity, ccRun, findings);
+        DoC77(ccRun, findings);
+        DoC79(ccRun, findings);
+        DoC80(ccRun, findings);
+        DoC81(ccRun, findings);
+        DoC82(ccRun, findings);
+        DoC83(ccRun, findings);
+        DoC84(circuitCity, ccRun, findings);
+        DoC85(circuitCity, ccRun, findings);
+        DoC91(circuitCity, ccRun, replacements, findings);
         await DoC87(dataService, findings);
         await DoC88(dataService, findings);
         await DoC89(promptService, eras, stripMallScene, findings);
@@ -6400,6 +6425,84 @@ public static class PromptSmokeTest
         f.Add(("C89", "A scene whose parking is \"none\" is never told to park nose-in, is given no PLACEMENT arrangement, and stands nobody on a lot apron",
             errs.Count == 0, errs.Count == 0
                 ? $"{expected.Length} parking strings map correctly; no lot wording in any era of a no-parking scene"
+                : Join(errs)));
+    }
+
+    // C91 — the takeover era. C78 asserts the redeveloped last-era shape;
+    // a takeover is the opposite deal: one named tenant across the whole box,
+    // and the handover deliberately left visible rather than scrubbed. What
+    // has to hold instead: the original brand is gone from the prompt
+    // entirely, the tenant is named, quoted and was actually trading that
+    // year per center-replacements.txt, the era carries no logo fields — the
+    // sign on the building is the tenant's, not a spec to reproduce — and
+    // every detail line that shows the handover reaches the prompt without
+    // naming the old brand.
+    //
+    // C90 is skipped, not free: it was taken by a fixture-determinism check
+    // on an orphaned commit (a24be41) that may yet be restored, and numbers
+    // are never reused.
+    private static void DoC91(
+        BrandSeries series, Dictionary<int, Prompt> run,
+        IReadOnlyList<(string Name, int From, int To, string Category)> replacements,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        var takeovers = series.Years
+            .Where(y => series.Eras[y.ToString()].TakenOverBy is { Length: > 0 })
+            .ToList();
+
+        if (takeovers.Count == 0)
+        {
+            f.Add(("C91", "A takeover era names one quoted tenant that was trading that year, drops every logo field and the original brand entirely, and states what of the handover stays visible",
+                false, $"{series.Brand}: no takeover era — this check exists to assert one"));
+            return;
+        }
+
+        foreach (var year in takeovers)
+        {
+            var era    = series.Eras[year.ToString()];
+            var tenant = era.TakenOverBy!;
+            var text   = run[year].Text;
+
+            if (text.Contains(series.Brand, StringComparison.OrdinalIgnoreCase))
+                errs.Add($"{year}: names \"{series.Brand}\" — the word is in front of the model whatever the sentence asks");
+            if (era.LogoSpec is not null || era.LogoFail is not null || era.LogoRef is not null)
+                errs.Add($"{year}: a takeover era carries logo fields — the sign on the building is the tenant's");
+            if (text.Contains("LOGO", StringComparison.Ordinal))
+                errs.Add($"{year}: still carries a logo block");
+            if (!text.Contains("TAKEN OVER", StringComparison.Ordinal))
+                errs.Add($"{year}: no TAKEN OVER block");
+            if (!text.Contains($"\"{tenant}\"", StringComparison.Ordinal))
+                errs.Add($"{year}: the tenant is not named and quoted");
+
+            // The same claim C78 and C71 make: whoever is on the building was
+            // actually trading that year. The pool spans fifty years, so an
+            // unchecked pin is how a chain opens a decade after it closed.
+            var listed = replacements.Where(t => t.Name.Equals(tenant, StringComparison.OrdinalIgnoreCase)).ToList();
+            if (listed.Count == 0)
+                errs.Add($"{year}: \"{tenant}\" is not in center-replacements.txt — a takeover tenant must be a trade the pool knows");
+            else if (listed.All(t => year < t.From || year > t.To))
+                errs.Add($"{year}: \"{tenant}\" was not trading in {year}");
+
+            if (era.TakeoverDetails is not { Count: > 0 } details)
+            {
+                errs.Add($"{year}: no takeover details — an unmarked handover leaves the old dressing standing unchanged");
+            }
+            else
+            {
+                foreach (var line in details)
+                {
+                    if (!text.Contains(line, StringComparison.Ordinal))
+                        errs.Add($"{year}: detail line does not reach the prompt: \"{line}\"");
+                    if (line.Contains(series.Brand, StringComparison.OrdinalIgnoreCase))
+                        errs.Add($"{year}: a detail line names \"{series.Brand}\"");
+                }
+            }
+        }
+
+        f.Add(("C91", "A takeover era names one quoted tenant that was trading that year, drops every logo field and the original brand entirely, and states what of the handover stays visible",
+            errs.Count == 0, errs.Count == 0
+                ? $"takeover in {Join2(takeovers)}: tenant named, quoted and eligible; no \"{series.Brand}\", no logo fields, every handover detail in the prompt"
                 : Join(errs)));
     }
 

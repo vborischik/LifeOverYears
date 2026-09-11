@@ -31,6 +31,19 @@ public record BrandEra
     // original signage or its hardware.
     public bool Redeveloped { get; init; }
 
+    // A single new tenant took the whole building — the gym in a dead big-box.
+    // Different from Redeveloped in both directions: the frontage is NOT
+    // subdivided into units, and the handover is allowed to show. Null in every
+    // ordinary trading era.
+    public string? TakenOverBy { get; init; }
+
+    // What physically marks the handover — a repainted tower, old lettering
+    // bleeding through the new coat. Stated as what IS there: under era
+    // chaining the uploaded frame still wears the old dressing, and only an
+    // explicit line changes it. These lines must never name the original
+    // brand; the chained frame supplies the letter shapes on its own.
+    public IReadOnlyList<string>? TakeoverDetails { get; init; }
+
     public required string Condition { get; init; }
 
     // Density is words only, never a count: the image model does not count, and

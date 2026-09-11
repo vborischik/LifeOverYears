@@ -1,0 +1,324 @@
+{
+  "brand": "Circuit City",
+  "sceneType": "brand_series",
+  "storeDescription": "a wide single-storey electronics superstore with a flat roof, plain grey panelled walls, a tall tapered entry tower at the corner of the frontage, a curved canopy wrapping the entrance beneath it, and a broad asphalt parking lot in front of the entrance",
+  "_logoNote": "LOGO-UNVERIFIED: the wordmark is assumed unchanged across 1975-2005 and has not been checked against dated references. Verify against photographs before shipping a run; the era boundaries are the first thing to re-examine.",
+  "years": [
+    1975,
+    1985,
+    1995,
+    2005,
+    2015,
+    2025
+  ],
+  "eras": {
+    "1975": {
+      "logoRef": "brands/logos/circuit-city/1975.png",
+      "logoSpec": [
+        "the wordmark CIRCUIT CITY in red block capitals across the face of the entry tower",
+        "individual channel letters mounted directly onto the tower face, no sign box",
+        "a red plug-and-prong element beside the wordmark",
+        "the tower face behind the letters painted deep red"
+      ],
+      "logoFail": [
+        "lettering inside a lit sign box",
+        "the flat post-2016 wordmark of the online-only brand",
+        "any blue or orange in the lettering or the tower",
+        "the wordmark on the main wall instead of the tower",
+        "script or italic letterforms"
+      ],
+      "condition": "thriving",
+      "lotOccupancy": "packed",
+      "crowdDensity": "busy",
+      "colorMode": "color",
+      "filmStock": "Kodachrome 64 or Ektachrome — slightly warm tones, moderate saturation, soft shadows, slightly faded yellows and blues, visible fine grain",
+      "treeStage": "young",
+      "vehicleClasses": [
+        "station wagons",
+        "full-size sedans",
+        "pickup trucks",
+        "muscle cars"
+      ],
+      "fashion": [
+        "wide-leg trousers",
+        "patterned shirts",
+        "long straight hair",
+        "cat-eye glasses"
+      ],
+      "signage": [
+        "COLOR TV",
+        "HI-FI STEREO",
+        "CAR STEREO INSTALLED FREE",
+        "SERVICE DEPARTMENT",
+        "EASY CREDIT TERMS"
+      ],
+      "advertising": [
+        "Zenith",
+        "RCA",
+        "Magnavox",
+        "Coca-Cola",
+        "local newspaper boards"
+      ],
+      "neighbors": [
+        "family restaurant",
+        "carpet showroom",
+        "hardware store",
+        "bank branch",
+        "gas station"
+      ],
+      "tone": "prosperous, busy, appliance-boom confident"
+    },
+    "1985": {
+      "logoRef": "brands/logos/circuit-city/1985.png",
+      "logoSpec": [
+        "the wordmark CIRCUIT CITY in red block capitals across the face of the entry tower",
+        "individual channel letters mounted directly onto the tower face, no sign box",
+        "a red plug-and-prong element beside the wordmark",
+        "the tower face behind the letters painted deep red"
+      ],
+      "logoFail": [
+        "lettering inside a lit sign box",
+        "the flat post-2016 wordmark of the online-only brand",
+        "any blue or orange in the lettering or the tower",
+        "the wordmark on the main wall instead of the tower",
+        "script or italic letterforms"
+      ],
+      "condition": "thriving",
+      "lotOccupancy": "packed",
+      "crowdDensity": "busy",
+      "colorMode": "color",
+      "filmStock": "Kodacolor VR 200 or Fujicolor 100 — saturated but natural, fine grain",
+      "treeStage": "medium",
+      "vehicleClasses": [
+        "compact hatchbacks",
+        "boxy minivans",
+        "downsized sedans",
+        "small pickups"
+      ],
+      "fashion": [
+        "padded-shoulder jackets",
+        "acid-wash denim",
+        "permed hair",
+        "bright tracksuits"
+      ],
+      "signage": [
+        "VCR SALE",
+        "CAMCORDER DEMO DAYS",
+        "CAR STEREO INSTALLED",
+        "BIG SCREEN TV",
+        "NO MONEY DOWN"
+      ],
+      "advertising": [
+        "Sony",
+        "RCA",
+        "Panasonic",
+        "Coca-Cola",
+        "payphone panel"
+      ],
+      "neighbors": [
+        "video rental",
+        "pizza parlour",
+        "savings bank",
+        "shoe store",
+        "hair salon"
+      ],
+      "tone": "confident, loud, boom-era retail"
+    },
+    "1995": {
+      "logoRef": "brands/logos/circuit-city/1995.png",
+      "logoSpec": [
+        "the wordmark CIRCUIT CITY in red block capitals across the face of the entry tower",
+        "individual channel letters mounted directly onto the tower face, no sign box",
+        "a red plug-and-prong element beside the wordmark",
+        "the tower face behind the letters painted deep red"
+      ],
+      "logoFail": [
+        "lettering inside a lit sign box",
+        "the flat post-2016 wordmark of the online-only brand",
+        "any blue or orange in the lettering or the tower",
+        "the wordmark on the main wall instead of the tower",
+        "script or italic letterforms"
+      ],
+      "condition": "thriving",
+      "lotOccupancy": "packed",
+      "crowdDensity": "busy",
+      "colorMode": "color",
+      "filmStock": "Kodak Gold 200 or Fujifilm Superia 200 — moderate grain, slightly cool cast",
+      "treeStage": "mature",
+      "vehicleClasses": [
+        "family minivans",
+        "mid-size sedans",
+        "first-generation SUVs",
+        "compact coupes"
+      ],
+      "fashion": [
+        "oversized flannel shirts",
+        "baggy jeans",
+        "windbreakers",
+        "baseball caps"
+      ],
+      "signage": [
+        "BIG SCREEN TVS",
+        "CD AND STEREO",
+        "COMPUTER DEPARTMENT",
+        "APPLIANCE SALE",
+        "INTEREST FREE FINANCING"
+      ],
+      "advertising": [
+        "Sony",
+        "Panasonic",
+        "Nintendo",
+        "Coca-Cola",
+        "cardboard sale boards"
+      ],
+      "neighbors": [
+        "video rental",
+        "sub shop",
+        "office supply store",
+        "dollar store",
+        "nail salon"
+      ],
+      "tone": "peak trade, big-box confident"
+    },
+    "2005": {
+      "logoRef": "brands/logos/circuit-city/2005.png",
+      "logoSpec": [
+        "the wordmark CIRCUIT CITY in red block capitals across the face of the entry tower",
+        "individual channel letters mounted directly onto the tower face, no sign box",
+        "a red plug-and-prong element beside the wordmark",
+        "the tower face behind the letters painted deep red"
+      ],
+      "logoFail": [
+        "lettering inside a lit sign box",
+        "the flat post-2016 wordmark of the online-only brand",
+        "any blue or orange in the lettering or the tower",
+        "the wordmark on the main wall instead of the tower",
+        "script or italic letterforms"
+      ],
+      "condition": "declining",
+      "lotOccupancy": "moderate",
+      "crowdDensity": "moderate",
+      "colorMode": "color",
+      "filmStock": "early digital camera or Kodak/Fuji consumer film — slightly flat colour, mild noise",
+      "treeStage": "mature",
+      "vehicleClasses": [
+        "full-size SUVs",
+        "crew-cab pickups",
+        "mid-size crossovers",
+        "rental-fleet sedans"
+      ],
+      "fashion": [
+        "bootcut jeans",
+        "logo hoodies",
+        "puffer vests",
+        "flip phones in hand"
+      ],
+      "signage": [
+        "CLEARANCE",
+        "EVERYTHING MUST GO",
+        "PLASMA TV SALE",
+        "STORE HOURS REDUCED",
+        "MANAGER'S SPECIAL"
+      ],
+      "advertising": [
+        "Verizon",
+        "Coca-Cola",
+        "faded window vinyls",
+        "sun-bleached sale boards",
+        "chalking sun-faded paint on one face of the entry tower"
+      ],
+      "neighbors": [
+        "nail salon",
+        "cheque cashing",
+        "vacant unit with papered windows",
+        "tax office",
+        "buffet restaurant"
+      ],
+      "tone": "tired, undercut, past its best"
+    },
+    "2015": {
+      "signRemoved": true,
+      "condition": "vacant",
+      "lotOccupancy": "sparse",
+      "crowdDensity": "empty",
+      "colorMode": "color",
+      "filmStock": "digital — DSLR or smartphone camera, neutral colour, clean and sharp",
+      "treeStage": "mature",
+      "vehicleClasses": [
+        "aging sedans",
+        "weathered pickups",
+        "older crossovers",
+        "service vans"
+      ],
+      "fashion": [
+        "work jackets",
+        "hooded sweatshirts",
+        "plain jeans",
+        "high-visibility vests"
+      ],
+      "signage": [
+        "For Lease",
+        "No Trespassing",
+        "Space Available"
+      ],
+      "advertising": [
+        "blank sign frames",
+        "empty poster cases",
+        "faded lot striping"
+      ],
+      "neighbors": [
+        "cheque cashing",
+        "vacant unit with papered windows",
+        "tyre shop",
+        "thrift store",
+        "unlit vacant frontage"
+      ],
+      "tone": "closed, quiet, weather-worn"
+    },
+    "2025": {
+      "takenOverBy": "Planet Fitness",
+      "takeoverDetails": [
+        "the entry tower intact in shape and repainted solid purple over its old colour",
+        "the old store's lettering showing faintly through the new paint on the tower face — raised outlines bleeding through a single coat",
+        "fresh purple-and-yellow graphics on the entrance glazing beneath the canopy",
+        "the rest of the walls left in their weathered grey, patched where old fixtures were removed"
+      ],
+      "condition": "reoccupied",
+      "lotOccupancy": "moderate",
+      "crowdDensity": "moderate",
+      "colorMode": "color",
+      "filmStock": "digital — smartphone or mirrorless camera, wide dynamic range, clean detail",
+      "treeStage": "mature",
+      "vehicleClasses": [
+        "modern crossovers",
+        "electric hatchbacks",
+        "delivery vans",
+        "contractor pickups"
+      ],
+      "fashion": [
+        "athleisure leggings",
+        "quilted gilets",
+        "trainers",
+        "phones held up"
+      ],
+      "signage": [
+        "NOW OPEN",
+        "JOIN TODAY",
+        "FREE PARKING"
+      ],
+      "advertising": [
+        "window graphics",
+        "banner across the canopy",
+        "gym equipment visible through the glazing"
+      ],
+      "neighbors": [
+        "tyre shop",
+        "thrift store",
+        "coffee kiosk",
+        "urgent care clinic",
+        "self-storage frontage"
+      ],
+      "tone": "repurposed, busy again, ordinary"
+    }
+  }
+}

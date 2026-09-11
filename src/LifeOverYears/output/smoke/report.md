@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-09-10T02:14:30.9091040+00:00
+Generated: 2026-09-11T16:40:20.3036070+00:00
 
 ## Check Results
 
@@ -62,7 +62,7 @@ Generated: 2026-09-10T02:14:30.9091040+00:00
 | C54 | Chained eras size trees as growth against the uploaded previous era, never as a fraction of the base; a step too small to draw is deferred rather than stated or dropped | ✅ PASS | large states in 2005; medium states in 1985/1995/2005/2015/2025; small states in 1985/1995/2005/2015/2025 |
 | C55 | The caption tail runs from run-folder state alone, so a resumed batch run is captioned too | ✅ PASS | narrative.json and scene.json round-trip; caption.txt written with years and hashtags |
 | C56 | Downtown and strip-mall poles and wires are explicitly removed from 2015 on; other scene types keep theirs | ✅ PASS | wires stay through 2005, then go underground on main street and at the strip mall only |
-| C57 | A weighted hashtag (#nostalgia 70%) hits its declared share of captions, spends a sampled slot, and never ships its weight suffix | ✅ PASS | #nostalgia in ~69.6% of 4000 draws; pinned set and tag count unchanged |
+| C57 | A weighted hashtag (#nostalgia 70%) hits its declared share of captions, spends a sampled slot, and never ships its weight suffix | ✅ PASS | #nostalgia in ~70.3% of 4000 draws; pinned set and tag count unchanged |
 | C58 | Period details are conditional on the geometry: every prompt states that a detail with no plausible place is left out, and nothing is placed in the roadway | ✅ PASS | placement rule present in every era prompt, ahead of the signage whitelist |
 | C60 | The corner shop and the freestanding shop each open as one grocery or pharmacy, turn over to a liquor store from 2015 with the old name ghosting above it, draw regulars rather than shoppers after that, and never recover | ✅ PASS | all four runs hold the trade arc, the decline and the prompt budgets; across 500 seeds each, corner_shop ends boarded 33% of the time; freestanding_shop ends boarded 33% of the time, never earlier |
 | C63 | SceneContentKey splits highway into urban/rural content keys by terrain — urban, suburban and industrial all take the corridor flavor, only rural and unrecognized or missing values take the countryside one — and leaves every other scene type unchanged | ✅ PASS | content key resolution holds for every terrain and scene type |
@@ -92,6 +92,17 @@ Generated: 2026-09-10T02:14:30.9091040+00:00
 | C84 | A brand era with an empty crowd states a place with nobody in it, not the live people block with one word changed | ✅ PASS | deserted eras: 2015; every populated era states a group, never the bare density word |
 | C85 | A brand era whose logo changed states the old sign's takedown; one whose logo did not says it stays; every stated logo carries its reference image | ✅ PASS | replaced in 1995, 2005; held in 1985; every logo era carries a reference |
 | C86 | The brand series has its own caption bodies and title hooks, and the caption tail resolves to them rather than falling back to base | ✅ PASS | 15 bodies, 14 titles under data/captions/brand_series*, caption and title assemble from them |
+| C75 | Every brand-series prompt resolves all placeholders, carries every block, and is a colour photograph with no monochrome block | ✅ PASS | 6 era prompts, no unresolved tokens, all blocks present, every era colour |
+| C76 | Each brand era states a logo reference exactly when the series carries one | ✅ PASS | reference in 1975, 1985, 1995, 2005; none in 2015, 2025 |
+| C77 | The sign-removal era states the removal explicitly and says what is left in its place | ✅ PASS | 2015: SIGN REMOVED — lettering taken down, mounting points, faded outline, empty pylon frame |
+| C79 | No brand-series prompt states a numeric count of people or vehicles | ✅ PASS | density is words only across all six eras |
+| C80 | No vehicle class repeats across the eras of a brand run, and the classes are stated as examples rather than as the whole lot | ✅ PASS | 18 distinct classes across 6 eras, none repeated, each era's list stated as examples |
+| C81 | Every brand-series prompt is under 960 words and 6000 chars | ✅ PASS | worst case 564 words / 3568 chars |
+| C82 | Every brand era after the first carries one continuity block stating the real year gap; the first carries none | ✅ PASS | 1975 none; 1985, 1995, 2005, 2015, 2025 each state their own gap |
+| C83 | The first brand era states the 9:16 canvas and clears nothing; every era after it clears the people and traffic of the frame it edits | ✅ PASS | 1975 drawn from text, states the crop; 1985, 1995, 2005, 2015, 2025 each clear the frame they edit |
+| C84 | A brand era with an empty crowd states a place with nobody in it, not the live people block with one word changed | ✅ PASS | deserted eras: 2015; every populated era states a group, never the bare density word |
+| C85 | A brand era whose logo changed states the old sign's takedown; one whose logo did not says it stays; every stated logo carries its reference image | ✅ PASS | replaced in none; held in 1985, 1995, 2005; every logo era carries a reference |
+| C91 | A takeover era names one quoted tenant that was trading that year, drops every logo field and the original brand entirely, and states what of the handover stays visible | ✅ PASS | takeover in 2025: tenant named, quoted and eligible; no "Circuit City", no logo fields, every handover detail in the prompt |
 | C87 | Every shipped scene type passes the pre-generation guard, and every way of saying "Vision could not tell" is refused before a single image is paid for | ✅ PASS | 12 shipped shapes accepted, 11 undetermined spellings and 4 invented types refused (11 renderable in scene-types.txt) |
 | C88 | Every assembled caption is under 400 words, so none is collapsed behind "See more" before its closing question | ✅ PASS | 265 bodies across 13 pools; worst case 152 words (downtown_street.txt) |
 | C89 | A scene whose parking is "none" is never told to park nose-in, is given no PLACEMENT arrangement, and stands nobody on a lot apron | ✅ PASS | 13 parking strings map correctly; no lot wording in any era of a no-parking scene |

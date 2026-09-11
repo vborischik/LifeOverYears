@@ -184,6 +184,30 @@ public sealed class BrandSeriesPromptService : IBrandSeriesPromptService
             return;
         }
 
+        // One tenant, the whole box. Unlike REDEVELOPED the handover is meant
+        // to show — the point of the frame is the old store still legible
+        // under the new paint — so the details state what survives instead of
+        // scrubbing it. The old brand's name still never appears anywhere:
+        // the chained frame supplies the letter shapes, and the prompt only
+        // says they bleed through.
+        if (era.TakenOverBy is { Length: > 0 } tenant)
+        {
+            // Same run-wide memory the redeveloped tenants use, so a chain
+            // pinned here cannot also open as a sampled arrival elsewhere.
+            context.TryUseCarModel("tenant:" + tenant);
+
+            sb.AppendLine();
+            sb.AppendLine("TAKEN OVER");
+            sb.AppendLine($"A single new tenant now occupies the entire building: \"{tenant}\", spelled " +
+                           "exactly like that, its sign across the entry as the only store sign anywhere " +
+                           "on the building. Footprint, roofline and entry structure are unchanged from " +
+                           "the uploaded photo. The handover shows:");
+            if (era.TakeoverDetails is { Count: > 0 } details)
+                foreach (var line in details)
+                    sb.AppendLine($"- {line}");
+            return;
+        }
+
         if (era.LogoSpec is not { Count: > 0 } spec)
             return;
 
