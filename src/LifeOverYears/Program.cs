@@ -279,9 +279,13 @@ static async Task<int> RunAssembleAsync(string[] args, string launchDir)
     Directory.CreateDirectory(stampedDir);
     Directory.CreateDirectory(videoDir);
 
-    var ffmpegProvider = new FfmpegProvider(loggerFactory.CreateLogger<FfmpegProvider>());
-    var videoService   = new VideoService(ffmpegProvider, loggerFactory.CreateLogger<VideoService>());
-    var overlayService = new YearOverlayService(loggerFactory.CreateLogger<YearOverlayService>());
+    // Only the key-free module: assemble re-cuts a finished run and must work
+    // on a machine with no API keys, which AppModule refuses to load without.
+    var assembleBuilder = new ContainerBuilder();
+    assembleBuilder.RegisterModule(new VideoModule(loggerFactory));
+    await using var assembleContainer = assembleBuilder.Build();
+    var videoService   = assembleContainer.Resolve<IVideoService>();
+    var overlayService = assembleContainer.Resolve<IYearOverlayService>();
 
     logger.LogInformation("Assemble: folder={Folder} years={Years}", folderPath, string.Join(", ", years));
 

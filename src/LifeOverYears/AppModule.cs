@@ -178,14 +178,10 @@ public sealed class AppModule : Module
             }
         }
 
-        builder.RegisterInstance(new YearOverlayService(_loggerFactory.CreateLogger<YearOverlayService>()))
-               .As<IYearOverlayService>().SingleInstance();
-
-        builder.RegisterInstance(new FfmpegProvider(_loggerFactory.CreateLogger<FfmpegProvider>()))
-               .As<IFfmpegProvider>().SingleInstance();
-
-        builder.Register(_ => new VideoService(_.Resolve<IFfmpegProvider>(), _loggerFactory.CreateLogger<VideoService>()))
-               .As<IVideoService>().SingleInstance();
+        // Overlay, ffmpeg and video assembly live in their own module so that
+        // `assemble` can load them without the API keys the rest of this one
+        // demands.
+        builder.RegisterModule(new VideoModule(_loggerFactory));
 
         builder.Register(_ => new Pipeline(
                     _.Resolve<IVisionService>(),
