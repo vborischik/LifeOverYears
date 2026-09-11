@@ -2,7 +2,7 @@
   "brand": "Circuit City",
   "sceneType": "brand_series",
   "storeDescription": "a wide single-storey electronics superstore with a flat roof, plain grey panelled walls, a tall tapered entry tower at the corner of the frontage, a curved canopy wrapping the entrance beneath it, and a broad asphalt parking lot in front of the entrance",
-  "_logoNote": "LOGO-UNVERIFIED: the wordmark is assumed unchanged across 1975-2005 and has not been checked against dated references. Verify against photographs before shipping a run; the era boundaries are the first thing to re-examine.",
+  "_logoNote": "LOGO: the four marks are written from the reference files in data/brands/logos/circuit-city/ (checked 11 Sep 2026): Wards TV, the italic wordmark, the red panel with the tagline, the disc emblem. Still unverified: WHICH YEARS each mark actually spans — the decade boundaries are assumptions, re-examine them against dated storefront photographs first.",
   "years": [
     1975,
     1985,
@@ -15,17 +15,16 @@
     "1975": {
       "logoRef": "brands/logos/circuit-city/1975.png",
       "logoSpec": [
-        "the wordmark CIRCUIT CITY in red block capitals across the face of the entry tower",
-        "individual channel letters mounted directly onto the tower face, no sign box",
-        "a red plug-and-prong element beside the wordmark",
-        "the tower face behind the letters painted deep red"
+        "the wordmark Wards TV: a large capital W whose right-hand stroke extends into one long horizontal bar running above the rest of the word",
+        "ards in lowercase rounded letterforms tucked beneath that bar, then TV in block capitals of the same weight",
+        "white individual channel letters mounted on the deep-red face of the entry tower, no sign box"
       ],
       "logoFail": [
-        "lettering inside a lit sign box",
-        "the flat post-2016 wordmark of the online-only brand",
-        "any blue or orange in the lettering or the tower",
-        "the wordmark on the main wall instead of the tower",
-        "script or italic letterforms"
+        "a plug or prong emblem anywhere on the building",
+        "a red panel or disc emblem behind the lettering",
+        "italic capitals",
+        "a tagline beneath the wordmark",
+        "lettering inside a lit sign box"
       ],
       "condition": "thriving",
       "lotOccupancy": "packed",
@@ -66,22 +65,22 @@
         "bank branch",
         "gas station"
       ],
-      "tone": "prosperous, busy, appliance-boom confident"
+      "tone": "prosperous, busy, appliance-boom confident",
+      "signName": "Wards TV"
     },
     "1985": {
       "logoRef": "brands/logos/circuit-city/1985.png",
       "logoSpec": [
-        "the wordmark CIRCUIT CITY in red block capitals across the face of the entry tower",
-        "individual channel letters mounted directly onto the tower face, no sign box",
-        "a red plug-and-prong element beside the wordmark",
-        "the tower face behind the letters painted deep red"
+        "the wordmark CIRCUIT CITY in heavy italic capitals on one line, every letter leaning forward",
+        "wide letter spacing, no emblem, no tagline",
+        "white individual channel letters mounted on the deep-red face of the entry tower, no sign box"
       ],
       "logoFail": [
-        "lettering inside a lit sign box",
-        "the flat post-2016 wordmark of the online-only brand",
-        "any blue or orange in the lettering or the tower",
-        "the wordmark on the main wall instead of the tower",
-        "script or italic letterforms"
+        "upright block capitals with no slant",
+        "a plug or prong emblem",
+        "a disc or roundel emblem",
+        "a tagline beneath the wordmark",
+        "lettering inside a lit sign box"
       ],
       "condition": "thriving",
       "lotOccupancy": "packed",
@@ -127,17 +126,15 @@
     "1995": {
       "logoRef": "brands/logos/circuit-city/1995.png",
       "logoSpec": [
-        "the wordmark CIRCUIT CITY in red block capitals across the face of the entry tower",
-        "individual channel letters mounted directly onto the tower face, no sign box",
-        "a red plug-and-prong element beside the wordmark",
-        "the tower face behind the letters painted deep red"
+        "a rectangular red sign panel: CIRCUIT in bold white italic capitals above, CITY below it, both leaning forward",
+        "the tagline Where Service is State of the Art in smaller white italic letters across the bottom of the panel",
+        "the panel mounted flat on the face of the entry tower"
       ],
       "logoFail": [
-        "lettering inside a lit sign box",
-        "the flat post-2016 wordmark of the online-only brand",
-        "any blue or orange in the lettering or the tower",
-        "the wordmark on the main wall instead of the tower",
-        "script or italic letterforms"
+        "a single-line wordmark with no panel",
+        "a disc or roundel emblem",
+        "black or outlined lettering",
+        "lettering spilling off the panel onto the wall"
       ],
       "condition": "thriving",
       "lotOccupancy": "packed",
@@ -183,17 +180,15 @@
     "2005": {
       "logoRef": "brands/logos/circuit-city/2005.png",
       "logoSpec": [
-        "the wordmark CIRCUIT CITY in red block capitals across the face of the entry tower",
-        "individual channel letters mounted directly onto the tower face, no sign box",
-        "a red plug-and-prong element beside the wordmark",
-        "the tower face behind the letters painted deep red"
+        "a circular red disc emblem inside a silver-white ring",
+        "circuit city in white lowercase letters tilted upward across the disc, city far larger than circuit",
+        "the emblem mounted high on the face of the entry tower, no other lettering on the tower"
       ],
       "logoFail": [
-        "lettering inside a lit sign box",
-        "the flat post-2016 wordmark of the online-only brand",
-        "any blue or orange in the lettering or the tower",
-        "the wordmark on the main wall instead of the tower",
-        "script or italic letterforms"
+        "italic capitals in a single line",
+        "a rectangular red panel",
+        "a tagline",
+        "lettering inside a lit sign box"
       ],
       "condition": "declining",
       "lotOccupancy": "moderate",

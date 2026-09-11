@@ -318,6 +318,7 @@ public static class PromptSmokeTest
         DoC84(circuitCity, ccRun, findings);
         DoC85(circuitCity, ccRun, findings);
         DoC91(circuitCity, ccRun, replacements, findings);
+        DoC92(circuitCity, ccRun, findings);
         await DoC87(dataService, findings);
         await DoC88(dataService, findings);
         await DoC89(promptService, eras, stripMallScene, findings);
@@ -6503,6 +6504,47 @@ public static class PromptSmokeTest
         f.Add(("C91", "A takeover era names one quoted tenant that was trading that year, drops every logo field and the original brand entirely, and states what of the handover stays visible",
             errs.Count == 0, errs.Count == 0
                 ? $"takeover in {Join2(takeovers)}: tenant named, quoted and eligible; no \"{series.Brand}\", no logo fields, every handover detail in the prompt"
+                : Join(errs)));
+    }
+
+    // C92 — the predecessor era. A sign that reads the earlier occupant's name
+    // means the series brand has no business anywhere in that era's prompt:
+    // the sign is the one place a brand name reaches the model, and this
+    // era's sign is not that brand's. Both halves are asserted — the override
+    // name present and quoted, the series brand absent — because either one
+    // failing alone regresses silently: a missing override leaves a bare
+    // fascia, and a leaked series brand is the wrong word in front of the
+    // model fifty years early.
+    private static void DoC92(
+        BrandSeries series, Dictionary<int, Prompt> run,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        var overridden = series.Years
+            .Where(y => series.Eras[y.ToString()].SignName is { Length: > 0 })
+            .ToList();
+
+        if (overridden.Count == 0)
+        {
+            f.Add(("C92", "An era whose sign reads a predecessor name carries that name quoted and never utters the series brand",
+                false, $"{series.Brand}: no era carries a signName override — this check exists to assert one"));
+            return;
+        }
+
+        foreach (var year in overridden)
+        {
+            var name = series.Eras[year.ToString()].SignName!;
+            var text = run[year].Text;
+
+            if (!text.Contains($"\"{name}\"", StringComparison.Ordinal))
+                errs.Add($"{year}: the sign name \"{name}\" is not stated and quoted");
+            if (text.Contains(series.Brand, StringComparison.OrdinalIgnoreCase))
+                errs.Add($"{year}: utters \"{series.Brand}\" — the sign this era is \"{name}\"'s, and the word is in front of the model either way");
+        }
+
+        f.Add(("C92", "An era whose sign reads a predecessor name carries that name quoted and never utters the series brand",
+            errs.Count == 0, errs.Count == 0
+                ? $"predecessor sign in {Join2(overridden)}: named and quoted, series brand absent from the era entirely"
                 : Join(errs)));
     }
 

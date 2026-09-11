@@ -6,21 +6,19 @@ CONTINUITY
 The same location 10 years later: same camera position, framing, building footprint, parking geometry, landscaping islands and neighbouring storefronts. Only historical content changes.
 
 LOGO
-The store name across the facade is unchanged from the uploaded photo: same sign, same place, same size. It reads "Circuit City" and is built like this:
-- the wordmark CIRCUIT CITY in red block capitals across the face of the entry tower
-- individual channel letters mounted directly onto the tower face, no sign box
-- a red plug-and-prong element beside the wordmark
-- the tower face behind the letters painted deep red
+The lettering across the facade in the uploaded photo is the OLD sign and is being replaced. Take it down completely — no ghost, no outline, no leftover letter — and mount the new store name "Circuit City" in its place, built exactly like this:
+- a circular red disc emblem inside a silver-white ring
+- circuit city in white lowercase letters tilted upward across the disc, city far larger than circuit
+- the emblem mounted high on the face of the entry tower, no other lettering on the tower
 LOGO REFERENCE
 Reproduce the letterforms, proportions, spacing and slant from the attached reference image. Apply them as channel letters mounted on the facade at the size and position the building already gives the sign. Use the reference for the logo only — never its background, lighting, framing or composition.
 
 LOGO FAIL
 The sign is wrong if any of these describes it:
+- italic capitals in a single line
+- a rectangular red panel
+- a tagline
 - lettering inside a lit sign box
-- the flat post-2016 wordmark of the online-only brand
-- any blue or orange in the lettering or the tower
-- the wordmark on the main wall instead of the tower
-- script or italic letterforms
 
 SCENE
 The place reads declining — tired, undercut, past its best.

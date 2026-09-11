@@ -211,6 +211,12 @@ public sealed class BrandSeriesPromptService : IBrandSeriesPromptService
         if (era.LogoSpec is not { Count: > 0 } spec)
             return;
 
+        // The name on the sign is usually the series brand, but a predecessor
+        // era wears its own — and then the series brand must not be uttered:
+        // the sign is the one place a brand name reaches the prompt, and this
+        // era's sign is not that brand's. C92 holds both halves.
+        var signName = era.SignName is { Length: > 0 } n ? n : series.Brand;
+
         sb.AppendLine();
         sb.AppendLine("LOGO");
 
@@ -223,13 +229,13 @@ public sealed class BrandSeriesPromptService : IBrandSeriesPromptService
         var previousSpec = previous?.LogoSpec;
         if (previous is null)
         {
-            sb.AppendLine($"The store name across the facade reads \"{series.Brand}\", built exactly like this:");
+            sb.AppendLine($"The store name across the facade reads \"{signName}\", built exactly like this:");
         }
         else if (previousSpec is null)
         {
             // Nothing was on the building last era — a bare or resurfaced fascia.
             sb.AppendLine($"The facade in the uploaded photo carries no sign. Mount the store name " +
-                           $"\"{series.Brand}\" across it, built exactly like this:");
+                           $"\"{signName}\" across it, built exactly like this:");
         }
         else if (previousSpec.SequenceEqual(spec, StringComparer.Ordinal))
         {
@@ -238,13 +244,13 @@ public sealed class BrandSeriesPromptService : IBrandSeriesPromptService
             // the opposite — and still states the letterforms, because the model
             // repaints the fascia either way and needs to know what it is copying.
             sb.AppendLine($"The store name across the facade is unchanged from the uploaded photo: same " +
-                           $"sign, same place, same size. It reads \"{series.Brand}\" and is built like this:");
+                           $"sign, same place, same size. It reads \"{signName}\" and is built like this:");
         }
         else
         {
             sb.AppendLine($"The lettering across the facade in the uploaded photo is the OLD sign and is " +
                            $"being replaced. Take it down completely — no ghost, no outline, no leftover " +
-                           $"letter — and mount the new store name \"{series.Brand}\" in its place, built " +
+                           $"letter — and mount the new store name \"{signName}\" in its place, built " +
                            $"exactly like this:");
         }
 

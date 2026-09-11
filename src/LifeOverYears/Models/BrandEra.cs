@@ -31,6 +31,13 @@ public record BrandEra
     // original signage or its hardware.
     public bool Redeveloped { get; init; }
 
+    // What the sign actually reads this era, when it is not the series brand —
+    // the predecessor name on the same building (Wards TV before Circuit
+    // City). Null means the series brand. An era carrying this name must not
+    // mention the series brand at all: the sign is the only place a brand
+    // name reaches the prompt, and this era's sign is not that brand's.
+    public string? SignName { get; init; }
+
     // A single new tenant took the whole building — the gym in a dead big-box.
     // Different from Redeveloped in both directions: the frontage is NOT
     // subdivided into units, and the handover is allowed to show. Null in every

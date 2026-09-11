@@ -3,21 +3,20 @@ A photorealistic 1975 photograph of a wide single-storey electronics superstore 
 OUTPUT FORMAT: a TRUE 9:16 vertical portrait frame.
 
 LOGO
-The store name across the facade reads "Circuit City", built exactly like this:
-- the wordmark CIRCUIT CITY in red block capitals across the face of the entry tower
-- individual channel letters mounted directly onto the tower face, no sign box
-- a red plug-and-prong element beside the wordmark
-- the tower face behind the letters painted deep red
+The store name across the facade reads "Wards TV", built exactly like this:
+- the wordmark Wards TV: a large capital W whose right-hand stroke extends into one long horizontal bar running above the rest of the word
+- ards in lowercase rounded letterforms tucked beneath that bar, then TV in block capitals of the same weight
+- white individual channel letters mounted on the deep-red face of the entry tower, no sign box
 LOGO REFERENCE
 Reproduce the letterforms, proportions, spacing and slant from the attached reference image. Apply them as channel letters mounted on the facade at the size and position the building already gives the sign. Use the reference for the logo only — never its background, lighting, framing or composition.
 
 LOGO FAIL
 The sign is wrong if any of these describes it:
+- a plug or prong emblem anywhere on the building
+- a red panel or disc emblem behind the lettering
+- italic capitals
+- a tagline beneath the wordmark
 - lettering inside a lit sign box
-- the flat post-2016 wordmark of the online-only brand
-- any blue or orange in the lettering or the tower
-- the wordmark on the main wall instead of the tower
-- script or italic letterforms
 
 SCENE
 The place reads thriving — prosperous, busy, appliance-boom confident.
