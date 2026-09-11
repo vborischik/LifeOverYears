@@ -26,6 +26,51 @@ public sealed class BrandSeriesPromptService : IBrandSeriesPromptService
     // The pools are sampled rather than listed in full for the same reason the
     // era pools are: a list of everything reads as mandatory, and a frontage
     // cannot hold five neighbours and five ad boards at once.
+    // Three levers of run-to-run variety, all sampled per run seed. The first
+    // frame is drawn from text, so without these every run of a series opens
+    // on the same head-on, same-light, same-poses photograph — the pools are
+    // what stops a channel of brand runs looking like one photo re-graded.
+    // Vantage and light are first-frame only: every later era edits the frame
+    // before it and CONTINUITY pins its camera, so restating either there
+    // would fight the chain.
+    private static readonly string[] FirstFrameVantages =
+    {
+        "shot head-on from the middle of the parking lot towards the entrance",
+        "shot from the left side of the lot at a shallow oblique angle, the entry frontage standing off-centre",
+        "shot from the right edge of the lot, looking across the frontage",
+        "shot from halfway down a parking row, parked vehicles framing the lower foreground",
+        "shot from back near the road entrance, the storefront beyond the full depth of the lot",
+        "shot slightly elevated above the parked rows, as if from a step-ladder",
+    };
+
+    private static readonly string[] FirstFrameLight =
+    {
+        "late-morning sun with long soft shadows",
+        "flat overcast light, no hard shadows",
+        "low golden afternoon sun raking across the lot",
+        "hazy bright noon under a washed-out sky",
+        "a clear morning after rain, the asphalt still damp in patches",
+        "high thin cloud, even neutral light",
+    };
+
+    // Era-neutral actions, sampled per era so the crowd stops striking the
+    // same three poses in every frame. Neutral on purpose: anything datable
+    // belongs in the era's own fashion pool instead.
+    private static readonly string[] PeopleActions =
+    {
+        "loading bags into a trunk",
+        "wheeling a shopping cart back across the lot",
+        "pushing a stroller",
+        "checking a receipt just outside the door",
+        "holding the door open for someone",
+        "carrying a boxed purchase with both hands",
+        "waiting at the kerb for a car to pass",
+        "pointing something out in the window display",
+        "crouching to talk to a child",
+        "standing in conversation beside a parked car",
+    };
+    private const int PeopleActionCount = 3;
+
     private const int NeighborsMin = 3;
     private const int NeighborsMax = 4;
     private const int VehicleClassCount = 3;
@@ -56,8 +101,10 @@ public sealed class BrandSeriesPromptService : IBrandSeriesPromptService
         var sb = new StringBuilder();
 
         sb.AppendLine("One single continuous photograph — no panels, grids, or split frames.");
-        sb.AppendLine($"A photorealistic {year} photograph of {series.StoreDescription}, shot from the " +
-                       "parking lot towards the entrance.");
+        var vantage = chainedFrom is null
+            ? Sample(FirstFrameVantages, 1, rng)[0]
+            : "shot from the parking lot towards the entrance";
+        sb.AppendLine($"A photorealistic {year} photograph of {series.StoreDescription}, {vantage}.");
 
         // The first era is drawn from text with nothing uploaded, so it is the
         // one frame that has to state the canvas; every era after it inherits
@@ -72,6 +119,7 @@ public sealed class BrandSeriesPromptService : IBrandSeriesPromptService
         if (chainedFrom is null)
         {
             sb.AppendLine("OUTPUT FORMAT: a TRUE 9:16 vertical portrait frame.");
+            sb.AppendLine($"Light: {Sample(FirstFrameLight, 1, rng)[0]}.");
         }
         else
         {
@@ -354,6 +402,13 @@ public sealed class BrandSeriesPromptService : IBrandSeriesPromptService
         var fashion = Sample(era.Fashion, FashionCount, rng);
         if (fashion.Count > 0)
             sb.AppendLine($"Period clothing and grooming: {string.Join(", ", fashion)}.");
+
+        // Concrete varied actions, with the same escape clause every prop
+        // pool carries: an action with nowhere to happen is left out, never
+        // forced into the frame.
+        var actions = Sample(PeopleActions, PeopleActionCount, rng);
+        if (actions.Count > 0)
+            sb.AppendLine($"Among them: {string.Join(", ", actions)} — each only where it plausibly fits.");
 
         sb.AppendLine("Every person is a different individual — no repeated face, build, pose or outfit.");
     }

@@ -1,6 +1,6 @@
 # Smoke Test Report
 
-Generated: 2026-09-11T17:39:06.6869930+00:00
+Generated: 2026-09-11T19:22:17.9938960+00:00
 
 ## Check Results
 
@@ -83,10 +83,10 @@ Generated: 2026-09-11T17:39:06.6869930+00:00
 | C75 | Every brand-series prompt resolves all placeholders, carries every block, and is a colour photograph with no monochrome block | ✅ PASS | 6 era prompts, no unresolved tokens, all blocks present, every era colour |
 | C76 | Each brand era states a logo reference exactly when the series carries one | ✅ PASS | reference in 1975, 1985, 1995, 2005; none in 2015, 2025 |
 | C77 | The sign-removal era states the removal explicitly and says what is left in its place | ✅ PASS | 2015: SIGN REMOVED — lettering taken down, mounting points, faded outline, empty pylon frame |
-| C78 | The redeveloped era names no original brand signage, clears the old sign's hardware, and fills the frontage with trades that were actually open that year | ✅ PASS | 2025: no "Kmart" anywhere, fascia resurfaced, units Crunch Fitness, Salvation Army Family Store, Rent-A-Center; 35 eligible, no two of a kind across 300 seeds |
+| C78 | The redeveloped era names no original brand signage, clears the old sign's hardware, and fills the frontage with trades that were actually open that year | ✅ PASS | 2025: no "Kmart" anywhere, fascia resurfaced, units Retro Fitness, Five Below, Burlington Coat Factory, Savers; 35 eligible, no two of a kind across 300 seeds |
 | C79 | No brand-series prompt states a numeric count of people or vehicles | ✅ PASS | density is words only across all six eras |
 | C80 | No vehicle class repeats across the eras of a brand run, and the classes are stated as examples rather than as the whole lot | ✅ PASS | 18 distinct classes across 6 eras, none repeated, each era's list stated as examples |
-| C81 | Every brand-series prompt is under 960 words and 6000 chars | ✅ PASS | worst case 536 words / 3455 chars |
+| C81 | Every brand-series prompt is under 960 words and 6000 chars | ✅ PASS | worst case 563 words / 3620 chars |
 | C82 | Every brand era after the first carries one continuity block stating the real year gap; the first carries none | ✅ PASS | 1975 none; 1985, 1995, 2005, 2015, 2025 each state their own gap |
 | C83 | The first brand era states the 9:16 canvas and clears nothing; every era after it clears the people and traffic of the frame it edits | ✅ PASS | 1975 drawn from text, states the crop; 1985, 1995, 2005, 2015, 2025 each clear the frame they edit |
 | C84 | A brand era with an empty crowd states a place with nobody in it, not the live people block with one word changed | ✅ PASS | deserted eras: 2015; every populated era states a group, never the bare density word |
@@ -97,13 +97,14 @@ Generated: 2026-09-11T17:39:06.6869930+00:00
 | C77 | The sign-removal era states the removal explicitly and says what is left in its place | ✅ PASS | 2015: SIGN REMOVED — lettering taken down, mounting points, faded outline, empty pylon frame |
 | C79 | No brand-series prompt states a numeric count of people or vehicles | ✅ PASS | density is words only across all six eras |
 | C80 | No vehicle class repeats across the eras of a brand run, and the classes are stated as examples rather than as the whole lot | ✅ PASS | 18 distinct classes across 6 eras, none repeated, each era's list stated as examples |
-| C81 | Every brand-series prompt is under 960 words and 6000 chars | ✅ PASS | worst case 564 words / 3562 chars |
+| C81 | Every brand-series prompt is under 960 words and 6000 chars | ✅ PASS | worst case 592 words / 3736 chars |
 | C82 | Every brand era after the first carries one continuity block stating the real year gap; the first carries none | ✅ PASS | 1975 none; 1985, 1995, 2005, 2015, 2025 each state their own gap |
 | C83 | The first brand era states the 9:16 canvas and clears nothing; every era after it clears the people and traffic of the frame it edits | ✅ PASS | 1975 drawn from text, states the crop; 1985, 1995, 2005, 2015, 2025 each clear the frame they edit |
 | C84 | A brand era with an empty crowd states a place with nobody in it, not the live people block with one word changed | ✅ PASS | deserted eras: 2015; every populated era states a group, never the bare density word |
 | C85 | A brand era whose logo changed states the old sign's takedown; one whose logo did not says it stays; every stated logo carries its reference image | ✅ PASS | replaced in 1985, 1995, 2005; held in none; every logo era carries a reference |
 | C91 | A takeover era names one quoted tenant that was trading that year, drops every logo field and the original brand entirely, and states what of the handover stays visible | ✅ PASS | takeover in 2025: tenant named, quoted and eligible; no "Circuit City", no logo fields, every handover detail in the prompt |
 | C92 | An era whose sign reads a predecessor name carries that name quoted and never utters the series brand | ✅ PASS | predecessor sign in 1975: named and quoted, series brand absent from the era entirely |
+| C93 | Across seeds a brand series varies its first-frame vantage and light and its people actions, and neither vantage nor light leaks into a chained era | ✅ PASS | 40 seeds: 6 vantages, 6 lights, 172 action sets; chained eras carry neither |
 | C87 | Every shipped scene type passes the pre-generation guard, and every way of saying "Vision could not tell" is refused before a single image is paid for | ✅ PASS | 12 shipped shapes accepted, 11 undetermined spellings and 4 invented types refused (11 renderable in scene-types.txt) |
 | C88 | Every assembled caption is under 400 words, so none is collapsed behind "See more" before its closing question | ✅ PASS | 265 bodies across 13 pools; worst case 152 words (downtown_street.txt) |
 | C89 | A scene whose parking is "none" is never told to park nose-in, is given no PLACEMENT arrangement, and stands nobody on a lot apron | ✅ PASS | 13 parking strings map correctly; no lot wording in any era of a no-parking scene |

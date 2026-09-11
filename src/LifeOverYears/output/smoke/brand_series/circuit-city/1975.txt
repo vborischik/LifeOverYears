@@ -1,6 +1,7 @@
 One single continuous photograph — no panels, grids, or split frames.
-A photorealistic 1975 photograph of a wide single-storey electronics superstore with a flat roof, plain grey panelled walls, a tall tapered entry tower at the corner of the frontage, a curved canopy wrapping the entrance beneath it, and a broad asphalt parking lot in front of the entrance, shot from the parking lot towards the entrance.
+A photorealistic 1975 photograph of a wide single-storey electronics superstore with a flat roof, plain grey panelled walls, a tall tapered entry tower at the corner of the frontage, a curved canopy wrapping the entrance beneath it, and a broad asphalt parking lot in front of the entrance, shot head-on from the middle of the parking lot towards the entrance.
 OUTPUT FORMAT: a TRUE 9:16 vertical portrait frame.
+Light: late-morning sun with long soft shadows.
 
 LOGO
 The store name across the facade reads "Wards TV", built exactly like this:
@@ -21,19 +22,20 @@ The sign is wrong if any of these describes it:
 SCENE
 The place reads thriving — prosperous, busy, appliance-boom confident.
 The parking lot is full — nearly every bay taken, cars queuing for the ones that are not.
-Neighbouring units along the same frontage: bank branch, family restaurant, hardware store.
+Neighbouring units along the same frontage: family restaurant, gas station, bank branch, hardware store.
 
 VEHICLES
 The vehicles are of the period — for example pickup trucks, full-size sedans, muscle cars, or anything else in keeping with the year. Nothing newer than the year of the photograph appears anywhere in frame.
 
 PEOPLE
 A steady stream of shoppers crosses the frontage, walking to and from the entrance and across the lot, each one doing something plainly ordinary.
-Period clothing and grooming: wide-leg trousers, patterned shirts, cat-eye glasses.
+Period clothing and grooming: wide-leg trousers, cat-eye glasses, patterned shirts.
+Among them: pointing something out in the window display, loading bags into a trunk, pushing a stroller — each only where it plausibly fits.
 Every person is a different individual — no repeated face, build, pose or outfit.
 
 PERIOD DETAILS
-Store signage reading "SERVICE DEPARTMENT", "HI-FI STEREO", "COLOR TV".
-Period advertising and fittings: Coca-Cola, Magnavox, RCA.
+Store signage reading "HI-FI STEREO", "CAR STEREO INSTALLED FREE", "EASY CREDIT TERMS".
+Period advertising and fittings: Magnavox, Coca-Cola, RCA.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 No other readable text appears anywhere in the image.
 

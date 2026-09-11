@@ -319,6 +319,7 @@ public static class PromptSmokeTest
         DoC85(circuitCity, ccRun, findings);
         DoC91(circuitCity, ccRun, replacements, findings);
         DoC92(circuitCity, ccRun, findings);
+        DoC93(brandPromptService, kmart, replacements, findings);
         await DoC87(dataService, findings);
         await DoC88(dataService, findings);
         await DoC89(promptService, eras, stripMallScene, findings);
@@ -6546,6 +6547,85 @@ public static class PromptSmokeTest
             errs.Count == 0, errs.Count == 0
                 ? $"predecessor sign in {Join2(overridden)}: named and quoted, series brand absent from the era entirely"
                 : Join(errs)));
+    }
+
+    // C93 — run-to-run variety of a brand series. The first frame is drawn
+    // from text, so with a fixed vantage, light and pose wording every run of
+    // a series opened on virtually the same photograph, and the people struck
+    // the same three poses in every era. Measured over seeds rather than
+    // asserted on one draw: a pool that exists but never varies is exactly
+    // the failure this check is for. Vantage and light must also stay out of
+    // the chained eras — their camera belongs to CONTINUITY.
+    private static void DoC93(
+        IBrandSeriesPromptService svc, BrandSeries series,
+        IReadOnlyList<(string Name, int From, int To, string Category)> replacements,
+        List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        const int seeds = 40;
+        const int floor = 4;
+
+        var firstYear = series.Years.Min();
+        var vantages  = new HashSet<string>(StringComparer.Ordinal);
+        var lights    = new HashSet<string>(StringComparer.Ordinal);
+        var actions   = new HashSet<string>(StringComparer.Ordinal);
+
+        for (var seed = 1; seed <= seeds; seed++)
+        {
+            var run = BuildBrandRun(svc, series, seed, replacements);
+
+            var first = run[firstYear].Text;
+            vantages.Add(FirstLineContaining(first, "A photorealistic"));
+            var light = FirstLineContaining(first, "Light: ");
+            if (light.Length == 0)
+                errs.Add($"seed {seed}: the first frame states no light");
+            else
+                lights.Add(light);
+
+            foreach (var year in series.Years)
+            {
+                var text    = run[year].Text;
+                var chained = year != firstYear;
+
+                if (chained && text.Contains("Light: ", StringComparison.Ordinal))
+                    errs.Add($"seed {seed}, {year}: a chained era restates the light — that belongs to the frame it edits");
+
+                var among    = FirstLineContaining(text, "Among them: ");
+                var deserted = text.Contains("Nobody is in frame", StringComparison.Ordinal);
+                if (deserted && among.Length > 0)
+                    errs.Add($"seed {seed}, {year}: a deserted era lists people actions");
+                if (!deserted && among.Length == 0)
+                    errs.Add($"seed {seed}, {year}: a populated era lists no varied actions");
+                if (among.Length > 0)
+                {
+                    actions.Add(among);
+                    if (!among.Contains("plausibly fits", StringComparison.Ordinal))
+                        errs.Add($"seed {seed}, {year}: the actions line has no leave-it-out clause");
+                }
+                if (errs.Count > 12) break;
+            }
+            if (errs.Count > 12) break;
+        }
+
+        if (vantages.Count < floor)
+            errs.Add($"{vantages.Count} distinct first-frame vantages over {seeds} seeds — the runs still open on the same shot");
+        if (lights.Count < floor)
+            errs.Add($"{lights.Count} distinct first-frame lights over {seeds} seeds");
+        if (actions.Count < floor * 2)
+            errs.Add($"{actions.Count} distinct action sets over {seeds} seeds — the crowd is striking the same poses");
+
+        f.Add(("C93", "Across seeds a brand series varies its first-frame vantage and light and its people actions, and neither vantage nor light leaks into a chained era",
+            errs.Count == 0, errs.Count == 0
+                ? $"{seeds} seeds: {vantages.Count} vantages, {lights.Count} lights, {actions.Count} action sets; chained eras carry neither"
+                : Join(errs)));
+    }
+
+    private static string FirstLineContaining(string text, string marker)
+    {
+        foreach (var line in text.Split('\n'))
+            if (line.Contains(marker, StringComparison.Ordinal))
+                return line.Trim();
+        return "";
     }
 
     // One named block of a prompt, up to the next blank line.

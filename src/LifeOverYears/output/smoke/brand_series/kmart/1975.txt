@@ -1,6 +1,7 @@
 One single continuous photograph — no panels, grids, or split frames.
-A photorealistic 1975 photograph of a single-storey suburban discount department store with a long flat-roofed frontage, a deep asphalt parking lot in front of the entrance and landscaping islands between the parking bays, shot from the parking lot towards the entrance.
+A photorealistic 1975 photograph of a single-storey suburban discount department store with a long flat-roofed frontage, a deep asphalt parking lot in front of the entrance and landscaping islands between the parking bays, shot head-on from the middle of the parking lot towards the entrance.
 OUTPUT FORMAT: a TRUE 9:16 vertical portrait frame.
+Light: late-morning sun with long soft shadows.
 
 LOGO
 The store name across the facade reads "Kmart", built exactly like this:
@@ -23,19 +24,20 @@ The sign is wrong if any of these describes it:
 SCENE
 The place reads thriving — prosperous, energetic, family-oriented.
 The parking lot is full — nearly every bay taken, cars queuing for the ones that are not.
-Neighbouring units along the same frontage: shoe store, family restaurant, hardware store.
+Neighbouring units along the same frontage: family restaurant, 1-hr photo, shoe store, hardware store.
 
 VEHICLES
 The vehicles are of the period — for example pickup trucks, full-size sedans, muscle cars, or anything else in keeping with the year. Nothing newer than the year of the photograph appears anywhere in frame.
 
 PEOPLE
 A steady stream of shoppers crosses the frontage, walking to and from the entrance and across the lot, each one doing something plainly ordinary.
-Period clothing and grooming: wide-leg trousers, patterned shirts, cat-eye glasses.
+Period clothing and grooming: wide-leg trousers, cat-eye glasses, patterned shirts.
+Among them: pointing something out in the window display, loading bags into a trunk, pushing a stroller — each only where it plausibly fits.
 Every person is a different individual — no repeated face, build, pose or outfit.
 
 PERIOD DETAILS
-Store signage reading "Back-to-School Sale", "Family Savings", "Blue Light Special".
-Period advertising and fittings: Winston, Marlboro, Pepsi.
+Store signage reading "Family Savings", "Weekend Sale", "Discount Prices".
+Period advertising and fittings: Marlboro, Winston, Pepsi.
 Place each detail where it plausibly belongs — sidewalk, storefront, lot edge, under an overhang. If there is nowhere for one, leave it out; nothing stands in the roadway or a driving lane.
 No other readable text appears anywhere in the image.
 
