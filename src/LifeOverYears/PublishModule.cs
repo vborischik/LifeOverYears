@@ -105,10 +105,24 @@ public sealed class PublishModule : Module
                    .As<IPublishTarget>().SingleInstance();
         }
 
+        // Music is laid down here and nowhere else. The libraries live under
+        // data/music/{youtube,meta}; the ledger of used tracks is read from
+        // the publish.json records under the runs folder.
+        var musicDir      = _configuration["Publish:Music:Dir"] ?? Path.Combine("data", "music");
+        var musicRequired = _configuration.GetValue("Publish:Music:Required", true);
+        var runsDir       = Path.Combine(_outputRoot, "runs");
+        builder.RegisterInstance(new FfmpegProvider(_loggerFactory.CreateLogger<FfmpegProvider>()))
+               .As<IFfmpegProvider>().SingleInstance();
+        builder.Register(c => new MusicService(
+                    c.Resolve<IFfmpegProvider>(), musicDir, runsDir, musicRequired,
+                    _loggerFactory.CreateLogger<MusicService>()))
+               .As<IMusicService>().SingleInstance();
+
         builder.Register(c => new PublishService(
                     targets,
                     c.Resolve<IEnumerable<IPublishTarget>>().ToList(),
                     c.ResolveOptional<IPublicStorage>(),
+                    c.Resolve<IMusicService>(),
                     _loggerFactory.CreateLogger<PublishService>()))
                .As<IPublishService>().SingleInstance();
 

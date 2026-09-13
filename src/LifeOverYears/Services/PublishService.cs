@@ -18,6 +18,7 @@ public sealed class PublishService : IPublishService
 
     private readonly IReadOnlyDictionary<string, IPublishTarget> _targets;
     private readonly IPublicStorage? _storage;
+    private readonly IMusicService _music;
     private readonly ILogger<PublishService> _logger;
 
     public IReadOnlyList<string> Targets { get; }
@@ -29,6 +30,7 @@ public sealed class PublishService : IPublishService
         IReadOnlyList<string> targets,
         IReadOnlyList<IPublishTarget> available,
         IPublicStorage? storage,
+        IMusicService music,
         ILogger<PublishService> logger)
     {
         // Nothing to post to is a configuration error, not a no-op: a publish
@@ -50,48 +52,73 @@ public sealed class PublishService : IPublishService
         Targets  = targets;
         _targets = byName;
         _storage = storage;
+        _music   = music;
         _logger  = logger;
     }
 
+    // Targets are worked family by family, because the family decides the
+    // file: YouTube's bed is muxed under the video, Meta's under another copy,
+    // and the copy Instagram pulls by URL has to be the Meta one. So per
+    // family: mux, then upload once if anything in it needs a URL, then post.
     public async Task<PublishState> PublishAsync(PublishRequest request, CancellationToken ct = default)
     {
         var publications = new List<Publication>();
         var errors       = new List<string>();
+        var music        = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
-        if (Targets.Any(t => NeedsPublicUrl.Contains(t)) && request.PublicVideoUrl is null)
+        foreach (var group in Targets.GroupBy(_music.FamilyOf))
         {
+            PublishRequest familyRequest;
             try
             {
-                var url = await _storage!.UploadPublicAsync(
-                    request.Video.FilePath, $"{request.Video.Id}.mp4", ct);
-                request = request with { PublicVideoUrl = url };
+                var (withMusic, track) = await _music.WithMusicAsync(group.Key, request, ct);
+                familyRequest = withMusic;
+                if (track.Length > 0) music[group.Key] = track;
             }
             catch (Exception ex)
             {
-                // Nothing that needs the URL can run. The byte-taking targets
-                // still can, so this is recorded and the loop continues.
-                _logger.LogError(ex, "Storage upload failed; URL-based targets will be skipped");
-                errors.Add($"storage: {ex.Message}");
-            }
-        }
-
-        foreach (var name in Targets)
-        {
-            if (NeedsPublicUrl.Contains(name) && request.PublicVideoUrl is null)
-            {
-                errors.Add($"{name}: no public URL");
+                // No bed, no post — the rule this project publishes under.
+                _logger.LogError(ex, "Music for {Family} failed; its targets are skipped", group.Key);
+                foreach (var name in group) errors.Add($"{name}: no music — {ex.Message}");
                 continue;
             }
-            try
+
+            if (group.Any(t => NeedsPublicUrl.Contains(t)) && familyRequest.PublicVideoUrl is null)
             {
-                var publication = await _targets[name].PublishAsync(request, ct);
-                publications.Add(publication);
-                _logger.LogInformation("Published to {Platform}: {Url}", name, publication.Url);
+                try
+                {
+                    var url = await _storage!.UploadPublicAsync(
+                        familyRequest.Video.FilePath, $"{request.Video.Id}.{group.Key}.mp4", ct);
+                    familyRequest = familyRequest with { PublicVideoUrl = url };
+                }
+                catch (Exception ex)
+                {
+                    // Nothing in this family that needs the URL can run; the
+                    // byte-taking targets still can, so it is recorded and
+                    // the loop continues.
+                    _logger.LogError(ex, "Storage upload failed; URL-based {Family} targets will be skipped", group.Key);
+                    errors.Add($"storage: {ex.Message}");
+                }
             }
-            catch (Exception ex)
+
+            foreach (var name in group)
             {
-                _logger.LogError(ex, "Publish to {Platform} failed", name);
-                errors.Add($"{name}: {ex.Message}");
+                if (NeedsPublicUrl.Contains(name) && familyRequest.PublicVideoUrl is null)
+                {
+                    errors.Add($"{name}: no public URL");
+                    continue;
+                }
+                try
+                {
+                    var publication = await _targets[name].PublishAsync(familyRequest, ct);
+                    publications.Add(publication);
+                    _logger.LogInformation("Published to {Platform}: {Url}", name, publication.Url);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Publish to {Platform} failed", name);
+                    errors.Add($"{name}: {ex.Message}");
+                }
             }
         }
 
@@ -99,6 +126,7 @@ public sealed class PublishService : IPublishService
             Status:       errors.Count == 0 ? "published" : "failed",
             DecidedAt:    DateTimeOffset.UtcNow.ToString("o"),
             Publications: publications,
-            Error:        errors.Count == 0 ? null : string.Join("; ", errors));
+            Error:        errors.Count == 0 ? null : string.Join("; ", errors),
+            Music:        music.Count == 0 ? null : music);
     }
 }

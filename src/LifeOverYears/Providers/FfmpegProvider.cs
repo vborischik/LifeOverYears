@@ -304,6 +304,88 @@ public sealed class FfmpegProvider : IFfmpegProvider
         }
     }
 
+    // ── Music bed ────────────────────────────────────────────────────────────
+
+    // Fade on the bed at both ends, so a stretch cut out of the middle of a
+    // four-minute piece does not start and stop on a hard edge.
+    public const double MusicFadeSeconds = 0.5;
+
+    public async Task<double> ProbeDurationAsync(string path)
+    {
+        var (code, _, stdout) = await RunProcessAsync(FfprobePath,
+            $"-v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 \"{path}\"");
+        return code == 0 && double.TryParse(stdout.Trim(), System.Globalization.NumberStyles.Float,
+            System.Globalization.CultureInfo.InvariantCulture, out var d) ? d : 0;
+    }
+
+    public async Task<IReadOnlyDictionary<string, string>> ProbeTagsAsync(string path)
+    {
+        var tags = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        var (code, _, stdout) = await RunProcessAsync(FfprobePath,
+            $"-v error -show_entries format_tags -of json \"{path}\"");
+        if (code != 0) return tags;
+        try
+        {
+            using var doc = System.Text.Json.JsonDocument.Parse(stdout);
+            if (doc.RootElement.TryGetProperty("format", out var fmt) && fmt.TryGetProperty("tags", out var t))
+                foreach (var prop in t.EnumerateObject())
+                    tags[prop.Name] = prop.Value.GetString() ?? "";
+        }
+        catch (System.Text.Json.JsonException)
+        {
+            // A file with no readable tags still plays; the credit falls back
+            // to its file name rather than the publish failing over metadata.
+        }
+        return tags;
+    }
+
+    public async Task MuxMusicAsync(string videoPath, string trackPath, double startSeconds, string outputPath)
+    {
+        var duration    = await ProbeDurationAsync(videoPath);
+        var trackLength = await ProbeDurationAsync(trackPath);
+        if (duration <= 0)
+            throw new InvalidOperationException($"Cannot read the duration of {videoPath}");
+
+        // A bed shorter than what is left of the track has to repeat, or the
+        // last seconds play silent — which reads as a fault, not a choice.
+        // aloop works in samples: -1 keeps going, atrim cuts it back.
+        var needsLoop = trackLength - startSeconds < duration;
+        var loop      = needsLoop ? "aloop=loop=-1:size=2e9," : "";
+        var fadeOut   = Math.Max(0, duration - MusicFadeSeconds);
+
+        // loudnorm resamples to 192 kHz internally and leaves the output there;
+        // pinned back to 48 kHz so the AAC track is what a platform expects.
+        // -14 LUFS is what YouTube normalises to anyway, so the whole channel
+        // sits at one level rather than at whatever each track was mastered at.
+        var filter =
+            $"[1:a]{loop}atrim=0:{F(duration)},asetpts=PTS-STARTPTS," +
+            $"afade=t=in:st=0:d={F(MusicFadeSeconds)},afade=t=out:st={F(fadeOut)}:d={F(MusicFadeSeconds)}," +
+            "loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000[a]";
+
+        // -ss before the input so ffmpeg does not decode the discarded head of
+        // the track. The video stream is copied, not re-encoded: the picture is
+        // exactly the one the reviewer approved. -map 0:v (not "0") so an mp3
+        // with embedded cover art cannot drag its mjpeg stream in either.
+        var args =
+            $"-y -i \"{videoPath}\" -ss {F(startSeconds)} -i \"{trackPath}\" " +
+            $"-filter_complex \"{filter}\" -map 0:v -map \"[a]\" " +
+            "-c:v copy -c:a aac -b:a 192k -shortest -movflags +faststart " +
+            $"\"{outputPath}\"";
+
+        Directory.CreateDirectory(Path.GetDirectoryName(outputPath)!);
+        _logger.LogInformation("Music bed: {Track} from {Start:F1}s under {Video} → {Out}",
+            Path.GetFileName(trackPath), startSeconds, Path.GetFileName(videoPath), outputPath);
+        await RunFfmpegAsync(args);
+    }
+
+    // ffprobe ships beside ffmpeg; a configured ffmpeg path implies its sibling.
+    private string FfprobePath =>
+        Path.GetFileName(_ffmpegPath) == _ffmpegPath
+            ? "ffprobe"
+            : Path.Combine(Path.GetDirectoryName(_ffmpegPath)!, "ffprobe");
+
+    private static string F(double v) => v.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture);
+
     private async Task RunFfmpegAsync(string arguments)
     {
         var (exitCode, stderr, _) = await RunProcessAsync(_ffmpegPath, arguments);

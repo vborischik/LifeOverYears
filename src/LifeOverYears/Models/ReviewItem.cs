@@ -26,4 +26,8 @@ public record PublishState(
     string Status,
     string DecidedAt,
     IReadOnlyList<Publication> Publications,
-    string? Error = null);
+    string? Error = null,
+
+    // Music bed laid under each platform family, by track file name — the
+    // ledger MusicService reads so every track is heard before any repeats.
+    IReadOnlyDictionary<string, string>? Music = null);

@@ -634,6 +634,14 @@ public static class VideoSmokeTest
                 Id: "recorded", ImageIds: images.Select(i => i.Id).ToList(),
                 FilePath: outputPath, CreatedAt: "2026-01-01T00:00:00Z"));
         }
+
+        // The music side of the interface is exercised by --smoke-publish
+        // against real ffmpeg; this fake only records the composition order.
+        public Task<double> ProbeDurationAsync(string path) => Task.FromResult(16.0);
+        public Task<IReadOnlyDictionary<string, string>> ProbeTagsAsync(string path) =>
+            Task.FromResult<IReadOnlyDictionary<string, string>>(new Dictionary<string, string>());
+        public Task MuxMusicAsync(string videoPath, string trackPath, double startSeconds, string outputPath) =>
+            Task.CompletedTask;
     }
 
     private static IEnumerable<(string Id, string Desc)> SkippedChecks() => new[]

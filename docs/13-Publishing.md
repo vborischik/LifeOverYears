@@ -184,7 +184,32 @@ private state and publish on call. The safe pattern from YoutubePublisher
 holds: upload `private` with a schedule, and the platform flips each video
 public on its own clock.
 
-## Checks — `--smoke-publish`, P1–P9
+## Music
+
+Laid down by `publish` and by nothing else. The run's `timeline.mp4` is the
+silent master; publishing writes `timeline.{family}.mp4` beside it and posts
+that. Two families, two libraries, because two licences:
+
+| family | platforms | library |
+|---|---|---|
+| `youtube` | youtube | `data/music/youtube/` — 14 CC-BY tracks from YoutubePublisher |
+| `meta` | instagram, facebook, telegram | `data/music/meta/` — **empty until Meta-cleared tracks are dropped in** |
+
+`Publish:Music:Required` is `true`: a family with an empty library is
+refused, not published silent (P12). So today YouTube publishes and a Meta
+target reports "no music" until `data/music/meta/` has files in it.
+
+The track is picked by hash of the run id from the tracks this family has
+not used yet — every track is heard once before any repeats — and the
+ledger is the `Music` field of every `publish.json` under `output/runs/`
+(P10, P12). The bed starts at a hash-derived offset into the track, is
+trimmed to the picture, faded 0.5 s at both ends and normalised to −14 LUFS;
+the video stream is copied, never re-encoded (P11, real ffmpeg). The
+track's credit line — `Music: Reawakening by Scott Buckley (CC BY)`, built
+from the file's own tags — is appended to the description on every
+platform, because a CC-BY track without attribution is a licence breach.
+
+## Checks — `--smoke-publish`, P1–P12
 
 | | |
 |---|---|
@@ -198,10 +223,16 @@ public on its own clock.
 | P8 | storage first, one failure does not stop the rest, empty/unknown targets refused at construction |
 | P9 | `publish.json` round-trips; a partial run is refused by name |
 
-P4 and P7 were proven able to fail by reintroducing the bugs they describe.
+| P10 | platform → family; deterministic pick from the unused set first; offset inside the track |
+| P11 | **real ffmpeg**: a generated clip and tone muxed; audio present, length kept, video copied, credit from tags, second call reuses the file |
+| P12 | empty library refused when required, passed through when not; a README is not a track; ledger per family |
+
+P4, P7, P11 and P12 were proven able to fail by reintroducing the bugs
+they describe.
 
 ## Not done
 
+- **Meta music library is empty** — drop cleared tracks into `data/music/meta/`.
 - **Only one decision per run** — all configured targets, or none.
 - **No upload ledger** for `QuotaGovernor`; YouTube is not in `Targets` yet.
 - **Instagram cover image.** The container can take a `cover_url`; it would

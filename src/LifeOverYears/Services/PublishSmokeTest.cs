@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace LifeOverYears.Services;
 
-// P1–P9 over the publish path, offline. The review loop and the publish
+// P1–P12 over the publish path, offline (P11 runs real ffmpeg on a generated clip). The review loop and the publish
 // service run against fake channel/target/storage; the three HTTP providers
 // run against a fake handler that records every request, so what is
 // asserted is the request the platform would have received — the token in
@@ -36,6 +36,9 @@ public static class PublishSmokeTest
             await DoP7(loggerFactory, f);
             await DoP8(work, loggerFactory, f);
             await DoP9(work, loggerFactory, f);
+            await DoP10(work, loggerFactory, f);
+            await DoP11(work, loggerFactory, f);
+            await DoP12(work, loggerFactory, f);
         }
         finally
         {
@@ -361,27 +364,31 @@ public static class PublishSmokeTest
         var file = Path.Combine(work, "p8.mp4");
         File.WriteAllBytes(file, new byte[8]);
 
+        var music = new FakeMusic(log);
         var svc = new PublishService(new[] { "telegram", "instagram", "facebook" },
-            new IPublishTarget[] { instagram, telegram, failing }, storage, lf.CreateLogger<PublishService>());
+            new IPublishTarget[] { instagram, telegram, failing }, storage, music, lf.CreateLogger<PublishService>());
         var state = await svc.PublishAsync(SampleRequest(file));
 
-        if (log.Count == 0 || log[0] != "storage") errs.Add($"storage did not run first: {string.Join(">", log)}");
-        if (!log.SequenceEqual(new[] { "storage", "telegram", "instagram", "facebook" })) errs.Add($"order: {string.Join(">", log)}");
+        // One family (all three are Meta): mux once, upload once, then post.
+        if (!log.SequenceEqual(new[] { "music:meta", "storage", "telegram", "instagram", "facebook" })) errs.Add($"order: {string.Join(">", log)}");
+        if (storage.LastUploaded is null || !storage.LastUploaded.EndsWith(".meta.mp4")) errs.Add($"storage got {storage.LastUploaded}, not the muxed meta file");
+        if (instagram.LastRequest?.Caption.Description.EndsWith("Music: fake (meta)") != true) errs.Add("credit line did not reach the target");
         if (state.Status != "failed") errs.Add($"status with one failing target: {state.Status}");
         if (state.Publications.Count != 2) errs.Add($"{state.Publications.Count} publications recorded, expected the two that succeeded");
         if (state.Error is null || !state.Error.Contains("facebook")) errs.Add("error does not name the failing target");
+        if (state.Music?.GetValueOrDefault("meta") != "fake-meta.mp3") errs.Add("track not recorded in the state");
 
         // Config naming an unknown platform fails at construction, not on
         // the first publish.
-        try { _ = new PublishService(Array.Empty<string>(), new IPublishTarget[] { instagram }, storage, lf.CreateLogger<PublishService>()); errs.Add("empty target list accepted"); }
+        try { _ = new PublishService(Array.Empty<string>(), new IPublishTarget[] { instagram }, storage, music, lf.CreateLogger<PublishService>()); errs.Add("empty target list accepted"); }
         catch (InvalidOperationException) { }
-        try { _ = new PublishService(new[] { "tiktok" }, Array.Empty<IPublishTarget>(), null, lf.CreateLogger<PublishService>()); errs.Add("unknown target accepted"); }
+        try { _ = new PublishService(new[] { "tiktok" }, Array.Empty<IPublishTarget>(), null, music, lf.CreateLogger<PublishService>()); errs.Add("unknown target accepted"); }
         catch (InvalidOperationException) { }
-        try { _ = new PublishService(new[] { "instagram" }, new IPublishTarget[] { instagram }, null, lf.CreateLogger<PublishService>()); errs.Add("URL target without storage accepted"); }
+        try { _ = new PublishService(new[] { "instagram" }, new IPublishTarget[] { instagram }, null, music, lf.CreateLogger<PublishService>()); errs.Add("URL target without storage accepted"); }
         catch (InvalidOperationException) { }
 
-        f.Add(("P8", "PublishService runs storage once before the URL targets, lets one failing target not stop the others, records what succeeded, and refuses misconfiguration at construction",
-            errs.Count == 0, errs.Count == 0 ? "storage>telegram>instagram>facebook; 2 published, status failed naming facebook; bad config refused" : string.Join("; ", errs)));
+        f.Add(("P8", "PublishService muxes once per family, uploads that family's muxed file once before its URL targets, lets one failing target not stop the others, records what succeeded and which track, and refuses misconfiguration at construction",
+            errs.Count == 0, errs.Count == 0 ? "music>storage>telegram>instagram>facebook; storage got the .meta.mp4; credit in caption; 2 published, failed naming facebook; track recorded; bad config refused" : string.Join("; ", errs)));
     }
 
     // ── P9 ───────────────────────────────────────────────────────────────────
@@ -408,6 +415,152 @@ public static class PublishSmokeTest
 
         f.Add(("P9", "The decision record round-trips, and a run missing caption or title is refused by name",
             errs.Count == 0, errs.Count == 0 ? "publish.json round-trips; partial run refused naming caption.txt" : string.Join("; ", errs)));
+    }
+
+    // ── P10 ──────────────────────────────────────────────────────────────────
+
+    private static Task DoP10(string work, ILoggerFactory lf, List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        var svc = new MusicService(new NullFfmpeg(), Path.Combine(work, "nomusic"), null, required: true, lf.CreateLogger<MusicService>());
+
+        if (svc.FamilyOf("youtube") != "youtube") errs.Add("youtube family");
+        foreach (var p in new[] { "instagram", "facebook", "telegram" })
+            if (svc.FamilyOf(p) != "meta") errs.Add($"{p} should be meta");
+
+        // Deterministic for a run id; drains the unused set before repeating.
+        var files = Enumerable.Range(1, 5).Select(i => $"/lib/t{i}.mp3").ToList();
+        var a = MusicService.Pick(files, "run-x", new HashSet<string>());
+        var b = MusicService.Pick(files, "run-x", new HashSet<string>());
+        if (a != b) errs.Add("pick is not deterministic for the same run id");
+
+        var used = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var heard = new HashSet<string>();
+        for (var i = 0; i < 5; i++)
+        {
+            var pick = MusicService.Pick(files, $"run-{i}", used);
+            heard.Add(pick);
+            used.Add(Path.GetFileName(pick));
+        }
+        if (heard.Count != 5) errs.Add($"after 5 runs over 5 tracks only {heard.Count} distinct were heard — unused set not drained first");
+        var sixth = MusicService.Pick(files, "run-6", used);
+        if (!files.Contains(sixth)) errs.Add("with everything used, the next lap did not restart over the full set");
+
+        // The offset stays inside the track and clear of its tail.
+        var off = MusicService.StartOffsetFor("run-x", 240, 16);
+        if (off < 0 || off > 240 - 16 - 1) errs.Add($"start offset {off} outside the usable range");
+        if (MusicService.StartOffsetFor("run-x", 10, 16) != 0) errs.Add("a track shorter than the clip should start at 0");
+
+        f.Add(("P10", "Platforms map to the youtube or meta library, a track is picked deterministically from the unused set first, and the start offset stays inside the track",
+            errs.Count == 0, errs.Count == 0 ? "youtube→youtube, instagram/facebook/telegram→meta; 5 of 5 heard before a repeat; offset in range" : string.Join("; ", errs)));
+        return Task.CompletedTask;
+    }
+
+    // ── P11 ──────────────────────────────────────────────────────────────────
+
+    // Real ffmpeg: a generated 3-second silent clip and a 6-second tone, muxed;
+    // the output is probed for an audio stream of the clip's length. Skipped
+    // as a FAIL if ffmpeg is not installed — this is the one check whose
+    // subject is the actual mux.
+    private static async Task DoP11(string work, ILoggerFactory lf, List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        var ffmpeg = new FfmpegProvider(lf.CreateLogger<FfmpegProvider>());
+        var lib = Path.Combine(work, "music", "youtube");
+        Directory.CreateDirectory(lib);
+        var clip  = Path.Combine(work, "clip", "video", "timeline.mp4");
+        var track = Path.Combine(lib, "tone.mp3");
+        Directory.CreateDirectory(Path.GetDirectoryName(clip)!);
+
+        var made = await Shell("ffmpeg", $"-y -f lavfi -i color=c=black:s=64x64:d=3 -f lavfi -i anullsrc=r=48000:cl=stereo -t 3 -c:v libx264 -pix_fmt yuv420p -an \"{clip}\"")
+                && await Shell("ffmpeg", $"-y -f lavfi -i sine=frequency=440:duration=6 -metadata title=\"Tone (CC-BY)\" -metadata artist=\"Smoke\" -metadata copyright=cc-by -c:a libmp3lame \"{track}\"");
+        if (!made)
+        {
+            f.Add(("P11", "A music bed is muxed under a silent clip by real ffmpeg: audio stream present, clip length kept, video copied", false, "ffmpeg not available to build the fixtures"));
+            return;
+        }
+
+        var svc = new MusicService(ffmpeg, Path.Combine(work, "music"), null, required: true, lf.CreateLogger<MusicService>());
+        var request = SampleRequest(clip) with { Video = new Video("clip-1", Array.Empty<string>(), clip, "2026-01-01T00:00:00Z") };
+        var (withMusic, trackFile) = await svc.WithMusicAsync("youtube", request);
+
+        if (trackFile != "tone.mp3") errs.Add($"track file: {trackFile}");
+        if (!withMusic.Video.FilePath.EndsWith("timeline.youtube.mp4")) errs.Add($"muxed path: {withMusic.Video.FilePath}");
+        if (!File.Exists(withMusic.Video.FilePath)) errs.Add("muxed file not written");
+        if (!withMusic.Caption.Description.EndsWith("Music: Tone by Smoke (CC BY)")) errs.Add($"credit: '{withMusic.Caption.Description.Split('\n').Last()}' — licence not normalised or (CC-BY) not stripped from the title");
+        if (File.Exists(clip) && new FileInfo(clip).Length == 0) errs.Add("the silent master was touched");
+
+        var streams = await ShellOut("ffprobe", $"-v error -show_entries stream=codec_type -of csv=p=0 \"{withMusic.Video.FilePath}\"");
+        if (!streams.Contains("audio")) errs.Add("no audio stream in the muxed file");
+        if (!streams.Contains("video")) errs.Add("video stream lost");
+        var dur = await ffmpeg.ProbeDurationAsync(withMusic.Video.FilePath);
+        if (Math.Abs(dur - 3.0) > 0.3) errs.Add($"muxed duration {dur:F2}s, clip was 3s — the bed was not trimmed to the picture");
+
+        // Second call reuses the file rather than re-encoding.
+        var stamp = File.GetLastWriteTimeUtc(withMusic.Video.FilePath);
+        await svc.WithMusicAsync("youtube", request);
+        if (File.GetLastWriteTimeUtc(withMusic.Video.FilePath) != stamp) errs.Add("second call re-muxed the same family");
+
+        f.Add(("P11", "A music bed is muxed under a silent clip by real ffmpeg: audio stream present, clip length kept, video copied, credit built from the tags, second call reuses the file",
+            errs.Count == 0, errs.Count == 0 ? $"timeline.youtube.mp4 {dur:F2}s with audio; credit 'Music: Tone by Smoke (CC BY)'; master untouched; reused on repeat" : string.Join("; ", errs)));
+    }
+
+    // ── P12 ──────────────────────────────────────────────────────────────────
+
+    private static async Task DoP12(string work, ILoggerFactory lf, List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        var empty = Path.Combine(work, "music-empty");
+        Directory.CreateDirectory(Path.Combine(empty, "meta"));
+        File.WriteAllText(Path.Combine(empty, "meta", "README.txt"), "not a track");
+
+        var required = new MusicService(new NullFfmpeg(), empty, null, required: true, lf.CreateLogger<MusicService>());
+        var request  = SampleRequest(Path.Combine(work, "p12.mp4"));
+        try { await required.WithMusicAsync("meta", request); errs.Add("an empty library published silent"); }
+        catch (InvalidOperationException ex) when (ex.Message.Contains("meta")) { }
+
+        var optional = new MusicService(new NullFfmpeg(), empty, null, required: false, lf.CreateLogger<MusicService>());
+        var (same, track) = await optional.WithMusicAsync("meta", request);
+        if (track.Length != 0 || same.Video.FilePath != request.Video.FilePath) errs.Add("optional music with an empty library should pass the request through");
+
+        // A README in the folder is not a track.
+        if (required.Files("meta").Count != 0) errs.Add("a .txt was counted as a track");
+
+        // The ledger: a publish.json under runs/ that names a track makes it used.
+        var runs = Path.Combine(work, "ledger-runs", "r1");
+        Directory.CreateDirectory(runs);
+        File.WriteAllText(Path.Combine(runs, RunPublishSource.PublishFileName),
+            JsonSerializer.Serialize(new PublishState("published", "2026-01-01T00:00:00Z", Array.Empty<Publication>(), null,
+                new Dictionary<string, string> { ["youtube"] = "t3.mp3" }), Json));
+        var ledgered = new MusicService(new NullFfmpeg(), empty, Path.Combine(work, "ledger-runs"), true, lf.CreateLogger<MusicService>());
+        var used = ledgered.UsedTracks("youtube");
+        if (!used.Contains("t3.mp3")) errs.Add("ledger did not read the track from publish.json");
+        if (ledgered.UsedTracks("meta").Count != 0) errs.Add("ledger leaked a youtube track into meta");
+
+        f.Add(("P12", "An empty library refuses to publish silent when music is required and passes through when not; a README is not a track; the ledger reads used tracks per family from publish.json",
+            errs.Count == 0, errs.Count == 0 ? "required → refused naming meta; optional → passed through; .txt ignored; ledger per family" : string.Join("; ", errs)));
+    }
+
+    private static async Task<bool> Shell(string exe, string args)
+    {
+        try
+        {
+            var psi = new System.Diagnostics.ProcessStartInfo(exe, args) { RedirectStandardError = true, RedirectStandardOutput = true, UseShellExecute = false };
+            using var p = System.Diagnostics.Process.Start(psi);
+            if (p is null) return false;
+            await p.WaitForExitAsync();
+            return p.ExitCode == 0;
+        }
+        catch (System.ComponentModel.Win32Exception) { return false; }
+    }
+
+    private static async Task<string> ShellOut(string exe, string args)
+    {
+        var psi = new System.Diagnostics.ProcessStartInfo(exe, args) { RedirectStandardError = true, RedirectStandardOutput = true, UseShellExecute = false };
+        using var p = System.Diagnostics.Process.Start(psi)!;
+        var outText = await p.StandardOutput.ReadToEndAsync();
+        await p.WaitForExitAsync();
+        return outText;
     }
 
     // A missing record is a finding, not a crash: the check has to report a
@@ -480,9 +633,38 @@ public static class PublishSmokeTest
     private sealed class FakeStorage : IPublicStorage
     {
         private readonly List<string> _log;
+        public string? LastUploaded { get; private set; }
         public FakeStorage(List<string> log) => _log = log;
         public Task<string> UploadPublicAsync(string localPath, string remoteName, CancellationToken ct = default)
-        { _log.Add("storage"); return Task.FromResult("https://dl.fake/" + remoteName); }
+        { _log.Add("storage"); LastUploaded = localPath; return Task.FromResult("https://dl.fake/" + remoteName); }
+    }
+
+    // Stands in for the mux: renames the path and appends a credit, so the
+    // service's ordering and plumbing can be asserted without ffmpeg.
+    private sealed class FakeMusic : IMusicService
+    {
+        private readonly List<string> _log;
+        public FakeMusic(List<string> log) => _log = log;
+        public string FamilyOf(string platform) => platform == "youtube" ? "youtube" : "meta";
+        public Task<(PublishRequest Request, string TrackFile)> WithMusicAsync(string family, PublishRequest request, CancellationToken ct = default)
+        {
+            _log.Add("music:" + family);
+            var muxed = Path.ChangeExtension(request.Video.FilePath, $".{family}.mp4");
+            return Task.FromResult((request with
+            {
+                Video   = request.Video with { FilePath = muxed },
+                Caption = request.Caption with { Description = request.Caption.Description + "\n\nMusic: fake (" + family + ")" },
+            }, $"fake-{family}.mp3"));
+        }
+    }
+
+    private sealed class NullFfmpeg : IFfmpegProvider
+    {
+        public Task<Video?> ComposeAsync(IReadOnlyList<HistoricalImage> images, string outputPath) => Task.FromResult<Video?>(null);
+        public Task<double> ProbeDurationAsync(string path) => Task.FromResult(16.0);
+        public Task<IReadOnlyDictionary<string, string>> ProbeTagsAsync(string path) =>
+            Task.FromResult<IReadOnlyDictionary<string, string>>(new Dictionary<string, string>());
+        public Task MuxMusicAsync(string videoPath, string trackPath, double startSeconds, string outputPath) => Task.CompletedTask;
     }
 
     private sealed class FakeTarget : IPublishTarget
@@ -491,10 +673,12 @@ public static class PublishSmokeTest
         private readonly bool _requireUrl;
         public bool Fail { get; init; }
         public string Platform { get; }
+        public PublishRequest? LastRequest { get; private set; }
         public FakeTarget(string platform, List<string> log, bool requireUrl) { Platform = platform; _log = log; _requireUrl = requireUrl; }
         public Task<Publication> PublishAsync(PublishRequest request, CancellationToken ct = default)
         {
             _log.Add(Platform);
+            LastRequest = request;
             if (_requireUrl && request.PublicVideoUrl is null) throw new InvalidOperationException("no url");
             if (Fail) throw new InvalidOperationException("boom");
             return Task.FromResult(new Publication("p", request.Video.Id, request.Caption.Id, Platform, $"https://{Platform}/1", "2026-01-01T00:00:00Z"));

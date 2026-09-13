@@ -88,7 +88,7 @@ dotnet run -- short-prompts <runFolder>   # shorter prompt text, offline, free
 dotnet run -- brand <name> [years...]     # brand series: no photo, no Vision
 dotnet run -- publish <runFolder> [--yes] # queue a run for review; --yes posts now
 dotnet run -- review                      # Telegram approval loop over output/on-review/
-dotnet run -- --smoke-publish             # P1–P9 over the publish path, offline
+dotnet run -- --smoke-publish             # P1–P12 over the publish path, offline (P11 runs ffmpeg)
 ```
 
 **Fetch before you read anything.** `git fetch origin main` is the first action
@@ -436,9 +436,22 @@ decision), `ReviewLoop` sends one item at a time to your private chat with
 `Publish:Targets`. The outcome lands in the run as `publish.json`, which is
 also what stops a run being queued twice. `RunPublishSource` is the one
 definition of "a run as a publisher sees it". Both modes build from
-`PublishModule` alone — no generation keys. Locked by **P1–P9**; P4 (send
-once, survive restart) and P7 (only the reviewer's chat counts) were proven
-able to fail. Design and first-contact steps: `docs/13-Publishing.md`.
+`PublishModule` alone — no generation keys.
+
+**Music is publish-only.** `MusicService` lays a bed under the video at
+publish time and nowhere else — `timeline.mp4` stays silent, the muxed
+`timeline.{family}.mp4` lands beside it. Two libraries for two licences:
+`data/music/youtube/` (YouTube) and `data/music/meta/` (Instagram, Facebook,
+Telegram — empty until cleared tracks arrive). `Publish:Music:Required=true`
+refuses a family with an empty library rather than posting silent. Track
+picked by run-id hash from the unused set first (ledger = `Music` in every
+`publish.json`), trimmed, faded, −14 LUFS, video stream copied; credit line
+from the file's tags appended to every description — CC-BY needs it.
+
+Locked by **P1–P12**; P4 (send once, survive restart), P7 (only the
+reviewer's chat counts), P11 (real mux keeps the picture) and P12 (no music,
+no post) were proven able to fail. Design and first-contact steps:
+`docs/13-Publishing.md`.
 
 **Video timeline** — `Providers/FfmpegProvider.PlanTimeline(n)` returns per-clip
 durations, not one uniform hold, and the run renders **n+1 clips with n
@@ -886,7 +899,7 @@ be the length of `data/prompts/vision.txt`; not confirmed.
 - Every behaviour worth keeping gets a numbered check: **C1–C89** in
   `PromptSmokeTest`, **V1–V14 / O1–O6** in `VideoSmokeTest`, **F1–F8** in
   `FolderSmokeTest`, **B1–B11** in `BatchSmokeTest`, **N1–N8** in
-  `VisionSmokeTest`, **P1–P9** in `PublishSmokeTest`. Add one when you change what
+  `VisionSmokeTest`, **P1–P12** in `PublishSmokeTest`. Add one when you change what
   prompts say or what the video does; update the hard-coded expected strings when
   you change wording or numbers. Numbers are never reused: the brand-series work
   was specified against C59-C66, which were already taken, and landed at C75-C84.
