@@ -111,11 +111,15 @@ public sealed class PublishModule : Module
         var musicDir      = _configuration["Publish:Music:Dir"] ?? Path.Combine("data", "music");
         var musicRequired = _configuration.GetValue("Publish:Music:Required", true);
         var runsDir       = Path.Combine(_outputRoot, "runs");
+        // Both optional. An empty section means the code's own rule —
+        // youtube → youtube, everything else → meta, under {Dir}/{family}.
+        var families  = _configuration.GetSection("Publish:Music:Families").Get<Dictionary<string, string>>();
+        var libraries = _configuration.GetSection("Publish:Music:Libraries").Get<Dictionary<string, string>>();
         builder.RegisterInstance(new FfmpegProvider(_loggerFactory.CreateLogger<FfmpegProvider>()))
                .As<IFfmpegProvider>().SingleInstance();
         builder.Register(c => new MusicService(
                     c.Resolve<IFfmpegProvider>(), musicDir, runsDir, musicRequired,
-                    _loggerFactory.CreateLogger<MusicService>()))
+                    _loggerFactory.CreateLogger<MusicService>(), families, libraries))
                .As<IMusicService>().SingleInstance();
 
         builder.Register(c => new PublishService(

@@ -14,9 +14,11 @@ namespace LifeOverYears.Services;
 // silent master; each family gets its own derivative beside it.
 //
 // Two libraries because two licences: data/music/youtube/ is what YouTube
-// may carry, data/music/meta/ what Instagram and Facebook may. The families
-// are fixed here rather than configured — a platform's family is a fact
-// about the platform, not a per-installation choice.
+// may carry, data/music/meta/ what Instagram and Facebook may. Which
+// platform draws from which library comes from Publish:Music:Families when
+// that section says so, and from the rule in code when it is empty —
+// youtube to youtube, everything else to meta. Same for where a library
+// lives: Publish:Music:Libraries overrides {Dir}/{family}.
 public sealed class MusicService : IMusicService
 {
     public const string YouTubeFamily = "youtube";
@@ -28,25 +30,38 @@ public sealed class MusicService : IMusicService
     private readonly string _musicDir;
     private readonly string? _runsDir;
     private readonly bool _required;
+    private readonly IReadOnlyDictionary<string, string> _families;
+    private readonly IReadOnlyDictionary<string, string> _libraries;
     private readonly ILogger<MusicService> _logger;
 
     // runsDir is where publish.json records live; scanned for the tracks
     // already used so every track is heard once before any repeats. Null
-    // means no ledger — pick by hash alone.
+    // means no ledger — pick by hash alone. families maps platform → family
+    // and libraries maps family → directory; either may be empty, and an
+    // entry missing from them falls back to the code's own rule.
     public MusicService(
-        IFfmpegProvider ffmpeg, string musicDir, string? runsDir, bool required, ILogger<MusicService> logger)
+        IFfmpegProvider ffmpeg, string musicDir, string? runsDir, bool required, ILogger<MusicService> logger,
+        IReadOnlyDictionary<string, string>? families = null,
+        IReadOnlyDictionary<string, string>? libraries = null)
     {
-        _ffmpeg   = ffmpeg;
-        _musicDir = musicDir;
-        _runsDir  = runsDir;
-        _required = required;
-        _logger   = logger;
+        _ffmpeg    = ffmpeg;
+        _musicDir  = musicDir;
+        _runsDir   = runsDir;
+        _required  = required;
+        _logger    = logger;
+        _families  = new Dictionary<string, string>(families  ?? new Dictionary<string, string>(), StringComparer.OrdinalIgnoreCase);
+        _libraries = new Dictionary<string, string>(libraries ?? new Dictionary<string, string>(), StringComparer.OrdinalIgnoreCase);
     }
 
     public string FamilyOf(string platform) =>
-        platform.Equals(YouTubeFamily, StringComparison.OrdinalIgnoreCase) ? YouTubeFamily : MetaFamily;
+        _families.TryGetValue(platform, out var configured) && configured.Length > 0
+            ? configured
+            : platform.Equals(YouTubeFamily, StringComparison.OrdinalIgnoreCase) ? YouTubeFamily : MetaFamily;
 
-    public string LibraryDir(string family) => Path.Combine(_musicDir, family);
+    public string LibraryDir(string family) =>
+        _libraries.TryGetValue(family, out var configured) && configured.Length > 0
+            ? configured
+            : Path.Combine(_musicDir, family);
 
     public IReadOnlyList<string> Files(string family)
     {

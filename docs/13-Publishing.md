@@ -199,6 +199,20 @@ that. Two families, two libraries, because two licences:
 refused, not published silent (P12). So today YouTube publishes and a Meta
 target reports "no music" until `data/music/meta/` has files in it.
 
+The table above is the rule in code, and it applies whenever the config
+says nothing. Two optional sections override it entry by entry:
+
+```json
+"Music": {
+  "Families":  { "telegram": "youtube" },          // platform → family
+  "Libraries": { "meta": "/Volumes/music/meta" }   // family → folder
+}
+```
+
+An entry not mentioned keeps the default — `instagram` stays `meta`,
+`youtube` stays under `{Dir}/youtube` (P10). Move a platform only if its
+library is cleared for it; the split exists because of licences.
+
 The track is picked by hash of the run id from the tracks this family has
 not used yet — every track is heard once before any repeats — and the
 ledger is the `Music` field of every `publish.json` under `output/runs/`

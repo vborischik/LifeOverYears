@@ -428,6 +428,16 @@ public static class PublishSmokeTest
         foreach (var p in new[] { "instagram", "facebook", "telegram" })
             if (svc.FamilyOf(p) != "meta") errs.Add($"{p} should be meta");
 
+        // Config moves a platform, or a library, and an entry it does not
+        // mention keeps the code's rule.
+        var configured = new MusicService(new NullFfmpeg(), Path.Combine(work, "nomusic"), null, true, lf.CreateLogger<MusicService>(),
+            families:  new Dictionary<string, string> { ["telegram"] = "youtube" },
+            libraries: new Dictionary<string, string> { ["meta"] = Path.Combine(work, "elsewhere") });
+        if (configured.FamilyOf("telegram") != "youtube") errs.Add("Families config not applied");
+        if (configured.FamilyOf("instagram") != "meta") errs.Add("an unmentioned platform lost the default rule");
+        if (configured.LibraryDir("meta") != Path.Combine(work, "elsewhere")) errs.Add("Libraries config not applied");
+        if (configured.LibraryDir("youtube") != Path.Combine(work, "nomusic", "youtube")) errs.Add("an unmentioned family lost {Dir}/{family}");
+
         // Deterministic for a run id; drains the unused set before repeating.
         var files = Enumerable.Range(1, 5).Select(i => $"/lib/t{i}.mp3").ToList();
         var a = MusicService.Pick(files, "run-x", new HashSet<string>());
@@ -451,8 +461,8 @@ public static class PublishSmokeTest
         if (off < 0 || off > 240 - 16 - 1) errs.Add($"start offset {off} outside the usable range");
         if (MusicService.StartOffsetFor("run-x", 10, 16) != 0) errs.Add("a track shorter than the clip should start at 0");
 
-        f.Add(("P10", "Platforms map to the youtube or meta library, a track is picked deterministically from the unused set first, and the start offset stays inside the track",
-            errs.Count == 0, errs.Count == 0 ? "youtube→youtube, instagram/facebook/telegram→meta; 5 of 5 heard before a repeat; offset in range" : string.Join("; ", errs)));
+        f.Add(("P10", "Platforms map to the youtube or meta library by the code's rule unless Publish:Music:Families/Libraries say otherwise, a track is picked deterministically from the unused set first, and the start offset stays inside the track",
+            errs.Count == 0, errs.Count == 0 ? "defaults youtube→youtube, others→meta; config moves telegram→youtube and meta's folder, unmentioned entries keep defaults; 5 of 5 heard before a repeat; offset in range" : string.Join("; ", errs)));
         return Task.CompletedTask;
     }
 
