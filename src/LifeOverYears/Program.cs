@@ -302,9 +302,32 @@ static async Task<int> RunPublishModeAsync(string[] args, string launchDir, stri
 
     if (args[0] == "review")
     {
+        // No ReviewChatId yet: this is first contact, not the loop. Listen for
+        // one message to the bot, print the chat id to put in config, stop.
+        var botToken     = configuration["Publish:Telegram:BotToken"];
+        var reviewChatId = configuration["Publish:Telegram:ReviewChatId"];
+        if (string.IsNullOrWhiteSpace(botToken))
+        {
+            logger.LogError("Publish:Telegram:BotToken is empty — create the bot with @BotFather and paste its token");
+            return 1;
+        }
+        if (string.IsNullOrWhiteSpace(reviewChatId))
+        {
+            logger.LogInformation("Publish:Telegram:ReviewChatId is empty. Open your bot in Telegram and send it any message — waiting up to 2 minutes…");
+            using var http = new HttpClient { Timeout = TimeSpan.FromSeconds(40) };
+            var id = await TelegramReviewProvider.DiscoverChatIdAsync(http, botToken, TimeSpan.FromMinutes(2), logger);
+            if (id is null)
+            {
+                logger.LogError("No message arrived. Send the bot a message and run 'review' again.");
+                return 1;
+            }
+            logger.LogInformation("Your chat id is {Id}. Put it in appsettings.json as Publish:Telegram:ReviewChatId and run 'review' again.", id);
+            return 0;
+        }
+
         // The loop publishes on the reviewer's word, so it is the thing the
-        // flag gates. Off until Dropbox and Instagram have been proven on a
-        // one-shot publish — that is what --yes below exists for.
+        // flag gates. Off until a platform has been proven on a one-shot
+        // publish — that is what --yes below exists for.
         if (!enabled)
         {
             logger.LogError("Publish:Enabled is false — the review loop stays off. Test a single run with " +

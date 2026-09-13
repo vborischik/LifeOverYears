@@ -91,17 +91,18 @@ public sealed class PublishModule : Module
                         BuildHttpClient(), fbToken, fbPage, _loggerFactory.CreateLogger<FacebookProvider>()))
                    .As<IPublishTarget>().SingleInstance();
 
-        // YouTube's provider is created asynchronously (the OAuth broker may
-        // open a browser once), which Autofac's registration cannot await.
-        // Registered as a lazy task; PublishService resolution below awaits
-        // it only when "youtube" is a configured target.
+        // YouTube's provider is created asynchronously — the OAuth broker may
+        // open a browser once — so it is registered as a factory and built
+        // only when IPublishService is resolved, i.e. by --yes and by the
+        // loop. Merely queueing a run must not open a consent window.
         var youtube = _configuration.GetSection("Publish:YouTube");
         if (youtube["ClientSecretPath"] is { Length: > 0 } secretPath
             && targets.Contains("youtube", StringComparer.OrdinalIgnoreCase))
         {
-            var provider = YouTubeProvider.CreateAsync(secretPath, _loggerFactory.CreateLogger<YouTubeProvider>())
-                .GetAwaiter().GetResult();
-            builder.RegisterInstance(provider).As<IPublishTarget>().SingleInstance();
+            builder.Register(_ => YouTubeProvider
+                        .CreateAsync(secretPath, _loggerFactory.CreateLogger<YouTubeProvider>())
+                        .GetAwaiter().GetResult())
+                   .As<IPublishTarget>().SingleInstance();
         }
 
         builder.Register(c => new PublishService(

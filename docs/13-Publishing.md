@@ -50,13 +50,65 @@ generation keys needed, and `AppModule` never loads a publish provider.
 
 ## First contact with the bot
 
-1. BotFather → new bot → token into `Publish:Telegram:BotToken`.
-2. Open the bot in Telegram and send it anything.
-3. `dotnet run -- review` (with `Enabled: true`, or read the log of a
-   `--yes` run) — the log prints `Ignoring message from chat NNNNN`. That
-   number is `Publish:Telegram:ReviewChatId`.
-4. Set it; from then on only that chat's answers count. A stranger who
-   finds the bot and presses Publish is ignored (P7).
+1. In Telegram, talk to **@BotFather** → `/newbot` → name it → copy the
+   token into `Publish:Telegram:BotToken`.
+2. Open your new bot in Telegram (BotFather gives a `t.me/…` link) and
+   send it any message. Until you do, the bot cannot message you.
+3. `dotnet run -- review` — with `ReviewChatId` still empty this is not the
+   loop: it listens for one message, prints
+   `Your chat id is NNNNN`, and stops.
+4. Put that number in `Publish:Telegram:ReviewChatId`. From then on only
+   that chat's answers count; a stranger who finds the bot and presses
+   Publish is ignored (P7).
+
+## Testing by hand, YouTube first
+
+YouTube takes the file directly — no Dropbox — and `Publish:Privacy` is
+`private` by default, so nothing goes public until you flip it in Studio.
+The title is `title.txt`, checked against YouTube's 100-char limit before
+upload (over it, the publish refuses rather than truncates); the
+description is the caption body plus the hashtag line; the tags are the
+hashtags without `#`.
+
+```json
+"Publish": {
+  "Enabled": false,
+  "Targets": [ "youtube" ],
+  "YouTube": { "ClientSecretPath": "../../../YoutubePublisher/perm.json" },
+  "Telegram": { "BotToken": "…", "ReviewChatId": "…" }
+}
+```
+
+Pointing `ClientSecretPath` at YoutubePublisher's file reuses the OAuth
+consent already granted on this machine; a different client secret opens
+the browser once for a new consent.
+
+**Straight to YouTube, no bot** (proves the upload and the title):
+
+```
+dotnet run -- publish output/runs/circuit-city_20260911-1215 --yes
+```
+
+**Through the bot** (proves the loop):
+
+```
+dotnet run -- publish output/runs/circuit-city_20260911-1215   # queue it
+# set Publish:Enabled to true
+dotnet run -- review                                            # the bot sends you the video
+# press ✅ Publish (or type yes) → uploads to YouTube private → replies with the URL
+```
+
+**A video that is not a run:** the modes read a folder, not a file. Three
+files make one:
+
+```
+myvideo/video/timeline.mp4
+myvideo/caption.txt      body, blank line, one #hashtag per line
+myvideo/title.txt        one line, under 100 chars
+```
+
+Then `publish myvideo --yes` or `publish myvideo` + `review`. A cover is
+optional (`images/{year}.png`, newest year wins).
 
 The loop persists its `getUpdates` offset in `on-review/.telegram-offset`,
 so a restart does not re-read old answers, and an item already sent is not

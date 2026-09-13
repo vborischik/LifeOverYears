@@ -197,6 +197,43 @@ public sealed class TelegramReviewProvider : IReviewChannel
         await PostAsync("answerCallbackQuery", form, ct);
     }
 
+    // First contact. With no ReviewChatId configured the loop cannot know
+    // whose answers count, and the id is not something a person can look up
+    // in the Telegram app. So: wait for any message to the bot and report
+    // where it came from. Reads without advancing the persisted offset — the
+    // real loop, once configured, sees the same update and ignores it.
+    public static async Task<string?> DiscoverChatIdAsync(
+        HttpClient http, string botToken, TimeSpan wait, ILogger logger, CancellationToken ct = default)
+    {
+        var deadline = DateTimeOffset.UtcNow + wait;
+        long? offset = null;
+        while (DateTimeOffset.UtcNow < deadline && !ct.IsCancellationRequested)
+        {
+            using var form = new FormUrlEncodedContent(new Dictionary<string, string>
+            {
+                ["timeout"] = "20",
+                ["offset"]  = offset is { } o ? (o + 1).ToString() : "",
+            });
+            var response = await http.PostAsync($"https://api.telegram.org/bot{botToken}/getUpdates", form, ct);
+            var body     = JsonDocument.Parse(await response.Content.ReadAsStringAsync(ct)).RootElement;
+            if (!body.TryGetProperty("ok", out var ok) || !ok.GetBoolean())
+                throw new InvalidOperationException($"Telegram getUpdates failed: {body}");
+
+            foreach (var update in body.GetProperty("result").EnumerateArray())
+            {
+                offset = update.GetProperty("update_id").GetInt64();
+                if (!update.TryGetProperty("message", out var message)) continue;
+                var chat = message.GetProperty("chat");
+                var id   = chat.GetProperty("id").GetInt64().ToString();
+                var who  = chat.TryGetProperty("username", out var u) ? u.GetString() : chat.TryGetProperty("first_name", out var n) ? n.GetString() : "?";
+                logger.LogInformation("Message from chat {Id} ({Who}): \"{Text}\"", id, who,
+                    message.TryGetProperty("text", out var t) ? t.GetString() : "(no text)");
+                return id;
+            }
+        }
+        return null;
+    }
+
     // ── Offset persistence ───────────────────────────────────────────────────
 
     private async Task<long?> ReadOffsetAsync()
