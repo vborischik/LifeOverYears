@@ -183,6 +183,18 @@ public sealed class AppModule : Module
         // demands.
         builder.RegisterModule(new VideoModule(_loggerFactory));
 
+        // The review queue is a folder and a flag — no keys, no HTTP — so it
+        // can live here and let a finishing run hand itself to the reviewer.
+        // The providers that publish live in PublishModule and are never
+        // loaded by a generation run.
+        var outputDir  = Path.GetFullPath(_configuration["Pipeline:OutputDir"] ?? "output/runs");
+        var reviewRoot = PublishModule.ReviewRoot(Path.GetDirectoryName(outputDir)!);
+        builder.RegisterInstance(new ReviewQueue(
+                    reviewRoot,
+                    _configuration.GetValue("Publish:Enabled", false),
+                    _loggerFactory.CreateLogger<ReviewQueue>()))
+               .AsSelf().SingleInstance();
+
         builder.Register(_ => new Pipeline(
                     _.Resolve<IVisionService>(),
                     _.Resolve<IPromptService>(),
@@ -195,7 +207,8 @@ public sealed class AppModule : Module
                     baseMode,
                     eraChaining,
                     shortPrompts,
-                    _loggerFactory.CreateLogger<Pipeline>()))
+                    _loggerFactory.CreateLogger<Pipeline>(),
+                    _.Resolve<ReviewQueue>()))
                .SingleInstance();
 
         // Pipeline's sibling for the brand mode. Registered unconditionally and
@@ -211,7 +224,8 @@ public sealed class AppModule : Module
                     _.Resolve<IVideoService>(),
                     _.Resolve<ICaptionService>(),
                     shortPrompts,
-                    _loggerFactory.CreateLogger<BrandSeriesRunner>()))
+                    _loggerFactory.CreateLogger<BrandSeriesRunner>(),
+                    _.Resolve<ReviewQueue>()))
                .SingleInstance();
     }
 }

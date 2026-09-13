@@ -86,6 +86,9 @@ dotnet run -- assemble <runFolder> [years...]
 dotnet run -- vision-variance <folder> [--repeat N]
 dotnet run -- short-prompts <runFolder>   # shorter prompt text, offline, free
 dotnet run -- brand <name> [years...]     # brand series: no photo, no Vision
+dotnet run -- publish <runFolder> [--yes] # queue a run for review; --yes posts now
+dotnet run -- review                      # Telegram approval loop over output/on-review/
+dotnet run -- --smoke-publish             # P1–P9 over the publish path, offline
 ```
 
 **Fetch before you read anything.** `git fetch origin main` is the first action
@@ -123,6 +126,7 @@ not stray files.
 | `Pipeline:ShortPrompts` | `false` | writes `{runFolder}/short-prompts/` during a run. |
 | `OpenAi:Enabled` | `true` | `false` swaps in `StubImageProvider` — jobs recorded, images placed by hand, no API calls and no cost. |
 | `Pipeline:InputDir/ProcessedDir/FailedDir/OutputDir` | `testImage`/`processed`/`failed`/`output/runs` | |
+| `Publish:Enabled` | `false` | Gates the end-of-run enqueue into `output/on-review/` and the `review` loop. `publish <run> --yes` ignores it — the test path. Off until Dropbox + Instagram are proven on one run. |
 
 `Pipeline:EraChaining` is read by the photo path only. A brand series is always
 chained: with no shared base, era N+1 has nothing but era N to edit.
@@ -422,6 +426,19 @@ per era.
 
 Locked by C75-C84 over the kmart series, whose prompts are written to
 `output/smoke/brand_series/kmart/`.
+
+**Publishing** — the tail after a run: a human on Telegram, then the
+platforms. `ReviewQueue` copies a finished run's video/caption/title/cover
+into `output/on-review/{run}/` (the folder is the queue; deletion is the
+decision), `ReviewLoop` sends one item at a time to your private chat with
+[Publish]/[Skip] buttons through `TelegramReviewProvider`, and on yes
+`PublishService` runs Dropbox once for a public URL, then every platform in
+`Publish:Targets`. The outcome lands in the run as `publish.json`, which is
+also what stops a run being queued twice. `RunPublishSource` is the one
+definition of "a run as a publisher sees it". Both modes build from
+`PublishModule` alone — no generation keys. Locked by **P1–P9**; P4 (send
+once, survive restart) and P7 (only the reviewer's chat counts) were proven
+able to fail. Design and first-contact steps: `docs/13-Publishing.md`.
 
 **Video timeline** — `Providers/FfmpegProvider.PlanTimeline(n)` returns per-clip
 durations, not one uniform hold, and the run renders **n+1 clips with n
@@ -869,7 +886,7 @@ be the length of `data/prompts/vision.txt`; not confirmed.
 - Every behaviour worth keeping gets a numbered check: **C1–C89** in
   `PromptSmokeTest`, **V1–V14 / O1–O6** in `VideoSmokeTest`, **F1–F8** in
   `FolderSmokeTest`, **B1–B11** in `BatchSmokeTest`, **N1–N8** in
-  `VisionSmokeTest`. Add one when you change what
+  `VisionSmokeTest`, **P1–P9** in `PublishSmokeTest`. Add one when you change what
   prompts say or what the video does; update the hard-coded expected strings when
   you change wording or numbers. Numbers are never reused: the brand-series work
   was specified against C59-C66, which were already taken, and landed at C75-C84.

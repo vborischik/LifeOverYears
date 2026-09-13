@@ -24,6 +24,11 @@ ships the shape (checked by F3). Every key the code actually reads:
 | `Pipeline:ProcessedDir` | `processed` | Where a finished photo is moved. |
 | `Pipeline:FailedDir` | `failed` | Where a failed photo is moved (non-zero exit). |
 | `Pipeline:OutputDir` | `output/runs` | Where run folders are created. |
+| `Publish:Enabled` | `false` | Gates the end-of-run enqueue and the `review` loop. `publish <run> --yes` ignores it. |
+| `Publish:Targets` | `[]` | Platforms to post to, in order; empty is refused. |
+| `Publish:Privacy` | `private` | YouTube's word; Facebook maps it; Telegram/Instagram post on call. |
+| `Publish:Telegram:BotToken` / `ReviewChatId` | — | The review bot and YOUR chat id (see docs/13 for finding it). |
+| `Publish:Dropbox:*` / `Instagram:*` / `Facebook:*` / `YouTube:*` | — | Per-platform credentials; see `appsettings.example.json`. |
 | `Vision:DoubleCheck` | `false` | Second Vision pass re-examining five load-bearing fields. Off: measured against `testFolder8/expected.json` it corrected one field and doubled exposure to the empty-stream failure. Re-enabling is this flag plus a `vision-accuracy` re-run to justify it. |
 
 ## Running
@@ -88,6 +93,18 @@ What `collect` does:
 newest-first and comes from one definition (`VideoAssemblyRunner.NewestFirst`)
 at every call site, so a resumed run composes the same cut as the original.
 
+## Publishing
+
+```
+dotnet run -- publish <runFolder>          # queue it for review (copies into output/on-review/)
+dotnet run -- publish <runFolder> --yes    # post it now, no review — the test mode
+dotnet run -- review                       # the Telegram approval loop; Ctrl+C stops
+```
+
+Off by default (`Publish:Enabled=false`): a finishing run is not queued and
+`review` refuses to start. `--yes` works regardless. Full design, first
+contact with the bot, and the P-checks: `docs/13-Publishing.md`.
+
 ## Verifying without spending
 
 All offline, no API key needed:
@@ -97,6 +114,7 @@ dotnet run -- --smoke-prompts    # C-checks over every generated prompt + folder
 dotnet run -- --smoke-video      # ffmpeg timeline and year overlay
 dotnet run -- --smoke-batch      # batch provider against a fake
 dotnet run -- --smoke-vision     # vision answer parsing against a fake
+dotnet run -- --smoke-publish    # review loop, queue and the three HTTP providers against fakes
 ```
 
 `vision-variance <folder> [--repeat N]` and

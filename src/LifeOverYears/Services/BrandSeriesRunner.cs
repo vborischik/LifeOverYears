@@ -22,6 +22,7 @@ public sealed class BrandSeriesRunner
     private readonly ICaptionService _caption;
     private readonly bool _shortPrompts;
     private readonly ILogger<BrandSeriesRunner> _logger;
+    private readonly ReviewQueue? _reviewQueue;
 
     public BrandSeriesRunner(
         IBrandSeriesPromptService prompt,
@@ -32,8 +33,10 @@ public sealed class BrandSeriesRunner
         IVideoService video,
         ICaptionService caption,
         bool shortPrompts,
-        ILogger<BrandSeriesRunner> logger)
+        ILogger<BrandSeriesRunner> logger,
+        ReviewQueue? reviewQueue = null)
     {
+        _reviewQueue = reviewQueue;
         _prompt = prompt;
         _data = data;
         _runService = runService;
@@ -188,6 +191,9 @@ public sealed class BrandSeriesRunner
 
         _logger.LogInformation("Brand run complete — video: {Path}, caption.txt: {CaptionState}",
             video.FilePath, captionWritten ? "written" : "NOT written");
+
+        if (_reviewQueue is not null)
+            await _reviewQueue.TryEnqueueAfterRunAsync(run.Root);
         return 0;
     }
 

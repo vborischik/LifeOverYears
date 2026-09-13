@@ -27,6 +27,10 @@ public sealed class Pipeline
     private readonly bool _shortPrompts;
     private readonly ILogger<Pipeline> _logger;
 
+    // Null when publishing is not configured; otherwise the finished run is
+    // copied to on-review/ for a human, gated by Publish:Enabled inside it.
+    private readonly ReviewQueue? _reviewQueue;
+
     public Pipeline(
         IVisionService vision,
         IPromptService prompt,
@@ -39,8 +43,10 @@ public sealed class Pipeline
         string baseMode,
         bool eraChaining,
         bool shortPrompts,
-        ILogger<Pipeline> logger)
+        ILogger<Pipeline> logger,
+        ReviewQueue? reviewQueue = null)
     {
+        _reviewQueue = reviewQueue;
         _vision = vision;
         _prompt = prompt;
         _data = data;
@@ -286,6 +292,9 @@ public sealed class Pipeline
 
         _logger.LogInformation("Pipeline complete — video: {Path}, caption.txt: {CaptionState}",
             video.FilePath, captionWritten ? "written" : "NOT written");
+
+        if (_reviewQueue is not null)
+            await _reviewQueue.TryEnqueueAfterRunAsync(run.Root);
 
         return 0;
     }

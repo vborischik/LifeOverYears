@@ -69,6 +69,25 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
             args.Skip(1).ToArray(), launchDir, shortLoggerFactory.CreateLogger("ShortPrompts"));
     }
 
+    // Publishing. Both modes build a container from PublishModule alone —
+    // AppModule refuses to load without the generation keys, and putting a
+    // finished run in front of people needs none of them.
+    //
+    //   publish <runFolder> [--yes]   one run, now. Without --yes it is queued
+    //                                 for review; with it, published directly —
+    //                                 the mode for testing a platform on an
+    //                                 existing run before the loop is trusted.
+    //   review                        the loop: send each queued run to the
+    //                                 reviewer, act on the answer, next.
+    if (args.Length >= 1 && (args[0] == "publish" || args[0] == "review"))
+        return await RunPublishModeAsync(args, launchDir, projectRoot);
+
+    if (args.Contains("--smoke-publish"))
+    {
+        using var publishLoggerFactory = LoggerFactory.Create(b => b.AddConsole().SetMinimumLevel(LogLevel.Debug));
+        return await PublishSmokeTest.RunAsync(publishLoggerFactory, publishLoggerFactory.CreateLogger("PublishSmokeTest"));
+    }
+
     // 'assemble <folderPath> [years...]' — manual testing only: no vision, no
     // prompts, no image provider call. Points overlay+assembly at images that
     // are already sitting in {folderPath}/images/. Isolated like --smoke-video:
@@ -245,6 +264,109 @@ static async Task<int> RunBrandAsync(
         // exists would otherwise lose its whole buffered log.
         RunLogProvider.FlushIfUnattached();
     }
+}
+
+static async Task<int> RunPublishModeAsync(string[] args, string launchDir, string projectRoot)
+{
+    using var loggerFactory = LoggerFactory.Create(b => b.AddConsole().SetMinimumLevel(LogLevel.Information));
+    var logger = loggerFactory.CreateLogger(args[0] == "review" ? "Review" : "Publish");
+
+    var configuration = new ConfigurationBuilder()
+        .SetBasePath(projectRoot)
+        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
+        .Build();
+    var folders = PipelineFolders.Resolve(configuration);
+    var enabled = configuration.GetValue("Publish:Enabled", false);
+
+    // on-review sits beside the runs folder: output/runs → output/on-review.
+    var outputRoot = Path.GetDirectoryName(Path.GetFullPath(folders.OutputDir, projectRoot))!;
+
+    var builder = new ContainerBuilder();
+    builder.RegisterModule(new PublishModule(configuration, loggerFactory, outputRoot));
+    await using var container = builder.Build();
+    var queue = container.Resolve<ReviewQueue>();
+
+    // A misconfigured Publish: section is the likeliest failure here, and it
+    // surfaces as a resolution exception three frames deep. The message the
+    // service wrote is the one worth reading.
+    T ResolveOrExplain<T>() where T : notnull
+    {
+        try { return container.Resolve<T>(); }
+        catch (Autofac.Core.DependencyResolutionException ex)
+        {
+            var root = ex.GetBaseException();
+            logger.LogError("publish is not configured: {Message}", root.Message);
+            throw new PublishConfigurationException(root.Message, root);
+        }
+    }
+
+    if (args[0] == "review")
+    {
+        // The loop publishes on the reviewer's word, so it is the thing the
+        // flag gates. Off until Dropbox and Instagram have been proven on a
+        // one-shot publish — that is what --yes below exists for.
+        if (!enabled)
+        {
+            logger.LogError("Publish:Enabled is false — the review loop stays off. Test a single run with " +
+                            "'publish <runFolder> --yes' first, then enable it.");
+            return 1;
+        }
+
+        using var cts = new CancellationTokenSource();
+        Console.CancelKeyPress += (_, e) => { e.Cancel = true; cts.Cancel(); };
+        logger.LogInformation("Review loop started — Ctrl+C to stop. Queue: {Root}", queue.Root);
+        ReviewLoop loop;
+        try { loop = ResolveOrExplain<ReviewLoop>(); } catch (PublishConfigurationException) { return 1; }
+        var done = await loop.RunAsync(cts.Token);
+        logger.LogInformation("Review loop stopped after {Count} decision(s)", done);
+        return 0;
+    }
+
+    if (args.Length < 2)
+    {
+        logger.LogError("usage: publish <runFolder> [--yes]");
+        return 1;
+    }
+
+    var runFolder = Path.GetFullPath(args[1], launchDir);
+    if (!Directory.Exists(runFolder))
+    {
+        logger.LogError("publish: run folder does not exist: {Folder}", runFolder);
+        return 1;
+    }
+
+    if (!args.Contains("--yes"))
+    {
+        var item = await queue.EnqueueAsync(runFolder);
+        logger.LogInformation(item is null
+            ? "Not queued — the run already has a decision (publish.json)"
+            : "Queued for review: {Root}/{Id}. Run 'review' to send it.", queue.Root, item?.Id);
+        return 0;
+    }
+
+    // --yes: straight to the platforms, no Telegram in between. Explicit on
+    // purpose — the folder and the flag were both typed by a person.
+    var privacy = configuration["Publish:Privacy"] ?? "private";
+    var request = await RunPublishSource.ReadAsync(runFolder, privacy);
+    IPublishService service;
+    try { service = ResolveOrExplain<IPublishService>(); } catch (PublishConfigurationException) { return 1; }
+    logger.LogInformation("Publishing {Id} to {Targets} as {Privacy}",
+        request.Video.Id, string.Join(", ", service.Targets), privacy);
+
+    var state = await service.PublishAsync(request);
+    await File.WriteAllTextAsync(
+        Path.Combine(runFolder, RunPublishSource.PublishFileName),
+        System.Text.Json.JsonSerializer.Serialize(state, new System.Text.Json.JsonSerializerOptions { WriteIndented = true }));
+
+    foreach (var p in state.Publications)
+        logger.LogInformation("  {Platform}: {Url}", p.Platform, p.Url);
+    if (state.Status != "published")
+    {
+        logger.LogError("publish: {Error}", state.Error);
+        return 1;
+    }
+    logger.LogInformation("publish complete — recorded in {File}", RunPublishSource.PublishFileName);
+    return 0;
 }
 
 static async Task<int> RunAssembleAsync(string[] args, string launchDir)
@@ -539,6 +661,8 @@ static async Task<int> RunCollectAsync(
 
     logger.LogInformation("collect complete — video: {Path}, caption.txt: {CaptionState}",
         video.FilePath, captionState);
+
+    await container.Resolve<ReviewQueue>().TryEnqueueAfterRunAsync(folder);
     return 0;
 }
 
@@ -631,3 +755,10 @@ static string FindProjectRoot()
 }
 
 return await RunAsync(args, projectRoot, launchDir);
+
+// Thrown by the publish modes when the Publish: section cannot be turned into
+// a working service; already logged with the cause by the time it is thrown.
+sealed class PublishConfigurationException : Exception
+{
+    public PublishConfigurationException(string message, Exception inner) : base(message, inner) { }
+}
