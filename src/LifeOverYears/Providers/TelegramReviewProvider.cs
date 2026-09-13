@@ -10,8 +10,8 @@ namespace LifeOverYears.Providers;
 // The review channel over the Telegram Bot API: the video goes to the
 // reviewer's private chat under two inline buttons, and the answer comes
 // back as a callback query — or as a typed "yes"/"no", for a reviewer who
-// would rather type. A different provider from TelegramProvider, which
-// posts to a channel: this one talks to one person and listens.
+// would rather type. Telegram is only this in the project: nothing is
+// published to it, it is where one person says yes or no.
 //
 // Listening is getUpdates long-polling with a persisted offset, so a
 // restart resumes where it left off instead of re-reading a day of
@@ -20,6 +20,9 @@ namespace LifeOverYears.Providers;
 // not publish a video.
 public sealed class TelegramReviewProvider : IReviewChannel
 {
+    // Bot API limit on a media caption; above it the request is rejected.
+    public const int MaxCaptionLength = 1024;
+
     private const string ApproveData = "publish";
     private const string SkipData    = "skip";
 
@@ -54,7 +57,7 @@ public sealed class TelegramReviewProvider : IReviewChannel
         // Title and body, no hashtags: the reviewer is judging the video and
         // the wording, and a wall of tags under it only hides the question.
         var caption = $"{request.Caption.Title}\n\n{request.Caption.Description}";
-        if (caption.Length > TelegramProvider.MaxCaptionLength)
+        if (caption.Length > MaxCaptionLength)
             caption = request.Caption.Title;
 
         using var form = new MultipartFormDataContent();

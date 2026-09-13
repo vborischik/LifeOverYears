@@ -26,9 +26,9 @@ ships the shape (checked by F3). Every key the code actually reads:
 | `Pipeline:OutputDir` | `output/runs` | Where run folders are created. |
 | `Publish:Enabled` | `false` | Gates the end-of-run enqueue and the `review` loop. `publish <run> --yes` ignores it. |
 | `Publish:Targets` | `[]` | Platforms to post to, in order; empty is refused. |
-| `Publish:Music:{Family}` / `Required` | `data/music/{family}` / `true` | A folder per family: `Meta` = Instagram + Facebook; every other platform its own (`YouTube`, `Telegram`, …). An empty folder refuses to publish that family. |
-| `Publish:Privacy` | `private` | YouTube's word; Facebook maps it; Telegram/Instagram post on call. |
-| `Publish:Telegram:BotToken` / `ReviewChatId` | — | The review bot and YOUR chat id (see docs/13 for finding it). |
+| `Publish:Music:{Family}` / `Required` | `data/music/{family}` / `true` | A folder per family: `Meta` = Instagram + Facebook; every other platform its own (`YouTube`, …). An empty folder refuses to publish that family. |
+| `Publish:Privacy` | `private` | YouTube's word; Facebook maps it; Instagram posts on call. |
+| `Publish:Telegram:BotToken` / `ReviewChatId` | — | The review bot and YOUR chat id (see docs/13). Telegram is review only — nothing is published to it. |
 | `Publish:Dropbox:*` / `Instagram:*` / `Facebook:*` / `YouTube:*` | — | Per-platform credentials; see `appsettings.example.json`. |
 | `Vision:DoubleCheck` | `false` | Second Vision pass re-examining five load-bearing fields. Off: measured against `testFolder8/expected.json` it corrected one field and doubled exposure to the empty-stream failure. Re-enabling is this flag plus a `vision-accuracy` re-run to justify it. |
 

@@ -118,13 +118,12 @@ sent again (P4) — the message id is in its `review.json`.
 
 ```
 IPublishTarget            one platform; PublishAsync(PublishRequest) → Publication
-  TelegramProvider        Bot API sendVideo to a CHANNEL — takes the bytes
   YouTubeProvider         Data API v3 via Google SDK — takes the bytes
   InstagramProvider       Graph API Reels — pulls from a URL
   FacebookProvider        Graph API Page Reels — pulls from a URL
 IPublicStorage            the URL those two pull from
   DropboxProvider         upload → shared link → direct-download URL
-IReviewChannel            the human in the loop
+IReviewChannel            the human in the loop — Telegram's only role here
   TelegramReviewProvider  sendVideo to YOUR chat with buttons; getUpdates long-poll
 IPublishService           storage once, then every target in Publish:Targets
   PublishService          one failing target does not stop the others; state records both
@@ -145,7 +144,6 @@ hashtags", so every platform assembles the caption the same way.
 
 | connector | source | changed on the way |
 |---|---|---|
-| Telegram | this repo, Jun 2026 sketch | `parse_mode=HTML` on an unescaped caption dropped (an `&` would have rejected the post); `t.me/c/` link no longer built from the `-100` chat id; a caption over 1024 chars goes as title+tags with the body as a reply, never cut |
 | Dropbox | `HouseTimelineApp/Features/Storage/DropboxStorageProvider.cs` | refresh-token auth added — access tokens live four hours, which is why that project has hard-coded ones in commented-out source; `files/upload` direct instead of a temp link (a 1 MB clip is two orders under the 150 MB single-request limit) |
 | Instagram | `HouseTimelineApp/Features/Instagram/InstagramApiClient.cs` | token moved out of the query string into the form body (a URL with the token in it ends up in every log line); polling bounded at 5 min; caption limits (2200 chars / 30 hashtags) enforced before the container is created, since an orphaned container counts against the daily quota; permalink fetched after publish |
 | Facebook | written from the Graph API reference — neither source project posts to Facebook | Page **Reels** (`video_reels` start → upload-by-URL → finish), not the plain Page video endpoint: a 9:16 sixteen-second clip is a Reel, and that is the surface Facebook shows one on |
@@ -159,7 +157,7 @@ ledger — the state file that project had is not ported.
 
 | platform | credential | how to get it |
 |---|---|---|
-| Telegram | bot token + chat id | BotFather for the token; the bot must be an admin of the channel. Chat id is `@name` or the `-100…` id. |
+| Telegram (review only) | bot token + your chat id | BotFather for the token; your own chat id from `review` on first contact. Nothing is published to Telegram. |
 | Dropbox | app key, app secret, **refresh token** | App console → create app with `files.content.write` + `sharing.write`; run the OAuth flow once with `token_access_type=offline` to get a refresh token. An access token alone works for four hours. |
 | Instagram | long-lived user token + IG user id | Facebook Developer app with `instagram_content_publish`; the account must be professional and linked to a Facebook Page. The id is numeric, not the username. |
 | Facebook | **Page** access token + Page id | Same app, `pages_manage_posts` + `publish_video`; exchange the user token for the Page token via `/me/accounts`. |
@@ -179,8 +177,8 @@ the reviewer gets both in the reply.
 
 Privacy is never defaulted. `PublishRequest.Privacy` is YouTube's word
 (`private` / `unlisted` / `public`); Facebook maps it to `DRAFT` /
-`PUBLISHED` (or `SCHEDULED` with a time); Telegram and Instagram have no
-private state and publish on call. The safe pattern from YoutubePublisher
+`PUBLISHED` (or `SCHEDULED` with a time); Instagram has no private state
+and publishes on call. The safe pattern from YoutubePublisher
 holds: upload `private` with a schedule, and the platform flips each video
 public on its own clock.
 
@@ -194,7 +192,7 @@ that. A folder per family, because a licence is per platform:
 |---|---|---|
 | `meta` | instagram, facebook — one company, one library | `Publish:Music:Meta`, default `data/music/meta/` — **empty until Meta-cleared tracks are dropped in** |
 | `youtube` | youtube | `Publish:Music:YouTube`, default `data/music/youtube/` — 14 CC-BY tracks from YoutubePublisher |
-| *anything else* | telegram, and any platform added later | `Publish:Music:{Platform}`, default `data/music/{platform}/` |
+| *anything else* | any platform added later | `Publish:Music:{Platform}`, default `data/music/{platform}/` |
 
 Meta is the only group. Every other platform is its own family under its
 own name, so a platform added later never borrows another's tracks by
@@ -208,6 +206,7 @@ Meta's.
 `Publish:Music:Required` is `true`: a family with an empty library is
 refused, not published silent (P12). So today YouTube publishes and a Meta
 target reports "no music" until `data/music/meta/` has files in it.
+Telegram has no family because nothing is published to it.
 
 The track is picked by hash of the run id from the tracks this family has
 not used yet — every track is heard once before any repeats — and the
@@ -225,7 +224,7 @@ platform, because a CC-BY track without attribution is a licence breach.
 |---|---|
 | P1 | a run folder reads into a request: title, body and tags split back from `caption.txt`, newest frame as cover |
 | P2 | queue copies only what publishing needs, is idempotent, writes `publish.json` back, deletes the copy, never re-queues |
-| P3 | button callback data carries the item id; Telegram links drop the `-100` prefix |
+| P3 | button callback data carries the item id |
 | P4 | loop sends once, survives restart without re-sending, skip/yes act correctly, a decision for another message is ignored |
 | P5 | Dropbox mints one token per refresh, uploads as overwrite, rewrites both link shapes, handles the 409 |
 | P6 | Instagram refuses without URL before any call, enforces limits, token in body, permalink returned |

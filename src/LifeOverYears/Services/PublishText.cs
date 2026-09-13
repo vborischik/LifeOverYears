@@ -15,10 +15,6 @@ public static class PublishText
             ? caption.Description
             : $"{caption.Description}\n\n{string.Join(" ", caption.Hashtags)}";
 
-    // Title, body, hashtags — for a platform with no separate title field.
-    public static string TitledBodyWithTags(Caption caption) =>
-        $"{caption.Title}\n\n{BodyWithTags(caption)}";
-
     // Hashtags without the '#', for platforms whose tag field is bare words.
     public static IReadOnlyList<string> BareTags(Caption caption) =>
         caption.Hashtags

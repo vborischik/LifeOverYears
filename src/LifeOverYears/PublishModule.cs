@@ -63,21 +63,15 @@ public sealed class PublishModule : Module
                    .As<IPublicStorage>().SingleInstance();
         }
 
+        // Telegram is the review channel and nothing else — no publishing
+        // target reads this section.
         var telegram = _configuration.GetSection("Publish:Telegram");
-        if (telegram["BotToken"] is { Length: > 0 } botToken)
-        {
-            if (telegram["ChatId"] is { Length: > 0 } channel)
-                builder.RegisterInstance(new TelegramProvider(
-                            BuildHttpClient(), botToken, channel, _loggerFactory.CreateLogger<TelegramProvider>()))
-                       .As<IPublishTarget>().SingleInstance();
-
-            if (telegram["ReviewChatId"] is { Length: > 0 } reviewer)
-                builder.RegisterInstance(new TelegramReviewProvider(
-                            BuildHttpClient(), botToken, reviewer,
-                            Path.Combine(ReviewRoot(_outputRoot), ".telegram-offset"),
-                            _loggerFactory.CreateLogger<TelegramReviewProvider>()))
-                       .As<IReviewChannel>().SingleInstance();
-        }
+        if (telegram["BotToken"] is { Length: > 0 } botToken && telegram["ReviewChatId"] is { Length: > 0 } reviewer)
+            builder.RegisterInstance(new TelegramReviewProvider(
+                        BuildHttpClient(), botToken, reviewer,
+                        Path.Combine(ReviewRoot(_outputRoot), ".telegram-offset"),
+                        _loggerFactory.CreateLogger<TelegramReviewProvider>()))
+                   .As<IReviewChannel>().SingleInstance();
 
         var instagram = _configuration.GetSection("Publish:Instagram");
         if (instagram["AccessToken"] is { Length: > 0 } igToken && instagram["UserId"] is { Length: > 0 } igUser)

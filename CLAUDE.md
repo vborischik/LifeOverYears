@@ -428,7 +428,8 @@ Locked by C75-C84 over the kmart series, whose prompts are written to
 `output/smoke/brand_series/kmart/`.
 
 **Publishing** — the tail after a run: a human on Telegram, then the
-platforms. `ReviewQueue` copies a finished run's video/caption/title/cover
+platforms. Telegram is the review channel and nothing else — nothing is
+published to it. `ReviewQueue` copies a finished run's video/caption/title/cover
 into `output/on-review/{run}/` (the folder is the queue; deletion is the
 decision), `ReviewLoop` sends one item at a time to your private chat with
 [Publish]/[Skip] buttons through `TelegramReviewProvider`, and on yes
@@ -443,7 +444,7 @@ publish time and nowhere else — `timeline.mp4` stays silent, the muxed
 `timeline.{family}.mp4` lands beside it. A folder per family, because a licence
 is per platform: `Publish:Music:Meta` is Instagram + Facebook (one
 company, one library) and every other platform is its own family under its
-own name — `YouTube`, `Telegram`, whatever comes next — defaulting to
+own name — `YouTube`, whatever comes next — defaulting to
 `data/music/{family}/`. Meta is the only group, on purpose: a platform
 added later gets refused for having no folder, never Meta's tracks. `Publish:Music:Required=true`
 refuses a family with an empty library rather than posting silent. Track

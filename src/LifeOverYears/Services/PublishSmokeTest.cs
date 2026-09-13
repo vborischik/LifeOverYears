@@ -170,11 +170,8 @@ public static class PublishSmokeTest
         if (row[0].GetProperty("callback_data").GetString() != "publish:run-a") errs.Add("approve button carries wrong data");
         if (row[1].GetProperty("callback_data").GetString() != "skip:run-a") errs.Add("skip button carries wrong data");
 
-        if (TelegramProvider.MessageUrl("@chan", 7) != "https://t.me/chan/7") errs.Add("@channel link");
-        if (TelegramProvider.MessageUrl("-1001234", 7) != "https://t.me/c/1234/7") errs.Add("-100 link still carries the prefix");
-
-        f.Add(("P3", "Review buttons carry the item id in their callback data, and Telegram links drop the -100 namespace prefix",
-            errs.Count == 0, errs.Count == 0 ? "publish:/skip: callback data; @name and -100 link forms" : string.Join("; ", errs)));
+        f.Add(("P3", "Review buttons carry the item id in their callback data",
+            errs.Count == 0, errs.Count == 0 ? "publish:/skip: callback data on both buttons" : string.Join("; ", errs)));
         return Task.CompletedTask;
     }
 
@@ -359,25 +356,25 @@ public static class PublishSmokeTest
         var log  = new List<string>();
         var storage   = new FakeStorage(log);
         var instagram = new FakeTarget("instagram", log, requireUrl: true);
-        var telegram  = new FakeTarget("telegram", log, requireUrl: false);
+        var youtube   = new FakeTarget("youtube", log, requireUrl: false);
         var failing   = new FakeTarget("facebook", log, requireUrl: true) { Fail = true };
         var file = Path.Combine(work, "p8.mp4");
         File.WriteAllBytes(file, new byte[8]);
 
         var music = new FakeMusic(log);
-        var svc = new PublishService(new[] { "telegram", "instagram", "facebook" },
-            new IPublishTarget[] { instagram, telegram, failing }, storage, music, lf.CreateLogger<PublishService>());
+        var svc = new PublishService(new[] { "youtube", "instagram", "facebook" },
+            new IPublishTarget[] { instagram, youtube, failing }, storage, music, lf.CreateLogger<PublishService>());
         var state = await svc.PublishAsync(SampleRequest(file));
 
-        // Two families in target order: telegram alone (mux, post), then Meta
-        // (mux once, upload once, post twice).
-        if (!log.SequenceEqual(new[] { "music:telegram", "telegram", "music:meta", "storage", "instagram", "facebook" })) errs.Add($"order: {string.Join(">", log)}");
+        // Two families in target order: youtube alone (mux, post — it takes
+        // the bytes), then Meta (mux once, upload once, post twice).
+        if (!log.SequenceEqual(new[] { "music:youtube", "youtube", "music:meta", "storage", "instagram", "facebook" })) errs.Add($"order: {string.Join(">", log)}");
         if (storage.LastUploaded is null || !storage.LastUploaded.EndsWith(".meta.mp4")) errs.Add($"storage got {storage.LastUploaded}, not the muxed meta file");
         if (instagram.LastRequest?.Caption.Description.EndsWith("Music: fake (meta)") != true) errs.Add("credit line did not reach the target");
         if (state.Status != "failed") errs.Add($"status with one failing target: {state.Status}");
         if (state.Publications.Count != 2) errs.Add($"{state.Publications.Count} publications recorded, expected the two that succeeded");
         if (state.Error is null || !state.Error.Contains("facebook")) errs.Add("error does not name the failing target");
-        if (state.Music?.GetValueOrDefault("meta") != "fake-meta.mp3" || state.Music.GetValueOrDefault("telegram") != "fake-telegram.mp3") errs.Add("tracks not recorded per family in the state");
+        if (state.Music?.GetValueOrDefault("meta") != "fake-meta.mp3" || state.Music.GetValueOrDefault("youtube") != "fake-youtube.mp3") errs.Add("tracks not recorded per family in the state");
 
         // Config naming an unknown platform fails at construction, not on
         // the first publish.
@@ -389,7 +386,7 @@ public static class PublishSmokeTest
         catch (InvalidOperationException) { }
 
         f.Add(("P8", "PublishService muxes once per family, uploads that family's muxed file once before its URL targets, lets one failing target not stop the others, records what succeeded and which track, and refuses misconfiguration at construction",
-            errs.Count == 0, errs.Count == 0 ? "telegram family then meta family; storage got the .meta.mp4 once; credit in caption; 2 published, failed naming facebook; a track per family recorded; bad config refused" : string.Join("; ", errs)));
+            errs.Count == 0, errs.Count == 0 ? "youtube family then meta family; storage got the .meta.mp4 once; credit in caption; 2 published, failed naming facebook; a track per family recorded; bad config refused" : string.Join("; ", errs)));
     }
 
     // ── P9 ───────────────────────────────────────────────────────────────────
@@ -430,8 +427,7 @@ public static class PublishSmokeTest
         if (svc.FamilyOf("youtube") != "youtube") errs.Add("youtube family");
         foreach (var p in new[] { "instagram", "facebook" })
             if (svc.FamilyOf(p) != "meta") errs.Add($"{p} should be meta");
-        if (svc.FamilyOf("telegram") != "telegram") errs.Add("telegram fell into meta");
-        if (svc.FamilyOf("TikTok") != "tiktok") errs.Add("a new platform did not get its own family");
+        if (svc.FamilyOf("TikTok") != "tiktok") errs.Add("a new platform did not get its own family — it fell into meta");
 
         // Folders from config, per family; a family with no entry defaults
         // to data/music/{family}.
@@ -440,7 +436,7 @@ public static class PublishSmokeTest
             null, true, lf.CreateLogger<MusicService>());
         if (configured.LibraryDir("youtube") != Path.Combine(work, "yt")) errs.Add("YouTube folder from config not used (case-insensitive key)");
         if (configured.LibraryDir("meta") != Path.Combine(work, "mt")) errs.Add("Meta folder from config not used");
-        if (configured.LibraryDir("telegram") != Path.Combine(MusicService.DefaultRoot, "telegram")) errs.Add("a family without an entry did not default to data/music/{family}");
+        if (configured.LibraryDir("tiktok") != Path.Combine(MusicService.DefaultRoot, "tiktok")) errs.Add("a family without an entry did not default to data/music/{family}");
 
         // Deterministic for a run id; drains the unused set before repeating.
         var files = Enumerable.Range(1, 5).Select(i => $"/lib/t{i}.mp3").ToList();
@@ -466,7 +462,7 @@ public static class PublishSmokeTest
         if (MusicService.StartOffsetFor("run-x", 10, 16) != 0) errs.Add("a track shorter than the clip should start at 0");
 
         f.Add(("P10", "Meta is exactly Instagram and Facebook and every other platform is its own family; folders come from Publish:Music per family with data/music/{family} defaults; a track is picked deterministically from the unused set first, and the start offset stays inside the track",
-            errs.Count == 0, errs.Count == 0 ? "instagram/facebook→meta, youtube/telegram/tiktok each their own; config folders used, missing → data/music/{family}; 5 of 5 heard before a repeat; offset in range" : string.Join("; ", errs)));
+            errs.Count == 0, errs.Count == 0 ? "instagram/facebook→meta, youtube and a future tiktok each their own; config folders used, missing → data/music/{family}; 5 of 5 heard before a repeat; offset in range" : string.Join("; ", errs)));
         return Task.CompletedTask;
     }
 
