@@ -422,21 +422,19 @@ public static class PublishSmokeTest
     private static Task DoP10(string work, ILoggerFactory lf, List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
-        var svc = new MusicService(new NullFfmpeg(), Path.Combine(work, "nomusic"), null, required: true, lf.CreateLogger<MusicService>());
+        var svc = new MusicService(new NullFfmpeg(), null, null, null, required: true, lf.CreateLogger<MusicService>());
 
         if (svc.FamilyOf("youtube") != "youtube") errs.Add("youtube family");
         foreach (var p in new[] { "instagram", "facebook", "telegram" })
             if (svc.FamilyOf(p) != "meta") errs.Add($"{p} should be meta");
 
-        // Config moves a platform, or a library, and an entry it does not
-        // mention keeps the code's rule.
-        var configured = new MusicService(new NullFfmpeg(), Path.Combine(work, "nomusic"), null, true, lf.CreateLogger<MusicService>(),
-            families:  new Dictionary<string, string> { ["telegram"] = "youtube" },
-            libraries: new Dictionary<string, string> { ["meta"] = Path.Combine(work, "elsewhere") });
-        if (configured.FamilyOf("telegram") != "youtube") errs.Add("Families config not applied");
-        if (configured.FamilyOf("instagram") != "meta") errs.Add("an unmentioned platform lost the default rule");
-        if (configured.LibraryDir("meta") != Path.Combine(work, "elsewhere")) errs.Add("Libraries config not applied");
-        if (configured.LibraryDir("youtube") != Path.Combine(work, "nomusic", "youtube")) errs.Add("an unmentioned family lost {Dir}/{family}");
+        // Config is two folders; an empty value is the default under data/music.
+        var configured = new MusicService(new NullFfmpeg(), Path.Combine(work, "yt"), Path.Combine(work, "mt"), null, true, lf.CreateLogger<MusicService>());
+        if (configured.LibraryDir("youtube") != Path.Combine(work, "yt")) errs.Add("YouTube folder from config not used");
+        if (configured.LibraryDir("meta") != Path.Combine(work, "mt")) errs.Add("Meta folder from config not used");
+        var defaulted = new MusicService(new NullFfmpeg(), "", null, null, true, lf.CreateLogger<MusicService>());
+        if (defaulted.LibraryDir("youtube") != MusicService.DefaultYouTubeDir) errs.Add("empty YouTube path did not fall back to data/music/youtube");
+        if (defaulted.LibraryDir("meta") != MusicService.DefaultMetaDir) errs.Add("missing Meta path did not fall back to data/music/meta");
 
         // Deterministic for a run id; drains the unused set before repeating.
         var files = Enumerable.Range(1, 5).Select(i => $"/lib/t{i}.mp3").ToList();
@@ -461,8 +459,8 @@ public static class PublishSmokeTest
         if (off < 0 || off > 240 - 16 - 1) errs.Add($"start offset {off} outside the usable range");
         if (MusicService.StartOffsetFor("run-x", 10, 16) != 0) errs.Add("a track shorter than the clip should start at 0");
 
-        f.Add(("P10", "Platforms map to the youtube or meta library by the code's rule unless Publish:Music:Families/Libraries say otherwise, a track is picked deterministically from the unused set first, and the start offset stays inside the track",
-            errs.Count == 0, errs.Count == 0 ? "defaults youtube→youtube, others→meta; config moves telegram→youtube and meta's folder, unmentioned entries keep defaults; 5 of 5 heard before a repeat; offset in range" : string.Join("; ", errs)));
+        f.Add(("P10", "youtube draws from the YouTube folder and every other platform from the Meta folder; the two folders come from config with data/music defaults; a track is picked deterministically from the unused set first, and the start offset stays inside the track",
+            errs.Count == 0, errs.Count == 0 ? "youtube→YouTube folder, instagram/facebook/telegram→Meta folder; config paths used, empty → data/music defaults; 5 of 5 heard before a repeat; offset in range" : string.Join("; ", errs)));
         return Task.CompletedTask;
     }
 
@@ -490,7 +488,7 @@ public static class PublishSmokeTest
             return;
         }
 
-        var svc = new MusicService(ffmpeg, Path.Combine(work, "music"), null, required: true, lf.CreateLogger<MusicService>());
+        var svc = new MusicService(ffmpeg, lib, null, null, required: true, lf.CreateLogger<MusicService>());
         var request = SampleRequest(clip) with { Video = new Video("clip-1", Array.Empty<string>(), clip, "2026-01-01T00:00:00Z") };
         var (withMusic, trackFile) = await svc.WithMusicAsync("youtube", request);
 
@@ -524,12 +522,12 @@ public static class PublishSmokeTest
         Directory.CreateDirectory(Path.Combine(empty, "meta"));
         File.WriteAllText(Path.Combine(empty, "meta", "README.txt"), "not a track");
 
-        var required = new MusicService(new NullFfmpeg(), empty, null, required: true, lf.CreateLogger<MusicService>());
+        var required = new MusicService(new NullFfmpeg(), null, Path.Combine(empty, "meta"), null, required: true, lf.CreateLogger<MusicService>());
         var request  = SampleRequest(Path.Combine(work, "p12.mp4"));
         try { await required.WithMusicAsync("meta", request); errs.Add("an empty library published silent"); }
         catch (InvalidOperationException ex) when (ex.Message.Contains("meta")) { }
 
-        var optional = new MusicService(new NullFfmpeg(), empty, null, required: false, lf.CreateLogger<MusicService>());
+        var optional = new MusicService(new NullFfmpeg(), null, Path.Combine(empty, "meta"), null, required: false, lf.CreateLogger<MusicService>());
         var (same, track) = await optional.WithMusicAsync("meta", request);
         if (track.Length != 0 || same.Video.FilePath != request.Video.FilePath) errs.Add("optional music with an empty library should pass the request through");
 
@@ -542,7 +540,7 @@ public static class PublishSmokeTest
         File.WriteAllText(Path.Combine(runs, RunPublishSource.PublishFileName),
             JsonSerializer.Serialize(new PublishState("published", "2026-01-01T00:00:00Z", Array.Empty<Publication>(), null,
                 new Dictionary<string, string> { ["youtube"] = "t3.mp3" }), Json));
-        var ledgered = new MusicService(new NullFfmpeg(), empty, Path.Combine(work, "ledger-runs"), true, lf.CreateLogger<MusicService>());
+        var ledgered = new MusicService(new NullFfmpeg(), null, Path.Combine(empty, "meta"), Path.Combine(work, "ledger-runs"), true, lf.CreateLogger<MusicService>());
         var used = ledgered.UsedTracks("youtube");
         if (!used.Contains("t3.mp3")) errs.Add("ledger did not read the track from publish.json");
         if (ledgered.UsedTracks("meta").Count != 0) errs.Add("ledger leaked a youtube track into meta");

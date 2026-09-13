@@ -13,55 +13,50 @@ namespace LifeOverYears.Services;
 // down at publish time, never in the run. The run's timeline.mp4 is the
 // silent master; each family gets its own derivative beside it.
 //
-// Two libraries because two licences: data/music/youtube/ is what YouTube
-// may carry, data/music/meta/ what Instagram and Facebook may. Which
-// platform draws from which library comes from Publish:Music:Families when
-// that section says so, and from the rule in code when it is empty —
-// youtube to youtube, everything else to meta. Same for where a library
-// lives: Publish:Music:Libraries overrides {Dir}/{family}.
+// Two libraries because two licences: one folder is what YouTube may
+// carry, the other what Instagram and Facebook may. Which platform draws
+// from which is the rule in code — youtube to the YouTube folder, everything
+// else to the Meta one. Where each folder is comes from config
+// (Publish:Music:YouTube / Meta), and an empty value means the default under
+// data/music/.
 public sealed class MusicService : IMusicService
 {
     public const string YouTubeFamily = "youtube";
     public const string MetaFamily    = "meta";
 
+    public static readonly string DefaultYouTubeDir = Path.Combine("data", "music", "youtube");
+    public static readonly string DefaultMetaDir    = Path.Combine("data", "music", "meta");
+
     private static readonly string[] Extensions = { ".mp3", ".m4a", ".aac", ".wav", ".flac", ".ogg" };
 
     private readonly IFfmpegProvider _ffmpeg;
-    private readonly string _musicDir;
+    private readonly string _youtubeDir;
+    private readonly string _metaDir;
     private readonly string? _runsDir;
     private readonly bool _required;
-    private readonly IReadOnlyDictionary<string, string> _families;
-    private readonly IReadOnlyDictionary<string, string> _libraries;
     private readonly ILogger<MusicService> _logger;
 
     // runsDir is where publish.json records live; scanned for the tracks
     // already used so every track is heard once before any repeats. Null
-    // means no ledger — pick by hash alone. families maps platform → family
-    // and libraries maps family → directory; either may be empty, and an
-    // entry missing from them falls back to the code's own rule.
+    // means no ledger — pick by hash alone. A null or empty folder is the
+    // default under data/music/.
     public MusicService(
-        IFfmpegProvider ffmpeg, string musicDir, string? runsDir, bool required, ILogger<MusicService> logger,
-        IReadOnlyDictionary<string, string>? families = null,
-        IReadOnlyDictionary<string, string>? libraries = null)
+        IFfmpegProvider ffmpeg, string? youtubeDir, string? metaDir, string? runsDir, bool required,
+        ILogger<MusicService> logger)
     {
-        _ffmpeg    = ffmpeg;
-        _musicDir  = musicDir;
-        _runsDir   = runsDir;
-        _required  = required;
-        _logger    = logger;
-        _families  = new Dictionary<string, string>(families  ?? new Dictionary<string, string>(), StringComparer.OrdinalIgnoreCase);
-        _libraries = new Dictionary<string, string>(libraries ?? new Dictionary<string, string>(), StringComparer.OrdinalIgnoreCase);
+        _ffmpeg     = ffmpeg;
+        _youtubeDir = string.IsNullOrWhiteSpace(youtubeDir) ? DefaultYouTubeDir : youtubeDir;
+        _metaDir    = string.IsNullOrWhiteSpace(metaDir)    ? DefaultMetaDir    : metaDir;
+        _runsDir    = runsDir;
+        _required   = required;
+        _logger     = logger;
     }
 
     public string FamilyOf(string platform) =>
-        _families.TryGetValue(platform, out var configured) && configured.Length > 0
-            ? configured
-            : platform.Equals(YouTubeFamily, StringComparison.OrdinalIgnoreCase) ? YouTubeFamily : MetaFamily;
+        platform.Equals(YouTubeFamily, StringComparison.OrdinalIgnoreCase) ? YouTubeFamily : MetaFamily;
 
     public string LibraryDir(string family) =>
-        _libraries.TryGetValue(family, out var configured) && configured.Length > 0
-            ? configured
-            : Path.Combine(_musicDir, family);
+        family.Equals(YouTubeFamily, StringComparison.OrdinalIgnoreCase) ? _youtubeDir : _metaDir;
 
     public IReadOnlyList<string> Files(string family)
     {

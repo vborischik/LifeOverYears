@@ -440,11 +440,11 @@ definition of "a run as a publisher sees it". Both modes build from
 
 **Music is publish-only.** `MusicService` lays a bed under the video at
 publish time and nowhere else — `timeline.mp4` stays silent, the muxed
-`timeline.{family}.mp4` lands beside it. Two libraries for two licences:
-`data/music/youtube/` (YouTube) and `data/music/meta/` (Instagram, Facebook,
-Telegram — empty until cleared tracks arrive); that mapping is the rule in
-code, and `Publish:Music:Families` / `Libraries` override it per entry when
-set, an empty section meaning the code. `Publish:Music:Required=true`
+`timeline.{family}.mp4` lands beside it. Two folders for two licences —
+`Publish:Music:YouTube` (YouTube) and `Publish:Music:Meta` (Instagram,
+Facebook, Telegram), defaulting to `data/music/youtube/` and
+`data/music/meta/`, the latter empty until cleared tracks arrive. Which
+platform draws from which is the rule in code, not config. `Publish:Music:Required=true`
 refuses a family with an empty library rather than posting silent. Track
 picked by run-id hash from the unused set first (ledger = `Music` in every
 `publish.json`), trimmed, faded, −14 LUFS, video stream copied; credit line
