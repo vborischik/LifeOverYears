@@ -188,23 +188,26 @@ public on its own clock.
 
 Laid down by `publish` and by nothing else. The run's `timeline.mp4` is the
 silent master; publishing writes `timeline.{family}.mp4` beside it and posts
-that. Two families, two libraries, because two licences:
+that. A folder per family, because a licence is per platform:
 
-| family | platforms | library |
+| family | platforms | folder |
 |---|---|---|
+| `meta` | instagram, facebook — one company, one library | `Publish:Music:Meta`, default `data/music/meta/` — **empty until Meta-cleared tracks are dropped in** |
 | `youtube` | youtube | `Publish:Music:YouTube`, default `data/music/youtube/` — 14 CC-BY tracks from YoutubePublisher |
-| `meta` | instagram, facebook, telegram | `Publish:Music:Meta`, default `data/music/meta/` — **empty until Meta-cleared tracks are dropped in** |
+| *anything else* | telegram, and any platform added later | `Publish:Music:{Platform}`, default `data/music/{platform}/` |
 
-`Publish:Music:Required` is `true`: a family with an empty library is
-refused, not published silent (P12). So today YouTube publishes and a Meta
-target reports "no music" until `data/music/meta/` has files in it.
-
-Which platform draws from which folder is the rule in code. Where the two
-folders are is config, and an empty value is the default:
+Meta is the only group. Every other platform is its own family under its
+own name, so a platform added later never borrows another's tracks by
+accident — with no folder of its own it is refused, not published from
+Meta's.
 
 ```json
 "Music": { "YouTube": "data/music/youtube", "Meta": "data/music/meta", "Required": true }
 ```
+
+`Publish:Music:Required` is `true`: a family with an empty library is
+refused, not published silent (P12). So today YouTube publishes and a Meta
+target reports "no music" until `data/music/meta/` has files in it.
 
 The track is picked by hash of the run id from the tracks this family has
 not used yet — every track is heard once before any repeats — and the

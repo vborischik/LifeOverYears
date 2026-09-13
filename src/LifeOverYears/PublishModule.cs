@@ -105,19 +105,21 @@ public sealed class PublishModule : Module
                    .As<IPublishTarget>().SingleInstance();
         }
 
-        // Music is laid down here and nowhere else. Two folders, one per
-        // licence; an empty value is the default under data/music/. The
-        // ledger of used tracks is read from the publish.json records under
-        // the runs folder.
-        var musicRequired = _configuration.GetValue("Publish:Music:Required", true);
+        // Music is laid down here and nowhere else. Publish:Music is a folder
+        // per family — YouTube, Meta, Telegram, whatever is published to —
+        // plus Required; the "_" keys are notes. A family with no entry
+        // defaults to data/music/{family}. The ledger of used tracks is read
+        // from the publish.json records under the runs folder.
+        var musicSection  = _configuration.GetSection("Publish:Music");
+        var musicRequired = musicSection.GetValue("Required", true);
+        var musicFolders  = musicSection.GetChildren()
+            .Where(c => !c.Key.StartsWith('_') && !c.Key.Equals("Required", StringComparison.OrdinalIgnoreCase))
+            .ToDictionary(c => c.Key, c => c.Value ?? "", StringComparer.OrdinalIgnoreCase);
         var runsDir       = Path.Combine(_outputRoot, "runs");
         builder.RegisterInstance(new FfmpegProvider(_loggerFactory.CreateLogger<FfmpegProvider>()))
                .As<IFfmpegProvider>().SingleInstance();
         builder.Register(c => new MusicService(
-                    c.Resolve<IFfmpegProvider>(),
-                    _configuration["Publish:Music:YouTube"],
-                    _configuration["Publish:Music:Meta"],
-                    runsDir, musicRequired,
+                    c.Resolve<IFfmpegProvider>(), musicFolders, runsDir, musicRequired,
                     _loggerFactory.CreateLogger<MusicService>()))
                .As<IMusicService>().SingleInstance();
 

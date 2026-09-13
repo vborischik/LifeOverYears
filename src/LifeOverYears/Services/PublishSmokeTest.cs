@@ -369,14 +369,15 @@ public static class PublishSmokeTest
             new IPublishTarget[] { instagram, telegram, failing }, storage, music, lf.CreateLogger<PublishService>());
         var state = await svc.PublishAsync(SampleRequest(file));
 
-        // One family (all three are Meta): mux once, upload once, then post.
-        if (!log.SequenceEqual(new[] { "music:meta", "storage", "telegram", "instagram", "facebook" })) errs.Add($"order: {string.Join(">", log)}");
+        // Two families in target order: telegram alone (mux, post), then Meta
+        // (mux once, upload once, post twice).
+        if (!log.SequenceEqual(new[] { "music:telegram", "telegram", "music:meta", "storage", "instagram", "facebook" })) errs.Add($"order: {string.Join(">", log)}");
         if (storage.LastUploaded is null || !storage.LastUploaded.EndsWith(".meta.mp4")) errs.Add($"storage got {storage.LastUploaded}, not the muxed meta file");
         if (instagram.LastRequest?.Caption.Description.EndsWith("Music: fake (meta)") != true) errs.Add("credit line did not reach the target");
         if (state.Status != "failed") errs.Add($"status with one failing target: {state.Status}");
         if (state.Publications.Count != 2) errs.Add($"{state.Publications.Count} publications recorded, expected the two that succeeded");
         if (state.Error is null || !state.Error.Contains("facebook")) errs.Add("error does not name the failing target");
-        if (state.Music?.GetValueOrDefault("meta") != "fake-meta.mp3") errs.Add("track not recorded in the state");
+        if (state.Music?.GetValueOrDefault("meta") != "fake-meta.mp3" || state.Music.GetValueOrDefault("telegram") != "fake-telegram.mp3") errs.Add("tracks not recorded per family in the state");
 
         // Config naming an unknown platform fails at construction, not on
         // the first publish.
@@ -388,7 +389,7 @@ public static class PublishSmokeTest
         catch (InvalidOperationException) { }
 
         f.Add(("P8", "PublishService muxes once per family, uploads that family's muxed file once before its URL targets, lets one failing target not stop the others, records what succeeded and which track, and refuses misconfiguration at construction",
-            errs.Count == 0, errs.Count == 0 ? "music>storage>telegram>instagram>facebook; storage got the .meta.mp4; credit in caption; 2 published, failed naming facebook; track recorded; bad config refused" : string.Join("; ", errs)));
+            errs.Count == 0, errs.Count == 0 ? "telegram family then meta family; storage got the .meta.mp4 once; credit in caption; 2 published, failed naming facebook; a track per family recorded; bad config refused" : string.Join("; ", errs)));
     }
 
     // ── P9 ───────────────────────────────────────────────────────────────────
@@ -422,19 +423,24 @@ public static class PublishSmokeTest
     private static Task DoP10(string work, ILoggerFactory lf, List<(string, string, bool?, string)> f)
     {
         var errs = new List<string>();
-        var svc = new MusicService(new NullFfmpeg(), null, null, null, required: true, lf.CreateLogger<MusicService>());
+        var svc = new MusicService(new NullFfmpeg(), null, null, required: true, lf.CreateLogger<MusicService>());
 
+        // Meta is exactly Instagram and Facebook; everyone else is their own
+        // family, so a platform added later never inherits another's tracks.
         if (svc.FamilyOf("youtube") != "youtube") errs.Add("youtube family");
-        foreach (var p in new[] { "instagram", "facebook", "telegram" })
+        foreach (var p in new[] { "instagram", "facebook" })
             if (svc.FamilyOf(p) != "meta") errs.Add($"{p} should be meta");
+        if (svc.FamilyOf("telegram") != "telegram") errs.Add("telegram fell into meta");
+        if (svc.FamilyOf("TikTok") != "tiktok") errs.Add("a new platform did not get its own family");
 
-        // Config is two folders; an empty value is the default under data/music.
-        var configured = new MusicService(new NullFfmpeg(), Path.Combine(work, "yt"), Path.Combine(work, "mt"), null, true, lf.CreateLogger<MusicService>());
-        if (configured.LibraryDir("youtube") != Path.Combine(work, "yt")) errs.Add("YouTube folder from config not used");
+        // Folders from config, per family; a family with no entry defaults
+        // to data/music/{family}.
+        var configured = new MusicService(new NullFfmpeg(),
+            new Dictionary<string, string> { ["YouTube"] = Path.Combine(work, "yt"), ["Meta"] = Path.Combine(work, "mt") },
+            null, true, lf.CreateLogger<MusicService>());
+        if (configured.LibraryDir("youtube") != Path.Combine(work, "yt")) errs.Add("YouTube folder from config not used (case-insensitive key)");
         if (configured.LibraryDir("meta") != Path.Combine(work, "mt")) errs.Add("Meta folder from config not used");
-        var defaulted = new MusicService(new NullFfmpeg(), "", null, null, true, lf.CreateLogger<MusicService>());
-        if (defaulted.LibraryDir("youtube") != MusicService.DefaultYouTubeDir) errs.Add("empty YouTube path did not fall back to data/music/youtube");
-        if (defaulted.LibraryDir("meta") != MusicService.DefaultMetaDir) errs.Add("missing Meta path did not fall back to data/music/meta");
+        if (configured.LibraryDir("telegram") != Path.Combine(MusicService.DefaultRoot, "telegram")) errs.Add("a family without an entry did not default to data/music/{family}");
 
         // Deterministic for a run id; drains the unused set before repeating.
         var files = Enumerable.Range(1, 5).Select(i => $"/lib/t{i}.mp3").ToList();
@@ -459,8 +465,8 @@ public static class PublishSmokeTest
         if (off < 0 || off > 240 - 16 - 1) errs.Add($"start offset {off} outside the usable range");
         if (MusicService.StartOffsetFor("run-x", 10, 16) != 0) errs.Add("a track shorter than the clip should start at 0");
 
-        f.Add(("P10", "youtube draws from the YouTube folder and every other platform from the Meta folder; the two folders come from config with data/music defaults; a track is picked deterministically from the unused set first, and the start offset stays inside the track",
-            errs.Count == 0, errs.Count == 0 ? "youtube→YouTube folder, instagram/facebook/telegram→Meta folder; config paths used, empty → data/music defaults; 5 of 5 heard before a repeat; offset in range" : string.Join("; ", errs)));
+        f.Add(("P10", "Meta is exactly Instagram and Facebook and every other platform is its own family; folders come from Publish:Music per family with data/music/{family} defaults; a track is picked deterministically from the unused set first, and the start offset stays inside the track",
+            errs.Count == 0, errs.Count == 0 ? "instagram/facebook→meta, youtube/telegram/tiktok each their own; config folders used, missing → data/music/{family}; 5 of 5 heard before a repeat; offset in range" : string.Join("; ", errs)));
         return Task.CompletedTask;
     }
 
@@ -488,7 +494,7 @@ public static class PublishSmokeTest
             return;
         }
 
-        var svc = new MusicService(ffmpeg, lib, null, null, required: true, lf.CreateLogger<MusicService>());
+        var svc = new MusicService(ffmpeg, new Dictionary<string, string> { ["youtube"] = lib }, null, required: true, lf.CreateLogger<MusicService>());
         var request = SampleRequest(clip) with { Video = new Video("clip-1", Array.Empty<string>(), clip, "2026-01-01T00:00:00Z") };
         var (withMusic, trackFile) = await svc.WithMusicAsync("youtube", request);
 
@@ -522,12 +528,13 @@ public static class PublishSmokeTest
         Directory.CreateDirectory(Path.Combine(empty, "meta"));
         File.WriteAllText(Path.Combine(empty, "meta", "README.txt"), "not a track");
 
-        var required = new MusicService(new NullFfmpeg(), null, Path.Combine(empty, "meta"), null, required: true, lf.CreateLogger<MusicService>());
+        var metaOnly = new Dictionary<string, string> { ["meta"] = Path.Combine(empty, "meta") };
+        var required = new MusicService(new NullFfmpeg(), metaOnly, null, required: true, lf.CreateLogger<MusicService>());
         var request  = SampleRequest(Path.Combine(work, "p12.mp4"));
         try { await required.WithMusicAsync("meta", request); errs.Add("an empty library published silent"); }
         catch (InvalidOperationException ex) when (ex.Message.Contains("meta")) { }
 
-        var optional = new MusicService(new NullFfmpeg(), null, Path.Combine(empty, "meta"), null, required: false, lf.CreateLogger<MusicService>());
+        var optional = new MusicService(new NullFfmpeg(), metaOnly, null, required: false, lf.CreateLogger<MusicService>());
         var (same, track) = await optional.WithMusicAsync("meta", request);
         if (track.Length != 0 || same.Video.FilePath != request.Video.FilePath) errs.Add("optional music with an empty library should pass the request through");
 
@@ -540,7 +547,7 @@ public static class PublishSmokeTest
         File.WriteAllText(Path.Combine(runs, RunPublishSource.PublishFileName),
             JsonSerializer.Serialize(new PublishState("published", "2026-01-01T00:00:00Z", Array.Empty<Publication>(), null,
                 new Dictionary<string, string> { ["youtube"] = "t3.mp3" }), Json));
-        var ledgered = new MusicService(new NullFfmpeg(), null, Path.Combine(empty, "meta"), Path.Combine(work, "ledger-runs"), true, lf.CreateLogger<MusicService>());
+        var ledgered = new MusicService(new NullFfmpeg(), metaOnly, Path.Combine(work, "ledger-runs"), true, lf.CreateLogger<MusicService>());
         var used = ledgered.UsedTracks("youtube");
         if (!used.Contains("t3.mp3")) errs.Add("ledger did not read the track from publish.json");
         if (ledgered.UsedTracks("meta").Count != 0) errs.Add("ledger leaked a youtube track into meta");
@@ -653,7 +660,7 @@ public static class PublishSmokeTest
     {
         private readonly List<string> _log;
         public FakeMusic(List<string> log) => _log = log;
-        public string FamilyOf(string platform) => platform == "youtube" ? "youtube" : "meta";
+        public string FamilyOf(string platform) => platform is "instagram" or "facebook" ? "meta" : platform;
         public Task<(PublishRequest Request, string TrackFile)> WithMusicAsync(string family, PublishRequest request, CancellationToken ct = default)
         {
             _log.Add("music:" + family);

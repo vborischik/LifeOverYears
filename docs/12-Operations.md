@@ -26,7 +26,7 @@ ships the shape (checked by F3). Every key the code actually reads:
 | `Pipeline:OutputDir` | `output/runs` | Where run folders are created. |
 | `Publish:Enabled` | `false` | Gates the end-of-run enqueue and the `review` loop. `publish <run> --yes` ignores it. |
 | `Publish:Targets` | `[]` | Platforms to post to, in order; empty is refused. |
-| `Publish:Music:YouTube` / `Meta` / `Required` | `data/music/youtube` / `data/music/meta` / `true` | The two music folders; youtube draws from the first, every other platform from the second. An empty folder refuses to publish that family. |
+| `Publish:Music:{Family}` / `Required` | `data/music/{family}` / `true` | A folder per family: `Meta` = Instagram + Facebook; every other platform its own (`YouTube`, `Telegram`, …). An empty folder refuses to publish that family. |
 | `Publish:Privacy` | `private` | YouTube's word; Facebook maps it; Telegram/Instagram post on call. |
 | `Publish:Telegram:BotToken` / `ReviewChatId` | — | The review bot and YOUR chat id (see docs/13 for finding it). |
 | `Publish:Dropbox:*` / `Instagram:*` / `Facebook:*` / `YouTube:*` | — | Per-platform credentials; see `appsettings.example.json`. |

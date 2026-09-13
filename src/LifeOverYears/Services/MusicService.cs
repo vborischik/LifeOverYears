@@ -13,50 +13,51 @@ namespace LifeOverYears.Services;
 // down at publish time, never in the run. The run's timeline.mp4 is the
 // silent master; each family gets its own derivative beside it.
 //
-// Two libraries because two licences: one folder is what YouTube may
-// carry, the other what Instagram and Facebook may. Which platform draws
-// from which is the rule in code — youtube to the YouTube folder, everything
-// else to the Meta one. Where each folder is comes from config
-// (Publish:Music:YouTube / Meta), and an empty value means the default under
-// data/music/.
+// A folder per family, because a licence is per platform. Meta is the one
+// group — Instagram and Facebook are one company under one music library —
+// and every other platform is its own family under its own name, so a
+// platform added later never borrows another's tracks by accident: with no
+// folder of its own it is refused, not published from Meta's. Where each
+// folder is comes from Publish:Music:{Family}; an entry that is missing or
+// empty means data/music/{family}.
 public sealed class MusicService : IMusicService
 {
-    public const string YouTubeFamily = "youtube";
-    public const string MetaFamily    = "meta";
+    public const string MetaFamily = "meta";
 
-    public static readonly string DefaultYouTubeDir = Path.Combine("data", "music", "youtube");
-    public static readonly string DefaultMetaDir    = Path.Combine("data", "music", "meta");
+    public static readonly string DefaultRoot = Path.Combine("data", "music");
+
+    private static readonly HashSet<string> MetaPlatforms =
+        new(StringComparer.OrdinalIgnoreCase) { "instagram", "facebook" };
 
     private static readonly string[] Extensions = { ".mp3", ".m4a", ".aac", ".wav", ".flac", ".ogg" };
 
     private readonly IFfmpegProvider _ffmpeg;
-    private readonly string _youtubeDir;
-    private readonly string _metaDir;
+    private readonly IReadOnlyDictionary<string, string> _folders;
     private readonly string? _runsDir;
     private readonly bool _required;
     private readonly ILogger<MusicService> _logger;
 
-    // runsDir is where publish.json records live; scanned for the tracks
-    // already used so every track is heard once before any repeats. Null
-    // means no ledger — pick by hash alone. A null or empty folder is the
-    // default under data/music/.
+    // folders is family → folder, straight from Publish:Music. runsDir is
+    // where publish.json records live; scanned for the tracks already used so
+    // every track is heard once before any repeats. Null means no ledger.
     public MusicService(
-        IFfmpegProvider ffmpeg, string? youtubeDir, string? metaDir, string? runsDir, bool required,
+        IFfmpegProvider ffmpeg, IReadOnlyDictionary<string, string>? folders, string? runsDir, bool required,
         ILogger<MusicService> logger)
     {
-        _ffmpeg     = ffmpeg;
-        _youtubeDir = string.IsNullOrWhiteSpace(youtubeDir) ? DefaultYouTubeDir : youtubeDir;
-        _metaDir    = string.IsNullOrWhiteSpace(metaDir)    ? DefaultMetaDir    : metaDir;
-        _runsDir    = runsDir;
-        _required   = required;
-        _logger     = logger;
+        _ffmpeg   = ffmpeg;
+        _folders  = new Dictionary<string, string>(folders ?? new Dictionary<string, string>(), StringComparer.OrdinalIgnoreCase);
+        _runsDir  = runsDir;
+        _required = required;
+        _logger   = logger;
     }
 
     public string FamilyOf(string platform) =>
-        platform.Equals(YouTubeFamily, StringComparison.OrdinalIgnoreCase) ? YouTubeFamily : MetaFamily;
+        MetaPlatforms.Contains(platform) ? MetaFamily : platform.ToLowerInvariant();
 
     public string LibraryDir(string family) =>
-        family.Equals(YouTubeFamily, StringComparison.OrdinalIgnoreCase) ? _youtubeDir : _metaDir;
+        _folders.TryGetValue(family, out var configured) && !string.IsNullOrWhiteSpace(configured)
+            ? configured
+            : Path.Combine(DefaultRoot, family.ToLowerInvariant());
 
     public IReadOnlyList<string> Files(string family)
     {
