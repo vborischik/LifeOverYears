@@ -4,3 +4,5 @@ obj/
 appsettings.json
 output/runs/
 output/on-review/
+perm.json
+client_secret*.json
