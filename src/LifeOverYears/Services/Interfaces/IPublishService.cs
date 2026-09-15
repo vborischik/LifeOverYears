@@ -9,5 +9,7 @@ public interface IPublishService
 {
     IReadOnlyList<string> Targets { get; }
 
-    Task<PublishState> PublishAsync(PublishRequest request, CancellationToken ct = default);
+    // `only` narrows this publish to a subset of the configured targets —
+    // a re-run for the one platform that failed. Null means all of them.
+    Task<PublishState> PublishAsync(PublishRequest request, IReadOnlyList<string>? only = null, CancellationToken ct = default);
 }

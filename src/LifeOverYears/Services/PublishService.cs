@@ -19,6 +19,7 @@ public sealed class PublishService : IPublishService
     private readonly IReadOnlyDictionary<string, IPublishTarget> _targets;
     private readonly IPublicStorage? _storage;
     private readonly IMusicService _music;
+    private readonly IReadOnlyDictionary<string, string> _privacyByPlatform;
     private readonly ILogger<PublishService> _logger;
 
     public IReadOnlyList<string> Targets { get; }
@@ -26,13 +27,21 @@ public sealed class PublishService : IPublishService
     // `targets` is the configured list, in order; each must have a provider
     // in `available` or the service refuses to be built — a misspelled
     // platform in config is not something to discover on the first publish.
+    // privacyByPlatform overrides the request's privacy word for one
+    // platform. It exists because "private" means different things: on
+    // YouTube it is a video the owner can flip public later; on Facebook it
+    // becomes a Reel draft that no interface shows and no API call can
+    // publish afterwards — found the hard way. With a human approving each
+    // video before it gets here, Facebook is set to "public" in config.
     public PublishService(
         IReadOnlyList<string> targets,
         IReadOnlyList<IPublishTarget> available,
         IPublicStorage? storage,
         IMusicService music,
-        ILogger<PublishService> logger)
+        ILogger<PublishService> logger,
+        IReadOnlyDictionary<string, string>? privacyByPlatform = null)
     {
+        _privacyByPlatform = new Dictionary<string, string>(privacyByPlatform ?? new Dictionary<string, string>(), StringComparer.OrdinalIgnoreCase);
         // Nothing to post to is a configuration error, not a no-op: a publish
         // that "succeeds" with zero publications is how a reviewer's yes
         // quietly does nothing.
@@ -60,13 +69,20 @@ public sealed class PublishService : IPublishService
     // file: YouTube's bed is muxed under the video, Meta's under another copy,
     // and the copy Instagram pulls by URL has to be the Meta one. So per
     // family: mux, then upload once if anything in it needs a URL, then post.
-    public async Task<PublishState> PublishAsync(PublishRequest request, CancellationToken ct = default)
+    public async Task<PublishState> PublishAsync(PublishRequest request, IReadOnlyList<string>? only = null, CancellationToken ct = default)
     {
         var publications = new List<Publication>();
         var errors       = new List<string>();
         var music        = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
-        foreach (var group in Targets.GroupBy(_music.FamilyOf))
+        var targets = only is null
+            ? Targets
+            : Targets.Where(t => only.Contains(t, StringComparer.OrdinalIgnoreCase)).ToList();
+        if (only is not null)
+            foreach (var unknown in only.Where(o => !Targets.Contains(o, StringComparer.OrdinalIgnoreCase)))
+                errors.Add($"{unknown}: not in Publish:Targets");
+
+        foreach (var group in targets.GroupBy(_music.FamilyOf))
         {
             PublishRequest familyRequest;
             try
@@ -110,7 +126,10 @@ public sealed class PublishService : IPublishService
                 }
                 try
                 {
-                    var publication = await _targets[name].PublishAsync(familyRequest, ct);
+                    var perTarget = _privacyByPlatform.TryGetValue(name, out var privacy)
+                        ? familyRequest with { Privacy = privacy }
+                        : familyRequest;
+                    var publication = await _targets[name].PublishAsync(perTarget, ct);
                     publications.Add(publication);
                     _logger.LogInformation("Published to {Platform}: {Url}", name, publication.Url);
                 }

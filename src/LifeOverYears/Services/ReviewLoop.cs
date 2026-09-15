@@ -98,7 +98,7 @@ public sealed class ReviewLoop
             : request;
 
         _logger.LogInformation("Approved: {Id} — publishing to {Targets}", item.Id, string.Join(", ", _publisher.Targets));
-        var state = await _publisher.PublishAsync(publishFrom, ct);
+        var state = await _publisher.PublishAsync(publishFrom, only: null, ct);
         await _queue.CompleteAsync(item, state);
 
         var report = state.Status == "published"

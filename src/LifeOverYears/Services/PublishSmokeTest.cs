@@ -406,6 +406,21 @@ public static class PublishSmokeTest
         if (state.Error is null || !state.Error.Contains("facebook")) errs.Add("error does not name the failing target");
         if (state.Music?.GetValueOrDefault("meta") != "fake-meta.mp3" || state.Music.GetValueOrDefault("youtube") != "fake-youtube.mp3") errs.Add("tracks not recorded per family in the state");
 
+        // A platform's own privacy word beats the request's, for that
+        // platform only; --targets narrows a run to the named platforms.
+        var log2 = new List<string>();
+        var fb2 = new FakeTarget("facebook", log2, requireUrl: true);
+        var ig2 = new FakeTarget("instagram", log2, requireUrl: true);
+        var svc2 = new PublishService(new[] { "instagram", "facebook" }, new IPublishTarget[] { fb2, ig2 },
+            new FakeStorage(log2), new FakeMusic(log2), lf.CreateLogger<PublishService>(),
+            new Dictionary<string, string> { ["facebook"] = "public" });
+        var st2 = await svc2.PublishAsync(SampleRequest(file), only: new[] { "facebook" });
+        if (ig2.LastRequest is not null) errs.Add("--targets facebook still published to instagram");
+        if (fb2.LastRequest?.Privacy != "public") errs.Add($"facebook privacy override not applied: {fb2.LastRequest?.Privacy}");
+        if (st2.Publications.Count != 1 || st2.Publications[0].Platform != "facebook") errs.Add("subset publish recorded the wrong platforms");
+        var st3 = await svc2.PublishAsync(SampleRequest(file), only: new[] { "tiktok" });
+        if (st3.Status != "failed" || st3.Error?.Contains("tiktok") != true) errs.Add("an unknown --targets platform was not reported");
+
         // Config naming an unknown platform fails at construction, not on
         // the first publish.
         try { _ = new PublishService(Array.Empty<string>(), new IPublishTarget[] { instagram }, storage, music, lf.CreateLogger<PublishService>()); errs.Add("empty target list accepted"); }
@@ -415,7 +430,7 @@ public static class PublishSmokeTest
         try { _ = new PublishService(new[] { "instagram" }, new IPublishTarget[] { instagram }, null, music, lf.CreateLogger<PublishService>()); errs.Add("URL target without storage accepted"); }
         catch (InvalidOperationException) { }
 
-        f.Add(("P8", "PublishService muxes once per family, uploads that family's muxed file once before its URL targets, lets one failing target not stop the others, records what succeeded and which track, and refuses misconfiguration at construction",
+        f.Add(("P8", "PublishService muxes once per family, uploads that family's muxed file once before its URL targets, lets one failing target not stop the others, records what succeeded and which track, applies a per-platform privacy, honours a --targets subset, and refuses misconfiguration at construction",
             errs.Count == 0, errs.Count == 0 ? "youtube family then meta family; storage got the .meta.mp4 once; credit in caption; 2 published, failed naming facebook; a track per family recorded; bad config refused" : string.Join("; ", errs)));
     }
 
@@ -685,7 +700,7 @@ public static class PublishSmokeTest
         public PublishRequest? LastRequest { get; private set; }
         public IReadOnlyList<string> Targets { get; }
         public FakePublisher(IReadOnlyList<string> targets) => Targets = targets;
-        public Task<PublishState> PublishAsync(PublishRequest request, CancellationToken ct = default)
+        public Task<PublishState> PublishAsync(PublishRequest request, IReadOnlyList<string>? only = null, CancellationToken ct = default)
         {
             Calls++;
             LastRequest = request;

@@ -80,6 +80,8 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
     //                                 --again lets --yes republish a decided run.
     //                                 --storage-only does music + Dropbox and
     //                                 prints the URL; posts nothing.
+    //                                 --targets a,b limits a --yes run to those
+    //                                 platforms; the record merges, not replaces.
     //   review                        the loop: send each queued run to the
     //                                 reviewer, act on the answer, next.
     if (args.Length >= 1 && (args[0] == "publish" || args[0] == "review"))
@@ -450,10 +452,32 @@ static async Task<int> RunPublishModeAsync(string[] args, string launchDir, stri
     logger.LogInformation("Publishing {Id} to {Targets} as {Privacy}",
         request.Video.Id, string.Join(", ", service.Targets), privacy);
 
-    var state = await service.PublishAsync(request);
-    await File.WriteAllTextAsync(
-        Path.Combine(runFolder, RunPublishSource.PublishFileName),
-        System.Text.Json.JsonSerializer.Serialize(state, new System.Text.Json.JsonSerializerOptions { WriteIndented = true }));
+    // --targets a,b narrows the run to those platforms — the re-publish
+    // for the one that failed, without re-posting the ones that did not.
+    IReadOnlyList<string>? only = null;
+    var targetsIdx = Array.IndexOf(args, "--targets");
+    if (targetsIdx >= 0 && targetsIdx + 1 < args.Length)
+        only = args[targetsIdx + 1].Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+    var state = await service.PublishAsync(request, only);
+
+    // A re-publish merges into the record rather than replacing it: the
+    // YouTube and Instagram links from the first pass must not be lost
+    // because Facebook was run again on its own.
+    var recordPath = Path.Combine(runFolder, RunPublishSource.PublishFileName);
+    var jsonOpts   = new System.Text.Json.JsonSerializerOptions { WriteIndented = true };
+    if (File.Exists(recordPath))
+    {
+        try
+        {
+            var previous = System.Text.Json.JsonSerializer.Deserialize<LifeOverYears.Models.PublishState>(
+                await File.ReadAllTextAsync(recordPath), jsonOpts);
+            if (previous is not null)
+                state = MergePublishState(previous, state);
+        }
+        catch (System.Text.Json.JsonException) { /* an unreadable record is replaced */ }
+    }
+    await File.WriteAllTextAsync(recordPath, System.Text.Json.JsonSerializer.Serialize(state, jsonOpts));
 
     foreach (var p in state.Publications)
         logger.LogInformation("  {Platform}: {Url}", p.Platform, p.Url);
@@ -852,6 +876,24 @@ static string FindProjectRoot()
 }
 
 return await RunAsync(args, projectRoot, launchDir);
+
+// Newer publications replace older ones for the same platform; everything
+// else carries over. Status is "published" only when nothing in the merged
+// record is left failing.
+static LifeOverYears.Models.PublishState MergePublishState(
+    LifeOverYears.Models.PublishState previous, LifeOverYears.Models.PublishState latest)
+{
+    var byPlatform = previous.Publications.ToDictionary(p => p.Platform, StringComparer.OrdinalIgnoreCase);
+    foreach (var p in latest.Publications) byPlatform[p.Platform] = p;
+    var music = new Dictionary<string, string>(previous.Music ?? new Dictionary<string, string>(), StringComparer.OrdinalIgnoreCase);
+    foreach (var (k, v) in latest.Music ?? new Dictionary<string, string>()) music[k] = v;
+    return new LifeOverYears.Models.PublishState(
+        Status:       latest.Error is null ? "published" : "failed",
+        DecidedAt:    latest.DecidedAt,
+        Publications: byPlatform.Values.OrderBy(p => p.PublishedAt).ToList(),
+        Error:        latest.Error,
+        Music:        music.Count == 0 ? null : music);
+}
 
 // Thrown by the publish modes when the Publish: section cannot be turned into
 // a working service; already logged with the cause by the time it is thrown.

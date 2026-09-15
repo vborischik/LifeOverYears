@@ -118,12 +118,20 @@ public sealed class PublishModule : Module
                     _loggerFactory.CreateLogger<MusicService>()))
                .As<IMusicService>().SingleInstance();
 
+        // A platform's own Privacy, when its section carries one, beats the
+        // global word for that platform only.
+        var privacyByPlatform = new[] { "YouTube", "Instagram", "Facebook" }
+            .Select(p => (Platform: p.ToLowerInvariant(), Privacy: _configuration[$"Publish:{p}:Privacy"]))
+            .Where(x => !string.IsNullOrWhiteSpace(x.Privacy))
+            .ToDictionary(x => x.Platform, x => x.Privacy!, StringComparer.OrdinalIgnoreCase);
+
         builder.Register(c => new PublishService(
                     targets,
                     c.Resolve<IEnumerable<IPublishTarget>>().ToList(),
                     c.ResolveOptional<IPublicStorage>(),
                     c.Resolve<IMusicService>(),
-                    _loggerFactory.CreateLogger<PublishService>()))
+                    _loggerFactory.CreateLogger<PublishService>(),
+                    privacyByPlatform))
                .As<IPublishService>().SingleInstance();
 
         builder.Register(c => new ReviewLoop(
