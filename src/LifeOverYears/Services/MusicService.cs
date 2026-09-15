@@ -90,14 +90,21 @@ public sealed class MusicService : IMusicService
         var track  = Pick(files, request.Video.Id, UsedTracks(family));
         var credit = await CreditAsync(track);
 
+        // The posted file is always timeline.{family}.mp4 beside the master,
+        // whatever fed the mux — the master itself or a family's silent
+        // re-cut (timeline.{family}.silent.mp4). One name per family, so the
+        // record, the reviewer and the next publish all find the same file.
         var videoPath = request.Video.FilePath;
         var muxed     = Path.Combine(
             Path.GetDirectoryName(videoPath)!,
-            $"{Path.GetFileNameWithoutExtension(videoPath)}.{family}.mp4");
+            $"{Path.GetFileNameWithoutExtension(RunPublishSource.VideoRelativePath)}.{family}.mp4");
 
         // Reused, not rebuilt: two Meta targets in one publish share one mux,
-        // and a retried publish of the same run does not re-encode.
-        if (!File.Exists(muxed))
+        // and a retried publish of the same run does not re-encode. Rebuilt
+        // when its input is newer — a re-cut made after the last mux must
+        // not be posted with the old picture under it.
+        var stale = File.Exists(muxed) && File.GetLastWriteTimeUtc(videoPath) > File.GetLastWriteTimeUtc(muxed);
+        if (!File.Exists(muxed) || stale)
         {
             var duration    = await _ffmpeg.ProbeDurationAsync(videoPath);
             var trackLength = await _ffmpeg.ProbeDurationAsync(track);

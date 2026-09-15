@@ -1,6 +1,7 @@
 using LifeOverYears.Models;
 using LifeOverYears.Services.Interfaces;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace LifeOverYears.Services;
 
@@ -19,6 +20,7 @@ public sealed class PublishService : IPublishService
     private readonly IReadOnlyDictionary<string, IPublishTarget> _targets;
     private readonly IPublicStorage? _storage;
     private readonly IMusicService _music;
+    private readonly ICutService _cut;
     private readonly IReadOnlyDictionary<string, string> _privacyByPlatform;
     private readonly ILogger<PublishService> _logger;
 
@@ -39,8 +41,10 @@ public sealed class PublishService : IPublishService
         IPublicStorage? storage,
         IMusicService music,
         ILogger<PublishService> logger,
-        IReadOnlyDictionary<string, string>? privacyByPlatform = null)
+        IReadOnlyDictionary<string, string>? privacyByPlatform = null,
+        ICutService? cut = null)
     {
+        _cut = cut ?? new CutService(new NoRecut(), null, NullLogger<CutService>.Instance);
         _privacyByPlatform = new Dictionary<string, string>(privacyByPlatform ?? new Dictionary<string, string>(), StringComparer.OrdinalIgnoreCase);
         // Nothing to post to is a configuration error, not a no-op: a publish
         // that "succeeds" with zero publications is how a reviewer's yes
@@ -87,15 +91,17 @@ public sealed class PublishService : IPublishService
             PublishRequest familyRequest;
             try
             {
-                var (withMusic, track) = await _music.WithMusicAsync(group.Key, request, ct);
+                // The family's cut first, then its music under that cut.
+                var withCut = await _cut.WithCutAsync(group.Key, request, ct);
+                var (withMusic, track) = await _music.WithMusicAsync(group.Key, withCut, ct);
                 familyRequest = withMusic;
                 if (track.Length > 0) music[group.Key] = track;
             }
             catch (Exception ex)
             {
-                // No bed, no post — the rule this project publishes under.
-                _logger.LogError(ex, "Music for {Family} failed; its targets are skipped", group.Key);
-                foreach (var name in group) errors.Add($"{name}: no music — {ex.Message}");
+                // No cut or no bed, no post — the rule this project publishes under.
+                _logger.LogError(ex, "Cut or music for {Family} failed; its targets are skipped", group.Key);
+                foreach (var name in group) errors.Add($"{name}: {ex.Message}");
                 continue;
             }
 
@@ -148,4 +154,12 @@ public sealed class PublishService : IPublishService
             Error:        errors.Count == 0 ? null : string.Join("; ", errors),
             Music:        music.Count == 0 ? null : music);
     }
+}
+
+// The cut service's stand-in when none is wired: every family keeps the
+// master, which is exactly the behaviour before per-family cuts existed.
+file sealed class NoRecut : IVideoService
+{
+    public Task<Video?> ComposeAsync(IReadOnlyList<HistoricalImage> images, string outputPath) => Task.FromResult<Video?>(null);
+    public Task<Video?> ComposeAsync(IReadOnlyList<HistoricalImage> images, string outputPath, bool loopTail) => Task.FromResult<Video?>(null);
 }

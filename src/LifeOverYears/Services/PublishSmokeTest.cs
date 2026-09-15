@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace LifeOverYears.Services;
 
-// P1–P12 over the publish path, offline (P11 runs real ffmpeg on a generated clip). The review loop and the publish
+// P1–P13 over the publish path, offline (P11 and P13 run real ffmpeg on generated clips). The review loop and the publish
 // service run against fake channel/target/storage; the three HTTP providers
 // run against a fake handler that records every request, so what is
 // asserted is the request the platform would have received — the token in
@@ -39,6 +39,7 @@ public static class PublishSmokeTest
             await DoP10(work, loggerFactory, f);
             await DoP11(work, loggerFactory, f);
             await DoP12(work, loggerFactory, f);
+            await DoP13(work, loggerFactory, f);
         }
         finally
         {
@@ -400,6 +401,10 @@ public static class PublishSmokeTest
         // the bytes), then Meta (mux once, upload once, post twice).
         if (!log.SequenceEqual(new[] { "music:youtube", "youtube", "music:meta", "storage", "instagram", "facebook" })) errs.Add($"order: {string.Join(">", log)}");
         if (storage.LastUploaded is null || !storage.LastUploaded.EndsWith(".meta.mp4")) errs.Add($"storage got {storage.LastUploaded}, not the muxed meta file");
+        // Each platform is handed its own family's file — never the other's.
+        if (youtube.LastRequest is null || !youtube.LastRequest.Video.FilePath.EndsWith(".youtube.mp4")) errs.Add($"youtube got {youtube.LastRequest?.Video.FilePath}, not the youtube file");
+        if (instagram.LastRequest is null || !instagram.LastRequest.Video.FilePath.EndsWith(".meta.mp4")) errs.Add($"instagram got {instagram.LastRequest?.Video.FilePath}, not the meta file");
+        if (failing.LastRequest is null || !failing.LastRequest.Video.FilePath.EndsWith(".meta.mp4")) errs.Add($"facebook got {failing.LastRequest?.Video.FilePath}, not the meta file");
         if (instagram.LastRequest?.Caption.Description.EndsWith("Music: fake (meta)") != true) errs.Add("credit line did not reach the target");
         if (state.Status != "failed") errs.Add($"status with one failing target: {state.Status}");
         if (state.Publications.Count != 2) errs.Add($"{state.Publications.Count} publications recorded, expected the two that succeeded");
@@ -431,7 +436,7 @@ public static class PublishSmokeTest
         catch (InvalidOperationException) { }
 
         f.Add(("P8", "PublishService muxes once per family, uploads that family's muxed file once before its URL targets, lets one failing target not stop the others, records what succeeded and which track, applies a per-platform privacy, honours a --targets subset, and refuses misconfiguration at construction",
-            errs.Count == 0, errs.Count == 0 ? "youtube family then meta family; storage got the .meta.mp4 once; credit in caption; 2 published, failed naming facebook; a track per family recorded; bad config refused" : string.Join("; ", errs)));
+            errs.Count == 0, errs.Count == 0 ? "youtube family then meta family; youtube got .youtube.mp4, instagram+facebook got .meta.mp4, storage got .meta.mp4 once; credit in caption; 2 published, failed naming facebook; a track per family recorded; bad config refused" : string.Join("; ", errs)));
     }
 
     // ── P9 ───────────────────────────────────────────────────────────────────
@@ -607,6 +612,98 @@ public static class PublishSmokeTest
             errs.Count == 0, errs.Count == 0 ? "required → refused naming meta; optional → passed through; .txt ignored, .mp4 counted; numeric title → file name; ledger per family" : string.Join("; ", errs)));
     }
 
+    // ── P13 ──────────────────────────────────────────────────────────────────
+
+    // The per-family cut, through real ffmpeg: six stamped frames, the Meta
+    // family re-cut chronological with no tail, YouTube left on the master;
+    // and the mux keyed to the cut, so a stale muxed file is rebuilt.
+    private static async Task DoP13(string work, ILoggerFactory lf, List<(string, string, bool?, string)> f)
+    {
+        var errs = new List<string>();
+        var ffmpeg = new FfmpegProvider(lf.CreateLogger<FfmpegProvider>());
+        var video  = new VideoService(ffmpeg, lf.CreateLogger<VideoService>());
+        var run    = Path.Combine(work, "cut-run");
+        Directory.CreateDirectory(Path.Combine(run, "stamped"));
+        Directory.CreateDirectory(Path.Combine(run, "video"));
+
+        // Six distinguishable frames — a flat colour per year — and a master.
+        var colours = new Dictionary<int, string> { [1975] = "red", [1985] = "orange", [1995] = "yellow", [2005] = "green", [2015] = "blue", [2025] = "white" };
+        var made = true;
+        foreach (var (year, colour) in colours)
+            made &= await Shell("ffmpeg", $"-y -f lavfi -i color=c={colour}:s=108x192:d=1 -frames:v 1 \"{Path.Combine(run, "stamped", $"{year}.png")}\"");
+        var master = Path.Combine(run, "video", "timeline.mp4");
+        made &= await Shell("ffmpeg", $"-y -f lavfi -i color=c=black:s=108x192:d=2 -c:v libx264 -pix_fmt yuv420p \"{master}\"");
+        if (!made)
+        {
+            f.Add(("P13", "The Meta family is re-cut chronological with no tail from the stamped frames; YouTube keeps the master; a stale mux is rebuilt", false, "ffmpeg not available to build the fixtures"));
+            return;
+        }
+
+        var cuts = new CutService(video, new Dictionary<string, string> { ["Meta"] = "chronological" }, lf.CreateLogger<CutService>());
+        var request = SampleRequest(master) with { Video = new Video("cut-1", Array.Empty<string>(), master, "2026-01-01T00:00:00Z") };
+
+        var yt = await cuts.WithCutAsync("youtube", request);
+        if (yt.Video.FilePath != master) errs.Add("youtube did not keep the master");
+
+        var meta = await cuts.WithCutAsync("meta", request);
+        if (!meta.Video.FilePath.EndsWith("timeline.meta.silent.mp4")) errs.Add($"meta cut path: {meta.Video.FilePath}");
+        if (!File.Exists(meta.Video.FilePath)) errs.Add("meta cut not written");
+        else
+        {
+            // Duration: the no-tail plan at n=6 sums to the target; the master
+            // is 2s, so a re-cut that merely copied it would show here.
+            var dur = await ffmpeg.ProbeDurationAsync(meta.Video.FilePath);
+            if (Math.Abs(dur - FfmpegProvider.TargetTotalSeconds) > 0.6) errs.Add($"meta cut is {dur:0.##}s, expected ~{FfmpegProvider.TargetTotalSeconds}s");
+
+            // Order: the first frame is 1975's red, the last is 2025's white —
+            // read off the file, not off the log.
+            var first = await FrameColour(meta.Video.FilePath, 0.2);
+            var last  = await FrameColour(meta.Video.FilePath, dur - 0.2);
+            if (first != "red")   errs.Add($"first frame is {first}, expected 1975's red — not chronological");
+            if (last  != "white") errs.Add($"last frame is {last}, expected 2025's white — the tail wiped back, or the order is wrong");
+
+            // Reused on a second call (not re-encoded).
+            var stamp = File.GetLastWriteTimeUtc(meta.Video.FilePath);
+            await cuts.WithCutAsync("meta", request);
+            if (File.GetLastWriteTimeUtc(meta.Video.FilePath) != stamp) errs.Add("second call re-cut the same family");
+        }
+
+        // A muxed file older than its input is rebuilt; the posted name is
+        // always timeline.meta.mp4 whatever fed it.
+        var lib = Path.Combine(work, "cut-music", "meta");
+        Directory.CreateDirectory(lib);
+        await Shell("ffmpeg", $"-y -f lavfi -i sine=frequency=330:duration=20 -c:a libmp3lame \"{Path.Combine(lib, "bed.mp3")}\"");
+        var music = new MusicService(ffmpeg, new Dictionary<string, string> { ["meta"] = lib }, null, true, lf.CreateLogger<MusicService>());
+        var (muxed1, _) = await music.WithMusicAsync("meta", meta);
+        if (!muxed1.Video.FilePath.EndsWith(Path.Combine("video", "timeline.meta.mp4"))) errs.Add($"muxed name: {muxed1.Video.FilePath}");
+        File.SetLastWriteTimeUtc(muxed1.Video.FilePath, DateTime.UtcNow.AddHours(-1));
+        File.SetLastWriteTimeUtc(meta.Video.FilePath, DateTime.UtcNow);
+        var before = File.GetLastWriteTimeUtc(muxed1.Video.FilePath);
+        await music.WithMusicAsync("meta", meta);
+        if (File.GetLastWriteTimeUtc(muxed1.Video.FilePath) <= before) errs.Add("a mux older than its re-cut input was not rebuilt");
+
+        f.Add(("P13", "The Meta family is re-cut chronological with no tail from the stamped frames — first frame 1975, last 2025, full length — YouTube keeps the master, the cut is reused, and a mux older than its input is rebuilt",
+            errs.Count == 0, errs.Count == 0 ? "meta: red→white over ~16s, no wipe back; youtube: master; cut reused; stale mux rebuilt" : string.Join("; ", errs)));
+    }
+
+    // The dominant colour of one frame, as one of the fixture's names — so an
+    // order assertion reads the picture rather than the filter chain.
+    private static async Task<string> FrameColour(string video, double atSeconds)
+    {
+        var raw = Path.Combine(Path.GetTempPath(), "loy-frame-" + Guid.NewGuid().ToString("N") + ".rgb");
+        var t = atSeconds.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture);
+        if (!await Shell("ffmpeg", $"-y -ss {t} -i \"{video}\" -frames:v 1 -vf scale=1:1 -f rawvideo -pix_fmt rgb24 \"{raw}\""))
+            return "?";
+        var px = await File.ReadAllBytesAsync(raw);
+        File.Delete(raw);
+        if (px.Length < 3) return "?";
+        int r = px[0], g = px[1], b = px[2];
+        if (r > 200 && g > 200 && b > 200) return "white";
+        if (r > 150 && g < 100 && b < 100) return "red";
+        if (r < 100 && g < 100 && b > 150) return "blue";
+        return $"rgb({r},{g},{b})";
+    }
+
     private static async Task<bool> Shell(string exe, string args)
     {
         try
@@ -742,6 +839,7 @@ public static class PublishSmokeTest
         private readonly Dictionary<string, string> _tags;
         public TaggedFfmpeg(Dictionary<string, string> tags) => _tags = tags;
         public Task<Video?> ComposeAsync(IReadOnlyList<HistoricalImage> images, string outputPath) => Task.FromResult<Video?>(null);
+        public Task<Video?> ComposeAsync(IReadOnlyList<HistoricalImage> images, string outputPath, bool loopTail) => Task.FromResult<Video?>(null);
         public Task<double> ProbeDurationAsync(string path) => Task.FromResult(16.0);
         public Task<IReadOnlyDictionary<string, string>> ProbeTagsAsync(string path) => Task.FromResult<IReadOnlyDictionary<string, string>>(_tags);
         public Task MuxMusicAsync(string videoPath, string trackPath, double startSeconds, string outputPath) => Task.CompletedTask;
@@ -750,6 +848,7 @@ public static class PublishSmokeTest
     private sealed class NullFfmpeg : IFfmpegProvider
     {
         public Task<Video?> ComposeAsync(IReadOnlyList<HistoricalImage> images, string outputPath) => Task.FromResult<Video?>(null);
+        public Task<Video?> ComposeAsync(IReadOnlyList<HistoricalImage> images, string outputPath, bool loopTail) => Task.FromResult<Video?>(null);
         public Task<double> ProbeDurationAsync(string path) => Task.FromResult(16.0);
         public Task<IReadOnlyDictionary<string, string>> ProbeTagsAsync(string path) =>
             Task.FromResult<IReadOnlyDictionary<string, string>>(new Dictionary<string, string>());

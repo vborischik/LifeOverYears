@@ -111,8 +111,6 @@ public sealed class PublishModule : Module
             .Where(c => !c.Key.StartsWith('_') && !c.Key.Equals("Required", StringComparison.OrdinalIgnoreCase))
             .ToDictionary(c => c.Key, c => c.Value ?? "", StringComparer.OrdinalIgnoreCase);
         var runsDir       = Path.Combine(_outputRoot, "runs");
-        builder.RegisterInstance(new FfmpegProvider(_loggerFactory.CreateLogger<FfmpegProvider>()))
-               .As<IFfmpegProvider>().SingleInstance();
         builder.Register(c => new MusicService(
                     c.Resolve<IFfmpegProvider>(), musicFolders, runsDir, musicRequired,
                     _loggerFactory.CreateLogger<MusicService>()))
@@ -125,13 +123,25 @@ public sealed class PublishModule : Module
             .Where(x => !string.IsNullOrWhiteSpace(x.Privacy))
             .ToDictionary(x => x.Platform, x => x.Privacy!, StringComparer.OrdinalIgnoreCase);
 
+        // The family's edit: Publish:Cut is family → "loop" | "chronological".
+        // The master is the loop; Meta is re-cut chronological because the
+        // looping Reel was measured to draw fewer views. Needs the video
+        // service, so the module carries the key-free VideoModule too.
+        builder.RegisterModule(new VideoModule(_loggerFactory));
+        var cutByFamily = _configuration.GetSection("Publish:Cut").GetChildren()
+            .Where(c => !c.Key.StartsWith('_'))
+            .ToDictionary(c => c.Key, c => c.Value ?? "", StringComparer.OrdinalIgnoreCase);
+        builder.Register(c => new CutService(c.Resolve<IVideoService>(), cutByFamily, _loggerFactory.CreateLogger<CutService>()))
+               .As<ICutService>().SingleInstance();
+
         builder.Register(c => new PublishService(
                     targets,
                     c.Resolve<IEnumerable<IPublishTarget>>().ToList(),
                     c.ResolveOptional<IPublicStorage>(),
                     c.Resolve<IMusicService>(),
                     _loggerFactory.CreateLogger<PublishService>(),
-                    privacyByPlatform))
+                    privacyByPlatform,
+                    c.Resolve<ICutService>()))
                .As<IPublishService>().SingleInstance();
 
         builder.Register(c => new ReviewLoop(

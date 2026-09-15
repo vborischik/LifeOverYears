@@ -398,8 +398,8 @@ static async Task<int> RunPublishModeAsync(string[] args, string launchDir, stri
         return 1;
     }
 
-    // --storage-only: music and the public-URL step through the real
-    // providers, nothing posted, nothing recorded. The check to run before
+    // --storage-only: the family's cut, its music and the public-URL step
+    // through the real providers, nothing posted, nothing recorded. The check to run before
     // a platform token exists — the URL it prints is what Instagram would be
     // handed, and can be fetched by hand.
     if (args.Contains("--storage-only"))
@@ -415,8 +415,10 @@ static async Task<int> RunPublishModeAsync(string[] args, string launchDir, stri
         }
         catch (PublishConfigurationException) { return 1; }
 
-        var family = music.FamilyOf("instagram");
-        var (withMusic, track) = await music.WithMusicAsync(family, storageRequest);
+        var family  = music.FamilyOf("instagram");
+        var cut     = container.Resolve<ICutService>();
+        var withCut = await cut.WithCutAsync(family, storageRequest);
+        var (withMusic, track) = await music.WithMusicAsync(family, withCut);
         logger.LogInformation("Music: {Track} → {File}", track, withMusic.Video.FilePath);
         var url = await storage.UploadPublicAsync(withMusic.Video.FilePath, $"{storageRequest.Video.Id}.{family}.mp4");
         logger.LogInformation("Public URL: {Url}", url);

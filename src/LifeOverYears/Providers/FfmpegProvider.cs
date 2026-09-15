@@ -79,33 +79,45 @@ public sealed class FfmpegProvider : IFfmpegProvider
     // short hold (FirstCleanSeconds of clean view before its wipe), clips
     // 1..n-1 are ramped by HoldWeights and scaled so the chain still sums to
     // TargetTotalSeconds, and clip n is the tail.
-    public static (double[] ClipSeconds, double TotalSeconds, bool Adjusted) PlanTimeline(int n)
+    public static (double[] ClipSeconds, double TotalSeconds, bool Adjusted) PlanTimeline(int n) =>
+        PlanTimeline(n, loopTail: true);
+
+    // loopTail=false plans a video that simply ends: n clips, n-1 transitions,
+    // the last frame holding to the end with a wipe on its left only. The
+    // Meta cut is built this way — a Reel that ends on the present rather
+    // than wiping back to it, because the looping cut was measured to cost
+    // views there. Same TargetTotalSeconds, same ramp; the tail's seconds go
+    // back into the holds.
+    public static (double[] ClipSeconds, double TotalSeconds, bool Adjusted) PlanTimeline(int n, bool loopTail)
     {
         // A single image has nothing to wipe to and no seam to hide — a tail
         // would just transition it into itself.
         if (n <= 1)
             return (new[] { (double)TargetTotalSeconds }, TargetTotalSeconds, false);
 
-        var clips = new double[n + 1];
+        var transitions = loopTail ? n : n - 1;
+        var clips = new double[loopTail ? n + 1 : n];
 
         // clip 0 length so its clean (pre-wipe) view lasts exactly FirstCleanSeconds
-        clips[0]  = FirstCleanSeconds + TransitionSeconds;
-        clips[^1] = LoopTailSeconds;
+        clips[0] = FirstCleanSeconds + TransitionSeconds;
+        var tail = loopTail ? LoopTailSeconds : 0;
+        if (loopTail) clips[^1] = LoopTailSeconds;
 
         // Every transition overlaps two clips, so the rendered seconds exceed
         // the finished duration by exactly one transition per cut. Add them back
         // before dividing, or the ramp is scaled against the wrong budget.
         var weights   = WeightsFor(n - 1);
-        var sumHolds  = TargetTotalSeconds - clips[0] - LoopTailSeconds + n * TransitionSeconds;
+        var sumHolds  = TargetTotalSeconds - clips[0] - tail + transitions * TransitionSeconds;
         var unit      = sumHolds / weights.Sum();
 
-        // Clips 1..n-1 each carry a wipe on both sides — the last one included,
-        // now that the tail takes a wipe off it — so all of them need the pure
-        // view floor, not just the interior ones.
-        var minRequiredHold = 2 * TransitionSeconds + MinPureSecondsPerMiddleFrame;
+        // Clips 1..n-1 each carry a wipe on both sides when the tail takes one
+        // off the last of them; without a tail the last clip has one wipe and
+        // the floor is a transition smaller for it.
         var adjusted = false;
         for (var i = 1; i < n; i++)
         {
+            var wipes = (loopTail || i < n - 1) ? 2 : 1;
+            var minRequiredHold = wipes * TransitionSeconds + MinPureSecondsPerMiddleFrame;
             clips[i] = unit * weights[i - 1];
             if (clips[i] >= minRequiredHold)
                 continue;
@@ -118,7 +130,7 @@ public sealed class FfmpegProvider : IFfmpegProvider
         // Read back from the clips actually planned. Once anything is clamped
         // the target no longer describes the result, and reporting the target
         // would make the smoke test's duration assertion a tautology.
-        var totalSeconds = clips.Sum() - n * TransitionSeconds;
+        var totalSeconds = clips.Sum() - transitions * TransitionSeconds;
         return (clips, totalSeconds, adjusted);
     }
 
@@ -143,7 +155,10 @@ public sealed class FfmpegProvider : IFfmpegProvider
         _ffmpegPath = ffmpegPath;
     }
 
-    public async Task<Video?> ComposeAsync(IReadOnlyList<HistoricalImage> images, string outputPath)
+    public Task<Video?> ComposeAsync(IReadOnlyList<HistoricalImage> images, string outputPath) =>
+        ComposeAsync(images, outputPath, loopTail: true);
+
+    public async Task<Video?> ComposeAsync(IReadOnlyList<HistoricalImage> images, string outputPath, bool loopTail)
     {
         var transitionKind = PickTransitionType(Random.Shared);
         _logger.LogInformation(
@@ -161,7 +176,7 @@ public sealed class FfmpegProvider : IFfmpegProvider
         }
 
         var n = images.Count;
-        var (clipSeconds, expectedDuration, adjusted) = PlanTimeline(n);
+        var (clipSeconds, expectedDuration, adjusted) = PlanTimeline(n, loopTail);
         if (adjusted)
         {
             _logger.LogWarning(

@@ -7,6 +7,10 @@ public interface IFfmpegProvider
     // Returns null when ffmpeg is unavailable and video assembly is skipped.
     Task<Video?> ComposeAsync(IReadOnlyList<HistoricalImage> images, string outputPath);
 
+    // loopTail=false: the video ends on its last image instead of wiping
+    // back to the first — n clips, n-1 transitions.
+    Task<Video?> ComposeAsync(IReadOnlyList<HistoricalImage> images, string outputPath, bool loopTail);
+
     // Seconds, from the container. 0 when the file cannot be read.
     Task<double> ProbeDurationAsync(string path);
 

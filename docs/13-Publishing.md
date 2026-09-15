@@ -218,7 +218,26 @@ track's credit line — `Music: Reawakening by Scott Buckley (CC BY)`, built
 from the file's own tags — is appended to the description on every
 platform, because a CC-BY track without attribution is a licence breach.
 
-## Checks — `--smoke-publish`, P1–P12
+## Cut
+
+The run's `timeline.mp4` is the looping cut — present first, rewind, wipe
+back to the present — and it stays the master; YouTube posts it as is. A
+looping Reel was measured to draw fewer views on Instagram and Facebook, so
+the Meta family is re-cut at publish time: `stamped/{year}.png` oldest to
+newest, no loop tail, ending on the present. `CutService` writes it once
+beside the master as `timeline.{family}.silent.mp4` (rebuilt when the master
+is newer) and music goes on top of that, so each family posts its own file.
+
+```json
+"Cut": { "Meta": "chronological" }
+```
+
+Per family, `loop` (the master, default) or `chronological`. A family with
+no entry keeps the master; an unknown word is refused. `FfmpegProvider.PlanTimeline(n, loopTail: false)`
+renders n clips and n−1 transitions to the same 16 s, the last clip a real
+hold instead of the 1.15 s tail (V15).
+
+## Checks — `--smoke-publish`, P1–P13
 
 | | |
 |---|---|
@@ -235,8 +254,9 @@ platform, because a CC-BY track without attribution is a licence breach.
 | P10 | platform → family; deterministic pick from the unused set first; offset inside the track |
 | P11 | **real ffmpeg**: a generated clip and tone muxed; audio present, length kept, video copied, credit from tags, second call reuses the file |
 | P12 | empty library refused when required, passed through when not; a README is not a track; ledger per family |
+| P13 | **real ffmpeg**: Meta re-cut opens on 1975 and ends on 2025 at full length, YouTube keeps the master, the cut is reused, a mux older than its input is rebuilt |
 
-P4, P7, P11 and P12 were proven able to fail by reintroducing the bugs
+P4, P7, P8 (per-family routing), P11, P12 and P13 were proven able to fail by reintroducing the bugs
 they describe.
 
 ## Not done

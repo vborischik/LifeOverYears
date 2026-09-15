@@ -88,7 +88,7 @@ dotnet run -- short-prompts <runFolder>   # shorter prompt text, offline, free
 dotnet run -- brand <name> [years...]     # brand series: no photo, no Vision
 dotnet run -- publish <runFolder> [--yes] # queue a run for review; --yes posts now
 dotnet run -- review                      # Telegram approval loop over output/on-review/
-dotnet run -- --smoke-publish             # P1–P12 over the publish path, offline (P11 runs ffmpeg)
+dotnet run -- --smoke-publish             # P1–P13 over the publish path, offline (P11/P13 run ffmpeg)
 ```
 
 **Fetch before you read anything.** `git fetch origin main` is the first action
@@ -102,7 +102,7 @@ does not rely on the rule above being read — but it reports and does not block
 so acting on the warning is still yours to do.
 
 Four smoke suites, all offline: **C1–C89** over prompts (`--smoke-prompts`, which
-also runs the folder suite), **V1–V14 / O1–O6** over video and overlay
+also runs the folder suite), **V1–V15 / O1–O6** over video and overlay
 (`--smoke-video`), **F1–F8** over folder config (`--smoke-folders`), **B1–B11**
 over the batch provider against a fake (`--smoke-batch`), **N1–N8** over reading
 the vision model's answer, also against a fake (`--smoke-vision`). `vision-variance` is
@@ -452,10 +452,20 @@ picked by run-id hash from the unused set first (ledger = `Music` in every
 `publish.json`), trimmed, faded, −14 LUFS, video stream copied; credit line
 from the file's tags appended to every description — CC-BY needs it.
 
-Locked by **P1–P12**; P4 (send once, survive restart), P7 (only the
-reviewer's chat counts), P11 (real mux keeps the picture) and P12 (no music,
-no post) were proven able to fail. Design and first-contact steps:
-`docs/13-Publishing.md`.
+**The cut is per family too.** `timeline.mp4` is the looping master and
+YouTube posts it as is; a looping Reel measurably drew fewer views, so
+`Publish:Cut: { "Meta": "chronological" }` has `CutService` re-assemble the
+Meta family from `stamped/{year}.png` oldest to newest with no loop tail —
+`timeline.{family}.silent.mp4` beside the master, built once, rebuilt when
+the master is newer — and the music is laid on that. `PlanTimeline(n,
+loopTail: false)` is the same 16 s with n clips and n−1 transitions, the last
+clip a real hold (V15). P8 asserts every platform gets its own family's
+file; P13 pulls the first and last frames out of the real re-cut.
+
+Locked by **P1–P13**; P4 (send once, survive restart), P7 (only the
+reviewer's chat counts), P8 (per-family routing), P11 (real mux keeps the
+picture), P12 (no music, no post) and P13 (the Meta cut opens on 1975) were
+proven able to fail. Design and first-contact steps: `docs/13-Publishing.md`.
 
 **Video timeline** — `Providers/FfmpegProvider.PlanTimeline(n)` returns per-clip
 durations, not one uniform hold, and the run renders **n+1 clips with n
@@ -901,9 +911,9 @@ be the length of `data/prompts/vision.txt`; not confirmed.
 - Comments explain *why*, in prose, at the decision point — not what the line
   does. Match that density; it is the house style.
 - Every behaviour worth keeping gets a numbered check: **C1–C89** in
-  `PromptSmokeTest`, **V1–V14 / O1–O6** in `VideoSmokeTest`, **F1–F8** in
+  `PromptSmokeTest`, **V1–V15 / O1–O6** in `VideoSmokeTest`, **F1–F8** in
   `FolderSmokeTest`, **B1–B11** in `BatchSmokeTest`, **N1–N8** in
-  `VisionSmokeTest`, **P1–P12** in `PublishSmokeTest`. Add one when you change what
+  `VisionSmokeTest`, **P1–P13** in `PublishSmokeTest`. Add one when you change what
   prompts say or what the video does; update the hard-coded expected strings when
   you change wording or numbers. Numbers are never reused: the brand-series work
   was specified against C59-C66, which were already taken, and landed at C75-C84.

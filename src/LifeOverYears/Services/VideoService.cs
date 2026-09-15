@@ -15,7 +15,10 @@ public sealed class VideoService : IVideoService
         _logger = logger;
     }
 
-    public async Task<Video?> ComposeAsync(IReadOnlyList<HistoricalImage> images, string outputPath)
+    public Task<Video?> ComposeAsync(IReadOnlyList<HistoricalImage> images, string outputPath) =>
+        ComposeAsync(images, outputPath, loopTail: true);
+
+    public async Task<Video?> ComposeAsync(IReadOnlyList<HistoricalImage> images, string outputPath, bool loopTail)
     {
         // No sort. This used to re-order by year, which silently undid whatever
         // order the caller chose — and with VideoAssemblyRunner sorting too, the
@@ -23,6 +26,6 @@ public sealed class VideoService : IVideoService
         // that knows what story the video tells. It is the caller's now.
         _logger.LogInformation("Step 4 — composing {Count} images into {Output} (order: {Years})",
             images.Count, outputPath, string.Join(", ", images.Select(i => i.Year)));
-        return await _ffmpeg.ComposeAsync(images, outputPath);
+        return await _ffmpeg.ComposeAsync(images, outputPath, loopTail);
     }
 }

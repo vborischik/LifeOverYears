@@ -587,6 +587,26 @@ public static class VideoSmokeTest
                     v14.Add($"n={n} clip {i}: zoompan does not output exactly 1080x1920");
             }
         }
+        // V15 — the no-tail plan. n clips, n-1 transitions, the same total,
+        // and the last clip a real hold rather than the tail's wipe-only stub;
+        // the loop plan is unchanged by the overload existing.
+        var v15 = new List<string>();
+        foreach (var n in new[] { 2, 3, 6, 8 })
+        {
+            var (clips, total, _) = Providers.FfmpegProvider.PlanTimeline(n, loopTail: false);
+            var (loop, loopTotal, _) = Providers.FfmpegProvider.PlanTimeline(n, loopTail: true);
+            if (clips.Length != n) v15.Add($"n={n}: {clips.Length} clips planned without a tail, expected {n}");
+            if (Math.Abs(total - Providers.FfmpegProvider.TargetTotalSeconds) > 0.5) v15.Add($"n={n}: no-tail total {total:0.##}s, expected ~{Providers.FfmpegProvider.TargetTotalSeconds}s");
+            if (clips[^1] <= Providers.FfmpegProvider.LoopTailSeconds) v15.Add($"n={n}: last clip {clips[^1]:0.##}s is tail-sized — it should hold the final frame");
+            if (loop.Length != n + 1 || Math.Abs(loopTotal - total) > 0.5) v15.Add($"n={n}: the loop plan changed ({loop.Length} clips, {loopTotal:0.##}s)");
+        }
+        var (six, _, _) = Providers.FfmpegProvider.PlanTimeline(6, loopTail: false);
+        results.Add(("V15", "A no-tail plan renders n clips and n-1 transitions to the same total, ends on a real hold of the last frame, and leaves the loop plan untouched",
+            v15.Count == 0,
+            v15.Count == 0
+                ? $"n=6 no-tail: {string.Join(", ", six.Select(c => c.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture)))}s; loop plan unchanged at n=2/3/6/8"
+                : string.Join("; ", v15)));
+
         results.Add(("V14", "Every clip carries a zoompan push-in: upscaled first, fps before it, output back to 1080x1920, and the ramp spanning that clip's own frame count",
             v14.Count == 0,
             v14.Count == 0
@@ -626,6 +646,9 @@ public static class VideoSmokeTest
     private sealed class RecordingFfmpegProvider : IFfmpegProvider
     {
         public IReadOnlyList<HistoricalImage>? Received { get; private set; }
+
+        public Task<Video?> ComposeAsync(IReadOnlyList<HistoricalImage> images, string outputPath, bool loopTail) =>
+            ComposeAsync(images, outputPath);
 
         public Task<Video?> ComposeAsync(IReadOnlyList<HistoricalImage> images, string outputPath)
         {
