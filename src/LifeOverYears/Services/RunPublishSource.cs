@@ -39,8 +39,24 @@ public static class RunPublishSource
     public static bool IsPublishable(string runFolder) =>
         RequiredRelativePaths.All(rel => File.Exists(Path.Combine(runFolder, rel)));
 
-    public static bool HasDecision(string runFolder) =>
-        File.Exists(Path.Combine(runFolder, PublishFileName));
+    // A decision is a person's yes or no, or a publish that went through. A
+    // failed attempt is neither — the run must be queueable again, or one
+    // expired token turns a run into something that can never be published.
+    public static bool HasDecision(string runFolder)
+    {
+        var path = Path.Combine(runFolder, PublishFileName);
+        if (!File.Exists(path)) return false;
+        try
+        {
+            using var doc = System.Text.Json.JsonDocument.Parse(File.ReadAllText(path));
+            var status = doc.RootElement.TryGetProperty("Status", out var st) ? st.GetString() : null;
+            return status is "published" or "skipped";
+        }
+        catch (System.Text.Json.JsonException)
+        {
+            return false;
+        }
+    }
 
     public static async Task<PublishRequest> ReadAsync(string runFolder, string privacy)
     {

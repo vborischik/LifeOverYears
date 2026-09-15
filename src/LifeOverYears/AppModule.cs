@@ -192,7 +192,8 @@ public sealed class AppModule : Module
         builder.RegisterInstance(new ReviewQueue(
                     reviewRoot,
                     _configuration.GetValue("Publish:Enabled", false),
-                    _loggerFactory.CreateLogger<ReviewQueue>()))
+                    _loggerFactory.CreateLogger<ReviewQueue>(),
+                    runsDir: outputDir))
                .AsSelf().SingleInstance();
 
         builder.Register(_ => new Pipeline(

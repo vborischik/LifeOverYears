@@ -29,7 +29,10 @@ public sealed class MusicService : IMusicService
     private static readonly HashSet<string> MetaPlatforms =
         new(StringComparer.OrdinalIgnoreCase) { "instagram", "facebook" };
 
-    private static readonly string[] Extensions = { ".mp3", ".m4a", ".aac", ".wav", ".flac", ".ogg" };
+    // .mp4 is here for Meta Sound Collection downloads, which are AAC audio
+    // in an mp4 container. The mux maps the track's audio stream only, so a
+    // file that also carried video would not leak a picture in.
+    private static readonly string[] Extensions = { ".mp3", ".m4a", ".aac", ".wav", ".flac", ".ogg", ".mp4" };
 
     private readonly IFfmpegProvider _ffmpeg;
     private readonly IReadOnlyDictionary<string, string> _folders;
@@ -168,7 +171,11 @@ public sealed class MusicService : IMusicService
         var artist  = tags.GetValueOrDefault("artist", "");
         var license = NormaliseLicense(tags.GetValueOrDefault("copyright", ""));
 
-        var name = string.IsNullOrWhiteSpace(title) ? Path.GetFileNameWithoutExtension(trackPath) : title;
+        // Meta Sound Collection files carry the track's numeric id as the
+        // title tag; that is not a name a reader can use, the file name is.
+        var name = string.IsNullOrWhiteSpace(title) || title.All(char.IsDigit)
+            ? Path.GetFileNameWithoutExtension(trackPath)
+            : title;
         var line = string.IsNullOrWhiteSpace(artist) ? $"Music: {name}" : $"Music: {name} by {artist}";
         return license is null ? line : $"{line} ({license})";
     }

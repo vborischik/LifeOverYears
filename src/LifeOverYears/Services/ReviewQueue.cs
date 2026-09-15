@@ -20,15 +20,19 @@ public sealed class ReviewQueue
     private static readonly JsonSerializerOptions Json = new() { WriteIndented = true };
 
     private readonly string _root;
+    private readonly string? _runsDir;
     private readonly ILogger<ReviewQueue> _logger;
 
     // Off means the end-of-run hook does nothing. The explicit CLI enqueue
     // still works — a folder typed by hand is consent.
     public bool AutoEnqueue { get; }
 
-    public ReviewQueue(string root, bool autoEnqueue, ILogger<ReviewQueue> logger)
+    // runsDir is where the originals live, so a folder dropped into the
+    // queue by hand can be matched back to its run by name.
+    public ReviewQueue(string root, bool autoEnqueue, ILogger<ReviewQueue> logger, string? runsDir = null)
     {
         _root       = root;
+        _runsDir    = runsDir;
         AutoEnqueue = autoEnqueue;
         _logger     = logger;
     }
@@ -90,7 +94,12 @@ public sealed class ReviewQueue
         return item;
     }
 
-    // Oldest first — the order the runs finished in.
+    // Oldest first — the order the runs finished in. A folder that was put
+    // here by hand — a whole run copied in, no review.json — is adopted on
+    // sight: the queue is a folder people can drop things into, and a loop
+    // that only honoured its own bookkeeping would sit idle over a video
+    // somebody plainly wanted reviewed. The original is the run of the same
+    // name under runs/ when it exists, otherwise the dropped folder itself.
     public async Task<IReadOnlyList<ReviewItem>> ListAsync()
     {
         if (!Directory.Exists(_root)) return Array.Empty<ReviewItem>();
@@ -98,6 +107,16 @@ public sealed class ReviewQueue
         foreach (var dir in Directory.EnumerateDirectories(_root).Order(StringComparer.Ordinal))
         {
             var item = await ReadItemAsync(dir);
+            if (item is null && RunPublishSource.IsPublishable(dir))
+            {
+                var name     = Path.GetFileName(dir);
+                var original = _runsDir is not null && Directory.Exists(Path.Combine(_runsDir, name))
+                    ? Path.Combine(_runsDir, name)
+                    : dir;
+                item = new ReviewItem(name, Path.GetFullPath(original), null, DateTimeOffset.UtcNow.ToString("o"));
+                await WriteItemAsync(item);
+                _logger.LogInformation("Adopted a folder placed in the queue by hand: {Id} (original: {Run})", name, original);
+            }
             if (item is not null) items.Add(item);
         }
         return items;

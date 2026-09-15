@@ -89,8 +89,16 @@ public sealed class ReviewLoop
             return true;
         }
 
+        // Publish from the original run when it still exists, not from the
+        // review copy: the muxed timeline.{family}.mp4 lands beside the
+        // master and outlives the copy, which is deleted the moment this
+        // returns. The copy is only what the reviewer was shown.
+        var publishFrom = Directory.Exists(item.RunFolder) && RunPublishSource.IsPublishable(item.RunFolder)
+            ? await RunPublishSource.ReadAsync(item.RunFolder, _privacy)
+            : request;
+
         _logger.LogInformation("Approved: {Id} — publishing to {Targets}", item.Id, string.Join(", ", _publisher.Targets));
-        var state = await _publisher.PublishAsync(request, ct);
+        var state = await _publisher.PublishAsync(publishFrom, ct);
         await _queue.CompleteAsync(item, state);
 
         var report = state.Status == "published"

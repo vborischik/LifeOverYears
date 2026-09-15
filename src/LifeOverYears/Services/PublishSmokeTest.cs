@@ -141,8 +141,31 @@ public static class PublishSmokeTest
         if (!File.Exists(record)) errs.Add("complete wrote no publish.json to the run");
         else if (!File.ReadAllText(record).Contains("\"skipped\"")) errs.Add("publish.json does not carry the status");
 
-        // Decided runs never come back.
+        // Decided runs never come back — but a FAILED attempt is not a
+        // decision, and must be queueable again.
         if (await queue.EnqueueAsync(run) is not null) errs.Add("a run with publish.json was queued again");
+        File.WriteAllText(record, JsonSerializer.Serialize(new PublishState("failed", "2026-01-01T00:00:00Z", Array.Empty<Publication>(), "youtube: invalid_grant"), Json));
+        var retry = await queue.EnqueueAsync(run);
+        if (retry is null) errs.Add("a run whose publish FAILED could not be queued again");
+        else await queue.CompleteAsync(retry, state);
+
+        // A whole run copied into the queue by hand, no review.json: adopted
+        // on the next scan, and pointed back at its original by name.
+        var runsDir  = Path.Combine(work, "runs");
+        var handRun  = MakeRun(work, "by-hand");
+        var handCopy = Path.Combine(queue.Root, "by-hand");
+        CopyDir(handRun, handCopy);
+        var adoptQueue = new ReviewQueue(queue.Root, true, lf.CreateLogger<ReviewQueue>(), runsDir: runsDir);
+        var adopted = (await adoptQueue.ListAsync()).SingleOrDefault(i => i.Id == "by-hand");
+        if (adopted is null) errs.Add("a hand-placed run folder was not adopted");
+        else
+        {
+            if (adopted.RunFolder != Path.GetFullPath(handRun)) errs.Add($"adopted item points at {adopted.RunFolder}, not the original run");
+            if (!File.Exists(Path.Combine(handCopy, ReviewQueue.ReviewFileName))) errs.Add("adoption did not write review.json");
+            await adoptQueue.CompleteAsync(adopted, state);
+            if (Directory.Exists(handCopy)) errs.Add("adopted copy not deleted on complete");
+            if (!File.Exists(Path.Combine(handRun, RunPublishSource.PublishFileName))) errs.Add("adopted item's decision did not reach the original run");
+        }
 
         // The hook is inert when off, and never throws.
         var off = new ReviewQueue(Path.Combine(work, "on-review-off"), autoEnqueue: false, lf.CreateLogger<ReviewQueue>());
@@ -151,8 +174,8 @@ public static class PublishSmokeTest
         if (Directory.Exists(Path.Combine(work, "on-review-off"))) errs.Add("AutoEnqueue=false still queued");
         await off.TryEnqueueAfterRunAsync(Path.Combine(work, "does-not-exist"));
 
-        f.Add(("P2", "The review queue copies only what publishing needs, is idempotent, records the decision on the original run, deletes the copy, and never re-queues a decided run",
-            errs.Count == 0, errs.Count == 0 ? "copy = video+caption+title+cover+review.json; publish.json written back; copy deleted; hook inert when off" : string.Join("; ", errs)));
+        f.Add(("P2", "The review queue copies only what publishing needs, is idempotent, records the decision on the original run, deletes the copy, never re-queues a published or skipped run but does re-queue a failed one, and adopts a run folder dropped in by hand",
+            errs.Count == 0, errs.Count == 0 ? "copy = video+caption+title+cover+review.json; publish.json written back; copy deleted; hook inert when off; failed re-queued; hand-placed run adopted and mapped to its original" : string.Join("; ", errs)));
     }
 
     // ── P3 ───────────────────────────────────────────────────────────────────
@@ -217,6 +240,8 @@ public static class PublishSmokeTest
         done = await loop.ProcessOneAsync((await queue.ListAsync())[0], CancellationToken.None);
         if (!done) errs.Add("approve did not complete the item");
         if (publisher.Calls != 1) errs.Add($"approve published {publisher.Calls} times");
+        if (publisher.LastRequest is null || !publisher.LastRequest.Video.FilePath.StartsWith(Path.GetFullPath(runB)))
+            errs.Add("published from the review copy, not the original run — the muxed file would die with the copy");
         if (!RecordSays(runB, "published")) errs.Add("publish not recorded on the run");
         if (channel.Reports.LastOrDefault() is not { } rep || !rep.Contains("instagram: https://fake/")) errs.Add("reviewer not sent the URL");
         if ((await queue.ListAsync()).Count != 0) errs.Add("queue not empty after both decisions");
@@ -230,8 +255,8 @@ public static class PublishSmokeTest
         if (done) errs.Add("a decision for another message was applied");
         if (publisher.Calls != 1) errs.Add("stray decision published");
 
-        f.Add(("P4", "The review loop sends each item once, survives a restart without re-sending, skips on no, publishes on yes, ignores a decision for another message, and reports the outcome",
-            errs.Count == 0, errs.Count == 0 ? "sent once; skip → skipped, no publish; text yes → published, URL reported; foreign decision ignored" : string.Join("; ", errs)));
+        f.Add(("P4", "The review loop sends each item once, survives a restart without re-sending, skips on no, publishes on yes from the ORIGINAL run, ignores a decision for another message, and reports the outcome",
+            errs.Count == 0, errs.Count == 0 ? "sent once; skip → skipped, no publish; text yes → published from the original, URL reported; foreign decision ignored" : string.Join("; ", errs)));
     }
 
     // ── P5 ───────────────────────────────────────────────────────────────────
@@ -251,10 +276,13 @@ public static class PublishSmokeTest
         {
             "/oauth2/token" => Json200("{\"access_token\":\"tok-1\",\"expires_in\":14400}"),
             "/2/files/upload" => Json200("{\"path_lower\":\"/lifeoveryears/x.mp4\"}"),
+            // The live 409 carries only the tag — no metadata, no url — and
+            // the link has to be listed by path. Modelled on the real body.
             "/2/sharing/create_shared_link_with_settings" => new HttpResponseMessage(HttpStatusCode.Conflict)
             {
-                Content = new StringContent("{\"error\":{\"shared_link_already_exists\":{\"metadata\":{\"url\":\"https://www.dropbox.com/scl/fi/q/x.mp4?rlkey=r&dl=0\"}}}}"),
+                Content = new StringContent("{\"error_summary\":\"shared_link_already_exists/..\",\"error\":{\".tag\":\"shared_link_already_exists\"}}"),
             },
+            "/2/sharing/list_shared_links" => Json200("{\"links\":[{\".tag\":\"file\",\"url\":\"https://www.dropbox.com/scl/fi/q/x.mp4?rlkey=r&dl=0\"}],\"has_more\":false}"),
             _ => new HttpResponseMessage(HttpStatusCode.NotFound),
         });
         var dropbox = new DropboxProvider(new HttpClient(handler), new DropboxAuth("key", "secret", "refresh", null), "LifeOverYears", lf.CreateLogger<DropboxProvider>());
@@ -268,9 +296,10 @@ public static class PublishSmokeTest
         var upload = handler.Requests.First(r => r.Path == "/2/files/upload");
         if (upload.Authorization != "Bearer tok-1") errs.Add("upload without the minted bearer");
         if (!upload.Headers.Contains("\"mode\":\"overwrite\"")) errs.Add("upload is not overwrite");
+        if (!handler.Requests.Any(r => r.Path == "/2/sharing/list_shared_links")) errs.Add("the existing link was not looked up by path after the 409");
 
-        f.Add(("P5", "Dropbox mints an access token from the refresh token once, uploads with it as overwrite, and turns the shared link — including the 409 already-exists reply — into a direct-download URL",
-            errs.Count == 0, errs.Count == 0 ? "one token call for two uploads; bearer set; both link shapes rewritten; 409 handled" : string.Join("; ", errs)));
+        f.Add(("P5", "Dropbox mints an access token from the refresh token once, uploads with it as overwrite, and turns the shared link into a direct-download URL — looking the link up by path when the 409 carries only the tag, as the live API does",
+            errs.Count == 0, errs.Count == 0 ? "one token call for two uploads; bearer set; both link shapes rewritten; bare-tag 409 → list_shared_links" : string.Join("; ", errs)));
     }
 
     // ── P6 ───────────────────────────────────────────────────────────────────
@@ -308,9 +337,10 @@ public static class PublishSmokeTest
         if (create.Url.Contains("ig-token")) errs.Add("token in the URL");
         if (!create.Body.Contains("access_token=ig-token")) errs.Add("token not in the body");
         if (!create.Body.Contains("media_type=REELS")) errs.Add("not a Reel");
+        if (!create.Body.Contains("is_ai_generated=true")) errs.Add("the container does not self-disclose AI content — Meta requires it for photorealistic synthetic video");
 
-        f.Add(("P6", "Instagram refuses without a public URL before any call, enforces the caption limits, keeps the token in the body, and returns the permalink",
-            errs.Count == 0, errs.Count == 0 ? "no-URL refused with zero requests; 31 tags and 2300 chars rejected; token in body; permalink returned" : string.Join("; ", errs)));
+        f.Add(("P6", "Instagram refuses without a public URL before any call, enforces the caption limits, keeps the token in the body, discloses AI content on the container, and returns the permalink",
+            errs.Count == 0, errs.Count == 0 ? "no-URL refused with zero requests; 31 tags and 2300 chars rejected; token in body; is_ai_generated=true; permalink returned" : string.Join("; ", errs)));
     }
 
     // ── P7 ───────────────────────────────────────────────────────────────────
@@ -534,8 +564,18 @@ public static class PublishSmokeTest
         var (same, track) = await optional.WithMusicAsync("meta", request);
         if (track.Length != 0 || same.Video.FilePath != request.Video.FilePath) errs.Add("optional music with an empty library should pass the request through");
 
-        // A README in the folder is not a track.
+        // A README in the folder is not a track; an .mp4 — Meta Sound
+        // Collection's container — is.
         if (required.Files("meta").Count != 0) errs.Add("a .txt was counted as a track");
+        File.WriteAllBytes(Path.Combine(empty, "meta", "Civil Twilight.mp4"), new byte[] { 0, 0, 0, 0x18 });
+        if (required.Files("meta").Count != 1) errs.Add("an .mp4 audio file was not counted as a track");
+
+        // A numeric title tag (Meta's track id) is not a credit; the file
+        // name is used instead.
+        var tagged = new MusicService(new TaggedFfmpeg(new Dictionary<string, string> { ["title"] = "732138739084979" }),
+            metaOnly, null, true, lf.CreateLogger<MusicService>());
+        var credit = await tagged.CreditAsync(Path.Combine(empty, "meta", "Civil Twilight.mp4"));
+        if (credit != "Music: Civil Twilight") errs.Add($"numeric title tag leaked into the credit: '{credit}'");
 
         // The ledger: a publish.json under runs/ that names a track makes it used.
         var runs = Path.Combine(work, "ledger-runs", "r1");
@@ -549,7 +589,7 @@ public static class PublishSmokeTest
         if (ledgered.UsedTracks("meta").Count != 0) errs.Add("ledger leaked a youtube track into meta");
 
         f.Add(("P12", "An empty library refuses to publish silent when music is required and passes through when not; a README is not a track; the ledger reads used tracks per family from publish.json",
-            errs.Count == 0, errs.Count == 0 ? "required → refused naming meta; optional → passed through; .txt ignored; ledger per family" : string.Join("; ", errs)));
+            errs.Count == 0, errs.Count == 0 ? "required → refused naming meta; optional → passed through; .txt ignored, .mp4 counted; numeric title → file name; ledger per family" : string.Join("; ", errs)));
     }
 
     private static async Task<bool> Shell(string exe, string args)
@@ -572,6 +612,17 @@ public static class PublishSmokeTest
         var outText = await p.StandardOutput.ReadToEndAsync();
         await p.WaitForExitAsync();
         return outText;
+    }
+
+    private static void CopyDir(string from, string to)
+    {
+        Directory.CreateDirectory(to);
+        foreach (var f in Directory.EnumerateFiles(from, "*", SearchOption.AllDirectories))
+        {
+            var target = Path.Combine(to, Path.GetRelativePath(from, f));
+            Directory.CreateDirectory(Path.GetDirectoryName(target)!);
+            File.Copy(f, target, overwrite: true);
+        }
     }
 
     // A missing record is a finding, not a crash: the check has to report a
@@ -631,11 +682,13 @@ public static class PublishSmokeTest
     private sealed class FakePublisher : IPublishService
     {
         public int Calls { get; private set; }
+        public PublishRequest? LastRequest { get; private set; }
         public IReadOnlyList<string> Targets { get; }
         public FakePublisher(IReadOnlyList<string> targets) => Targets = targets;
         public Task<PublishState> PublishAsync(PublishRequest request, CancellationToken ct = default)
         {
             Calls++;
+            LastRequest = request;
             return Task.FromResult(new PublishState("published", "2026-01-01T00:00:00Z",
                 Targets.Select(t => new Publication("p", request.Video.Id, request.Caption.Id, t, $"https://fake/{t}/{Calls}", "2026-01-01T00:00:00Z")).ToList()));
         }
@@ -667,6 +720,16 @@ public static class PublishSmokeTest
                 Caption = request.Caption with { Description = request.Caption.Description + "\n\nMusic: fake (" + family + ")" },
             }, $"fake-{family}.mp3"));
         }
+    }
+
+    private sealed class TaggedFfmpeg : IFfmpegProvider
+    {
+        private readonly Dictionary<string, string> _tags;
+        public TaggedFfmpeg(Dictionary<string, string> tags) => _tags = tags;
+        public Task<Video?> ComposeAsync(IReadOnlyList<HistoricalImage> images, string outputPath) => Task.FromResult<Video?>(null);
+        public Task<double> ProbeDurationAsync(string path) => Task.FromResult(16.0);
+        public Task<IReadOnlyDictionary<string, string>> ProbeTagsAsync(string path) => Task.FromResult<IReadOnlyDictionary<string, string>>(_tags);
+        public Task MuxMusicAsync(string videoPath, string trackPath, double startSeconds, string outputPath) => Task.CompletedTask;
     }
 
     private sealed class NullFfmpeg : IFfmpegProvider

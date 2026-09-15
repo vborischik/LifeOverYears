@@ -107,16 +107,20 @@ public sealed class DropboxProvider : IPublicStorage
 
         var body = await response.Content.ReadAsStringAsync(ct);
 
+        // A re-upload to the same path answers 409 shared_link_already_exists.
+        // The reference code read the existing link out of that error body;
+        // the live API sends only the tag, no metadata — found on the second
+        // real upload, after a fake had modelled the old shape. The link is
+        // asked for by path instead, which is the documented way.
         if (response.StatusCode == HttpStatusCode.Conflict)
         {
             using var err = JsonDocument.Parse(body);
             if (err.RootElement.TryGetProperty("error", out var error)
-                && error.TryGetProperty("shared_link_already_exists", out var existing)
-                && existing.TryGetProperty("metadata", out var metadata)
-                && metadata.TryGetProperty("url", out var url))
-                return ToDirectLink(url.GetString()!);
+                && error.TryGetProperty(".tag", out var tag)
+                && tag.GetString() == "shared_link_already_exists")
+                return await ExistingSharedLinkAsync(remotePath, ct);
 
-            throw new InvalidOperationException($"Dropbox sharing conflict without a link in it: {body}");
+            throw new InvalidOperationException($"Dropbox sharing conflict that is not an existing link: {body}");
         }
 
         if (!response.IsSuccessStatusCode)
@@ -125,6 +129,23 @@ public sealed class DropboxProvider : IPublicStorage
         using var doc = JsonDocument.Parse(body);
         return ToDirectLink(doc.RootElement.GetProperty("url").GetString()
             ?? throw new InvalidOperationException("Dropbox returned a shared link with no url"));
+    }
+
+    private async Task<string> ExistingSharedLinkAsync(string remotePath, CancellationToken ct)
+    {
+        var response = await PostJsonAsync($"{ApiBase}/sharing/list_shared_links", new
+        {
+            path        = remotePath,
+            direct_only = true,
+        }, ct);
+        var body = await EnsureSuccessAsync(response, "sharing/list_shared_links", ct);
+
+        using var doc = JsonDocument.Parse(body);
+        foreach (var link in doc.RootElement.GetProperty("links").EnumerateArray())
+            if (link.TryGetProperty("url", out var url) && url.GetString() is { Length: > 0 } u)
+                return ToDirectLink(u);
+
+        throw new InvalidOperationException($"Dropbox says a shared link exists for {remotePath} but lists none");
     }
 
     // A shared link is a preview page. Both rewrites turn it into the file

@@ -101,6 +101,11 @@ public sealed class FacebookProvider : IPublishTarget
     // Privacy maps onto video_state: "public" publishes (or schedules when a
     // time is given), anything else stays a draft on the Page, visible to
     // admins only — the closest thing Facebook has to YouTube's private.
+    //
+    // No AI-disclosure parameter exists on this endpoint (checked against
+    // the Reels Publishing guide, Sep 2026) — unlike Instagram's container
+    // and YouTube's status. The "AI info" label on a Facebook Reel is set by
+    // hand in the app after publishing, or by Meta's own detection.
     private async Task FinishAsync(string videoId, PublishRequest request, CancellationToken ct)
     {
         var fields = new Dictionary<string, string>
@@ -145,7 +150,10 @@ public sealed class FacebookProvider : IPublishTarget
 
             if (phase is "ready" or "complete")
                 return;
-            if (phase is "error")
+            // Both terminal failures the reference documents; "upload_failed"
+            // is the one a bad file_url produces, and it must not be waited
+            // on for five minutes as if it were still processing.
+            if (phase is "error" or "upload_failed")
                 throw new InvalidOperationException($"Facebook video {videoId} failed processing: {status.GetRawText()}");
         }
         // Not fatal: the Reel exists and Facebook finishes on its own. A

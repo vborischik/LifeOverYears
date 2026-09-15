@@ -77,6 +77,9 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
     //                                 for review; with it, published directly —
     //                                 the mode for testing a platform on an
     //                                 existing run before the loop is trusted.
+    //                                 --again lets --yes republish a decided run.
+    //                                 --storage-only does music + Dropbox and
+    //                                 prints the URL; posts nothing.
     //   review                        the loop: send each queued run to the
     //                                 reviewer, act on the answer, next.
     if (args.Length >= 1 && (args[0] == "publish" || args[0] == "review"))
@@ -159,9 +162,31 @@ static async Task<int> RunAsync(string[] args, string projectRoot, string launch
     if (args.Length >= 1 && args[0] == "brand")
         return await RunBrandAsync(args.Skip(1).ToArray(), container, loggerFactory);
 
-    // 'run <photoPath> [years...]' — the mode keyword is optional for now
+    // 'run <photoPath> [years...]'. The keyword used to be optional, which
+    // meant any mistyped mode — a flag first, a missing "publish" — fell
+    // through to here and died parsing a folder name as a year. A bare
+    // photo path still works when it is a file that exists; anything else
+    // that is not a known mode is refused with the list.
     if (args.Length >= 1 && args[0] == "run")
         args = args.Skip(1).ToArray();
+    else if (args.Length >= 1 && !File.Exists(Path.GetFullPath(args[0], launchDir)))
+    {
+        Console.Error.WriteLine(
+            $"Unknown mode '{args[0]}'. Modes: run [photo] [years...] | brand <name> [years...] | " +
+            "collect <runFolder> [--wait] | assemble <runFolder> [years...] | publish <runFolder> [--yes] [--again] [--storage-only] | " +
+            "review | short-prompts <runFolder> | vision-variance <folder> | vision-accuracy <folder> | " +
+            "--smoke-prompts | --smoke-video | --smoke-batch | --smoke-vision | --smoke-publish | --smoke-folders");
+        return 2;
+    }
+
+    // Years are the only numeric arguments; a non-number here is a mistyped
+    // command, not a format exception to read a stack trace for.
+    foreach (var y in args.Skip(1))
+        if (!int.TryParse(y, out _))
+        {
+            Console.Error.WriteLine($"run: '{y}' is not a year. Usage: run [photo] [years...]");
+            return 2;
+        }
 
     // Every photo in the input folder, not just the first one it happened to
     // enumerate. Dropping five in and getting one back — with the other four
@@ -340,9 +365,22 @@ static async Task<int> RunPublishModeAsync(string[] args, string launchDir, stri
         logger.LogInformation("Review loop started — Ctrl+C to stop. Queue: {Root}", queue.Root);
         ReviewLoop loop;
         try { loop = ResolveOrExplain<ReviewLoop>(); } catch (PublishConfigurationException) { return 1; }
-        var done = await loop.RunAsync(cts.Token);
-        logger.LogInformation("Review loop stopped after {Count} decision(s)", done);
-        return 0;
+        try
+        {
+            var done = await loop.RunAsync(cts.Token);
+            logger.LogInformation("Review loop stopped after {Count} decision(s)", done);
+            return 0;
+        }
+        catch (AnotherReviewRunningException ex)
+        {
+            logger.LogError("{Message}", ex.Message);
+            return 1;
+        }
+        catch (OperationCanceledException)
+        {
+            logger.LogInformation("Review loop stopped");
+            return 0;
+        }
     }
 
     if (args.Length < 2)
@@ -358,6 +396,32 @@ static async Task<int> RunPublishModeAsync(string[] args, string launchDir, stri
         return 1;
     }
 
+    // --storage-only: music and the public-URL step through the real
+    // providers, nothing posted, nothing recorded. The check to run before
+    // a platform token exists — the URL it prints is what Instagram would be
+    // handed, and can be fetched by hand.
+    if (args.Contains("--storage-only"))
+    {
+        var privacyForStorage = configuration["Publish:Privacy"] ?? "private";
+        var storageRequest = await RunPublishSource.ReadAsync(runFolder, privacyForStorage);
+        IMusicService music; IPublicStorage storage;
+        try
+        {
+            music   = ResolveOrExplain<IMusicService>();
+            storage = container.ResolveOptional<IPublicStorage>()
+                ?? throw new PublishConfigurationException("Publish:Dropbox has no RefreshToken or AccessToken — nothing to upload with", new InvalidOperationException());
+        }
+        catch (PublishConfigurationException) { return 1; }
+
+        var family = music.FamilyOf("instagram");
+        var (withMusic, track) = await music.WithMusicAsync(family, storageRequest);
+        logger.LogInformation("Music: {Track} → {File}", track, withMusic.Video.FilePath);
+        var url = await storage.UploadPublicAsync(withMusic.Video.FilePath, $"{storageRequest.Video.Id}.{family}.mp4");
+        logger.LogInformation("Public URL: {Url}", url);
+        logger.LogInformation("storage-only complete — nothing was posted and no publish.json was written");
+        return 0;
+    }
+
     if (!args.Contains("--yes"))
     {
         var item = await queue.EnqueueAsync(runFolder);
@@ -368,7 +432,17 @@ static async Task<int> RunPublishModeAsync(string[] args, string launchDir, stri
     }
 
     // --yes: straight to the platforms, no Telegram in between. Explicit on
-    // purpose — the folder and the flag were both typed by a person.
+    // purpose — the folder and the flag were both typed by a person. A run
+    // that already went through — published or skipped — is refused unless
+    // --again is typed too: without this a test command re-uploaded a video
+    // that was already on the channel, and a private duplicate on YouTube is
+    // the cheap version of that mistake.
+    if (RunPublishSource.HasDecision(runFolder) && !args.Contains("--again"))
+    {
+        logger.LogError("publish: {Folder} already has a decision in publish.json — add --again to publish it once more", runFolder);
+        return 1;
+    }
+
     var privacy = configuration["Publish:Privacy"] ?? "private";
     var request = await RunPublishSource.ReadAsync(runFolder, privacy);
     IPublishService service;

@@ -47,7 +47,8 @@ public sealed class PublishModule : Module
         var targets = _configuration.GetSection("Publish:Targets").Get<string[]>() ?? Array.Empty<string>();
 
         builder.RegisterInstance(new ReviewQueue(
-                    ReviewRoot(_outputRoot), enabled, _loggerFactory.CreateLogger<ReviewQueue>()))
+                    ReviewRoot(_outputRoot), enabled, _loggerFactory.CreateLogger<ReviewQueue>(),
+                    runsDir: Path.Combine(_outputRoot, "runs")))
                .AsSelf().SingleInstance();
 
         // Storage — only if any configured target needs a URL, and only if

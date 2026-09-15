@@ -258,6 +258,13 @@ public sealed class TelegramReviewProvider : IReviewChannel
     {
         var response = await _http.PostAsync($"https://api.telegram.org/bot{_botToken}/{method}", content, ct);
         var body     = await response.Content.ReadAsStringAsync(ct);
+
+        // Telegram allows one getUpdates listener per bot. A 409 here is not
+        // a network fault, it is a second `review` running somewhere — the
+        // one thing the operator can fix and the one thing a retry cannot.
+        if ((int)response.StatusCode == 409 && method == "getUpdates")
+            throw new AnotherReviewRunningException();
+
         if (!response.IsSuccessStatusCode)
             throw new HttpRequestException($"Telegram {method} failed {(int)response.StatusCode}: {body}");
         var root = JsonDocument.Parse(body).RootElement;
@@ -265,4 +272,12 @@ public sealed class TelegramReviewProvider : IReviewChannel
             throw new InvalidOperationException($"Telegram {method} returned ok=false: {body}");
         return root;
     }
+}
+
+// Telegram answered 409 to getUpdates: another process is already polling
+// this bot. Only one review loop may run at a time.
+public sealed class AnotherReviewRunningException : Exception
+{
+    public AnotherReviewRunningException()
+        : base("Another 'review' is already running for this bot (Telegram allows one listener). Stop it — Ctrl+C in its terminal — and start again.") { }
 }

@@ -93,10 +93,18 @@ public sealed class InstagramProvider : IPublishTarget
     {
         var json = await PostFormAsync($"{_base}/{_userId}/media", new Dictionary<string, string>
         {
-            ["media_type"]    = "REELS",
-            ["video_url"]     = videoUrl,
-            ["caption"]       = caption,
-            ["share_to_feed"] = "true",
+            ["media_type"]      = "REELS",
+            ["video_url"]       = videoUrl,
+            ["caption"]         = caption,
+            ["share_to_feed"]   = "true",
+            // Meta's self-disclosure of AI use, shown as the "AI info" label.
+            // Every frame here is model-generated and made to read as a real
+            // photograph of a real place — exactly the photorealistic synthetic
+            // video Meta requires a poster to disclose, and may penalise for
+            // not disclosing. A fact about this project, not a setting, so it
+            // is not configurable — the same call YouTubeProvider makes with
+            // ContainsSyntheticMedia.
+            ["is_ai_generated"] = "true",
         }, ct);
         return json.GetProperty("id").GetString()
             ?? throw new InvalidOperationException("Instagram returned a container with no id");
